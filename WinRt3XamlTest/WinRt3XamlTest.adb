@@ -4,7 +4,7 @@ with WinRt;                                     use WinRt;
 with WinRt.Windows.UI.Xaml;                     use WinRt.Windows.UI.Xaml; 
 with AppOverrides;                              use AppOverrides;
 --------------------------------------------------------------------------------
-procedure WinRtXamlTest is
+procedure WinRt3XamlTest is
 
     Hr              : HResult := 0;
 
