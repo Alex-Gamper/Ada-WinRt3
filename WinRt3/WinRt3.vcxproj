@@ -1,0 +1,985 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|LLVM">
+      <Configuration>Debug</Configuration>
+      <Platform>LLVM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|LLVM">
+      <Configuration>Release</Configuration>
+      <Platform>LLVM</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <CustomProjectExtensionsPath>$(MSBuildBinPath)\..\..\VisualAda\BuildSystem\</CustomProjectExtensionsPath>
+    <ProjectName>WinRt3</ProjectName>
+    <ProjectGuid>{74a39971-74b1-4d57-aaf2-77607444b481}</ProjectGuid>
+    <Keyword>WinRt3</Keyword>
+    <RootNamespace>WinRt3</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <VisualAdaVersion>1.2.0.0</VisualAdaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64' or '$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <AdaTarget>x86_64-w64-mingw32</AdaTarget>
+    <GnatRoot>C:\msys64\ucrt64</GnatRoot>
+    <GnatRootRTS>C:\msys64\ucrt64\lib\gcc\x86_64-w64-mingw32\12.2.0</GnatRootRTS>
+    <GnatMingwRoot>C:\msys64\ucrt64</GnatMingwRoot>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32' or '$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <AdaTarget>Unknown</AdaTarget>
+    <GnatRoot>Unknown</GnatRoot>
+    <GnatRootRTS>Unknown</GnatRootRTS>
+    <GnatMingwRoot>Unknown</GnatMingwRoot>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM' or '$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <AdaTarget>arm-eabi</AdaTarget>
+    <GnatRoot>
+    </GnatRoot>
+    <GnatRootRTS>
+    </GnatRootRTS>
+    <GnatMingwRoot>
+    </GnatMingwRoot>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64' or '$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <AdaTarget>arm-eabi</AdaTarget>
+    <GnatRoot>
+    </GnatRoot>
+    <GnatRootRTS>
+    </GnatRootRTS>
+    <GnatMingwRoot>
+    </GnatMingwRoot>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|LLVM' or '$(Configuration)|$(Platform)'=='Debug|LLVM'" Label="Configuration">
+    <AdaTarget>arm-eabi</AdaTarget>
+    <GnatRoot>
+    </GnatRoot>
+    <GnatRootRTS>
+    </GnatRootRTS>
+    <GnatMingwRoot>
+    </GnatMingwRoot>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GnatRootRTSAda Condition="'$(AdaRTS)'==''">$(GnatRootRTS)</GnatRootRTSAda>
+    <GnatRootRTSAda Condition="'$(AdaRTS)'!=''">$(GnatRootRTS)\rts-$(AdaRTS)</GnatRootRTSAda>
+    <GnatRootRTSAdaLib Condition="'$(AdaRTS)'==''">$(GnatRootRTS)\adalib</GnatRootRTSAdaLib>
+    <GnatRootRTSAdaLib Condition="'$(AdaRTS)'!=''">$(GnatRootRTS)\rts-$(AdaRTS)\adalib</GnatRootRTSAdaLib>
+    <GnatLibraryDir>$(GnatRoot)\lib</GnatLibraryDir>
+    <GnatWinRtLibraryDir>$(GnatRootRTSAda)\lib\WinRt</GnatWinRtLibraryDir>
+    <GprbuildOptions>-aP$(GnatRootRTSAda)\share\gpr</GprbuildOptions>
+  </PropertyGroup>
+  <Import Project="$(CustomProjectExtensionsPath)Ada_Default.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|LLVM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|LLVM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(CustomProjectExtensionsPath)Ada.props" />
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|LLVM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|LLVM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|LLVM'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|LLVM'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="WinRt3.gpr" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdaCompile Include="WinRt.adb" />
+    <AdaCompile Include="WinRt.ads" />
+    <AdaCompile Include="WinRt.Windows.ads" />
+    <AdaCompile Include="WinRt.Windows.AI.ads" />
+    <AdaCompile Include="WinRt.Windows.AI.MachineLearning.adb" />
+    <AdaCompile Include="WinRt.Windows.AI.MachineLearning.ads" />
+    <AdaCompile Include="WinRt.Windows.AI.MachineLearning.Preview.adb" />
+    <AdaCompile Include="WinRt.Windows.AI.MachineLearning.Preview.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Activation.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Activation.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.AppExtensions.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.AppExtensions.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Appointments.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Appointments.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Appointments.DataProvider.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Appointments.DataProvider.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.AppService.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.AppService.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Background.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Background.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Calls.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Calls.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Calls.Background.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Calls.Background.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Calls.Provider.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Calls.Provider.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Chat.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Chat.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.CommunicationBlocking.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Contacts.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Contacts.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Contacts.DataProvider.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Contacts.DataProvider.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Contacts.Provider.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Contacts.Provider.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.ConversationalAgent.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.ConversationalAgent.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.DataTransfer.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.DataTransfer.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Email.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Email.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Email.DataProvider.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Email.DataProvider.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.ExtendedExecution.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.ExtendedExecution.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.LockScreen.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.LockScreen.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Payments.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Payments.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Payments.Provider.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Payments.Provider.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Preview.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Preview.Holographic.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Preview.Holographic.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Preview.InkWorkspace.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Preview.InkWorkspace.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Preview.Notes.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Preview.Notes.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Resources.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Resources.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Resources.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Resources.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Resources.Management.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Resources.Management.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Search.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Search.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Search.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Search.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.SocialInfo.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.SocialInfo.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.SocialInfo.Provider.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.SocialInfo.Provider.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Store.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Store.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Store.LicenseManagement.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Store.LicenseManagement.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Store.Preview.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Store.Preview.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.UserActivities.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.UserActivities.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.UserActivities.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.UserDataAccounts.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.UserDataAccounts.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.UserDataTasks.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.UserDataTasks.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.VoiceCommands.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.VoiceCommands.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Wallet.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Wallet.ads" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Wallet.System.adb" />
+    <AdaCompile Include="WinRt.Windows.ApplicationModel.Wallet.System.ads" />
+    <AdaCompile Include="WinRt.Windows.Data.ads" />
+    <AdaCompile Include="WinRt.Windows.Data.Html.ads" />
+    <AdaCompile Include="WinRt.Windows.Data.Json.adb" />
+    <AdaCompile Include="WinRt.Windows.Data.Json.ads" />
+    <AdaCompile Include="WinRt.Windows.Data.Pdf.adb" />
+    <AdaCompile Include="WinRt.Windows.Data.Pdf.ads" />
+    <AdaCompile Include="WinRt.Windows.Data.Text.adb" />
+    <AdaCompile Include="WinRt.Windows.Data.Text.ads" />
+    <AdaCompile Include="WinRt.Windows.Data.Xml.ads" />
+    <AdaCompile Include="WinRt.Windows.Data.Xml.Dom.adb" />
+    <AdaCompile Include="WinRt.Windows.Data.Xml.Dom.ads" />
+    <AdaCompile Include="WinRt.Windows.Data.Xml.Xsl.adb" />
+    <AdaCompile Include="WinRt.Windows.Data.Xml.Xsl.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Adc.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Adc.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Adc.Provider.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.AllJoyn.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.AllJoyn.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Background.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Background.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Bluetooth.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Bluetooth.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Bluetooth.Advertisement.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Bluetooth.Advertisement.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Bluetooth.Background.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Bluetooth.Background.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Bluetooth.Rfcomm.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Bluetooth.Rfcomm.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Custom.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Custom.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Display.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Display.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Display.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Display.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Enumeration.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Enumeration.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Enumeration.Pnp.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Enumeration.Pnp.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Geolocation.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Geolocation.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Geolocation.Geofencing.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Geolocation.Geofencing.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Gpio.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Gpio.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Gpio.Provider.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Gpio.Provider.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Haptics.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Haptics.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.HumanInterfaceDevice.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.HumanInterfaceDevice.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.I2c.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.I2c.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.I2c.Provider.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.I2c.Provider.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Input.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Input.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Input.Preview.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Input.Preview.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Lights.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Lights.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Lights.Effects.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Lights.Effects.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Midi.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Midi.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Perception.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Perception.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Perception.Provider.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Perception.Provider.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.PointOfService.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.PointOfService.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.PointOfService.Provider.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.PointOfService.Provider.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Portable.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Power.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Power.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Printers.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Printers.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Printers.Extensions.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Printers.Extensions.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Pwm.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Pwm.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Pwm.Provider.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Radios.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Radios.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Scanners.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Scanners.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Sensors.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Sensors.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Sensors.Custom.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Sensors.Custom.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.SerialCommunication.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.SerialCommunication.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.SmartCards.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.SmartCards.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Sms.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Sms.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Spi.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Spi.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Spi.Provider.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Spi.Provider.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.Usb.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.Usb.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.WiFi.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.WiFi.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.WiFiDirect.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.WiFiDirect.ads" />
+    <AdaCompile Include="WinRt.Windows.Devices.WiFiDirect.Services.adb" />
+    <AdaCompile Include="WinRt.Windows.Devices.WiFiDirect.Services.ads" />
+    <AdaCompile Include="WinRt.Windows.Embedded.ads" />
+    <AdaCompile Include="WinRt.Windows.Embedded.DeviceLockdown.adb" />
+    <AdaCompile Include="WinRt.Windows.Embedded.DeviceLockdown.ads" />
+    <AdaCompile Include="WinRt.Windows.Foundation.adb" />
+    <AdaCompile Include="WinRt.Windows.Foundation.ads" />
+    <AdaCompile Include="WinRt.Windows.Foundation.Collections.adb" />
+    <AdaCompile Include="WinRt.Windows.Foundation.Collections.ads" />
+    <AdaCompile Include="WinRt.Windows.Foundation.Diagnostics.adb" />
+    <AdaCompile Include="WinRt.Windows.Foundation.Diagnostics.ads" />
+    <AdaCompile Include="WinRt.Windows.Foundation.Metadata.ads" />
+    <AdaCompile Include="WinRt.Windows.Foundation.Numerics.ads" />
+    <AdaCompile Include="WinRt.Windows.Gaming.ads" />
+    <AdaCompile Include="WinRt.Windows.Gaming.Input.adb" />
+    <AdaCompile Include="WinRt.Windows.Gaming.Input.ads" />
+    <AdaCompile Include="WinRt.Windows.Gaming.Input.Custom.adb" />
+    <AdaCompile Include="WinRt.Windows.Gaming.Input.Custom.ads" />
+    <AdaCompile Include="WinRt.Windows.Gaming.Input.ForceFeedback.adb" />
+    <AdaCompile Include="WinRt.Windows.Gaming.Input.ForceFeedback.ads" />
+    <AdaCompile Include="WinRt.Windows.Gaming.Input.Preview.ads" />
+    <AdaCompile Include="WinRt.Windows.Gaming.Preview.ads" />
+    <AdaCompile Include="WinRt.Windows.Gaming.Preview.GamesEnumeration.adb" />
+    <AdaCompile Include="WinRt.Windows.Gaming.Preview.GamesEnumeration.ads" />
+    <AdaCompile Include="WinRt.Windows.Gaming.UI.adb" />
+    <AdaCompile Include="WinRt.Windows.Gaming.UI.ads" />
+    <AdaCompile Include="WinRt.Windows.Gaming.XboxLive.ads" />
+    <AdaCompile Include="WinRt.Windows.Gaming.XboxLive.Storage.adb" />
+    <AdaCompile Include="WinRt.Windows.Gaming.XboxLive.Storage.ads" />
+    <AdaCompile Include="WinRt.Windows.Globalization.adb" />
+    <AdaCompile Include="WinRt.Windows.Globalization.ads" />
+    <AdaCompile Include="WinRt.Windows.Globalization.Collation.adb" />
+    <AdaCompile Include="WinRt.Windows.Globalization.Collation.ads" />
+    <AdaCompile Include="WinRt.Windows.Globalization.DateTimeFormatting.adb" />
+    <AdaCompile Include="WinRt.Windows.Globalization.DateTimeFormatting.ads" />
+    <AdaCompile Include="WinRt.Windows.Globalization.Fonts.adb" />
+    <AdaCompile Include="WinRt.Windows.Globalization.Fonts.ads" />
+    <AdaCompile Include="WinRt.Windows.Globalization.NumberFormatting.adb" />
+    <AdaCompile Include="WinRt.Windows.Globalization.NumberFormatting.ads" />
+    <AdaCompile Include="WinRt.Windows.Globalization.PhoneNumberFormatting.adb" />
+    <AdaCompile Include="WinRt.Windows.Globalization.PhoneNumberFormatting.ads" />
+    <AdaCompile Include="WinRt.Windows.Graphics.ads" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Capture.adb" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Capture.ads" />
+    <AdaCompile Include="WinRt.Windows.Graphics.DirectX.ads" />
+    <AdaCompile Include="WinRt.Windows.Graphics.DirectX.Direct3D11.ads" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Display.adb" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Display.ads" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Display.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Display.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Effects.ads" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Holographic.adb" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Holographic.ads" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Imaging.adb" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Imaging.ads" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Printing.adb" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Printing.ads" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Printing.OptionDetails.adb" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Printing.OptionDetails.ads" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Printing.PrintTicket.adb" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Printing.PrintTicket.ads" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Printing.Workflow.adb" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Printing.Workflow.ads" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Printing3D.adb" />
+    <AdaCompile Include="WinRt.Windows.Graphics.Printing3D.ads" />
+    <AdaCompile Include="WinRt.Windows.Management.adb" />
+    <AdaCompile Include="WinRt.Windows.Management.ads" />
+    <AdaCompile Include="WinRt.Windows.Management.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.Management.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.Management.Deployment.adb" />
+    <AdaCompile Include="WinRt.Windows.Management.Deployment.ads" />
+    <AdaCompile Include="WinRt.Windows.Management.Deployment.Preview.adb" />
+    <AdaCompile Include="WinRt.Windows.Management.Deployment.Preview.ads" />
+    <AdaCompile Include="WinRt.Windows.Management.Policies.adb" />
+    <AdaCompile Include="WinRt.Windows.Management.Policies.ads" />
+    <AdaCompile Include="WinRt.Windows.Management.Update.adb" />
+    <AdaCompile Include="WinRt.Windows.Management.Update.ads" />
+    <AdaCompile Include="WinRt.Windows.Management.Workplace.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.AppBroadcasting.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.AppBroadcasting.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.AppRecording.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.AppRecording.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Audio.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Audio.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Capture.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Capture.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Capture.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Capture.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Capture.Frames.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Capture.Frames.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Casting.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Casting.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.ClosedCaptioning.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.ContentRestrictions.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.ContentRestrictions.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Control.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Control.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Core.Preview.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Devices.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Devices.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Devices.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Devices.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.DialProtocol.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.DialProtocol.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Editing.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Editing.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Effects.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Effects.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.FaceAnalysis.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.FaceAnalysis.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Import.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Import.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.MediaProperties.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.MediaProperties.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Miracast.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Miracast.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Ocr.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Ocr.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Playback.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Playback.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Playlists.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Playlists.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.PlayTo.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.PlayTo.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Protection.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Protection.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Protection.PlayReady.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Protection.PlayReady.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Render.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.SpeechRecognition.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.SpeechRecognition.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.SpeechSynthesis.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.SpeechSynthesis.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Streaming.Adaptive.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Streaming.Adaptive.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Streaming.ads" />
+    <AdaCompile Include="WinRt.Windows.Media.Transcoding.adb" />
+    <AdaCompile Include="WinRt.Windows.Media.Transcoding.ads" />
+    <AdaCompile Include="WinRt.Windows.Networking.adb" />
+    <AdaCompile Include="WinRt.Windows.Networking.ads" />
+    <AdaCompile Include="WinRt.Windows.Networking.BackgroundTransfer.adb" />
+    <AdaCompile Include="WinRt.Windows.Networking.BackgroundTransfer.ads" />
+    <AdaCompile Include="WinRt.Windows.Networking.Connectivity.adb" />
+    <AdaCompile Include="WinRt.Windows.Networking.Connectivity.ads" />
+    <AdaCompile Include="WinRt.Windows.Networking.NetworkOperators.adb" />
+    <AdaCompile Include="WinRt.Windows.Networking.NetworkOperators.ads" />
+    <AdaCompile Include="WinRt.Windows.Networking.Proximity.adb" />
+    <AdaCompile Include="WinRt.Windows.Networking.Proximity.ads" />
+    <AdaCompile Include="WinRt.Windows.Networking.PushNotifications.adb" />
+    <AdaCompile Include="WinRt.Windows.Networking.PushNotifications.ads" />
+    <AdaCompile Include="WinRt.Windows.Networking.ServiceDiscovery.ads" />
+    <AdaCompile Include="WinRt.Windows.Networking.ServiceDiscovery.Dnssd.adb" />
+    <AdaCompile Include="WinRt.Windows.Networking.ServiceDiscovery.Dnssd.ads" />
+    <AdaCompile Include="WinRt.Windows.Networking.Sockets.adb" />
+    <AdaCompile Include="WinRt.Windows.Networking.Sockets.ads" />
+    <AdaCompile Include="WinRt.Windows.Networking.Vpn.adb" />
+    <AdaCompile Include="WinRt.Windows.Networking.Vpn.ads" />
+    <AdaCompile Include="WinRt.Windows.Networking.XboxLive.adb" />
+    <AdaCompile Include="WinRt.Windows.Networking.XboxLive.ads" />
+    <AdaCompile Include="WinRt.Windows.Perception.adb" />
+    <AdaCompile Include="WinRt.Windows.Perception.ads" />
+    <AdaCompile Include="WinRt.Windows.Perception.Automation.ads" />
+    <AdaCompile Include="WinRt.Windows.Perception.Automation.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.Perception.People.adb" />
+    <AdaCompile Include="WinRt.Windows.Perception.People.ads" />
+    <AdaCompile Include="WinRt.Windows.Perception.Spatial.adb" />
+    <AdaCompile Include="WinRt.Windows.Perception.Spatial.ads" />
+    <AdaCompile Include="WinRt.Windows.Perception.Spatial.Preview.adb" />
+    <AdaCompile Include="WinRt.Windows.Perception.Spatial.Preview.ads" />
+    <AdaCompile Include="WinRt.Windows.Perception.Spatial.Surfaces.adb" />
+    <AdaCompile Include="WinRt.Windows.Perception.Spatial.Surfaces.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.ApplicationModel.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.Devices.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.Devices.Notification.adb" />
+    <AdaCompile Include="WinRt.Windows.Phone.Devices.Notification.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.Devices.Power.adb" />
+    <AdaCompile Include="WinRt.Windows.Phone.Devices.Power.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.Management.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.Management.Deployment.adb" />
+    <AdaCompile Include="WinRt.Windows.Phone.Management.Deployment.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.Media.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.Media.Devices.adb" />
+    <AdaCompile Include="WinRt.Windows.Phone.Media.Devices.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.Notification.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.Notification.Management.adb" />
+    <AdaCompile Include="WinRt.Windows.Phone.Notification.Management.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.PersonalInformation.adb" />
+    <AdaCompile Include="WinRt.Windows.Phone.PersonalInformation.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.PersonalInformation.Provisioning.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.Speech.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.Speech.Recognition.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.StartScreen.adb" />
+    <AdaCompile Include="WinRt.Windows.Phone.StartScreen.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.System.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.System.Power.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.System.Profile.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.System.UserProfile.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.System.UserProfile.GameServices.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.System.UserProfile.GameServices.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.Phone.System.UserProfile.GameServices.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.UI.ads" />
+    <AdaCompile Include="WinRt.Windows.Phone.UI.Input.adb" />
+    <AdaCompile Include="WinRt.Windows.Phone.UI.Input.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.Authentication.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.Authentication.Identity.adb" />
+    <AdaCompile Include="WinRt.Windows.Security.Authentication.Identity.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.Authentication.Identity.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.Security.Authentication.Identity.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.Authentication.Identity.Provider.adb" />
+    <AdaCompile Include="WinRt.Windows.Security.Authentication.Identity.Provider.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.Authentication.OnlineId.adb" />
+    <AdaCompile Include="WinRt.Windows.Security.Authentication.OnlineId.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.Authentication.Web.adb" />
+    <AdaCompile Include="WinRt.Windows.Security.Authentication.Web.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.Authentication.Web.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.Security.Authentication.Web.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.Authentication.Web.Provider.adb" />
+    <AdaCompile Include="WinRt.Windows.Security.Authentication.Web.Provider.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.Authorization.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.Authorization.AppCapabilityAccess.adb" />
+    <AdaCompile Include="WinRt.Windows.Security.Authorization.AppCapabilityAccess.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.Credentials.adb" />
+    <AdaCompile Include="WinRt.Windows.Security.Credentials.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.Credentials.UI.adb" />
+    <AdaCompile Include="WinRt.Windows.Security.Credentials.UI.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.Cryptography.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.Cryptography.Certificates.adb" />
+    <AdaCompile Include="WinRt.Windows.Security.Cryptography.Certificates.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.Cryptography.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.Security.Cryptography.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.Cryptography.DataProtection.adb" />
+    <AdaCompile Include="WinRt.Windows.Security.Cryptography.DataProtection.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.DataProtection.adb" />
+    <AdaCompile Include="WinRt.Windows.Security.DataProtection.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.EnterpriseData.adb" />
+    <AdaCompile Include="WinRt.Windows.Security.EnterpriseData.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.ExchangeActiveSyncProvisioning.adb" />
+    <AdaCompile Include="WinRt.Windows.Security.ExchangeActiveSyncProvisioning.ads" />
+    <AdaCompile Include="WinRt.Windows.Security.Isolation.adb" />
+    <AdaCompile Include="WinRt.Windows.Security.Isolation.ads" />
+    <AdaCompile Include="WinRt.Windows.Services.ads" />
+    <AdaCompile Include="WinRt.Windows.Services.Cortana.adb" />
+    <AdaCompile Include="WinRt.Windows.Services.Cortana.ads" />
+    <AdaCompile Include="WinRt.Windows.Services.Maps.adb" />
+    <AdaCompile Include="WinRt.Windows.Services.Maps.ads" />
+    <AdaCompile Include="WinRt.Windows.Services.Maps.Guidance.adb" />
+    <AdaCompile Include="WinRt.Windows.Services.Maps.Guidance.ads" />
+    <AdaCompile Include="WinRt.Windows.Services.Maps.LocalSearch.adb" />
+    <AdaCompile Include="WinRt.Windows.Services.Maps.LocalSearch.ads" />
+    <AdaCompile Include="WinRt.Windows.Services.Maps.OfflineMaps.adb" />
+    <AdaCompile Include="WinRt.Windows.Services.Maps.OfflineMaps.ads" />
+    <AdaCompile Include="WinRt.Windows.Services.Store.adb" />
+    <AdaCompile Include="WinRt.Windows.Services.Store.ads" />
+    <AdaCompile Include="WinRt.Windows.Services.TargetedContent.adb" />
+    <AdaCompile Include="WinRt.Windows.Services.TargetedContent.ads" />
+    <AdaCompile Include="WinRt.Windows.Storage.AccessCache.adb" />
+    <AdaCompile Include="WinRt.Windows.Storage.AccessCache.ads" />
+    <AdaCompile Include="WinRt.Windows.Storage.adb" />
+    <AdaCompile Include="WinRt.Windows.Storage.ads" />
+    <AdaCompile Include="WinRt.Windows.Storage.BulkAccess.adb" />
+    <AdaCompile Include="WinRt.Windows.Storage.BulkAccess.ads" />
+    <AdaCompile Include="WinRt.Windows.Storage.Compression.adb" />
+    <AdaCompile Include="WinRt.Windows.Storage.Compression.ads" />
+    <AdaCompile Include="WinRt.Windows.Storage.FileProperties.adb" />
+    <AdaCompile Include="WinRt.Windows.Storage.FileProperties.ads" />
+    <AdaCompile Include="WinRt.Windows.Storage.Pickers.adb" />
+    <AdaCompile Include="WinRt.Windows.Storage.Pickers.ads" />
+    <AdaCompile Include="WinRt.Windows.Storage.Pickers.Provider.adb" />
+    <AdaCompile Include="WinRt.Windows.Storage.Pickers.Provider.ads" />
+    <AdaCompile Include="WinRt.Windows.Storage.Provider.adb" />
+    <AdaCompile Include="WinRt.Windows.Storage.Provider.ads" />
+    <AdaCompile Include="WinRt.Windows.Storage.Search.adb" />
+    <AdaCompile Include="WinRt.Windows.Storage.Search.ads" />
+    <AdaCompile Include="WinRt.Windows.Storage.Streams.adb" />
+    <AdaCompile Include="WinRt.Windows.Storage.Streams.ads" />
+    <AdaCompile Include="WinRt.Windows.System.adb" />
+    <AdaCompile Include="WinRt.Windows.System.ads" />
+    <AdaCompile Include="WinRt.Windows.System.Diagnostics.adb" />
+    <AdaCompile Include="WinRt.Windows.System.Diagnostics.ads" />
+    <AdaCompile Include="WinRt.Windows.System.Diagnostics.DevicePortal.adb" />
+    <AdaCompile Include="WinRt.Windows.System.Diagnostics.DevicePortal.ads" />
+    <AdaCompile Include="WinRt.Windows.System.Diagnostics.Telemetry.adb" />
+    <AdaCompile Include="WinRt.Windows.System.Diagnostics.Telemetry.ads" />
+    <AdaCompile Include="WinRt.Windows.System.Diagnostics.TraceReporting.adb" />
+    <AdaCompile Include="WinRt.Windows.System.Diagnostics.TraceReporting.ads" />
+    <AdaCompile Include="WinRt.Windows.System.Display.adb" />
+    <AdaCompile Include="WinRt.Windows.System.Display.ads" />
+    <AdaCompile Include="WinRt.Windows.System.Inventory.adb" />
+    <AdaCompile Include="WinRt.Windows.System.Inventory.ads" />
+    <AdaCompile Include="WinRt.Windows.System.Power.ads" />
+    <AdaCompile Include="WinRt.Windows.System.Power.Diagnostics.ads" />
+    <AdaCompile Include="WinRt.Windows.System.Preview.adb" />
+    <AdaCompile Include="WinRt.Windows.System.Preview.ads" />
+    <AdaCompile Include="WinRt.Windows.System.Profile.adb" />
+    <AdaCompile Include="WinRt.Windows.System.Profile.ads" />
+    <AdaCompile Include="WinRt.Windows.System.Profile.SystemManufacturers.adb" />
+    <AdaCompile Include="WinRt.Windows.System.Profile.SystemManufacturers.ads" />
+    <AdaCompile Include="WinRt.Windows.System.RemoteDesktop.ads" />
+    <AdaCompile Include="WinRt.Windows.System.RemoteSystems.adb" />
+    <AdaCompile Include="WinRt.Windows.System.RemoteSystems.ads" />
+    <AdaCompile Include="WinRt.Windows.System.Threading.adb" />
+    <AdaCompile Include="WinRt.Windows.System.Threading.ads" />
+    <AdaCompile Include="WinRt.Windows.System.Threading.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.System.Threading.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.System.Update.adb" />
+    <AdaCompile Include="WinRt.Windows.System.Update.ads" />
+    <AdaCompile Include="WinRt.Windows.System.UserProfile.adb" />
+    <AdaCompile Include="WinRt.Windows.System.UserProfile.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Accessibility.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Accessibility.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.ApplicationSettings.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.ApplicationSettings.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Composition.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Composition.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Composition.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Composition.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Composition.Desktop.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Composition.Desktop.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Composition.Diagnostics.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Composition.Diagnostics.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Composition.Effects.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Composition.Effects.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Composition.Interactions.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Composition.Interactions.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Composition.Scenes.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Composition.Scenes.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Core.AnimationMetrics.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Core.AnimationMetrics.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Core.Preview.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Core.Preview.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Input.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Input.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Input.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Input.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Input.Inking.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Input.Inking.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Input.Inking.Analysis.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Input.Inking.Analysis.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Input.Inking.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Input.Inking.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Input.Inking.Preview.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Input.Inking.Preview.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Input.Preview.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Input.Preview.Injection.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Input.Preview.Injection.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Input.Spatial.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Input.Spatial.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Notifications.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Notifications.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Notifications.Management.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Notifications.Management.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Popups.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Popups.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Shell.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Shell.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.StartScreen.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.StartScreen.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Text.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Text.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Text.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Text.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.ViewManagement.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.ViewManagement.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.ViewManagement.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.ViewManagement.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.WebUI.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.WebUI.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.WebUI.Core.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.WebUI.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.WindowManagement.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.WindowManagement.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.WindowManagement.Preview.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.WindowManagement.Preview.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Automation.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Automation.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Automation.Peers.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Automation.Peers.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Automation.Provider.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Automation.Provider.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Automation.Text.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Controls.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Controls.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Controls.Maps.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Controls.Maps.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Controls.Primitives.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Controls.Primitives.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Core.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Core.Direct.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Core.Direct.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Data.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Data.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Documents.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Documents.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Hosting.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Hosting.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Input.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Input.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Interop.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Interop.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Markup.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Markup.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Media.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Media.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Media.Animation.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Media.Animation.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Media.Imaging.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Media.Imaging.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Media.Media3D.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Media.Media3D.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Navigation.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Navigation.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Printing.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Printing.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Resources.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Resources.ads" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Shapes.adb" />
+    <AdaCompile Include="WinRt.Windows.UI.Xaml.Shapes.ads" />
+    <AdaCompile Include="WinRt.Windows.Web.ads" />
+    <AdaCompile Include="WinRt.Windows.Web.AtomPub.adb" />
+    <AdaCompile Include="WinRt.Windows.Web.AtomPub.ads" />
+    <AdaCompile Include="WinRt.Windows.Web.Http.adb" />
+    <AdaCompile Include="WinRt.Windows.Web.Http.ads" />
+    <AdaCompile Include="WinRt.Windows.Web.Http.Diagnostics.adb" />
+    <AdaCompile Include="WinRt.Windows.Web.Http.Diagnostics.ads" />
+    <AdaCompile Include="WinRt.Windows.Web.Http.Filters.adb" />
+    <AdaCompile Include="WinRt.Windows.Web.Http.Filters.ads" />
+    <AdaCompile Include="WinRt.Windows.Web.Http.Headers.adb" />
+    <AdaCompile Include="WinRt.Windows.Web.Http.Headers.ads" />
+    <AdaCompile Include="WinRt.Windows.Web.Syndication.adb" />
+    <AdaCompile Include="WinRt.Windows.Web.Syndication.ads" />
+    <AdaCompile Include="WinRt.Windows.Web.UI.adb" />
+    <AdaCompile Include="WinRt.Windows.Web.UI.ads" />
+    <AdaCompile Include="WinRt.Windows.Web.UI.Interop.adb" />
+    <AdaCompile Include="WinRt.Windows.Web.UI.Interop.ads" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(CustomProjectExtensionsPath)Ada.targets" />
+  </ImportGroup>
+</Project>
