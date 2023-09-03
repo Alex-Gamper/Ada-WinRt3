@@ -31,7 +31,7 @@ with WinRt.Windows.Networking.Sockets;
 with WinRt.Windows.Storage.Streams;
 with WinRt.Windows.Web.Http;
 --------------------------------------------------------------------------------
-procedure WinRt3Test2 is
+procedure WinRt3Test is
 
     use WinRt;
     use Ada.Strings.Wide_Unbounded;
