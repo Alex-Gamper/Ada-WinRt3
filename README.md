@@ -10,6 +10,14 @@ Details/scripts on how to do this can be found on the mingw64 website, alternati
 
 This is the initial release 
 
+### Roadmap
+
+Based on community feedback, thinking along the lines of
+* General code improvements
+* Addition of pre and post conditions where appropriate
+* Improved error handling
+* Mapping WinRt collections to Ada
+  
 ### Build instructions
 
 You can build this project with gprbuild, project file is part of this repo
