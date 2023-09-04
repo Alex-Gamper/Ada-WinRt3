@@ -49,72 +49,72 @@ package WinRt.Windows.Foundation is
    -----------------------------------------------------------------------------
 
    type IAsyncAction_Interface is interface and WinRt.IInspectable_Interface;
-   type IAsyncAction is access all IAsyncAction_Interface'Class;
+   type IAsyncAction is access IAsyncAction_Interface'Class;
    type IAsyncAction_Ptr is access all IAsyncAction;
 
    type IAsyncInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAsyncInfo is access all IAsyncInfo_Interface'Class;
+   type IAsyncInfo is access IAsyncInfo_Interface'Class;
 
    type IClosable_Interface is interface and WinRt.IInspectable_Interface;
-   type IClosable is access all IClosable_Interface'Class;
+   type IClosable is access IClosable_Interface'Class;
    type IClosable_Ptr is access all IClosable;
 
    type IDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeferral is access all IDeferral_Interface'Class;
+   type IDeferral is access IDeferral_Interface'Class;
    type IDeferral_Ptr is access all IDeferral;
 
    type IDeferralFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeferralFactory is access all IDeferralFactory_Interface'Class;
+   type IDeferralFactory is access IDeferralFactory_Interface'Class;
 
    type IGetActivationFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGetActivationFactory is access all IGetActivationFactory_Interface'Class;
+   type IGetActivationFactory is access IGetActivationFactory_Interface'Class;
 
    type IGuidHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidHelperStatics is access all IGuidHelperStatics_Interface'Class;
+   type IGuidHelperStatics is access IGuidHelperStatics_Interface'Class;
 
    type IMemoryBuffer_Interface is interface and WinRt.IInspectable_Interface;
-   type IMemoryBuffer is access all IMemoryBuffer_Interface'Class;
+   type IMemoryBuffer is access IMemoryBuffer_Interface'Class;
    type IMemoryBuffer_Ptr is access all IMemoryBuffer;
 
    type IMemoryBufferFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMemoryBufferFactory is access all IMemoryBufferFactory_Interface'Class;
+   type IMemoryBufferFactory is access IMemoryBufferFactory_Interface'Class;
 
    type IMemoryBufferReference_Interface is interface and WinRt.IInspectable_Interface;
-   type IMemoryBufferReference is access all IMemoryBufferReference_Interface'Class;
+   type IMemoryBufferReference is access IMemoryBufferReference_Interface'Class;
 
    type IPropertyValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IPropertyValue is access all IPropertyValue_Interface'Class;
+   type IPropertyValue is access IPropertyValue_Interface'Class;
 
    type IPropertyValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPropertyValueStatics is access all IPropertyValueStatics_Interface'Class;
+   type IPropertyValueStatics is access IPropertyValueStatics_Interface'Class;
 
    type IStringable_Interface is interface and WinRt.IInspectable_Interface;
-   type IStringable is access all IStringable_Interface'Class;
+   type IStringable is access IStringable_Interface'Class;
 
    type IUriEscapeStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUriEscapeStatics is access all IUriEscapeStatics_Interface'Class;
+   type IUriEscapeStatics is access IUriEscapeStatics_Interface'Class;
 
    type IUriRuntimeClass_Interface is interface and WinRt.IInspectable_Interface;
-   type IUriRuntimeClass is access all IUriRuntimeClass_Interface'Class;
+   type IUriRuntimeClass is access IUriRuntimeClass_Interface'Class;
    type IUriRuntimeClass_Ptr is access all IUriRuntimeClass;
 
    type IUriRuntimeClassFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IUriRuntimeClassFactory is access all IUriRuntimeClassFactory_Interface'Class;
+   type IUriRuntimeClassFactory is access IUriRuntimeClassFactory_Interface'Class;
 
    type IUriRuntimeClassWithAbsoluteCanonicalUri_Interface is interface and WinRt.IInspectable_Interface;
-   type IUriRuntimeClassWithAbsoluteCanonicalUri is access all IUriRuntimeClassWithAbsoluteCanonicalUri_Interface'Class;
+   type IUriRuntimeClassWithAbsoluteCanonicalUri is access IUriRuntimeClassWithAbsoluteCanonicalUri_Interface'Class;
 
    type IWwwFormUrlDecoderEntry_Interface is interface and WinRt.IInspectable_Interface;
-   type IWwwFormUrlDecoderEntry is access all IWwwFormUrlDecoderEntry_Interface'Class;
+   type IWwwFormUrlDecoderEntry is access IWwwFormUrlDecoderEntry_Interface'Class;
    type IWwwFormUrlDecoderEntry_Ptr is access all IWwwFormUrlDecoderEntry;
    type IWwwFormUrlDecoderEntry_Array is array (Natural range <>) of IWwwFormUrlDecoderEntry;
 
    type IWwwFormUrlDecoderRuntimeClass_Interface is interface and WinRt.IInspectable_Interface;
-   type IWwwFormUrlDecoderRuntimeClass is access all IWwwFormUrlDecoderRuntimeClass_Interface'Class;
+   type IWwwFormUrlDecoderRuntimeClass is access IWwwFormUrlDecoderRuntimeClass_Interface'Class;
    type IWwwFormUrlDecoderRuntimeClass_Ptr is access all IWwwFormUrlDecoderRuntimeClass;
 
    type IWwwFormUrlDecoderRuntimeClassFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWwwFormUrlDecoderRuntimeClassFactory is access all IWwwFormUrlDecoderRuntimeClassFactory_Interface'Class;
+   type IWwwFormUrlDecoderRuntimeClassFactory is access IWwwFormUrlDecoderRuntimeClassFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -40,59 +40,59 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
    -----------------------------------------------------------------------------
 
    type IAppointmentCalendarCancelMeetingRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentCalendarCancelMeetingRequest is access all IAppointmentCalendarCancelMeetingRequest_Interface'Class;
+   type IAppointmentCalendarCancelMeetingRequest is access IAppointmentCalendarCancelMeetingRequest_Interface'Class;
    type IAppointmentCalendarCancelMeetingRequest_Ptr is access all IAppointmentCalendarCancelMeetingRequest;
 
    type IAppointmentCalendarCancelMeetingRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentCalendarCancelMeetingRequestEventArgs is access all IAppointmentCalendarCancelMeetingRequestEventArgs_Interface'Class;
+   type IAppointmentCalendarCancelMeetingRequestEventArgs is access IAppointmentCalendarCancelMeetingRequestEventArgs_Interface'Class;
    type IAppointmentCalendarCancelMeetingRequestEventArgs_Ptr is access all IAppointmentCalendarCancelMeetingRequestEventArgs;
 
    type IAppointmentCalendarCreateOrUpdateAppointmentRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentCalendarCreateOrUpdateAppointmentRequest is access all IAppointmentCalendarCreateOrUpdateAppointmentRequest_Interface'Class;
+   type IAppointmentCalendarCreateOrUpdateAppointmentRequest is access IAppointmentCalendarCreateOrUpdateAppointmentRequest_Interface'Class;
    type IAppointmentCalendarCreateOrUpdateAppointmentRequest_Ptr is access all IAppointmentCalendarCreateOrUpdateAppointmentRequest;
 
    type IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs is access all IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs_Interface'Class;
+   type IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs is access IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs_Interface'Class;
    type IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs_Ptr is access all IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs;
 
    type IAppointmentCalendarForwardMeetingRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentCalendarForwardMeetingRequest is access all IAppointmentCalendarForwardMeetingRequest_Interface'Class;
+   type IAppointmentCalendarForwardMeetingRequest is access IAppointmentCalendarForwardMeetingRequest_Interface'Class;
    type IAppointmentCalendarForwardMeetingRequest_Ptr is access all IAppointmentCalendarForwardMeetingRequest;
 
    type IAppointmentCalendarForwardMeetingRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentCalendarForwardMeetingRequestEventArgs is access all IAppointmentCalendarForwardMeetingRequestEventArgs_Interface'Class;
+   type IAppointmentCalendarForwardMeetingRequestEventArgs is access IAppointmentCalendarForwardMeetingRequestEventArgs_Interface'Class;
    type IAppointmentCalendarForwardMeetingRequestEventArgs_Ptr is access all IAppointmentCalendarForwardMeetingRequestEventArgs;
 
    type IAppointmentCalendarProposeNewTimeForMeetingRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentCalendarProposeNewTimeForMeetingRequest is access all IAppointmentCalendarProposeNewTimeForMeetingRequest_Interface'Class;
+   type IAppointmentCalendarProposeNewTimeForMeetingRequest is access IAppointmentCalendarProposeNewTimeForMeetingRequest_Interface'Class;
    type IAppointmentCalendarProposeNewTimeForMeetingRequest_Ptr is access all IAppointmentCalendarProposeNewTimeForMeetingRequest;
 
    type IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs is access all IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs_Interface'Class;
+   type IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs is access IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs_Interface'Class;
    type IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs_Ptr is access all IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs;
 
    type IAppointmentCalendarSyncManagerSyncRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentCalendarSyncManagerSyncRequest is access all IAppointmentCalendarSyncManagerSyncRequest_Interface'Class;
+   type IAppointmentCalendarSyncManagerSyncRequest is access IAppointmentCalendarSyncManagerSyncRequest_Interface'Class;
    type IAppointmentCalendarSyncManagerSyncRequest_Ptr is access all IAppointmentCalendarSyncManagerSyncRequest;
 
    type IAppointmentCalendarSyncManagerSyncRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentCalendarSyncManagerSyncRequestEventArgs is access all IAppointmentCalendarSyncManagerSyncRequestEventArgs_Interface'Class;
+   type IAppointmentCalendarSyncManagerSyncRequestEventArgs is access IAppointmentCalendarSyncManagerSyncRequestEventArgs_Interface'Class;
    type IAppointmentCalendarSyncManagerSyncRequestEventArgs_Ptr is access all IAppointmentCalendarSyncManagerSyncRequestEventArgs;
 
    type IAppointmentCalendarUpdateMeetingResponseRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentCalendarUpdateMeetingResponseRequest is access all IAppointmentCalendarUpdateMeetingResponseRequest_Interface'Class;
+   type IAppointmentCalendarUpdateMeetingResponseRequest is access IAppointmentCalendarUpdateMeetingResponseRequest_Interface'Class;
    type IAppointmentCalendarUpdateMeetingResponseRequest_Ptr is access all IAppointmentCalendarUpdateMeetingResponseRequest;
 
    type IAppointmentCalendarUpdateMeetingResponseRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentCalendarUpdateMeetingResponseRequestEventArgs is access all IAppointmentCalendarUpdateMeetingResponseRequestEventArgs_Interface'Class;
+   type IAppointmentCalendarUpdateMeetingResponseRequestEventArgs is access IAppointmentCalendarUpdateMeetingResponseRequestEventArgs_Interface'Class;
    type IAppointmentCalendarUpdateMeetingResponseRequestEventArgs_Ptr is access all IAppointmentCalendarUpdateMeetingResponseRequestEventArgs;
 
    type IAppointmentDataProviderConnection_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentDataProviderConnection is access all IAppointmentDataProviderConnection_Interface'Class;
+   type IAppointmentDataProviderConnection is access IAppointmentDataProviderConnection_Interface'Class;
    type IAppointmentDataProviderConnection_Ptr is access all IAppointmentDataProviderConnection;
 
    type IAppointmentDataProviderTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentDataProviderTriggerDetails is access all IAppointmentDataProviderTriggerDetails_Interface'Class;
+   type IAppointmentDataProviderTriggerDetails is access IAppointmentDataProviderTriggerDetails_Interface'Class;
    type IAppointmentDataProviderTriggerDetails_Ptr is access all IAppointmentDataProviderTriggerDetails;
 
    -----------------------------------------------------------------------------

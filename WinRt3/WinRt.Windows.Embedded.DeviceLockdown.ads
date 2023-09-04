@@ -40,11 +40,11 @@ package WinRt.Windows.Embedded.DeviceLockdown is
    -----------------------------------------------------------------------------
 
    type IDeviceLockdownProfileInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceLockdownProfileInformation is access all IDeviceLockdownProfileInformation_Interface'Class;
+   type IDeviceLockdownProfileInformation is access IDeviceLockdownProfileInformation_Interface'Class;
    type IDeviceLockdownProfileInformation_Ptr is access all IDeviceLockdownProfileInformation;
 
    type IDeviceLockdownProfileStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceLockdownProfileStatics is access all IDeviceLockdownProfileStatics_Interface'Class;
+   type IDeviceLockdownProfileStatics is access IDeviceLockdownProfileStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

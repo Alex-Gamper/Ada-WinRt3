@@ -40,47 +40,47 @@ package WinRt.Windows.UI.Text is
    -----------------------------------------------------------------------------
 
    type IContentLinkInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IContentLinkInfo is access all IContentLinkInfo_Interface'Class;
+   type IContentLinkInfo is access IContentLinkInfo_Interface'Class;
    type IContentLinkInfo_Ptr is access all IContentLinkInfo;
 
    type IFontWeights_Interface is interface and WinRt.IInspectable_Interface;
-   type IFontWeights is access all IFontWeights_Interface'Class;
+   type IFontWeights is access IFontWeights_Interface'Class;
    type IFontWeights_Ptr is access all IFontWeights;
 
    type IFontWeightsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFontWeightsStatics is access all IFontWeightsStatics_Interface'Class;
+   type IFontWeightsStatics is access IFontWeightsStatics_Interface'Class;
 
    type IRichEditTextRange_Interface is interface and WinRt.IInspectable_Interface;
-   type IRichEditTextRange is access all IRichEditTextRange_Interface'Class;
+   type IRichEditTextRange is access IRichEditTextRange_Interface'Class;
 
    type ITextCharacterFormat_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextCharacterFormat is access all ITextCharacterFormat_Interface'Class;
+   type ITextCharacterFormat is access ITextCharacterFormat_Interface'Class;
 
    type ITextConstantsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextConstantsStatics is access all ITextConstantsStatics_Interface'Class;
+   type ITextConstantsStatics is access ITextConstantsStatics_Interface'Class;
 
    type ITextDocument_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextDocument is access all ITextDocument_Interface'Class;
+   type ITextDocument is access ITextDocument_Interface'Class;
    type ITextDocument_Ptr is access all ITextDocument;
 
    type ITextDocument2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextDocument2 is access all ITextDocument2_Interface'Class;
+   type ITextDocument2 is access ITextDocument2_Interface'Class;
 
    type ITextDocument3_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextDocument3 is access all ITextDocument3_Interface'Class;
+   type ITextDocument3 is access ITextDocument3_Interface'Class;
 
    type ITextDocument4_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextDocument4 is access all ITextDocument4_Interface'Class;
+   type ITextDocument4 is access ITextDocument4_Interface'Class;
 
    type ITextParagraphFormat_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextParagraphFormat is access all ITextParagraphFormat_Interface'Class;
+   type ITextParagraphFormat is access ITextParagraphFormat_Interface'Class;
 
    type ITextRange_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextRange is access all ITextRange_Interface'Class;
+   type ITextRange is access ITextRange_Interface'Class;
    type ITextRange_Ptr is access all ITextRange;
 
    type ITextSelection_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextSelection is access all ITextSelection_Interface'Class;
+   type ITextSelection is access ITextSelection_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

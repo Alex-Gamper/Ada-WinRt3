@@ -39,11 +39,11 @@ package WinRt.Windows.Devices.Radios is
    -----------------------------------------------------------------------------
 
    type IRadio_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadio is access all IRadio_Interface'Class;
+   type IRadio is access IRadio_Interface'Class;
    type IRadio_Ptr is access all IRadio;
 
    type IRadioStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadioStatics is access all IRadioStatics_Interface'Class;
+   type IRadioStatics is access IRadioStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

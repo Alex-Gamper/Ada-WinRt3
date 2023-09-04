@@ -39,23 +39,23 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
    -----------------------------------------------------------------------------
 
    type IPhoneCallBlockedTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallBlockedTriggerDetails is access all IPhoneCallBlockedTriggerDetails_Interface'Class;
+   type IPhoneCallBlockedTriggerDetails is access IPhoneCallBlockedTriggerDetails_Interface'Class;
    type IPhoneCallBlockedTriggerDetails_Ptr is access all IPhoneCallBlockedTriggerDetails;
 
    type IPhoneCallOriginDataRequestTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallOriginDataRequestTriggerDetails is access all IPhoneCallOriginDataRequestTriggerDetails_Interface'Class;
+   type IPhoneCallOriginDataRequestTriggerDetails is access IPhoneCallOriginDataRequestTriggerDetails_Interface'Class;
    type IPhoneCallOriginDataRequestTriggerDetails_Ptr is access all IPhoneCallOriginDataRequestTriggerDetails;
 
    type IPhoneIncomingCallDismissedTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneIncomingCallDismissedTriggerDetails is access all IPhoneIncomingCallDismissedTriggerDetails_Interface'Class;
+   type IPhoneIncomingCallDismissedTriggerDetails is access IPhoneIncomingCallDismissedTriggerDetails_Interface'Class;
    type IPhoneIncomingCallDismissedTriggerDetails_Ptr is access all IPhoneIncomingCallDismissedTriggerDetails;
 
    type IPhoneLineChangedTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneLineChangedTriggerDetails is access all IPhoneLineChangedTriggerDetails_Interface'Class;
+   type IPhoneLineChangedTriggerDetails is access IPhoneLineChangedTriggerDetails_Interface'Class;
    type IPhoneLineChangedTriggerDetails_Ptr is access all IPhoneLineChangedTriggerDetails;
 
    type IPhoneNewVoicemailMessageTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneNewVoicemailMessageTriggerDetails is access all IPhoneNewVoicemailMessageTriggerDetails_Interface'Class;
+   type IPhoneNewVoicemailMessageTriggerDetails is access IPhoneNewVoicemailMessageTriggerDetails_Interface'Class;
    type IPhoneNewVoicemailMessageTriggerDetails_Ptr is access all IPhoneNewVoicemailMessageTriggerDetails;
 
    -----------------------------------------------------------------------------

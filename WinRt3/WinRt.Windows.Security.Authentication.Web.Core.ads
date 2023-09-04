@@ -42,62 +42,62 @@ package WinRt.Windows.Security.Authentication.Web.Core is
    -----------------------------------------------------------------------------
 
    type IFindAllAccountsResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IFindAllAccountsResult is access all IFindAllAccountsResult_Interface'Class;
+   type IFindAllAccountsResult is access IFindAllAccountsResult_Interface'Class;
    type IFindAllAccountsResult_Ptr is access all IFindAllAccountsResult;
 
    type IWebAccountEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountEventArgs is access all IWebAccountEventArgs_Interface'Class;
+   type IWebAccountEventArgs is access IWebAccountEventArgs_Interface'Class;
    type IWebAccountEventArgs_Ptr is access all IWebAccountEventArgs;
 
    type IWebAccountMonitor_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountMonitor is access all IWebAccountMonitor_Interface'Class;
+   type IWebAccountMonitor is access IWebAccountMonitor_Interface'Class;
    type IWebAccountMonitor_Ptr is access all IWebAccountMonitor;
 
    type IWebAccountMonitor2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountMonitor2 is access all IWebAccountMonitor2_Interface'Class;
+   type IWebAccountMonitor2 is access IWebAccountMonitor2_Interface'Class;
 
    type IWebAuthenticationCoreManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAuthenticationCoreManagerStatics is access all IWebAuthenticationCoreManagerStatics_Interface'Class;
+   type IWebAuthenticationCoreManagerStatics is access IWebAuthenticationCoreManagerStatics_Interface'Class;
 
    type IWebAuthenticationCoreManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAuthenticationCoreManagerStatics2 is access all IWebAuthenticationCoreManagerStatics2_Interface'Class;
+   type IWebAuthenticationCoreManagerStatics2 is access IWebAuthenticationCoreManagerStatics2_Interface'Class;
 
    type IWebAuthenticationCoreManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAuthenticationCoreManagerStatics3 is access all IWebAuthenticationCoreManagerStatics3_Interface'Class;
+   type IWebAuthenticationCoreManagerStatics3 is access IWebAuthenticationCoreManagerStatics3_Interface'Class;
 
    type IWebAuthenticationCoreManagerStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAuthenticationCoreManagerStatics4 is access all IWebAuthenticationCoreManagerStatics4_Interface'Class;
+   type IWebAuthenticationCoreManagerStatics4 is access IWebAuthenticationCoreManagerStatics4_Interface'Class;
 
    type IWebProviderError_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebProviderError is access all IWebProviderError_Interface'Class;
+   type IWebProviderError is access IWebProviderError_Interface'Class;
    type IWebProviderError_Ptr is access all IWebProviderError;
 
    type IWebProviderErrorFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebProviderErrorFactory is access all IWebProviderErrorFactory_Interface'Class;
+   type IWebProviderErrorFactory is access IWebProviderErrorFactory_Interface'Class;
 
    type IWebTokenRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebTokenRequest is access all IWebTokenRequest_Interface'Class;
+   type IWebTokenRequest is access IWebTokenRequest_Interface'Class;
    type IWebTokenRequest_Ptr is access all IWebTokenRequest;
 
    type IWebTokenRequest2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebTokenRequest2 is access all IWebTokenRequest2_Interface'Class;
+   type IWebTokenRequest2 is access IWebTokenRequest2_Interface'Class;
 
    type IWebTokenRequest3_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebTokenRequest3 is access all IWebTokenRequest3_Interface'Class;
+   type IWebTokenRequest3 is access IWebTokenRequest3_Interface'Class;
 
    type IWebTokenRequestFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebTokenRequestFactory is access all IWebTokenRequestFactory_Interface'Class;
+   type IWebTokenRequestFactory is access IWebTokenRequestFactory_Interface'Class;
 
    type IWebTokenRequestResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebTokenRequestResult is access all IWebTokenRequestResult_Interface'Class;
+   type IWebTokenRequestResult is access IWebTokenRequestResult_Interface'Class;
    type IWebTokenRequestResult_Ptr is access all IWebTokenRequestResult;
 
    type IWebTokenResponse_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebTokenResponse is access all IWebTokenResponse_Interface'Class;
+   type IWebTokenResponse is access IWebTokenResponse_Interface'Class;
    type IWebTokenResponse_Ptr is access all IWebTokenResponse;
 
    type IWebTokenResponseFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebTokenResponseFactory is access all IWebTokenResponseFactory_Interface'Class;
+   type IWebTokenResponseFactory is access IWebTokenResponseFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

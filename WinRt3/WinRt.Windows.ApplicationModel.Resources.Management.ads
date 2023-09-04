@@ -40,22 +40,22 @@ package WinRt.Windows.ApplicationModel.Resources.Management is
    -----------------------------------------------------------------------------
 
    type IIndexedResourceCandidate_Interface is interface and WinRt.IInspectable_Interface;
-   type IIndexedResourceCandidate is access all IIndexedResourceCandidate_Interface'Class;
+   type IIndexedResourceCandidate is access IIndexedResourceCandidate_Interface'Class;
    type IIndexedResourceCandidate_Ptr is access all IIndexedResourceCandidate;
 
    type IIndexedResourceQualifier_Interface is interface and WinRt.IInspectable_Interface;
-   type IIndexedResourceQualifier is access all IIndexedResourceQualifier_Interface'Class;
+   type IIndexedResourceQualifier is access IIndexedResourceQualifier_Interface'Class;
    type IIndexedResourceQualifier_Ptr is access all IIndexedResourceQualifier;
 
    type IResourceIndexer_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceIndexer is access all IResourceIndexer_Interface'Class;
+   type IResourceIndexer is access IResourceIndexer_Interface'Class;
    type IResourceIndexer_Ptr is access all IResourceIndexer;
 
    type IResourceIndexerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceIndexerFactory is access all IResourceIndexerFactory_Interface'Class;
+   type IResourceIndexerFactory is access IResourceIndexerFactory_Interface'Class;
 
    type IResourceIndexerFactory2_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceIndexerFactory2 is access all IResourceIndexerFactory2_Interface'Class;
+   type IResourceIndexerFactory2 is access IResourceIndexerFactory2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

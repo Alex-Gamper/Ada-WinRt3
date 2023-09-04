@@ -40,17 +40,17 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
    -----------------------------------------------------------------------------
 
    type IDateTimeFormatter_Interface is interface and WinRt.IInspectable_Interface;
-   type IDateTimeFormatter is access all IDateTimeFormatter_Interface'Class;
+   type IDateTimeFormatter is access IDateTimeFormatter_Interface'Class;
    type IDateTimeFormatter_Ptr is access all IDateTimeFormatter;
 
    type IDateTimeFormatter2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDateTimeFormatter2 is access all IDateTimeFormatter2_Interface'Class;
+   type IDateTimeFormatter2 is access IDateTimeFormatter2_Interface'Class;
 
    type IDateTimeFormatterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDateTimeFormatterFactory is access all IDateTimeFormatterFactory_Interface'Class;
+   type IDateTimeFormatterFactory is access IDateTimeFormatterFactory_Interface'Class;
 
    type IDateTimeFormatterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDateTimeFormatterStatics is access all IDateTimeFormatterStatics_Interface'Class;
+   type IDateTimeFormatterStatics is access IDateTimeFormatterStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

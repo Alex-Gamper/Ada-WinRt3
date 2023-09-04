@@ -40,35 +40,35 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    -----------------------------------------------------------------------------
 
    type ICoreDragDropManager_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreDragDropManager is access all ICoreDragDropManager_Interface'Class;
+   type ICoreDragDropManager is access ICoreDragDropManager_Interface'Class;
    type ICoreDragDropManager_Ptr is access all ICoreDragDropManager;
 
    type ICoreDragDropManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreDragDropManagerStatics is access all ICoreDragDropManagerStatics_Interface'Class;
+   type ICoreDragDropManagerStatics is access ICoreDragDropManagerStatics_Interface'Class;
 
    type ICoreDragInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreDragInfo is access all ICoreDragInfo_Interface'Class;
+   type ICoreDragInfo is access ICoreDragInfo_Interface'Class;
    type ICoreDragInfo_Ptr is access all ICoreDragInfo;
 
    type ICoreDragInfo2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreDragInfo2 is access all ICoreDragInfo2_Interface'Class;
+   type ICoreDragInfo2 is access ICoreDragInfo2_Interface'Class;
 
    type ICoreDragOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreDragOperation is access all ICoreDragOperation_Interface'Class;
+   type ICoreDragOperation is access ICoreDragOperation_Interface'Class;
    type ICoreDragOperation_Ptr is access all ICoreDragOperation;
 
    type ICoreDragOperation2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreDragOperation2 is access all ICoreDragOperation2_Interface'Class;
+   type ICoreDragOperation2 is access ICoreDragOperation2_Interface'Class;
 
    type ICoreDragUIOverride_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreDragUIOverride is access all ICoreDragUIOverride_Interface'Class;
+   type ICoreDragUIOverride is access ICoreDragUIOverride_Interface'Class;
    type ICoreDragUIOverride_Ptr is access all ICoreDragUIOverride;
 
    type ICoreDropOperationTarget_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreDropOperationTarget is access all ICoreDropOperationTarget_Interface'Class;
+   type ICoreDropOperationTarget is access ICoreDropOperationTarget_Interface'Class;
 
    type ICoreDropOperationTargetRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreDropOperationTargetRequestedEventArgs is access all ICoreDropOperationTargetRequestedEventArgs_Interface'Class;
+   type ICoreDropOperationTargetRequestedEventArgs is access ICoreDropOperationTargetRequestedEventArgs_Interface'Class;
    type ICoreDropOperationTargetRequestedEventArgs_Ptr is access all ICoreDropOperationTargetRequestedEventArgs;
 
    -----------------------------------------------------------------------------

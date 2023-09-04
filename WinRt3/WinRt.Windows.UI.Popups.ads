@@ -47,22 +47,22 @@ package WinRt.Windows.UI.Popups is
    -----------------------------------------------------------------------------
 
    type IMessageDialog_Interface is interface and WinRt.IInspectable_Interface;
-   type IMessageDialog is access all IMessageDialog_Interface'Class;
+   type IMessageDialog is access IMessageDialog_Interface'Class;
    type IMessageDialog_Ptr is access all IMessageDialog;
 
    type IMessageDialogFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMessageDialogFactory is access all IMessageDialogFactory_Interface'Class;
+   type IMessageDialogFactory is access IMessageDialogFactory_Interface'Class;
 
    type IPopupMenu_Interface is interface and WinRt.IInspectable_Interface;
-   type IPopupMenu is access all IPopupMenu_Interface'Class;
+   type IPopupMenu is access IPopupMenu_Interface'Class;
    type IPopupMenu_Ptr is access all IPopupMenu;
 
    type IUICommand_Interface is interface and WinRt.IInspectable_Interface;
-   type IUICommand is access all IUICommand_Interface'Class;
+   type IUICommand is access IUICommand_Interface'Class;
    type IUICommand_Ptr is access all IUICommand;
 
    type IUICommandFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IUICommandFactory is access all IUICommandFactory_Interface'Class;
+   type IUICommandFactory is access IUICommandFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

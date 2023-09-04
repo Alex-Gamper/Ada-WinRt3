@@ -65,410 +65,410 @@ package WinRt.Windows.Media.Capture is
    -----------------------------------------------------------------------------
 
    type IAdvancedCapturedPhoto_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvancedCapturedPhoto is access all IAdvancedCapturedPhoto_Interface'Class;
+   type IAdvancedCapturedPhoto is access IAdvancedCapturedPhoto_Interface'Class;
    type IAdvancedCapturedPhoto_Ptr is access all IAdvancedCapturedPhoto;
 
    type IAdvancedCapturedPhoto2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvancedCapturedPhoto2 is access all IAdvancedCapturedPhoto2_Interface'Class;
+   type IAdvancedCapturedPhoto2 is access IAdvancedCapturedPhoto2_Interface'Class;
 
    type IAdvancedPhotoCapture_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvancedPhotoCapture is access all IAdvancedPhotoCapture_Interface'Class;
+   type IAdvancedPhotoCapture is access IAdvancedPhotoCapture_Interface'Class;
    type IAdvancedPhotoCapture_Ptr is access all IAdvancedPhotoCapture;
 
    type IAppBroadcastBackgroundService_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastBackgroundService is access all IAppBroadcastBackgroundService_Interface'Class;
+   type IAppBroadcastBackgroundService is access IAppBroadcastBackgroundService_Interface'Class;
    type IAppBroadcastBackgroundService_Ptr is access all IAppBroadcastBackgroundService;
 
    type IAppBroadcastBackgroundService2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastBackgroundService2 is access all IAppBroadcastBackgroundService2_Interface'Class;
+   type IAppBroadcastBackgroundService2 is access IAppBroadcastBackgroundService2_Interface'Class;
 
    type IAppBroadcastBackgroundServiceSignInInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastBackgroundServiceSignInInfo is access all IAppBroadcastBackgroundServiceSignInInfo_Interface'Class;
+   type IAppBroadcastBackgroundServiceSignInInfo is access IAppBroadcastBackgroundServiceSignInInfo_Interface'Class;
    type IAppBroadcastBackgroundServiceSignInInfo_Ptr is access all IAppBroadcastBackgroundServiceSignInInfo;
 
    type IAppBroadcastBackgroundServiceSignInInfo2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastBackgroundServiceSignInInfo2 is access all IAppBroadcastBackgroundServiceSignInInfo2_Interface'Class;
+   type IAppBroadcastBackgroundServiceSignInInfo2 is access IAppBroadcastBackgroundServiceSignInInfo2_Interface'Class;
 
    type IAppBroadcastBackgroundServiceStreamInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastBackgroundServiceStreamInfo is access all IAppBroadcastBackgroundServiceStreamInfo_Interface'Class;
+   type IAppBroadcastBackgroundServiceStreamInfo is access IAppBroadcastBackgroundServiceStreamInfo_Interface'Class;
    type IAppBroadcastBackgroundServiceStreamInfo_Ptr is access all IAppBroadcastBackgroundServiceStreamInfo;
 
    type IAppBroadcastBackgroundServiceStreamInfo2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastBackgroundServiceStreamInfo2 is access all IAppBroadcastBackgroundServiceStreamInfo2_Interface'Class;
+   type IAppBroadcastBackgroundServiceStreamInfo2 is access IAppBroadcastBackgroundServiceStreamInfo2_Interface'Class;
 
    type IAppBroadcastCameraCaptureStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastCameraCaptureStateChangedEventArgs is access all IAppBroadcastCameraCaptureStateChangedEventArgs_Interface'Class;
+   type IAppBroadcastCameraCaptureStateChangedEventArgs is access IAppBroadcastCameraCaptureStateChangedEventArgs_Interface'Class;
    type IAppBroadcastCameraCaptureStateChangedEventArgs_Ptr is access all IAppBroadcastCameraCaptureStateChangedEventArgs;
 
    type IAppBroadcastGlobalSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastGlobalSettings is access all IAppBroadcastGlobalSettings_Interface'Class;
+   type IAppBroadcastGlobalSettings is access IAppBroadcastGlobalSettings_Interface'Class;
    type IAppBroadcastGlobalSettings_Ptr is access all IAppBroadcastGlobalSettings;
 
    type IAppBroadcastHeartbeatRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastHeartbeatRequestedEventArgs is access all IAppBroadcastHeartbeatRequestedEventArgs_Interface'Class;
+   type IAppBroadcastHeartbeatRequestedEventArgs is access IAppBroadcastHeartbeatRequestedEventArgs_Interface'Class;
    type IAppBroadcastHeartbeatRequestedEventArgs_Ptr is access all IAppBroadcastHeartbeatRequestedEventArgs;
 
    type IAppBroadcastManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastManagerStatics is access all IAppBroadcastManagerStatics_Interface'Class;
+   type IAppBroadcastManagerStatics is access IAppBroadcastManagerStatics_Interface'Class;
 
    type IAppBroadcastMicrophoneCaptureStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastMicrophoneCaptureStateChangedEventArgs is access all IAppBroadcastMicrophoneCaptureStateChangedEventArgs_Interface'Class;
+   type IAppBroadcastMicrophoneCaptureStateChangedEventArgs is access IAppBroadcastMicrophoneCaptureStateChangedEventArgs_Interface'Class;
    type IAppBroadcastMicrophoneCaptureStateChangedEventArgs_Ptr is access all IAppBroadcastMicrophoneCaptureStateChangedEventArgs;
 
    type IAppBroadcastPlugIn_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastPlugIn is access all IAppBroadcastPlugIn_Interface'Class;
+   type IAppBroadcastPlugIn is access IAppBroadcastPlugIn_Interface'Class;
    type IAppBroadcastPlugIn_Ptr is access all IAppBroadcastPlugIn;
 
    type IAppBroadcastPlugInManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastPlugInManager is access all IAppBroadcastPlugInManager_Interface'Class;
+   type IAppBroadcastPlugInManager is access IAppBroadcastPlugInManager_Interface'Class;
    type IAppBroadcastPlugInManager_Ptr is access all IAppBroadcastPlugInManager;
 
    type IAppBroadcastPlugInManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastPlugInManagerStatics is access all IAppBroadcastPlugInManagerStatics_Interface'Class;
+   type IAppBroadcastPlugInManagerStatics is access IAppBroadcastPlugInManagerStatics_Interface'Class;
 
    type IAppBroadcastPlugInStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastPlugInStateChangedEventArgs is access all IAppBroadcastPlugInStateChangedEventArgs_Interface'Class;
+   type IAppBroadcastPlugInStateChangedEventArgs is access IAppBroadcastPlugInStateChangedEventArgs_Interface'Class;
    type IAppBroadcastPlugInStateChangedEventArgs_Ptr is access all IAppBroadcastPlugInStateChangedEventArgs;
 
    type IAppBroadcastPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastPreview is access all IAppBroadcastPreview_Interface'Class;
+   type IAppBroadcastPreview is access IAppBroadcastPreview_Interface'Class;
    type IAppBroadcastPreview_Ptr is access all IAppBroadcastPreview;
 
    type IAppBroadcastPreviewStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastPreviewStateChangedEventArgs is access all IAppBroadcastPreviewStateChangedEventArgs_Interface'Class;
+   type IAppBroadcastPreviewStateChangedEventArgs is access IAppBroadcastPreviewStateChangedEventArgs_Interface'Class;
    type IAppBroadcastPreviewStateChangedEventArgs_Ptr is access all IAppBroadcastPreviewStateChangedEventArgs;
 
    type IAppBroadcastPreviewStreamReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastPreviewStreamReader is access all IAppBroadcastPreviewStreamReader_Interface'Class;
+   type IAppBroadcastPreviewStreamReader is access IAppBroadcastPreviewStreamReader_Interface'Class;
    type IAppBroadcastPreviewStreamReader_Ptr is access all IAppBroadcastPreviewStreamReader;
 
    type IAppBroadcastPreviewStreamVideoFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastPreviewStreamVideoFrame is access all IAppBroadcastPreviewStreamVideoFrame_Interface'Class;
+   type IAppBroadcastPreviewStreamVideoFrame is access IAppBroadcastPreviewStreamVideoFrame_Interface'Class;
    type IAppBroadcastPreviewStreamVideoFrame_Ptr is access all IAppBroadcastPreviewStreamVideoFrame;
 
    type IAppBroadcastPreviewStreamVideoHeader_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastPreviewStreamVideoHeader is access all IAppBroadcastPreviewStreamVideoHeader_Interface'Class;
+   type IAppBroadcastPreviewStreamVideoHeader is access IAppBroadcastPreviewStreamVideoHeader_Interface'Class;
    type IAppBroadcastPreviewStreamVideoHeader_Ptr is access all IAppBroadcastPreviewStreamVideoHeader;
 
    type IAppBroadcastProviderSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastProviderSettings is access all IAppBroadcastProviderSettings_Interface'Class;
+   type IAppBroadcastProviderSettings is access IAppBroadcastProviderSettings_Interface'Class;
    type IAppBroadcastProviderSettings_Ptr is access all IAppBroadcastProviderSettings;
 
    type IAppBroadcastServices_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastServices is access all IAppBroadcastServices_Interface'Class;
+   type IAppBroadcastServices is access IAppBroadcastServices_Interface'Class;
    type IAppBroadcastServices_Ptr is access all IAppBroadcastServices;
 
    type IAppBroadcastSignInStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastSignInStateChangedEventArgs is access all IAppBroadcastSignInStateChangedEventArgs_Interface'Class;
+   type IAppBroadcastSignInStateChangedEventArgs is access IAppBroadcastSignInStateChangedEventArgs_Interface'Class;
    type IAppBroadcastSignInStateChangedEventArgs_Ptr is access all IAppBroadcastSignInStateChangedEventArgs;
 
    type IAppBroadcastState_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastState is access all IAppBroadcastState_Interface'Class;
+   type IAppBroadcastState is access IAppBroadcastState_Interface'Class;
    type IAppBroadcastState_Ptr is access all IAppBroadcastState;
 
    type IAppBroadcastStreamAudioFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastStreamAudioFrame is access all IAppBroadcastStreamAudioFrame_Interface'Class;
+   type IAppBroadcastStreamAudioFrame is access IAppBroadcastStreamAudioFrame_Interface'Class;
    type IAppBroadcastStreamAudioFrame_Ptr is access all IAppBroadcastStreamAudioFrame;
 
    type IAppBroadcastStreamAudioHeader_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastStreamAudioHeader is access all IAppBroadcastStreamAudioHeader_Interface'Class;
+   type IAppBroadcastStreamAudioHeader is access IAppBroadcastStreamAudioHeader_Interface'Class;
    type IAppBroadcastStreamAudioHeader_Ptr is access all IAppBroadcastStreamAudioHeader;
 
    type IAppBroadcastStreamReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastStreamReader is access all IAppBroadcastStreamReader_Interface'Class;
+   type IAppBroadcastStreamReader is access IAppBroadcastStreamReader_Interface'Class;
    type IAppBroadcastStreamReader_Ptr is access all IAppBroadcastStreamReader;
 
    type IAppBroadcastStreamStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastStreamStateChangedEventArgs is access all IAppBroadcastStreamStateChangedEventArgs_Interface'Class;
+   type IAppBroadcastStreamStateChangedEventArgs is access IAppBroadcastStreamStateChangedEventArgs_Interface'Class;
    type IAppBroadcastStreamStateChangedEventArgs_Ptr is access all IAppBroadcastStreamStateChangedEventArgs;
 
    type IAppBroadcastStreamVideoFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastStreamVideoFrame is access all IAppBroadcastStreamVideoFrame_Interface'Class;
+   type IAppBroadcastStreamVideoFrame is access IAppBroadcastStreamVideoFrame_Interface'Class;
    type IAppBroadcastStreamVideoFrame_Ptr is access all IAppBroadcastStreamVideoFrame;
 
    type IAppBroadcastStreamVideoHeader_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastStreamVideoHeader is access all IAppBroadcastStreamVideoHeader_Interface'Class;
+   type IAppBroadcastStreamVideoHeader is access IAppBroadcastStreamVideoHeader_Interface'Class;
    type IAppBroadcastStreamVideoHeader_Ptr is access all IAppBroadcastStreamVideoHeader;
 
    type IAppBroadcastTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastTriggerDetails is access all IAppBroadcastTriggerDetails_Interface'Class;
+   type IAppBroadcastTriggerDetails is access IAppBroadcastTriggerDetails_Interface'Class;
    type IAppBroadcastTriggerDetails_Ptr is access all IAppBroadcastTriggerDetails;
 
    type IAppBroadcastViewerCountChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastViewerCountChangedEventArgs is access all IAppBroadcastViewerCountChangedEventArgs_Interface'Class;
+   type IAppBroadcastViewerCountChangedEventArgs is access IAppBroadcastViewerCountChangedEventArgs_Interface'Class;
    type IAppBroadcastViewerCountChangedEventArgs_Ptr is access all IAppBroadcastViewerCountChangedEventArgs;
 
    type IAppCapture_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCapture is access all IAppCapture_Interface'Class;
+   type IAppCapture is access IAppCapture_Interface'Class;
    type IAppCapture_Ptr is access all IAppCapture;
 
    type IAppCaptureAlternateShortcutKeys_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureAlternateShortcutKeys is access all IAppCaptureAlternateShortcutKeys_Interface'Class;
+   type IAppCaptureAlternateShortcutKeys is access IAppCaptureAlternateShortcutKeys_Interface'Class;
    type IAppCaptureAlternateShortcutKeys_Ptr is access all IAppCaptureAlternateShortcutKeys;
 
    type IAppCaptureAlternateShortcutKeys2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureAlternateShortcutKeys2 is access all IAppCaptureAlternateShortcutKeys2_Interface'Class;
+   type IAppCaptureAlternateShortcutKeys2 is access IAppCaptureAlternateShortcutKeys2_Interface'Class;
 
    type IAppCaptureAlternateShortcutKeys3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureAlternateShortcutKeys3 is access all IAppCaptureAlternateShortcutKeys3_Interface'Class;
+   type IAppCaptureAlternateShortcutKeys3 is access IAppCaptureAlternateShortcutKeys3_Interface'Class;
 
    type IAppCaptureDurationGeneratedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureDurationGeneratedEventArgs is access all IAppCaptureDurationGeneratedEventArgs_Interface'Class;
+   type IAppCaptureDurationGeneratedEventArgs is access IAppCaptureDurationGeneratedEventArgs_Interface'Class;
    type IAppCaptureDurationGeneratedEventArgs_Ptr is access all IAppCaptureDurationGeneratedEventArgs;
 
    type IAppCaptureFileGeneratedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureFileGeneratedEventArgs is access all IAppCaptureFileGeneratedEventArgs_Interface'Class;
+   type IAppCaptureFileGeneratedEventArgs is access IAppCaptureFileGeneratedEventArgs_Interface'Class;
    type IAppCaptureFileGeneratedEventArgs_Ptr is access all IAppCaptureFileGeneratedEventArgs;
 
    type IAppCaptureManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureManagerStatics is access all IAppCaptureManagerStatics_Interface'Class;
+   type IAppCaptureManagerStatics is access IAppCaptureManagerStatics_Interface'Class;
 
    type IAppCaptureMetadataWriter_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureMetadataWriter is access all IAppCaptureMetadataWriter_Interface'Class;
+   type IAppCaptureMetadataWriter is access IAppCaptureMetadataWriter_Interface'Class;
    type IAppCaptureMetadataWriter_Ptr is access all IAppCaptureMetadataWriter;
 
    type IAppCaptureMicrophoneCaptureStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureMicrophoneCaptureStateChangedEventArgs is access all IAppCaptureMicrophoneCaptureStateChangedEventArgs_Interface'Class;
+   type IAppCaptureMicrophoneCaptureStateChangedEventArgs is access IAppCaptureMicrophoneCaptureStateChangedEventArgs_Interface'Class;
    type IAppCaptureMicrophoneCaptureStateChangedEventArgs_Ptr is access all IAppCaptureMicrophoneCaptureStateChangedEventArgs;
 
    type IAppCaptureRecordOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureRecordOperation is access all IAppCaptureRecordOperation_Interface'Class;
+   type IAppCaptureRecordOperation is access IAppCaptureRecordOperation_Interface'Class;
    type IAppCaptureRecordOperation_Ptr is access all IAppCaptureRecordOperation;
 
    type IAppCaptureRecordingStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureRecordingStateChangedEventArgs is access all IAppCaptureRecordingStateChangedEventArgs_Interface'Class;
+   type IAppCaptureRecordingStateChangedEventArgs is access IAppCaptureRecordingStateChangedEventArgs_Interface'Class;
    type IAppCaptureRecordingStateChangedEventArgs_Ptr is access all IAppCaptureRecordingStateChangedEventArgs;
 
    type IAppCaptureServices_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureServices is access all IAppCaptureServices_Interface'Class;
+   type IAppCaptureServices is access IAppCaptureServices_Interface'Class;
    type IAppCaptureServices_Ptr is access all IAppCaptureServices;
 
    type IAppCaptureSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureSettings is access all IAppCaptureSettings_Interface'Class;
+   type IAppCaptureSettings is access IAppCaptureSettings_Interface'Class;
    type IAppCaptureSettings_Ptr is access all IAppCaptureSettings;
 
    type IAppCaptureSettings2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureSettings2 is access all IAppCaptureSettings2_Interface'Class;
+   type IAppCaptureSettings2 is access IAppCaptureSettings2_Interface'Class;
 
    type IAppCaptureSettings3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureSettings3 is access all IAppCaptureSettings3_Interface'Class;
+   type IAppCaptureSettings3 is access IAppCaptureSettings3_Interface'Class;
 
    type IAppCaptureSettings4_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureSettings4 is access all IAppCaptureSettings4_Interface'Class;
+   type IAppCaptureSettings4 is access IAppCaptureSettings4_Interface'Class;
 
    type IAppCaptureSettings5_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureSettings5 is access all IAppCaptureSettings5_Interface'Class;
+   type IAppCaptureSettings5 is access IAppCaptureSettings5_Interface'Class;
 
    type IAppCaptureState_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureState is access all IAppCaptureState_Interface'Class;
+   type IAppCaptureState is access IAppCaptureState_Interface'Class;
    type IAppCaptureState_Ptr is access all IAppCaptureState;
 
    type IAppCaptureStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureStatics is access all IAppCaptureStatics_Interface'Class;
+   type IAppCaptureStatics is access IAppCaptureStatics_Interface'Class;
 
    type IAppCaptureStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCaptureStatics2 is access all IAppCaptureStatics2_Interface'Class;
+   type IAppCaptureStatics2 is access IAppCaptureStatics2_Interface'Class;
 
    type ICameraCaptureUI_Interface is interface and WinRt.IInspectable_Interface;
-   type ICameraCaptureUI is access all ICameraCaptureUI_Interface'Class;
+   type ICameraCaptureUI is access ICameraCaptureUI_Interface'Class;
    type ICameraCaptureUI_Ptr is access all ICameraCaptureUI;
 
    type ICameraCaptureUIPhotoCaptureSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type ICameraCaptureUIPhotoCaptureSettings is access all ICameraCaptureUIPhotoCaptureSettings_Interface'Class;
+   type ICameraCaptureUIPhotoCaptureSettings is access ICameraCaptureUIPhotoCaptureSettings_Interface'Class;
    type ICameraCaptureUIPhotoCaptureSettings_Ptr is access all ICameraCaptureUIPhotoCaptureSettings;
 
    type ICameraCaptureUIVideoCaptureSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type ICameraCaptureUIVideoCaptureSettings is access all ICameraCaptureUIVideoCaptureSettings_Interface'Class;
+   type ICameraCaptureUIVideoCaptureSettings is access ICameraCaptureUIVideoCaptureSettings_Interface'Class;
    type ICameraCaptureUIVideoCaptureSettings_Ptr is access all ICameraCaptureUIVideoCaptureSettings;
 
    type ICameraOptionsUIStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICameraOptionsUIStatics is access all ICameraOptionsUIStatics_Interface'Class;
+   type ICameraOptionsUIStatics is access ICameraOptionsUIStatics_Interface'Class;
 
    type ICapturedFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type ICapturedFrame is access all ICapturedFrame_Interface'Class;
+   type ICapturedFrame is access ICapturedFrame_Interface'Class;
    type ICapturedFrame_Ptr is access all ICapturedFrame;
 
    type ICapturedFrame2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICapturedFrame2 is access all ICapturedFrame2_Interface'Class;
+   type ICapturedFrame2 is access ICapturedFrame2_Interface'Class;
 
    type ICapturedFrameControlValues_Interface is interface and WinRt.IInspectable_Interface;
-   type ICapturedFrameControlValues is access all ICapturedFrameControlValues_Interface'Class;
+   type ICapturedFrameControlValues is access ICapturedFrameControlValues_Interface'Class;
    type ICapturedFrameControlValues_Ptr is access all ICapturedFrameControlValues;
 
    type ICapturedFrameControlValues2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICapturedFrameControlValues2 is access all ICapturedFrameControlValues2_Interface'Class;
+   type ICapturedFrameControlValues2 is access ICapturedFrameControlValues2_Interface'Class;
 
    type ICapturedFrameWithSoftwareBitmap_Interface is interface and WinRt.IInspectable_Interface;
-   type ICapturedFrameWithSoftwareBitmap is access all ICapturedFrameWithSoftwareBitmap_Interface'Class;
+   type ICapturedFrameWithSoftwareBitmap is access ICapturedFrameWithSoftwareBitmap_Interface'Class;
 
    type ICapturedPhoto_Interface is interface and WinRt.IInspectable_Interface;
-   type ICapturedPhoto is access all ICapturedPhoto_Interface'Class;
+   type ICapturedPhoto is access ICapturedPhoto_Interface'Class;
    type ICapturedPhoto_Ptr is access all ICapturedPhoto;
 
    type IGameBarServices_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameBarServices is access all IGameBarServices_Interface'Class;
+   type IGameBarServices is access IGameBarServices_Interface'Class;
    type IGameBarServices_Ptr is access all IGameBarServices;
 
    type IGameBarServicesCommandEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameBarServicesCommandEventArgs is access all IGameBarServicesCommandEventArgs_Interface'Class;
+   type IGameBarServicesCommandEventArgs is access IGameBarServicesCommandEventArgs_Interface'Class;
    type IGameBarServicesCommandEventArgs_Ptr is access all IGameBarServicesCommandEventArgs;
 
    type IGameBarServicesManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameBarServicesManager is access all IGameBarServicesManager_Interface'Class;
+   type IGameBarServicesManager is access IGameBarServicesManager_Interface'Class;
    type IGameBarServicesManager_Ptr is access all IGameBarServicesManager;
 
    type IGameBarServicesManagerGameBarServicesCreatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameBarServicesManagerGameBarServicesCreatedEventArgs is access all IGameBarServicesManagerGameBarServicesCreatedEventArgs_Interface'Class;
+   type IGameBarServicesManagerGameBarServicesCreatedEventArgs is access IGameBarServicesManagerGameBarServicesCreatedEventArgs_Interface'Class;
    type IGameBarServicesManagerGameBarServicesCreatedEventArgs_Ptr is access all IGameBarServicesManagerGameBarServicesCreatedEventArgs;
 
    type IGameBarServicesManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameBarServicesManagerStatics is access all IGameBarServicesManagerStatics_Interface'Class;
+   type IGameBarServicesManagerStatics is access IGameBarServicesManagerStatics_Interface'Class;
 
    type IGameBarServicesTargetInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameBarServicesTargetInfo is access all IGameBarServicesTargetInfo_Interface'Class;
+   type IGameBarServicesTargetInfo is access IGameBarServicesTargetInfo_Interface'Class;
    type IGameBarServicesTargetInfo_Ptr is access all IGameBarServicesTargetInfo;
 
    type ILowLagMediaRecording_Interface is interface and WinRt.IInspectable_Interface;
-   type ILowLagMediaRecording is access all ILowLagMediaRecording_Interface'Class;
+   type ILowLagMediaRecording is access ILowLagMediaRecording_Interface'Class;
    type ILowLagMediaRecording_Ptr is access all ILowLagMediaRecording;
 
    type ILowLagMediaRecording2_Interface is interface and WinRt.IInspectable_Interface;
-   type ILowLagMediaRecording2 is access all ILowLagMediaRecording2_Interface'Class;
+   type ILowLagMediaRecording2 is access ILowLagMediaRecording2_Interface'Class;
 
    type ILowLagMediaRecording3_Interface is interface and WinRt.IInspectable_Interface;
-   type ILowLagMediaRecording3 is access all ILowLagMediaRecording3_Interface'Class;
+   type ILowLagMediaRecording3 is access ILowLagMediaRecording3_Interface'Class;
 
    type ILowLagPhotoCapture_Interface is interface and WinRt.IInspectable_Interface;
-   type ILowLagPhotoCapture is access all ILowLagPhotoCapture_Interface'Class;
+   type ILowLagPhotoCapture is access ILowLagPhotoCapture_Interface'Class;
    type ILowLagPhotoCapture_Ptr is access all ILowLagPhotoCapture;
 
    type ILowLagPhotoSequenceCapture_Interface is interface and WinRt.IInspectable_Interface;
-   type ILowLagPhotoSequenceCapture is access all ILowLagPhotoSequenceCapture_Interface'Class;
+   type ILowLagPhotoSequenceCapture is access ILowLagPhotoSequenceCapture_Interface'Class;
    type ILowLagPhotoSequenceCapture_Ptr is access all ILowLagPhotoSequenceCapture;
 
    type IMediaCapture_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCapture is access all IMediaCapture_Interface'Class;
+   type IMediaCapture is access IMediaCapture_Interface'Class;
    type IMediaCapture_Ptr is access all IMediaCapture;
 
    type IMediaCapture2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCapture2 is access all IMediaCapture2_Interface'Class;
+   type IMediaCapture2 is access IMediaCapture2_Interface'Class;
 
    type IMediaCapture3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCapture3 is access all IMediaCapture3_Interface'Class;
+   type IMediaCapture3 is access IMediaCapture3_Interface'Class;
 
    type IMediaCapture4_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCapture4 is access all IMediaCapture4_Interface'Class;
+   type IMediaCapture4 is access IMediaCapture4_Interface'Class;
 
    type IMediaCapture5_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCapture5 is access all IMediaCapture5_Interface'Class;
+   type IMediaCapture5 is access IMediaCapture5_Interface'Class;
 
    type IMediaCapture6_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCapture6 is access all IMediaCapture6_Interface'Class;
+   type IMediaCapture6 is access IMediaCapture6_Interface'Class;
 
    type IMediaCapture7_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCapture7 is access all IMediaCapture7_Interface'Class;
+   type IMediaCapture7 is access IMediaCapture7_Interface'Class;
 
    type IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs is access all IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs_Interface'Class;
+   type IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs is access IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs_Interface'Class;
    type IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs_Ptr is access all IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs;
 
    type IMediaCaptureFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureFailedEventArgs is access all IMediaCaptureFailedEventArgs_Interface'Class;
+   type IMediaCaptureFailedEventArgs is access IMediaCaptureFailedEventArgs_Interface'Class;
    type IMediaCaptureFailedEventArgs_Ptr is access all IMediaCaptureFailedEventArgs;
 
    type IMediaCaptureFocusChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureFocusChangedEventArgs is access all IMediaCaptureFocusChangedEventArgs_Interface'Class;
+   type IMediaCaptureFocusChangedEventArgs is access IMediaCaptureFocusChangedEventArgs_Interface'Class;
    type IMediaCaptureFocusChangedEventArgs_Ptr is access all IMediaCaptureFocusChangedEventArgs;
 
    type IMediaCaptureInitializationSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureInitializationSettings is access all IMediaCaptureInitializationSettings_Interface'Class;
+   type IMediaCaptureInitializationSettings is access IMediaCaptureInitializationSettings_Interface'Class;
    type IMediaCaptureInitializationSettings_Ptr is access all IMediaCaptureInitializationSettings;
 
    type IMediaCaptureInitializationSettings2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureInitializationSettings2 is access all IMediaCaptureInitializationSettings2_Interface'Class;
+   type IMediaCaptureInitializationSettings2 is access IMediaCaptureInitializationSettings2_Interface'Class;
 
    type IMediaCaptureInitializationSettings3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureInitializationSettings3 is access all IMediaCaptureInitializationSettings3_Interface'Class;
+   type IMediaCaptureInitializationSettings3 is access IMediaCaptureInitializationSettings3_Interface'Class;
 
    type IMediaCaptureInitializationSettings4_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureInitializationSettings4 is access all IMediaCaptureInitializationSettings4_Interface'Class;
+   type IMediaCaptureInitializationSettings4 is access IMediaCaptureInitializationSettings4_Interface'Class;
 
    type IMediaCaptureInitializationSettings5_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureInitializationSettings5 is access all IMediaCaptureInitializationSettings5_Interface'Class;
+   type IMediaCaptureInitializationSettings5 is access IMediaCaptureInitializationSettings5_Interface'Class;
 
    type IMediaCaptureInitializationSettings6_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureInitializationSettings6 is access all IMediaCaptureInitializationSettings6_Interface'Class;
+   type IMediaCaptureInitializationSettings6 is access IMediaCaptureInitializationSettings6_Interface'Class;
 
    type IMediaCaptureInitializationSettings7_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureInitializationSettings7 is access all IMediaCaptureInitializationSettings7_Interface'Class;
+   type IMediaCaptureInitializationSettings7 is access IMediaCaptureInitializationSettings7_Interface'Class;
 
    type IMediaCapturePauseResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCapturePauseResult is access all IMediaCapturePauseResult_Interface'Class;
+   type IMediaCapturePauseResult is access IMediaCapturePauseResult_Interface'Class;
    type IMediaCapturePauseResult_Ptr is access all IMediaCapturePauseResult;
 
    type IMediaCaptureRelativePanelWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureRelativePanelWatcher is access all IMediaCaptureRelativePanelWatcher_Interface'Class;
+   type IMediaCaptureRelativePanelWatcher is access IMediaCaptureRelativePanelWatcher_Interface'Class;
    type IMediaCaptureRelativePanelWatcher_Ptr is access all IMediaCaptureRelativePanelWatcher;
 
    type IMediaCaptureSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureSettings is access all IMediaCaptureSettings_Interface'Class;
+   type IMediaCaptureSettings is access IMediaCaptureSettings_Interface'Class;
    type IMediaCaptureSettings_Ptr is access all IMediaCaptureSettings;
 
    type IMediaCaptureSettings2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureSettings2 is access all IMediaCaptureSettings2_Interface'Class;
+   type IMediaCaptureSettings2 is access IMediaCaptureSettings2_Interface'Class;
 
    type IMediaCaptureSettings3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureSettings3 is access all IMediaCaptureSettings3_Interface'Class;
+   type IMediaCaptureSettings3 is access IMediaCaptureSettings3_Interface'Class;
 
    type IMediaCaptureStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureStatics is access all IMediaCaptureStatics_Interface'Class;
+   type IMediaCaptureStatics is access IMediaCaptureStatics_Interface'Class;
 
    type IMediaCaptureStopResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureStopResult is access all IMediaCaptureStopResult_Interface'Class;
+   type IMediaCaptureStopResult is access IMediaCaptureStopResult_Interface'Class;
    type IMediaCaptureStopResult_Ptr is access all IMediaCaptureStopResult;
 
    type IMediaCaptureVideoPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureVideoPreview is access all IMediaCaptureVideoPreview_Interface'Class;
+   type IMediaCaptureVideoPreview is access IMediaCaptureVideoPreview_Interface'Class;
 
    type IMediaCaptureVideoProfile_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureVideoProfile is access all IMediaCaptureVideoProfile_Interface'Class;
+   type IMediaCaptureVideoProfile is access IMediaCaptureVideoProfile_Interface'Class;
    type IMediaCaptureVideoProfile_Ptr is access all IMediaCaptureVideoProfile;
 
    type IMediaCaptureVideoProfile2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureVideoProfile2 is access all IMediaCaptureVideoProfile2_Interface'Class;
+   type IMediaCaptureVideoProfile2 is access IMediaCaptureVideoProfile2_Interface'Class;
 
    type IMediaCaptureVideoProfileMediaDescription_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureVideoProfileMediaDescription is access all IMediaCaptureVideoProfileMediaDescription_Interface'Class;
+   type IMediaCaptureVideoProfileMediaDescription is access IMediaCaptureVideoProfileMediaDescription_Interface'Class;
    type IMediaCaptureVideoProfileMediaDescription_Ptr is access all IMediaCaptureVideoProfileMediaDescription;
 
    type IMediaCaptureVideoProfileMediaDescription2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCaptureVideoProfileMediaDescription2 is access all IMediaCaptureVideoProfileMediaDescription2_Interface'Class;
+   type IMediaCaptureVideoProfileMediaDescription2 is access IMediaCaptureVideoProfileMediaDescription2_Interface'Class;
 
    type IOptionalReferencePhotoCapturedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IOptionalReferencePhotoCapturedEventArgs is access all IOptionalReferencePhotoCapturedEventArgs_Interface'Class;
+   type IOptionalReferencePhotoCapturedEventArgs is access IOptionalReferencePhotoCapturedEventArgs_Interface'Class;
    type IOptionalReferencePhotoCapturedEventArgs_Ptr is access all IOptionalReferencePhotoCapturedEventArgs;
 
    type IPhotoCapturedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhotoCapturedEventArgs is access all IPhotoCapturedEventArgs_Interface'Class;
+   type IPhotoCapturedEventArgs is access IPhotoCapturedEventArgs_Interface'Class;
    type IPhotoCapturedEventArgs_Ptr is access all IPhotoCapturedEventArgs;
 
    type IPhotoConfirmationCapturedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhotoConfirmationCapturedEventArgs is access all IPhotoConfirmationCapturedEventArgs_Interface'Class;
+   type IPhotoConfirmationCapturedEventArgs is access IPhotoConfirmationCapturedEventArgs_Interface'Class;
    type IPhotoConfirmationCapturedEventArgs_Ptr is access all IPhotoConfirmationCapturedEventArgs;
 
    type IScreenCapture_Interface is interface and WinRt.IInspectable_Interface;
-   type IScreenCapture is access all IScreenCapture_Interface'Class;
+   type IScreenCapture is access IScreenCapture_Interface'Class;
    type IScreenCapture_Ptr is access all IScreenCapture;
 
    type IScreenCaptureStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IScreenCaptureStatics is access all IScreenCaptureStatics_Interface'Class;
+   type IScreenCaptureStatics is access IScreenCaptureStatics_Interface'Class;
 
    type ISourceSuspensionChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISourceSuspensionChangedEventArgs is access all ISourceSuspensionChangedEventArgs_Interface'Class;
+   type ISourceSuspensionChangedEventArgs is access ISourceSuspensionChangedEventArgs_Interface'Class;
    type ISourceSuspensionChangedEventArgs_Ptr is access all ISourceSuspensionChangedEventArgs;
 
    type IVideoStreamConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoStreamConfiguration is access all IVideoStreamConfiguration_Interface'Class;
+   type IVideoStreamConfiguration is access IVideoStreamConfiguration_Interface'Class;
    type IVideoStreamConfiguration_Ptr is access all IVideoStreamConfiguration;
 
    -----------------------------------------------------------------------------

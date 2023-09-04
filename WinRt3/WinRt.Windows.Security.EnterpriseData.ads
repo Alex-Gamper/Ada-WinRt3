@@ -43,94 +43,94 @@ package WinRt.Windows.Security.EnterpriseData is
    -----------------------------------------------------------------------------
 
    type IBufferProtectUnprotectResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IBufferProtectUnprotectResult is access all IBufferProtectUnprotectResult_Interface'Class;
+   type IBufferProtectUnprotectResult is access IBufferProtectUnprotectResult_Interface'Class;
    type IBufferProtectUnprotectResult_Ptr is access all IBufferProtectUnprotectResult;
 
    type IDataProtectionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataProtectionInfo is access all IDataProtectionInfo_Interface'Class;
+   type IDataProtectionInfo is access IDataProtectionInfo_Interface'Class;
    type IDataProtectionInfo_Ptr is access all IDataProtectionInfo;
 
    type IDataProtectionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataProtectionManagerStatics is access all IDataProtectionManagerStatics_Interface'Class;
+   type IDataProtectionManagerStatics is access IDataProtectionManagerStatics_Interface'Class;
 
    type IFileProtectionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileProtectionInfo is access all IFileProtectionInfo_Interface'Class;
+   type IFileProtectionInfo is access IFileProtectionInfo_Interface'Class;
    type IFileProtectionInfo_Ptr is access all IFileProtectionInfo;
 
    type IFileProtectionInfo2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileProtectionInfo2 is access all IFileProtectionInfo2_Interface'Class;
+   type IFileProtectionInfo2 is access IFileProtectionInfo2_Interface'Class;
 
    type IFileProtectionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileProtectionManagerStatics is access all IFileProtectionManagerStatics_Interface'Class;
+   type IFileProtectionManagerStatics is access IFileProtectionManagerStatics_Interface'Class;
 
    type IFileProtectionManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileProtectionManagerStatics2 is access all IFileProtectionManagerStatics2_Interface'Class;
+   type IFileProtectionManagerStatics2 is access IFileProtectionManagerStatics2_Interface'Class;
 
    type IFileProtectionManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileProtectionManagerStatics3 is access all IFileProtectionManagerStatics3_Interface'Class;
+   type IFileProtectionManagerStatics3 is access IFileProtectionManagerStatics3_Interface'Class;
 
    type IFileRevocationManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileRevocationManagerStatics is access all IFileRevocationManagerStatics_Interface'Class;
+   type IFileRevocationManagerStatics is access IFileRevocationManagerStatics_Interface'Class;
 
    type IFileUnprotectOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileUnprotectOptions is access all IFileUnprotectOptions_Interface'Class;
+   type IFileUnprotectOptions is access IFileUnprotectOptions_Interface'Class;
    type IFileUnprotectOptions_Ptr is access all IFileUnprotectOptions;
 
    type IFileUnprotectOptionsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileUnprotectOptionsFactory is access all IFileUnprotectOptionsFactory_Interface'Class;
+   type IFileUnprotectOptionsFactory is access IFileUnprotectOptionsFactory_Interface'Class;
 
    type IProtectedAccessResumedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtectedAccessResumedEventArgs is access all IProtectedAccessResumedEventArgs_Interface'Class;
+   type IProtectedAccessResumedEventArgs is access IProtectedAccessResumedEventArgs_Interface'Class;
    type IProtectedAccessResumedEventArgs_Ptr is access all IProtectedAccessResumedEventArgs;
 
    type IProtectedAccessSuspendingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtectedAccessSuspendingEventArgs is access all IProtectedAccessSuspendingEventArgs_Interface'Class;
+   type IProtectedAccessSuspendingEventArgs is access IProtectedAccessSuspendingEventArgs_Interface'Class;
    type IProtectedAccessSuspendingEventArgs_Ptr is access all IProtectedAccessSuspendingEventArgs;
 
    type IProtectedContainerExportResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtectedContainerExportResult is access all IProtectedContainerExportResult_Interface'Class;
+   type IProtectedContainerExportResult is access IProtectedContainerExportResult_Interface'Class;
    type IProtectedContainerExportResult_Ptr is access all IProtectedContainerExportResult;
 
    type IProtectedContainerImportResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtectedContainerImportResult is access all IProtectedContainerImportResult_Interface'Class;
+   type IProtectedContainerImportResult is access IProtectedContainerImportResult_Interface'Class;
    type IProtectedContainerImportResult_Ptr is access all IProtectedContainerImportResult;
 
    type IProtectedContentRevokedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtectedContentRevokedEventArgs is access all IProtectedContentRevokedEventArgs_Interface'Class;
+   type IProtectedContentRevokedEventArgs is access IProtectedContentRevokedEventArgs_Interface'Class;
    type IProtectedContentRevokedEventArgs_Ptr is access all IProtectedContentRevokedEventArgs;
 
    type IProtectedFileCreateResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtectedFileCreateResult is access all IProtectedFileCreateResult_Interface'Class;
+   type IProtectedFileCreateResult is access IProtectedFileCreateResult_Interface'Class;
    type IProtectedFileCreateResult_Ptr is access all IProtectedFileCreateResult;
 
    type IProtectionPolicyAuditInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtectionPolicyAuditInfo is access all IProtectionPolicyAuditInfo_Interface'Class;
+   type IProtectionPolicyAuditInfo is access IProtectionPolicyAuditInfo_Interface'Class;
    type IProtectionPolicyAuditInfo_Ptr is access all IProtectionPolicyAuditInfo;
 
    type IProtectionPolicyAuditInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtectionPolicyAuditInfoFactory is access all IProtectionPolicyAuditInfoFactory_Interface'Class;
+   type IProtectionPolicyAuditInfoFactory is access IProtectionPolicyAuditInfoFactory_Interface'Class;
 
    type IProtectionPolicyManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtectionPolicyManager is access all IProtectionPolicyManager_Interface'Class;
+   type IProtectionPolicyManager is access IProtectionPolicyManager_Interface'Class;
    type IProtectionPolicyManager_Ptr is access all IProtectionPolicyManager;
 
    type IProtectionPolicyManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtectionPolicyManager2 is access all IProtectionPolicyManager2_Interface'Class;
+   type IProtectionPolicyManager2 is access IProtectionPolicyManager2_Interface'Class;
 
    type IProtectionPolicyManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtectionPolicyManagerStatics is access all IProtectionPolicyManagerStatics_Interface'Class;
+   type IProtectionPolicyManagerStatics is access IProtectionPolicyManagerStatics_Interface'Class;
 
    type IProtectionPolicyManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtectionPolicyManagerStatics2 is access all IProtectionPolicyManagerStatics2_Interface'Class;
+   type IProtectionPolicyManagerStatics2 is access IProtectionPolicyManagerStatics2_Interface'Class;
 
    type IProtectionPolicyManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtectionPolicyManagerStatics3 is access all IProtectionPolicyManagerStatics3_Interface'Class;
+   type IProtectionPolicyManagerStatics3 is access IProtectionPolicyManagerStatics3_Interface'Class;
 
    type IProtectionPolicyManagerStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtectionPolicyManagerStatics4 is access all IProtectionPolicyManagerStatics4_Interface'Class;
+   type IProtectionPolicyManagerStatics4 is access IProtectionPolicyManagerStatics4_Interface'Class;
 
    type IThreadNetworkContext_Interface is interface and WinRt.IInspectable_Interface;
-   type IThreadNetworkContext is access all IThreadNetworkContext_Interface'Class;
+   type IThreadNetworkContext is access IThreadNetworkContext_Interface'Class;
    type IThreadNetworkContext_Ptr is access all IThreadNetworkContext;
 
    -----------------------------------------------------------------------------

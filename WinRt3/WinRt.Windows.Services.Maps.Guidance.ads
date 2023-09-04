@@ -42,65 +42,65 @@ package WinRt.Windows.Services.Maps.Guidance is
    -----------------------------------------------------------------------------
 
    type IGuidanceAudioNotificationRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidanceAudioNotificationRequestedEventArgs is access all IGuidanceAudioNotificationRequestedEventArgs_Interface'Class;
+   type IGuidanceAudioNotificationRequestedEventArgs is access IGuidanceAudioNotificationRequestedEventArgs_Interface'Class;
    type IGuidanceAudioNotificationRequestedEventArgs_Ptr is access all IGuidanceAudioNotificationRequestedEventArgs;
 
    type IGuidanceLaneInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidanceLaneInfo is access all IGuidanceLaneInfo_Interface'Class;
+   type IGuidanceLaneInfo is access IGuidanceLaneInfo_Interface'Class;
    type IGuidanceLaneInfo_Ptr is access all IGuidanceLaneInfo;
 
    type IGuidanceManeuver_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidanceManeuver is access all IGuidanceManeuver_Interface'Class;
+   type IGuidanceManeuver is access IGuidanceManeuver_Interface'Class;
    type IGuidanceManeuver_Ptr is access all IGuidanceManeuver;
 
    type IGuidanceMapMatchedCoordinate_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidanceMapMatchedCoordinate is access all IGuidanceMapMatchedCoordinate_Interface'Class;
+   type IGuidanceMapMatchedCoordinate is access IGuidanceMapMatchedCoordinate_Interface'Class;
    type IGuidanceMapMatchedCoordinate_Ptr is access all IGuidanceMapMatchedCoordinate;
 
    type IGuidanceNavigator_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidanceNavigator is access all IGuidanceNavigator_Interface'Class;
+   type IGuidanceNavigator is access IGuidanceNavigator_Interface'Class;
    type IGuidanceNavigator_Ptr is access all IGuidanceNavigator;
 
    type IGuidanceNavigator2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidanceNavigator2 is access all IGuidanceNavigator2_Interface'Class;
+   type IGuidanceNavigator2 is access IGuidanceNavigator2_Interface'Class;
 
    type IGuidanceNavigatorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidanceNavigatorStatics is access all IGuidanceNavigatorStatics_Interface'Class;
+   type IGuidanceNavigatorStatics is access IGuidanceNavigatorStatics_Interface'Class;
 
    type IGuidanceNavigatorStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidanceNavigatorStatics2 is access all IGuidanceNavigatorStatics2_Interface'Class;
+   type IGuidanceNavigatorStatics2 is access IGuidanceNavigatorStatics2_Interface'Class;
 
    type IGuidanceReroutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidanceReroutedEventArgs is access all IGuidanceReroutedEventArgs_Interface'Class;
+   type IGuidanceReroutedEventArgs is access IGuidanceReroutedEventArgs_Interface'Class;
    type IGuidanceReroutedEventArgs_Ptr is access all IGuidanceReroutedEventArgs;
 
    type IGuidanceRoadSegment_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidanceRoadSegment is access all IGuidanceRoadSegment_Interface'Class;
+   type IGuidanceRoadSegment is access IGuidanceRoadSegment_Interface'Class;
    type IGuidanceRoadSegment_Ptr is access all IGuidanceRoadSegment;
 
    type IGuidanceRoadSegment2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidanceRoadSegment2 is access all IGuidanceRoadSegment2_Interface'Class;
+   type IGuidanceRoadSegment2 is access IGuidanceRoadSegment2_Interface'Class;
 
    type IGuidanceRoadSignpost_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidanceRoadSignpost is access all IGuidanceRoadSignpost_Interface'Class;
+   type IGuidanceRoadSignpost is access IGuidanceRoadSignpost_Interface'Class;
    type IGuidanceRoadSignpost_Ptr is access all IGuidanceRoadSignpost;
 
    type IGuidanceRoute_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidanceRoute is access all IGuidanceRoute_Interface'Class;
+   type IGuidanceRoute is access IGuidanceRoute_Interface'Class;
    type IGuidanceRoute_Ptr is access all IGuidanceRoute;
 
    type IGuidanceRouteStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidanceRouteStatics is access all IGuidanceRouteStatics_Interface'Class;
+   type IGuidanceRouteStatics is access IGuidanceRouteStatics_Interface'Class;
 
    type IGuidanceTelemetryCollector_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidanceTelemetryCollector is access all IGuidanceTelemetryCollector_Interface'Class;
+   type IGuidanceTelemetryCollector is access IGuidanceTelemetryCollector_Interface'Class;
    type IGuidanceTelemetryCollector_Ptr is access all IGuidanceTelemetryCollector;
 
    type IGuidanceTelemetryCollectorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidanceTelemetryCollectorStatics is access all IGuidanceTelemetryCollectorStatics_Interface'Class;
+   type IGuidanceTelemetryCollectorStatics is access IGuidanceTelemetryCollectorStatics_Interface'Class;
 
    type IGuidanceUpdatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGuidanceUpdatedEventArgs is access all IGuidanceUpdatedEventArgs_Interface'Class;
+   type IGuidanceUpdatedEventArgs is access IGuidanceUpdatedEventArgs_Interface'Class;
    type IGuidanceUpdatedEventArgs_Ptr is access all IGuidanceUpdatedEventArgs;
 
    -----------------------------------------------------------------------------

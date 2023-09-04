@@ -50,77 +50,77 @@ package WinRt.Windows.Media.Effects is
    -----------------------------------------------------------------------------
 
    type IAudioCaptureEffectsManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioCaptureEffectsManager is access all IAudioCaptureEffectsManager_Interface'Class;
+   type IAudioCaptureEffectsManager is access IAudioCaptureEffectsManager_Interface'Class;
    type IAudioCaptureEffectsManager_Ptr is access all IAudioCaptureEffectsManager;
 
    type IAudioEffect_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioEffect is access all IAudioEffect_Interface'Class;
+   type IAudioEffect is access IAudioEffect_Interface'Class;
    type IAudioEffect_Ptr is access all IAudioEffect;
 
    type IAudioEffectDefinition_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioEffectDefinition is access all IAudioEffectDefinition_Interface'Class;
+   type IAudioEffectDefinition is access IAudioEffectDefinition_Interface'Class;
    type IAudioEffectDefinition_Ptr is access all IAudioEffectDefinition;
 
    type IAudioEffectDefinitionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioEffectDefinitionFactory is access all IAudioEffectDefinitionFactory_Interface'Class;
+   type IAudioEffectDefinitionFactory is access IAudioEffectDefinitionFactory_Interface'Class;
 
    type IAudioEffectsManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioEffectsManagerStatics is access all IAudioEffectsManagerStatics_Interface'Class;
+   type IAudioEffectsManagerStatics is access IAudioEffectsManagerStatics_Interface'Class;
 
    type IAudioRenderEffectsManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioRenderEffectsManager is access all IAudioRenderEffectsManager_Interface'Class;
+   type IAudioRenderEffectsManager is access IAudioRenderEffectsManager_Interface'Class;
    type IAudioRenderEffectsManager_Ptr is access all IAudioRenderEffectsManager;
 
    type IAudioRenderEffectsManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioRenderEffectsManager2 is access all IAudioRenderEffectsManager2_Interface'Class;
+   type IAudioRenderEffectsManager2 is access IAudioRenderEffectsManager2_Interface'Class;
 
    type IBasicAudioEffect_Interface is interface and WinRt.IInspectable_Interface;
-   type IBasicAudioEffect is access all IBasicAudioEffect_Interface'Class;
+   type IBasicAudioEffect is access IBasicAudioEffect_Interface'Class;
 
    type IBasicVideoEffect_Interface is interface and WinRt.IInspectable_Interface;
-   type IBasicVideoEffect is access all IBasicVideoEffect_Interface'Class;
+   type IBasicVideoEffect is access IBasicVideoEffect_Interface'Class;
 
    type ICompositeVideoFrameContext_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositeVideoFrameContext is access all ICompositeVideoFrameContext_Interface'Class;
+   type ICompositeVideoFrameContext is access ICompositeVideoFrameContext_Interface'Class;
    type ICompositeVideoFrameContext_Ptr is access all ICompositeVideoFrameContext;
 
    type IProcessAudioFrameContext_Interface is interface and WinRt.IInspectable_Interface;
-   type IProcessAudioFrameContext is access all IProcessAudioFrameContext_Interface'Class;
+   type IProcessAudioFrameContext is access IProcessAudioFrameContext_Interface'Class;
    type IProcessAudioFrameContext_Ptr is access all IProcessAudioFrameContext;
 
    type IProcessVideoFrameContext_Interface is interface and WinRt.IInspectable_Interface;
-   type IProcessVideoFrameContext is access all IProcessVideoFrameContext_Interface'Class;
+   type IProcessVideoFrameContext is access IProcessVideoFrameContext_Interface'Class;
    type IProcessVideoFrameContext_Ptr is access all IProcessVideoFrameContext;
 
    type ISlowMotionEffectDefinition_Interface is interface and WinRt.IInspectable_Interface;
-   type ISlowMotionEffectDefinition is access all ISlowMotionEffectDefinition_Interface'Class;
+   type ISlowMotionEffectDefinition is access ISlowMotionEffectDefinition_Interface'Class;
    type ISlowMotionEffectDefinition_Ptr is access all ISlowMotionEffectDefinition;
 
    type IVideoCompositor_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoCompositor is access all IVideoCompositor_Interface'Class;
+   type IVideoCompositor is access IVideoCompositor_Interface'Class;
 
    type IVideoCompositorDefinition_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoCompositorDefinition is access all IVideoCompositorDefinition_Interface'Class;
+   type IVideoCompositorDefinition is access IVideoCompositorDefinition_Interface'Class;
    type IVideoCompositorDefinition_Ptr is access all IVideoCompositorDefinition;
 
    type IVideoCompositorDefinitionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoCompositorDefinitionFactory is access all IVideoCompositorDefinitionFactory_Interface'Class;
+   type IVideoCompositorDefinitionFactory is access IVideoCompositorDefinitionFactory_Interface'Class;
 
    type IVideoEffectDefinition_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoEffectDefinition is access all IVideoEffectDefinition_Interface'Class;
+   type IVideoEffectDefinition is access IVideoEffectDefinition_Interface'Class;
    type IVideoEffectDefinition_Ptr is access all IVideoEffectDefinition;
 
    type IVideoEffectDefinitionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoEffectDefinitionFactory is access all IVideoEffectDefinitionFactory_Interface'Class;
+   type IVideoEffectDefinitionFactory is access IVideoEffectDefinitionFactory_Interface'Class;
 
    type IVideoTransformEffectDefinition_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoTransformEffectDefinition is access all IVideoTransformEffectDefinition_Interface'Class;
+   type IVideoTransformEffectDefinition is access IVideoTransformEffectDefinition_Interface'Class;
 
    type IVideoTransformEffectDefinition2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoTransformEffectDefinition2 is access all IVideoTransformEffectDefinition2_Interface'Class;
+   type IVideoTransformEffectDefinition2 is access IVideoTransformEffectDefinition2_Interface'Class;
 
    type IVideoTransformSphericalProjection_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoTransformSphericalProjection is access all IVideoTransformSphericalProjection_Interface'Class;
+   type IVideoTransformSphericalProjection is access IVideoTransformSphericalProjection_Interface'Class;
    type IVideoTransformSphericalProjection_Ptr is access all IVideoTransformSphericalProjection;
 
    -----------------------------------------------------------------------------

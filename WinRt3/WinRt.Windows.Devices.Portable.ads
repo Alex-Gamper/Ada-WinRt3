@@ -39,10 +39,10 @@ package WinRt.Windows.Devices.Portable is
    -----------------------------------------------------------------------------
 
    type IServiceDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IServiceDeviceStatics is access all IServiceDeviceStatics_Interface'Class;
+   type IServiceDeviceStatics is access IServiceDeviceStatics_Interface'Class;
 
    type IStorageDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageDeviceStatics is access all IStorageDeviceStatics_Interface'Class;
+   type IStorageDeviceStatics is access IStorageDeviceStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Enum declarations

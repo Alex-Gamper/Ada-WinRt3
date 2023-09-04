@@ -42,73 +42,73 @@ package WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    -----------------------------------------------------------------------------
 
    type IAppInstallItem_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallItem is access all IAppInstallItem_Interface'Class;
+   type IAppInstallItem is access IAppInstallItem_Interface'Class;
    type IAppInstallItem_Ptr is access all IAppInstallItem;
 
    type IAppInstallItem2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallItem2 is access all IAppInstallItem2_Interface'Class;
+   type IAppInstallItem2 is access IAppInstallItem2_Interface'Class;
 
    type IAppInstallItem3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallItem3 is access all IAppInstallItem3_Interface'Class;
+   type IAppInstallItem3 is access IAppInstallItem3_Interface'Class;
 
    type IAppInstallItem4_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallItem4 is access all IAppInstallItem4_Interface'Class;
+   type IAppInstallItem4 is access IAppInstallItem4_Interface'Class;
 
    type IAppInstallItem5_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallItem5 is access all IAppInstallItem5_Interface'Class;
+   type IAppInstallItem5 is access IAppInstallItem5_Interface'Class;
 
    type IAppInstallManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallManager is access all IAppInstallManager_Interface'Class;
+   type IAppInstallManager is access IAppInstallManager_Interface'Class;
    type IAppInstallManager_Ptr is access all IAppInstallManager;
 
    type IAppInstallManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallManager2 is access all IAppInstallManager2_Interface'Class;
+   type IAppInstallManager2 is access IAppInstallManager2_Interface'Class;
 
    type IAppInstallManager3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallManager3 is access all IAppInstallManager3_Interface'Class;
+   type IAppInstallManager3 is access IAppInstallManager3_Interface'Class;
 
    type IAppInstallManager4_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallManager4 is access all IAppInstallManager4_Interface'Class;
+   type IAppInstallManager4 is access IAppInstallManager4_Interface'Class;
 
    type IAppInstallManager5_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallManager5 is access all IAppInstallManager5_Interface'Class;
+   type IAppInstallManager5 is access IAppInstallManager5_Interface'Class;
 
    type IAppInstallManager6_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallManager6 is access all IAppInstallManager6_Interface'Class;
+   type IAppInstallManager6 is access IAppInstallManager6_Interface'Class;
 
    type IAppInstallManager7_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallManager7 is access all IAppInstallManager7_Interface'Class;
+   type IAppInstallManager7 is access IAppInstallManager7_Interface'Class;
 
    type IAppInstallManagerItemEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallManagerItemEventArgs is access all IAppInstallManagerItemEventArgs_Interface'Class;
+   type IAppInstallManagerItemEventArgs is access IAppInstallManagerItemEventArgs_Interface'Class;
    type IAppInstallManagerItemEventArgs_Ptr is access all IAppInstallManagerItemEventArgs;
 
    type IAppInstallOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallOptions is access all IAppInstallOptions_Interface'Class;
+   type IAppInstallOptions is access IAppInstallOptions_Interface'Class;
    type IAppInstallOptions_Ptr is access all IAppInstallOptions;
 
    type IAppInstallOptions2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallOptions2 is access all IAppInstallOptions2_Interface'Class;
+   type IAppInstallOptions2 is access IAppInstallOptions2_Interface'Class;
 
    type IAppInstallStatus_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallStatus is access all IAppInstallStatus_Interface'Class;
+   type IAppInstallStatus is access IAppInstallStatus_Interface'Class;
    type IAppInstallStatus_Ptr is access all IAppInstallStatus;
 
    type IAppInstallStatus2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallStatus2 is access all IAppInstallStatus2_Interface'Class;
+   type IAppInstallStatus2 is access IAppInstallStatus2_Interface'Class;
 
    type IAppInstallStatus3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallStatus3 is access all IAppInstallStatus3_Interface'Class;
+   type IAppInstallStatus3 is access IAppInstallStatus3_Interface'Class;
 
    type IAppUpdateOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppUpdateOptions is access all IAppUpdateOptions_Interface'Class;
+   type IAppUpdateOptions is access IAppUpdateOptions_Interface'Class;
    type IAppUpdateOptions_Ptr is access all IAppUpdateOptions;
 
    type IAppUpdateOptions2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppUpdateOptions2 is access all IAppUpdateOptions2_Interface'Class;
+   type IAppUpdateOptions2 is access IAppUpdateOptions2_Interface'Class;
 
    type IGetEntitlementResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGetEntitlementResult is access all IGetEntitlementResult_Interface'Class;
+   type IGetEntitlementResult is access IGetEntitlementResult_Interface'Class;
    type IGetEntitlementResult_Ptr is access all IGetEntitlementResult;
 
    -----------------------------------------------------------------------------

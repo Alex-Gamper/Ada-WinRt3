@@ -43,125 +43,125 @@ package WinRt.Windows.Media.MediaProperties is
    -----------------------------------------------------------------------------
 
    type IAudioEncodingProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioEncodingProperties is access all IAudioEncodingProperties_Interface'Class;
+   type IAudioEncodingProperties is access IAudioEncodingProperties_Interface'Class;
    type IAudioEncodingProperties_Ptr is access all IAudioEncodingProperties;
 
    type IAudioEncodingProperties2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioEncodingProperties2 is access all IAudioEncodingProperties2_Interface'Class;
+   type IAudioEncodingProperties2 is access IAudioEncodingProperties2_Interface'Class;
 
    type IAudioEncodingProperties3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioEncodingProperties3 is access all IAudioEncodingProperties3_Interface'Class;
+   type IAudioEncodingProperties3 is access IAudioEncodingProperties3_Interface'Class;
 
    type IAudioEncodingPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioEncodingPropertiesStatics is access all IAudioEncodingPropertiesStatics_Interface'Class;
+   type IAudioEncodingPropertiesStatics is access IAudioEncodingPropertiesStatics_Interface'Class;
 
    type IAudioEncodingPropertiesStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioEncodingPropertiesStatics2 is access all IAudioEncodingPropertiesStatics2_Interface'Class;
+   type IAudioEncodingPropertiesStatics2 is access IAudioEncodingPropertiesStatics2_Interface'Class;
 
    type IAudioEncodingPropertiesWithFormatUserData_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioEncodingPropertiesWithFormatUserData is access all IAudioEncodingPropertiesWithFormatUserData_Interface'Class;
+   type IAudioEncodingPropertiesWithFormatUserData is access IAudioEncodingPropertiesWithFormatUserData_Interface'Class;
 
    type IContainerEncodingProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IContainerEncodingProperties is access all IContainerEncodingProperties_Interface'Class;
+   type IContainerEncodingProperties is access IContainerEncodingProperties_Interface'Class;
    type IContainerEncodingProperties_Ptr is access all IContainerEncodingProperties;
 
    type IContainerEncodingProperties2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContainerEncodingProperties2 is access all IContainerEncodingProperties2_Interface'Class;
+   type IContainerEncodingProperties2 is access IContainerEncodingProperties2_Interface'Class;
 
    type IH264ProfileIdsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IH264ProfileIdsStatics is access all IH264ProfileIdsStatics_Interface'Class;
+   type IH264ProfileIdsStatics is access IH264ProfileIdsStatics_Interface'Class;
 
    type IImageEncodingProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageEncodingProperties is access all IImageEncodingProperties_Interface'Class;
+   type IImageEncodingProperties is access IImageEncodingProperties_Interface'Class;
    type IImageEncodingProperties_Ptr is access all IImageEncodingProperties;
 
    type IImageEncodingProperties2_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageEncodingProperties2 is access all IImageEncodingProperties2_Interface'Class;
+   type IImageEncodingProperties2 is access IImageEncodingProperties2_Interface'Class;
 
    type IImageEncodingPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageEncodingPropertiesStatics is access all IImageEncodingPropertiesStatics_Interface'Class;
+   type IImageEncodingPropertiesStatics is access IImageEncodingPropertiesStatics_Interface'Class;
 
    type IImageEncodingPropertiesStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageEncodingPropertiesStatics2 is access all IImageEncodingPropertiesStatics2_Interface'Class;
+   type IImageEncodingPropertiesStatics2 is access IImageEncodingPropertiesStatics2_Interface'Class;
 
    type IImageEncodingPropertiesStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageEncodingPropertiesStatics3 is access all IImageEncodingPropertiesStatics3_Interface'Class;
+   type IImageEncodingPropertiesStatics3 is access IImageEncodingPropertiesStatics3_Interface'Class;
 
    type IMediaEncodingProfile_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaEncodingProfile is access all IMediaEncodingProfile_Interface'Class;
+   type IMediaEncodingProfile is access IMediaEncodingProfile_Interface'Class;
    type IMediaEncodingProfile_Ptr is access all IMediaEncodingProfile;
 
    type IMediaEncodingProfile2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaEncodingProfile2 is access all IMediaEncodingProfile2_Interface'Class;
+   type IMediaEncodingProfile2 is access IMediaEncodingProfile2_Interface'Class;
 
    type IMediaEncodingProfile3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaEncodingProfile3 is access all IMediaEncodingProfile3_Interface'Class;
+   type IMediaEncodingProfile3 is access IMediaEncodingProfile3_Interface'Class;
 
    type IMediaEncodingProfileStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaEncodingProfileStatics is access all IMediaEncodingProfileStatics_Interface'Class;
+   type IMediaEncodingProfileStatics is access IMediaEncodingProfileStatics_Interface'Class;
 
    type IMediaEncodingProfileStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaEncodingProfileStatics2 is access all IMediaEncodingProfileStatics2_Interface'Class;
+   type IMediaEncodingProfileStatics2 is access IMediaEncodingProfileStatics2_Interface'Class;
 
    type IMediaEncodingProfileStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaEncodingProfileStatics3 is access all IMediaEncodingProfileStatics3_Interface'Class;
+   type IMediaEncodingProfileStatics3 is access IMediaEncodingProfileStatics3_Interface'Class;
 
    type IMediaEncodingProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaEncodingProperties is access all IMediaEncodingProperties_Interface'Class;
+   type IMediaEncodingProperties is access IMediaEncodingProperties_Interface'Class;
    type IMediaEncodingProperties_Ptr is access all IMediaEncodingProperties;
 
    type IMediaEncodingSubtypesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaEncodingSubtypesStatics is access all IMediaEncodingSubtypesStatics_Interface'Class;
+   type IMediaEncodingSubtypesStatics is access IMediaEncodingSubtypesStatics_Interface'Class;
 
    type IMediaEncodingSubtypesStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaEncodingSubtypesStatics2 is access all IMediaEncodingSubtypesStatics2_Interface'Class;
+   type IMediaEncodingSubtypesStatics2 is access IMediaEncodingSubtypesStatics2_Interface'Class;
 
    type IMediaEncodingSubtypesStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaEncodingSubtypesStatics3 is access all IMediaEncodingSubtypesStatics3_Interface'Class;
+   type IMediaEncodingSubtypesStatics3 is access IMediaEncodingSubtypesStatics3_Interface'Class;
 
    type IMediaEncodingSubtypesStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaEncodingSubtypesStatics4 is access all IMediaEncodingSubtypesStatics4_Interface'Class;
+   type IMediaEncodingSubtypesStatics4 is access IMediaEncodingSubtypesStatics4_Interface'Class;
 
    type IMediaEncodingSubtypesStatics5_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaEncodingSubtypesStatics5 is access all IMediaEncodingSubtypesStatics5_Interface'Class;
+   type IMediaEncodingSubtypesStatics5 is access IMediaEncodingSubtypesStatics5_Interface'Class;
 
    type IMediaEncodingSubtypesStatics6_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaEncodingSubtypesStatics6 is access all IMediaEncodingSubtypesStatics6_Interface'Class;
+   type IMediaEncodingSubtypesStatics6 is access IMediaEncodingSubtypesStatics6_Interface'Class;
 
    type IMediaRatio_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaRatio is access all IMediaRatio_Interface'Class;
+   type IMediaRatio is access IMediaRatio_Interface'Class;
    type IMediaRatio_Ptr is access all IMediaRatio;
 
    type IMpeg2ProfileIdsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMpeg2ProfileIdsStatics is access all IMpeg2ProfileIdsStatics_Interface'Class;
+   type IMpeg2ProfileIdsStatics is access IMpeg2ProfileIdsStatics_Interface'Class;
 
    type ITimedMetadataEncodingProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedMetadataEncodingProperties is access all ITimedMetadataEncodingProperties_Interface'Class;
+   type ITimedMetadataEncodingProperties is access ITimedMetadataEncodingProperties_Interface'Class;
 
    type ITimedMetadataEncodingPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedMetadataEncodingPropertiesStatics is access all ITimedMetadataEncodingPropertiesStatics_Interface'Class;
+   type ITimedMetadataEncodingPropertiesStatics is access ITimedMetadataEncodingPropertiesStatics_Interface'Class;
 
    type IVideoEncodingProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoEncodingProperties is access all IVideoEncodingProperties_Interface'Class;
+   type IVideoEncodingProperties is access IVideoEncodingProperties_Interface'Class;
    type IVideoEncodingProperties_Ptr is access all IVideoEncodingProperties;
 
    type IVideoEncodingProperties2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoEncodingProperties2 is access all IVideoEncodingProperties2_Interface'Class;
+   type IVideoEncodingProperties2 is access IVideoEncodingProperties2_Interface'Class;
 
    type IVideoEncodingProperties3_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoEncodingProperties3 is access all IVideoEncodingProperties3_Interface'Class;
+   type IVideoEncodingProperties3 is access IVideoEncodingProperties3_Interface'Class;
 
    type IVideoEncodingProperties4_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoEncodingProperties4 is access all IVideoEncodingProperties4_Interface'Class;
+   type IVideoEncodingProperties4 is access IVideoEncodingProperties4_Interface'Class;
 
    type IVideoEncodingProperties5_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoEncodingProperties5 is access all IVideoEncodingProperties5_Interface'Class;
+   type IVideoEncodingProperties5 is access IVideoEncodingProperties5_Interface'Class;
 
    type IVideoEncodingPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoEncodingPropertiesStatics is access all IVideoEncodingPropertiesStatics_Interface'Class;
+   type IVideoEncodingPropertiesStatics is access IVideoEncodingPropertiesStatics_Interface'Class;
 
    type IVideoEncodingPropertiesStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoEncodingPropertiesStatics2 is access all IVideoEncodingPropertiesStatics2_Interface'Class;
+   type IVideoEncodingPropertiesStatics2 is access IVideoEncodingPropertiesStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

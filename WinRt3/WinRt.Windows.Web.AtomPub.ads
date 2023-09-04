@@ -44,22 +44,22 @@ package WinRt.Windows.Web.AtomPub is
    -----------------------------------------------------------------------------
 
    type IAtomPubClient_Interface is interface and WinRt.IInspectable_Interface;
-   type IAtomPubClient is access all IAtomPubClient_Interface'Class;
+   type IAtomPubClient is access IAtomPubClient_Interface'Class;
    type IAtomPubClient_Ptr is access all IAtomPubClient;
 
    type IAtomPubClientFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAtomPubClientFactory is access all IAtomPubClientFactory_Interface'Class;
+   type IAtomPubClientFactory is access IAtomPubClientFactory_Interface'Class;
 
    type IResourceCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceCollection is access all IResourceCollection_Interface'Class;
+   type IResourceCollection is access IResourceCollection_Interface'Class;
    type IResourceCollection_Ptr is access all IResourceCollection;
 
    type IServiceDocument_Interface is interface and WinRt.IInspectable_Interface;
-   type IServiceDocument is access all IServiceDocument_Interface'Class;
+   type IServiceDocument is access IServiceDocument_Interface'Class;
    type IServiceDocument_Ptr is access all IServiceDocument;
 
    type IWorkspace_Interface is interface and WinRt.IInspectable_Interface;
-   type IWorkspace is access all IWorkspace_Interface'Class;
+   type IWorkspace is access IWorkspace_Interface'Class;
    type IWorkspace_Ptr is access all IWorkspace;
 
    -----------------------------------------------------------------------------

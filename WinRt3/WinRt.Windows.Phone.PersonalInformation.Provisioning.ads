@@ -41,13 +41,13 @@ package WinRt.Windows.Phone.PersonalInformation.Provisioning is
    -----------------------------------------------------------------------------
 
    type IContactPartnerProvisioningManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactPartnerProvisioningManagerStatics is access all IContactPartnerProvisioningManagerStatics_Interface'Class;
+   type IContactPartnerProvisioningManagerStatics is access IContactPartnerProvisioningManagerStatics_Interface'Class;
 
    type IContactPartnerProvisioningManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactPartnerProvisioningManagerStatics2 is access all IContactPartnerProvisioningManagerStatics2_Interface'Class;
+   type IContactPartnerProvisioningManagerStatics2 is access IContactPartnerProvisioningManagerStatics2_Interface'Class;
 
    type IMessagePartnerProvisioningManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMessagePartnerProvisioningManagerStatics is access all IMessagePartnerProvisioningManagerStatics_Interface'Class;
+   type IMessagePartnerProvisioningManagerStatics is access IMessagePartnerProvisioningManagerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

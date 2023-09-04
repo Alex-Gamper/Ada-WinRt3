@@ -39,14 +39,14 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
    -----------------------------------------------------------------------------
 
    type IPlatformDiagnosticActionsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlatformDiagnosticActionsStatics is access all IPlatformDiagnosticActionsStatics_Interface'Class;
+   type IPlatformDiagnosticActionsStatics is access IPlatformDiagnosticActionsStatics_Interface'Class;
 
    type IPlatformDiagnosticTraceInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlatformDiagnosticTraceInfo is access all IPlatformDiagnosticTraceInfo_Interface'Class;
+   type IPlatformDiagnosticTraceInfo is access IPlatformDiagnosticTraceInfo_Interface'Class;
    type IPlatformDiagnosticTraceInfo_Ptr is access all IPlatformDiagnosticTraceInfo;
 
    type IPlatformDiagnosticTraceRuntimeInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlatformDiagnosticTraceRuntimeInfo is access all IPlatformDiagnosticTraceRuntimeInfo_Interface'Class;
+   type IPlatformDiagnosticTraceRuntimeInfo is access IPlatformDiagnosticTraceRuntimeInfo_Interface'Class;
    type IPlatformDiagnosticTraceRuntimeInfo_Ptr is access all IPlatformDiagnosticTraceRuntimeInfo;
 
    -----------------------------------------------------------------------------

@@ -40,221 +40,221 @@ package WinRt.Windows.UI.Xaml.Automation is
    -----------------------------------------------------------------------------
 
    type IAnnotationPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type IAnnotationPatternIdentifiers is access all IAnnotationPatternIdentifiers_Interface'Class;
+   type IAnnotationPatternIdentifiers is access IAnnotationPatternIdentifiers_Interface'Class;
    type IAnnotationPatternIdentifiers_Ptr is access all IAnnotationPatternIdentifiers;
 
    type IAnnotationPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAnnotationPatternIdentifiersStatics is access all IAnnotationPatternIdentifiersStatics_Interface'Class;
+   type IAnnotationPatternIdentifiersStatics is access IAnnotationPatternIdentifiersStatics_Interface'Class;
 
    type IAutomationAnnotation_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationAnnotation is access all IAutomationAnnotation_Interface'Class;
+   type IAutomationAnnotation is access IAutomationAnnotation_Interface'Class;
    type IAutomationAnnotation_Ptr is access all IAutomationAnnotation;
 
    type IAutomationAnnotationFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationAnnotationFactory is access all IAutomationAnnotationFactory_Interface'Class;
+   type IAutomationAnnotationFactory is access IAutomationAnnotationFactory_Interface'Class;
 
    type IAutomationAnnotationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationAnnotationStatics is access all IAutomationAnnotationStatics_Interface'Class;
+   type IAutomationAnnotationStatics is access IAutomationAnnotationStatics_Interface'Class;
 
    type IAutomationElementIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationElementIdentifiers is access all IAutomationElementIdentifiers_Interface'Class;
+   type IAutomationElementIdentifiers is access IAutomationElementIdentifiers_Interface'Class;
    type IAutomationElementIdentifiers_Ptr is access all IAutomationElementIdentifiers;
 
    type IAutomationElementIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationElementIdentifiersStatics is access all IAutomationElementIdentifiersStatics_Interface'Class;
+   type IAutomationElementIdentifiersStatics is access IAutomationElementIdentifiersStatics_Interface'Class;
 
    type IAutomationElementIdentifiersStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationElementIdentifiersStatics2 is access all IAutomationElementIdentifiersStatics2_Interface'Class;
+   type IAutomationElementIdentifiersStatics2 is access IAutomationElementIdentifiersStatics2_Interface'Class;
 
    type IAutomationElementIdentifiersStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationElementIdentifiersStatics3 is access all IAutomationElementIdentifiersStatics3_Interface'Class;
+   type IAutomationElementIdentifiersStatics3 is access IAutomationElementIdentifiersStatics3_Interface'Class;
 
    type IAutomationElementIdentifiersStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationElementIdentifiersStatics4 is access all IAutomationElementIdentifiersStatics4_Interface'Class;
+   type IAutomationElementIdentifiersStatics4 is access IAutomationElementIdentifiersStatics4_Interface'Class;
 
    type IAutomationElementIdentifiersStatics5_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationElementIdentifiersStatics5 is access all IAutomationElementIdentifiersStatics5_Interface'Class;
+   type IAutomationElementIdentifiersStatics5 is access IAutomationElementIdentifiersStatics5_Interface'Class;
 
    type IAutomationElementIdentifiersStatics6_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationElementIdentifiersStatics6 is access all IAutomationElementIdentifiersStatics6_Interface'Class;
+   type IAutomationElementIdentifiersStatics6 is access IAutomationElementIdentifiersStatics6_Interface'Class;
 
    type IAutomationElementIdentifiersStatics7_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationElementIdentifiersStatics7 is access all IAutomationElementIdentifiersStatics7_Interface'Class;
+   type IAutomationElementIdentifiersStatics7 is access IAutomationElementIdentifiersStatics7_Interface'Class;
 
    type IAutomationElementIdentifiersStatics8_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationElementIdentifiersStatics8 is access all IAutomationElementIdentifiersStatics8_Interface'Class;
+   type IAutomationElementIdentifiersStatics8 is access IAutomationElementIdentifiersStatics8_Interface'Class;
 
    type IAutomationProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationProperties is access all IAutomationProperties_Interface'Class;
+   type IAutomationProperties is access IAutomationProperties_Interface'Class;
    type IAutomationProperties_Ptr is access all IAutomationProperties;
 
    type IAutomationPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPropertiesStatics is access all IAutomationPropertiesStatics_Interface'Class;
+   type IAutomationPropertiesStatics is access IAutomationPropertiesStatics_Interface'Class;
 
    type IAutomationPropertiesStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPropertiesStatics2 is access all IAutomationPropertiesStatics2_Interface'Class;
+   type IAutomationPropertiesStatics2 is access IAutomationPropertiesStatics2_Interface'Class;
 
    type IAutomationPropertiesStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPropertiesStatics3 is access all IAutomationPropertiesStatics3_Interface'Class;
+   type IAutomationPropertiesStatics3 is access IAutomationPropertiesStatics3_Interface'Class;
 
    type IAutomationPropertiesStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPropertiesStatics4 is access all IAutomationPropertiesStatics4_Interface'Class;
+   type IAutomationPropertiesStatics4 is access IAutomationPropertiesStatics4_Interface'Class;
 
    type IAutomationPropertiesStatics5_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPropertiesStatics5 is access all IAutomationPropertiesStatics5_Interface'Class;
+   type IAutomationPropertiesStatics5 is access IAutomationPropertiesStatics5_Interface'Class;
 
    type IAutomationPropertiesStatics6_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPropertiesStatics6 is access all IAutomationPropertiesStatics6_Interface'Class;
+   type IAutomationPropertiesStatics6 is access IAutomationPropertiesStatics6_Interface'Class;
 
    type IAutomationPropertiesStatics7_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPropertiesStatics7 is access all IAutomationPropertiesStatics7_Interface'Class;
+   type IAutomationPropertiesStatics7 is access IAutomationPropertiesStatics7_Interface'Class;
 
    type IAutomationPropertiesStatics8_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPropertiesStatics8 is access all IAutomationPropertiesStatics8_Interface'Class;
+   type IAutomationPropertiesStatics8 is access IAutomationPropertiesStatics8_Interface'Class;
 
    type IAutomationProperty_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationProperty is access all IAutomationProperty_Interface'Class;
+   type IAutomationProperty is access IAutomationProperty_Interface'Class;
    type IAutomationProperty_Ptr is access all IAutomationProperty;
 
    type IDockPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type IDockPatternIdentifiers is access all IDockPatternIdentifiers_Interface'Class;
+   type IDockPatternIdentifiers is access IDockPatternIdentifiers_Interface'Class;
    type IDockPatternIdentifiers_Ptr is access all IDockPatternIdentifiers;
 
    type IDockPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDockPatternIdentifiersStatics is access all IDockPatternIdentifiersStatics_Interface'Class;
+   type IDockPatternIdentifiersStatics is access IDockPatternIdentifiersStatics_Interface'Class;
 
    type IDragPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type IDragPatternIdentifiers is access all IDragPatternIdentifiers_Interface'Class;
+   type IDragPatternIdentifiers is access IDragPatternIdentifiers_Interface'Class;
    type IDragPatternIdentifiers_Ptr is access all IDragPatternIdentifiers;
 
    type IDragPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDragPatternIdentifiersStatics is access all IDragPatternIdentifiersStatics_Interface'Class;
+   type IDragPatternIdentifiersStatics is access IDragPatternIdentifiersStatics_Interface'Class;
 
    type IDropTargetPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type IDropTargetPatternIdentifiers is access all IDropTargetPatternIdentifiers_Interface'Class;
+   type IDropTargetPatternIdentifiers is access IDropTargetPatternIdentifiers_Interface'Class;
    type IDropTargetPatternIdentifiers_Ptr is access all IDropTargetPatternIdentifiers;
 
    type IDropTargetPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDropTargetPatternIdentifiersStatics is access all IDropTargetPatternIdentifiersStatics_Interface'Class;
+   type IDropTargetPatternIdentifiersStatics is access IDropTargetPatternIdentifiersStatics_Interface'Class;
 
    type IExpandCollapsePatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type IExpandCollapsePatternIdentifiers is access all IExpandCollapsePatternIdentifiers_Interface'Class;
+   type IExpandCollapsePatternIdentifiers is access IExpandCollapsePatternIdentifiers_Interface'Class;
    type IExpandCollapsePatternIdentifiers_Ptr is access all IExpandCollapsePatternIdentifiers;
 
    type IExpandCollapsePatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IExpandCollapsePatternIdentifiersStatics is access all IExpandCollapsePatternIdentifiersStatics_Interface'Class;
+   type IExpandCollapsePatternIdentifiersStatics is access IExpandCollapsePatternIdentifiersStatics_Interface'Class;
 
    type IGridItemPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridItemPatternIdentifiers is access all IGridItemPatternIdentifiers_Interface'Class;
+   type IGridItemPatternIdentifiers is access IGridItemPatternIdentifiers_Interface'Class;
    type IGridItemPatternIdentifiers_Ptr is access all IGridItemPatternIdentifiers;
 
    type IGridItemPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridItemPatternIdentifiersStatics is access all IGridItemPatternIdentifiersStatics_Interface'Class;
+   type IGridItemPatternIdentifiersStatics is access IGridItemPatternIdentifiersStatics_Interface'Class;
 
    type IGridPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridPatternIdentifiers is access all IGridPatternIdentifiers_Interface'Class;
+   type IGridPatternIdentifiers is access IGridPatternIdentifiers_Interface'Class;
    type IGridPatternIdentifiers_Ptr is access all IGridPatternIdentifiers;
 
    type IGridPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridPatternIdentifiersStatics is access all IGridPatternIdentifiersStatics_Interface'Class;
+   type IGridPatternIdentifiersStatics is access IGridPatternIdentifiersStatics_Interface'Class;
 
    type IMultipleViewPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type IMultipleViewPatternIdentifiers is access all IMultipleViewPatternIdentifiers_Interface'Class;
+   type IMultipleViewPatternIdentifiers is access IMultipleViewPatternIdentifiers_Interface'Class;
    type IMultipleViewPatternIdentifiers_Ptr is access all IMultipleViewPatternIdentifiers;
 
    type IMultipleViewPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMultipleViewPatternIdentifiersStatics is access all IMultipleViewPatternIdentifiersStatics_Interface'Class;
+   type IMultipleViewPatternIdentifiersStatics is access IMultipleViewPatternIdentifiersStatics_Interface'Class;
 
    type IRangeValuePatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type IRangeValuePatternIdentifiers is access all IRangeValuePatternIdentifiers_Interface'Class;
+   type IRangeValuePatternIdentifiers is access IRangeValuePatternIdentifiers_Interface'Class;
    type IRangeValuePatternIdentifiers_Ptr is access all IRangeValuePatternIdentifiers;
 
    type IRangeValuePatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRangeValuePatternIdentifiersStatics is access all IRangeValuePatternIdentifiersStatics_Interface'Class;
+   type IRangeValuePatternIdentifiersStatics is access IRangeValuePatternIdentifiersStatics_Interface'Class;
 
    type IScrollPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type IScrollPatternIdentifiers is access all IScrollPatternIdentifiers_Interface'Class;
+   type IScrollPatternIdentifiers is access IScrollPatternIdentifiers_Interface'Class;
    type IScrollPatternIdentifiers_Ptr is access all IScrollPatternIdentifiers;
 
    type IScrollPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IScrollPatternIdentifiersStatics is access all IScrollPatternIdentifiersStatics_Interface'Class;
+   type IScrollPatternIdentifiersStatics is access IScrollPatternIdentifiersStatics_Interface'Class;
 
    type ISelectionItemPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type ISelectionItemPatternIdentifiers is access all ISelectionItemPatternIdentifiers_Interface'Class;
+   type ISelectionItemPatternIdentifiers is access ISelectionItemPatternIdentifiers_Interface'Class;
    type ISelectionItemPatternIdentifiers_Ptr is access all ISelectionItemPatternIdentifiers;
 
    type ISelectionItemPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISelectionItemPatternIdentifiersStatics is access all ISelectionItemPatternIdentifiersStatics_Interface'Class;
+   type ISelectionItemPatternIdentifiersStatics is access ISelectionItemPatternIdentifiersStatics_Interface'Class;
 
    type ISelectionPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type ISelectionPatternIdentifiers is access all ISelectionPatternIdentifiers_Interface'Class;
+   type ISelectionPatternIdentifiers is access ISelectionPatternIdentifiers_Interface'Class;
    type ISelectionPatternIdentifiers_Ptr is access all ISelectionPatternIdentifiers;
 
    type ISelectionPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISelectionPatternIdentifiersStatics is access all ISelectionPatternIdentifiersStatics_Interface'Class;
+   type ISelectionPatternIdentifiersStatics is access ISelectionPatternIdentifiersStatics_Interface'Class;
 
    type ISpreadsheetItemPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpreadsheetItemPatternIdentifiers is access all ISpreadsheetItemPatternIdentifiers_Interface'Class;
+   type ISpreadsheetItemPatternIdentifiers is access ISpreadsheetItemPatternIdentifiers_Interface'Class;
    type ISpreadsheetItemPatternIdentifiers_Ptr is access all ISpreadsheetItemPatternIdentifiers;
 
    type ISpreadsheetItemPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpreadsheetItemPatternIdentifiersStatics is access all ISpreadsheetItemPatternIdentifiersStatics_Interface'Class;
+   type ISpreadsheetItemPatternIdentifiersStatics is access ISpreadsheetItemPatternIdentifiersStatics_Interface'Class;
 
    type IStylesPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type IStylesPatternIdentifiers is access all IStylesPatternIdentifiers_Interface'Class;
+   type IStylesPatternIdentifiers is access IStylesPatternIdentifiers_Interface'Class;
    type IStylesPatternIdentifiers_Ptr is access all IStylesPatternIdentifiers;
 
    type IStylesPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStylesPatternIdentifiersStatics is access all IStylesPatternIdentifiersStatics_Interface'Class;
+   type IStylesPatternIdentifiersStatics is access IStylesPatternIdentifiersStatics_Interface'Class;
 
    type ITableItemPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type ITableItemPatternIdentifiers is access all ITableItemPatternIdentifiers_Interface'Class;
+   type ITableItemPatternIdentifiers is access ITableItemPatternIdentifiers_Interface'Class;
    type ITableItemPatternIdentifiers_Ptr is access all ITableItemPatternIdentifiers;
 
    type ITableItemPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITableItemPatternIdentifiersStatics is access all ITableItemPatternIdentifiersStatics_Interface'Class;
+   type ITableItemPatternIdentifiersStatics is access ITableItemPatternIdentifiersStatics_Interface'Class;
 
    type ITablePatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type ITablePatternIdentifiers is access all ITablePatternIdentifiers_Interface'Class;
+   type ITablePatternIdentifiers is access ITablePatternIdentifiers_Interface'Class;
    type ITablePatternIdentifiers_Ptr is access all ITablePatternIdentifiers;
 
    type ITablePatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITablePatternIdentifiersStatics is access all ITablePatternIdentifiersStatics_Interface'Class;
+   type ITablePatternIdentifiersStatics is access ITablePatternIdentifiersStatics_Interface'Class;
 
    type ITogglePatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type ITogglePatternIdentifiers is access all ITogglePatternIdentifiers_Interface'Class;
+   type ITogglePatternIdentifiers is access ITogglePatternIdentifiers_Interface'Class;
    type ITogglePatternIdentifiers_Ptr is access all ITogglePatternIdentifiers;
 
    type ITogglePatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITogglePatternIdentifiersStatics is access all ITogglePatternIdentifiersStatics_Interface'Class;
+   type ITogglePatternIdentifiersStatics is access ITogglePatternIdentifiersStatics_Interface'Class;
 
    type ITransformPattern2Identifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type ITransformPattern2Identifiers is access all ITransformPattern2Identifiers_Interface'Class;
+   type ITransformPattern2Identifiers is access ITransformPattern2Identifiers_Interface'Class;
    type ITransformPattern2Identifiers_Ptr is access all ITransformPattern2Identifiers;
 
    type ITransformPattern2IdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITransformPattern2IdentifiersStatics is access all ITransformPattern2IdentifiersStatics_Interface'Class;
+   type ITransformPattern2IdentifiersStatics is access ITransformPattern2IdentifiersStatics_Interface'Class;
 
    type ITransformPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type ITransformPatternIdentifiers is access all ITransformPatternIdentifiers_Interface'Class;
+   type ITransformPatternIdentifiers is access ITransformPatternIdentifiers_Interface'Class;
    type ITransformPatternIdentifiers_Ptr is access all ITransformPatternIdentifiers;
 
    type ITransformPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITransformPatternIdentifiersStatics is access all ITransformPatternIdentifiersStatics_Interface'Class;
+   type ITransformPatternIdentifiersStatics is access ITransformPatternIdentifiersStatics_Interface'Class;
 
    type IValuePatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type IValuePatternIdentifiers is access all IValuePatternIdentifiers_Interface'Class;
+   type IValuePatternIdentifiers is access IValuePatternIdentifiers_Interface'Class;
    type IValuePatternIdentifiers_Ptr is access all IValuePatternIdentifiers;
 
    type IValuePatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IValuePatternIdentifiersStatics is access all IValuePatternIdentifiersStatics_Interface'Class;
+   type IValuePatternIdentifiersStatics is access IValuePatternIdentifiersStatics_Interface'Class;
 
    type IWindowPatternIdentifiers_Interface is interface and WinRt.IInspectable_Interface;
-   type IWindowPatternIdentifiers is access all IWindowPatternIdentifiers_Interface'Class;
+   type IWindowPatternIdentifiers is access IWindowPatternIdentifiers_Interface'Class;
    type IWindowPatternIdentifiers_Ptr is access all IWindowPatternIdentifiers;
 
    type IWindowPatternIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWindowPatternIdentifiersStatics is access all IWindowPatternIdentifiersStatics_Interface'Class;
+   type IWindowPatternIdentifiersStatics is access IWindowPatternIdentifiersStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

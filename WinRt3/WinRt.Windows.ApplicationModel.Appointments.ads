@@ -43,119 +43,119 @@ package WinRt.Windows.ApplicationModel.Appointments is
    -----------------------------------------------------------------------------
 
    type IAppointment_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointment is access all IAppointment_Interface'Class;
+   type IAppointment is access IAppointment_Interface'Class;
    type IAppointment_Ptr is access all IAppointment;
 
    type IAppointment2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointment2 is access all IAppointment2_Interface'Class;
+   type IAppointment2 is access IAppointment2_Interface'Class;
 
    type IAppointment3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointment3 is access all IAppointment3_Interface'Class;
+   type IAppointment3 is access IAppointment3_Interface'Class;
 
    type IAppointmentCalendar_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentCalendar is access all IAppointmentCalendar_Interface'Class;
+   type IAppointmentCalendar is access IAppointmentCalendar_Interface'Class;
    type IAppointmentCalendar_Ptr is access all IAppointmentCalendar;
 
    type IAppointmentCalendar2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentCalendar2 is access all IAppointmentCalendar2_Interface'Class;
+   type IAppointmentCalendar2 is access IAppointmentCalendar2_Interface'Class;
 
    type IAppointmentCalendar3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentCalendar3 is access all IAppointmentCalendar3_Interface'Class;
+   type IAppointmentCalendar3 is access IAppointmentCalendar3_Interface'Class;
 
    type IAppointmentCalendarSyncManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentCalendarSyncManager is access all IAppointmentCalendarSyncManager_Interface'Class;
+   type IAppointmentCalendarSyncManager is access IAppointmentCalendarSyncManager_Interface'Class;
    type IAppointmentCalendarSyncManager_Ptr is access all IAppointmentCalendarSyncManager;
 
    type IAppointmentCalendarSyncManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentCalendarSyncManager2 is access all IAppointmentCalendarSyncManager2_Interface'Class;
+   type IAppointmentCalendarSyncManager2 is access IAppointmentCalendarSyncManager2_Interface'Class;
 
    type IAppointmentConflictResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentConflictResult is access all IAppointmentConflictResult_Interface'Class;
+   type IAppointmentConflictResult is access IAppointmentConflictResult_Interface'Class;
    type IAppointmentConflictResult_Ptr is access all IAppointmentConflictResult;
 
    type IAppointmentException_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentException is access all IAppointmentException_Interface'Class;
+   type IAppointmentException is access IAppointmentException_Interface'Class;
    type IAppointmentException_Ptr is access all IAppointmentException;
 
    type IAppointmentInvitee_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentInvitee is access all IAppointmentInvitee_Interface'Class;
+   type IAppointmentInvitee is access IAppointmentInvitee_Interface'Class;
    type IAppointmentInvitee_Ptr is access all IAppointmentInvitee;
 
    type IAppointmentManagerForUser_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentManagerForUser is access all IAppointmentManagerForUser_Interface'Class;
+   type IAppointmentManagerForUser is access IAppointmentManagerForUser_Interface'Class;
    type IAppointmentManagerForUser_Ptr is access all IAppointmentManagerForUser;
 
    type IAppointmentManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentManagerStatics is access all IAppointmentManagerStatics_Interface'Class;
+   type IAppointmentManagerStatics is access IAppointmentManagerStatics_Interface'Class;
 
    type IAppointmentManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentManagerStatics2 is access all IAppointmentManagerStatics2_Interface'Class;
+   type IAppointmentManagerStatics2 is access IAppointmentManagerStatics2_Interface'Class;
 
    type IAppointmentManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentManagerStatics3 is access all IAppointmentManagerStatics3_Interface'Class;
+   type IAppointmentManagerStatics3 is access IAppointmentManagerStatics3_Interface'Class;
 
    type IAppointmentParticipant_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentParticipant is access all IAppointmentParticipant_Interface'Class;
+   type IAppointmentParticipant is access IAppointmentParticipant_Interface'Class;
    type IAppointmentParticipant_Ptr is access all IAppointmentParticipant;
 
    type IAppointmentPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentPropertiesStatics is access all IAppointmentPropertiesStatics_Interface'Class;
+   type IAppointmentPropertiesStatics is access IAppointmentPropertiesStatics_Interface'Class;
 
    type IAppointmentPropertiesStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentPropertiesStatics2 is access all IAppointmentPropertiesStatics2_Interface'Class;
+   type IAppointmentPropertiesStatics2 is access IAppointmentPropertiesStatics2_Interface'Class;
 
    type IAppointmentRecurrence_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentRecurrence is access all IAppointmentRecurrence_Interface'Class;
+   type IAppointmentRecurrence is access IAppointmentRecurrence_Interface'Class;
    type IAppointmentRecurrence_Ptr is access all IAppointmentRecurrence;
 
    type IAppointmentRecurrence2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentRecurrence2 is access all IAppointmentRecurrence2_Interface'Class;
+   type IAppointmentRecurrence2 is access IAppointmentRecurrence2_Interface'Class;
 
    type IAppointmentRecurrence3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentRecurrence3 is access all IAppointmentRecurrence3_Interface'Class;
+   type IAppointmentRecurrence3 is access IAppointmentRecurrence3_Interface'Class;
 
    type IAppointmentStore_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentStore is access all IAppointmentStore_Interface'Class;
+   type IAppointmentStore is access IAppointmentStore_Interface'Class;
    type IAppointmentStore_Ptr is access all IAppointmentStore;
 
    type IAppointmentStore2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentStore2 is access all IAppointmentStore2_Interface'Class;
+   type IAppointmentStore2 is access IAppointmentStore2_Interface'Class;
 
    type IAppointmentStore3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentStore3 is access all IAppointmentStore3_Interface'Class;
+   type IAppointmentStore3 is access IAppointmentStore3_Interface'Class;
 
    type IAppointmentStoreChange_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentStoreChange is access all IAppointmentStoreChange_Interface'Class;
+   type IAppointmentStoreChange is access IAppointmentStoreChange_Interface'Class;
    type IAppointmentStoreChange_Ptr is access all IAppointmentStoreChange;
 
    type IAppointmentStoreChange2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentStoreChange2 is access all IAppointmentStoreChange2_Interface'Class;
+   type IAppointmentStoreChange2 is access IAppointmentStoreChange2_Interface'Class;
 
    type IAppointmentStoreChangeReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentStoreChangeReader is access all IAppointmentStoreChangeReader_Interface'Class;
+   type IAppointmentStoreChangeReader is access IAppointmentStoreChangeReader_Interface'Class;
    type IAppointmentStoreChangeReader_Ptr is access all IAppointmentStoreChangeReader;
 
    type IAppointmentStoreChangeTracker_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentStoreChangeTracker is access all IAppointmentStoreChangeTracker_Interface'Class;
+   type IAppointmentStoreChangeTracker is access IAppointmentStoreChangeTracker_Interface'Class;
    type IAppointmentStoreChangeTracker_Ptr is access all IAppointmentStoreChangeTracker;
 
    type IAppointmentStoreChangeTracker2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentStoreChangeTracker2 is access all IAppointmentStoreChangeTracker2_Interface'Class;
+   type IAppointmentStoreChangeTracker2 is access IAppointmentStoreChangeTracker2_Interface'Class;
 
    type IAppointmentStoreChangedDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentStoreChangedDeferral is access all IAppointmentStoreChangedDeferral_Interface'Class;
+   type IAppointmentStoreChangedDeferral is access IAppointmentStoreChangedDeferral_Interface'Class;
    type IAppointmentStoreChangedDeferral_Ptr is access all IAppointmentStoreChangedDeferral;
 
    type IAppointmentStoreChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentStoreChangedEventArgs is access all IAppointmentStoreChangedEventArgs_Interface'Class;
+   type IAppointmentStoreChangedEventArgs is access IAppointmentStoreChangedEventArgs_Interface'Class;
    type IAppointmentStoreChangedEventArgs_Ptr is access all IAppointmentStoreChangedEventArgs;
 
    type IAppointmentStoreNotificationTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentStoreNotificationTriggerDetails is access all IAppointmentStoreNotificationTriggerDetails_Interface'Class;
+   type IAppointmentStoreNotificationTriggerDetails is access IAppointmentStoreNotificationTriggerDetails_Interface'Class;
    type IAppointmentStoreNotificationTriggerDetails_Ptr is access all IAppointmentStoreNotificationTriggerDetails;
 
    type IFindAppointmentsOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IFindAppointmentsOptions is access all IFindAppointmentsOptions_Interface'Class;
+   type IFindAppointmentsOptions is access IFindAppointmentsOptions_Interface'Class;
    type IFindAppointmentsOptions_Ptr is access all IFindAppointmentsOptions;
 
    -----------------------------------------------------------------------------

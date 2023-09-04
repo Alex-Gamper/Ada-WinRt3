@@ -41,37 +41,37 @@ package WinRt.Windows.Security.Authentication.OnlineId is
    -----------------------------------------------------------------------------
 
    type IOnlineIdAuthenticator_Interface is interface and WinRt.IInspectable_Interface;
-   type IOnlineIdAuthenticator is access all IOnlineIdAuthenticator_Interface'Class;
+   type IOnlineIdAuthenticator is access IOnlineIdAuthenticator_Interface'Class;
    type IOnlineIdAuthenticator_Ptr is access all IOnlineIdAuthenticator;
 
    type IOnlineIdServiceTicket_Interface is interface and WinRt.IInspectable_Interface;
-   type IOnlineIdServiceTicket is access all IOnlineIdServiceTicket_Interface'Class;
+   type IOnlineIdServiceTicket is access IOnlineIdServiceTicket_Interface'Class;
    type IOnlineIdServiceTicket_Ptr is access all IOnlineIdServiceTicket;
 
    type IOnlineIdServiceTicketRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IOnlineIdServiceTicketRequest is access all IOnlineIdServiceTicketRequest_Interface'Class;
+   type IOnlineIdServiceTicketRequest is access IOnlineIdServiceTicketRequest_Interface'Class;
    type IOnlineIdServiceTicketRequest_Ptr is access all IOnlineIdServiceTicketRequest;
 
    type IOnlineIdServiceTicketRequestFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IOnlineIdServiceTicketRequestFactory is access all IOnlineIdServiceTicketRequestFactory_Interface'Class;
+   type IOnlineIdServiceTicketRequestFactory is access IOnlineIdServiceTicketRequestFactory_Interface'Class;
 
    type IOnlineIdSystemAuthenticatorForUser_Interface is interface and WinRt.IInspectable_Interface;
-   type IOnlineIdSystemAuthenticatorForUser is access all IOnlineIdSystemAuthenticatorForUser_Interface'Class;
+   type IOnlineIdSystemAuthenticatorForUser is access IOnlineIdSystemAuthenticatorForUser_Interface'Class;
    type IOnlineIdSystemAuthenticatorForUser_Ptr is access all IOnlineIdSystemAuthenticatorForUser;
 
    type IOnlineIdSystemAuthenticatorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IOnlineIdSystemAuthenticatorStatics is access all IOnlineIdSystemAuthenticatorStatics_Interface'Class;
+   type IOnlineIdSystemAuthenticatorStatics is access IOnlineIdSystemAuthenticatorStatics_Interface'Class;
 
    type IOnlineIdSystemIdentity_Interface is interface and WinRt.IInspectable_Interface;
-   type IOnlineIdSystemIdentity is access all IOnlineIdSystemIdentity_Interface'Class;
+   type IOnlineIdSystemIdentity is access IOnlineIdSystemIdentity_Interface'Class;
    type IOnlineIdSystemIdentity_Ptr is access all IOnlineIdSystemIdentity;
 
    type IOnlineIdSystemTicketResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IOnlineIdSystemTicketResult is access all IOnlineIdSystemTicketResult_Interface'Class;
+   type IOnlineIdSystemTicketResult is access IOnlineIdSystemTicketResult_Interface'Class;
    type IOnlineIdSystemTicketResult_Ptr is access all IOnlineIdSystemTicketResult;
 
    type IUserIdentity_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserIdentity is access all IUserIdentity_Interface'Class;
+   type IUserIdentity is access IUserIdentity_Interface'Class;
    type IUserIdentity_Ptr is access all IUserIdentity;
 
    -----------------------------------------------------------------------------

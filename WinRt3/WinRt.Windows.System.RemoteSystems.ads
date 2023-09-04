@@ -43,246 +43,246 @@ package WinRt.Windows.System.RemoteSystems is
    -----------------------------------------------------------------------------
 
    type IKnownRemoteSystemCapabilitiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownRemoteSystemCapabilitiesStatics is access all IKnownRemoteSystemCapabilitiesStatics_Interface'Class;
+   type IKnownRemoteSystemCapabilitiesStatics is access IKnownRemoteSystemCapabilitiesStatics_Interface'Class;
 
    type IRemoteSystem_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystem is access all IRemoteSystem_Interface'Class;
+   type IRemoteSystem is access IRemoteSystem_Interface'Class;
    type IRemoteSystem_Ptr is access all IRemoteSystem;
 
    type IRemoteSystem2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystem2 is access all IRemoteSystem2_Interface'Class;
+   type IRemoteSystem2 is access IRemoteSystem2_Interface'Class;
 
    type IRemoteSystem3_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystem3 is access all IRemoteSystem3_Interface'Class;
+   type IRemoteSystem3 is access IRemoteSystem3_Interface'Class;
 
    type IRemoteSystem4_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystem4 is access all IRemoteSystem4_Interface'Class;
+   type IRemoteSystem4 is access IRemoteSystem4_Interface'Class;
 
    type IRemoteSystem5_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystem5 is access all IRemoteSystem5_Interface'Class;
+   type IRemoteSystem5 is access IRemoteSystem5_Interface'Class;
 
    type IRemoteSystem6_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystem6 is access all IRemoteSystem6_Interface'Class;
+   type IRemoteSystem6 is access IRemoteSystem6_Interface'Class;
 
    type IRemoteSystemAddedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemAddedEventArgs is access all IRemoteSystemAddedEventArgs_Interface'Class;
+   type IRemoteSystemAddedEventArgs is access IRemoteSystemAddedEventArgs_Interface'Class;
    type IRemoteSystemAddedEventArgs_Ptr is access all IRemoteSystemAddedEventArgs;
 
    type IRemoteSystemApp_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemApp is access all IRemoteSystemApp_Interface'Class;
+   type IRemoteSystemApp is access IRemoteSystemApp_Interface'Class;
    type IRemoteSystemApp_Ptr is access all IRemoteSystemApp;
 
    type IRemoteSystemApp2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemApp2 is access all IRemoteSystemApp2_Interface'Class;
+   type IRemoteSystemApp2 is access IRemoteSystemApp2_Interface'Class;
 
    type IRemoteSystemAppRegistration_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemAppRegistration is access all IRemoteSystemAppRegistration_Interface'Class;
+   type IRemoteSystemAppRegistration is access IRemoteSystemAppRegistration_Interface'Class;
    type IRemoteSystemAppRegistration_Ptr is access all IRemoteSystemAppRegistration;
 
    type IRemoteSystemAppRegistrationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemAppRegistrationStatics is access all IRemoteSystemAppRegistrationStatics_Interface'Class;
+   type IRemoteSystemAppRegistrationStatics is access IRemoteSystemAppRegistrationStatics_Interface'Class;
 
    type IRemoteSystemAuthorizationKindFilter_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemAuthorizationKindFilter is access all IRemoteSystemAuthorizationKindFilter_Interface'Class;
+   type IRemoteSystemAuthorizationKindFilter is access IRemoteSystemAuthorizationKindFilter_Interface'Class;
    type IRemoteSystemAuthorizationKindFilter_Ptr is access all IRemoteSystemAuthorizationKindFilter;
 
    type IRemoteSystemAuthorizationKindFilterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemAuthorizationKindFilterFactory is access all IRemoteSystemAuthorizationKindFilterFactory_Interface'Class;
+   type IRemoteSystemAuthorizationKindFilterFactory is access IRemoteSystemAuthorizationKindFilterFactory_Interface'Class;
 
    type IRemoteSystemConnectionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemConnectionInfo is access all IRemoteSystemConnectionInfo_Interface'Class;
+   type IRemoteSystemConnectionInfo is access IRemoteSystemConnectionInfo_Interface'Class;
    type IRemoteSystemConnectionInfo_Ptr is access all IRemoteSystemConnectionInfo;
 
    type IRemoteSystemConnectionInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemConnectionInfoStatics is access all IRemoteSystemConnectionInfoStatics_Interface'Class;
+   type IRemoteSystemConnectionInfoStatics is access IRemoteSystemConnectionInfoStatics_Interface'Class;
 
    type IRemoteSystemConnectionRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemConnectionRequest is access all IRemoteSystemConnectionRequest_Interface'Class;
+   type IRemoteSystemConnectionRequest is access IRemoteSystemConnectionRequest_Interface'Class;
    type IRemoteSystemConnectionRequest_Ptr is access all IRemoteSystemConnectionRequest;
 
    type IRemoteSystemConnectionRequest2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemConnectionRequest2 is access all IRemoteSystemConnectionRequest2_Interface'Class;
+   type IRemoteSystemConnectionRequest2 is access IRemoteSystemConnectionRequest2_Interface'Class;
 
    type IRemoteSystemConnectionRequest3_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemConnectionRequest3 is access all IRemoteSystemConnectionRequest3_Interface'Class;
+   type IRemoteSystemConnectionRequest3 is access IRemoteSystemConnectionRequest3_Interface'Class;
 
    type IRemoteSystemConnectionRequestFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemConnectionRequestFactory is access all IRemoteSystemConnectionRequestFactory_Interface'Class;
+   type IRemoteSystemConnectionRequestFactory is access IRemoteSystemConnectionRequestFactory_Interface'Class;
 
    type IRemoteSystemConnectionRequestStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemConnectionRequestStatics is access all IRemoteSystemConnectionRequestStatics_Interface'Class;
+   type IRemoteSystemConnectionRequestStatics is access IRemoteSystemConnectionRequestStatics_Interface'Class;
 
    type IRemoteSystemConnectionRequestStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemConnectionRequestStatics2 is access all IRemoteSystemConnectionRequestStatics2_Interface'Class;
+   type IRemoteSystemConnectionRequestStatics2 is access IRemoteSystemConnectionRequestStatics2_Interface'Class;
 
    type IRemoteSystemDiscoveryTypeFilter_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemDiscoveryTypeFilter is access all IRemoteSystemDiscoveryTypeFilter_Interface'Class;
+   type IRemoteSystemDiscoveryTypeFilter is access IRemoteSystemDiscoveryTypeFilter_Interface'Class;
    type IRemoteSystemDiscoveryTypeFilter_Ptr is access all IRemoteSystemDiscoveryTypeFilter;
 
    type IRemoteSystemDiscoveryTypeFilterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemDiscoveryTypeFilterFactory is access all IRemoteSystemDiscoveryTypeFilterFactory_Interface'Class;
+   type IRemoteSystemDiscoveryTypeFilterFactory is access IRemoteSystemDiscoveryTypeFilterFactory_Interface'Class;
 
    type IRemoteSystemEnumerationCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemEnumerationCompletedEventArgs is access all IRemoteSystemEnumerationCompletedEventArgs_Interface'Class;
+   type IRemoteSystemEnumerationCompletedEventArgs is access IRemoteSystemEnumerationCompletedEventArgs_Interface'Class;
    type IRemoteSystemEnumerationCompletedEventArgs_Ptr is access all IRemoteSystemEnumerationCompletedEventArgs;
 
    type IRemoteSystemFilter_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemFilter is access all IRemoteSystemFilter_Interface'Class;
+   type IRemoteSystemFilter is access IRemoteSystemFilter_Interface'Class;
 
    type IRemoteSystemKindFilter_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemKindFilter is access all IRemoteSystemKindFilter_Interface'Class;
+   type IRemoteSystemKindFilter is access IRemoteSystemKindFilter_Interface'Class;
    type IRemoteSystemKindFilter_Ptr is access all IRemoteSystemKindFilter;
 
    type IRemoteSystemKindFilterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemKindFilterFactory is access all IRemoteSystemKindFilterFactory_Interface'Class;
+   type IRemoteSystemKindFilterFactory is access IRemoteSystemKindFilterFactory_Interface'Class;
 
    type IRemoteSystemKindStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemKindStatics is access all IRemoteSystemKindStatics_Interface'Class;
+   type IRemoteSystemKindStatics is access IRemoteSystemKindStatics_Interface'Class;
 
    type IRemoteSystemKindStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemKindStatics2 is access all IRemoteSystemKindStatics2_Interface'Class;
+   type IRemoteSystemKindStatics2 is access IRemoteSystemKindStatics2_Interface'Class;
 
    type IRemoteSystemRemovedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemRemovedEventArgs is access all IRemoteSystemRemovedEventArgs_Interface'Class;
+   type IRemoteSystemRemovedEventArgs is access IRemoteSystemRemovedEventArgs_Interface'Class;
    type IRemoteSystemRemovedEventArgs_Ptr is access all IRemoteSystemRemovedEventArgs;
 
    type IRemoteSystemSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSession is access all IRemoteSystemSession_Interface'Class;
+   type IRemoteSystemSession is access IRemoteSystemSession_Interface'Class;
    type IRemoteSystemSession_Ptr is access all IRemoteSystemSession;
 
    type IRemoteSystemSessionAddedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionAddedEventArgs is access all IRemoteSystemSessionAddedEventArgs_Interface'Class;
+   type IRemoteSystemSessionAddedEventArgs is access IRemoteSystemSessionAddedEventArgs_Interface'Class;
    type IRemoteSystemSessionAddedEventArgs_Ptr is access all IRemoteSystemSessionAddedEventArgs;
 
    type IRemoteSystemSessionController_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionController is access all IRemoteSystemSessionController_Interface'Class;
+   type IRemoteSystemSessionController is access IRemoteSystemSessionController_Interface'Class;
    type IRemoteSystemSessionController_Ptr is access all IRemoteSystemSessionController;
 
    type IRemoteSystemSessionControllerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionControllerFactory is access all IRemoteSystemSessionControllerFactory_Interface'Class;
+   type IRemoteSystemSessionControllerFactory is access IRemoteSystemSessionControllerFactory_Interface'Class;
 
    type IRemoteSystemSessionCreationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionCreationResult is access all IRemoteSystemSessionCreationResult_Interface'Class;
+   type IRemoteSystemSessionCreationResult is access IRemoteSystemSessionCreationResult_Interface'Class;
    type IRemoteSystemSessionCreationResult_Ptr is access all IRemoteSystemSessionCreationResult;
 
    type IRemoteSystemSessionDisconnectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionDisconnectedEventArgs is access all IRemoteSystemSessionDisconnectedEventArgs_Interface'Class;
+   type IRemoteSystemSessionDisconnectedEventArgs is access IRemoteSystemSessionDisconnectedEventArgs_Interface'Class;
    type IRemoteSystemSessionDisconnectedEventArgs_Ptr is access all IRemoteSystemSessionDisconnectedEventArgs;
 
    type IRemoteSystemSessionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionInfo is access all IRemoteSystemSessionInfo_Interface'Class;
+   type IRemoteSystemSessionInfo is access IRemoteSystemSessionInfo_Interface'Class;
    type IRemoteSystemSessionInfo_Ptr is access all IRemoteSystemSessionInfo;
 
    type IRemoteSystemSessionInvitation_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionInvitation is access all IRemoteSystemSessionInvitation_Interface'Class;
+   type IRemoteSystemSessionInvitation is access IRemoteSystemSessionInvitation_Interface'Class;
    type IRemoteSystemSessionInvitation_Ptr is access all IRemoteSystemSessionInvitation;
 
    type IRemoteSystemSessionInvitationListener_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionInvitationListener is access all IRemoteSystemSessionInvitationListener_Interface'Class;
+   type IRemoteSystemSessionInvitationListener is access IRemoteSystemSessionInvitationListener_Interface'Class;
    type IRemoteSystemSessionInvitationListener_Ptr is access all IRemoteSystemSessionInvitationListener;
 
    type IRemoteSystemSessionInvitationReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionInvitationReceivedEventArgs is access all IRemoteSystemSessionInvitationReceivedEventArgs_Interface'Class;
+   type IRemoteSystemSessionInvitationReceivedEventArgs is access IRemoteSystemSessionInvitationReceivedEventArgs_Interface'Class;
    type IRemoteSystemSessionInvitationReceivedEventArgs_Ptr is access all IRemoteSystemSessionInvitationReceivedEventArgs;
 
    type IRemoteSystemSessionJoinRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionJoinRequest is access all IRemoteSystemSessionJoinRequest_Interface'Class;
+   type IRemoteSystemSessionJoinRequest is access IRemoteSystemSessionJoinRequest_Interface'Class;
    type IRemoteSystemSessionJoinRequest_Ptr is access all IRemoteSystemSessionJoinRequest;
 
    type IRemoteSystemSessionJoinRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionJoinRequestedEventArgs is access all IRemoteSystemSessionJoinRequestedEventArgs_Interface'Class;
+   type IRemoteSystemSessionJoinRequestedEventArgs is access IRemoteSystemSessionJoinRequestedEventArgs_Interface'Class;
    type IRemoteSystemSessionJoinRequestedEventArgs_Ptr is access all IRemoteSystemSessionJoinRequestedEventArgs;
 
    type IRemoteSystemSessionJoinResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionJoinResult is access all IRemoteSystemSessionJoinResult_Interface'Class;
+   type IRemoteSystemSessionJoinResult is access IRemoteSystemSessionJoinResult_Interface'Class;
    type IRemoteSystemSessionJoinResult_Ptr is access all IRemoteSystemSessionJoinResult;
 
    type IRemoteSystemSessionMessageChannel_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionMessageChannel is access all IRemoteSystemSessionMessageChannel_Interface'Class;
+   type IRemoteSystemSessionMessageChannel is access IRemoteSystemSessionMessageChannel_Interface'Class;
    type IRemoteSystemSessionMessageChannel_Ptr is access all IRemoteSystemSessionMessageChannel;
 
    type IRemoteSystemSessionMessageChannelFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionMessageChannelFactory is access all IRemoteSystemSessionMessageChannelFactory_Interface'Class;
+   type IRemoteSystemSessionMessageChannelFactory is access IRemoteSystemSessionMessageChannelFactory_Interface'Class;
 
    type IRemoteSystemSessionOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionOptions is access all IRemoteSystemSessionOptions_Interface'Class;
+   type IRemoteSystemSessionOptions is access IRemoteSystemSessionOptions_Interface'Class;
    type IRemoteSystemSessionOptions_Ptr is access all IRemoteSystemSessionOptions;
 
    type IRemoteSystemSessionParticipant_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionParticipant is access all IRemoteSystemSessionParticipant_Interface'Class;
+   type IRemoteSystemSessionParticipant is access IRemoteSystemSessionParticipant_Interface'Class;
    type IRemoteSystemSessionParticipant_Ptr is access all IRemoteSystemSessionParticipant;
 
    type IRemoteSystemSessionParticipantAddedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionParticipantAddedEventArgs is access all IRemoteSystemSessionParticipantAddedEventArgs_Interface'Class;
+   type IRemoteSystemSessionParticipantAddedEventArgs is access IRemoteSystemSessionParticipantAddedEventArgs_Interface'Class;
    type IRemoteSystemSessionParticipantAddedEventArgs_Ptr is access all IRemoteSystemSessionParticipantAddedEventArgs;
 
    type IRemoteSystemSessionParticipantRemovedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionParticipantRemovedEventArgs is access all IRemoteSystemSessionParticipantRemovedEventArgs_Interface'Class;
+   type IRemoteSystemSessionParticipantRemovedEventArgs is access IRemoteSystemSessionParticipantRemovedEventArgs_Interface'Class;
    type IRemoteSystemSessionParticipantRemovedEventArgs_Ptr is access all IRemoteSystemSessionParticipantRemovedEventArgs;
 
    type IRemoteSystemSessionParticipantWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionParticipantWatcher is access all IRemoteSystemSessionParticipantWatcher_Interface'Class;
+   type IRemoteSystemSessionParticipantWatcher is access IRemoteSystemSessionParticipantWatcher_Interface'Class;
    type IRemoteSystemSessionParticipantWatcher_Ptr is access all IRemoteSystemSessionParticipantWatcher;
 
    type IRemoteSystemSessionRemovedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionRemovedEventArgs is access all IRemoteSystemSessionRemovedEventArgs_Interface'Class;
+   type IRemoteSystemSessionRemovedEventArgs is access IRemoteSystemSessionRemovedEventArgs_Interface'Class;
    type IRemoteSystemSessionRemovedEventArgs_Ptr is access all IRemoteSystemSessionRemovedEventArgs;
 
    type IRemoteSystemSessionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionStatics is access all IRemoteSystemSessionStatics_Interface'Class;
+   type IRemoteSystemSessionStatics is access IRemoteSystemSessionStatics_Interface'Class;
 
    type IRemoteSystemSessionUpdatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionUpdatedEventArgs is access all IRemoteSystemSessionUpdatedEventArgs_Interface'Class;
+   type IRemoteSystemSessionUpdatedEventArgs is access IRemoteSystemSessionUpdatedEventArgs_Interface'Class;
    type IRemoteSystemSessionUpdatedEventArgs_Ptr is access all IRemoteSystemSessionUpdatedEventArgs;
 
    type IRemoteSystemSessionValueSetReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionValueSetReceivedEventArgs is access all IRemoteSystemSessionValueSetReceivedEventArgs_Interface'Class;
+   type IRemoteSystemSessionValueSetReceivedEventArgs is access IRemoteSystemSessionValueSetReceivedEventArgs_Interface'Class;
    type IRemoteSystemSessionValueSetReceivedEventArgs_Ptr is access all IRemoteSystemSessionValueSetReceivedEventArgs;
 
    type IRemoteSystemSessionWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemSessionWatcher is access all IRemoteSystemSessionWatcher_Interface'Class;
+   type IRemoteSystemSessionWatcher is access IRemoteSystemSessionWatcher_Interface'Class;
    type IRemoteSystemSessionWatcher_Ptr is access all IRemoteSystemSessionWatcher;
 
    type IRemoteSystemStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemStatics is access all IRemoteSystemStatics_Interface'Class;
+   type IRemoteSystemStatics is access IRemoteSystemStatics_Interface'Class;
 
    type IRemoteSystemStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemStatics2 is access all IRemoteSystemStatics2_Interface'Class;
+   type IRemoteSystemStatics2 is access IRemoteSystemStatics2_Interface'Class;
 
    type IRemoteSystemStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemStatics3 is access all IRemoteSystemStatics3_Interface'Class;
+   type IRemoteSystemStatics3 is access IRemoteSystemStatics3_Interface'Class;
 
    type IRemoteSystemStatusTypeFilter_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemStatusTypeFilter is access all IRemoteSystemStatusTypeFilter_Interface'Class;
+   type IRemoteSystemStatusTypeFilter is access IRemoteSystemStatusTypeFilter_Interface'Class;
    type IRemoteSystemStatusTypeFilter_Ptr is access all IRemoteSystemStatusTypeFilter;
 
    type IRemoteSystemStatusTypeFilterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemStatusTypeFilterFactory is access all IRemoteSystemStatusTypeFilterFactory_Interface'Class;
+   type IRemoteSystemStatusTypeFilterFactory is access IRemoteSystemStatusTypeFilterFactory_Interface'Class;
 
    type IRemoteSystemUpdatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemUpdatedEventArgs is access all IRemoteSystemUpdatedEventArgs_Interface'Class;
+   type IRemoteSystemUpdatedEventArgs is access IRemoteSystemUpdatedEventArgs_Interface'Class;
    type IRemoteSystemUpdatedEventArgs_Ptr is access all IRemoteSystemUpdatedEventArgs;
 
    type IRemoteSystemWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemWatcher is access all IRemoteSystemWatcher_Interface'Class;
+   type IRemoteSystemWatcher is access IRemoteSystemWatcher_Interface'Class;
    type IRemoteSystemWatcher_Ptr is access all IRemoteSystemWatcher;
 
    type IRemoteSystemWatcher2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemWatcher2 is access all IRemoteSystemWatcher2_Interface'Class;
+   type IRemoteSystemWatcher2 is access IRemoteSystemWatcher2_Interface'Class;
 
    type IRemoteSystemWatcher3_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemWatcher3 is access all IRemoteSystemWatcher3_Interface'Class;
+   type IRemoteSystemWatcher3 is access IRemoteSystemWatcher3_Interface'Class;
 
    type IRemoteSystemWatcherErrorOccurredEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemWatcherErrorOccurredEventArgs is access all IRemoteSystemWatcherErrorOccurredEventArgs_Interface'Class;
+   type IRemoteSystemWatcherErrorOccurredEventArgs is access IRemoteSystemWatcherErrorOccurredEventArgs_Interface'Class;
    type IRemoteSystemWatcherErrorOccurredEventArgs_Ptr is access all IRemoteSystemWatcherErrorOccurredEventArgs;
 
    type IRemoteSystemWebAccountFilter_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemWebAccountFilter is access all IRemoteSystemWebAccountFilter_Interface'Class;
+   type IRemoteSystemWebAccountFilter is access IRemoteSystemWebAccountFilter_Interface'Class;
    type IRemoteSystemWebAccountFilter_Ptr is access all IRemoteSystemWebAccountFilter;
 
    type IRemoteSystemWebAccountFilterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteSystemWebAccountFilterFactory is access all IRemoteSystemWebAccountFilterFactory_Interface'Class;
+   type IRemoteSystemWebAccountFilterFactory is access IRemoteSystemWebAccountFilterFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

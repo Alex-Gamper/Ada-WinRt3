@@ -39,17 +39,17 @@ package WinRt.Windows.Perception is
    -----------------------------------------------------------------------------
 
    type IPerceptionTimestamp_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionTimestamp is access all IPerceptionTimestamp_Interface'Class;
+   type IPerceptionTimestamp is access IPerceptionTimestamp_Interface'Class;
    type IPerceptionTimestamp_Ptr is access all IPerceptionTimestamp;
 
    type IPerceptionTimestamp2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionTimestamp2 is access all IPerceptionTimestamp2_Interface'Class;
+   type IPerceptionTimestamp2 is access IPerceptionTimestamp2_Interface'Class;
 
    type IPerceptionTimestampHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionTimestampHelperStatics is access all IPerceptionTimestampHelperStatics_Interface'Class;
+   type IPerceptionTimestampHelperStatics is access IPerceptionTimestampHelperStatics_Interface'Class;
 
    type IPerceptionTimestampHelperStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionTimestampHelperStatics2 is access all IPerceptionTimestampHelperStatics2_Interface'Class;
+   type IPerceptionTimestampHelperStatics2 is access IPerceptionTimestampHelperStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

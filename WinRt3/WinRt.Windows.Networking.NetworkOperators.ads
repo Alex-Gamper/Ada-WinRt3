@@ -44,384 +44,384 @@ package WinRt.Windows.Networking.NetworkOperators is
    -----------------------------------------------------------------------------
 
    type IESim_Interface is interface and WinRt.IInspectable_Interface;
-   type IESim is access all IESim_Interface'Class;
+   type IESim is access IESim_Interface'Class;
    type IESim_Ptr is access all IESim;
 
    type IESim2_Interface is interface and WinRt.IInspectable_Interface;
-   type IESim2 is access all IESim2_Interface'Class;
+   type IESim2 is access IESim2_Interface'Class;
 
    type IESimAddedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IESimAddedEventArgs is access all IESimAddedEventArgs_Interface'Class;
+   type IESimAddedEventArgs is access IESimAddedEventArgs_Interface'Class;
    type IESimAddedEventArgs_Ptr is access all IESimAddedEventArgs;
 
    type IESimDiscoverEvent_Interface is interface and WinRt.IInspectable_Interface;
-   type IESimDiscoverEvent is access all IESimDiscoverEvent_Interface'Class;
+   type IESimDiscoverEvent is access IESimDiscoverEvent_Interface'Class;
    type IESimDiscoverEvent_Ptr is access all IESimDiscoverEvent;
 
    type IESimDiscoverResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IESimDiscoverResult is access all IESimDiscoverResult_Interface'Class;
+   type IESimDiscoverResult is access IESimDiscoverResult_Interface'Class;
    type IESimDiscoverResult_Ptr is access all IESimDiscoverResult;
 
    type IESimDownloadProfileMetadataResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IESimDownloadProfileMetadataResult is access all IESimDownloadProfileMetadataResult_Interface'Class;
+   type IESimDownloadProfileMetadataResult is access IESimDownloadProfileMetadataResult_Interface'Class;
    type IESimDownloadProfileMetadataResult_Ptr is access all IESimDownloadProfileMetadataResult;
 
    type IESimManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IESimManagerStatics is access all IESimManagerStatics_Interface'Class;
+   type IESimManagerStatics is access IESimManagerStatics_Interface'Class;
 
    type IESimOperationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IESimOperationResult is access all IESimOperationResult_Interface'Class;
+   type IESimOperationResult is access IESimOperationResult_Interface'Class;
    type IESimOperationResult_Ptr is access all IESimOperationResult;
 
    type IESimPolicy_Interface is interface and WinRt.IInspectable_Interface;
-   type IESimPolicy is access all IESimPolicy_Interface'Class;
+   type IESimPolicy is access IESimPolicy_Interface'Class;
    type IESimPolicy_Ptr is access all IESimPolicy;
 
    type IESimProfile_Interface is interface and WinRt.IInspectable_Interface;
-   type IESimProfile is access all IESimProfile_Interface'Class;
+   type IESimProfile is access IESimProfile_Interface'Class;
    type IESimProfile_Ptr is access all IESimProfile;
 
    type IESimProfileMetadata_Interface is interface and WinRt.IInspectable_Interface;
-   type IESimProfileMetadata is access all IESimProfileMetadata_Interface'Class;
+   type IESimProfileMetadata is access IESimProfileMetadata_Interface'Class;
    type IESimProfileMetadata_Ptr is access all IESimProfileMetadata;
 
    type IESimProfilePolicy_Interface is interface and WinRt.IInspectable_Interface;
-   type IESimProfilePolicy is access all IESimProfilePolicy_Interface'Class;
+   type IESimProfilePolicy is access IESimProfilePolicy_Interface'Class;
    type IESimProfilePolicy_Ptr is access all IESimProfilePolicy;
 
    type IESimRemovedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IESimRemovedEventArgs is access all IESimRemovedEventArgs_Interface'Class;
+   type IESimRemovedEventArgs is access IESimRemovedEventArgs_Interface'Class;
    type IESimRemovedEventArgs_Ptr is access all IESimRemovedEventArgs;
 
    type IESimServiceInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IESimServiceInfo is access all IESimServiceInfo_Interface'Class;
+   type IESimServiceInfo is access IESimServiceInfo_Interface'Class;
    type IESimServiceInfo_Ptr is access all IESimServiceInfo;
 
    type IESimUpdatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IESimUpdatedEventArgs is access all IESimUpdatedEventArgs_Interface'Class;
+   type IESimUpdatedEventArgs is access IESimUpdatedEventArgs_Interface'Class;
    type IESimUpdatedEventArgs_Ptr is access all IESimUpdatedEventArgs;
 
    type IESimWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IESimWatcher is access all IESimWatcher_Interface'Class;
+   type IESimWatcher is access IESimWatcher_Interface'Class;
    type IESimWatcher_Ptr is access all IESimWatcher;
 
    type IFdnAccessManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFdnAccessManagerStatics is access all IFdnAccessManagerStatics_Interface'Class;
+   type IFdnAccessManagerStatics is access IFdnAccessManagerStatics_Interface'Class;
 
    type IHotspotAuthenticationContext_Interface is interface and WinRt.IInspectable_Interface;
-   type IHotspotAuthenticationContext is access all IHotspotAuthenticationContext_Interface'Class;
+   type IHotspotAuthenticationContext is access IHotspotAuthenticationContext_Interface'Class;
    type IHotspotAuthenticationContext_Ptr is access all IHotspotAuthenticationContext;
 
    type IHotspotAuthenticationContext2_Interface is interface and WinRt.IInspectable_Interface;
-   type IHotspotAuthenticationContext2 is access all IHotspotAuthenticationContext2_Interface'Class;
+   type IHotspotAuthenticationContext2 is access IHotspotAuthenticationContext2_Interface'Class;
 
    type IHotspotAuthenticationContextStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHotspotAuthenticationContextStatics is access all IHotspotAuthenticationContextStatics_Interface'Class;
+   type IHotspotAuthenticationContextStatics is access IHotspotAuthenticationContextStatics_Interface'Class;
 
    type IHotspotAuthenticationEventDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IHotspotAuthenticationEventDetails is access all IHotspotAuthenticationEventDetails_Interface'Class;
+   type IHotspotAuthenticationEventDetails is access IHotspotAuthenticationEventDetails_Interface'Class;
    type IHotspotAuthenticationEventDetails_Ptr is access all IHotspotAuthenticationEventDetails;
 
    type IHotspotCredentialsAuthenticationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IHotspotCredentialsAuthenticationResult is access all IHotspotCredentialsAuthenticationResult_Interface'Class;
+   type IHotspotCredentialsAuthenticationResult is access IHotspotCredentialsAuthenticationResult_Interface'Class;
    type IHotspotCredentialsAuthenticationResult_Ptr is access all IHotspotCredentialsAuthenticationResult;
 
    type IKnownCSimFilePathsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownCSimFilePathsStatics is access all IKnownCSimFilePathsStatics_Interface'Class;
+   type IKnownCSimFilePathsStatics is access IKnownCSimFilePathsStatics_Interface'Class;
 
    type IKnownRuimFilePathsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownRuimFilePathsStatics is access all IKnownRuimFilePathsStatics_Interface'Class;
+   type IKnownRuimFilePathsStatics is access IKnownRuimFilePathsStatics_Interface'Class;
 
    type IKnownSimFilePathsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownSimFilePathsStatics is access all IKnownSimFilePathsStatics_Interface'Class;
+   type IKnownSimFilePathsStatics is access IKnownSimFilePathsStatics_Interface'Class;
 
    type IKnownUSimFilePathsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownUSimFilePathsStatics is access all IKnownUSimFilePathsStatics_Interface'Class;
+   type IKnownUSimFilePathsStatics is access IKnownUSimFilePathsStatics_Interface'Class;
 
    type IMobileBroadbandAccount_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandAccount is access all IMobileBroadbandAccount_Interface'Class;
+   type IMobileBroadbandAccount is access IMobileBroadbandAccount_Interface'Class;
    type IMobileBroadbandAccount_Ptr is access all IMobileBroadbandAccount;
 
    type IMobileBroadbandAccount2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandAccount2 is access all IMobileBroadbandAccount2_Interface'Class;
+   type IMobileBroadbandAccount2 is access IMobileBroadbandAccount2_Interface'Class;
 
    type IMobileBroadbandAccount3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandAccount3 is access all IMobileBroadbandAccount3_Interface'Class;
+   type IMobileBroadbandAccount3 is access IMobileBroadbandAccount3_Interface'Class;
 
    type IMobileBroadbandAccountEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandAccountEventArgs is access all IMobileBroadbandAccountEventArgs_Interface'Class;
+   type IMobileBroadbandAccountEventArgs is access IMobileBroadbandAccountEventArgs_Interface'Class;
    type IMobileBroadbandAccountEventArgs_Ptr is access all IMobileBroadbandAccountEventArgs;
 
    type IMobileBroadbandAccountStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandAccountStatics is access all IMobileBroadbandAccountStatics_Interface'Class;
+   type IMobileBroadbandAccountStatics is access IMobileBroadbandAccountStatics_Interface'Class;
 
    type IMobileBroadbandAccountUpdatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandAccountUpdatedEventArgs is access all IMobileBroadbandAccountUpdatedEventArgs_Interface'Class;
+   type IMobileBroadbandAccountUpdatedEventArgs is access IMobileBroadbandAccountUpdatedEventArgs_Interface'Class;
    type IMobileBroadbandAccountUpdatedEventArgs_Ptr is access all IMobileBroadbandAccountUpdatedEventArgs;
 
    type IMobileBroadbandAccountWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandAccountWatcher is access all IMobileBroadbandAccountWatcher_Interface'Class;
+   type IMobileBroadbandAccountWatcher is access IMobileBroadbandAccountWatcher_Interface'Class;
    type IMobileBroadbandAccountWatcher_Ptr is access all IMobileBroadbandAccountWatcher;
 
    type IMobileBroadbandAntennaSar_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandAntennaSar is access all IMobileBroadbandAntennaSar_Interface'Class;
+   type IMobileBroadbandAntennaSar is access IMobileBroadbandAntennaSar_Interface'Class;
    type IMobileBroadbandAntennaSar_Ptr is access all IMobileBroadbandAntennaSar;
 
    type IMobileBroadbandAntennaSarFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandAntennaSarFactory is access all IMobileBroadbandAntennaSarFactory_Interface'Class;
+   type IMobileBroadbandAntennaSarFactory is access IMobileBroadbandAntennaSarFactory_Interface'Class;
 
    type IMobileBroadbandCellCdma_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandCellCdma is access all IMobileBroadbandCellCdma_Interface'Class;
+   type IMobileBroadbandCellCdma is access IMobileBroadbandCellCdma_Interface'Class;
    type IMobileBroadbandCellCdma_Ptr is access all IMobileBroadbandCellCdma;
 
    type IMobileBroadbandCellGsm_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandCellGsm is access all IMobileBroadbandCellGsm_Interface'Class;
+   type IMobileBroadbandCellGsm is access IMobileBroadbandCellGsm_Interface'Class;
    type IMobileBroadbandCellGsm_Ptr is access all IMobileBroadbandCellGsm;
 
    type IMobileBroadbandCellLte_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandCellLte is access all IMobileBroadbandCellLte_Interface'Class;
+   type IMobileBroadbandCellLte is access IMobileBroadbandCellLte_Interface'Class;
    type IMobileBroadbandCellLte_Ptr is access all IMobileBroadbandCellLte;
 
    type IMobileBroadbandCellTdscdma_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandCellTdscdma is access all IMobileBroadbandCellTdscdma_Interface'Class;
+   type IMobileBroadbandCellTdscdma is access IMobileBroadbandCellTdscdma_Interface'Class;
    type IMobileBroadbandCellTdscdma_Ptr is access all IMobileBroadbandCellTdscdma;
 
    type IMobileBroadbandCellUmts_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandCellUmts is access all IMobileBroadbandCellUmts_Interface'Class;
+   type IMobileBroadbandCellUmts is access IMobileBroadbandCellUmts_Interface'Class;
    type IMobileBroadbandCellUmts_Ptr is access all IMobileBroadbandCellUmts;
 
    type IMobileBroadbandCellsInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandCellsInfo is access all IMobileBroadbandCellsInfo_Interface'Class;
+   type IMobileBroadbandCellsInfo is access IMobileBroadbandCellsInfo_Interface'Class;
    type IMobileBroadbandCellsInfo_Ptr is access all IMobileBroadbandCellsInfo;
 
    type IMobileBroadbandDeviceInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandDeviceInformation is access all IMobileBroadbandDeviceInformation_Interface'Class;
+   type IMobileBroadbandDeviceInformation is access IMobileBroadbandDeviceInformation_Interface'Class;
    type IMobileBroadbandDeviceInformation_Ptr is access all IMobileBroadbandDeviceInformation;
 
    type IMobileBroadbandDeviceInformation2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandDeviceInformation2 is access all IMobileBroadbandDeviceInformation2_Interface'Class;
+   type IMobileBroadbandDeviceInformation2 is access IMobileBroadbandDeviceInformation2_Interface'Class;
 
    type IMobileBroadbandDeviceInformation3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandDeviceInformation3 is access all IMobileBroadbandDeviceInformation3_Interface'Class;
+   type IMobileBroadbandDeviceInformation3 is access IMobileBroadbandDeviceInformation3_Interface'Class;
 
    type IMobileBroadbandDeviceService_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandDeviceService is access all IMobileBroadbandDeviceService_Interface'Class;
+   type IMobileBroadbandDeviceService is access IMobileBroadbandDeviceService_Interface'Class;
    type IMobileBroadbandDeviceService_Ptr is access all IMobileBroadbandDeviceService;
 
    type IMobileBroadbandDeviceServiceCommandResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandDeviceServiceCommandResult is access all IMobileBroadbandDeviceServiceCommandResult_Interface'Class;
+   type IMobileBroadbandDeviceServiceCommandResult is access IMobileBroadbandDeviceServiceCommandResult_Interface'Class;
    type IMobileBroadbandDeviceServiceCommandResult_Ptr is access all IMobileBroadbandDeviceServiceCommandResult;
 
    type IMobileBroadbandDeviceServiceCommandSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandDeviceServiceCommandSession is access all IMobileBroadbandDeviceServiceCommandSession_Interface'Class;
+   type IMobileBroadbandDeviceServiceCommandSession is access IMobileBroadbandDeviceServiceCommandSession_Interface'Class;
    type IMobileBroadbandDeviceServiceCommandSession_Ptr is access all IMobileBroadbandDeviceServiceCommandSession;
 
    type IMobileBroadbandDeviceServiceDataReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandDeviceServiceDataReceivedEventArgs is access all IMobileBroadbandDeviceServiceDataReceivedEventArgs_Interface'Class;
+   type IMobileBroadbandDeviceServiceDataReceivedEventArgs is access IMobileBroadbandDeviceServiceDataReceivedEventArgs_Interface'Class;
    type IMobileBroadbandDeviceServiceDataReceivedEventArgs_Ptr is access all IMobileBroadbandDeviceServiceDataReceivedEventArgs;
 
    type IMobileBroadbandDeviceServiceDataSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandDeviceServiceDataSession is access all IMobileBroadbandDeviceServiceDataSession_Interface'Class;
+   type IMobileBroadbandDeviceServiceDataSession is access IMobileBroadbandDeviceServiceDataSession_Interface'Class;
    type IMobileBroadbandDeviceServiceDataSession_Ptr is access all IMobileBroadbandDeviceServiceDataSession;
 
    type IMobileBroadbandDeviceServiceInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandDeviceServiceInformation is access all IMobileBroadbandDeviceServiceInformation_Interface'Class;
+   type IMobileBroadbandDeviceServiceInformation is access IMobileBroadbandDeviceServiceInformation_Interface'Class;
    type IMobileBroadbandDeviceServiceInformation_Ptr is access all IMobileBroadbandDeviceServiceInformation;
 
    type IMobileBroadbandDeviceServiceTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandDeviceServiceTriggerDetails is access all IMobileBroadbandDeviceServiceTriggerDetails_Interface'Class;
+   type IMobileBroadbandDeviceServiceTriggerDetails is access IMobileBroadbandDeviceServiceTriggerDetails_Interface'Class;
    type IMobileBroadbandDeviceServiceTriggerDetails_Ptr is access all IMobileBroadbandDeviceServiceTriggerDetails;
 
    type IMobileBroadbandModem_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandModem is access all IMobileBroadbandModem_Interface'Class;
+   type IMobileBroadbandModem is access IMobileBroadbandModem_Interface'Class;
    type IMobileBroadbandModem_Ptr is access all IMobileBroadbandModem;
 
    type IMobileBroadbandModem2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandModem2 is access all IMobileBroadbandModem2_Interface'Class;
+   type IMobileBroadbandModem2 is access IMobileBroadbandModem2_Interface'Class;
 
    type IMobileBroadbandModem3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandModem3 is access all IMobileBroadbandModem3_Interface'Class;
+   type IMobileBroadbandModem3 is access IMobileBroadbandModem3_Interface'Class;
 
    type IMobileBroadbandModemConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandModemConfiguration is access all IMobileBroadbandModemConfiguration_Interface'Class;
+   type IMobileBroadbandModemConfiguration is access IMobileBroadbandModemConfiguration_Interface'Class;
    type IMobileBroadbandModemConfiguration_Ptr is access all IMobileBroadbandModemConfiguration;
 
    type IMobileBroadbandModemConfiguration2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandModemConfiguration2 is access all IMobileBroadbandModemConfiguration2_Interface'Class;
+   type IMobileBroadbandModemConfiguration2 is access IMobileBroadbandModemConfiguration2_Interface'Class;
 
    type IMobileBroadbandModemIsolation_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandModemIsolation is access all IMobileBroadbandModemIsolation_Interface'Class;
+   type IMobileBroadbandModemIsolation is access IMobileBroadbandModemIsolation_Interface'Class;
    type IMobileBroadbandModemIsolation_Ptr is access all IMobileBroadbandModemIsolation;
 
    type IMobileBroadbandModemIsolationFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandModemIsolationFactory is access all IMobileBroadbandModemIsolationFactory_Interface'Class;
+   type IMobileBroadbandModemIsolationFactory is access IMobileBroadbandModemIsolationFactory_Interface'Class;
 
    type IMobileBroadbandModemStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandModemStatics is access all IMobileBroadbandModemStatics_Interface'Class;
+   type IMobileBroadbandModemStatics is access IMobileBroadbandModemStatics_Interface'Class;
 
    type IMobileBroadbandNetwork_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandNetwork is access all IMobileBroadbandNetwork_Interface'Class;
+   type IMobileBroadbandNetwork is access IMobileBroadbandNetwork_Interface'Class;
    type IMobileBroadbandNetwork_Ptr is access all IMobileBroadbandNetwork;
 
    type IMobileBroadbandNetwork2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandNetwork2 is access all IMobileBroadbandNetwork2_Interface'Class;
+   type IMobileBroadbandNetwork2 is access IMobileBroadbandNetwork2_Interface'Class;
 
    type IMobileBroadbandNetwork3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandNetwork3 is access all IMobileBroadbandNetwork3_Interface'Class;
+   type IMobileBroadbandNetwork3 is access IMobileBroadbandNetwork3_Interface'Class;
 
    type IMobileBroadbandNetworkRegistrationStateChange_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandNetworkRegistrationStateChange is access all IMobileBroadbandNetworkRegistrationStateChange_Interface'Class;
+   type IMobileBroadbandNetworkRegistrationStateChange is access IMobileBroadbandNetworkRegistrationStateChange_Interface'Class;
    type IMobileBroadbandNetworkRegistrationStateChange_Ptr is access all IMobileBroadbandNetworkRegistrationStateChange;
 
    type IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails is access all IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails_Interface'Class;
+   type IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails is access IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails_Interface'Class;
    type IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails_Ptr is access all IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails;
 
    type IMobileBroadbandPco_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandPco is access all IMobileBroadbandPco_Interface'Class;
+   type IMobileBroadbandPco is access IMobileBroadbandPco_Interface'Class;
    type IMobileBroadbandPco_Ptr is access all IMobileBroadbandPco;
 
    type IMobileBroadbandPcoDataChangeTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandPcoDataChangeTriggerDetails is access all IMobileBroadbandPcoDataChangeTriggerDetails_Interface'Class;
+   type IMobileBroadbandPcoDataChangeTriggerDetails is access IMobileBroadbandPcoDataChangeTriggerDetails_Interface'Class;
    type IMobileBroadbandPcoDataChangeTriggerDetails_Ptr is access all IMobileBroadbandPcoDataChangeTriggerDetails;
 
    type IMobileBroadbandPin_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandPin is access all IMobileBroadbandPin_Interface'Class;
+   type IMobileBroadbandPin is access IMobileBroadbandPin_Interface'Class;
    type IMobileBroadbandPin_Ptr is access all IMobileBroadbandPin;
 
    type IMobileBroadbandPinLockStateChange_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandPinLockStateChange is access all IMobileBroadbandPinLockStateChange_Interface'Class;
+   type IMobileBroadbandPinLockStateChange is access IMobileBroadbandPinLockStateChange_Interface'Class;
    type IMobileBroadbandPinLockStateChange_Ptr is access all IMobileBroadbandPinLockStateChange;
 
    type IMobileBroadbandPinLockStateChangeTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandPinLockStateChangeTriggerDetails is access all IMobileBroadbandPinLockStateChangeTriggerDetails_Interface'Class;
+   type IMobileBroadbandPinLockStateChangeTriggerDetails is access IMobileBroadbandPinLockStateChangeTriggerDetails_Interface'Class;
    type IMobileBroadbandPinLockStateChangeTriggerDetails_Ptr is access all IMobileBroadbandPinLockStateChangeTriggerDetails;
 
    type IMobileBroadbandPinManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandPinManager is access all IMobileBroadbandPinManager_Interface'Class;
+   type IMobileBroadbandPinManager is access IMobileBroadbandPinManager_Interface'Class;
    type IMobileBroadbandPinManager_Ptr is access all IMobileBroadbandPinManager;
 
    type IMobileBroadbandPinOperationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandPinOperationResult is access all IMobileBroadbandPinOperationResult_Interface'Class;
+   type IMobileBroadbandPinOperationResult is access IMobileBroadbandPinOperationResult_Interface'Class;
    type IMobileBroadbandPinOperationResult_Ptr is access all IMobileBroadbandPinOperationResult;
 
    type IMobileBroadbandRadioStateChange_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandRadioStateChange is access all IMobileBroadbandRadioStateChange_Interface'Class;
+   type IMobileBroadbandRadioStateChange is access IMobileBroadbandRadioStateChange_Interface'Class;
    type IMobileBroadbandRadioStateChange_Ptr is access all IMobileBroadbandRadioStateChange;
 
    type IMobileBroadbandRadioStateChangeTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandRadioStateChangeTriggerDetails is access all IMobileBroadbandRadioStateChangeTriggerDetails_Interface'Class;
+   type IMobileBroadbandRadioStateChangeTriggerDetails is access IMobileBroadbandRadioStateChangeTriggerDetails_Interface'Class;
    type IMobileBroadbandRadioStateChangeTriggerDetails_Ptr is access all IMobileBroadbandRadioStateChangeTriggerDetails;
 
    type IMobileBroadbandSarManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandSarManager is access all IMobileBroadbandSarManager_Interface'Class;
+   type IMobileBroadbandSarManager is access IMobileBroadbandSarManager_Interface'Class;
    type IMobileBroadbandSarManager_Ptr is access all IMobileBroadbandSarManager;
 
    type IMobileBroadbandTransmissionStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandTransmissionStateChangedEventArgs is access all IMobileBroadbandTransmissionStateChangedEventArgs_Interface'Class;
+   type IMobileBroadbandTransmissionStateChangedEventArgs is access IMobileBroadbandTransmissionStateChangedEventArgs_Interface'Class;
    type IMobileBroadbandTransmissionStateChangedEventArgs_Ptr is access all IMobileBroadbandTransmissionStateChangedEventArgs;
 
    type IMobileBroadbandUicc_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandUicc is access all IMobileBroadbandUicc_Interface'Class;
+   type IMobileBroadbandUicc is access IMobileBroadbandUicc_Interface'Class;
    type IMobileBroadbandUicc_Ptr is access all IMobileBroadbandUicc;
 
    type IMobileBroadbandUiccApp_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandUiccApp is access all IMobileBroadbandUiccApp_Interface'Class;
+   type IMobileBroadbandUiccApp is access IMobileBroadbandUiccApp_Interface'Class;
    type IMobileBroadbandUiccApp_Ptr is access all IMobileBroadbandUiccApp;
 
    type IMobileBroadbandUiccAppReadRecordResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandUiccAppReadRecordResult is access all IMobileBroadbandUiccAppReadRecordResult_Interface'Class;
+   type IMobileBroadbandUiccAppReadRecordResult is access IMobileBroadbandUiccAppReadRecordResult_Interface'Class;
    type IMobileBroadbandUiccAppReadRecordResult_Ptr is access all IMobileBroadbandUiccAppReadRecordResult;
 
    type IMobileBroadbandUiccAppRecordDetailsResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandUiccAppRecordDetailsResult is access all IMobileBroadbandUiccAppRecordDetailsResult_Interface'Class;
+   type IMobileBroadbandUiccAppRecordDetailsResult is access IMobileBroadbandUiccAppRecordDetailsResult_Interface'Class;
    type IMobileBroadbandUiccAppRecordDetailsResult_Ptr is access all IMobileBroadbandUiccAppRecordDetailsResult;
 
    type IMobileBroadbandUiccAppsResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IMobileBroadbandUiccAppsResult is access all IMobileBroadbandUiccAppsResult_Interface'Class;
+   type IMobileBroadbandUiccAppsResult is access IMobileBroadbandUiccAppsResult_Interface'Class;
    type IMobileBroadbandUiccAppsResult_Ptr is access all IMobileBroadbandUiccAppsResult;
 
    type INetworkOperatorDataUsageTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkOperatorDataUsageTriggerDetails is access all INetworkOperatorDataUsageTriggerDetails_Interface'Class;
+   type INetworkOperatorDataUsageTriggerDetails is access INetworkOperatorDataUsageTriggerDetails_Interface'Class;
    type INetworkOperatorDataUsageTriggerDetails_Ptr is access all INetworkOperatorDataUsageTriggerDetails;
 
    type INetworkOperatorNotificationEventDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkOperatorNotificationEventDetails is access all INetworkOperatorNotificationEventDetails_Interface'Class;
+   type INetworkOperatorNotificationEventDetails is access INetworkOperatorNotificationEventDetails_Interface'Class;
    type INetworkOperatorNotificationEventDetails_Ptr is access all INetworkOperatorNotificationEventDetails;
 
    type INetworkOperatorTetheringAccessPointConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkOperatorTetheringAccessPointConfiguration is access all INetworkOperatorTetheringAccessPointConfiguration_Interface'Class;
+   type INetworkOperatorTetheringAccessPointConfiguration is access INetworkOperatorTetheringAccessPointConfiguration_Interface'Class;
    type INetworkOperatorTetheringAccessPointConfiguration_Ptr is access all INetworkOperatorTetheringAccessPointConfiguration;
 
    type INetworkOperatorTetheringAccessPointConfiguration2_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkOperatorTetheringAccessPointConfiguration2 is access all INetworkOperatorTetheringAccessPointConfiguration2_Interface'Class;
+   type INetworkOperatorTetheringAccessPointConfiguration2 is access INetworkOperatorTetheringAccessPointConfiguration2_Interface'Class;
 
    type INetworkOperatorTetheringClient_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkOperatorTetheringClient is access all INetworkOperatorTetheringClient_Interface'Class;
+   type INetworkOperatorTetheringClient is access INetworkOperatorTetheringClient_Interface'Class;
    type INetworkOperatorTetheringClient_Ptr is access all INetworkOperatorTetheringClient;
 
    type INetworkOperatorTetheringClientManager_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkOperatorTetheringClientManager is access all INetworkOperatorTetheringClientManager_Interface'Class;
+   type INetworkOperatorTetheringClientManager is access INetworkOperatorTetheringClientManager_Interface'Class;
 
    type INetworkOperatorTetheringEntitlementCheck_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkOperatorTetheringEntitlementCheck is access all INetworkOperatorTetheringEntitlementCheck_Interface'Class;
+   type INetworkOperatorTetheringEntitlementCheck is access INetworkOperatorTetheringEntitlementCheck_Interface'Class;
 
    type INetworkOperatorTetheringManager_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkOperatorTetheringManager is access all INetworkOperatorTetheringManager_Interface'Class;
+   type INetworkOperatorTetheringManager is access INetworkOperatorTetheringManager_Interface'Class;
    type INetworkOperatorTetheringManager_Ptr is access all INetworkOperatorTetheringManager;
 
    type INetworkOperatorTetheringManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkOperatorTetheringManagerStatics is access all INetworkOperatorTetheringManagerStatics_Interface'Class;
+   type INetworkOperatorTetheringManagerStatics is access INetworkOperatorTetheringManagerStatics_Interface'Class;
 
    type INetworkOperatorTetheringManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkOperatorTetheringManagerStatics2 is access all INetworkOperatorTetheringManagerStatics2_Interface'Class;
+   type INetworkOperatorTetheringManagerStatics2 is access INetworkOperatorTetheringManagerStatics2_Interface'Class;
 
    type INetworkOperatorTetheringManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkOperatorTetheringManagerStatics3 is access all INetworkOperatorTetheringManagerStatics3_Interface'Class;
+   type INetworkOperatorTetheringManagerStatics3 is access INetworkOperatorTetheringManagerStatics3_Interface'Class;
 
    type INetworkOperatorTetheringManagerStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkOperatorTetheringManagerStatics4 is access all INetworkOperatorTetheringManagerStatics4_Interface'Class;
+   type INetworkOperatorTetheringManagerStatics4 is access INetworkOperatorTetheringManagerStatics4_Interface'Class;
 
    type INetworkOperatorTetheringOperationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkOperatorTetheringOperationResult is access all INetworkOperatorTetheringOperationResult_Interface'Class;
+   type INetworkOperatorTetheringOperationResult is access INetworkOperatorTetheringOperationResult_Interface'Class;
    type INetworkOperatorTetheringOperationResult_Ptr is access all INetworkOperatorTetheringOperationResult;
 
    type IProvisionFromXmlDocumentResults_Interface is interface and WinRt.IInspectable_Interface;
-   type IProvisionFromXmlDocumentResults is access all IProvisionFromXmlDocumentResults_Interface'Class;
+   type IProvisionFromXmlDocumentResults is access IProvisionFromXmlDocumentResults_Interface'Class;
    type IProvisionFromXmlDocumentResults_Ptr is access all IProvisionFromXmlDocumentResults;
 
    type IProvisionedProfile_Interface is interface and WinRt.IInspectable_Interface;
-   type IProvisionedProfile is access all IProvisionedProfile_Interface'Class;
+   type IProvisionedProfile is access IProvisionedProfile_Interface'Class;
    type IProvisionedProfile_Ptr is access all IProvisionedProfile;
 
    type IProvisioningAgent_Interface is interface and WinRt.IInspectable_Interface;
-   type IProvisioningAgent is access all IProvisioningAgent_Interface'Class;
+   type IProvisioningAgent is access IProvisioningAgent_Interface'Class;
    type IProvisioningAgent_Ptr is access all IProvisioningAgent;
 
    type IProvisioningAgentStaticMethods_Interface is interface and WinRt.IInspectable_Interface;
-   type IProvisioningAgentStaticMethods is access all IProvisioningAgentStaticMethods_Interface'Class;
+   type IProvisioningAgentStaticMethods is access IProvisioningAgentStaticMethods_Interface'Class;
 
    type ITetheringEntitlementCheckTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type ITetheringEntitlementCheckTriggerDetails is access all ITetheringEntitlementCheckTriggerDetails_Interface'Class;
+   type ITetheringEntitlementCheckTriggerDetails is access ITetheringEntitlementCheckTriggerDetails_Interface'Class;
    type ITetheringEntitlementCheckTriggerDetails_Ptr is access all ITetheringEntitlementCheckTriggerDetails;
 
    type IUssdMessage_Interface is interface and WinRt.IInspectable_Interface;
-   type IUssdMessage is access all IUssdMessage_Interface'Class;
+   type IUssdMessage is access IUssdMessage_Interface'Class;
    type IUssdMessage_Ptr is access all IUssdMessage;
 
    type IUssdMessageFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IUssdMessageFactory is access all IUssdMessageFactory_Interface'Class;
+   type IUssdMessageFactory is access IUssdMessageFactory_Interface'Class;
 
    type IUssdReply_Interface is interface and WinRt.IInspectable_Interface;
-   type IUssdReply is access all IUssdReply_Interface'Class;
+   type IUssdReply is access IUssdReply_Interface'Class;
    type IUssdReply_Ptr is access all IUssdReply;
 
    type IUssdSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IUssdSession is access all IUssdSession_Interface'Class;
+   type IUssdSession is access IUssdSession_Interface'Class;
    type IUssdSession_Ptr is access all IUssdSession;
 
    type IUssdSessionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUssdSessionStatics is access all IUssdSessionStatics_Interface'Class;
+   type IUssdSessionStatics is access IUssdSessionStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

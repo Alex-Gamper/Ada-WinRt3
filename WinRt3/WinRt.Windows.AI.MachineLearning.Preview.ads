@@ -43,49 +43,49 @@ package WinRt.Windows.AI.MachineLearning.Preview is
    -----------------------------------------------------------------------------
 
    type IImageVariableDescriptorPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageVariableDescriptorPreview is access all IImageVariableDescriptorPreview_Interface'Class;
+   type IImageVariableDescriptorPreview is access IImageVariableDescriptorPreview_Interface'Class;
    type IImageVariableDescriptorPreview_Ptr is access all IImageVariableDescriptorPreview;
 
    type IInferencingOptionsPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type IInferencingOptionsPreview is access all IInferencingOptionsPreview_Interface'Class;
+   type IInferencingOptionsPreview is access IInferencingOptionsPreview_Interface'Class;
    type IInferencingOptionsPreview_Ptr is access all IInferencingOptionsPreview;
 
    type ILearningModelBindingPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelBindingPreview is access all ILearningModelBindingPreview_Interface'Class;
+   type ILearningModelBindingPreview is access ILearningModelBindingPreview_Interface'Class;
    type ILearningModelBindingPreview_Ptr is access all ILearningModelBindingPreview;
 
    type ILearningModelBindingPreviewFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelBindingPreviewFactory is access all ILearningModelBindingPreviewFactory_Interface'Class;
+   type ILearningModelBindingPreviewFactory is access ILearningModelBindingPreviewFactory_Interface'Class;
 
    type ILearningModelDescriptionPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelDescriptionPreview is access all ILearningModelDescriptionPreview_Interface'Class;
+   type ILearningModelDescriptionPreview is access ILearningModelDescriptionPreview_Interface'Class;
    type ILearningModelDescriptionPreview_Ptr is access all ILearningModelDescriptionPreview;
 
    type ILearningModelEvaluationResultPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelEvaluationResultPreview is access all ILearningModelEvaluationResultPreview_Interface'Class;
+   type ILearningModelEvaluationResultPreview is access ILearningModelEvaluationResultPreview_Interface'Class;
    type ILearningModelEvaluationResultPreview_Ptr is access all ILearningModelEvaluationResultPreview;
 
    type ILearningModelPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelPreview is access all ILearningModelPreview_Interface'Class;
+   type ILearningModelPreview is access ILearningModelPreview_Interface'Class;
    type ILearningModelPreview_Ptr is access all ILearningModelPreview;
 
    type ILearningModelPreviewStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelPreviewStatics is access all ILearningModelPreviewStatics_Interface'Class;
+   type ILearningModelPreviewStatics is access ILearningModelPreviewStatics_Interface'Class;
 
    type ILearningModelVariableDescriptorPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelVariableDescriptorPreview is access all ILearningModelVariableDescriptorPreview_Interface'Class;
+   type ILearningModelVariableDescriptorPreview is access ILearningModelVariableDescriptorPreview_Interface'Class;
    type ILearningModelVariableDescriptorPreview_Ptr is access all ILearningModelVariableDescriptorPreview;
 
    type IMapVariableDescriptorPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapVariableDescriptorPreview is access all IMapVariableDescriptorPreview_Interface'Class;
+   type IMapVariableDescriptorPreview is access IMapVariableDescriptorPreview_Interface'Class;
    type IMapVariableDescriptorPreview_Ptr is access all IMapVariableDescriptorPreview;
 
    type ISequenceVariableDescriptorPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type ISequenceVariableDescriptorPreview is access all ISequenceVariableDescriptorPreview_Interface'Class;
+   type ISequenceVariableDescriptorPreview is access ISequenceVariableDescriptorPreview_Interface'Class;
    type ISequenceVariableDescriptorPreview_Ptr is access all ISequenceVariableDescriptorPreview;
 
    type ITensorVariableDescriptorPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorVariableDescriptorPreview is access all ITensorVariableDescriptorPreview_Interface'Class;
+   type ITensorVariableDescriptorPreview is access ITensorVariableDescriptorPreview_Interface'Class;
    type ITensorVariableDescriptorPreview_Ptr is access all ITensorVariableDescriptorPreview;
 
    -----------------------------------------------------------------------------

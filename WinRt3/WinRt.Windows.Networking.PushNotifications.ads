@@ -43,45 +43,45 @@ package WinRt.Windows.Networking.PushNotifications is
    -----------------------------------------------------------------------------
 
    type IPushNotificationChannel_Interface is interface and WinRt.IInspectable_Interface;
-   type IPushNotificationChannel is access all IPushNotificationChannel_Interface'Class;
+   type IPushNotificationChannel is access IPushNotificationChannel_Interface'Class;
    type IPushNotificationChannel_Ptr is access all IPushNotificationChannel;
 
    type IPushNotificationChannelManagerForUser_Interface is interface and WinRt.IInspectable_Interface;
-   type IPushNotificationChannelManagerForUser is access all IPushNotificationChannelManagerForUser_Interface'Class;
+   type IPushNotificationChannelManagerForUser is access IPushNotificationChannelManagerForUser_Interface'Class;
    type IPushNotificationChannelManagerForUser_Ptr is access all IPushNotificationChannelManagerForUser;
 
    type IPushNotificationChannelManagerForUser2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPushNotificationChannelManagerForUser2 is access all IPushNotificationChannelManagerForUser2_Interface'Class;
+   type IPushNotificationChannelManagerForUser2 is access IPushNotificationChannelManagerForUser2_Interface'Class;
 
    type IPushNotificationChannelManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPushNotificationChannelManagerStatics is access all IPushNotificationChannelManagerStatics_Interface'Class;
+   type IPushNotificationChannelManagerStatics is access IPushNotificationChannelManagerStatics_Interface'Class;
 
    type IPushNotificationChannelManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPushNotificationChannelManagerStatics2 is access all IPushNotificationChannelManagerStatics2_Interface'Class;
+   type IPushNotificationChannelManagerStatics2 is access IPushNotificationChannelManagerStatics2_Interface'Class;
 
    type IPushNotificationChannelManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IPushNotificationChannelManagerStatics3 is access all IPushNotificationChannelManagerStatics3_Interface'Class;
+   type IPushNotificationChannelManagerStatics3 is access IPushNotificationChannelManagerStatics3_Interface'Class;
 
    type IPushNotificationChannelManagerStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IPushNotificationChannelManagerStatics4 is access all IPushNotificationChannelManagerStatics4_Interface'Class;
+   type IPushNotificationChannelManagerStatics4 is access IPushNotificationChannelManagerStatics4_Interface'Class;
 
    type IPushNotificationChannelsRevokedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPushNotificationChannelsRevokedEventArgs is access all IPushNotificationChannelsRevokedEventArgs_Interface'Class;
+   type IPushNotificationChannelsRevokedEventArgs is access IPushNotificationChannelsRevokedEventArgs_Interface'Class;
    type IPushNotificationChannelsRevokedEventArgs_Ptr is access all IPushNotificationChannelsRevokedEventArgs;
 
    type IPushNotificationReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPushNotificationReceivedEventArgs is access all IPushNotificationReceivedEventArgs_Interface'Class;
+   type IPushNotificationReceivedEventArgs is access IPushNotificationReceivedEventArgs_Interface'Class;
    type IPushNotificationReceivedEventArgs_Ptr is access all IPushNotificationReceivedEventArgs;
 
    type IRawNotification_Interface is interface and WinRt.IInspectable_Interface;
-   type IRawNotification is access all IRawNotification_Interface'Class;
+   type IRawNotification is access IRawNotification_Interface'Class;
    type IRawNotification_Ptr is access all IRawNotification;
 
    type IRawNotification2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRawNotification2 is access all IRawNotification2_Interface'Class;
+   type IRawNotification2 is access IRawNotification2_Interface'Class;
 
    type IRawNotification3_Interface is interface and WinRt.IInspectable_Interface;
-   type IRawNotification3 is access all IRawNotification3_Interface'Class;
+   type IRawNotification3 is access IRawNotification3_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

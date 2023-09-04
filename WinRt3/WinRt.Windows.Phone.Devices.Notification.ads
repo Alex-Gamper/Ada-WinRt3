@@ -39,11 +39,11 @@ package WinRt.Windows.Phone.Devices.Notification is
    -----------------------------------------------------------------------------
 
    type IVibrationDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IVibrationDevice is access all IVibrationDevice_Interface'Class;
+   type IVibrationDevice is access IVibrationDevice_Interface'Class;
    type IVibrationDevice_Ptr is access all IVibrationDevice;
 
    type IVibrationDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IVibrationDeviceStatics is access all IVibrationDeviceStatics_Interface'Class;
+   type IVibrationDeviceStatics is access IVibrationDeviceStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -40,35 +40,35 @@ package WinRt.Windows.Data.Json is
    -----------------------------------------------------------------------------
 
    type IJsonArray_Interface is interface and WinRt.IInspectable_Interface;
-   type IJsonArray is access all IJsonArray_Interface'Class;
+   type IJsonArray is access IJsonArray_Interface'Class;
    type IJsonArray_Ptr is access all IJsonArray;
 
    type IJsonArrayStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IJsonArrayStatics is access all IJsonArrayStatics_Interface'Class;
+   type IJsonArrayStatics is access IJsonArrayStatics_Interface'Class;
 
    type IJsonErrorStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IJsonErrorStatics2 is access all IJsonErrorStatics2_Interface'Class;
+   type IJsonErrorStatics2 is access IJsonErrorStatics2_Interface'Class;
 
    type IJsonObject_Interface is interface and WinRt.IInspectable_Interface;
-   type IJsonObject is access all IJsonObject_Interface'Class;
+   type IJsonObject is access IJsonObject_Interface'Class;
    type IJsonObject_Ptr is access all IJsonObject;
 
    type IJsonObjectStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IJsonObjectStatics is access all IJsonObjectStatics_Interface'Class;
+   type IJsonObjectStatics is access IJsonObjectStatics_Interface'Class;
 
    type IJsonObjectWithDefaultValues_Interface is interface and WinRt.IInspectable_Interface;
-   type IJsonObjectWithDefaultValues is access all IJsonObjectWithDefaultValues_Interface'Class;
+   type IJsonObjectWithDefaultValues is access IJsonObjectWithDefaultValues_Interface'Class;
 
    type IJsonValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IJsonValue is access all IJsonValue_Interface'Class;
+   type IJsonValue is access IJsonValue_Interface'Class;
    type IJsonValue_Ptr is access all IJsonValue;
    type IJsonValue_Array is array (Natural range <>) of IJsonValue;
 
    type IJsonValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IJsonValueStatics is access all IJsonValueStatics_Interface'Class;
+   type IJsonValueStatics is access IJsonValueStatics_Interface'Class;
 
    type IJsonValueStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IJsonValueStatics2 is access all IJsonValueStatics2_Interface'Class;
+   type IJsonValueStatics2 is access IJsonValueStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

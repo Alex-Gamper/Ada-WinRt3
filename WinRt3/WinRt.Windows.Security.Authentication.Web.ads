@@ -40,13 +40,13 @@ package WinRt.Windows.Security.Authentication.Web is
    -----------------------------------------------------------------------------
 
    type IWebAuthenticationBrokerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAuthenticationBrokerStatics is access all IWebAuthenticationBrokerStatics_Interface'Class;
+   type IWebAuthenticationBrokerStatics is access IWebAuthenticationBrokerStatics_Interface'Class;
 
    type IWebAuthenticationBrokerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAuthenticationBrokerStatics2 is access all IWebAuthenticationBrokerStatics2_Interface'Class;
+   type IWebAuthenticationBrokerStatics2 is access IWebAuthenticationBrokerStatics2_Interface'Class;
 
    type IWebAuthenticationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAuthenticationResult is access all IWebAuthenticationResult_Interface'Class;
+   type IWebAuthenticationResult is access IWebAuthenticationResult_Interface'Class;
    type IWebAuthenticationResult_Ptr is access all IWebAuthenticationResult;
 
    -----------------------------------------------------------------------------

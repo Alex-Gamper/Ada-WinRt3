@@ -50,233 +50,233 @@ package WinRt.Windows.Media.Audio is
    -----------------------------------------------------------------------------
 
    type IAudioDeviceInputNode_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioDeviceInputNode is access all IAudioDeviceInputNode_Interface'Class;
+   type IAudioDeviceInputNode is access IAudioDeviceInputNode_Interface'Class;
    type IAudioDeviceInputNode_Ptr is access all IAudioDeviceInputNode;
 
    type IAudioDeviceOutputNode_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioDeviceOutputNode is access all IAudioDeviceOutputNode_Interface'Class;
+   type IAudioDeviceOutputNode is access IAudioDeviceOutputNode_Interface'Class;
    type IAudioDeviceOutputNode_Ptr is access all IAudioDeviceOutputNode;
 
    type IAudioFileInputNode_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioFileInputNode is access all IAudioFileInputNode_Interface'Class;
+   type IAudioFileInputNode is access IAudioFileInputNode_Interface'Class;
    type IAudioFileInputNode_Ptr is access all IAudioFileInputNode;
 
    type IAudioFileOutputNode_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioFileOutputNode is access all IAudioFileOutputNode_Interface'Class;
+   type IAudioFileOutputNode is access IAudioFileOutputNode_Interface'Class;
    type IAudioFileOutputNode_Ptr is access all IAudioFileOutputNode;
 
    type IAudioFrameCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioFrameCompletedEventArgs is access all IAudioFrameCompletedEventArgs_Interface'Class;
+   type IAudioFrameCompletedEventArgs is access IAudioFrameCompletedEventArgs_Interface'Class;
    type IAudioFrameCompletedEventArgs_Ptr is access all IAudioFrameCompletedEventArgs;
 
    type IAudioFrameInputNode_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioFrameInputNode is access all IAudioFrameInputNode_Interface'Class;
+   type IAudioFrameInputNode is access IAudioFrameInputNode_Interface'Class;
    type IAudioFrameInputNode_Ptr is access all IAudioFrameInputNode;
 
    type IAudioFrameOutputNode_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioFrameOutputNode is access all IAudioFrameOutputNode_Interface'Class;
+   type IAudioFrameOutputNode is access IAudioFrameOutputNode_Interface'Class;
    type IAudioFrameOutputNode_Ptr is access all IAudioFrameOutputNode;
 
    type IAudioGraph_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioGraph is access all IAudioGraph_Interface'Class;
+   type IAudioGraph is access IAudioGraph_Interface'Class;
    type IAudioGraph_Ptr is access all IAudioGraph;
 
    type IAudioGraph2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioGraph2 is access all IAudioGraph2_Interface'Class;
+   type IAudioGraph2 is access IAudioGraph2_Interface'Class;
 
    type IAudioGraph3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioGraph3 is access all IAudioGraph3_Interface'Class;
+   type IAudioGraph3 is access IAudioGraph3_Interface'Class;
 
    type IAudioGraphConnection_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioGraphConnection is access all IAudioGraphConnection_Interface'Class;
+   type IAudioGraphConnection is access IAudioGraphConnection_Interface'Class;
    type IAudioGraphConnection_Ptr is access all IAudioGraphConnection;
 
    type IAudioGraphSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioGraphSettings is access all IAudioGraphSettings_Interface'Class;
+   type IAudioGraphSettings is access IAudioGraphSettings_Interface'Class;
    type IAudioGraphSettings_Ptr is access all IAudioGraphSettings;
 
    type IAudioGraphSettings2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioGraphSettings2 is access all IAudioGraphSettings2_Interface'Class;
+   type IAudioGraphSettings2 is access IAudioGraphSettings2_Interface'Class;
 
    type IAudioGraphSettingsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioGraphSettingsFactory is access all IAudioGraphSettingsFactory_Interface'Class;
+   type IAudioGraphSettingsFactory is access IAudioGraphSettingsFactory_Interface'Class;
 
    type IAudioGraphStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioGraphStatics is access all IAudioGraphStatics_Interface'Class;
+   type IAudioGraphStatics is access IAudioGraphStatics_Interface'Class;
 
    type IAudioGraphUnrecoverableErrorOccurredEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioGraphUnrecoverableErrorOccurredEventArgs is access all IAudioGraphUnrecoverableErrorOccurredEventArgs_Interface'Class;
+   type IAudioGraphUnrecoverableErrorOccurredEventArgs is access IAudioGraphUnrecoverableErrorOccurredEventArgs_Interface'Class;
    type IAudioGraphUnrecoverableErrorOccurredEventArgs_Ptr is access all IAudioGraphUnrecoverableErrorOccurredEventArgs;
 
    type IAudioInputNode_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioInputNode is access all IAudioInputNode_Interface'Class;
+   type IAudioInputNode is access IAudioInputNode_Interface'Class;
    type IAudioInputNode_Ptr is access all IAudioInputNode;
 
    type IAudioInputNode2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioInputNode2 is access all IAudioInputNode2_Interface'Class;
+   type IAudioInputNode2 is access IAudioInputNode2_Interface'Class;
 
    type IAudioNode_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioNode is access all IAudioNode_Interface'Class;
+   type IAudioNode is access IAudioNode_Interface'Class;
 
    type IAudioNodeEmitter_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioNodeEmitter is access all IAudioNodeEmitter_Interface'Class;
+   type IAudioNodeEmitter is access IAudioNodeEmitter_Interface'Class;
    type IAudioNodeEmitter_Ptr is access all IAudioNodeEmitter;
 
    type IAudioNodeEmitter2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioNodeEmitter2 is access all IAudioNodeEmitter2_Interface'Class;
+   type IAudioNodeEmitter2 is access IAudioNodeEmitter2_Interface'Class;
 
    type IAudioNodeEmitterConeProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioNodeEmitterConeProperties is access all IAudioNodeEmitterConeProperties_Interface'Class;
+   type IAudioNodeEmitterConeProperties is access IAudioNodeEmitterConeProperties_Interface'Class;
    type IAudioNodeEmitterConeProperties_Ptr is access all IAudioNodeEmitterConeProperties;
 
    type IAudioNodeEmitterDecayModel_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioNodeEmitterDecayModel is access all IAudioNodeEmitterDecayModel_Interface'Class;
+   type IAudioNodeEmitterDecayModel is access IAudioNodeEmitterDecayModel_Interface'Class;
    type IAudioNodeEmitterDecayModel_Ptr is access all IAudioNodeEmitterDecayModel;
 
    type IAudioNodeEmitterDecayModelStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioNodeEmitterDecayModelStatics is access all IAudioNodeEmitterDecayModelStatics_Interface'Class;
+   type IAudioNodeEmitterDecayModelStatics is access IAudioNodeEmitterDecayModelStatics_Interface'Class;
 
    type IAudioNodeEmitterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioNodeEmitterFactory is access all IAudioNodeEmitterFactory_Interface'Class;
+   type IAudioNodeEmitterFactory is access IAudioNodeEmitterFactory_Interface'Class;
 
    type IAudioNodeEmitterNaturalDecayModelProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioNodeEmitterNaturalDecayModelProperties is access all IAudioNodeEmitterNaturalDecayModelProperties_Interface'Class;
+   type IAudioNodeEmitterNaturalDecayModelProperties is access IAudioNodeEmitterNaturalDecayModelProperties_Interface'Class;
    type IAudioNodeEmitterNaturalDecayModelProperties_Ptr is access all IAudioNodeEmitterNaturalDecayModelProperties;
 
    type IAudioNodeEmitterShape_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioNodeEmitterShape is access all IAudioNodeEmitterShape_Interface'Class;
+   type IAudioNodeEmitterShape is access IAudioNodeEmitterShape_Interface'Class;
    type IAudioNodeEmitterShape_Ptr is access all IAudioNodeEmitterShape;
 
    type IAudioNodeEmitterShapeStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioNodeEmitterShapeStatics is access all IAudioNodeEmitterShapeStatics_Interface'Class;
+   type IAudioNodeEmitterShapeStatics is access IAudioNodeEmitterShapeStatics_Interface'Class;
 
    type IAudioNodeListener_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioNodeListener is access all IAudioNodeListener_Interface'Class;
+   type IAudioNodeListener is access IAudioNodeListener_Interface'Class;
    type IAudioNodeListener_Ptr is access all IAudioNodeListener;
 
    type IAudioNodeWithListener_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioNodeWithListener is access all IAudioNodeWithListener_Interface'Class;
+   type IAudioNodeWithListener is access IAudioNodeWithListener_Interface'Class;
 
    type IAudioPlaybackConnection_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioPlaybackConnection is access all IAudioPlaybackConnection_Interface'Class;
+   type IAudioPlaybackConnection is access IAudioPlaybackConnection_Interface'Class;
    type IAudioPlaybackConnection_Ptr is access all IAudioPlaybackConnection;
 
    type IAudioPlaybackConnectionOpenResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioPlaybackConnectionOpenResult is access all IAudioPlaybackConnectionOpenResult_Interface'Class;
+   type IAudioPlaybackConnectionOpenResult is access IAudioPlaybackConnectionOpenResult_Interface'Class;
    type IAudioPlaybackConnectionOpenResult_Ptr is access all IAudioPlaybackConnectionOpenResult;
 
    type IAudioPlaybackConnectionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioPlaybackConnectionStatics is access all IAudioPlaybackConnectionStatics_Interface'Class;
+   type IAudioPlaybackConnectionStatics is access IAudioPlaybackConnectionStatics_Interface'Class;
 
    type IAudioStateMonitor_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioStateMonitor is access all IAudioStateMonitor_Interface'Class;
+   type IAudioStateMonitor is access IAudioStateMonitor_Interface'Class;
    type IAudioStateMonitor_Ptr is access all IAudioStateMonitor;
 
    type IAudioStateMonitorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioStateMonitorStatics is access all IAudioStateMonitorStatics_Interface'Class;
+   type IAudioStateMonitorStatics is access IAudioStateMonitorStatics_Interface'Class;
 
    type ICreateAudioDeviceInputNodeResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ICreateAudioDeviceInputNodeResult is access all ICreateAudioDeviceInputNodeResult_Interface'Class;
+   type ICreateAudioDeviceInputNodeResult is access ICreateAudioDeviceInputNodeResult_Interface'Class;
    type ICreateAudioDeviceInputNodeResult_Ptr is access all ICreateAudioDeviceInputNodeResult;
 
    type ICreateAudioDeviceInputNodeResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICreateAudioDeviceInputNodeResult2 is access all ICreateAudioDeviceInputNodeResult2_Interface'Class;
+   type ICreateAudioDeviceInputNodeResult2 is access ICreateAudioDeviceInputNodeResult2_Interface'Class;
 
    type ICreateAudioDeviceOutputNodeResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ICreateAudioDeviceOutputNodeResult is access all ICreateAudioDeviceOutputNodeResult_Interface'Class;
+   type ICreateAudioDeviceOutputNodeResult is access ICreateAudioDeviceOutputNodeResult_Interface'Class;
    type ICreateAudioDeviceOutputNodeResult_Ptr is access all ICreateAudioDeviceOutputNodeResult;
 
    type ICreateAudioDeviceOutputNodeResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICreateAudioDeviceOutputNodeResult2 is access all ICreateAudioDeviceOutputNodeResult2_Interface'Class;
+   type ICreateAudioDeviceOutputNodeResult2 is access ICreateAudioDeviceOutputNodeResult2_Interface'Class;
 
    type ICreateAudioFileInputNodeResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ICreateAudioFileInputNodeResult is access all ICreateAudioFileInputNodeResult_Interface'Class;
+   type ICreateAudioFileInputNodeResult is access ICreateAudioFileInputNodeResult_Interface'Class;
    type ICreateAudioFileInputNodeResult_Ptr is access all ICreateAudioFileInputNodeResult;
 
    type ICreateAudioFileInputNodeResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICreateAudioFileInputNodeResult2 is access all ICreateAudioFileInputNodeResult2_Interface'Class;
+   type ICreateAudioFileInputNodeResult2 is access ICreateAudioFileInputNodeResult2_Interface'Class;
 
    type ICreateAudioFileOutputNodeResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ICreateAudioFileOutputNodeResult is access all ICreateAudioFileOutputNodeResult_Interface'Class;
+   type ICreateAudioFileOutputNodeResult is access ICreateAudioFileOutputNodeResult_Interface'Class;
    type ICreateAudioFileOutputNodeResult_Ptr is access all ICreateAudioFileOutputNodeResult;
 
    type ICreateAudioFileOutputNodeResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICreateAudioFileOutputNodeResult2 is access all ICreateAudioFileOutputNodeResult2_Interface'Class;
+   type ICreateAudioFileOutputNodeResult2 is access ICreateAudioFileOutputNodeResult2_Interface'Class;
 
    type ICreateAudioGraphResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ICreateAudioGraphResult is access all ICreateAudioGraphResult_Interface'Class;
+   type ICreateAudioGraphResult is access ICreateAudioGraphResult_Interface'Class;
    type ICreateAudioGraphResult_Ptr is access all ICreateAudioGraphResult;
 
    type ICreateAudioGraphResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICreateAudioGraphResult2 is access all ICreateAudioGraphResult2_Interface'Class;
+   type ICreateAudioGraphResult2 is access ICreateAudioGraphResult2_Interface'Class;
 
    type ICreateMediaSourceAudioInputNodeResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ICreateMediaSourceAudioInputNodeResult is access all ICreateMediaSourceAudioInputNodeResult_Interface'Class;
+   type ICreateMediaSourceAudioInputNodeResult is access ICreateMediaSourceAudioInputNodeResult_Interface'Class;
    type ICreateMediaSourceAudioInputNodeResult_Ptr is access all ICreateMediaSourceAudioInputNodeResult;
 
    type ICreateMediaSourceAudioInputNodeResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICreateMediaSourceAudioInputNodeResult2 is access all ICreateMediaSourceAudioInputNodeResult2_Interface'Class;
+   type ICreateMediaSourceAudioInputNodeResult2 is access ICreateMediaSourceAudioInputNodeResult2_Interface'Class;
 
    type IEchoEffectDefinition_Interface is interface and WinRt.IInspectable_Interface;
-   type IEchoEffectDefinition is access all IEchoEffectDefinition_Interface'Class;
+   type IEchoEffectDefinition is access IEchoEffectDefinition_Interface'Class;
    type IEchoEffectDefinition_Ptr is access all IEchoEffectDefinition;
 
    type IEchoEffectDefinitionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IEchoEffectDefinitionFactory is access all IEchoEffectDefinitionFactory_Interface'Class;
+   type IEchoEffectDefinitionFactory is access IEchoEffectDefinitionFactory_Interface'Class;
 
    type IEqualizerBand_Interface is interface and WinRt.IInspectable_Interface;
-   type IEqualizerBand is access all IEqualizerBand_Interface'Class;
+   type IEqualizerBand is access IEqualizerBand_Interface'Class;
    type IEqualizerBand_Ptr is access all IEqualizerBand;
 
    type IEqualizerEffectDefinition_Interface is interface and WinRt.IInspectable_Interface;
-   type IEqualizerEffectDefinition is access all IEqualizerEffectDefinition_Interface'Class;
+   type IEqualizerEffectDefinition is access IEqualizerEffectDefinition_Interface'Class;
    type IEqualizerEffectDefinition_Ptr is access all IEqualizerEffectDefinition;
 
    type IEqualizerEffectDefinitionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IEqualizerEffectDefinitionFactory is access all IEqualizerEffectDefinitionFactory_Interface'Class;
+   type IEqualizerEffectDefinitionFactory is access IEqualizerEffectDefinitionFactory_Interface'Class;
 
    type IFrameInputNodeQuantumStartedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameInputNodeQuantumStartedEventArgs is access all IFrameInputNodeQuantumStartedEventArgs_Interface'Class;
+   type IFrameInputNodeQuantumStartedEventArgs is access IFrameInputNodeQuantumStartedEventArgs_Interface'Class;
    type IFrameInputNodeQuantumStartedEventArgs_Ptr is access all IFrameInputNodeQuantumStartedEventArgs;
 
    type ILimiterEffectDefinition_Interface is interface and WinRt.IInspectable_Interface;
-   type ILimiterEffectDefinition is access all ILimiterEffectDefinition_Interface'Class;
+   type ILimiterEffectDefinition is access ILimiterEffectDefinition_Interface'Class;
    type ILimiterEffectDefinition_Ptr is access all ILimiterEffectDefinition;
 
    type ILimiterEffectDefinitionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ILimiterEffectDefinitionFactory is access all ILimiterEffectDefinitionFactory_Interface'Class;
+   type ILimiterEffectDefinitionFactory is access ILimiterEffectDefinitionFactory_Interface'Class;
 
    type IMediaSourceAudioInputNode_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaSourceAudioInputNode is access all IMediaSourceAudioInputNode_Interface'Class;
+   type IMediaSourceAudioInputNode is access IMediaSourceAudioInputNode_Interface'Class;
    type IMediaSourceAudioInputNode_Ptr is access all IMediaSourceAudioInputNode;
 
    type IReverbEffectDefinition_Interface is interface and WinRt.IInspectable_Interface;
-   type IReverbEffectDefinition is access all IReverbEffectDefinition_Interface'Class;
+   type IReverbEffectDefinition is access IReverbEffectDefinition_Interface'Class;
    type IReverbEffectDefinition_Ptr is access all IReverbEffectDefinition;
 
    type IReverbEffectDefinitionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IReverbEffectDefinitionFactory is access all IReverbEffectDefinitionFactory_Interface'Class;
+   type IReverbEffectDefinitionFactory is access IReverbEffectDefinitionFactory_Interface'Class;
 
    type ISetDefaultSpatialAudioFormatResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ISetDefaultSpatialAudioFormatResult is access all ISetDefaultSpatialAudioFormatResult_Interface'Class;
+   type ISetDefaultSpatialAudioFormatResult is access ISetDefaultSpatialAudioFormatResult_Interface'Class;
    type ISetDefaultSpatialAudioFormatResult_Ptr is access all ISetDefaultSpatialAudioFormatResult;
 
    type ISpatialAudioDeviceConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialAudioDeviceConfiguration is access all ISpatialAudioDeviceConfiguration_Interface'Class;
+   type ISpatialAudioDeviceConfiguration is access ISpatialAudioDeviceConfiguration_Interface'Class;
    type ISpatialAudioDeviceConfiguration_Ptr is access all ISpatialAudioDeviceConfiguration;
 
    type ISpatialAudioDeviceConfigurationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialAudioDeviceConfigurationStatics is access all ISpatialAudioDeviceConfigurationStatics_Interface'Class;
+   type ISpatialAudioDeviceConfigurationStatics is access ISpatialAudioDeviceConfigurationStatics_Interface'Class;
 
    type ISpatialAudioFormatConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialAudioFormatConfiguration is access all ISpatialAudioFormatConfiguration_Interface'Class;
+   type ISpatialAudioFormatConfiguration is access ISpatialAudioFormatConfiguration_Interface'Class;
    type ISpatialAudioFormatConfiguration_Ptr is access all ISpatialAudioFormatConfiguration;
 
    type ISpatialAudioFormatConfigurationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialAudioFormatConfigurationStatics is access all ISpatialAudioFormatConfigurationStatics_Interface'Class;
+   type ISpatialAudioFormatConfigurationStatics is access ISpatialAudioFormatConfigurationStatics_Interface'Class;
 
    type ISpatialAudioFormatSubtypeStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialAudioFormatSubtypeStatics is access all ISpatialAudioFormatSubtypeStatics_Interface'Class;
+   type ISpatialAudioFormatSubtypeStatics is access ISpatialAudioFormatSubtypeStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

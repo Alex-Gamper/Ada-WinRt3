@@ -42,11 +42,11 @@ package WinRt.Windows.Foundation.Collections is
    -----------------------------------------------------------------------------
 
    type IPropertySet_Interface is interface and WinRt.IInspectable_Interface;
-   type IPropertySet is access all IPropertySet_Interface'Class;
+   type IPropertySet is access IPropertySet_Interface'Class;
    type IPropertySet_Ptr is access all IPropertySet;
 
    type IVectorChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IVectorChangedEventArgs is access all IVectorChangedEventArgs_Interface'Class;
+   type IVectorChangedEventArgs is access IVectorChangedEventArgs_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

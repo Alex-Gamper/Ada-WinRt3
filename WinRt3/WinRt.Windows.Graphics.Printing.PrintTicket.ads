@@ -41,35 +41,35 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
    -----------------------------------------------------------------------------
 
    type IPrintTicketCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTicketCapabilities is access all IPrintTicketCapabilities_Interface'Class;
+   type IPrintTicketCapabilities is access IPrintTicketCapabilities_Interface'Class;
    type IPrintTicketCapabilities_Ptr is access all IPrintTicketCapabilities;
 
    type IPrintTicketFeature_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTicketFeature is access all IPrintTicketFeature_Interface'Class;
+   type IPrintTicketFeature is access IPrintTicketFeature_Interface'Class;
    type IPrintTicketFeature_Ptr is access all IPrintTicketFeature;
 
    type IPrintTicketOption_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTicketOption is access all IPrintTicketOption_Interface'Class;
+   type IPrintTicketOption is access IPrintTicketOption_Interface'Class;
    type IPrintTicketOption_Ptr is access all IPrintTicketOption;
 
    type IPrintTicketParameterDefinition_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTicketParameterDefinition is access all IPrintTicketParameterDefinition_Interface'Class;
+   type IPrintTicketParameterDefinition is access IPrintTicketParameterDefinition_Interface'Class;
    type IPrintTicketParameterDefinition_Ptr is access all IPrintTicketParameterDefinition;
 
    type IPrintTicketParameterInitializer_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTicketParameterInitializer is access all IPrintTicketParameterInitializer_Interface'Class;
+   type IPrintTicketParameterInitializer is access IPrintTicketParameterInitializer_Interface'Class;
    type IPrintTicketParameterInitializer_Ptr is access all IPrintTicketParameterInitializer;
 
    type IPrintTicketValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTicketValue is access all IPrintTicketValue_Interface'Class;
+   type IPrintTicketValue is access IPrintTicketValue_Interface'Class;
    type IPrintTicketValue_Ptr is access all IPrintTicketValue;
 
    type IWorkflowPrintTicket_Interface is interface and WinRt.IInspectable_Interface;
-   type IWorkflowPrintTicket is access all IWorkflowPrintTicket_Interface'Class;
+   type IWorkflowPrintTicket is access IWorkflowPrintTicket_Interface'Class;
    type IWorkflowPrintTicket_Ptr is access all IWorkflowPrintTicket;
 
    type IWorkflowPrintTicketValidationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IWorkflowPrintTicketValidationResult is access all IWorkflowPrintTicketValidationResult_Interface'Class;
+   type IWorkflowPrintTicketValidationResult is access IWorkflowPrintTicketValidationResult_Interface'Class;
    type IWorkflowPrintTicketValidationResult_Ptr is access all IWorkflowPrintTicketValidationResult;
 
    -----------------------------------------------------------------------------

@@ -41,22 +41,22 @@ package WinRt.Windows.Media.FaceAnalysis is
    -----------------------------------------------------------------------------
 
    type IDetectedFace_Interface is interface and WinRt.IInspectable_Interface;
-   type IDetectedFace is access all IDetectedFace_Interface'Class;
+   type IDetectedFace is access IDetectedFace_Interface'Class;
    type IDetectedFace_Ptr is access all IDetectedFace;
 
    type IFaceDetector_Interface is interface and WinRt.IInspectable_Interface;
-   type IFaceDetector is access all IFaceDetector_Interface'Class;
+   type IFaceDetector is access IFaceDetector_Interface'Class;
    type IFaceDetector_Ptr is access all IFaceDetector;
 
    type IFaceDetectorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFaceDetectorStatics is access all IFaceDetectorStatics_Interface'Class;
+   type IFaceDetectorStatics is access IFaceDetectorStatics_Interface'Class;
 
    type IFaceTracker_Interface is interface and WinRt.IInspectable_Interface;
-   type IFaceTracker is access all IFaceTracker_Interface'Class;
+   type IFaceTracker is access IFaceTracker_Interface'Class;
    type IFaceTracker_Ptr is access all IFaceTracker;
 
    type IFaceTrackerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFaceTrackerStatics is access all IFaceTrackerStatics_Interface'Class;
+   type IFaceTrackerStatics is access IFaceTrackerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

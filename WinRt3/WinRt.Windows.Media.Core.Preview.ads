@@ -39,7 +39,7 @@ package WinRt.Windows.Media.Core.Preview is
    -----------------------------------------------------------------------------
 
    type ISoundLevelBrokerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISoundLevelBrokerStatics is access all ISoundLevelBrokerStatics_Interface'Class;
+   type ISoundLevelBrokerStatics is access ISoundLevelBrokerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

@@ -39,11 +39,11 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution is
    -----------------------------------------------------------------------------
 
    type IExtendedExecutionRevokedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IExtendedExecutionRevokedEventArgs is access all IExtendedExecutionRevokedEventArgs_Interface'Class;
+   type IExtendedExecutionRevokedEventArgs is access IExtendedExecutionRevokedEventArgs_Interface'Class;
    type IExtendedExecutionRevokedEventArgs_Ptr is access all IExtendedExecutionRevokedEventArgs;
 
    type IExtendedExecutionSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IExtendedExecutionSession is access all IExtendedExecutionSession_Interface'Class;
+   type IExtendedExecutionSession is access IExtendedExecutionSession_Interface'Class;
    type IExtendedExecutionSession_Ptr is access all IExtendedExecutionSession;
 
    -----------------------------------------------------------------------------

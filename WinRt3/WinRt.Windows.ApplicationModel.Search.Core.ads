@@ -41,19 +41,19 @@ package WinRt.Windows.ApplicationModel.Search.Core is
    -----------------------------------------------------------------------------
 
    type IRequestingFocusOnKeyboardInputEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRequestingFocusOnKeyboardInputEventArgs is access all IRequestingFocusOnKeyboardInputEventArgs_Interface'Class;
+   type IRequestingFocusOnKeyboardInputEventArgs is access IRequestingFocusOnKeyboardInputEventArgs_Interface'Class;
    type IRequestingFocusOnKeyboardInputEventArgs_Ptr is access all IRequestingFocusOnKeyboardInputEventArgs;
 
    type ISearchSuggestion_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchSuggestion is access all ISearchSuggestion_Interface'Class;
+   type ISearchSuggestion is access ISearchSuggestion_Interface'Class;
    type ISearchSuggestion_Ptr is access all ISearchSuggestion;
 
    type ISearchSuggestionManager_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchSuggestionManager is access all ISearchSuggestionManager_Interface'Class;
+   type ISearchSuggestionManager is access ISearchSuggestionManager_Interface'Class;
    type ISearchSuggestionManager_Ptr is access all ISearchSuggestionManager;
 
    type ISearchSuggestionsRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchSuggestionsRequestedEventArgs is access all ISearchSuggestionsRequestedEventArgs_Interface'Class;
+   type ISearchSuggestionsRequestedEventArgs is access ISearchSuggestionsRequestedEventArgs_Interface'Class;
    type ISearchSuggestionsRequestedEventArgs_Ptr is access all ISearchSuggestionsRequestedEventArgs;
 
    -----------------------------------------------------------------------------

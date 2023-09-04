@@ -38,28 +38,28 @@ package WinRt.Windows.UI is
    -----------------------------------------------------------------------------
 
    type IColorHelper_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorHelper is access all IColorHelper_Interface'Class;
+   type IColorHelper is access IColorHelper_Interface'Class;
    type IColorHelper_Ptr is access all IColorHelper;
 
    type IColorHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorHelperStatics is access all IColorHelperStatics_Interface'Class;
+   type IColorHelperStatics is access IColorHelperStatics_Interface'Class;
 
    type IColorHelperStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorHelperStatics2 is access all IColorHelperStatics2_Interface'Class;
+   type IColorHelperStatics2 is access IColorHelperStatics2_Interface'Class;
 
    type IColors_Interface is interface and WinRt.IInspectable_Interface;
-   type IColors is access all IColors_Interface'Class;
+   type IColors is access IColors_Interface'Class;
    type IColors_Ptr is access all IColors;
 
    type IColorsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorsStatics is access all IColorsStatics_Interface'Class;
+   type IColorsStatics is access IColorsStatics_Interface'Class;
 
    type IUIContentRoot_Interface is interface and WinRt.IInspectable_Interface;
-   type IUIContentRoot is access all IUIContentRoot_Interface'Class;
+   type IUIContentRoot is access IUIContentRoot_Interface'Class;
    type IUIContentRoot_Ptr is access all IUIContentRoot;
 
    type IUIContext_Interface is interface and WinRt.IInspectable_Interface;
-   type IUIContext is access all IUIContext_Interface'Class;
+   type IUIContext is access IUIContext_Interface'Class;
    type IUIContext_Ptr is access all IUIContext;
 
    -----------------------------------------------------------------------------

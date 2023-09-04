@@ -39,11 +39,11 @@ package WinRt.Windows.System.Inventory is
    -----------------------------------------------------------------------------
 
    type IInstalledDesktopApp_Interface is interface and WinRt.IInspectable_Interface;
-   type IInstalledDesktopApp is access all IInstalledDesktopApp_Interface'Class;
+   type IInstalledDesktopApp is access IInstalledDesktopApp_Interface'Class;
    type IInstalledDesktopApp_Ptr is access all IInstalledDesktopApp;
 
    type IInstalledDesktopAppStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IInstalledDesktopAppStatics is access all IInstalledDesktopAppStatics_Interface'Class;
+   type IInstalledDesktopAppStatics is access IInstalledDesktopAppStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

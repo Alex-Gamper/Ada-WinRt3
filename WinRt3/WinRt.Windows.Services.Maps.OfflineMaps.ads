@@ -41,19 +41,19 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
    -----------------------------------------------------------------------------
 
    type IOfflineMapPackage_Interface is interface and WinRt.IInspectable_Interface;
-   type IOfflineMapPackage is access all IOfflineMapPackage_Interface'Class;
+   type IOfflineMapPackage is access IOfflineMapPackage_Interface'Class;
    type IOfflineMapPackage_Ptr is access all IOfflineMapPackage;
 
    type IOfflineMapPackageQueryResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IOfflineMapPackageQueryResult is access all IOfflineMapPackageQueryResult_Interface'Class;
+   type IOfflineMapPackageQueryResult is access IOfflineMapPackageQueryResult_Interface'Class;
    type IOfflineMapPackageQueryResult_Ptr is access all IOfflineMapPackageQueryResult;
 
    type IOfflineMapPackageStartDownloadResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IOfflineMapPackageStartDownloadResult is access all IOfflineMapPackageStartDownloadResult_Interface'Class;
+   type IOfflineMapPackageStartDownloadResult is access IOfflineMapPackageStartDownloadResult_Interface'Class;
    type IOfflineMapPackageStartDownloadResult_Ptr is access all IOfflineMapPackageStartDownloadResult;
 
    type IOfflineMapPackageStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IOfflineMapPackageStatics is access all IOfflineMapPackageStatics_Interface'Class;
+   type IOfflineMapPackageStatics is access IOfflineMapPackageStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

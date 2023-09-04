@@ -41,30 +41,30 @@ package WinRt.Windows.Media.AppRecording is
    -----------------------------------------------------------------------------
 
    type IAppRecordingManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppRecordingManager is access all IAppRecordingManager_Interface'Class;
+   type IAppRecordingManager is access IAppRecordingManager_Interface'Class;
    type IAppRecordingManager_Ptr is access all IAppRecordingManager;
 
    type IAppRecordingManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppRecordingManagerStatics is access all IAppRecordingManagerStatics_Interface'Class;
+   type IAppRecordingManagerStatics is access IAppRecordingManagerStatics_Interface'Class;
 
    type IAppRecordingResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppRecordingResult is access all IAppRecordingResult_Interface'Class;
+   type IAppRecordingResult is access IAppRecordingResult_Interface'Class;
    type IAppRecordingResult_Ptr is access all IAppRecordingResult;
 
    type IAppRecordingSaveScreenshotResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppRecordingSaveScreenshotResult is access all IAppRecordingSaveScreenshotResult_Interface'Class;
+   type IAppRecordingSaveScreenshotResult is access IAppRecordingSaveScreenshotResult_Interface'Class;
    type IAppRecordingSaveScreenshotResult_Ptr is access all IAppRecordingSaveScreenshotResult;
 
    type IAppRecordingSavedScreenshotInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppRecordingSavedScreenshotInfo is access all IAppRecordingSavedScreenshotInfo_Interface'Class;
+   type IAppRecordingSavedScreenshotInfo is access IAppRecordingSavedScreenshotInfo_Interface'Class;
    type IAppRecordingSavedScreenshotInfo_Ptr is access all IAppRecordingSavedScreenshotInfo;
 
    type IAppRecordingStatus_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppRecordingStatus is access all IAppRecordingStatus_Interface'Class;
+   type IAppRecordingStatus is access IAppRecordingStatus_Interface'Class;
    type IAppRecordingStatus_Ptr is access all IAppRecordingStatus;
 
    type IAppRecordingStatusDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppRecordingStatusDetails is access all IAppRecordingStatusDetails_Interface'Class;
+   type IAppRecordingStatusDetails is access IAppRecordingStatusDetails_Interface'Class;
    type IAppRecordingStatusDetails_Ptr is access all IAppRecordingStatusDetails;
 
    -----------------------------------------------------------------------------

@@ -43,246 +43,246 @@ package WinRt.Windows.Web.Http.Headers is
    -----------------------------------------------------------------------------
 
    type IHttpCacheDirectiveHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpCacheDirectiveHeaderValueCollection is access all IHttpCacheDirectiveHeaderValueCollection_Interface'Class;
+   type IHttpCacheDirectiveHeaderValueCollection is access IHttpCacheDirectiveHeaderValueCollection_Interface'Class;
    type IHttpCacheDirectiveHeaderValueCollection_Ptr is access all IHttpCacheDirectiveHeaderValueCollection;
 
    type IHttpChallengeHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpChallengeHeaderValue is access all IHttpChallengeHeaderValue_Interface'Class;
+   type IHttpChallengeHeaderValue is access IHttpChallengeHeaderValue_Interface'Class;
    type IHttpChallengeHeaderValue_Ptr is access all IHttpChallengeHeaderValue;
    type IHttpChallengeHeaderValue_Array is array (Natural range <>) of IHttpChallengeHeaderValue;
 
    type IHttpChallengeHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpChallengeHeaderValueCollection is access all IHttpChallengeHeaderValueCollection_Interface'Class;
+   type IHttpChallengeHeaderValueCollection is access IHttpChallengeHeaderValueCollection_Interface'Class;
    type IHttpChallengeHeaderValueCollection_Ptr is access all IHttpChallengeHeaderValueCollection;
 
    type IHttpChallengeHeaderValueFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpChallengeHeaderValueFactory is access all IHttpChallengeHeaderValueFactory_Interface'Class;
+   type IHttpChallengeHeaderValueFactory is access IHttpChallengeHeaderValueFactory_Interface'Class;
 
    type IHttpChallengeHeaderValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpChallengeHeaderValueStatics is access all IHttpChallengeHeaderValueStatics_Interface'Class;
+   type IHttpChallengeHeaderValueStatics is access IHttpChallengeHeaderValueStatics_Interface'Class;
 
    type IHttpConnectionOptionHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpConnectionOptionHeaderValue is access all IHttpConnectionOptionHeaderValue_Interface'Class;
+   type IHttpConnectionOptionHeaderValue is access IHttpConnectionOptionHeaderValue_Interface'Class;
    type IHttpConnectionOptionHeaderValue_Ptr is access all IHttpConnectionOptionHeaderValue;
    type IHttpConnectionOptionHeaderValue_Array is array (Natural range <>) of IHttpConnectionOptionHeaderValue;
 
    type IHttpConnectionOptionHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpConnectionOptionHeaderValueCollection is access all IHttpConnectionOptionHeaderValueCollection_Interface'Class;
+   type IHttpConnectionOptionHeaderValueCollection is access IHttpConnectionOptionHeaderValueCollection_Interface'Class;
    type IHttpConnectionOptionHeaderValueCollection_Ptr is access all IHttpConnectionOptionHeaderValueCollection;
 
    type IHttpConnectionOptionHeaderValueFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpConnectionOptionHeaderValueFactory is access all IHttpConnectionOptionHeaderValueFactory_Interface'Class;
+   type IHttpConnectionOptionHeaderValueFactory is access IHttpConnectionOptionHeaderValueFactory_Interface'Class;
 
    type IHttpConnectionOptionHeaderValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpConnectionOptionHeaderValueStatics is access all IHttpConnectionOptionHeaderValueStatics_Interface'Class;
+   type IHttpConnectionOptionHeaderValueStatics is access IHttpConnectionOptionHeaderValueStatics_Interface'Class;
 
    type IHttpContentCodingHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpContentCodingHeaderValue is access all IHttpContentCodingHeaderValue_Interface'Class;
+   type IHttpContentCodingHeaderValue is access IHttpContentCodingHeaderValue_Interface'Class;
    type IHttpContentCodingHeaderValue_Ptr is access all IHttpContentCodingHeaderValue;
    type IHttpContentCodingHeaderValue_Array is array (Natural range <>) of IHttpContentCodingHeaderValue;
 
    type IHttpContentCodingHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpContentCodingHeaderValueCollection is access all IHttpContentCodingHeaderValueCollection_Interface'Class;
+   type IHttpContentCodingHeaderValueCollection is access IHttpContentCodingHeaderValueCollection_Interface'Class;
    type IHttpContentCodingHeaderValueCollection_Ptr is access all IHttpContentCodingHeaderValueCollection;
 
    type IHttpContentCodingHeaderValueFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpContentCodingHeaderValueFactory is access all IHttpContentCodingHeaderValueFactory_Interface'Class;
+   type IHttpContentCodingHeaderValueFactory is access IHttpContentCodingHeaderValueFactory_Interface'Class;
 
    type IHttpContentCodingHeaderValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpContentCodingHeaderValueStatics is access all IHttpContentCodingHeaderValueStatics_Interface'Class;
+   type IHttpContentCodingHeaderValueStatics is access IHttpContentCodingHeaderValueStatics_Interface'Class;
 
    type IHttpContentCodingWithQualityHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpContentCodingWithQualityHeaderValue is access all IHttpContentCodingWithQualityHeaderValue_Interface'Class;
+   type IHttpContentCodingWithQualityHeaderValue is access IHttpContentCodingWithQualityHeaderValue_Interface'Class;
    type IHttpContentCodingWithQualityHeaderValue_Ptr is access all IHttpContentCodingWithQualityHeaderValue;
    type IHttpContentCodingWithQualityHeaderValue_Array is array (Natural range <>) of IHttpContentCodingWithQualityHeaderValue;
 
    type IHttpContentCodingWithQualityHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpContentCodingWithQualityHeaderValueCollection is access all IHttpContentCodingWithQualityHeaderValueCollection_Interface'Class;
+   type IHttpContentCodingWithQualityHeaderValueCollection is access IHttpContentCodingWithQualityHeaderValueCollection_Interface'Class;
    type IHttpContentCodingWithQualityHeaderValueCollection_Ptr is access all IHttpContentCodingWithQualityHeaderValueCollection;
 
    type IHttpContentCodingWithQualityHeaderValueFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpContentCodingWithQualityHeaderValueFactory is access all IHttpContentCodingWithQualityHeaderValueFactory_Interface'Class;
+   type IHttpContentCodingWithQualityHeaderValueFactory is access IHttpContentCodingWithQualityHeaderValueFactory_Interface'Class;
 
    type IHttpContentCodingWithQualityHeaderValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpContentCodingWithQualityHeaderValueStatics is access all IHttpContentCodingWithQualityHeaderValueStatics_Interface'Class;
+   type IHttpContentCodingWithQualityHeaderValueStatics is access IHttpContentCodingWithQualityHeaderValueStatics_Interface'Class;
 
    type IHttpContentDispositionHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpContentDispositionHeaderValue is access all IHttpContentDispositionHeaderValue_Interface'Class;
+   type IHttpContentDispositionHeaderValue is access IHttpContentDispositionHeaderValue_Interface'Class;
    type IHttpContentDispositionHeaderValue_Ptr is access all IHttpContentDispositionHeaderValue;
 
    type IHttpContentDispositionHeaderValueFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpContentDispositionHeaderValueFactory is access all IHttpContentDispositionHeaderValueFactory_Interface'Class;
+   type IHttpContentDispositionHeaderValueFactory is access IHttpContentDispositionHeaderValueFactory_Interface'Class;
 
    type IHttpContentDispositionHeaderValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpContentDispositionHeaderValueStatics is access all IHttpContentDispositionHeaderValueStatics_Interface'Class;
+   type IHttpContentDispositionHeaderValueStatics is access IHttpContentDispositionHeaderValueStatics_Interface'Class;
 
    type IHttpContentHeaderCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpContentHeaderCollection is access all IHttpContentHeaderCollection_Interface'Class;
+   type IHttpContentHeaderCollection is access IHttpContentHeaderCollection_Interface'Class;
    type IHttpContentHeaderCollection_Ptr is access all IHttpContentHeaderCollection;
 
    type IHttpContentRangeHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpContentRangeHeaderValue is access all IHttpContentRangeHeaderValue_Interface'Class;
+   type IHttpContentRangeHeaderValue is access IHttpContentRangeHeaderValue_Interface'Class;
    type IHttpContentRangeHeaderValue_Ptr is access all IHttpContentRangeHeaderValue;
 
    type IHttpContentRangeHeaderValueFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpContentRangeHeaderValueFactory is access all IHttpContentRangeHeaderValueFactory_Interface'Class;
+   type IHttpContentRangeHeaderValueFactory is access IHttpContentRangeHeaderValueFactory_Interface'Class;
 
    type IHttpContentRangeHeaderValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpContentRangeHeaderValueStatics is access all IHttpContentRangeHeaderValueStatics_Interface'Class;
+   type IHttpContentRangeHeaderValueStatics is access IHttpContentRangeHeaderValueStatics_Interface'Class;
 
    type IHttpCookiePairHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpCookiePairHeaderValue is access all IHttpCookiePairHeaderValue_Interface'Class;
+   type IHttpCookiePairHeaderValue is access IHttpCookiePairHeaderValue_Interface'Class;
    type IHttpCookiePairHeaderValue_Ptr is access all IHttpCookiePairHeaderValue;
    type IHttpCookiePairHeaderValue_Array is array (Natural range <>) of IHttpCookiePairHeaderValue;
 
    type IHttpCookiePairHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpCookiePairHeaderValueCollection is access all IHttpCookiePairHeaderValueCollection_Interface'Class;
+   type IHttpCookiePairHeaderValueCollection is access IHttpCookiePairHeaderValueCollection_Interface'Class;
    type IHttpCookiePairHeaderValueCollection_Ptr is access all IHttpCookiePairHeaderValueCollection;
 
    type IHttpCookiePairHeaderValueFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpCookiePairHeaderValueFactory is access all IHttpCookiePairHeaderValueFactory_Interface'Class;
+   type IHttpCookiePairHeaderValueFactory is access IHttpCookiePairHeaderValueFactory_Interface'Class;
 
    type IHttpCookiePairHeaderValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpCookiePairHeaderValueStatics is access all IHttpCookiePairHeaderValueStatics_Interface'Class;
+   type IHttpCookiePairHeaderValueStatics is access IHttpCookiePairHeaderValueStatics_Interface'Class;
 
    type IHttpCredentialsHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpCredentialsHeaderValue is access all IHttpCredentialsHeaderValue_Interface'Class;
+   type IHttpCredentialsHeaderValue is access IHttpCredentialsHeaderValue_Interface'Class;
    type IHttpCredentialsHeaderValue_Ptr is access all IHttpCredentialsHeaderValue;
 
    type IHttpCredentialsHeaderValueFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpCredentialsHeaderValueFactory is access all IHttpCredentialsHeaderValueFactory_Interface'Class;
+   type IHttpCredentialsHeaderValueFactory is access IHttpCredentialsHeaderValueFactory_Interface'Class;
 
    type IHttpCredentialsHeaderValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpCredentialsHeaderValueStatics is access all IHttpCredentialsHeaderValueStatics_Interface'Class;
+   type IHttpCredentialsHeaderValueStatics is access IHttpCredentialsHeaderValueStatics_Interface'Class;
 
    type IHttpDateOrDeltaHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpDateOrDeltaHeaderValue is access all IHttpDateOrDeltaHeaderValue_Interface'Class;
+   type IHttpDateOrDeltaHeaderValue is access IHttpDateOrDeltaHeaderValue_Interface'Class;
    type IHttpDateOrDeltaHeaderValue_Ptr is access all IHttpDateOrDeltaHeaderValue;
 
    type IHttpDateOrDeltaHeaderValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpDateOrDeltaHeaderValueStatics is access all IHttpDateOrDeltaHeaderValueStatics_Interface'Class;
+   type IHttpDateOrDeltaHeaderValueStatics is access IHttpDateOrDeltaHeaderValueStatics_Interface'Class;
 
    type IHttpExpectationHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpExpectationHeaderValue is access all IHttpExpectationHeaderValue_Interface'Class;
+   type IHttpExpectationHeaderValue is access IHttpExpectationHeaderValue_Interface'Class;
    type IHttpExpectationHeaderValue_Ptr is access all IHttpExpectationHeaderValue;
    type IHttpExpectationHeaderValue_Array is array (Natural range <>) of IHttpExpectationHeaderValue;
 
    type IHttpExpectationHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpExpectationHeaderValueCollection is access all IHttpExpectationHeaderValueCollection_Interface'Class;
+   type IHttpExpectationHeaderValueCollection is access IHttpExpectationHeaderValueCollection_Interface'Class;
    type IHttpExpectationHeaderValueCollection_Ptr is access all IHttpExpectationHeaderValueCollection;
 
    type IHttpExpectationHeaderValueFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpExpectationHeaderValueFactory is access all IHttpExpectationHeaderValueFactory_Interface'Class;
+   type IHttpExpectationHeaderValueFactory is access IHttpExpectationHeaderValueFactory_Interface'Class;
 
    type IHttpExpectationHeaderValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpExpectationHeaderValueStatics is access all IHttpExpectationHeaderValueStatics_Interface'Class;
+   type IHttpExpectationHeaderValueStatics is access IHttpExpectationHeaderValueStatics_Interface'Class;
 
    type IHttpLanguageHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpLanguageHeaderValueCollection is access all IHttpLanguageHeaderValueCollection_Interface'Class;
+   type IHttpLanguageHeaderValueCollection is access IHttpLanguageHeaderValueCollection_Interface'Class;
    type IHttpLanguageHeaderValueCollection_Ptr is access all IHttpLanguageHeaderValueCollection;
 
    type IHttpLanguageRangeWithQualityHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpLanguageRangeWithQualityHeaderValue is access all IHttpLanguageRangeWithQualityHeaderValue_Interface'Class;
+   type IHttpLanguageRangeWithQualityHeaderValue is access IHttpLanguageRangeWithQualityHeaderValue_Interface'Class;
    type IHttpLanguageRangeWithQualityHeaderValue_Ptr is access all IHttpLanguageRangeWithQualityHeaderValue;
    type IHttpLanguageRangeWithQualityHeaderValue_Array is array (Natural range <>) of IHttpLanguageRangeWithQualityHeaderValue;
 
    type IHttpLanguageRangeWithQualityHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpLanguageRangeWithQualityHeaderValueCollection is access all IHttpLanguageRangeWithQualityHeaderValueCollection_Interface'Class;
+   type IHttpLanguageRangeWithQualityHeaderValueCollection is access IHttpLanguageRangeWithQualityHeaderValueCollection_Interface'Class;
    type IHttpLanguageRangeWithQualityHeaderValueCollection_Ptr is access all IHttpLanguageRangeWithQualityHeaderValueCollection;
 
    type IHttpLanguageRangeWithQualityHeaderValueFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpLanguageRangeWithQualityHeaderValueFactory is access all IHttpLanguageRangeWithQualityHeaderValueFactory_Interface'Class;
+   type IHttpLanguageRangeWithQualityHeaderValueFactory is access IHttpLanguageRangeWithQualityHeaderValueFactory_Interface'Class;
 
    type IHttpLanguageRangeWithQualityHeaderValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpLanguageRangeWithQualityHeaderValueStatics is access all IHttpLanguageRangeWithQualityHeaderValueStatics_Interface'Class;
+   type IHttpLanguageRangeWithQualityHeaderValueStatics is access IHttpLanguageRangeWithQualityHeaderValueStatics_Interface'Class;
 
    type IHttpMediaTypeHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpMediaTypeHeaderValue is access all IHttpMediaTypeHeaderValue_Interface'Class;
+   type IHttpMediaTypeHeaderValue is access IHttpMediaTypeHeaderValue_Interface'Class;
    type IHttpMediaTypeHeaderValue_Ptr is access all IHttpMediaTypeHeaderValue;
 
    type IHttpMediaTypeHeaderValueFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpMediaTypeHeaderValueFactory is access all IHttpMediaTypeHeaderValueFactory_Interface'Class;
+   type IHttpMediaTypeHeaderValueFactory is access IHttpMediaTypeHeaderValueFactory_Interface'Class;
 
    type IHttpMediaTypeHeaderValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpMediaTypeHeaderValueStatics is access all IHttpMediaTypeHeaderValueStatics_Interface'Class;
+   type IHttpMediaTypeHeaderValueStatics is access IHttpMediaTypeHeaderValueStatics_Interface'Class;
 
    type IHttpMediaTypeWithQualityHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpMediaTypeWithQualityHeaderValue is access all IHttpMediaTypeWithQualityHeaderValue_Interface'Class;
+   type IHttpMediaTypeWithQualityHeaderValue is access IHttpMediaTypeWithQualityHeaderValue_Interface'Class;
    type IHttpMediaTypeWithQualityHeaderValue_Ptr is access all IHttpMediaTypeWithQualityHeaderValue;
    type IHttpMediaTypeWithQualityHeaderValue_Array is array (Natural range <>) of IHttpMediaTypeWithQualityHeaderValue;
 
    type IHttpMediaTypeWithQualityHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpMediaTypeWithQualityHeaderValueCollection is access all IHttpMediaTypeWithQualityHeaderValueCollection_Interface'Class;
+   type IHttpMediaTypeWithQualityHeaderValueCollection is access IHttpMediaTypeWithQualityHeaderValueCollection_Interface'Class;
    type IHttpMediaTypeWithQualityHeaderValueCollection_Ptr is access all IHttpMediaTypeWithQualityHeaderValueCollection;
 
    type IHttpMediaTypeWithQualityHeaderValueFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpMediaTypeWithQualityHeaderValueFactory is access all IHttpMediaTypeWithQualityHeaderValueFactory_Interface'Class;
+   type IHttpMediaTypeWithQualityHeaderValueFactory is access IHttpMediaTypeWithQualityHeaderValueFactory_Interface'Class;
 
    type IHttpMediaTypeWithQualityHeaderValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpMediaTypeWithQualityHeaderValueStatics is access all IHttpMediaTypeWithQualityHeaderValueStatics_Interface'Class;
+   type IHttpMediaTypeWithQualityHeaderValueStatics is access IHttpMediaTypeWithQualityHeaderValueStatics_Interface'Class;
 
    type IHttpMethodHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpMethodHeaderValueCollection is access all IHttpMethodHeaderValueCollection_Interface'Class;
+   type IHttpMethodHeaderValueCollection is access IHttpMethodHeaderValueCollection_Interface'Class;
    type IHttpMethodHeaderValueCollection_Ptr is access all IHttpMethodHeaderValueCollection;
 
    type IHttpNameValueHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpNameValueHeaderValue is access all IHttpNameValueHeaderValue_Interface'Class;
+   type IHttpNameValueHeaderValue is access IHttpNameValueHeaderValue_Interface'Class;
    type IHttpNameValueHeaderValue_Ptr is access all IHttpNameValueHeaderValue;
    type IHttpNameValueHeaderValue_Array is array (Natural range <>) of IHttpNameValueHeaderValue;
 
    type IHttpNameValueHeaderValueFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpNameValueHeaderValueFactory is access all IHttpNameValueHeaderValueFactory_Interface'Class;
+   type IHttpNameValueHeaderValueFactory is access IHttpNameValueHeaderValueFactory_Interface'Class;
 
    type IHttpNameValueHeaderValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpNameValueHeaderValueStatics is access all IHttpNameValueHeaderValueStatics_Interface'Class;
+   type IHttpNameValueHeaderValueStatics is access IHttpNameValueHeaderValueStatics_Interface'Class;
 
    type IHttpProductHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpProductHeaderValue is access all IHttpProductHeaderValue_Interface'Class;
+   type IHttpProductHeaderValue is access IHttpProductHeaderValue_Interface'Class;
    type IHttpProductHeaderValue_Ptr is access all IHttpProductHeaderValue;
 
    type IHttpProductHeaderValueFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpProductHeaderValueFactory is access all IHttpProductHeaderValueFactory_Interface'Class;
+   type IHttpProductHeaderValueFactory is access IHttpProductHeaderValueFactory_Interface'Class;
 
    type IHttpProductHeaderValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpProductHeaderValueStatics is access all IHttpProductHeaderValueStatics_Interface'Class;
+   type IHttpProductHeaderValueStatics is access IHttpProductHeaderValueStatics_Interface'Class;
 
    type IHttpProductInfoHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpProductInfoHeaderValue is access all IHttpProductInfoHeaderValue_Interface'Class;
+   type IHttpProductInfoHeaderValue is access IHttpProductInfoHeaderValue_Interface'Class;
    type IHttpProductInfoHeaderValue_Ptr is access all IHttpProductInfoHeaderValue;
    type IHttpProductInfoHeaderValue_Array is array (Natural range <>) of IHttpProductInfoHeaderValue;
 
    type IHttpProductInfoHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpProductInfoHeaderValueCollection is access all IHttpProductInfoHeaderValueCollection_Interface'Class;
+   type IHttpProductInfoHeaderValueCollection is access IHttpProductInfoHeaderValueCollection_Interface'Class;
    type IHttpProductInfoHeaderValueCollection_Ptr is access all IHttpProductInfoHeaderValueCollection;
 
    type IHttpProductInfoHeaderValueFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpProductInfoHeaderValueFactory is access all IHttpProductInfoHeaderValueFactory_Interface'Class;
+   type IHttpProductInfoHeaderValueFactory is access IHttpProductInfoHeaderValueFactory_Interface'Class;
 
    type IHttpProductInfoHeaderValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpProductInfoHeaderValueStatics is access all IHttpProductInfoHeaderValueStatics_Interface'Class;
+   type IHttpProductInfoHeaderValueStatics is access IHttpProductInfoHeaderValueStatics_Interface'Class;
 
    type IHttpRequestHeaderCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpRequestHeaderCollection is access all IHttpRequestHeaderCollection_Interface'Class;
+   type IHttpRequestHeaderCollection is access IHttpRequestHeaderCollection_Interface'Class;
    type IHttpRequestHeaderCollection_Ptr is access all IHttpRequestHeaderCollection;
 
    type IHttpResponseHeaderCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpResponseHeaderCollection is access all IHttpResponseHeaderCollection_Interface'Class;
+   type IHttpResponseHeaderCollection is access IHttpResponseHeaderCollection_Interface'Class;
    type IHttpResponseHeaderCollection_Ptr is access all IHttpResponseHeaderCollection;
 
    type IHttpTransferCodingHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpTransferCodingHeaderValue is access all IHttpTransferCodingHeaderValue_Interface'Class;
+   type IHttpTransferCodingHeaderValue is access IHttpTransferCodingHeaderValue_Interface'Class;
    type IHttpTransferCodingHeaderValue_Ptr is access all IHttpTransferCodingHeaderValue;
    type IHttpTransferCodingHeaderValue_Array is array (Natural range <>) of IHttpTransferCodingHeaderValue;
 
    type IHttpTransferCodingHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpTransferCodingHeaderValueCollection is access all IHttpTransferCodingHeaderValueCollection_Interface'Class;
+   type IHttpTransferCodingHeaderValueCollection is access IHttpTransferCodingHeaderValueCollection_Interface'Class;
    type IHttpTransferCodingHeaderValueCollection_Ptr is access all IHttpTransferCodingHeaderValueCollection;
 
    type IHttpTransferCodingHeaderValueFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpTransferCodingHeaderValueFactory is access all IHttpTransferCodingHeaderValueFactory_Interface'Class;
+   type IHttpTransferCodingHeaderValueFactory is access IHttpTransferCodingHeaderValueFactory_Interface'Class;
 
    type IHttpTransferCodingHeaderValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpTransferCodingHeaderValueStatics is access all IHttpTransferCodingHeaderValueStatics_Interface'Class;
+   type IHttpTransferCodingHeaderValueStatics is access IHttpTransferCodingHeaderValueStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

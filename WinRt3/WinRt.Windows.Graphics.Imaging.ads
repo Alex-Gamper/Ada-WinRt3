@@ -42,75 +42,75 @@ package WinRt.Windows.Graphics.Imaging is
    -----------------------------------------------------------------------------
 
    type IBitmapBuffer_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapBuffer is access all IBitmapBuffer_Interface'Class;
+   type IBitmapBuffer is access IBitmapBuffer_Interface'Class;
    type IBitmapBuffer_Ptr is access all IBitmapBuffer;
 
    type IBitmapCodecInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapCodecInformation is access all IBitmapCodecInformation_Interface'Class;
+   type IBitmapCodecInformation is access IBitmapCodecInformation_Interface'Class;
    type IBitmapCodecInformation_Ptr is access all IBitmapCodecInformation;
 
    type IBitmapDecoder_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapDecoder is access all IBitmapDecoder_Interface'Class;
+   type IBitmapDecoder is access IBitmapDecoder_Interface'Class;
    type IBitmapDecoder_Ptr is access all IBitmapDecoder;
 
    type IBitmapDecoderStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapDecoderStatics is access all IBitmapDecoderStatics_Interface'Class;
+   type IBitmapDecoderStatics is access IBitmapDecoderStatics_Interface'Class;
 
    type IBitmapDecoderStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapDecoderStatics2 is access all IBitmapDecoderStatics2_Interface'Class;
+   type IBitmapDecoderStatics2 is access IBitmapDecoderStatics2_Interface'Class;
 
    type IBitmapEncoder_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapEncoder is access all IBitmapEncoder_Interface'Class;
+   type IBitmapEncoder is access IBitmapEncoder_Interface'Class;
    type IBitmapEncoder_Ptr is access all IBitmapEncoder;
 
    type IBitmapEncoderStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapEncoderStatics is access all IBitmapEncoderStatics_Interface'Class;
+   type IBitmapEncoderStatics is access IBitmapEncoderStatics_Interface'Class;
 
    type IBitmapEncoderStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapEncoderStatics2 is access all IBitmapEncoderStatics2_Interface'Class;
+   type IBitmapEncoderStatics2 is access IBitmapEncoderStatics2_Interface'Class;
 
    type IBitmapEncoderWithSoftwareBitmap_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapEncoderWithSoftwareBitmap is access all IBitmapEncoderWithSoftwareBitmap_Interface'Class;
+   type IBitmapEncoderWithSoftwareBitmap is access IBitmapEncoderWithSoftwareBitmap_Interface'Class;
 
    type IBitmapFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapFrame is access all IBitmapFrame_Interface'Class;
+   type IBitmapFrame is access IBitmapFrame_Interface'Class;
    type IBitmapFrame_Ptr is access all IBitmapFrame;
 
    type IBitmapFrameWithSoftwareBitmap_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapFrameWithSoftwareBitmap is access all IBitmapFrameWithSoftwareBitmap_Interface'Class;
+   type IBitmapFrameWithSoftwareBitmap is access IBitmapFrameWithSoftwareBitmap_Interface'Class;
 
    type IBitmapProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapProperties is access all IBitmapProperties_Interface'Class;
+   type IBitmapProperties is access IBitmapProperties_Interface'Class;
    type IBitmapProperties_Ptr is access all IBitmapProperties;
 
    type IBitmapPropertiesView_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapPropertiesView is access all IBitmapPropertiesView_Interface'Class;
+   type IBitmapPropertiesView is access IBitmapPropertiesView_Interface'Class;
    type IBitmapPropertiesView_Ptr is access all IBitmapPropertiesView;
 
    type IBitmapTransform_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapTransform is access all IBitmapTransform_Interface'Class;
+   type IBitmapTransform is access IBitmapTransform_Interface'Class;
    type IBitmapTransform_Ptr is access all IBitmapTransform;
 
    type IBitmapTypedValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapTypedValue is access all IBitmapTypedValue_Interface'Class;
+   type IBitmapTypedValue is access IBitmapTypedValue_Interface'Class;
    type IBitmapTypedValue_Ptr is access all IBitmapTypedValue;
 
    type IBitmapTypedValueFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapTypedValueFactory is access all IBitmapTypedValueFactory_Interface'Class;
+   type IBitmapTypedValueFactory is access IBitmapTypedValueFactory_Interface'Class;
 
    type IPixelDataProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IPixelDataProvider is access all IPixelDataProvider_Interface'Class;
+   type IPixelDataProvider is access IPixelDataProvider_Interface'Class;
    type IPixelDataProvider_Ptr is access all IPixelDataProvider;
 
    type ISoftwareBitmap_Interface is interface and WinRt.IInspectable_Interface;
-   type ISoftwareBitmap is access all ISoftwareBitmap_Interface'Class;
+   type ISoftwareBitmap is access ISoftwareBitmap_Interface'Class;
    type ISoftwareBitmap_Ptr is access all ISoftwareBitmap;
 
    type ISoftwareBitmapFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISoftwareBitmapFactory is access all ISoftwareBitmapFactory_Interface'Class;
+   type ISoftwareBitmapFactory is access ISoftwareBitmapFactory_Interface'Class;
 
    type ISoftwareBitmapStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISoftwareBitmapStatics is access all ISoftwareBitmapStatics_Interface'Class;
+   type ISoftwareBitmapStatics is access ISoftwareBitmapStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

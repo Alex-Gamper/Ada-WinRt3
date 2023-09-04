@@ -40,44 +40,44 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
    -----------------------------------------------------------------------------
 
    type ISecondaryAuthenticationFactorAuthentication_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryAuthenticationFactorAuthentication is access all ISecondaryAuthenticationFactorAuthentication_Interface'Class;
+   type ISecondaryAuthenticationFactorAuthentication is access ISecondaryAuthenticationFactorAuthentication_Interface'Class;
    type ISecondaryAuthenticationFactorAuthentication_Ptr is access all ISecondaryAuthenticationFactorAuthentication;
 
    type ISecondaryAuthenticationFactorAuthenticationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryAuthenticationFactorAuthenticationResult is access all ISecondaryAuthenticationFactorAuthenticationResult_Interface'Class;
+   type ISecondaryAuthenticationFactorAuthenticationResult is access ISecondaryAuthenticationFactorAuthenticationResult_Interface'Class;
    type ISecondaryAuthenticationFactorAuthenticationResult_Ptr is access all ISecondaryAuthenticationFactorAuthenticationResult;
 
    type ISecondaryAuthenticationFactorAuthenticationStageChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryAuthenticationFactorAuthenticationStageChangedEventArgs is access all ISecondaryAuthenticationFactorAuthenticationStageChangedEventArgs_Interface'Class;
+   type ISecondaryAuthenticationFactorAuthenticationStageChangedEventArgs is access ISecondaryAuthenticationFactorAuthenticationStageChangedEventArgs_Interface'Class;
    type ISecondaryAuthenticationFactorAuthenticationStageChangedEventArgs_Ptr is access all ISecondaryAuthenticationFactorAuthenticationStageChangedEventArgs;
 
    type ISecondaryAuthenticationFactorAuthenticationStageInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryAuthenticationFactorAuthenticationStageInfo is access all ISecondaryAuthenticationFactorAuthenticationStageInfo_Interface'Class;
+   type ISecondaryAuthenticationFactorAuthenticationStageInfo is access ISecondaryAuthenticationFactorAuthenticationStageInfo_Interface'Class;
    type ISecondaryAuthenticationFactorAuthenticationStageInfo_Ptr is access all ISecondaryAuthenticationFactorAuthenticationStageInfo;
 
    type ISecondaryAuthenticationFactorAuthenticationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryAuthenticationFactorAuthenticationStatics is access all ISecondaryAuthenticationFactorAuthenticationStatics_Interface'Class;
+   type ISecondaryAuthenticationFactorAuthenticationStatics is access ISecondaryAuthenticationFactorAuthenticationStatics_Interface'Class;
 
    type ISecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatics is access all ISecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatics_Interface'Class;
+   type ISecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatics is access ISecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatics_Interface'Class;
 
    type ISecondaryAuthenticationFactorInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryAuthenticationFactorInfo is access all ISecondaryAuthenticationFactorInfo_Interface'Class;
+   type ISecondaryAuthenticationFactorInfo is access ISecondaryAuthenticationFactorInfo_Interface'Class;
    type ISecondaryAuthenticationFactorInfo_Ptr is access all ISecondaryAuthenticationFactorInfo;
 
    type ISecondaryAuthenticationFactorInfo2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryAuthenticationFactorInfo2 is access all ISecondaryAuthenticationFactorInfo2_Interface'Class;
+   type ISecondaryAuthenticationFactorInfo2 is access ISecondaryAuthenticationFactorInfo2_Interface'Class;
 
    type ISecondaryAuthenticationFactorRegistration_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryAuthenticationFactorRegistration is access all ISecondaryAuthenticationFactorRegistration_Interface'Class;
+   type ISecondaryAuthenticationFactorRegistration is access ISecondaryAuthenticationFactorRegistration_Interface'Class;
    type ISecondaryAuthenticationFactorRegistration_Ptr is access all ISecondaryAuthenticationFactorRegistration;
 
    type ISecondaryAuthenticationFactorRegistrationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryAuthenticationFactorRegistrationResult is access all ISecondaryAuthenticationFactorRegistrationResult_Interface'Class;
+   type ISecondaryAuthenticationFactorRegistrationResult is access ISecondaryAuthenticationFactorRegistrationResult_Interface'Class;
    type ISecondaryAuthenticationFactorRegistrationResult_Ptr is access all ISecondaryAuthenticationFactorRegistrationResult;
 
    type ISecondaryAuthenticationFactorRegistrationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryAuthenticationFactorRegistrationStatics is access all ISecondaryAuthenticationFactorRegistrationStatics_Interface'Class;
+   type ISecondaryAuthenticationFactorRegistrationStatics is access ISecondaryAuthenticationFactorRegistrationStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

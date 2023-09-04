@@ -40,14 +40,14 @@ package WinRt.Windows.Management.Update is
    -----------------------------------------------------------------------------
 
    type IPreviewBuildsManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IPreviewBuildsManager is access all IPreviewBuildsManager_Interface'Class;
+   type IPreviewBuildsManager is access IPreviewBuildsManager_Interface'Class;
    type IPreviewBuildsManager_Ptr is access all IPreviewBuildsManager;
 
    type IPreviewBuildsManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPreviewBuildsManagerStatics is access all IPreviewBuildsManagerStatics_Interface'Class;
+   type IPreviewBuildsManagerStatics is access IPreviewBuildsManagerStatics_Interface'Class;
 
    type IPreviewBuildsState_Interface is interface and WinRt.IInspectable_Interface;
-   type IPreviewBuildsState is access all IPreviewBuildsState_Interface'Class;
+   type IPreviewBuildsState is access IPreviewBuildsState_Interface'Class;
    type IPreviewBuildsState_Ptr is access all IPreviewBuildsState;
 
    -----------------------------------------------------------------------------

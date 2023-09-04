@@ -42,149 +42,149 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    -----------------------------------------------------------------------------
 
    type ICertificate_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificate is access all ICertificate_Interface'Class;
+   type ICertificate is access ICertificate_Interface'Class;
    type ICertificate_Ptr is access all ICertificate;
 
    type ICertificate2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificate2 is access all ICertificate2_Interface'Class;
+   type ICertificate2 is access ICertificate2_Interface'Class;
 
    type ICertificate3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificate3 is access all ICertificate3_Interface'Class;
+   type ICertificate3 is access ICertificate3_Interface'Class;
 
    type ICertificateChain_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificateChain is access all ICertificateChain_Interface'Class;
+   type ICertificateChain is access ICertificateChain_Interface'Class;
    type ICertificateChain_Ptr is access all ICertificateChain;
 
    type ICertificateEnrollmentManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificateEnrollmentManagerStatics is access all ICertificateEnrollmentManagerStatics_Interface'Class;
+   type ICertificateEnrollmentManagerStatics is access ICertificateEnrollmentManagerStatics_Interface'Class;
 
    type ICertificateEnrollmentManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificateEnrollmentManagerStatics2 is access all ICertificateEnrollmentManagerStatics2_Interface'Class;
+   type ICertificateEnrollmentManagerStatics2 is access ICertificateEnrollmentManagerStatics2_Interface'Class;
 
    type ICertificateEnrollmentManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificateEnrollmentManagerStatics3 is access all ICertificateEnrollmentManagerStatics3_Interface'Class;
+   type ICertificateEnrollmentManagerStatics3 is access ICertificateEnrollmentManagerStatics3_Interface'Class;
 
    type ICertificateExtension_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificateExtension is access all ICertificateExtension_Interface'Class;
+   type ICertificateExtension is access ICertificateExtension_Interface'Class;
    type ICertificateExtension_Ptr is access all ICertificateExtension;
 
    type ICertificateFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificateFactory is access all ICertificateFactory_Interface'Class;
+   type ICertificateFactory is access ICertificateFactory_Interface'Class;
 
    type ICertificateKeyUsages_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificateKeyUsages is access all ICertificateKeyUsages_Interface'Class;
+   type ICertificateKeyUsages is access ICertificateKeyUsages_Interface'Class;
    type ICertificateKeyUsages_Ptr is access all ICertificateKeyUsages;
 
    type ICertificateQuery_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificateQuery is access all ICertificateQuery_Interface'Class;
+   type ICertificateQuery is access ICertificateQuery_Interface'Class;
    type ICertificateQuery_Ptr is access all ICertificateQuery;
 
    type ICertificateQuery2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificateQuery2 is access all ICertificateQuery2_Interface'Class;
+   type ICertificateQuery2 is access ICertificateQuery2_Interface'Class;
 
    type ICertificateRequestProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificateRequestProperties is access all ICertificateRequestProperties_Interface'Class;
+   type ICertificateRequestProperties is access ICertificateRequestProperties_Interface'Class;
    type ICertificateRequestProperties_Ptr is access all ICertificateRequestProperties;
 
    type ICertificateRequestProperties2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificateRequestProperties2 is access all ICertificateRequestProperties2_Interface'Class;
+   type ICertificateRequestProperties2 is access ICertificateRequestProperties2_Interface'Class;
 
    type ICertificateRequestProperties3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificateRequestProperties3 is access all ICertificateRequestProperties3_Interface'Class;
+   type ICertificateRequestProperties3 is access ICertificateRequestProperties3_Interface'Class;
 
    type ICertificateRequestProperties4_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificateRequestProperties4 is access all ICertificateRequestProperties4_Interface'Class;
+   type ICertificateRequestProperties4 is access ICertificateRequestProperties4_Interface'Class;
 
    type ICertificateStore_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificateStore is access all ICertificateStore_Interface'Class;
+   type ICertificateStore is access ICertificateStore_Interface'Class;
    type ICertificateStore_Ptr is access all ICertificateStore;
 
    type ICertificateStore2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificateStore2 is access all ICertificateStore2_Interface'Class;
+   type ICertificateStore2 is access ICertificateStore2_Interface'Class;
 
    type ICertificateStoresStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificateStoresStatics is access all ICertificateStoresStatics_Interface'Class;
+   type ICertificateStoresStatics is access ICertificateStoresStatics_Interface'Class;
 
    type ICertificateStoresStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICertificateStoresStatics2 is access all ICertificateStoresStatics2_Interface'Class;
+   type ICertificateStoresStatics2 is access ICertificateStoresStatics2_Interface'Class;
 
    type IChainBuildingParameters_Interface is interface and WinRt.IInspectable_Interface;
-   type IChainBuildingParameters is access all IChainBuildingParameters_Interface'Class;
+   type IChainBuildingParameters is access IChainBuildingParameters_Interface'Class;
    type IChainBuildingParameters_Ptr is access all IChainBuildingParameters;
 
    type IChainValidationParameters_Interface is interface and WinRt.IInspectable_Interface;
-   type IChainValidationParameters is access all IChainValidationParameters_Interface'Class;
+   type IChainValidationParameters is access IChainValidationParameters_Interface'Class;
    type IChainValidationParameters_Ptr is access all IChainValidationParameters;
 
    type ICmsAttachedSignature_Interface is interface and WinRt.IInspectable_Interface;
-   type ICmsAttachedSignature is access all ICmsAttachedSignature_Interface'Class;
+   type ICmsAttachedSignature is access ICmsAttachedSignature_Interface'Class;
    type ICmsAttachedSignature_Ptr is access all ICmsAttachedSignature;
 
    type ICmsAttachedSignatureFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICmsAttachedSignatureFactory is access all ICmsAttachedSignatureFactory_Interface'Class;
+   type ICmsAttachedSignatureFactory is access ICmsAttachedSignatureFactory_Interface'Class;
 
    type ICmsAttachedSignatureStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICmsAttachedSignatureStatics is access all ICmsAttachedSignatureStatics_Interface'Class;
+   type ICmsAttachedSignatureStatics is access ICmsAttachedSignatureStatics_Interface'Class;
 
    type ICmsDetachedSignature_Interface is interface and WinRt.IInspectable_Interface;
-   type ICmsDetachedSignature is access all ICmsDetachedSignature_Interface'Class;
+   type ICmsDetachedSignature is access ICmsDetachedSignature_Interface'Class;
    type ICmsDetachedSignature_Ptr is access all ICmsDetachedSignature;
 
    type ICmsDetachedSignatureFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICmsDetachedSignatureFactory is access all ICmsDetachedSignatureFactory_Interface'Class;
+   type ICmsDetachedSignatureFactory is access ICmsDetachedSignatureFactory_Interface'Class;
 
    type ICmsDetachedSignatureStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICmsDetachedSignatureStatics is access all ICmsDetachedSignatureStatics_Interface'Class;
+   type ICmsDetachedSignatureStatics is access ICmsDetachedSignatureStatics_Interface'Class;
 
    type ICmsSignerInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ICmsSignerInfo is access all ICmsSignerInfo_Interface'Class;
+   type ICmsSignerInfo is access ICmsSignerInfo_Interface'Class;
    type ICmsSignerInfo_Ptr is access all ICmsSignerInfo;
 
    type ICmsTimestampInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ICmsTimestampInfo is access all ICmsTimestampInfo_Interface'Class;
+   type ICmsTimestampInfo is access ICmsTimestampInfo_Interface'Class;
    type ICmsTimestampInfo_Ptr is access all ICmsTimestampInfo;
 
    type IKeyAlgorithmNamesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyAlgorithmNamesStatics is access all IKeyAlgorithmNamesStatics_Interface'Class;
+   type IKeyAlgorithmNamesStatics is access IKeyAlgorithmNamesStatics_Interface'Class;
 
    type IKeyAlgorithmNamesStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyAlgorithmNamesStatics2 is access all IKeyAlgorithmNamesStatics2_Interface'Class;
+   type IKeyAlgorithmNamesStatics2 is access IKeyAlgorithmNamesStatics2_Interface'Class;
 
    type IKeyAttestationHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyAttestationHelperStatics is access all IKeyAttestationHelperStatics_Interface'Class;
+   type IKeyAttestationHelperStatics is access IKeyAttestationHelperStatics_Interface'Class;
 
    type IKeyAttestationHelperStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyAttestationHelperStatics2 is access all IKeyAttestationHelperStatics2_Interface'Class;
+   type IKeyAttestationHelperStatics2 is access IKeyAttestationHelperStatics2_Interface'Class;
 
    type IKeyStorageProviderNamesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyStorageProviderNamesStatics is access all IKeyStorageProviderNamesStatics_Interface'Class;
+   type IKeyStorageProviderNamesStatics is access IKeyStorageProviderNamesStatics_Interface'Class;
 
    type IKeyStorageProviderNamesStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyStorageProviderNamesStatics2 is access all IKeyStorageProviderNamesStatics2_Interface'Class;
+   type IKeyStorageProviderNamesStatics2 is access IKeyStorageProviderNamesStatics2_Interface'Class;
 
    type IPfxImportParameters_Interface is interface and WinRt.IInspectable_Interface;
-   type IPfxImportParameters is access all IPfxImportParameters_Interface'Class;
+   type IPfxImportParameters is access IPfxImportParameters_Interface'Class;
    type IPfxImportParameters_Ptr is access all IPfxImportParameters;
 
    type IStandardCertificateStoreNamesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStandardCertificateStoreNamesStatics is access all IStandardCertificateStoreNamesStatics_Interface'Class;
+   type IStandardCertificateStoreNamesStatics is access IStandardCertificateStoreNamesStatics_Interface'Class;
 
    type ISubjectAlternativeNameInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ISubjectAlternativeNameInfo is access all ISubjectAlternativeNameInfo_Interface'Class;
+   type ISubjectAlternativeNameInfo is access ISubjectAlternativeNameInfo_Interface'Class;
    type ISubjectAlternativeNameInfo_Ptr is access all ISubjectAlternativeNameInfo;
 
    type ISubjectAlternativeNameInfo2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISubjectAlternativeNameInfo2 is access all ISubjectAlternativeNameInfo2_Interface'Class;
+   type ISubjectAlternativeNameInfo2 is access ISubjectAlternativeNameInfo2_Interface'Class;
 
    type IUserCertificateEnrollmentManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserCertificateEnrollmentManager is access all IUserCertificateEnrollmentManager_Interface'Class;
+   type IUserCertificateEnrollmentManager is access IUserCertificateEnrollmentManager_Interface'Class;
    type IUserCertificateEnrollmentManager_Ptr is access all IUserCertificateEnrollmentManager;
 
    type IUserCertificateEnrollmentManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserCertificateEnrollmentManager2 is access all IUserCertificateEnrollmentManager2_Interface'Class;
+   type IUserCertificateEnrollmentManager2 is access IUserCertificateEnrollmentManager2_Interface'Class;
 
    type IUserCertificateStore_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserCertificateStore is access all IUserCertificateStore_Interface'Class;
+   type IUserCertificateStore is access IUserCertificateStore_Interface'Class;
    type IUserCertificateStore_Ptr is access all IUserCertificateStore;
 
    -----------------------------------------------------------------------------

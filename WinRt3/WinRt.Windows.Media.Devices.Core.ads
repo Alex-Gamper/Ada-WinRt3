@@ -43,75 +43,75 @@ package WinRt.Windows.Media.Devices.Core is
    -----------------------------------------------------------------------------
 
    type ICameraIntrinsics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICameraIntrinsics is access all ICameraIntrinsics_Interface'Class;
+   type ICameraIntrinsics is access ICameraIntrinsics_Interface'Class;
    type ICameraIntrinsics_Ptr is access all ICameraIntrinsics;
 
    type ICameraIntrinsics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICameraIntrinsics2 is access all ICameraIntrinsics2_Interface'Class;
+   type ICameraIntrinsics2 is access ICameraIntrinsics2_Interface'Class;
 
    type ICameraIntrinsicsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICameraIntrinsicsFactory is access all ICameraIntrinsicsFactory_Interface'Class;
+   type ICameraIntrinsicsFactory is access ICameraIntrinsicsFactory_Interface'Class;
 
    type IDepthCorrelatedCoordinateMapper_Interface is interface and WinRt.IInspectable_Interface;
-   type IDepthCorrelatedCoordinateMapper is access all IDepthCorrelatedCoordinateMapper_Interface'Class;
+   type IDepthCorrelatedCoordinateMapper is access IDepthCorrelatedCoordinateMapper_Interface'Class;
    type IDepthCorrelatedCoordinateMapper_Ptr is access all IDepthCorrelatedCoordinateMapper;
 
    type IFrameControlCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameControlCapabilities is access all IFrameControlCapabilities_Interface'Class;
+   type IFrameControlCapabilities is access IFrameControlCapabilities_Interface'Class;
    type IFrameControlCapabilities_Ptr is access all IFrameControlCapabilities;
 
    type IFrameControlCapabilities2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameControlCapabilities2 is access all IFrameControlCapabilities2_Interface'Class;
+   type IFrameControlCapabilities2 is access IFrameControlCapabilities2_Interface'Class;
 
    type IFrameController_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameController is access all IFrameController_Interface'Class;
+   type IFrameController is access IFrameController_Interface'Class;
    type IFrameController_Ptr is access all IFrameController;
 
    type IFrameController2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameController2 is access all IFrameController2_Interface'Class;
+   type IFrameController2 is access IFrameController2_Interface'Class;
 
    type IFrameExposureCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameExposureCapabilities is access all IFrameExposureCapabilities_Interface'Class;
+   type IFrameExposureCapabilities is access IFrameExposureCapabilities_Interface'Class;
    type IFrameExposureCapabilities_Ptr is access all IFrameExposureCapabilities;
 
    type IFrameExposureCompensationCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameExposureCompensationCapabilities is access all IFrameExposureCompensationCapabilities_Interface'Class;
+   type IFrameExposureCompensationCapabilities is access IFrameExposureCompensationCapabilities_Interface'Class;
    type IFrameExposureCompensationCapabilities_Ptr is access all IFrameExposureCompensationCapabilities;
 
    type IFrameExposureCompensationControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameExposureCompensationControl is access all IFrameExposureCompensationControl_Interface'Class;
+   type IFrameExposureCompensationControl is access IFrameExposureCompensationControl_Interface'Class;
    type IFrameExposureCompensationControl_Ptr is access all IFrameExposureCompensationControl;
 
    type IFrameExposureControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameExposureControl is access all IFrameExposureControl_Interface'Class;
+   type IFrameExposureControl is access IFrameExposureControl_Interface'Class;
    type IFrameExposureControl_Ptr is access all IFrameExposureControl;
 
    type IFrameFlashCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameFlashCapabilities is access all IFrameFlashCapabilities_Interface'Class;
+   type IFrameFlashCapabilities is access IFrameFlashCapabilities_Interface'Class;
    type IFrameFlashCapabilities_Ptr is access all IFrameFlashCapabilities;
 
    type IFrameFlashControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameFlashControl is access all IFrameFlashControl_Interface'Class;
+   type IFrameFlashControl is access IFrameFlashControl_Interface'Class;
    type IFrameFlashControl_Ptr is access all IFrameFlashControl;
 
    type IFrameFocusCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameFocusCapabilities is access all IFrameFocusCapabilities_Interface'Class;
+   type IFrameFocusCapabilities is access IFrameFocusCapabilities_Interface'Class;
    type IFrameFocusCapabilities_Ptr is access all IFrameFocusCapabilities;
 
    type IFrameFocusControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameFocusControl is access all IFrameFocusControl_Interface'Class;
+   type IFrameFocusControl is access IFrameFocusControl_Interface'Class;
    type IFrameFocusControl_Ptr is access all IFrameFocusControl;
 
    type IFrameIsoSpeedCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameIsoSpeedCapabilities is access all IFrameIsoSpeedCapabilities_Interface'Class;
+   type IFrameIsoSpeedCapabilities is access IFrameIsoSpeedCapabilities_Interface'Class;
    type IFrameIsoSpeedCapabilities_Ptr is access all IFrameIsoSpeedCapabilities;
 
    type IFrameIsoSpeedControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameIsoSpeedControl is access all IFrameIsoSpeedControl_Interface'Class;
+   type IFrameIsoSpeedControl is access IFrameIsoSpeedControl_Interface'Class;
    type IFrameIsoSpeedControl_Ptr is access all IFrameIsoSpeedControl;
 
    type IVariablePhotoSequenceController_Interface is interface and WinRt.IInspectable_Interface;
-   type IVariablePhotoSequenceController is access all IVariablePhotoSequenceController_Interface'Class;
+   type IVariablePhotoSequenceController is access IVariablePhotoSequenceController_Interface'Class;
    type IVariablePhotoSequenceController_Ptr is access all IVariablePhotoSequenceController;
 
    -----------------------------------------------------------------------------

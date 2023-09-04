@@ -39,11 +39,11 @@ package WinRt.Windows.Phone.Media.Devices is
    -----------------------------------------------------------------------------
 
    type IAudioRoutingManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioRoutingManager is access all IAudioRoutingManager_Interface'Class;
+   type IAudioRoutingManager is access IAudioRoutingManager_Interface'Class;
    type IAudioRoutingManager_Ptr is access all IAudioRoutingManager;
 
    type IAudioRoutingManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioRoutingManagerStatics is access all IAudioRoutingManagerStatics_Interface'Class;
+   type IAudioRoutingManagerStatics is access IAudioRoutingManagerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

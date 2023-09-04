@@ -38,7 +38,7 @@ package WinRt.Windows.Data.Html is
    -----------------------------------------------------------------------------
 
    type IHtmlUtilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IHtmlUtilities is access all IHtmlUtilities_Interface'Class;
+   type IHtmlUtilities is access IHtmlUtilities_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

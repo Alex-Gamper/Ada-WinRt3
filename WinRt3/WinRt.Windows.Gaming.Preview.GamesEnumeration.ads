@@ -52,28 +52,28 @@ package WinRt.Windows.Gaming.Preview.GamesEnumeration is
    -----------------------------------------------------------------------------
 
    type IGameListEntry_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameListEntry is access all IGameListEntry_Interface'Class;
+   type IGameListEntry is access IGameListEntry_Interface'Class;
    type IGameListEntry_Ptr is access all IGameListEntry;
 
    type IGameListEntry2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameListEntry2 is access all IGameListEntry2_Interface'Class;
+   type IGameListEntry2 is access IGameListEntry2_Interface'Class;
 
    type IGameListStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameListStatics is access all IGameListStatics_Interface'Class;
+   type IGameListStatics is access IGameListStatics_Interface'Class;
 
    type IGameListStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameListStatics2 is access all IGameListStatics2_Interface'Class;
+   type IGameListStatics2 is access IGameListStatics2_Interface'Class;
 
    type IGameModeConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameModeConfiguration is access all IGameModeConfiguration_Interface'Class;
+   type IGameModeConfiguration is access IGameModeConfiguration_Interface'Class;
    type IGameModeConfiguration_Ptr is access all IGameModeConfiguration;
 
    type IGameModeUserConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameModeUserConfiguration is access all IGameModeUserConfiguration_Interface'Class;
+   type IGameModeUserConfiguration is access IGameModeUserConfiguration_Interface'Class;
    type IGameModeUserConfiguration_Ptr is access all IGameModeUserConfiguration;
 
    type IGameModeUserConfigurationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameModeUserConfigurationStatics is access all IGameModeUserConfigurationStatics_Interface'Class;
+   type IGameModeUserConfigurationStatics is access IGameModeUserConfigurationStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

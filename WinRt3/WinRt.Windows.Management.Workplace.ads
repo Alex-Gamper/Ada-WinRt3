@@ -38,13 +38,13 @@ package WinRt.Windows.Management.Workplace is
    -----------------------------------------------------------------------------
 
    type IMdmAllowPolicyStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMdmAllowPolicyStatics is access all IMdmAllowPolicyStatics_Interface'Class;
+   type IMdmAllowPolicyStatics is access IMdmAllowPolicyStatics_Interface'Class;
 
    type IMdmPolicyStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMdmPolicyStatics2 is access all IMdmPolicyStatics2_Interface'Class;
+   type IMdmPolicyStatics2 is access IMdmPolicyStatics2_Interface'Class;
 
    type IWorkplaceSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWorkplaceSettingsStatics is access all IWorkplaceSettingsStatics_Interface'Class;
+   type IWorkplaceSettingsStatics is access IWorkplaceSettingsStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Enum declarations

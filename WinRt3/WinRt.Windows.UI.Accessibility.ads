@@ -39,11 +39,11 @@ package WinRt.Windows.UI.Accessibility is
    -----------------------------------------------------------------------------
 
    type IScreenReaderPositionChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IScreenReaderPositionChangedEventArgs is access all IScreenReaderPositionChangedEventArgs_Interface'Class;
+   type IScreenReaderPositionChangedEventArgs is access IScreenReaderPositionChangedEventArgs_Interface'Class;
    type IScreenReaderPositionChangedEventArgs_Ptr is access all IScreenReaderPositionChangedEventArgs;
 
    type IScreenReaderService_Interface is interface and WinRt.IInspectable_Interface;
-   type IScreenReaderService is access all IScreenReaderService_Interface'Class;
+   type IScreenReaderService is access IScreenReaderService_Interface'Class;
    type IScreenReaderService_Ptr is access all IScreenReaderService;
 
    -----------------------------------------------------------------------------

@@ -41,18 +41,18 @@ package WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
    -----------------------------------------------------------------------------
 
    type IQuickLink_Interface is interface and WinRt.IInspectable_Interface;
-   type IQuickLink is access all IQuickLink_Interface'Class;
+   type IQuickLink is access IQuickLink_Interface'Class;
    type IQuickLink_Ptr is access all IQuickLink;
 
    type IShareOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IShareOperation is access all IShareOperation_Interface'Class;
+   type IShareOperation is access IShareOperation_Interface'Class;
    type IShareOperation_Ptr is access all IShareOperation;
 
    type IShareOperation2_Interface is interface and WinRt.IInspectable_Interface;
-   type IShareOperation2 is access all IShareOperation2_Interface'Class;
+   type IShareOperation2 is access IShareOperation2_Interface'Class;
 
    type IShareOperation3_Interface is interface and WinRt.IInspectable_Interface;
-   type IShareOperation3 is access all IShareOperation3_Interface'Class;
+   type IShareOperation3 is access IShareOperation3_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

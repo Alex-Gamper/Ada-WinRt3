@@ -42,29 +42,29 @@ package WinRt.Windows.Devices.WiFi is
    -----------------------------------------------------------------------------
 
    type IWiFiAdapter_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiAdapter is access all IWiFiAdapter_Interface'Class;
+   type IWiFiAdapter is access IWiFiAdapter_Interface'Class;
    type IWiFiAdapter_Ptr is access all IWiFiAdapter;
 
    type IWiFiAdapter2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiAdapter2 is access all IWiFiAdapter2_Interface'Class;
+   type IWiFiAdapter2 is access IWiFiAdapter2_Interface'Class;
 
    type IWiFiAdapterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiAdapterStatics is access all IWiFiAdapterStatics_Interface'Class;
+   type IWiFiAdapterStatics is access IWiFiAdapterStatics_Interface'Class;
 
    type IWiFiAvailableNetwork_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiAvailableNetwork is access all IWiFiAvailableNetwork_Interface'Class;
+   type IWiFiAvailableNetwork is access IWiFiAvailableNetwork_Interface'Class;
    type IWiFiAvailableNetwork_Ptr is access all IWiFiAvailableNetwork;
 
    type IWiFiConnectionResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiConnectionResult is access all IWiFiConnectionResult_Interface'Class;
+   type IWiFiConnectionResult is access IWiFiConnectionResult_Interface'Class;
    type IWiFiConnectionResult_Ptr is access all IWiFiConnectionResult;
 
    type IWiFiNetworkReport_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiNetworkReport is access all IWiFiNetworkReport_Interface'Class;
+   type IWiFiNetworkReport is access IWiFiNetworkReport_Interface'Class;
    type IWiFiNetworkReport_Ptr is access all IWiFiNetworkReport;
 
    type IWiFiWpsConfigurationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiWpsConfigurationResult is access all IWiFiWpsConfigurationResult_Interface'Class;
+   type IWiFiWpsConfigurationResult is access IWiFiWpsConfigurationResult_Interface'Class;
    type IWiFiWpsConfigurationResult_Ptr is access all IWiFiWpsConfigurationResult;
 
    -----------------------------------------------------------------------------

@@ -42,22 +42,22 @@ package WinRt.Windows.Security.DataProtection is
    -----------------------------------------------------------------------------
 
    type IUserDataAvailabilityStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAvailabilityStateChangedEventArgs is access all IUserDataAvailabilityStateChangedEventArgs_Interface'Class;
+   type IUserDataAvailabilityStateChangedEventArgs is access IUserDataAvailabilityStateChangedEventArgs_Interface'Class;
    type IUserDataAvailabilityStateChangedEventArgs_Ptr is access all IUserDataAvailabilityStateChangedEventArgs;
 
    type IUserDataBufferUnprotectResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataBufferUnprotectResult is access all IUserDataBufferUnprotectResult_Interface'Class;
+   type IUserDataBufferUnprotectResult is access IUserDataBufferUnprotectResult_Interface'Class;
    type IUserDataBufferUnprotectResult_Ptr is access all IUserDataBufferUnprotectResult;
 
    type IUserDataProtectionManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataProtectionManager is access all IUserDataProtectionManager_Interface'Class;
+   type IUserDataProtectionManager is access IUserDataProtectionManager_Interface'Class;
    type IUserDataProtectionManager_Ptr is access all IUserDataProtectionManager;
 
    type IUserDataProtectionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataProtectionManagerStatics is access all IUserDataProtectionManagerStatics_Interface'Class;
+   type IUserDataProtectionManagerStatics is access IUserDataProtectionManagerStatics_Interface'Class;
 
    type IUserDataStorageItemProtectionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataStorageItemProtectionInfo is access all IUserDataStorageItemProtectionInfo_Interface'Class;
+   type IUserDataStorageItemProtectionInfo is access IUserDataStorageItemProtectionInfo_Interface'Class;
    type IUserDataStorageItemProtectionInfo_Ptr is access all IUserDataStorageItemProtectionInfo;
 
    -----------------------------------------------------------------------------

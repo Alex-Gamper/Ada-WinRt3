@@ -38,7 +38,7 @@ package WinRt.Windows.Foundation.Metadata is
    -----------------------------------------------------------------------------
 
    type IApiInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IApiInformationStatics is access all IApiInformationStatics_Interface'Class;
+   type IApiInformationStatics is access IApiInformationStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Enum declarations

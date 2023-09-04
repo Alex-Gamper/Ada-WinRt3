@@ -39,11 +39,11 @@ package WinRt.Windows.Phone.Devices.Power is
    -----------------------------------------------------------------------------
 
    type IBattery_Interface is interface and WinRt.IInspectable_Interface;
-   type IBattery is access all IBattery_Interface'Class;
+   type IBattery is access IBattery_Interface'Class;
    type IBattery_Ptr is access all IBattery;
 
    type IBatteryStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBatteryStatics is access all IBatteryStatics_Interface'Class;
+   type IBatteryStatics is access IBatteryStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

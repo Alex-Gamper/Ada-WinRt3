@@ -40,23 +40,23 @@ package WinRt.Windows.Media.AppBroadcasting is
    -----------------------------------------------------------------------------
 
    type IAppBroadcastingMonitor_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastingMonitor is access all IAppBroadcastingMonitor_Interface'Class;
+   type IAppBroadcastingMonitor is access IAppBroadcastingMonitor_Interface'Class;
    type IAppBroadcastingMonitor_Ptr is access all IAppBroadcastingMonitor;
 
    type IAppBroadcastingStatus_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastingStatus is access all IAppBroadcastingStatus_Interface'Class;
+   type IAppBroadcastingStatus is access IAppBroadcastingStatus_Interface'Class;
    type IAppBroadcastingStatus_Ptr is access all IAppBroadcastingStatus;
 
    type IAppBroadcastingStatusDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastingStatusDetails is access all IAppBroadcastingStatusDetails_Interface'Class;
+   type IAppBroadcastingStatusDetails is access IAppBroadcastingStatusDetails_Interface'Class;
    type IAppBroadcastingStatusDetails_Ptr is access all IAppBroadcastingStatusDetails;
 
    type IAppBroadcastingUI_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastingUI is access all IAppBroadcastingUI_Interface'Class;
+   type IAppBroadcastingUI is access IAppBroadcastingUI_Interface'Class;
    type IAppBroadcastingUI_Ptr is access all IAppBroadcastingUI;
 
    type IAppBroadcastingUIStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastingUIStatics is access all IAppBroadcastingUIStatics_Interface'Class;
+   type IAppBroadcastingUIStatics is access IAppBroadcastingUIStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

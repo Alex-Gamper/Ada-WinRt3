@@ -50,74 +50,74 @@ package WinRt.Windows.Security.Isolation is
    -----------------------------------------------------------------------------
 
    type IIsolatedWindowsEnvironment_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironment is access all IIsolatedWindowsEnvironment_Interface'Class;
+   type IIsolatedWindowsEnvironment is access IIsolatedWindowsEnvironment_Interface'Class;
    type IIsolatedWindowsEnvironment_Ptr is access all IIsolatedWindowsEnvironment;
 
    type IIsolatedWindowsEnvironment2_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironment2 is access all IIsolatedWindowsEnvironment2_Interface'Class;
+   type IIsolatedWindowsEnvironment2 is access IIsolatedWindowsEnvironment2_Interface'Class;
 
    type IIsolatedWindowsEnvironmentCreateResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentCreateResult is access all IIsolatedWindowsEnvironmentCreateResult_Interface'Class;
+   type IIsolatedWindowsEnvironmentCreateResult is access IIsolatedWindowsEnvironmentCreateResult_Interface'Class;
    type IIsolatedWindowsEnvironmentCreateResult_Ptr is access all IIsolatedWindowsEnvironmentCreateResult;
 
    type IIsolatedWindowsEnvironmentFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentFactory is access all IIsolatedWindowsEnvironmentFactory_Interface'Class;
+   type IIsolatedWindowsEnvironmentFactory is access IIsolatedWindowsEnvironmentFactory_Interface'Class;
 
    type IIsolatedWindowsEnvironmentFile_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentFile is access all IIsolatedWindowsEnvironmentFile_Interface'Class;
+   type IIsolatedWindowsEnvironmentFile is access IIsolatedWindowsEnvironmentFile_Interface'Class;
    type IIsolatedWindowsEnvironmentFile_Ptr is access all IIsolatedWindowsEnvironmentFile;
 
    type IIsolatedWindowsEnvironmentHostStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentHostStatics is access all IIsolatedWindowsEnvironmentHostStatics_Interface'Class;
+   type IIsolatedWindowsEnvironmentHostStatics is access IIsolatedWindowsEnvironmentHostStatics_Interface'Class;
 
    type IIsolatedWindowsEnvironmentLaunchFileResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentLaunchFileResult is access all IIsolatedWindowsEnvironmentLaunchFileResult_Interface'Class;
+   type IIsolatedWindowsEnvironmentLaunchFileResult is access IIsolatedWindowsEnvironmentLaunchFileResult_Interface'Class;
    type IIsolatedWindowsEnvironmentLaunchFileResult_Ptr is access all IIsolatedWindowsEnvironmentLaunchFileResult;
 
    type IIsolatedWindowsEnvironmentOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentOptions is access all IIsolatedWindowsEnvironmentOptions_Interface'Class;
+   type IIsolatedWindowsEnvironmentOptions is access IIsolatedWindowsEnvironmentOptions_Interface'Class;
    type IIsolatedWindowsEnvironmentOptions_Ptr is access all IIsolatedWindowsEnvironmentOptions;
 
    type IIsolatedWindowsEnvironmentOwnerRegistrationData_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentOwnerRegistrationData is access all IIsolatedWindowsEnvironmentOwnerRegistrationData_Interface'Class;
+   type IIsolatedWindowsEnvironmentOwnerRegistrationData is access IIsolatedWindowsEnvironmentOwnerRegistrationData_Interface'Class;
    type IIsolatedWindowsEnvironmentOwnerRegistrationData_Ptr is access all IIsolatedWindowsEnvironmentOwnerRegistrationData;
 
    type IIsolatedWindowsEnvironmentOwnerRegistrationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentOwnerRegistrationResult is access all IIsolatedWindowsEnvironmentOwnerRegistrationResult_Interface'Class;
+   type IIsolatedWindowsEnvironmentOwnerRegistrationResult is access IIsolatedWindowsEnvironmentOwnerRegistrationResult_Interface'Class;
    type IIsolatedWindowsEnvironmentOwnerRegistrationResult_Ptr is access all IIsolatedWindowsEnvironmentOwnerRegistrationResult;
 
    type IIsolatedWindowsEnvironmentOwnerRegistrationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentOwnerRegistrationStatics is access all IIsolatedWindowsEnvironmentOwnerRegistrationStatics_Interface'Class;
+   type IIsolatedWindowsEnvironmentOwnerRegistrationStatics is access IIsolatedWindowsEnvironmentOwnerRegistrationStatics_Interface'Class;
 
    type IIsolatedWindowsEnvironmentPostMessageResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentPostMessageResult is access all IIsolatedWindowsEnvironmentPostMessageResult_Interface'Class;
+   type IIsolatedWindowsEnvironmentPostMessageResult is access IIsolatedWindowsEnvironmentPostMessageResult_Interface'Class;
    type IIsolatedWindowsEnvironmentPostMessageResult_Ptr is access all IIsolatedWindowsEnvironmentPostMessageResult;
 
    type IIsolatedWindowsEnvironmentProcess_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentProcess is access all IIsolatedWindowsEnvironmentProcess_Interface'Class;
+   type IIsolatedWindowsEnvironmentProcess is access IIsolatedWindowsEnvironmentProcess_Interface'Class;
    type IIsolatedWindowsEnvironmentProcess_Ptr is access all IIsolatedWindowsEnvironmentProcess;
 
    type IIsolatedWindowsEnvironmentShareFolderRequestOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentShareFolderRequestOptions is access all IIsolatedWindowsEnvironmentShareFolderRequestOptions_Interface'Class;
+   type IIsolatedWindowsEnvironmentShareFolderRequestOptions is access IIsolatedWindowsEnvironmentShareFolderRequestOptions_Interface'Class;
    type IIsolatedWindowsEnvironmentShareFolderRequestOptions_Ptr is access all IIsolatedWindowsEnvironmentShareFolderRequestOptions;
 
    type IIsolatedWindowsEnvironmentShareFolderResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentShareFolderResult is access all IIsolatedWindowsEnvironmentShareFolderResult_Interface'Class;
+   type IIsolatedWindowsEnvironmentShareFolderResult is access IIsolatedWindowsEnvironmentShareFolderResult_Interface'Class;
    type IIsolatedWindowsEnvironmentShareFolderResult_Ptr is access all IIsolatedWindowsEnvironmentShareFolderResult;
 
    type IIsolatedWindowsEnvironmentStartProcessResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentStartProcessResult is access all IIsolatedWindowsEnvironmentStartProcessResult_Interface'Class;
+   type IIsolatedWindowsEnvironmentStartProcessResult is access IIsolatedWindowsEnvironmentStartProcessResult_Interface'Class;
    type IIsolatedWindowsEnvironmentStartProcessResult_Ptr is access all IIsolatedWindowsEnvironmentStartProcessResult;
 
    type IIsolatedWindowsEnvironmentTelemetryParameters_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentTelemetryParameters is access all IIsolatedWindowsEnvironmentTelemetryParameters_Interface'Class;
+   type IIsolatedWindowsEnvironmentTelemetryParameters is access IIsolatedWindowsEnvironmentTelemetryParameters_Interface'Class;
    type IIsolatedWindowsEnvironmentTelemetryParameters_Ptr is access all IIsolatedWindowsEnvironmentTelemetryParameters;
 
    type IIsolatedWindowsHostMessengerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsHostMessengerStatics is access all IIsolatedWindowsHostMessengerStatics_Interface'Class;
+   type IIsolatedWindowsHostMessengerStatics is access IIsolatedWindowsHostMessengerStatics_Interface'Class;
 
    type IIsolatedWindowsHostMessengerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsHostMessengerStatics2 is access all IIsolatedWindowsHostMessengerStatics2_Interface'Class;
+   type IIsolatedWindowsHostMessengerStatics2 is access IIsolatedWindowsHostMessengerStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

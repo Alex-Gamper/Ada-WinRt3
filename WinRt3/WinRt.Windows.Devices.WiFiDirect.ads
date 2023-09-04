@@ -44,61 +44,61 @@ package WinRt.Windows.Devices.WiFiDirect is
    -----------------------------------------------------------------------------
 
    type IWiFiDirectAdvertisement_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectAdvertisement is access all IWiFiDirectAdvertisement_Interface'Class;
+   type IWiFiDirectAdvertisement is access IWiFiDirectAdvertisement_Interface'Class;
    type IWiFiDirectAdvertisement_Ptr is access all IWiFiDirectAdvertisement;
 
    type IWiFiDirectAdvertisement2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectAdvertisement2 is access all IWiFiDirectAdvertisement2_Interface'Class;
+   type IWiFiDirectAdvertisement2 is access IWiFiDirectAdvertisement2_Interface'Class;
 
    type IWiFiDirectAdvertisementPublisher_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectAdvertisementPublisher is access all IWiFiDirectAdvertisementPublisher_Interface'Class;
+   type IWiFiDirectAdvertisementPublisher is access IWiFiDirectAdvertisementPublisher_Interface'Class;
    type IWiFiDirectAdvertisementPublisher_Ptr is access all IWiFiDirectAdvertisementPublisher;
 
    type IWiFiDirectAdvertisementPublisherStatusChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectAdvertisementPublisherStatusChangedEventArgs is access all IWiFiDirectAdvertisementPublisherStatusChangedEventArgs_Interface'Class;
+   type IWiFiDirectAdvertisementPublisherStatusChangedEventArgs is access IWiFiDirectAdvertisementPublisherStatusChangedEventArgs_Interface'Class;
    type IWiFiDirectAdvertisementPublisherStatusChangedEventArgs_Ptr is access all IWiFiDirectAdvertisementPublisherStatusChangedEventArgs;
 
    type IWiFiDirectConnectionListener_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectConnectionListener is access all IWiFiDirectConnectionListener_Interface'Class;
+   type IWiFiDirectConnectionListener is access IWiFiDirectConnectionListener_Interface'Class;
    type IWiFiDirectConnectionListener_Ptr is access all IWiFiDirectConnectionListener;
 
    type IWiFiDirectConnectionParameters_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectConnectionParameters is access all IWiFiDirectConnectionParameters_Interface'Class;
+   type IWiFiDirectConnectionParameters is access IWiFiDirectConnectionParameters_Interface'Class;
    type IWiFiDirectConnectionParameters_Ptr is access all IWiFiDirectConnectionParameters;
 
    type IWiFiDirectConnectionParameters2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectConnectionParameters2 is access all IWiFiDirectConnectionParameters2_Interface'Class;
+   type IWiFiDirectConnectionParameters2 is access IWiFiDirectConnectionParameters2_Interface'Class;
 
    type IWiFiDirectConnectionParametersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectConnectionParametersStatics is access all IWiFiDirectConnectionParametersStatics_Interface'Class;
+   type IWiFiDirectConnectionParametersStatics is access IWiFiDirectConnectionParametersStatics_Interface'Class;
 
    type IWiFiDirectConnectionRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectConnectionRequest is access all IWiFiDirectConnectionRequest_Interface'Class;
+   type IWiFiDirectConnectionRequest is access IWiFiDirectConnectionRequest_Interface'Class;
    type IWiFiDirectConnectionRequest_Ptr is access all IWiFiDirectConnectionRequest;
 
    type IWiFiDirectConnectionRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectConnectionRequestedEventArgs is access all IWiFiDirectConnectionRequestedEventArgs_Interface'Class;
+   type IWiFiDirectConnectionRequestedEventArgs is access IWiFiDirectConnectionRequestedEventArgs_Interface'Class;
    type IWiFiDirectConnectionRequestedEventArgs_Ptr is access all IWiFiDirectConnectionRequestedEventArgs;
 
    type IWiFiDirectDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectDevice is access all IWiFiDirectDevice_Interface'Class;
+   type IWiFiDirectDevice is access IWiFiDirectDevice_Interface'Class;
    type IWiFiDirectDevice_Ptr is access all IWiFiDirectDevice;
 
    type IWiFiDirectDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectDeviceStatics is access all IWiFiDirectDeviceStatics_Interface'Class;
+   type IWiFiDirectDeviceStatics is access IWiFiDirectDeviceStatics_Interface'Class;
 
    type IWiFiDirectDeviceStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectDeviceStatics2 is access all IWiFiDirectDeviceStatics2_Interface'Class;
+   type IWiFiDirectDeviceStatics2 is access IWiFiDirectDeviceStatics2_Interface'Class;
 
    type IWiFiDirectInformationElement_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectInformationElement is access all IWiFiDirectInformationElement_Interface'Class;
+   type IWiFiDirectInformationElement is access IWiFiDirectInformationElement_Interface'Class;
    type IWiFiDirectInformationElement_Ptr is access all IWiFiDirectInformationElement;
 
    type IWiFiDirectInformationElementStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectInformationElementStatics is access all IWiFiDirectInformationElementStatics_Interface'Class;
+   type IWiFiDirectInformationElementStatics is access IWiFiDirectInformationElementStatics_Interface'Class;
 
    type IWiFiDirectLegacySettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectLegacySettings is access all IWiFiDirectLegacySettings_Interface'Class;
+   type IWiFiDirectLegacySettings is access IWiFiDirectLegacySettings_Interface'Class;
    type IWiFiDirectLegacySettings_Ptr is access all IWiFiDirectLegacySettings;
 
    -----------------------------------------------------------------------------

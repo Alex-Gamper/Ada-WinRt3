@@ -46,89 +46,89 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
    -----------------------------------------------------------------------------
 
    type IWebAccountClientView_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountClientView is access all IWebAccountClientView_Interface'Class;
+   type IWebAccountClientView is access IWebAccountClientView_Interface'Class;
    type IWebAccountClientView_Ptr is access all IWebAccountClientView;
 
    type IWebAccountClientViewFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountClientViewFactory is access all IWebAccountClientViewFactory_Interface'Class;
+   type IWebAccountClientViewFactory is access IWebAccountClientViewFactory_Interface'Class;
 
    type IWebAccountManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountManagerStatics is access all IWebAccountManagerStatics_Interface'Class;
+   type IWebAccountManagerStatics is access IWebAccountManagerStatics_Interface'Class;
 
    type IWebAccountManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountManagerStatics2 is access all IWebAccountManagerStatics2_Interface'Class;
+   type IWebAccountManagerStatics2 is access IWebAccountManagerStatics2_Interface'Class;
 
    type IWebAccountManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountManagerStatics3 is access all IWebAccountManagerStatics3_Interface'Class;
+   type IWebAccountManagerStatics3 is access IWebAccountManagerStatics3_Interface'Class;
 
    type IWebAccountManagerStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountManagerStatics4 is access all IWebAccountManagerStatics4_Interface'Class;
+   type IWebAccountManagerStatics4 is access IWebAccountManagerStatics4_Interface'Class;
 
    type IWebAccountMapManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountMapManagerStatics is access all IWebAccountMapManagerStatics_Interface'Class;
+   type IWebAccountMapManagerStatics is access IWebAccountMapManagerStatics_Interface'Class;
 
    type IWebAccountProviderAddAccountOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProviderAddAccountOperation is access all IWebAccountProviderAddAccountOperation_Interface'Class;
+   type IWebAccountProviderAddAccountOperation is access IWebAccountProviderAddAccountOperation_Interface'Class;
    type IWebAccountProviderAddAccountOperation_Ptr is access all IWebAccountProviderAddAccountOperation;
 
    type IWebAccountProviderBaseReportOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProviderBaseReportOperation is access all IWebAccountProviderBaseReportOperation_Interface'Class;
+   type IWebAccountProviderBaseReportOperation is access IWebAccountProviderBaseReportOperation_Interface'Class;
 
    type IWebAccountProviderDeleteAccountOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProviderDeleteAccountOperation is access all IWebAccountProviderDeleteAccountOperation_Interface'Class;
+   type IWebAccountProviderDeleteAccountOperation is access IWebAccountProviderDeleteAccountOperation_Interface'Class;
    type IWebAccountProviderDeleteAccountOperation_Ptr is access all IWebAccountProviderDeleteAccountOperation;
 
    type IWebAccountProviderManageAccountOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProviderManageAccountOperation is access all IWebAccountProviderManageAccountOperation_Interface'Class;
+   type IWebAccountProviderManageAccountOperation is access IWebAccountProviderManageAccountOperation_Interface'Class;
    type IWebAccountProviderManageAccountOperation_Ptr is access all IWebAccountProviderManageAccountOperation;
 
    type IWebAccountProviderOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProviderOperation is access all IWebAccountProviderOperation_Interface'Class;
+   type IWebAccountProviderOperation is access IWebAccountProviderOperation_Interface'Class;
 
    type IWebAccountProviderRetrieveCookiesOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProviderRetrieveCookiesOperation is access all IWebAccountProviderRetrieveCookiesOperation_Interface'Class;
+   type IWebAccountProviderRetrieveCookiesOperation is access IWebAccountProviderRetrieveCookiesOperation_Interface'Class;
    type IWebAccountProviderRetrieveCookiesOperation_Ptr is access all IWebAccountProviderRetrieveCookiesOperation;
 
    type IWebAccountProviderSignOutAccountOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProviderSignOutAccountOperation is access all IWebAccountProviderSignOutAccountOperation_Interface'Class;
+   type IWebAccountProviderSignOutAccountOperation is access IWebAccountProviderSignOutAccountOperation_Interface'Class;
    type IWebAccountProviderSignOutAccountOperation_Ptr is access all IWebAccountProviderSignOutAccountOperation;
 
    type IWebAccountProviderSilentReportOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProviderSilentReportOperation is access all IWebAccountProviderSilentReportOperation_Interface'Class;
+   type IWebAccountProviderSilentReportOperation is access IWebAccountProviderSilentReportOperation_Interface'Class;
 
    type IWebAccountProviderTokenObjects_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProviderTokenObjects is access all IWebAccountProviderTokenObjects_Interface'Class;
+   type IWebAccountProviderTokenObjects is access IWebAccountProviderTokenObjects_Interface'Class;
    type IWebAccountProviderTokenObjects_Ptr is access all IWebAccountProviderTokenObjects;
 
    type IWebAccountProviderTokenObjects2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProviderTokenObjects2 is access all IWebAccountProviderTokenObjects2_Interface'Class;
+   type IWebAccountProviderTokenObjects2 is access IWebAccountProviderTokenObjects2_Interface'Class;
 
    type IWebAccountProviderTokenOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProviderTokenOperation is access all IWebAccountProviderTokenOperation_Interface'Class;
+   type IWebAccountProviderTokenOperation is access IWebAccountProviderTokenOperation_Interface'Class;
    type IWebAccountProviderTokenOperation_Ptr is access all IWebAccountProviderTokenOperation;
 
    type IWebAccountProviderUIReportOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProviderUIReportOperation is access all IWebAccountProviderUIReportOperation_Interface'Class;
+   type IWebAccountProviderUIReportOperation is access IWebAccountProviderUIReportOperation_Interface'Class;
 
    type IWebAccountScopeManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountScopeManagerStatics is access all IWebAccountScopeManagerStatics_Interface'Class;
+   type IWebAccountScopeManagerStatics is access IWebAccountScopeManagerStatics_Interface'Class;
 
    type IWebProviderTokenRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebProviderTokenRequest is access all IWebProviderTokenRequest_Interface'Class;
+   type IWebProviderTokenRequest is access IWebProviderTokenRequest_Interface'Class;
    type IWebProviderTokenRequest_Ptr is access all IWebProviderTokenRequest;
 
    type IWebProviderTokenRequest2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebProviderTokenRequest2 is access all IWebProviderTokenRequest2_Interface'Class;
+   type IWebProviderTokenRequest2 is access IWebProviderTokenRequest2_Interface'Class;
 
    type IWebProviderTokenRequest3_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebProviderTokenRequest3 is access all IWebProviderTokenRequest3_Interface'Class;
+   type IWebProviderTokenRequest3 is access IWebProviderTokenRequest3_Interface'Class;
 
    type IWebProviderTokenResponse_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebProviderTokenResponse is access all IWebProviderTokenResponse_Interface'Class;
+   type IWebProviderTokenResponse is access IWebProviderTokenResponse_Interface'Class;
    type IWebProviderTokenResponse_Ptr is access all IWebProviderTokenResponse;
 
    type IWebProviderTokenResponseFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebProviderTokenResponseFactory is access all IWebProviderTokenResponseFactory_Interface'Class;
+   type IWebProviderTokenResponseFactory is access IWebProviderTokenResponseFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

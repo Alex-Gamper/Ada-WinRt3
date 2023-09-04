@@ -40,18 +40,18 @@ package WinRt.Windows.Graphics.Display.Core is
    -----------------------------------------------------------------------------
 
    type IHdmiDisplayInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IHdmiDisplayInformation is access all IHdmiDisplayInformation_Interface'Class;
+   type IHdmiDisplayInformation is access IHdmiDisplayInformation_Interface'Class;
    type IHdmiDisplayInformation_Ptr is access all IHdmiDisplayInformation;
 
    type IHdmiDisplayInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHdmiDisplayInformationStatics is access all IHdmiDisplayInformationStatics_Interface'Class;
+   type IHdmiDisplayInformationStatics is access IHdmiDisplayInformationStatics_Interface'Class;
 
    type IHdmiDisplayMode_Interface is interface and WinRt.IInspectable_Interface;
-   type IHdmiDisplayMode is access all IHdmiDisplayMode_Interface'Class;
+   type IHdmiDisplayMode is access IHdmiDisplayMode_Interface'Class;
    type IHdmiDisplayMode_Ptr is access all IHdmiDisplayMode;
 
    type IHdmiDisplayMode2_Interface is interface and WinRt.IInspectable_Interface;
-   type IHdmiDisplayMode2 is access all IHdmiDisplayMode2_Interface'Class;
+   type IHdmiDisplayMode2 is access IHdmiDisplayMode2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

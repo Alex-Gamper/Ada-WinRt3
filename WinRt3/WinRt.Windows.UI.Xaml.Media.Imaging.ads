@@ -49,100 +49,100 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    -----------------------------------------------------------------------------
 
    type IBitmapImage_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapImage is access all IBitmapImage_Interface'Class;
+   type IBitmapImage is access IBitmapImage_Interface'Class;
    type IBitmapImage_Ptr is access all IBitmapImage;
 
    type IBitmapImage2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapImage2 is access all IBitmapImage2_Interface'Class;
+   type IBitmapImage2 is access IBitmapImage2_Interface'Class;
 
    type IBitmapImage3_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapImage3 is access all IBitmapImage3_Interface'Class;
+   type IBitmapImage3 is access IBitmapImage3_Interface'Class;
 
    type IBitmapImageFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapImageFactory is access all IBitmapImageFactory_Interface'Class;
+   type IBitmapImageFactory is access IBitmapImageFactory_Interface'Class;
 
    type IBitmapImageStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapImageStatics is access all IBitmapImageStatics_Interface'Class;
+   type IBitmapImageStatics is access IBitmapImageStatics_Interface'Class;
 
    type IBitmapImageStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapImageStatics2 is access all IBitmapImageStatics2_Interface'Class;
+   type IBitmapImageStatics2 is access IBitmapImageStatics2_Interface'Class;
 
    type IBitmapImageStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapImageStatics3 is access all IBitmapImageStatics3_Interface'Class;
+   type IBitmapImageStatics3 is access IBitmapImageStatics3_Interface'Class;
 
    type IBitmapSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapSource is access all IBitmapSource_Interface'Class;
+   type IBitmapSource is access IBitmapSource_Interface'Class;
    type IBitmapSource_Ptr is access all IBitmapSource;
 
    type IBitmapSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapSourceFactory is access all IBitmapSourceFactory_Interface'Class;
+   type IBitmapSourceFactory is access IBitmapSourceFactory_Interface'Class;
 
    type IBitmapSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapSourceStatics is access all IBitmapSourceStatics_Interface'Class;
+   type IBitmapSourceStatics is access IBitmapSourceStatics_Interface'Class;
 
    type IDownloadProgressEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDownloadProgressEventArgs is access all IDownloadProgressEventArgs_Interface'Class;
+   type IDownloadProgressEventArgs is access IDownloadProgressEventArgs_Interface'Class;
    type IDownloadProgressEventArgs_Ptr is access all IDownloadProgressEventArgs;
 
    type IRenderTargetBitmap_Interface is interface and WinRt.IInspectable_Interface;
-   type IRenderTargetBitmap is access all IRenderTargetBitmap_Interface'Class;
+   type IRenderTargetBitmap is access IRenderTargetBitmap_Interface'Class;
    type IRenderTargetBitmap_Ptr is access all IRenderTargetBitmap;
 
    type IRenderTargetBitmapStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRenderTargetBitmapStatics is access all IRenderTargetBitmapStatics_Interface'Class;
+   type IRenderTargetBitmapStatics is access IRenderTargetBitmapStatics_Interface'Class;
 
    type ISoftwareBitmapSource_Interface is interface and WinRt.IInspectable_Interface;
-   type ISoftwareBitmapSource is access all ISoftwareBitmapSource_Interface'Class;
+   type ISoftwareBitmapSource is access ISoftwareBitmapSource_Interface'Class;
    type ISoftwareBitmapSource_Ptr is access all ISoftwareBitmapSource;
 
    type ISurfaceImageSource_Interface is interface and WinRt.IInspectable_Interface;
-   type ISurfaceImageSource is access all ISurfaceImageSource_Interface'Class;
+   type ISurfaceImageSource is access ISurfaceImageSource_Interface'Class;
    type ISurfaceImageSource_Ptr is access all ISurfaceImageSource;
 
    type ISurfaceImageSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISurfaceImageSourceFactory is access all ISurfaceImageSourceFactory_Interface'Class;
+   type ISurfaceImageSourceFactory is access ISurfaceImageSourceFactory_Interface'Class;
 
    type ISvgImageSource_Interface is interface and WinRt.IInspectable_Interface;
-   type ISvgImageSource is access all ISvgImageSource_Interface'Class;
+   type ISvgImageSource is access ISvgImageSource_Interface'Class;
    type ISvgImageSource_Ptr is access all ISvgImageSource;
 
    type ISvgImageSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISvgImageSourceFactory is access all ISvgImageSourceFactory_Interface'Class;
+   type ISvgImageSourceFactory is access ISvgImageSourceFactory_Interface'Class;
 
    type ISvgImageSourceFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISvgImageSourceFailedEventArgs is access all ISvgImageSourceFailedEventArgs_Interface'Class;
+   type ISvgImageSourceFailedEventArgs is access ISvgImageSourceFailedEventArgs_Interface'Class;
    type ISvgImageSourceFailedEventArgs_Ptr is access all ISvgImageSourceFailedEventArgs;
 
    type ISvgImageSourceOpenedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISvgImageSourceOpenedEventArgs is access all ISvgImageSourceOpenedEventArgs_Interface'Class;
+   type ISvgImageSourceOpenedEventArgs is access ISvgImageSourceOpenedEventArgs_Interface'Class;
    type ISvgImageSourceOpenedEventArgs_Ptr is access all ISvgImageSourceOpenedEventArgs;
 
    type ISvgImageSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISvgImageSourceStatics is access all ISvgImageSourceStatics_Interface'Class;
+   type ISvgImageSourceStatics is access ISvgImageSourceStatics_Interface'Class;
 
    type IVirtualSurfaceImageSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IVirtualSurfaceImageSource is access all IVirtualSurfaceImageSource_Interface'Class;
+   type IVirtualSurfaceImageSource is access IVirtualSurfaceImageSource_Interface'Class;
    type IVirtualSurfaceImageSource_Ptr is access all IVirtualSurfaceImageSource;
 
    type IVirtualSurfaceImageSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IVirtualSurfaceImageSourceFactory is access all IVirtualSurfaceImageSourceFactory_Interface'Class;
+   type IVirtualSurfaceImageSourceFactory is access IVirtualSurfaceImageSourceFactory_Interface'Class;
 
    type IWriteableBitmap_Interface is interface and WinRt.IInspectable_Interface;
-   type IWriteableBitmap is access all IWriteableBitmap_Interface'Class;
+   type IWriteableBitmap is access IWriteableBitmap_Interface'Class;
    type IWriteableBitmap_Ptr is access all IWriteableBitmap;
 
    type IWriteableBitmapFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWriteableBitmapFactory is access all IWriteableBitmapFactory_Interface'Class;
+   type IWriteableBitmapFactory is access IWriteableBitmapFactory_Interface'Class;
 
    type IXamlRenderingBackgroundTask_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlRenderingBackgroundTask is access all IXamlRenderingBackgroundTask_Interface'Class;
+   type IXamlRenderingBackgroundTask is access IXamlRenderingBackgroundTask_Interface'Class;
    type IXamlRenderingBackgroundTask_Ptr is access all IXamlRenderingBackgroundTask;
 
    type IXamlRenderingBackgroundTaskFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlRenderingBackgroundTaskFactory is access all IXamlRenderingBackgroundTaskFactory_Interface'Class;
+   type IXamlRenderingBackgroundTaskFactory is access IXamlRenderingBackgroundTaskFactory_Interface'Class;
 
    type IXamlRenderingBackgroundTaskOverrides_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlRenderingBackgroundTaskOverrides is access all IXamlRenderingBackgroundTaskOverrides_Interface'Class;
+   type IXamlRenderingBackgroundTaskOverrides is access IXamlRenderingBackgroundTaskOverrides_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

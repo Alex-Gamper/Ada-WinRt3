@@ -41,95 +41,95 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    -----------------------------------------------------------------------------
 
    type IPrintBindingOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintBindingOptionDetails is access all IPrintBindingOptionDetails_Interface'Class;
+   type IPrintBindingOptionDetails is access IPrintBindingOptionDetails_Interface'Class;
 
    type IPrintBorderingOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintBorderingOptionDetails is access all IPrintBorderingOptionDetails_Interface'Class;
+   type IPrintBorderingOptionDetails is access IPrintBorderingOptionDetails_Interface'Class;
 
    type IPrintCollationOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintCollationOptionDetails is access all IPrintCollationOptionDetails_Interface'Class;
+   type IPrintCollationOptionDetails is access IPrintCollationOptionDetails_Interface'Class;
 
    type IPrintColorModeOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintColorModeOptionDetails is access all IPrintColorModeOptionDetails_Interface'Class;
+   type IPrintColorModeOptionDetails is access IPrintColorModeOptionDetails_Interface'Class;
 
    type IPrintCopiesOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintCopiesOptionDetails is access all IPrintCopiesOptionDetails_Interface'Class;
+   type IPrintCopiesOptionDetails is access IPrintCopiesOptionDetails_Interface'Class;
 
    type IPrintCustomItemDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintCustomItemDetails is access all IPrintCustomItemDetails_Interface'Class;
+   type IPrintCustomItemDetails is access IPrintCustomItemDetails_Interface'Class;
    type IPrintCustomItemDetails_Ptr is access all IPrintCustomItemDetails;
 
    type IPrintCustomItemListOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintCustomItemListOptionDetails is access all IPrintCustomItemListOptionDetails_Interface'Class;
+   type IPrintCustomItemListOptionDetails is access IPrintCustomItemListOptionDetails_Interface'Class;
 
    type IPrintCustomItemListOptionDetails2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintCustomItemListOptionDetails2 is access all IPrintCustomItemListOptionDetails2_Interface'Class;
+   type IPrintCustomItemListOptionDetails2 is access IPrintCustomItemListOptionDetails2_Interface'Class;
 
    type IPrintCustomItemListOptionDetails3_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintCustomItemListOptionDetails3 is access all IPrintCustomItemListOptionDetails3_Interface'Class;
+   type IPrintCustomItemListOptionDetails3 is access IPrintCustomItemListOptionDetails3_Interface'Class;
 
    type IPrintCustomOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintCustomOptionDetails is access all IPrintCustomOptionDetails_Interface'Class;
+   type IPrintCustomOptionDetails is access IPrintCustomOptionDetails_Interface'Class;
 
    type IPrintCustomTextOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintCustomTextOptionDetails is access all IPrintCustomTextOptionDetails_Interface'Class;
+   type IPrintCustomTextOptionDetails is access IPrintCustomTextOptionDetails_Interface'Class;
 
    type IPrintCustomTextOptionDetails2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintCustomTextOptionDetails2 is access all IPrintCustomTextOptionDetails2_Interface'Class;
+   type IPrintCustomTextOptionDetails2 is access IPrintCustomTextOptionDetails2_Interface'Class;
 
    type IPrintCustomToggleOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintCustomToggleOptionDetails is access all IPrintCustomToggleOptionDetails_Interface'Class;
+   type IPrintCustomToggleOptionDetails is access IPrintCustomToggleOptionDetails_Interface'Class;
 
    type IPrintDuplexOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintDuplexOptionDetails is access all IPrintDuplexOptionDetails_Interface'Class;
+   type IPrintDuplexOptionDetails is access IPrintDuplexOptionDetails_Interface'Class;
 
    type IPrintHolePunchOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintHolePunchOptionDetails is access all IPrintHolePunchOptionDetails_Interface'Class;
+   type IPrintHolePunchOptionDetails is access IPrintHolePunchOptionDetails_Interface'Class;
 
    type IPrintItemListOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintItemListOptionDetails is access all IPrintItemListOptionDetails_Interface'Class;
+   type IPrintItemListOptionDetails is access IPrintItemListOptionDetails_Interface'Class;
 
    type IPrintMediaSizeOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintMediaSizeOptionDetails is access all IPrintMediaSizeOptionDetails_Interface'Class;
+   type IPrintMediaSizeOptionDetails is access IPrintMediaSizeOptionDetails_Interface'Class;
 
    type IPrintMediaTypeOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintMediaTypeOptionDetails is access all IPrintMediaTypeOptionDetails_Interface'Class;
+   type IPrintMediaTypeOptionDetails is access IPrintMediaTypeOptionDetails_Interface'Class;
 
    type IPrintNumberOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintNumberOptionDetails is access all IPrintNumberOptionDetails_Interface'Class;
+   type IPrintNumberOptionDetails is access IPrintNumberOptionDetails_Interface'Class;
 
    type IPrintOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintOptionDetails is access all IPrintOptionDetails_Interface'Class;
+   type IPrintOptionDetails is access IPrintOptionDetails_Interface'Class;
    type IPrintOptionDetails_Ptr is access all IPrintOptionDetails;
 
    type IPrintOrientationOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintOrientationOptionDetails is access all IPrintOrientationOptionDetails_Interface'Class;
+   type IPrintOrientationOptionDetails is access IPrintOrientationOptionDetails_Interface'Class;
 
    type IPrintPageRangeOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintPageRangeOptionDetails is access all IPrintPageRangeOptionDetails_Interface'Class;
+   type IPrintPageRangeOptionDetails is access IPrintPageRangeOptionDetails_Interface'Class;
 
    type IPrintQualityOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintQualityOptionDetails is access all IPrintQualityOptionDetails_Interface'Class;
+   type IPrintQualityOptionDetails is access IPrintQualityOptionDetails_Interface'Class;
 
    type IPrintStapleOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintStapleOptionDetails is access all IPrintStapleOptionDetails_Interface'Class;
+   type IPrintStapleOptionDetails is access IPrintStapleOptionDetails_Interface'Class;
 
    type IPrintTaskOptionChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskOptionChangedEventArgs is access all IPrintTaskOptionChangedEventArgs_Interface'Class;
+   type IPrintTaskOptionChangedEventArgs is access IPrintTaskOptionChangedEventArgs_Interface'Class;
    type IPrintTaskOptionChangedEventArgs_Ptr is access all IPrintTaskOptionChangedEventArgs;
 
    type IPrintTaskOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskOptionDetails is access all IPrintTaskOptionDetails_Interface'Class;
+   type IPrintTaskOptionDetails is access IPrintTaskOptionDetails_Interface'Class;
    type IPrintTaskOptionDetails_Ptr is access all IPrintTaskOptionDetails;
 
    type IPrintTaskOptionDetails2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskOptionDetails2 is access all IPrintTaskOptionDetails2_Interface'Class;
+   type IPrintTaskOptionDetails2 is access IPrintTaskOptionDetails2_Interface'Class;
 
    type IPrintTaskOptionDetailsStatic_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskOptionDetailsStatic is access all IPrintTaskOptionDetailsStatic_Interface'Class;
+   type IPrintTaskOptionDetailsStatic is access IPrintTaskOptionDetailsStatic_Interface'Class;
 
    type IPrintTextOptionDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTextOptionDetails is access all IPrintTextOptionDetails_Interface'Class;
+   type IPrintTextOptionDetails is access IPrintTextOptionDetails_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

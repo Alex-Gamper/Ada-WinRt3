@@ -42,108 +42,108 @@ package WinRt.Windows.UI.Composition.Scenes is
    -----------------------------------------------------------------------------
 
    type ISceneBoundingBox_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneBoundingBox is access all ISceneBoundingBox_Interface'Class;
+   type ISceneBoundingBox is access ISceneBoundingBox_Interface'Class;
    type ISceneBoundingBox_Ptr is access all ISceneBoundingBox;
 
    type ISceneComponent_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneComponent is access all ISceneComponent_Interface'Class;
+   type ISceneComponent is access ISceneComponent_Interface'Class;
    type ISceneComponent_Ptr is access all ISceneComponent;
    type ISceneComponent_Array is array (Natural range <>) of ISceneComponent;
 
    type ISceneComponentCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneComponentCollection is access all ISceneComponentCollection_Interface'Class;
+   type ISceneComponentCollection is access ISceneComponentCollection_Interface'Class;
 
    type ISceneComponentFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneComponentFactory is access all ISceneComponentFactory_Interface'Class;
+   type ISceneComponentFactory is access ISceneComponentFactory_Interface'Class;
 
    type ISceneMaterial_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneMaterial is access all ISceneMaterial_Interface'Class;
+   type ISceneMaterial is access ISceneMaterial_Interface'Class;
    type ISceneMaterial_Ptr is access all ISceneMaterial;
 
    type ISceneMaterialFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneMaterialFactory is access all ISceneMaterialFactory_Interface'Class;
+   type ISceneMaterialFactory is access ISceneMaterialFactory_Interface'Class;
 
    type ISceneMaterialInput_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneMaterialInput is access all ISceneMaterialInput_Interface'Class;
+   type ISceneMaterialInput is access ISceneMaterialInput_Interface'Class;
    type ISceneMaterialInput_Ptr is access all ISceneMaterialInput;
 
    type ISceneMaterialInputFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneMaterialInputFactory is access all ISceneMaterialInputFactory_Interface'Class;
+   type ISceneMaterialInputFactory is access ISceneMaterialInputFactory_Interface'Class;
 
    type ISceneMesh_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneMesh is access all ISceneMesh_Interface'Class;
+   type ISceneMesh is access ISceneMesh_Interface'Class;
    type ISceneMesh_Ptr is access all ISceneMesh;
 
    type ISceneMeshMaterialAttributeMap_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneMeshMaterialAttributeMap is access all ISceneMeshMaterialAttributeMap_Interface'Class;
+   type ISceneMeshMaterialAttributeMap is access ISceneMeshMaterialAttributeMap_Interface'Class;
    type ISceneMeshMaterialAttributeMap_Ptr is access all ISceneMeshMaterialAttributeMap;
 
    type ISceneMeshRendererComponent_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneMeshRendererComponent is access all ISceneMeshRendererComponent_Interface'Class;
+   type ISceneMeshRendererComponent is access ISceneMeshRendererComponent_Interface'Class;
    type ISceneMeshRendererComponent_Ptr is access all ISceneMeshRendererComponent;
 
    type ISceneMeshRendererComponentStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneMeshRendererComponentStatics is access all ISceneMeshRendererComponentStatics_Interface'Class;
+   type ISceneMeshRendererComponentStatics is access ISceneMeshRendererComponentStatics_Interface'Class;
 
    type ISceneMeshStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneMeshStatics is access all ISceneMeshStatics_Interface'Class;
+   type ISceneMeshStatics is access ISceneMeshStatics_Interface'Class;
 
    type ISceneMetallicRoughnessMaterial_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneMetallicRoughnessMaterial is access all ISceneMetallicRoughnessMaterial_Interface'Class;
+   type ISceneMetallicRoughnessMaterial is access ISceneMetallicRoughnessMaterial_Interface'Class;
    type ISceneMetallicRoughnessMaterial_Ptr is access all ISceneMetallicRoughnessMaterial;
 
    type ISceneMetallicRoughnessMaterialStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneMetallicRoughnessMaterialStatics is access all ISceneMetallicRoughnessMaterialStatics_Interface'Class;
+   type ISceneMetallicRoughnessMaterialStatics is access ISceneMetallicRoughnessMaterialStatics_Interface'Class;
 
    type ISceneModelTransform_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneModelTransform is access all ISceneModelTransform_Interface'Class;
+   type ISceneModelTransform is access ISceneModelTransform_Interface'Class;
    type ISceneModelTransform_Ptr is access all ISceneModelTransform;
 
    type ISceneNode_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneNode is access all ISceneNode_Interface'Class;
+   type ISceneNode is access ISceneNode_Interface'Class;
    type ISceneNode_Ptr is access all ISceneNode;
    type ISceneNode_Array is array (Natural range <>) of ISceneNode;
 
    type ISceneNodeCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneNodeCollection is access all ISceneNodeCollection_Interface'Class;
+   type ISceneNodeCollection is access ISceneNodeCollection_Interface'Class;
 
    type ISceneNodeStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneNodeStatics is access all ISceneNodeStatics_Interface'Class;
+   type ISceneNodeStatics is access ISceneNodeStatics_Interface'Class;
 
    type ISceneObject_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneObject is access all ISceneObject_Interface'Class;
+   type ISceneObject is access ISceneObject_Interface'Class;
    type ISceneObject_Ptr is access all ISceneObject;
 
    type ISceneObjectFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneObjectFactory is access all ISceneObjectFactory_Interface'Class;
+   type ISceneObjectFactory is access ISceneObjectFactory_Interface'Class;
 
    type IScenePbrMaterial_Interface is interface and WinRt.IInspectable_Interface;
-   type IScenePbrMaterial is access all IScenePbrMaterial_Interface'Class;
+   type IScenePbrMaterial is access IScenePbrMaterial_Interface'Class;
    type IScenePbrMaterial_Ptr is access all IScenePbrMaterial;
 
    type IScenePbrMaterialFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IScenePbrMaterialFactory is access all IScenePbrMaterialFactory_Interface'Class;
+   type IScenePbrMaterialFactory is access IScenePbrMaterialFactory_Interface'Class;
 
    type ISceneRendererComponent_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneRendererComponent is access all ISceneRendererComponent_Interface'Class;
+   type ISceneRendererComponent is access ISceneRendererComponent_Interface'Class;
    type ISceneRendererComponent_Ptr is access all ISceneRendererComponent;
 
    type ISceneRendererComponentFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneRendererComponentFactory is access all ISceneRendererComponentFactory_Interface'Class;
+   type ISceneRendererComponentFactory is access ISceneRendererComponentFactory_Interface'Class;
 
    type ISceneSurfaceMaterialInput_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneSurfaceMaterialInput is access all ISceneSurfaceMaterialInput_Interface'Class;
+   type ISceneSurfaceMaterialInput is access ISceneSurfaceMaterialInput_Interface'Class;
    type ISceneSurfaceMaterialInput_Ptr is access all ISceneSurfaceMaterialInput;
 
    type ISceneSurfaceMaterialInputStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneSurfaceMaterialInputStatics is access all ISceneSurfaceMaterialInputStatics_Interface'Class;
+   type ISceneSurfaceMaterialInputStatics is access ISceneSurfaceMaterialInputStatics_Interface'Class;
 
    type ISceneVisual_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneVisual is access all ISceneVisual_Interface'Class;
+   type ISceneVisual is access ISceneVisual_Interface'Class;
    type ISceneVisual_Ptr is access all ISceneVisual;
 
    type ISceneVisualStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneVisualStatics is access all ISceneVisualStatics_Interface'Class;
+   type ISceneVisualStatics is access ISceneVisualStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

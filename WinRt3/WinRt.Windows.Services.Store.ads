@@ -43,153 +43,153 @@ package WinRt.Windows.Services.Store is
    -----------------------------------------------------------------------------
 
    type IStoreAcquireLicenseResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreAcquireLicenseResult is access all IStoreAcquireLicenseResult_Interface'Class;
+   type IStoreAcquireLicenseResult is access IStoreAcquireLicenseResult_Interface'Class;
    type IStoreAcquireLicenseResult_Ptr is access all IStoreAcquireLicenseResult;
 
    type IStoreAppLicense_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreAppLicense is access all IStoreAppLicense_Interface'Class;
+   type IStoreAppLicense is access IStoreAppLicense_Interface'Class;
    type IStoreAppLicense_Ptr is access all IStoreAppLicense;
 
    type IStoreAppLicense2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreAppLicense2 is access all IStoreAppLicense2_Interface'Class;
+   type IStoreAppLicense2 is access IStoreAppLicense2_Interface'Class;
 
    type IStoreAvailability_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreAvailability is access all IStoreAvailability_Interface'Class;
+   type IStoreAvailability is access IStoreAvailability_Interface'Class;
    type IStoreAvailability_Ptr is access all IStoreAvailability;
 
    type IStoreCanAcquireLicenseResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreCanAcquireLicenseResult is access all IStoreCanAcquireLicenseResult_Interface'Class;
+   type IStoreCanAcquireLicenseResult is access IStoreCanAcquireLicenseResult_Interface'Class;
    type IStoreCanAcquireLicenseResult_Ptr is access all IStoreCanAcquireLicenseResult;
 
    type IStoreCollectionData_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreCollectionData is access all IStoreCollectionData_Interface'Class;
+   type IStoreCollectionData is access IStoreCollectionData_Interface'Class;
    type IStoreCollectionData_Ptr is access all IStoreCollectionData;
 
    type IStoreConsumableResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreConsumableResult is access all IStoreConsumableResult_Interface'Class;
+   type IStoreConsumableResult is access IStoreConsumableResult_Interface'Class;
    type IStoreConsumableResult_Ptr is access all IStoreConsumableResult;
 
    type IStoreContext_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreContext is access all IStoreContext_Interface'Class;
+   type IStoreContext is access IStoreContext_Interface'Class;
    type IStoreContext_Ptr is access all IStoreContext;
 
    type IStoreContext2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreContext2 is access all IStoreContext2_Interface'Class;
+   type IStoreContext2 is access IStoreContext2_Interface'Class;
 
    type IStoreContext3_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreContext3 is access all IStoreContext3_Interface'Class;
+   type IStoreContext3 is access IStoreContext3_Interface'Class;
 
    type IStoreContext4_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreContext4 is access all IStoreContext4_Interface'Class;
+   type IStoreContext4 is access IStoreContext4_Interface'Class;
 
    type IStoreContextStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreContextStatics is access all IStoreContextStatics_Interface'Class;
+   type IStoreContextStatics is access IStoreContextStatics_Interface'Class;
 
    type IStoreImage_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreImage is access all IStoreImage_Interface'Class;
+   type IStoreImage is access IStoreImage_Interface'Class;
    type IStoreImage_Ptr is access all IStoreImage;
 
    type IStoreLicense_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreLicense is access all IStoreLicense_Interface'Class;
+   type IStoreLicense is access IStoreLicense_Interface'Class;
    type IStoreLicense_Ptr is access all IStoreLicense;
 
    type IStorePackageInstallOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorePackageInstallOptions is access all IStorePackageInstallOptions_Interface'Class;
+   type IStorePackageInstallOptions is access IStorePackageInstallOptions_Interface'Class;
    type IStorePackageInstallOptions_Ptr is access all IStorePackageInstallOptions;
 
    type IStorePackageLicense_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorePackageLicense is access all IStorePackageLicense_Interface'Class;
+   type IStorePackageLicense is access IStorePackageLicense_Interface'Class;
    type IStorePackageLicense_Ptr is access all IStorePackageLicense;
 
    type IStorePackageUpdate_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorePackageUpdate is access all IStorePackageUpdate_Interface'Class;
+   type IStorePackageUpdate is access IStorePackageUpdate_Interface'Class;
    type IStorePackageUpdate_Ptr is access all IStorePackageUpdate;
 
    type IStorePackageUpdateResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorePackageUpdateResult is access all IStorePackageUpdateResult_Interface'Class;
+   type IStorePackageUpdateResult is access IStorePackageUpdateResult_Interface'Class;
    type IStorePackageUpdateResult_Ptr is access all IStorePackageUpdateResult;
 
    type IStorePackageUpdateResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorePackageUpdateResult2 is access all IStorePackageUpdateResult2_Interface'Class;
+   type IStorePackageUpdateResult2 is access IStorePackageUpdateResult2_Interface'Class;
 
    type IStorePrice_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorePrice is access all IStorePrice_Interface'Class;
+   type IStorePrice is access IStorePrice_Interface'Class;
    type IStorePrice_Ptr is access all IStorePrice;
 
    type IStoreProduct_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreProduct is access all IStoreProduct_Interface'Class;
+   type IStoreProduct is access IStoreProduct_Interface'Class;
    type IStoreProduct_Ptr is access all IStoreProduct;
 
    type IStoreProductOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreProductOptions is access all IStoreProductOptions_Interface'Class;
+   type IStoreProductOptions is access IStoreProductOptions_Interface'Class;
    type IStoreProductOptions_Ptr is access all IStoreProductOptions;
 
    type IStoreProductPagedQueryResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreProductPagedQueryResult is access all IStoreProductPagedQueryResult_Interface'Class;
+   type IStoreProductPagedQueryResult is access IStoreProductPagedQueryResult_Interface'Class;
    type IStoreProductPagedQueryResult_Ptr is access all IStoreProductPagedQueryResult;
 
    type IStoreProductQueryResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreProductQueryResult is access all IStoreProductQueryResult_Interface'Class;
+   type IStoreProductQueryResult is access IStoreProductQueryResult_Interface'Class;
    type IStoreProductQueryResult_Ptr is access all IStoreProductQueryResult;
 
    type IStoreProductResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreProductResult is access all IStoreProductResult_Interface'Class;
+   type IStoreProductResult is access IStoreProductResult_Interface'Class;
    type IStoreProductResult_Ptr is access all IStoreProductResult;
 
    type IStorePurchaseProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorePurchaseProperties is access all IStorePurchaseProperties_Interface'Class;
+   type IStorePurchaseProperties is access IStorePurchaseProperties_Interface'Class;
    type IStorePurchaseProperties_Ptr is access all IStorePurchaseProperties;
 
    type IStorePurchasePropertiesFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorePurchasePropertiesFactory is access all IStorePurchasePropertiesFactory_Interface'Class;
+   type IStorePurchasePropertiesFactory is access IStorePurchasePropertiesFactory_Interface'Class;
 
    type IStorePurchaseResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorePurchaseResult is access all IStorePurchaseResult_Interface'Class;
+   type IStorePurchaseResult is access IStorePurchaseResult_Interface'Class;
    type IStorePurchaseResult_Ptr is access all IStorePurchaseResult;
 
    type IStoreQueueItem_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreQueueItem is access all IStoreQueueItem_Interface'Class;
+   type IStoreQueueItem is access IStoreQueueItem_Interface'Class;
    type IStoreQueueItem_Ptr is access all IStoreQueueItem;
 
    type IStoreQueueItem2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreQueueItem2 is access all IStoreQueueItem2_Interface'Class;
+   type IStoreQueueItem2 is access IStoreQueueItem2_Interface'Class;
 
    type IStoreQueueItemCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreQueueItemCompletedEventArgs is access all IStoreQueueItemCompletedEventArgs_Interface'Class;
+   type IStoreQueueItemCompletedEventArgs is access IStoreQueueItemCompletedEventArgs_Interface'Class;
    type IStoreQueueItemCompletedEventArgs_Ptr is access all IStoreQueueItemCompletedEventArgs;
 
    type IStoreQueueItemStatus_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreQueueItemStatus is access all IStoreQueueItemStatus_Interface'Class;
+   type IStoreQueueItemStatus is access IStoreQueueItemStatus_Interface'Class;
    type IStoreQueueItemStatus_Ptr is access all IStoreQueueItemStatus;
 
    type IStoreRateAndReviewResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreRateAndReviewResult is access all IStoreRateAndReviewResult_Interface'Class;
+   type IStoreRateAndReviewResult is access IStoreRateAndReviewResult_Interface'Class;
    type IStoreRateAndReviewResult_Ptr is access all IStoreRateAndReviewResult;
 
    type IStoreRequestHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreRequestHelperStatics is access all IStoreRequestHelperStatics_Interface'Class;
+   type IStoreRequestHelperStatics is access IStoreRequestHelperStatics_Interface'Class;
 
    type IStoreSendRequestResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreSendRequestResult is access all IStoreSendRequestResult_Interface'Class;
+   type IStoreSendRequestResult is access IStoreSendRequestResult_Interface'Class;
    type IStoreSendRequestResult_Ptr is access all IStoreSendRequestResult;
 
    type IStoreSendRequestResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreSendRequestResult2 is access all IStoreSendRequestResult2_Interface'Class;
+   type IStoreSendRequestResult2 is access IStoreSendRequestResult2_Interface'Class;
 
    type IStoreSku_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreSku is access all IStoreSku_Interface'Class;
+   type IStoreSku is access IStoreSku_Interface'Class;
    type IStoreSku_Ptr is access all IStoreSku;
 
    type IStoreSubscriptionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreSubscriptionInfo is access all IStoreSubscriptionInfo_Interface'Class;
+   type IStoreSubscriptionInfo is access IStoreSubscriptionInfo_Interface'Class;
    type IStoreSubscriptionInfo_Ptr is access all IStoreSubscriptionInfo;
 
    type IStoreUninstallStorePackageResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreUninstallStorePackageResult is access all IStoreUninstallStorePackageResult_Interface'Class;
+   type IStoreUninstallStorePackageResult is access IStoreUninstallStorePackageResult_Interface'Class;
    type IStoreUninstallStorePackageResult_Ptr is access all IStoreUninstallStorePackageResult;
 
    type IStoreVideo_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreVideo is access all IStoreVideo_Interface'Class;
+   type IStoreVideo is access IStoreVideo_Interface'Class;
    type IStoreVideo_Ptr is access all IStoreVideo;
 
    -----------------------------------------------------------------------------

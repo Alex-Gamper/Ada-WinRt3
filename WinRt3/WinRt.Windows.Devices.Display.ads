@@ -40,14 +40,14 @@ package WinRt.Windows.Devices.Display is
    -----------------------------------------------------------------------------
 
    type IDisplayMonitor_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayMonitor is access all IDisplayMonitor_Interface'Class;
+   type IDisplayMonitor is access IDisplayMonitor_Interface'Class;
    type IDisplayMonitor_Ptr is access all IDisplayMonitor;
 
    type IDisplayMonitor2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayMonitor2 is access all IDisplayMonitor2_Interface'Class;
+   type IDisplayMonitor2 is access IDisplayMonitor2_Interface'Class;
 
    type IDisplayMonitorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayMonitorStatics is access all IDisplayMonitorStatics_Interface'Class;
+   type IDisplayMonitorStatics is access IDisplayMonitorStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -46,580 +46,580 @@ package WinRt.Windows.UI.Composition is
    -----------------------------------------------------------------------------
 
    type IAmbientLight_Interface is interface and WinRt.IInspectable_Interface;
-   type IAmbientLight is access all IAmbientLight_Interface'Class;
+   type IAmbientLight is access IAmbientLight_Interface'Class;
    type IAmbientLight_Ptr is access all IAmbientLight;
 
    type IAmbientLight2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAmbientLight2 is access all IAmbientLight2_Interface'Class;
+   type IAmbientLight2 is access IAmbientLight2_Interface'Class;
 
    type IAnimationController_Interface is interface and WinRt.IInspectable_Interface;
-   type IAnimationController is access all IAnimationController_Interface'Class;
+   type IAnimationController is access IAnimationController_Interface'Class;
    type IAnimationController_Ptr is access all IAnimationController;
 
    type IAnimationControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAnimationControllerStatics is access all IAnimationControllerStatics_Interface'Class;
+   type IAnimationControllerStatics is access IAnimationControllerStatics_Interface'Class;
 
    type IAnimationObject_Interface is interface and WinRt.IInspectable_Interface;
-   type IAnimationObject is access all IAnimationObject_Interface'Class;
+   type IAnimationObject is access IAnimationObject_Interface'Class;
 
    type IAnimationPropertyInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAnimationPropertyInfo is access all IAnimationPropertyInfo_Interface'Class;
+   type IAnimationPropertyInfo is access IAnimationPropertyInfo_Interface'Class;
    type IAnimationPropertyInfo_Ptr is access all IAnimationPropertyInfo;
 
    type IBooleanKeyFrameAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IBooleanKeyFrameAnimation is access all IBooleanKeyFrameAnimation_Interface'Class;
+   type IBooleanKeyFrameAnimation is access IBooleanKeyFrameAnimation_Interface'Class;
    type IBooleanKeyFrameAnimation_Ptr is access all IBooleanKeyFrameAnimation;
 
    type IBounceScalarNaturalMotionAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IBounceScalarNaturalMotionAnimation is access all IBounceScalarNaturalMotionAnimation_Interface'Class;
+   type IBounceScalarNaturalMotionAnimation is access IBounceScalarNaturalMotionAnimation_Interface'Class;
    type IBounceScalarNaturalMotionAnimation_Ptr is access all IBounceScalarNaturalMotionAnimation;
 
    type IBounceVector2NaturalMotionAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IBounceVector2NaturalMotionAnimation is access all IBounceVector2NaturalMotionAnimation_Interface'Class;
+   type IBounceVector2NaturalMotionAnimation is access IBounceVector2NaturalMotionAnimation_Interface'Class;
    type IBounceVector2NaturalMotionAnimation_Ptr is access all IBounceVector2NaturalMotionAnimation;
 
    type IBounceVector3NaturalMotionAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IBounceVector3NaturalMotionAnimation is access all IBounceVector3NaturalMotionAnimation_Interface'Class;
+   type IBounceVector3NaturalMotionAnimation is access IBounceVector3NaturalMotionAnimation_Interface'Class;
    type IBounceVector3NaturalMotionAnimation_Ptr is access all IBounceVector3NaturalMotionAnimation;
 
    type IColorKeyFrameAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorKeyFrameAnimation is access all IColorKeyFrameAnimation_Interface'Class;
+   type IColorKeyFrameAnimation is access IColorKeyFrameAnimation_Interface'Class;
    type IColorKeyFrameAnimation_Ptr is access all IColorKeyFrameAnimation;
 
    type ICompositionAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionAnimation is access all ICompositionAnimation_Interface'Class;
+   type ICompositionAnimation is access ICompositionAnimation_Interface'Class;
    type ICompositionAnimation_Ptr is access all ICompositionAnimation;
 
    type ICompositionAnimation2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionAnimation2 is access all ICompositionAnimation2_Interface'Class;
+   type ICompositionAnimation2 is access ICompositionAnimation2_Interface'Class;
 
    type ICompositionAnimation3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionAnimation3 is access all ICompositionAnimation3_Interface'Class;
+   type ICompositionAnimation3 is access ICompositionAnimation3_Interface'Class;
 
    type ICompositionAnimation4_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionAnimation4 is access all ICompositionAnimation4_Interface'Class;
+   type ICompositionAnimation4 is access ICompositionAnimation4_Interface'Class;
 
    type ICompositionAnimationBase_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionAnimationBase is access all ICompositionAnimationBase_Interface'Class;
+   type ICompositionAnimationBase is access ICompositionAnimationBase_Interface'Class;
 
    type ICompositionAnimationFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionAnimationFactory is access all ICompositionAnimationFactory_Interface'Class;
+   type ICompositionAnimationFactory is access ICompositionAnimationFactory_Interface'Class;
 
    type ICompositionAnimationGroup_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionAnimationGroup is access all ICompositionAnimationGroup_Interface'Class;
+   type ICompositionAnimationGroup is access ICompositionAnimationGroup_Interface'Class;
    type ICompositionAnimationGroup_Ptr is access all ICompositionAnimationGroup;
 
    type ICompositionBackdropBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionBackdropBrush is access all ICompositionBackdropBrush_Interface'Class;
+   type ICompositionBackdropBrush is access ICompositionBackdropBrush_Interface'Class;
    type ICompositionBackdropBrush_Ptr is access all ICompositionBackdropBrush;
 
    type ICompositionBatchCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionBatchCompletedEventArgs is access all ICompositionBatchCompletedEventArgs_Interface'Class;
+   type ICompositionBatchCompletedEventArgs is access ICompositionBatchCompletedEventArgs_Interface'Class;
    type ICompositionBatchCompletedEventArgs_Ptr is access all ICompositionBatchCompletedEventArgs;
 
    type ICompositionBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionBrush is access all ICompositionBrush_Interface'Class;
+   type ICompositionBrush is access ICompositionBrush_Interface'Class;
    type ICompositionBrush_Ptr is access all ICompositionBrush;
 
    type ICompositionBrushFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionBrushFactory is access all ICompositionBrushFactory_Interface'Class;
+   type ICompositionBrushFactory is access ICompositionBrushFactory_Interface'Class;
 
    type ICompositionCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionCapabilities is access all ICompositionCapabilities_Interface'Class;
+   type ICompositionCapabilities is access ICompositionCapabilities_Interface'Class;
    type ICompositionCapabilities_Ptr is access all ICompositionCapabilities;
 
    type ICompositionCapabilitiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionCapabilitiesStatics is access all ICompositionCapabilitiesStatics_Interface'Class;
+   type ICompositionCapabilitiesStatics is access ICompositionCapabilitiesStatics_Interface'Class;
 
    type ICompositionClip_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionClip is access all ICompositionClip_Interface'Class;
+   type ICompositionClip is access ICompositionClip_Interface'Class;
    type ICompositionClip_Ptr is access all ICompositionClip;
 
    type ICompositionClip2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionClip2 is access all ICompositionClip2_Interface'Class;
+   type ICompositionClip2 is access ICompositionClip2_Interface'Class;
 
    type ICompositionClipFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionClipFactory is access all ICompositionClipFactory_Interface'Class;
+   type ICompositionClipFactory is access ICompositionClipFactory_Interface'Class;
 
    type ICompositionColorBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionColorBrush is access all ICompositionColorBrush_Interface'Class;
+   type ICompositionColorBrush is access ICompositionColorBrush_Interface'Class;
    type ICompositionColorBrush_Ptr is access all ICompositionColorBrush;
 
    type ICompositionColorGradientStop_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionColorGradientStop is access all ICompositionColorGradientStop_Interface'Class;
+   type ICompositionColorGradientStop is access ICompositionColorGradientStop_Interface'Class;
    type ICompositionColorGradientStop_Ptr is access all ICompositionColorGradientStop;
    type ICompositionColorGradientStop_Array is array (Natural range <>) of ICompositionColorGradientStop;
 
    type ICompositionColorGradientStopCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionColorGradientStopCollection is access all ICompositionColorGradientStopCollection_Interface'Class;
+   type ICompositionColorGradientStopCollection is access ICompositionColorGradientStopCollection_Interface'Class;
    type ICompositionColorGradientStopCollection_Ptr is access all ICompositionColorGradientStopCollection;
 
    type ICompositionCommitBatch_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionCommitBatch is access all ICompositionCommitBatch_Interface'Class;
+   type ICompositionCommitBatch is access ICompositionCommitBatch_Interface'Class;
    type ICompositionCommitBatch_Ptr is access all ICompositionCommitBatch;
 
    type ICompositionContainerShape_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionContainerShape is access all ICompositionContainerShape_Interface'Class;
+   type ICompositionContainerShape is access ICompositionContainerShape_Interface'Class;
    type ICompositionContainerShape_Ptr is access all ICompositionContainerShape;
 
    type ICompositionDrawingSurface_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionDrawingSurface is access all ICompositionDrawingSurface_Interface'Class;
+   type ICompositionDrawingSurface is access ICompositionDrawingSurface_Interface'Class;
    type ICompositionDrawingSurface_Ptr is access all ICompositionDrawingSurface;
 
    type ICompositionDrawingSurface2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionDrawingSurface2 is access all ICompositionDrawingSurface2_Interface'Class;
+   type ICompositionDrawingSurface2 is access ICompositionDrawingSurface2_Interface'Class;
 
    type ICompositionDrawingSurfaceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionDrawingSurfaceFactory is access all ICompositionDrawingSurfaceFactory_Interface'Class;
+   type ICompositionDrawingSurfaceFactory is access ICompositionDrawingSurfaceFactory_Interface'Class;
 
    type ICompositionEasingFunction_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionEasingFunction is access all ICompositionEasingFunction_Interface'Class;
+   type ICompositionEasingFunction is access ICompositionEasingFunction_Interface'Class;
    type ICompositionEasingFunction_Ptr is access all ICompositionEasingFunction;
 
    type ICompositionEasingFunctionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionEasingFunctionFactory is access all ICompositionEasingFunctionFactory_Interface'Class;
+   type ICompositionEasingFunctionFactory is access ICompositionEasingFunctionFactory_Interface'Class;
 
    type ICompositionEffectBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionEffectBrush is access all ICompositionEffectBrush_Interface'Class;
+   type ICompositionEffectBrush is access ICompositionEffectBrush_Interface'Class;
    type ICompositionEffectBrush_Ptr is access all ICompositionEffectBrush;
 
    type ICompositionEffectFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionEffectFactory is access all ICompositionEffectFactory_Interface'Class;
+   type ICompositionEffectFactory is access ICompositionEffectFactory_Interface'Class;
    type ICompositionEffectFactory_Ptr is access all ICompositionEffectFactory;
 
    type ICompositionEffectSourceParameter_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionEffectSourceParameter is access all ICompositionEffectSourceParameter_Interface'Class;
+   type ICompositionEffectSourceParameter is access ICompositionEffectSourceParameter_Interface'Class;
    type ICompositionEffectSourceParameter_Ptr is access all ICompositionEffectSourceParameter;
 
    type ICompositionEffectSourceParameterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionEffectSourceParameterFactory is access all ICompositionEffectSourceParameterFactory_Interface'Class;
+   type ICompositionEffectSourceParameterFactory is access ICompositionEffectSourceParameterFactory_Interface'Class;
 
    type ICompositionEllipseGeometry_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionEllipseGeometry is access all ICompositionEllipseGeometry_Interface'Class;
+   type ICompositionEllipseGeometry is access ICompositionEllipseGeometry_Interface'Class;
    type ICompositionEllipseGeometry_Ptr is access all ICompositionEllipseGeometry;
 
    type ICompositionGeometricClip_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionGeometricClip is access all ICompositionGeometricClip_Interface'Class;
+   type ICompositionGeometricClip is access ICompositionGeometricClip_Interface'Class;
    type ICompositionGeometricClip_Ptr is access all ICompositionGeometricClip;
 
    type ICompositionGeometry_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionGeometry is access all ICompositionGeometry_Interface'Class;
+   type ICompositionGeometry is access ICompositionGeometry_Interface'Class;
    type ICompositionGeometry_Ptr is access all ICompositionGeometry;
 
    type ICompositionGeometryFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionGeometryFactory is access all ICompositionGeometryFactory_Interface'Class;
+   type ICompositionGeometryFactory is access ICompositionGeometryFactory_Interface'Class;
 
    type ICompositionGradientBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionGradientBrush is access all ICompositionGradientBrush_Interface'Class;
+   type ICompositionGradientBrush is access ICompositionGradientBrush_Interface'Class;
    type ICompositionGradientBrush_Ptr is access all ICompositionGradientBrush;
 
    type ICompositionGradientBrush2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionGradientBrush2 is access all ICompositionGradientBrush2_Interface'Class;
+   type ICompositionGradientBrush2 is access ICompositionGradientBrush2_Interface'Class;
 
    type ICompositionGradientBrushFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionGradientBrushFactory is access all ICompositionGradientBrushFactory_Interface'Class;
+   type ICompositionGradientBrushFactory is access ICompositionGradientBrushFactory_Interface'Class;
 
    type ICompositionGraphicsDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionGraphicsDevice is access all ICompositionGraphicsDevice_Interface'Class;
+   type ICompositionGraphicsDevice is access ICompositionGraphicsDevice_Interface'Class;
    type ICompositionGraphicsDevice_Ptr is access all ICompositionGraphicsDevice;
 
    type ICompositionGraphicsDevice2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionGraphicsDevice2 is access all ICompositionGraphicsDevice2_Interface'Class;
+   type ICompositionGraphicsDevice2 is access ICompositionGraphicsDevice2_Interface'Class;
 
    type ICompositionGraphicsDevice3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionGraphicsDevice3 is access all ICompositionGraphicsDevice3_Interface'Class;
+   type ICompositionGraphicsDevice3 is access ICompositionGraphicsDevice3_Interface'Class;
 
    type ICompositionLight_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionLight is access all ICompositionLight_Interface'Class;
+   type ICompositionLight is access ICompositionLight_Interface'Class;
    type ICompositionLight_Ptr is access all ICompositionLight;
 
    type ICompositionLight2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionLight2 is access all ICompositionLight2_Interface'Class;
+   type ICompositionLight2 is access ICompositionLight2_Interface'Class;
 
    type ICompositionLight3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionLight3 is access all ICompositionLight3_Interface'Class;
+   type ICompositionLight3 is access ICompositionLight3_Interface'Class;
 
    type ICompositionLightFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionLightFactory is access all ICompositionLightFactory_Interface'Class;
+   type ICompositionLightFactory is access ICompositionLightFactory_Interface'Class;
 
    type ICompositionLineGeometry_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionLineGeometry is access all ICompositionLineGeometry_Interface'Class;
+   type ICompositionLineGeometry is access ICompositionLineGeometry_Interface'Class;
    type ICompositionLineGeometry_Ptr is access all ICompositionLineGeometry;
 
    type ICompositionLinearGradientBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionLinearGradientBrush is access all ICompositionLinearGradientBrush_Interface'Class;
+   type ICompositionLinearGradientBrush is access ICompositionLinearGradientBrush_Interface'Class;
    type ICompositionLinearGradientBrush_Ptr is access all ICompositionLinearGradientBrush;
 
    type ICompositionMaskBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionMaskBrush is access all ICompositionMaskBrush_Interface'Class;
+   type ICompositionMaskBrush is access ICompositionMaskBrush_Interface'Class;
    type ICompositionMaskBrush_Ptr is access all ICompositionMaskBrush;
 
    type ICompositionMipmapSurface_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionMipmapSurface is access all ICompositionMipmapSurface_Interface'Class;
+   type ICompositionMipmapSurface is access ICompositionMipmapSurface_Interface'Class;
    type ICompositionMipmapSurface_Ptr is access all ICompositionMipmapSurface;
 
    type ICompositionNineGridBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionNineGridBrush is access all ICompositionNineGridBrush_Interface'Class;
+   type ICompositionNineGridBrush is access ICompositionNineGridBrush_Interface'Class;
    type ICompositionNineGridBrush_Ptr is access all ICompositionNineGridBrush;
 
    type ICompositionObject_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionObject is access all ICompositionObject_Interface'Class;
+   type ICompositionObject is access ICompositionObject_Interface'Class;
    type ICompositionObject_Ptr is access all ICompositionObject;
 
    type ICompositionObject2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionObject2 is access all ICompositionObject2_Interface'Class;
+   type ICompositionObject2 is access ICompositionObject2_Interface'Class;
 
    type ICompositionObject3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionObject3 is access all ICompositionObject3_Interface'Class;
+   type ICompositionObject3 is access ICompositionObject3_Interface'Class;
 
    type ICompositionObject4_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionObject4 is access all ICompositionObject4_Interface'Class;
+   type ICompositionObject4 is access ICompositionObject4_Interface'Class;
 
    type ICompositionObjectFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionObjectFactory is access all ICompositionObjectFactory_Interface'Class;
+   type ICompositionObjectFactory is access ICompositionObjectFactory_Interface'Class;
 
    type ICompositionObjectStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionObjectStatics is access all ICompositionObjectStatics_Interface'Class;
+   type ICompositionObjectStatics is access ICompositionObjectStatics_Interface'Class;
 
    type ICompositionPath_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionPath is access all ICompositionPath_Interface'Class;
+   type ICompositionPath is access ICompositionPath_Interface'Class;
    type ICompositionPath_Ptr is access all ICompositionPath;
 
    type ICompositionPathFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionPathFactory is access all ICompositionPathFactory_Interface'Class;
+   type ICompositionPathFactory is access ICompositionPathFactory_Interface'Class;
 
    type ICompositionPathGeometry_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionPathGeometry is access all ICompositionPathGeometry_Interface'Class;
+   type ICompositionPathGeometry is access ICompositionPathGeometry_Interface'Class;
    type ICompositionPathGeometry_Ptr is access all ICompositionPathGeometry;
 
    type ICompositionProjectedShadow_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionProjectedShadow is access all ICompositionProjectedShadow_Interface'Class;
+   type ICompositionProjectedShadow is access ICompositionProjectedShadow_Interface'Class;
    type ICompositionProjectedShadow_Ptr is access all ICompositionProjectedShadow;
 
    type ICompositionProjectedShadowCaster_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionProjectedShadowCaster is access all ICompositionProjectedShadowCaster_Interface'Class;
+   type ICompositionProjectedShadowCaster is access ICompositionProjectedShadowCaster_Interface'Class;
    type ICompositionProjectedShadowCaster_Ptr is access all ICompositionProjectedShadowCaster;
 
    type ICompositionProjectedShadowCasterCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionProjectedShadowCasterCollection is access all ICompositionProjectedShadowCasterCollection_Interface'Class;
+   type ICompositionProjectedShadowCasterCollection is access ICompositionProjectedShadowCasterCollection_Interface'Class;
    type ICompositionProjectedShadowCasterCollection_Ptr is access all ICompositionProjectedShadowCasterCollection;
 
    type ICompositionProjectedShadowCasterCollectionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionProjectedShadowCasterCollectionStatics is access all ICompositionProjectedShadowCasterCollectionStatics_Interface'Class;
+   type ICompositionProjectedShadowCasterCollectionStatics is access ICompositionProjectedShadowCasterCollectionStatics_Interface'Class;
 
    type ICompositionProjectedShadowReceiver_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionProjectedShadowReceiver is access all ICompositionProjectedShadowReceiver_Interface'Class;
+   type ICompositionProjectedShadowReceiver is access ICompositionProjectedShadowReceiver_Interface'Class;
    type ICompositionProjectedShadowReceiver_Ptr is access all ICompositionProjectedShadowReceiver;
 
    type ICompositionProjectedShadowReceiverUnorderedCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionProjectedShadowReceiverUnorderedCollection is access all ICompositionProjectedShadowReceiverUnorderedCollection_Interface'Class;
+   type ICompositionProjectedShadowReceiverUnorderedCollection is access ICompositionProjectedShadowReceiverUnorderedCollection_Interface'Class;
    type ICompositionProjectedShadowReceiverUnorderedCollection_Ptr is access all ICompositionProjectedShadowReceiverUnorderedCollection;
 
    type ICompositionPropertySet_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionPropertySet is access all ICompositionPropertySet_Interface'Class;
+   type ICompositionPropertySet is access ICompositionPropertySet_Interface'Class;
    type ICompositionPropertySet_Ptr is access all ICompositionPropertySet;
 
    type ICompositionPropertySet2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionPropertySet2 is access all ICompositionPropertySet2_Interface'Class;
+   type ICompositionPropertySet2 is access ICompositionPropertySet2_Interface'Class;
 
    type ICompositionRadialGradientBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionRadialGradientBrush is access all ICompositionRadialGradientBrush_Interface'Class;
+   type ICompositionRadialGradientBrush is access ICompositionRadialGradientBrush_Interface'Class;
    type ICompositionRadialGradientBrush_Ptr is access all ICompositionRadialGradientBrush;
 
    type ICompositionRectangleGeometry_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionRectangleGeometry is access all ICompositionRectangleGeometry_Interface'Class;
+   type ICompositionRectangleGeometry is access ICompositionRectangleGeometry_Interface'Class;
    type ICompositionRectangleGeometry_Ptr is access all ICompositionRectangleGeometry;
 
    type ICompositionRoundedRectangleGeometry_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionRoundedRectangleGeometry is access all ICompositionRoundedRectangleGeometry_Interface'Class;
+   type ICompositionRoundedRectangleGeometry is access ICompositionRoundedRectangleGeometry_Interface'Class;
    type ICompositionRoundedRectangleGeometry_Ptr is access all ICompositionRoundedRectangleGeometry;
 
    type ICompositionScopedBatch_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionScopedBatch is access all ICompositionScopedBatch_Interface'Class;
+   type ICompositionScopedBatch is access ICompositionScopedBatch_Interface'Class;
    type ICompositionScopedBatch_Ptr is access all ICompositionScopedBatch;
 
    type ICompositionShadow_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionShadow is access all ICompositionShadow_Interface'Class;
+   type ICompositionShadow is access ICompositionShadow_Interface'Class;
    type ICompositionShadow_Ptr is access all ICompositionShadow;
 
    type ICompositionShadowFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionShadowFactory is access all ICompositionShadowFactory_Interface'Class;
+   type ICompositionShadowFactory is access ICompositionShadowFactory_Interface'Class;
 
    type ICompositionShape_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionShape is access all ICompositionShape_Interface'Class;
+   type ICompositionShape is access ICompositionShape_Interface'Class;
    type ICompositionShape_Ptr is access all ICompositionShape;
    type ICompositionShape_Array is array (Natural range <>) of ICompositionShape;
 
    type ICompositionShapeFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionShapeFactory is access all ICompositionShapeFactory_Interface'Class;
+   type ICompositionShapeFactory is access ICompositionShapeFactory_Interface'Class;
 
    type ICompositionSpriteShape_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionSpriteShape is access all ICompositionSpriteShape_Interface'Class;
+   type ICompositionSpriteShape is access ICompositionSpriteShape_Interface'Class;
    type ICompositionSpriteShape_Ptr is access all ICompositionSpriteShape;
 
    type ICompositionSurface_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionSurface is access all ICompositionSurface_Interface'Class;
+   type ICompositionSurface is access ICompositionSurface_Interface'Class;
 
    type ICompositionSurfaceBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionSurfaceBrush is access all ICompositionSurfaceBrush_Interface'Class;
+   type ICompositionSurfaceBrush is access ICompositionSurfaceBrush_Interface'Class;
    type ICompositionSurfaceBrush_Ptr is access all ICompositionSurfaceBrush;
 
    type ICompositionSurfaceBrush2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionSurfaceBrush2 is access all ICompositionSurfaceBrush2_Interface'Class;
+   type ICompositionSurfaceBrush2 is access ICompositionSurfaceBrush2_Interface'Class;
 
    type ICompositionSurfaceBrush3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionSurfaceBrush3 is access all ICompositionSurfaceBrush3_Interface'Class;
+   type ICompositionSurfaceBrush3 is access ICompositionSurfaceBrush3_Interface'Class;
 
    type ICompositionTarget_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionTarget is access all ICompositionTarget_Interface'Class;
+   type ICompositionTarget is access ICompositionTarget_Interface'Class;
    type ICompositionTarget_Ptr is access all ICompositionTarget;
 
    type ICompositionTargetFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionTargetFactory is access all ICompositionTargetFactory_Interface'Class;
+   type ICompositionTargetFactory is access ICompositionTargetFactory_Interface'Class;
 
    type ICompositionTransform_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionTransform is access all ICompositionTransform_Interface'Class;
+   type ICompositionTransform is access ICompositionTransform_Interface'Class;
    type ICompositionTransform_Ptr is access all ICompositionTransform;
 
    type ICompositionTransformFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionTransformFactory is access all ICompositionTransformFactory_Interface'Class;
+   type ICompositionTransformFactory is access ICompositionTransformFactory_Interface'Class;
 
    type ICompositionViewBox_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionViewBox is access all ICompositionViewBox_Interface'Class;
+   type ICompositionViewBox is access ICompositionViewBox_Interface'Class;
    type ICompositionViewBox_Ptr is access all ICompositionViewBox;
 
    type ICompositionVirtualDrawingSurface_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionVirtualDrawingSurface is access all ICompositionVirtualDrawingSurface_Interface'Class;
+   type ICompositionVirtualDrawingSurface is access ICompositionVirtualDrawingSurface_Interface'Class;
    type ICompositionVirtualDrawingSurface_Ptr is access all ICompositionVirtualDrawingSurface;
 
    type ICompositionVirtualDrawingSurfaceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionVirtualDrawingSurfaceFactory is access all ICompositionVirtualDrawingSurfaceFactory_Interface'Class;
+   type ICompositionVirtualDrawingSurfaceFactory is access ICompositionVirtualDrawingSurfaceFactory_Interface'Class;
 
    type ICompositionVisualSurface_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionVisualSurface is access all ICompositionVisualSurface_Interface'Class;
+   type ICompositionVisualSurface is access ICompositionVisualSurface_Interface'Class;
    type ICompositionVisualSurface_Ptr is access all ICompositionVisualSurface;
 
    type ICompositor_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositor is access all ICompositor_Interface'Class;
+   type ICompositor is access ICompositor_Interface'Class;
    type ICompositor_Ptr is access all ICompositor;
 
    type ICompositor2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositor2 is access all ICompositor2_Interface'Class;
+   type ICompositor2 is access ICompositor2_Interface'Class;
 
    type ICompositor3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositor3 is access all ICompositor3_Interface'Class;
+   type ICompositor3 is access ICompositor3_Interface'Class;
 
    type ICompositor4_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositor4 is access all ICompositor4_Interface'Class;
+   type ICompositor4 is access ICompositor4_Interface'Class;
 
    type ICompositor5_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositor5 is access all ICompositor5_Interface'Class;
+   type ICompositor5 is access ICompositor5_Interface'Class;
 
    type ICompositor6_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositor6 is access all ICompositor6_Interface'Class;
+   type ICompositor6 is access ICompositor6_Interface'Class;
 
    type ICompositorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositorStatics is access all ICompositorStatics_Interface'Class;
+   type ICompositorStatics is access ICompositorStatics_Interface'Class;
 
    type ICompositorWithProjectedShadow_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositorWithProjectedShadow is access all ICompositorWithProjectedShadow_Interface'Class;
+   type ICompositorWithProjectedShadow is access ICompositorWithProjectedShadow_Interface'Class;
 
    type ICompositorWithRadialGradient_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositorWithRadialGradient is access all ICompositorWithRadialGradient_Interface'Class;
+   type ICompositorWithRadialGradient is access ICompositorWithRadialGradient_Interface'Class;
 
    type ICompositorWithVisualSurface_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositorWithVisualSurface is access all ICompositorWithVisualSurface_Interface'Class;
+   type ICompositorWithVisualSurface is access ICompositorWithVisualSurface_Interface'Class;
 
    type IContainerVisual_Interface is interface and WinRt.IInspectable_Interface;
-   type IContainerVisual is access all IContainerVisual_Interface'Class;
+   type IContainerVisual is access IContainerVisual_Interface'Class;
    type IContainerVisual_Ptr is access all IContainerVisual;
 
    type IContainerVisualFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IContainerVisualFactory is access all IContainerVisualFactory_Interface'Class;
+   type IContainerVisualFactory is access IContainerVisualFactory_Interface'Class;
 
    type ICubicBezierEasingFunction_Interface is interface and WinRt.IInspectable_Interface;
-   type ICubicBezierEasingFunction is access all ICubicBezierEasingFunction_Interface'Class;
+   type ICubicBezierEasingFunction is access ICubicBezierEasingFunction_Interface'Class;
    type ICubicBezierEasingFunction_Ptr is access all ICubicBezierEasingFunction;
 
    type IDistantLight_Interface is interface and WinRt.IInspectable_Interface;
-   type IDistantLight is access all IDistantLight_Interface'Class;
+   type IDistantLight is access IDistantLight_Interface'Class;
    type IDistantLight_Ptr is access all IDistantLight;
 
    type IDistantLight2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDistantLight2 is access all IDistantLight2_Interface'Class;
+   type IDistantLight2 is access IDistantLight2_Interface'Class;
 
    type IDropShadow_Interface is interface and WinRt.IInspectable_Interface;
-   type IDropShadow is access all IDropShadow_Interface'Class;
+   type IDropShadow is access IDropShadow_Interface'Class;
    type IDropShadow_Ptr is access all IDropShadow;
 
    type IDropShadow2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDropShadow2 is access all IDropShadow2_Interface'Class;
+   type IDropShadow2 is access IDropShadow2_Interface'Class;
 
    type IExpressionAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IExpressionAnimation is access all IExpressionAnimation_Interface'Class;
+   type IExpressionAnimation is access IExpressionAnimation_Interface'Class;
    type IExpressionAnimation_Ptr is access all IExpressionAnimation;
 
    type IImplicitAnimationCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IImplicitAnimationCollection is access all IImplicitAnimationCollection_Interface'Class;
+   type IImplicitAnimationCollection is access IImplicitAnimationCollection_Interface'Class;
    type IImplicitAnimationCollection_Ptr is access all IImplicitAnimationCollection;
 
    type IInsetClip_Interface is interface and WinRt.IInspectable_Interface;
-   type IInsetClip is access all IInsetClip_Interface'Class;
+   type IInsetClip is access IInsetClip_Interface'Class;
    type IInsetClip_Ptr is access all IInsetClip;
 
    type IKeyFrameAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyFrameAnimation is access all IKeyFrameAnimation_Interface'Class;
+   type IKeyFrameAnimation is access IKeyFrameAnimation_Interface'Class;
    type IKeyFrameAnimation_Ptr is access all IKeyFrameAnimation;
 
    type IKeyFrameAnimation2_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyFrameAnimation2 is access all IKeyFrameAnimation2_Interface'Class;
+   type IKeyFrameAnimation2 is access IKeyFrameAnimation2_Interface'Class;
 
    type IKeyFrameAnimation3_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyFrameAnimation3 is access all IKeyFrameAnimation3_Interface'Class;
+   type IKeyFrameAnimation3 is access IKeyFrameAnimation3_Interface'Class;
 
    type IKeyFrameAnimationFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyFrameAnimationFactory is access all IKeyFrameAnimationFactory_Interface'Class;
+   type IKeyFrameAnimationFactory is access IKeyFrameAnimationFactory_Interface'Class;
 
    type ILayerVisual_Interface is interface and WinRt.IInspectable_Interface;
-   type ILayerVisual is access all ILayerVisual_Interface'Class;
+   type ILayerVisual is access ILayerVisual_Interface'Class;
    type ILayerVisual_Ptr is access all ILayerVisual;
 
    type ILayerVisual2_Interface is interface and WinRt.IInspectable_Interface;
-   type ILayerVisual2 is access all ILayerVisual2_Interface'Class;
+   type ILayerVisual2 is access ILayerVisual2_Interface'Class;
 
    type ILinearEasingFunction_Interface is interface and WinRt.IInspectable_Interface;
-   type ILinearEasingFunction is access all ILinearEasingFunction_Interface'Class;
+   type ILinearEasingFunction is access ILinearEasingFunction_Interface'Class;
    type ILinearEasingFunction_Ptr is access all ILinearEasingFunction;
 
    type INaturalMotionAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type INaturalMotionAnimation is access all INaturalMotionAnimation_Interface'Class;
+   type INaturalMotionAnimation is access INaturalMotionAnimation_Interface'Class;
    type INaturalMotionAnimation_Ptr is access all INaturalMotionAnimation;
 
    type INaturalMotionAnimationFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type INaturalMotionAnimationFactory is access all INaturalMotionAnimationFactory_Interface'Class;
+   type INaturalMotionAnimationFactory is access INaturalMotionAnimationFactory_Interface'Class;
 
    type IPathKeyFrameAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IPathKeyFrameAnimation is access all IPathKeyFrameAnimation_Interface'Class;
+   type IPathKeyFrameAnimation is access IPathKeyFrameAnimation_Interface'Class;
    type IPathKeyFrameAnimation_Ptr is access all IPathKeyFrameAnimation;
 
    type IPointLight_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointLight is access all IPointLight_Interface'Class;
+   type IPointLight is access IPointLight_Interface'Class;
    type IPointLight_Ptr is access all IPointLight;
 
    type IPointLight2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointLight2 is access all IPointLight2_Interface'Class;
+   type IPointLight2 is access IPointLight2_Interface'Class;
 
    type IPointLight3_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointLight3 is access all IPointLight3_Interface'Class;
+   type IPointLight3 is access IPointLight3_Interface'Class;
 
    type IQuaternionKeyFrameAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IQuaternionKeyFrameAnimation is access all IQuaternionKeyFrameAnimation_Interface'Class;
+   type IQuaternionKeyFrameAnimation is access IQuaternionKeyFrameAnimation_Interface'Class;
    type IQuaternionKeyFrameAnimation_Ptr is access all IQuaternionKeyFrameAnimation;
 
    type IRedirectVisual_Interface is interface and WinRt.IInspectable_Interface;
-   type IRedirectVisual is access all IRedirectVisual_Interface'Class;
+   type IRedirectVisual is access IRedirectVisual_Interface'Class;
    type IRedirectVisual_Ptr is access all IRedirectVisual;
 
    type IRenderingDeviceReplacedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRenderingDeviceReplacedEventArgs is access all IRenderingDeviceReplacedEventArgs_Interface'Class;
+   type IRenderingDeviceReplacedEventArgs is access IRenderingDeviceReplacedEventArgs_Interface'Class;
    type IRenderingDeviceReplacedEventArgs_Ptr is access all IRenderingDeviceReplacedEventArgs;
 
    type IScalarKeyFrameAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IScalarKeyFrameAnimation is access all IScalarKeyFrameAnimation_Interface'Class;
+   type IScalarKeyFrameAnimation is access IScalarKeyFrameAnimation_Interface'Class;
    type IScalarKeyFrameAnimation_Ptr is access all IScalarKeyFrameAnimation;
 
    type IScalarNaturalMotionAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IScalarNaturalMotionAnimation is access all IScalarNaturalMotionAnimation_Interface'Class;
+   type IScalarNaturalMotionAnimation is access IScalarNaturalMotionAnimation_Interface'Class;
    type IScalarNaturalMotionAnimation_Ptr is access all IScalarNaturalMotionAnimation;
 
    type IScalarNaturalMotionAnimationFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IScalarNaturalMotionAnimationFactory is access all IScalarNaturalMotionAnimationFactory_Interface'Class;
+   type IScalarNaturalMotionAnimationFactory is access IScalarNaturalMotionAnimationFactory_Interface'Class;
 
    type IShapeVisual_Interface is interface and WinRt.IInspectable_Interface;
-   type IShapeVisual is access all IShapeVisual_Interface'Class;
+   type IShapeVisual is access IShapeVisual_Interface'Class;
    type IShapeVisual_Ptr is access all IShapeVisual;
 
    type ISpotLight_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpotLight is access all ISpotLight_Interface'Class;
+   type ISpotLight is access ISpotLight_Interface'Class;
    type ISpotLight_Ptr is access all ISpotLight;
 
    type ISpotLight2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpotLight2 is access all ISpotLight2_Interface'Class;
+   type ISpotLight2 is access ISpotLight2_Interface'Class;
 
    type ISpotLight3_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpotLight3 is access all ISpotLight3_Interface'Class;
+   type ISpotLight3 is access ISpotLight3_Interface'Class;
 
    type ISpringScalarNaturalMotionAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpringScalarNaturalMotionAnimation is access all ISpringScalarNaturalMotionAnimation_Interface'Class;
+   type ISpringScalarNaturalMotionAnimation is access ISpringScalarNaturalMotionAnimation_Interface'Class;
    type ISpringScalarNaturalMotionAnimation_Ptr is access all ISpringScalarNaturalMotionAnimation;
 
    type ISpringVector2NaturalMotionAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpringVector2NaturalMotionAnimation is access all ISpringVector2NaturalMotionAnimation_Interface'Class;
+   type ISpringVector2NaturalMotionAnimation is access ISpringVector2NaturalMotionAnimation_Interface'Class;
    type ISpringVector2NaturalMotionAnimation_Ptr is access all ISpringVector2NaturalMotionAnimation;
 
    type ISpringVector3NaturalMotionAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpringVector3NaturalMotionAnimation is access all ISpringVector3NaturalMotionAnimation_Interface'Class;
+   type ISpringVector3NaturalMotionAnimation is access ISpringVector3NaturalMotionAnimation_Interface'Class;
    type ISpringVector3NaturalMotionAnimation_Ptr is access all ISpringVector3NaturalMotionAnimation;
 
    type ISpriteVisual_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpriteVisual is access all ISpriteVisual_Interface'Class;
+   type ISpriteVisual is access ISpriteVisual_Interface'Class;
    type ISpriteVisual_Ptr is access all ISpriteVisual;
 
    type ISpriteVisual2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpriteVisual2 is access all ISpriteVisual2_Interface'Class;
+   type ISpriteVisual2 is access ISpriteVisual2_Interface'Class;
 
    type IStepEasingFunction_Interface is interface and WinRt.IInspectable_Interface;
-   type IStepEasingFunction is access all IStepEasingFunction_Interface'Class;
+   type IStepEasingFunction is access IStepEasingFunction_Interface'Class;
    type IStepEasingFunction_Ptr is access all IStepEasingFunction;
 
    type IVector2KeyFrameAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IVector2KeyFrameAnimation is access all IVector2KeyFrameAnimation_Interface'Class;
+   type IVector2KeyFrameAnimation is access IVector2KeyFrameAnimation_Interface'Class;
    type IVector2KeyFrameAnimation_Ptr is access all IVector2KeyFrameAnimation;
 
    type IVector2NaturalMotionAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IVector2NaturalMotionAnimation is access all IVector2NaturalMotionAnimation_Interface'Class;
+   type IVector2NaturalMotionAnimation is access IVector2NaturalMotionAnimation_Interface'Class;
    type IVector2NaturalMotionAnimation_Ptr is access all IVector2NaturalMotionAnimation;
 
    type IVector2NaturalMotionAnimationFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IVector2NaturalMotionAnimationFactory is access all IVector2NaturalMotionAnimationFactory_Interface'Class;
+   type IVector2NaturalMotionAnimationFactory is access IVector2NaturalMotionAnimationFactory_Interface'Class;
 
    type IVector3KeyFrameAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IVector3KeyFrameAnimation is access all IVector3KeyFrameAnimation_Interface'Class;
+   type IVector3KeyFrameAnimation is access IVector3KeyFrameAnimation_Interface'Class;
    type IVector3KeyFrameAnimation_Ptr is access all IVector3KeyFrameAnimation;
 
    type IVector3NaturalMotionAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IVector3NaturalMotionAnimation is access all IVector3NaturalMotionAnimation_Interface'Class;
+   type IVector3NaturalMotionAnimation is access IVector3NaturalMotionAnimation_Interface'Class;
    type IVector3NaturalMotionAnimation_Ptr is access all IVector3NaturalMotionAnimation;
 
    type IVector3NaturalMotionAnimationFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IVector3NaturalMotionAnimationFactory is access all IVector3NaturalMotionAnimationFactory_Interface'Class;
+   type IVector3NaturalMotionAnimationFactory is access IVector3NaturalMotionAnimationFactory_Interface'Class;
 
    type IVector4KeyFrameAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IVector4KeyFrameAnimation is access all IVector4KeyFrameAnimation_Interface'Class;
+   type IVector4KeyFrameAnimation is access IVector4KeyFrameAnimation_Interface'Class;
    type IVector4KeyFrameAnimation_Ptr is access all IVector4KeyFrameAnimation;
 
    type IVisual_Interface is interface and WinRt.IInspectable_Interface;
-   type IVisual is access all IVisual_Interface'Class;
+   type IVisual is access IVisual_Interface'Class;
    type IVisual_Ptr is access all IVisual;
 
    type IVisual2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVisual2 is access all IVisual2_Interface'Class;
+   type IVisual2 is access IVisual2_Interface'Class;
 
    type IVisual3_Interface is interface and WinRt.IInspectable_Interface;
-   type IVisual3 is access all IVisual3_Interface'Class;
+   type IVisual3 is access IVisual3_Interface'Class;
 
    type IVisualCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IVisualCollection is access all IVisualCollection_Interface'Class;
+   type IVisualCollection is access IVisualCollection_Interface'Class;
    type IVisualCollection_Ptr is access all IVisualCollection;
 
    type IVisualElement_Interface is interface and WinRt.IInspectable_Interface;
-   type IVisualElement is access all IVisualElement_Interface'Class;
+   type IVisualElement is access IVisualElement_Interface'Class;
 
    type IVisualFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IVisualFactory is access all IVisualFactory_Interface'Class;
+   type IVisualFactory is access IVisualFactory_Interface'Class;
 
    type IVisualUnorderedCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IVisualUnorderedCollection is access all IVisualUnorderedCollection_Interface'Class;
+   type IVisualUnorderedCollection is access IVisualUnorderedCollection_Interface'Class;
    type IVisualUnorderedCollection_Ptr is access all IVisualUnorderedCollection;
 
    -----------------------------------------------------------------------------

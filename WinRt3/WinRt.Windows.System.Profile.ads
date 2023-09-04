@@ -41,59 +41,59 @@ package WinRt.Windows.System.Profile is
    -----------------------------------------------------------------------------
 
    type IAnalyticsInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAnalyticsInfoStatics is access all IAnalyticsInfoStatics_Interface'Class;
+   type IAnalyticsInfoStatics is access IAnalyticsInfoStatics_Interface'Class;
 
    type IAnalyticsInfoStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAnalyticsInfoStatics2 is access all IAnalyticsInfoStatics2_Interface'Class;
+   type IAnalyticsInfoStatics2 is access IAnalyticsInfoStatics2_Interface'Class;
 
    type IAnalyticsVersionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAnalyticsVersionInfo is access all IAnalyticsVersionInfo_Interface'Class;
+   type IAnalyticsVersionInfo is access IAnalyticsVersionInfo_Interface'Class;
    type IAnalyticsVersionInfo_Ptr is access all IAnalyticsVersionInfo;
 
    type IAppApplicabilityStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppApplicabilityStatics is access all IAppApplicabilityStatics_Interface'Class;
+   type IAppApplicabilityStatics is access IAppApplicabilityStatics_Interface'Class;
 
    type IEducationSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IEducationSettingsStatics is access all IEducationSettingsStatics_Interface'Class;
+   type IEducationSettingsStatics is access IEducationSettingsStatics_Interface'Class;
 
    type IHardwareIdentificationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHardwareIdentificationStatics is access all IHardwareIdentificationStatics_Interface'Class;
+   type IHardwareIdentificationStatics is access IHardwareIdentificationStatics_Interface'Class;
 
    type IHardwareToken_Interface is interface and WinRt.IInspectable_Interface;
-   type IHardwareToken is access all IHardwareToken_Interface'Class;
+   type IHardwareToken is access IHardwareToken_Interface'Class;
    type IHardwareToken_Ptr is access all IHardwareToken;
 
    type IKnownRetailInfoPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownRetailInfoPropertiesStatics is access all IKnownRetailInfoPropertiesStatics_Interface'Class;
+   type IKnownRetailInfoPropertiesStatics is access IKnownRetailInfoPropertiesStatics_Interface'Class;
 
    type IPlatformDiagnosticsAndUsageDataSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlatformDiagnosticsAndUsageDataSettingsStatics is access all IPlatformDiagnosticsAndUsageDataSettingsStatics_Interface'Class;
+   type IPlatformDiagnosticsAndUsageDataSettingsStatics is access IPlatformDiagnosticsAndUsageDataSettingsStatics_Interface'Class;
 
    type IRetailInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRetailInfoStatics is access all IRetailInfoStatics_Interface'Class;
+   type IRetailInfoStatics is access IRetailInfoStatics_Interface'Class;
 
    type ISharedModeSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISharedModeSettingsStatics is access all ISharedModeSettingsStatics_Interface'Class;
+   type ISharedModeSettingsStatics is access ISharedModeSettingsStatics_Interface'Class;
 
    type ISharedModeSettingsStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISharedModeSettingsStatics2 is access all ISharedModeSettingsStatics2_Interface'Class;
+   type ISharedModeSettingsStatics2 is access ISharedModeSettingsStatics2_Interface'Class;
 
    type ISystemIdentificationInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemIdentificationInfo is access all ISystemIdentificationInfo_Interface'Class;
+   type ISystemIdentificationInfo is access ISystemIdentificationInfo_Interface'Class;
    type ISystemIdentificationInfo_Ptr is access all ISystemIdentificationInfo;
 
    type ISystemIdentificationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemIdentificationStatics is access all ISystemIdentificationStatics_Interface'Class;
+   type ISystemIdentificationStatics is access ISystemIdentificationStatics_Interface'Class;
 
    type ISystemSetupInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemSetupInfoStatics is access all ISystemSetupInfoStatics_Interface'Class;
+   type ISystemSetupInfoStatics is access ISystemSetupInfoStatics_Interface'Class;
 
    type IUnsupportedAppRequirement_Interface is interface and WinRt.IInspectable_Interface;
-   type IUnsupportedAppRequirement is access all IUnsupportedAppRequirement_Interface'Class;
+   type IUnsupportedAppRequirement is access IUnsupportedAppRequirement_Interface'Class;
    type IUnsupportedAppRequirement_Ptr is access all IUnsupportedAppRequirement;
 
    type IWindowsIntegrityPolicyStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWindowsIntegrityPolicyStatics is access all IWindowsIntegrityPolicyStatics_Interface'Class;
+   type IWindowsIntegrityPolicyStatics is access IWindowsIntegrityPolicyStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

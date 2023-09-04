@@ -41,17 +41,17 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    -----------------------------------------------------------------------------
 
    type IDeviceAccountConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceAccountConfiguration is access all IDeviceAccountConfiguration_Interface'Class;
+   type IDeviceAccountConfiguration is access IDeviceAccountConfiguration_Interface'Class;
    type IDeviceAccountConfiguration_Ptr is access all IDeviceAccountConfiguration;
 
    type IDeviceAccountConfiguration2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceAccountConfiguration2 is access all IDeviceAccountConfiguration2_Interface'Class;
+   type IDeviceAccountConfiguration2 is access IDeviceAccountConfiguration2_Interface'Class;
 
    type IUserDataAccountSystemAccessManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccountSystemAccessManagerStatics is access all IUserDataAccountSystemAccessManagerStatics_Interface'Class;
+   type IUserDataAccountSystemAccessManagerStatics is access IUserDataAccountSystemAccessManagerStatics_Interface'Class;
 
    type IUserDataAccountSystemAccessManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccountSystemAccessManagerStatics2 is access all IUserDataAccountSystemAccessManagerStatics2_Interface'Class;
+   type IUserDataAccountSystemAccessManagerStatics2 is access IUserDataAccountSystemAccessManagerStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -41,80 +41,80 @@ package WinRt.Windows.Storage.Provider is
    -----------------------------------------------------------------------------
 
    type ICachedFileUpdaterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICachedFileUpdaterStatics is access all ICachedFileUpdaterStatics_Interface'Class;
+   type ICachedFileUpdaterStatics is access ICachedFileUpdaterStatics_Interface'Class;
 
    type ICachedFileUpdaterUI_Interface is interface and WinRt.IInspectable_Interface;
-   type ICachedFileUpdaterUI is access all ICachedFileUpdaterUI_Interface'Class;
+   type ICachedFileUpdaterUI is access ICachedFileUpdaterUI_Interface'Class;
    type ICachedFileUpdaterUI_Ptr is access all ICachedFileUpdaterUI;
 
    type ICachedFileUpdaterUI2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICachedFileUpdaterUI2 is access all ICachedFileUpdaterUI2_Interface'Class;
+   type ICachedFileUpdaterUI2 is access ICachedFileUpdaterUI2_Interface'Class;
 
    type IFileUpdateRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileUpdateRequest is access all IFileUpdateRequest_Interface'Class;
+   type IFileUpdateRequest is access IFileUpdateRequest_Interface'Class;
    type IFileUpdateRequest_Ptr is access all IFileUpdateRequest;
 
    type IFileUpdateRequest2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileUpdateRequest2 is access all IFileUpdateRequest2_Interface'Class;
+   type IFileUpdateRequest2 is access IFileUpdateRequest2_Interface'Class;
 
    type IFileUpdateRequestDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileUpdateRequestDeferral is access all IFileUpdateRequestDeferral_Interface'Class;
+   type IFileUpdateRequestDeferral is access IFileUpdateRequestDeferral_Interface'Class;
    type IFileUpdateRequestDeferral_Ptr is access all IFileUpdateRequestDeferral;
 
    type IFileUpdateRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileUpdateRequestedEventArgs is access all IFileUpdateRequestedEventArgs_Interface'Class;
+   type IFileUpdateRequestedEventArgs is access IFileUpdateRequestedEventArgs_Interface'Class;
    type IFileUpdateRequestedEventArgs_Ptr is access all IFileUpdateRequestedEventArgs;
 
    type IStorageProviderFileTypeInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderFileTypeInfo is access all IStorageProviderFileTypeInfo_Interface'Class;
+   type IStorageProviderFileTypeInfo is access IStorageProviderFileTypeInfo_Interface'Class;
    type IStorageProviderFileTypeInfo_Ptr is access all IStorageProviderFileTypeInfo;
 
    type IStorageProviderFileTypeInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderFileTypeInfoFactory is access all IStorageProviderFileTypeInfoFactory_Interface'Class;
+   type IStorageProviderFileTypeInfoFactory is access IStorageProviderFileTypeInfoFactory_Interface'Class;
 
    type IStorageProviderGetContentInfoForPathResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderGetContentInfoForPathResult is access all IStorageProviderGetContentInfoForPathResult_Interface'Class;
+   type IStorageProviderGetContentInfoForPathResult is access IStorageProviderGetContentInfoForPathResult_Interface'Class;
    type IStorageProviderGetContentInfoForPathResult_Ptr is access all IStorageProviderGetContentInfoForPathResult;
 
    type IStorageProviderGetPathForContentUriResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderGetPathForContentUriResult is access all IStorageProviderGetPathForContentUriResult_Interface'Class;
+   type IStorageProviderGetPathForContentUriResult is access IStorageProviderGetPathForContentUriResult_Interface'Class;
    type IStorageProviderGetPathForContentUriResult_Ptr is access all IStorageProviderGetPathForContentUriResult;
 
    type IStorageProviderItemPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderItemPropertiesStatics is access all IStorageProviderItemPropertiesStatics_Interface'Class;
+   type IStorageProviderItemPropertiesStatics is access IStorageProviderItemPropertiesStatics_Interface'Class;
 
    type IStorageProviderItemProperty_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderItemProperty is access all IStorageProviderItemProperty_Interface'Class;
+   type IStorageProviderItemProperty is access IStorageProviderItemProperty_Interface'Class;
    type IStorageProviderItemProperty_Ptr is access all IStorageProviderItemProperty;
 
    type IStorageProviderItemPropertyDefinition_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderItemPropertyDefinition is access all IStorageProviderItemPropertyDefinition_Interface'Class;
+   type IStorageProviderItemPropertyDefinition is access IStorageProviderItemPropertyDefinition_Interface'Class;
    type IStorageProviderItemPropertyDefinition_Ptr is access all IStorageProviderItemPropertyDefinition;
 
    type IStorageProviderItemPropertySource_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderItemPropertySource is access all IStorageProviderItemPropertySource_Interface'Class;
+   type IStorageProviderItemPropertySource is access IStorageProviderItemPropertySource_Interface'Class;
 
    type IStorageProviderPropertyCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderPropertyCapabilities is access all IStorageProviderPropertyCapabilities_Interface'Class;
+   type IStorageProviderPropertyCapabilities is access IStorageProviderPropertyCapabilities_Interface'Class;
 
    type IStorageProviderSyncRootInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderSyncRootInfo is access all IStorageProviderSyncRootInfo_Interface'Class;
+   type IStorageProviderSyncRootInfo is access IStorageProviderSyncRootInfo_Interface'Class;
    type IStorageProviderSyncRootInfo_Ptr is access all IStorageProviderSyncRootInfo;
 
    type IStorageProviderSyncRootInfo2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderSyncRootInfo2 is access all IStorageProviderSyncRootInfo2_Interface'Class;
+   type IStorageProviderSyncRootInfo2 is access IStorageProviderSyncRootInfo2_Interface'Class;
 
    type IStorageProviderSyncRootInfo3_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderSyncRootInfo3 is access all IStorageProviderSyncRootInfo3_Interface'Class;
+   type IStorageProviderSyncRootInfo3 is access IStorageProviderSyncRootInfo3_Interface'Class;
 
    type IStorageProviderSyncRootManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderSyncRootManagerStatics is access all IStorageProviderSyncRootManagerStatics_Interface'Class;
+   type IStorageProviderSyncRootManagerStatics is access IStorageProviderSyncRootManagerStatics_Interface'Class;
 
    type IStorageProviderSyncRootManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderSyncRootManagerStatics2 is access all IStorageProviderSyncRootManagerStatics2_Interface'Class;
+   type IStorageProviderSyncRootManagerStatics2 is access IStorageProviderSyncRootManagerStatics2_Interface'Class;
 
    type IStorageProviderUriSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderUriSource is access all IStorageProviderUriSource_Interface'Class;
+   type IStorageProviderUriSource is access IStorageProviderUriSource_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

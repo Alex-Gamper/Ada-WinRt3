@@ -42,28 +42,28 @@ package WinRt.Windows.Phone.Management.Deployment is
    -----------------------------------------------------------------------------
 
    type IEnterprise_Interface is interface and WinRt.IInspectable_Interface;
-   type IEnterprise is access all IEnterprise_Interface'Class;
+   type IEnterprise is access IEnterprise_Interface'Class;
    type IEnterprise_Ptr is access all IEnterprise;
 
    type IEnterpriseEnrollmentManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IEnterpriseEnrollmentManager is access all IEnterpriseEnrollmentManager_Interface'Class;
+   type IEnterpriseEnrollmentManager is access IEnterpriseEnrollmentManager_Interface'Class;
 
    type IEnterpriseEnrollmentResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IEnterpriseEnrollmentResult is access all IEnterpriseEnrollmentResult_Interface'Class;
+   type IEnterpriseEnrollmentResult is access IEnterpriseEnrollmentResult_Interface'Class;
    type IEnterpriseEnrollmentResult_Ptr is access all IEnterpriseEnrollmentResult;
 
    type IInstallationManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IInstallationManagerStatics is access all IInstallationManagerStatics_Interface'Class;
+   type IInstallationManagerStatics is access IInstallationManagerStatics_Interface'Class;
 
    type IInstallationManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInstallationManagerStatics2 is access all IInstallationManagerStatics2_Interface'Class;
+   type IInstallationManagerStatics2 is access IInstallationManagerStatics2_Interface'Class;
 
    type IPackageInstallResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageInstallResult is access all IPackageInstallResult_Interface'Class;
+   type IPackageInstallResult is access IPackageInstallResult_Interface'Class;
    type IPackageInstallResult_Ptr is access all IPackageInstallResult;
 
    type IPackageInstallResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageInstallResult2 is access all IPackageInstallResult2_Interface'Class;
+   type IPackageInstallResult2 is access IPackageInstallResult2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

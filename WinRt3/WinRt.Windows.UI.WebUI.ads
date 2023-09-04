@@ -93,61 +93,61 @@ package WinRt.Windows.UI.WebUI is
    -----------------------------------------------------------------------------
 
    type IActivatedDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IActivatedDeferral is access all IActivatedDeferral_Interface'Class;
+   type IActivatedDeferral is access IActivatedDeferral_Interface'Class;
    type IActivatedDeferral_Ptr is access all IActivatedDeferral;
 
    type IActivatedEventArgsDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IActivatedEventArgsDeferral is access all IActivatedEventArgsDeferral_Interface'Class;
+   type IActivatedEventArgsDeferral is access IActivatedEventArgsDeferral_Interface'Class;
 
    type IActivatedOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IActivatedOperation is access all IActivatedOperation_Interface'Class;
+   type IActivatedOperation is access IActivatedOperation_Interface'Class;
    type IActivatedOperation_Ptr is access all IActivatedOperation;
 
    type IHtmlPrintDocumentSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IHtmlPrintDocumentSource is access all IHtmlPrintDocumentSource_Interface'Class;
+   type IHtmlPrintDocumentSource is access IHtmlPrintDocumentSource_Interface'Class;
    type IHtmlPrintDocumentSource_Ptr is access all IHtmlPrintDocumentSource;
 
    type INewWebUIViewCreatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type INewWebUIViewCreatedEventArgs is access all INewWebUIViewCreatedEventArgs_Interface'Class;
+   type INewWebUIViewCreatedEventArgs is access INewWebUIViewCreatedEventArgs_Interface'Class;
    type INewWebUIViewCreatedEventArgs_Ptr is access all INewWebUIViewCreatedEventArgs;
 
    type IWebUIActivationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUIActivationStatics is access all IWebUIActivationStatics_Interface'Class;
+   type IWebUIActivationStatics is access IWebUIActivationStatics_Interface'Class;
 
    type IWebUIActivationStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUIActivationStatics2 is access all IWebUIActivationStatics2_Interface'Class;
+   type IWebUIActivationStatics2 is access IWebUIActivationStatics2_Interface'Class;
 
    type IWebUIActivationStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUIActivationStatics3 is access all IWebUIActivationStatics3_Interface'Class;
+   type IWebUIActivationStatics3 is access IWebUIActivationStatics3_Interface'Class;
 
    type IWebUIActivationStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUIActivationStatics4 is access all IWebUIActivationStatics4_Interface'Class;
+   type IWebUIActivationStatics4 is access IWebUIActivationStatics4_Interface'Class;
 
    type IWebUIBackgroundTaskInstance_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUIBackgroundTaskInstance is access all IWebUIBackgroundTaskInstance_Interface'Class;
+   type IWebUIBackgroundTaskInstance is access IWebUIBackgroundTaskInstance_Interface'Class;
    type IWebUIBackgroundTaskInstance_Ptr is access all IWebUIBackgroundTaskInstance;
 
    type IWebUIBackgroundTaskInstanceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUIBackgroundTaskInstanceStatics is access all IWebUIBackgroundTaskInstanceStatics_Interface'Class;
+   type IWebUIBackgroundTaskInstanceStatics is access IWebUIBackgroundTaskInstanceStatics_Interface'Class;
 
    type IWebUINavigatedDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUINavigatedDeferral is access all IWebUINavigatedDeferral_Interface'Class;
+   type IWebUINavigatedDeferral is access IWebUINavigatedDeferral_Interface'Class;
    type IWebUINavigatedDeferral_Ptr is access all IWebUINavigatedDeferral;
 
    type IWebUINavigatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUINavigatedEventArgs is access all IWebUINavigatedEventArgs_Interface'Class;
+   type IWebUINavigatedEventArgs is access IWebUINavigatedEventArgs_Interface'Class;
    type IWebUINavigatedEventArgs_Ptr is access all IWebUINavigatedEventArgs;
 
    type IWebUINavigatedOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUINavigatedOperation is access all IWebUINavigatedOperation_Interface'Class;
+   type IWebUINavigatedOperation is access IWebUINavigatedOperation_Interface'Class;
    type IWebUINavigatedOperation_Ptr is access all IWebUINavigatedOperation;
 
    type IWebUIView_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUIView is access all IWebUIView_Interface'Class;
+   type IWebUIView is access IWebUIView_Interface'Class;
    type IWebUIView_Ptr is access all IWebUIView;
 
    type IWebUIViewStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUIViewStatics is access all IWebUIViewStatics_Interface'Class;
+   type IWebUIViewStatics is access IWebUIViewStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

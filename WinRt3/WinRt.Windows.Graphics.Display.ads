@@ -48,66 +48,66 @@ package WinRt.Windows.Graphics.Display is
    -----------------------------------------------------------------------------
 
    type IAdvancedColorInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvancedColorInfo is access all IAdvancedColorInfo_Interface'Class;
+   type IAdvancedColorInfo is access IAdvancedColorInfo_Interface'Class;
    type IAdvancedColorInfo_Ptr is access all IAdvancedColorInfo;
 
    type IBrightnessOverride_Interface is interface and WinRt.IInspectable_Interface;
-   type IBrightnessOverride is access all IBrightnessOverride_Interface'Class;
+   type IBrightnessOverride is access IBrightnessOverride_Interface'Class;
    type IBrightnessOverride_Ptr is access all IBrightnessOverride;
 
    type IBrightnessOverrideSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IBrightnessOverrideSettings is access all IBrightnessOverrideSettings_Interface'Class;
+   type IBrightnessOverrideSettings is access IBrightnessOverrideSettings_Interface'Class;
    type IBrightnessOverrideSettings_Ptr is access all IBrightnessOverrideSettings;
 
    type IBrightnessOverrideSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBrightnessOverrideSettingsStatics is access all IBrightnessOverrideSettingsStatics_Interface'Class;
+   type IBrightnessOverrideSettingsStatics is access IBrightnessOverrideSettingsStatics_Interface'Class;
 
    type IBrightnessOverrideStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBrightnessOverrideStatics is access all IBrightnessOverrideStatics_Interface'Class;
+   type IBrightnessOverrideStatics is access IBrightnessOverrideStatics_Interface'Class;
 
    type IColorOverrideSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorOverrideSettings is access all IColorOverrideSettings_Interface'Class;
+   type IColorOverrideSettings is access IColorOverrideSettings_Interface'Class;
    type IColorOverrideSettings_Ptr is access all IColorOverrideSettings;
 
    type IColorOverrideSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorOverrideSettingsStatics is access all IColorOverrideSettingsStatics_Interface'Class;
+   type IColorOverrideSettingsStatics is access IColorOverrideSettingsStatics_Interface'Class;
 
    type IDisplayEnhancementOverride_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayEnhancementOverride is access all IDisplayEnhancementOverride_Interface'Class;
+   type IDisplayEnhancementOverride is access IDisplayEnhancementOverride_Interface'Class;
    type IDisplayEnhancementOverride_Ptr is access all IDisplayEnhancementOverride;
 
    type IDisplayEnhancementOverrideCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayEnhancementOverrideCapabilities is access all IDisplayEnhancementOverrideCapabilities_Interface'Class;
+   type IDisplayEnhancementOverrideCapabilities is access IDisplayEnhancementOverrideCapabilities_Interface'Class;
    type IDisplayEnhancementOverrideCapabilities_Ptr is access all IDisplayEnhancementOverrideCapabilities;
 
    type IDisplayEnhancementOverrideCapabilitiesChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayEnhancementOverrideCapabilitiesChangedEventArgs is access all IDisplayEnhancementOverrideCapabilitiesChangedEventArgs_Interface'Class;
+   type IDisplayEnhancementOverrideCapabilitiesChangedEventArgs is access IDisplayEnhancementOverrideCapabilitiesChangedEventArgs_Interface'Class;
    type IDisplayEnhancementOverrideCapabilitiesChangedEventArgs_Ptr is access all IDisplayEnhancementOverrideCapabilitiesChangedEventArgs;
 
    type IDisplayEnhancementOverrideStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayEnhancementOverrideStatics is access all IDisplayEnhancementOverrideStatics_Interface'Class;
+   type IDisplayEnhancementOverrideStatics is access IDisplayEnhancementOverrideStatics_Interface'Class;
 
    type IDisplayInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayInformation is access all IDisplayInformation_Interface'Class;
+   type IDisplayInformation is access IDisplayInformation_Interface'Class;
    type IDisplayInformation_Ptr is access all IDisplayInformation;
 
    type IDisplayInformation2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayInformation2 is access all IDisplayInformation2_Interface'Class;
+   type IDisplayInformation2 is access IDisplayInformation2_Interface'Class;
 
    type IDisplayInformation3_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayInformation3 is access all IDisplayInformation3_Interface'Class;
+   type IDisplayInformation3 is access IDisplayInformation3_Interface'Class;
 
    type IDisplayInformation4_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayInformation4 is access all IDisplayInformation4_Interface'Class;
+   type IDisplayInformation4 is access IDisplayInformation4_Interface'Class;
 
    type IDisplayInformation5_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayInformation5 is access all IDisplayInformation5_Interface'Class;
+   type IDisplayInformation5 is access IDisplayInformation5_Interface'Class;
 
    type IDisplayInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayInformationStatics is access all IDisplayInformationStatics_Interface'Class;
+   type IDisplayInformationStatics is access IDisplayInformationStatics_Interface'Class;
 
    type IDisplayPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayPropertiesStatics is access all IDisplayPropertiesStatics_Interface'Class;
+   type IDisplayPropertiesStatics is access IDisplayPropertiesStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

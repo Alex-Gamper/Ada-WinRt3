@@ -47,169 +47,169 @@ package WinRt.Windows.UI.Input.Spatial is
    -----------------------------------------------------------------------------
 
    type ISpatialGestureRecognizer_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialGestureRecognizer is access all ISpatialGestureRecognizer_Interface'Class;
+   type ISpatialGestureRecognizer is access ISpatialGestureRecognizer_Interface'Class;
    type ISpatialGestureRecognizer_Ptr is access all ISpatialGestureRecognizer;
 
    type ISpatialGestureRecognizerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialGestureRecognizerFactory is access all ISpatialGestureRecognizerFactory_Interface'Class;
+   type ISpatialGestureRecognizerFactory is access ISpatialGestureRecognizerFactory_Interface'Class;
 
    type ISpatialHoldCanceledEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialHoldCanceledEventArgs is access all ISpatialHoldCanceledEventArgs_Interface'Class;
+   type ISpatialHoldCanceledEventArgs is access ISpatialHoldCanceledEventArgs_Interface'Class;
    type ISpatialHoldCanceledEventArgs_Ptr is access all ISpatialHoldCanceledEventArgs;
 
    type ISpatialHoldCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialHoldCompletedEventArgs is access all ISpatialHoldCompletedEventArgs_Interface'Class;
+   type ISpatialHoldCompletedEventArgs is access ISpatialHoldCompletedEventArgs_Interface'Class;
    type ISpatialHoldCompletedEventArgs_Ptr is access all ISpatialHoldCompletedEventArgs;
 
    type ISpatialHoldStartedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialHoldStartedEventArgs is access all ISpatialHoldStartedEventArgs_Interface'Class;
+   type ISpatialHoldStartedEventArgs is access ISpatialHoldStartedEventArgs_Interface'Class;
    type ISpatialHoldStartedEventArgs_Ptr is access all ISpatialHoldStartedEventArgs;
 
    type ISpatialInteraction_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteraction is access all ISpatialInteraction_Interface'Class;
+   type ISpatialInteraction is access ISpatialInteraction_Interface'Class;
    type ISpatialInteraction_Ptr is access all ISpatialInteraction;
 
    type ISpatialInteractionController_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionController is access all ISpatialInteractionController_Interface'Class;
+   type ISpatialInteractionController is access ISpatialInteractionController_Interface'Class;
    type ISpatialInteractionController_Ptr is access all ISpatialInteractionController;
 
    type ISpatialInteractionController2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionController2 is access all ISpatialInteractionController2_Interface'Class;
+   type ISpatialInteractionController2 is access ISpatialInteractionController2_Interface'Class;
 
    type ISpatialInteractionController3_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionController3 is access all ISpatialInteractionController3_Interface'Class;
+   type ISpatialInteractionController3 is access ISpatialInteractionController3_Interface'Class;
 
    type ISpatialInteractionControllerProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionControllerProperties is access all ISpatialInteractionControllerProperties_Interface'Class;
+   type ISpatialInteractionControllerProperties is access ISpatialInteractionControllerProperties_Interface'Class;
    type ISpatialInteractionControllerProperties_Ptr is access all ISpatialInteractionControllerProperties;
 
    type ISpatialInteractionDetectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionDetectedEventArgs is access all ISpatialInteractionDetectedEventArgs_Interface'Class;
+   type ISpatialInteractionDetectedEventArgs is access ISpatialInteractionDetectedEventArgs_Interface'Class;
    type ISpatialInteractionDetectedEventArgs_Ptr is access all ISpatialInteractionDetectedEventArgs;
 
    type ISpatialInteractionDetectedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionDetectedEventArgs2 is access all ISpatialInteractionDetectedEventArgs2_Interface'Class;
+   type ISpatialInteractionDetectedEventArgs2 is access ISpatialInteractionDetectedEventArgs2_Interface'Class;
 
    type ISpatialInteractionManager_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionManager is access all ISpatialInteractionManager_Interface'Class;
+   type ISpatialInteractionManager is access ISpatialInteractionManager_Interface'Class;
    type ISpatialInteractionManager_Ptr is access all ISpatialInteractionManager;
 
    type ISpatialInteractionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionManagerStatics is access all ISpatialInteractionManagerStatics_Interface'Class;
+   type ISpatialInteractionManagerStatics is access ISpatialInteractionManagerStatics_Interface'Class;
 
    type ISpatialInteractionManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionManagerStatics2 is access all ISpatialInteractionManagerStatics2_Interface'Class;
+   type ISpatialInteractionManagerStatics2 is access ISpatialInteractionManagerStatics2_Interface'Class;
 
    type ISpatialInteractionSource_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionSource is access all ISpatialInteractionSource_Interface'Class;
+   type ISpatialInteractionSource is access ISpatialInteractionSource_Interface'Class;
    type ISpatialInteractionSource_Ptr is access all ISpatialInteractionSource;
 
    type ISpatialInteractionSource2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionSource2 is access all ISpatialInteractionSource2_Interface'Class;
+   type ISpatialInteractionSource2 is access ISpatialInteractionSource2_Interface'Class;
 
    type ISpatialInteractionSource3_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionSource3 is access all ISpatialInteractionSource3_Interface'Class;
+   type ISpatialInteractionSource3 is access ISpatialInteractionSource3_Interface'Class;
 
    type ISpatialInteractionSource4_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionSource4 is access all ISpatialInteractionSource4_Interface'Class;
+   type ISpatialInteractionSource4 is access ISpatialInteractionSource4_Interface'Class;
 
    type ISpatialInteractionSourceEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionSourceEventArgs is access all ISpatialInteractionSourceEventArgs_Interface'Class;
+   type ISpatialInteractionSourceEventArgs is access ISpatialInteractionSourceEventArgs_Interface'Class;
    type ISpatialInteractionSourceEventArgs_Ptr is access all ISpatialInteractionSourceEventArgs;
 
    type ISpatialInteractionSourceEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionSourceEventArgs2 is access all ISpatialInteractionSourceEventArgs2_Interface'Class;
+   type ISpatialInteractionSourceEventArgs2 is access ISpatialInteractionSourceEventArgs2_Interface'Class;
 
    type ISpatialInteractionSourceLocation_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionSourceLocation is access all ISpatialInteractionSourceLocation_Interface'Class;
+   type ISpatialInteractionSourceLocation is access ISpatialInteractionSourceLocation_Interface'Class;
    type ISpatialInteractionSourceLocation_Ptr is access all ISpatialInteractionSourceLocation;
 
    type ISpatialInteractionSourceLocation2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionSourceLocation2 is access all ISpatialInteractionSourceLocation2_Interface'Class;
+   type ISpatialInteractionSourceLocation2 is access ISpatialInteractionSourceLocation2_Interface'Class;
 
    type ISpatialInteractionSourceLocation3_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionSourceLocation3 is access all ISpatialInteractionSourceLocation3_Interface'Class;
+   type ISpatialInteractionSourceLocation3 is access ISpatialInteractionSourceLocation3_Interface'Class;
 
    type ISpatialInteractionSourceProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionSourceProperties is access all ISpatialInteractionSourceProperties_Interface'Class;
+   type ISpatialInteractionSourceProperties is access ISpatialInteractionSourceProperties_Interface'Class;
    type ISpatialInteractionSourceProperties_Ptr is access all ISpatialInteractionSourceProperties;
 
    type ISpatialInteractionSourceState_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionSourceState is access all ISpatialInteractionSourceState_Interface'Class;
+   type ISpatialInteractionSourceState is access ISpatialInteractionSourceState_Interface'Class;
    type ISpatialInteractionSourceState_Ptr is access all ISpatialInteractionSourceState;
 
    type ISpatialInteractionSourceState2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionSourceState2 is access all ISpatialInteractionSourceState2_Interface'Class;
+   type ISpatialInteractionSourceState2 is access ISpatialInteractionSourceState2_Interface'Class;
 
    type ISpatialInteractionSourceState3_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialInteractionSourceState3 is access all ISpatialInteractionSourceState3_Interface'Class;
+   type ISpatialInteractionSourceState3 is access ISpatialInteractionSourceState3_Interface'Class;
 
    type ISpatialManipulationCanceledEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialManipulationCanceledEventArgs is access all ISpatialManipulationCanceledEventArgs_Interface'Class;
+   type ISpatialManipulationCanceledEventArgs is access ISpatialManipulationCanceledEventArgs_Interface'Class;
    type ISpatialManipulationCanceledEventArgs_Ptr is access all ISpatialManipulationCanceledEventArgs;
 
    type ISpatialManipulationCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialManipulationCompletedEventArgs is access all ISpatialManipulationCompletedEventArgs_Interface'Class;
+   type ISpatialManipulationCompletedEventArgs is access ISpatialManipulationCompletedEventArgs_Interface'Class;
    type ISpatialManipulationCompletedEventArgs_Ptr is access all ISpatialManipulationCompletedEventArgs;
 
    type ISpatialManipulationDelta_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialManipulationDelta is access all ISpatialManipulationDelta_Interface'Class;
+   type ISpatialManipulationDelta is access ISpatialManipulationDelta_Interface'Class;
    type ISpatialManipulationDelta_Ptr is access all ISpatialManipulationDelta;
 
    type ISpatialManipulationStartedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialManipulationStartedEventArgs is access all ISpatialManipulationStartedEventArgs_Interface'Class;
+   type ISpatialManipulationStartedEventArgs is access ISpatialManipulationStartedEventArgs_Interface'Class;
    type ISpatialManipulationStartedEventArgs_Ptr is access all ISpatialManipulationStartedEventArgs;
 
    type ISpatialManipulationUpdatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialManipulationUpdatedEventArgs is access all ISpatialManipulationUpdatedEventArgs_Interface'Class;
+   type ISpatialManipulationUpdatedEventArgs is access ISpatialManipulationUpdatedEventArgs_Interface'Class;
    type ISpatialManipulationUpdatedEventArgs_Ptr is access all ISpatialManipulationUpdatedEventArgs;
 
    type ISpatialNavigationCanceledEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialNavigationCanceledEventArgs is access all ISpatialNavigationCanceledEventArgs_Interface'Class;
+   type ISpatialNavigationCanceledEventArgs is access ISpatialNavigationCanceledEventArgs_Interface'Class;
    type ISpatialNavigationCanceledEventArgs_Ptr is access all ISpatialNavigationCanceledEventArgs;
 
    type ISpatialNavigationCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialNavigationCompletedEventArgs is access all ISpatialNavigationCompletedEventArgs_Interface'Class;
+   type ISpatialNavigationCompletedEventArgs is access ISpatialNavigationCompletedEventArgs_Interface'Class;
    type ISpatialNavigationCompletedEventArgs_Ptr is access all ISpatialNavigationCompletedEventArgs;
 
    type ISpatialNavigationStartedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialNavigationStartedEventArgs is access all ISpatialNavigationStartedEventArgs_Interface'Class;
+   type ISpatialNavigationStartedEventArgs is access ISpatialNavigationStartedEventArgs_Interface'Class;
    type ISpatialNavigationStartedEventArgs_Ptr is access all ISpatialNavigationStartedEventArgs;
 
    type ISpatialNavigationUpdatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialNavigationUpdatedEventArgs is access all ISpatialNavigationUpdatedEventArgs_Interface'Class;
+   type ISpatialNavigationUpdatedEventArgs is access ISpatialNavigationUpdatedEventArgs_Interface'Class;
    type ISpatialNavigationUpdatedEventArgs_Ptr is access all ISpatialNavigationUpdatedEventArgs;
 
    type ISpatialPointerInteractionSourcePose_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialPointerInteractionSourcePose is access all ISpatialPointerInteractionSourcePose_Interface'Class;
+   type ISpatialPointerInteractionSourcePose is access ISpatialPointerInteractionSourcePose_Interface'Class;
    type ISpatialPointerInteractionSourcePose_Ptr is access all ISpatialPointerInteractionSourcePose;
 
    type ISpatialPointerInteractionSourcePose2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialPointerInteractionSourcePose2 is access all ISpatialPointerInteractionSourcePose2_Interface'Class;
+   type ISpatialPointerInteractionSourcePose2 is access ISpatialPointerInteractionSourcePose2_Interface'Class;
 
    type ISpatialPointerPose_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialPointerPose is access all ISpatialPointerPose_Interface'Class;
+   type ISpatialPointerPose is access ISpatialPointerPose_Interface'Class;
    type ISpatialPointerPose_Ptr is access all ISpatialPointerPose;
 
    type ISpatialPointerPose2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialPointerPose2 is access all ISpatialPointerPose2_Interface'Class;
+   type ISpatialPointerPose2 is access ISpatialPointerPose2_Interface'Class;
 
    type ISpatialPointerPose3_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialPointerPose3 is access all ISpatialPointerPose3_Interface'Class;
+   type ISpatialPointerPose3 is access ISpatialPointerPose3_Interface'Class;
 
    type ISpatialPointerPoseStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialPointerPoseStatics is access all ISpatialPointerPoseStatics_Interface'Class;
+   type ISpatialPointerPoseStatics is access ISpatialPointerPoseStatics_Interface'Class;
 
    type ISpatialRecognitionEndedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialRecognitionEndedEventArgs is access all ISpatialRecognitionEndedEventArgs_Interface'Class;
+   type ISpatialRecognitionEndedEventArgs is access ISpatialRecognitionEndedEventArgs_Interface'Class;
    type ISpatialRecognitionEndedEventArgs_Ptr is access all ISpatialRecognitionEndedEventArgs;
 
    type ISpatialRecognitionStartedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialRecognitionStartedEventArgs is access all ISpatialRecognitionStartedEventArgs_Interface'Class;
+   type ISpatialRecognitionStartedEventArgs is access ISpatialRecognitionStartedEventArgs_Interface'Class;
    type ISpatialRecognitionStartedEventArgs_Ptr is access all ISpatialRecognitionStartedEventArgs;
 
    type ISpatialTappedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialTappedEventArgs is access all ISpatialTappedEventArgs_Interface'Class;
+   type ISpatialTappedEventArgs is access ISpatialTappedEventArgs_Interface'Class;
    type ISpatialTappedEventArgs_Ptr is access all ISpatialTappedEventArgs;
 
    -----------------------------------------------------------------------------

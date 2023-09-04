@@ -46,214 +46,214 @@ package WinRt.Windows.AI.MachineLearning is
    -----------------------------------------------------------------------------
 
    type IImageFeatureDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageFeatureDescriptor is access all IImageFeatureDescriptor_Interface'Class;
+   type IImageFeatureDescriptor is access IImageFeatureDescriptor_Interface'Class;
    type IImageFeatureDescriptor_Ptr is access all IImageFeatureDescriptor;
 
    type IImageFeatureValue_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageFeatureValue is access all IImageFeatureValue_Interface'Class;
+   type IImageFeatureValue is access IImageFeatureValue_Interface'Class;
    type IImageFeatureValue_Ptr is access all IImageFeatureValue;
 
    type IImageFeatureValueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageFeatureValueStatics is access all IImageFeatureValueStatics_Interface'Class;
+   type IImageFeatureValueStatics is access IImageFeatureValueStatics_Interface'Class;
 
    type ILearningModel_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModel is access all ILearningModel_Interface'Class;
+   type ILearningModel is access ILearningModel_Interface'Class;
    type ILearningModel_Ptr is access all ILearningModel;
 
    type ILearningModelBinding_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelBinding is access all ILearningModelBinding_Interface'Class;
+   type ILearningModelBinding is access ILearningModelBinding_Interface'Class;
    type ILearningModelBinding_Ptr is access all ILearningModelBinding;
 
    type ILearningModelBindingFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelBindingFactory is access all ILearningModelBindingFactory_Interface'Class;
+   type ILearningModelBindingFactory is access ILearningModelBindingFactory_Interface'Class;
 
    type ILearningModelDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelDevice is access all ILearningModelDevice_Interface'Class;
+   type ILearningModelDevice is access ILearningModelDevice_Interface'Class;
    type ILearningModelDevice_Ptr is access all ILearningModelDevice;
 
    type ILearningModelDeviceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelDeviceFactory is access all ILearningModelDeviceFactory_Interface'Class;
+   type ILearningModelDeviceFactory is access ILearningModelDeviceFactory_Interface'Class;
 
    type ILearningModelDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelDeviceStatics is access all ILearningModelDeviceStatics_Interface'Class;
+   type ILearningModelDeviceStatics is access ILearningModelDeviceStatics_Interface'Class;
 
    type ILearningModelEvaluationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelEvaluationResult is access all ILearningModelEvaluationResult_Interface'Class;
+   type ILearningModelEvaluationResult is access ILearningModelEvaluationResult_Interface'Class;
    type ILearningModelEvaluationResult_Ptr is access all ILearningModelEvaluationResult;
 
    type ILearningModelFeatureDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelFeatureDescriptor is access all ILearningModelFeatureDescriptor_Interface'Class;
+   type ILearningModelFeatureDescriptor is access ILearningModelFeatureDescriptor_Interface'Class;
 
    type ILearningModelFeatureValue_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelFeatureValue is access all ILearningModelFeatureValue_Interface'Class;
+   type ILearningModelFeatureValue is access ILearningModelFeatureValue_Interface'Class;
 
    type ILearningModelOperatorProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelOperatorProvider is access all ILearningModelOperatorProvider_Interface'Class;
+   type ILearningModelOperatorProvider is access ILearningModelOperatorProvider_Interface'Class;
 
    type ILearningModelSession_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelSession is access all ILearningModelSession_Interface'Class;
+   type ILearningModelSession is access ILearningModelSession_Interface'Class;
    type ILearningModelSession_Ptr is access all ILearningModelSession;
 
    type ILearningModelSessionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelSessionFactory is access all ILearningModelSessionFactory_Interface'Class;
+   type ILearningModelSessionFactory is access ILearningModelSessionFactory_Interface'Class;
 
    type ILearningModelSessionFactory2_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelSessionFactory2 is access all ILearningModelSessionFactory2_Interface'Class;
+   type ILearningModelSessionFactory2 is access ILearningModelSessionFactory2_Interface'Class;
 
    type ILearningModelSessionOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelSessionOptions is access all ILearningModelSessionOptions_Interface'Class;
+   type ILearningModelSessionOptions is access ILearningModelSessionOptions_Interface'Class;
    type ILearningModelSessionOptions_Ptr is access all ILearningModelSessionOptions;
 
    type ILearningModelSessionOptions2_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelSessionOptions2 is access all ILearningModelSessionOptions2_Interface'Class;
+   type ILearningModelSessionOptions2 is access ILearningModelSessionOptions2_Interface'Class;
 
    type ILearningModelStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILearningModelStatics is access all ILearningModelStatics_Interface'Class;
+   type ILearningModelStatics is access ILearningModelStatics_Interface'Class;
 
    type IMapFeatureDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapFeatureDescriptor is access all IMapFeatureDescriptor_Interface'Class;
+   type IMapFeatureDescriptor is access IMapFeatureDescriptor_Interface'Class;
    type IMapFeatureDescriptor_Ptr is access all IMapFeatureDescriptor;
 
    type ISequenceFeatureDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type ISequenceFeatureDescriptor is access all ISequenceFeatureDescriptor_Interface'Class;
+   type ISequenceFeatureDescriptor is access ISequenceFeatureDescriptor_Interface'Class;
    type ISequenceFeatureDescriptor_Ptr is access all ISequenceFeatureDescriptor;
 
    type ITensor_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensor is access all ITensor_Interface'Class;
+   type ITensor is access ITensor_Interface'Class;
 
    type ITensorBoolean_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorBoolean is access all ITensorBoolean_Interface'Class;
+   type ITensorBoolean is access ITensorBoolean_Interface'Class;
    type ITensorBoolean_Ptr is access all ITensorBoolean;
 
    type ITensorBooleanStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorBooleanStatics is access all ITensorBooleanStatics_Interface'Class;
+   type ITensorBooleanStatics is access ITensorBooleanStatics_Interface'Class;
 
    type ITensorBooleanStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorBooleanStatics2 is access all ITensorBooleanStatics2_Interface'Class;
+   type ITensorBooleanStatics2 is access ITensorBooleanStatics2_Interface'Class;
 
    type ITensorDouble_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorDouble is access all ITensorDouble_Interface'Class;
+   type ITensorDouble is access ITensorDouble_Interface'Class;
    type ITensorDouble_Ptr is access all ITensorDouble;
 
    type ITensorDoubleStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorDoubleStatics is access all ITensorDoubleStatics_Interface'Class;
+   type ITensorDoubleStatics is access ITensorDoubleStatics_Interface'Class;
 
    type ITensorDoubleStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorDoubleStatics2 is access all ITensorDoubleStatics2_Interface'Class;
+   type ITensorDoubleStatics2 is access ITensorDoubleStatics2_Interface'Class;
 
    type ITensorFeatureDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorFeatureDescriptor is access all ITensorFeatureDescriptor_Interface'Class;
+   type ITensorFeatureDescriptor is access ITensorFeatureDescriptor_Interface'Class;
    type ITensorFeatureDescriptor_Ptr is access all ITensorFeatureDescriptor;
 
    type ITensorFloat_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorFloat is access all ITensorFloat_Interface'Class;
+   type ITensorFloat is access ITensorFloat_Interface'Class;
    type ITensorFloat_Ptr is access all ITensorFloat;
 
    type ITensorFloat16Bit_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorFloat16Bit is access all ITensorFloat16Bit_Interface'Class;
+   type ITensorFloat16Bit is access ITensorFloat16Bit_Interface'Class;
    type ITensorFloat16Bit_Ptr is access all ITensorFloat16Bit;
 
    type ITensorFloat16BitStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorFloat16BitStatics is access all ITensorFloat16BitStatics_Interface'Class;
+   type ITensorFloat16BitStatics is access ITensorFloat16BitStatics_Interface'Class;
 
    type ITensorFloat16BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorFloat16BitStatics2 is access all ITensorFloat16BitStatics2_Interface'Class;
+   type ITensorFloat16BitStatics2 is access ITensorFloat16BitStatics2_Interface'Class;
 
    type ITensorFloatStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorFloatStatics is access all ITensorFloatStatics_Interface'Class;
+   type ITensorFloatStatics is access ITensorFloatStatics_Interface'Class;
 
    type ITensorFloatStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorFloatStatics2 is access all ITensorFloatStatics2_Interface'Class;
+   type ITensorFloatStatics2 is access ITensorFloatStatics2_Interface'Class;
 
    type ITensorInt16Bit_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorInt16Bit is access all ITensorInt16Bit_Interface'Class;
+   type ITensorInt16Bit is access ITensorInt16Bit_Interface'Class;
    type ITensorInt16Bit_Ptr is access all ITensorInt16Bit;
 
    type ITensorInt16BitStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorInt16BitStatics is access all ITensorInt16BitStatics_Interface'Class;
+   type ITensorInt16BitStatics is access ITensorInt16BitStatics_Interface'Class;
 
    type ITensorInt16BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorInt16BitStatics2 is access all ITensorInt16BitStatics2_Interface'Class;
+   type ITensorInt16BitStatics2 is access ITensorInt16BitStatics2_Interface'Class;
 
    type ITensorInt32Bit_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorInt32Bit is access all ITensorInt32Bit_Interface'Class;
+   type ITensorInt32Bit is access ITensorInt32Bit_Interface'Class;
    type ITensorInt32Bit_Ptr is access all ITensorInt32Bit;
 
    type ITensorInt32BitStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorInt32BitStatics is access all ITensorInt32BitStatics_Interface'Class;
+   type ITensorInt32BitStatics is access ITensorInt32BitStatics_Interface'Class;
 
    type ITensorInt32BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorInt32BitStatics2 is access all ITensorInt32BitStatics2_Interface'Class;
+   type ITensorInt32BitStatics2 is access ITensorInt32BitStatics2_Interface'Class;
 
    type ITensorInt64Bit_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorInt64Bit is access all ITensorInt64Bit_Interface'Class;
+   type ITensorInt64Bit is access ITensorInt64Bit_Interface'Class;
    type ITensorInt64Bit_Ptr is access all ITensorInt64Bit;
 
    type ITensorInt64BitStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorInt64BitStatics is access all ITensorInt64BitStatics_Interface'Class;
+   type ITensorInt64BitStatics is access ITensorInt64BitStatics_Interface'Class;
 
    type ITensorInt64BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorInt64BitStatics2 is access all ITensorInt64BitStatics2_Interface'Class;
+   type ITensorInt64BitStatics2 is access ITensorInt64BitStatics2_Interface'Class;
 
    type ITensorInt8Bit_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorInt8Bit is access all ITensorInt8Bit_Interface'Class;
+   type ITensorInt8Bit is access ITensorInt8Bit_Interface'Class;
    type ITensorInt8Bit_Ptr is access all ITensorInt8Bit;
 
    type ITensorInt8BitStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorInt8BitStatics is access all ITensorInt8BitStatics_Interface'Class;
+   type ITensorInt8BitStatics is access ITensorInt8BitStatics_Interface'Class;
 
    type ITensorInt8BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorInt8BitStatics2 is access all ITensorInt8BitStatics2_Interface'Class;
+   type ITensorInt8BitStatics2 is access ITensorInt8BitStatics2_Interface'Class;
 
    type ITensorString_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorString is access all ITensorString_Interface'Class;
+   type ITensorString is access ITensorString_Interface'Class;
    type ITensorString_Ptr is access all ITensorString;
 
    type ITensorStringStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorStringStatics is access all ITensorStringStatics_Interface'Class;
+   type ITensorStringStatics is access ITensorStringStatics_Interface'Class;
 
    type ITensorStringStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorStringStatics2 is access all ITensorStringStatics2_Interface'Class;
+   type ITensorStringStatics2 is access ITensorStringStatics2_Interface'Class;
 
    type ITensorUInt16Bit_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorUInt16Bit is access all ITensorUInt16Bit_Interface'Class;
+   type ITensorUInt16Bit is access ITensorUInt16Bit_Interface'Class;
    type ITensorUInt16Bit_Ptr is access all ITensorUInt16Bit;
 
    type ITensorUInt16BitStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorUInt16BitStatics is access all ITensorUInt16BitStatics_Interface'Class;
+   type ITensorUInt16BitStatics is access ITensorUInt16BitStatics_Interface'Class;
 
    type ITensorUInt16BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorUInt16BitStatics2 is access all ITensorUInt16BitStatics2_Interface'Class;
+   type ITensorUInt16BitStatics2 is access ITensorUInt16BitStatics2_Interface'Class;
 
    type ITensorUInt32Bit_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorUInt32Bit is access all ITensorUInt32Bit_Interface'Class;
+   type ITensorUInt32Bit is access ITensorUInt32Bit_Interface'Class;
    type ITensorUInt32Bit_Ptr is access all ITensorUInt32Bit;
 
    type ITensorUInt32BitStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorUInt32BitStatics is access all ITensorUInt32BitStatics_Interface'Class;
+   type ITensorUInt32BitStatics is access ITensorUInt32BitStatics_Interface'Class;
 
    type ITensorUInt32BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorUInt32BitStatics2 is access all ITensorUInt32BitStatics2_Interface'Class;
+   type ITensorUInt32BitStatics2 is access ITensorUInt32BitStatics2_Interface'Class;
 
    type ITensorUInt64Bit_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorUInt64Bit is access all ITensorUInt64Bit_Interface'Class;
+   type ITensorUInt64Bit is access ITensorUInt64Bit_Interface'Class;
    type ITensorUInt64Bit_Ptr is access all ITensorUInt64Bit;
 
    type ITensorUInt64BitStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorUInt64BitStatics is access all ITensorUInt64BitStatics_Interface'Class;
+   type ITensorUInt64BitStatics is access ITensorUInt64BitStatics_Interface'Class;
 
    type ITensorUInt64BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorUInt64BitStatics2 is access all ITensorUInt64BitStatics2_Interface'Class;
+   type ITensorUInt64BitStatics2 is access ITensorUInt64BitStatics2_Interface'Class;
 
    type ITensorUInt8Bit_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorUInt8Bit is access all ITensorUInt8Bit_Interface'Class;
+   type ITensorUInt8Bit is access ITensorUInt8Bit_Interface'Class;
    type ITensorUInt8Bit_Ptr is access all ITensorUInt8Bit;
 
    type ITensorUInt8BitStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorUInt8BitStatics is access all ITensorUInt8BitStatics_Interface'Class;
+   type ITensorUInt8BitStatics is access ITensorUInt8BitStatics_Interface'Class;
 
    type ITensorUInt8BitStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITensorUInt8BitStatics2 is access all ITensorUInt8BitStatics2_Interface'Class;
+   type ITensorUInt8BitStatics2 is access ITensorUInt8BitStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

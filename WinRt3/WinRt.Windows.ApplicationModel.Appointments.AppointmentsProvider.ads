@@ -39,21 +39,21 @@ package WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider is
    -----------------------------------------------------------------------------
 
    type IAddAppointmentOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IAddAppointmentOperation is access all IAddAppointmentOperation_Interface'Class;
+   type IAddAppointmentOperation is access IAddAppointmentOperation_Interface'Class;
    type IAddAppointmentOperation_Ptr is access all IAddAppointmentOperation;
 
    type IAppointmentsProviderLaunchActionVerbsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentsProviderLaunchActionVerbsStatics is access all IAppointmentsProviderLaunchActionVerbsStatics_Interface'Class;
+   type IAppointmentsProviderLaunchActionVerbsStatics is access IAppointmentsProviderLaunchActionVerbsStatics_Interface'Class;
 
    type IAppointmentsProviderLaunchActionVerbsStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentsProviderLaunchActionVerbsStatics2 is access all IAppointmentsProviderLaunchActionVerbsStatics2_Interface'Class;
+   type IAppointmentsProviderLaunchActionVerbsStatics2 is access IAppointmentsProviderLaunchActionVerbsStatics2_Interface'Class;
 
    type IRemoveAppointmentOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoveAppointmentOperation is access all IRemoveAppointmentOperation_Interface'Class;
+   type IRemoveAppointmentOperation is access IRemoveAppointmentOperation_Interface'Class;
    type IRemoveAppointmentOperation_Ptr is access all IRemoveAppointmentOperation;
 
    type IReplaceAppointmentOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IReplaceAppointmentOperation is access all IReplaceAppointmentOperation_Interface'Class;
+   type IReplaceAppointmentOperation is access IReplaceAppointmentOperation_Interface'Class;
    type IReplaceAppointmentOperation_Ptr is access all IReplaceAppointmentOperation;
 
    -----------------------------------------------------------------------------

@@ -43,64 +43,64 @@ package WinRt.Windows.System.UserProfile is
    -----------------------------------------------------------------------------
 
    type IAdvertisingManagerForUser_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvertisingManagerForUser is access all IAdvertisingManagerForUser_Interface'Class;
+   type IAdvertisingManagerForUser is access IAdvertisingManagerForUser_Interface'Class;
    type IAdvertisingManagerForUser_Ptr is access all IAdvertisingManagerForUser;
 
    type IAdvertisingManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvertisingManagerStatics is access all IAdvertisingManagerStatics_Interface'Class;
+   type IAdvertisingManagerStatics is access IAdvertisingManagerStatics_Interface'Class;
 
    type IAdvertisingManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvertisingManagerStatics2 is access all IAdvertisingManagerStatics2_Interface'Class;
+   type IAdvertisingManagerStatics2 is access IAdvertisingManagerStatics2_Interface'Class;
 
    type IAssignedAccessSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IAssignedAccessSettings is access all IAssignedAccessSettings_Interface'Class;
+   type IAssignedAccessSettings is access IAssignedAccessSettings_Interface'Class;
    type IAssignedAccessSettings_Ptr is access all IAssignedAccessSettings;
 
    type IAssignedAccessSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAssignedAccessSettingsStatics is access all IAssignedAccessSettingsStatics_Interface'Class;
+   type IAssignedAccessSettingsStatics is access IAssignedAccessSettingsStatics_Interface'Class;
 
    type IDiagnosticsSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IDiagnosticsSettings is access all IDiagnosticsSettings_Interface'Class;
+   type IDiagnosticsSettings is access IDiagnosticsSettings_Interface'Class;
    type IDiagnosticsSettings_Ptr is access all IDiagnosticsSettings;
 
    type IDiagnosticsSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDiagnosticsSettingsStatics is access all IDiagnosticsSettingsStatics_Interface'Class;
+   type IDiagnosticsSettingsStatics is access IDiagnosticsSettingsStatics_Interface'Class;
 
    type IFirstSignInSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IFirstSignInSettings is access all IFirstSignInSettings_Interface'Class;
+   type IFirstSignInSettings is access IFirstSignInSettings_Interface'Class;
    type IFirstSignInSettings_Ptr is access all IFirstSignInSettings;
 
    type IFirstSignInSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFirstSignInSettingsStatics is access all IFirstSignInSettingsStatics_Interface'Class;
+   type IFirstSignInSettingsStatics is access IFirstSignInSettingsStatics_Interface'Class;
 
    type IGlobalizationPreferencesForUser_Interface is interface and WinRt.IInspectable_Interface;
-   type IGlobalizationPreferencesForUser is access all IGlobalizationPreferencesForUser_Interface'Class;
+   type IGlobalizationPreferencesForUser is access IGlobalizationPreferencesForUser_Interface'Class;
    type IGlobalizationPreferencesForUser_Ptr is access all IGlobalizationPreferencesForUser;
 
    type IGlobalizationPreferencesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGlobalizationPreferencesStatics is access all IGlobalizationPreferencesStatics_Interface'Class;
+   type IGlobalizationPreferencesStatics is access IGlobalizationPreferencesStatics_Interface'Class;
 
    type IGlobalizationPreferencesStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGlobalizationPreferencesStatics2 is access all IGlobalizationPreferencesStatics2_Interface'Class;
+   type IGlobalizationPreferencesStatics2 is access IGlobalizationPreferencesStatics2_Interface'Class;
 
    type IGlobalizationPreferencesStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IGlobalizationPreferencesStatics3 is access all IGlobalizationPreferencesStatics3_Interface'Class;
+   type IGlobalizationPreferencesStatics3 is access IGlobalizationPreferencesStatics3_Interface'Class;
 
    type ILockScreenImageFeedStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILockScreenImageFeedStatics is access all ILockScreenImageFeedStatics_Interface'Class;
+   type ILockScreenImageFeedStatics is access ILockScreenImageFeedStatics_Interface'Class;
 
    type ILockScreenStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILockScreenStatics is access all ILockScreenStatics_Interface'Class;
+   type ILockScreenStatics is access ILockScreenStatics_Interface'Class;
 
    type IUserInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserInformationStatics is access all IUserInformationStatics_Interface'Class;
+   type IUserInformationStatics is access IUserInformationStatics_Interface'Class;
 
    type IUserProfilePersonalizationSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserProfilePersonalizationSettings is access all IUserProfilePersonalizationSettings_Interface'Class;
+   type IUserProfilePersonalizationSettings is access IUserProfilePersonalizationSettings_Interface'Class;
    type IUserProfilePersonalizationSettings_Ptr is access all IUserProfilePersonalizationSettings;
 
    type IUserProfilePersonalizationSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserProfilePersonalizationSettingsStatics is access all IUserProfilePersonalizationSettingsStatics_Interface'Class;
+   type IUserProfilePersonalizationSettingsStatics is access IUserProfilePersonalizationSettingsStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

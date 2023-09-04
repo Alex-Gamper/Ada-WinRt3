@@ -40,112 +40,112 @@ package WinRt.Windows.Devices.Geolocation is
    -----------------------------------------------------------------------------
 
    type ICivicAddress_Interface is interface and WinRt.IInspectable_Interface;
-   type ICivicAddress is access all ICivicAddress_Interface'Class;
+   type ICivicAddress is access ICivicAddress_Interface'Class;
    type ICivicAddress_Ptr is access all ICivicAddress;
 
    type IGeoboundingBox_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeoboundingBox is access all IGeoboundingBox_Interface'Class;
+   type IGeoboundingBox is access IGeoboundingBox_Interface'Class;
    type IGeoboundingBox_Ptr is access all IGeoboundingBox;
 
    type IGeoboundingBoxFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeoboundingBoxFactory is access all IGeoboundingBoxFactory_Interface'Class;
+   type IGeoboundingBoxFactory is access IGeoboundingBoxFactory_Interface'Class;
 
    type IGeoboundingBoxStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeoboundingBoxStatics is access all IGeoboundingBoxStatics_Interface'Class;
+   type IGeoboundingBoxStatics is access IGeoboundingBoxStatics_Interface'Class;
 
    type IGeocircle_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeocircle is access all IGeocircle_Interface'Class;
+   type IGeocircle is access IGeocircle_Interface'Class;
    type IGeocircle_Ptr is access all IGeocircle;
 
    type IGeocircleFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeocircleFactory is access all IGeocircleFactory_Interface'Class;
+   type IGeocircleFactory is access IGeocircleFactory_Interface'Class;
 
    type IGeocoordinate_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeocoordinate is access all IGeocoordinate_Interface'Class;
+   type IGeocoordinate is access IGeocoordinate_Interface'Class;
    type IGeocoordinate_Ptr is access all IGeocoordinate;
 
    type IGeocoordinateSatelliteData_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeocoordinateSatelliteData is access all IGeocoordinateSatelliteData_Interface'Class;
+   type IGeocoordinateSatelliteData is access IGeocoordinateSatelliteData_Interface'Class;
    type IGeocoordinateSatelliteData_Ptr is access all IGeocoordinateSatelliteData;
 
    type IGeocoordinateWithPoint_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeocoordinateWithPoint is access all IGeocoordinateWithPoint_Interface'Class;
+   type IGeocoordinateWithPoint is access IGeocoordinateWithPoint_Interface'Class;
 
    type IGeocoordinateWithPositionData_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeocoordinateWithPositionData is access all IGeocoordinateWithPositionData_Interface'Class;
+   type IGeocoordinateWithPositionData is access IGeocoordinateWithPositionData_Interface'Class;
 
    type IGeocoordinateWithPositionSourceTimestamp_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeocoordinateWithPositionSourceTimestamp is access all IGeocoordinateWithPositionSourceTimestamp_Interface'Class;
+   type IGeocoordinateWithPositionSourceTimestamp is access IGeocoordinateWithPositionSourceTimestamp_Interface'Class;
 
    type IGeolocator_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeolocator is access all IGeolocator_Interface'Class;
+   type IGeolocator is access IGeolocator_Interface'Class;
    type IGeolocator_Ptr is access all IGeolocator;
 
    type IGeolocator2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeolocator2 is access all IGeolocator2_Interface'Class;
+   type IGeolocator2 is access IGeolocator2_Interface'Class;
 
    type IGeolocatorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeolocatorStatics is access all IGeolocatorStatics_Interface'Class;
+   type IGeolocatorStatics is access IGeolocatorStatics_Interface'Class;
 
    type IGeolocatorStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeolocatorStatics2 is access all IGeolocatorStatics2_Interface'Class;
+   type IGeolocatorStatics2 is access IGeolocatorStatics2_Interface'Class;
 
    type IGeolocatorWithScalarAccuracy_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeolocatorWithScalarAccuracy is access all IGeolocatorWithScalarAccuracy_Interface'Class;
+   type IGeolocatorWithScalarAccuracy is access IGeolocatorWithScalarAccuracy_Interface'Class;
 
    type IGeopath_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeopath is access all IGeopath_Interface'Class;
+   type IGeopath is access IGeopath_Interface'Class;
    type IGeopath_Ptr is access all IGeopath;
 
    type IGeopathFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeopathFactory is access all IGeopathFactory_Interface'Class;
+   type IGeopathFactory is access IGeopathFactory_Interface'Class;
 
    type IGeopoint_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeopoint is access all IGeopoint_Interface'Class;
+   type IGeopoint is access IGeopoint_Interface'Class;
    type IGeopoint_Ptr is access all IGeopoint;
 
    type IGeopointFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeopointFactory is access all IGeopointFactory_Interface'Class;
+   type IGeopointFactory is access IGeopointFactory_Interface'Class;
 
    type IGeoposition_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeoposition is access all IGeoposition_Interface'Class;
+   type IGeoposition is access IGeoposition_Interface'Class;
    type IGeoposition_Ptr is access all IGeoposition;
 
    type IGeoposition2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeoposition2 is access all IGeoposition2_Interface'Class;
+   type IGeoposition2 is access IGeoposition2_Interface'Class;
 
    type IGeoshape_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeoshape is access all IGeoshape_Interface'Class;
+   type IGeoshape is access IGeoshape_Interface'Class;
 
    type IGeovisit_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeovisit is access all IGeovisit_Interface'Class;
+   type IGeovisit is access IGeovisit_Interface'Class;
    type IGeovisit_Ptr is access all IGeovisit;
 
    type IGeovisitMonitor_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeovisitMonitor is access all IGeovisitMonitor_Interface'Class;
+   type IGeovisitMonitor is access IGeovisitMonitor_Interface'Class;
    type IGeovisitMonitor_Ptr is access all IGeovisitMonitor;
 
    type IGeovisitMonitorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeovisitMonitorStatics is access all IGeovisitMonitorStatics_Interface'Class;
+   type IGeovisitMonitorStatics is access IGeovisitMonitorStatics_Interface'Class;
 
    type IGeovisitStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeovisitStateChangedEventArgs is access all IGeovisitStateChangedEventArgs_Interface'Class;
+   type IGeovisitStateChangedEventArgs is access IGeovisitStateChangedEventArgs_Interface'Class;
    type IGeovisitStateChangedEventArgs_Ptr is access all IGeovisitStateChangedEventArgs;
 
    type IGeovisitTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeovisitTriggerDetails is access all IGeovisitTriggerDetails_Interface'Class;
+   type IGeovisitTriggerDetails is access IGeovisitTriggerDetails_Interface'Class;
    type IGeovisitTriggerDetails_Ptr is access all IGeovisitTriggerDetails;
 
    type IPositionChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPositionChangedEventArgs is access all IPositionChangedEventArgs_Interface'Class;
+   type IPositionChangedEventArgs is access IPositionChangedEventArgs_Interface'Class;
    type IPositionChangedEventArgs_Ptr is access all IPositionChangedEventArgs;
 
    type IStatusChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IStatusChangedEventArgs is access all IStatusChangedEventArgs_Interface'Class;
+   type IStatusChangedEventArgs is access IStatusChangedEventArgs_Interface'Class;
    type IStatusChangedEventArgs_Ptr is access all IStatusChangedEventArgs;
 
    type IVenueData_Interface is interface and WinRt.IInspectable_Interface;
-   type IVenueData is access all IVenueData_Interface'Class;
+   type IVenueData is access IVenueData_Interface'Class;
    type IVenueData_Ptr is access all IVenueData;
 
    -----------------------------------------------------------------------------

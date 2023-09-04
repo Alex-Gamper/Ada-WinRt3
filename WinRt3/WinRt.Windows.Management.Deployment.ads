@@ -41,65 +41,65 @@ package WinRt.Windows.Management.Deployment is
    -----------------------------------------------------------------------------
 
    type IAddPackageOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IAddPackageOptions is access all IAddPackageOptions_Interface'Class;
+   type IAddPackageOptions is access IAddPackageOptions_Interface'Class;
    type IAddPackageOptions_Ptr is access all IAddPackageOptions;
 
    type IDeploymentResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeploymentResult is access all IDeploymentResult_Interface'Class;
+   type IDeploymentResult is access IDeploymentResult_Interface'Class;
    type IDeploymentResult_Ptr is access all IDeploymentResult;
 
    type IDeploymentResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeploymentResult2 is access all IDeploymentResult2_Interface'Class;
+   type IDeploymentResult2 is access IDeploymentResult2_Interface'Class;
 
    type IPackageManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager is access all IPackageManager_Interface'Class;
+   type IPackageManager is access IPackageManager_Interface'Class;
    type IPackageManager_Ptr is access all IPackageManager;
 
    type IPackageManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager2 is access all IPackageManager2_Interface'Class;
+   type IPackageManager2 is access IPackageManager2_Interface'Class;
 
    type IPackageManager3_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager3 is access all IPackageManager3_Interface'Class;
+   type IPackageManager3 is access IPackageManager3_Interface'Class;
 
    type IPackageManager4_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager4 is access all IPackageManager4_Interface'Class;
+   type IPackageManager4 is access IPackageManager4_Interface'Class;
 
    type IPackageManager5_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager5 is access all IPackageManager5_Interface'Class;
+   type IPackageManager5 is access IPackageManager5_Interface'Class;
 
    type IPackageManager6_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager6 is access all IPackageManager6_Interface'Class;
+   type IPackageManager6 is access IPackageManager6_Interface'Class;
 
    type IPackageManager7_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager7 is access all IPackageManager7_Interface'Class;
+   type IPackageManager7 is access IPackageManager7_Interface'Class;
 
    type IPackageManager8_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager8 is access all IPackageManager8_Interface'Class;
+   type IPackageManager8 is access IPackageManager8_Interface'Class;
 
    type IPackageManager9_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager9 is access all IPackageManager9_Interface'Class;
+   type IPackageManager9 is access IPackageManager9_Interface'Class;
 
    type IPackageManagerDebugSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManagerDebugSettings is access all IPackageManagerDebugSettings_Interface'Class;
+   type IPackageManagerDebugSettings is access IPackageManagerDebugSettings_Interface'Class;
    type IPackageManagerDebugSettings_Ptr is access all IPackageManagerDebugSettings;
 
    type IPackageUserInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageUserInformation is access all IPackageUserInformation_Interface'Class;
+   type IPackageUserInformation is access IPackageUserInformation_Interface'Class;
    type IPackageUserInformation_Ptr is access all IPackageUserInformation;
 
    type IPackageVolume_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageVolume is access all IPackageVolume_Interface'Class;
+   type IPackageVolume is access IPackageVolume_Interface'Class;
    type IPackageVolume_Ptr is access all IPackageVolume;
 
    type IPackageVolume2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageVolume2 is access all IPackageVolume2_Interface'Class;
+   type IPackageVolume2 is access IPackageVolume2_Interface'Class;
 
    type IRegisterPackageOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IRegisterPackageOptions is access all IRegisterPackageOptions_Interface'Class;
+   type IRegisterPackageOptions is access IRegisterPackageOptions_Interface'Class;
    type IRegisterPackageOptions_Ptr is access all IRegisterPackageOptions;
 
    type IStagePackageOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IStagePackageOptions is access all IStagePackageOptions_Interface'Class;
+   type IStagePackageOptions is access IStagePackageOptions_Interface'Class;
    type IStagePackageOptions_Ptr is access all IStagePackageOptions;
 
    -----------------------------------------------------------------------------

@@ -40,62 +40,62 @@ package WinRt.Windows.Globalization.NumberFormatting is
    -----------------------------------------------------------------------------
 
    type ICurrencyFormatter_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrencyFormatter is access all ICurrencyFormatter_Interface'Class;
+   type ICurrencyFormatter is access ICurrencyFormatter_Interface'Class;
    type ICurrencyFormatter_Ptr is access all ICurrencyFormatter;
 
    type ICurrencyFormatter2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrencyFormatter2 is access all ICurrencyFormatter2_Interface'Class;
+   type ICurrencyFormatter2 is access ICurrencyFormatter2_Interface'Class;
 
    type ICurrencyFormatterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrencyFormatterFactory is access all ICurrencyFormatterFactory_Interface'Class;
+   type ICurrencyFormatterFactory is access ICurrencyFormatterFactory_Interface'Class;
 
    type IDecimalFormatterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDecimalFormatterFactory is access all IDecimalFormatterFactory_Interface'Class;
+   type IDecimalFormatterFactory is access IDecimalFormatterFactory_Interface'Class;
 
    type IIncrementNumberRounder_Interface is interface and WinRt.IInspectable_Interface;
-   type IIncrementNumberRounder is access all IIncrementNumberRounder_Interface'Class;
+   type IIncrementNumberRounder is access IIncrementNumberRounder_Interface'Class;
 
    type INumberFormatter_Interface is interface and WinRt.IInspectable_Interface;
-   type INumberFormatter is access all INumberFormatter_Interface'Class;
+   type INumberFormatter is access INumberFormatter_Interface'Class;
    type INumberFormatter_Ptr is access all INumberFormatter;
 
    type INumberFormatter2_Interface is interface and WinRt.IInspectable_Interface;
-   type INumberFormatter2 is access all INumberFormatter2_Interface'Class;
+   type INumberFormatter2 is access INumberFormatter2_Interface'Class;
 
    type INumberFormatterOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type INumberFormatterOptions is access all INumberFormatterOptions_Interface'Class;
+   type INumberFormatterOptions is access INumberFormatterOptions_Interface'Class;
 
    type INumberParser_Interface is interface and WinRt.IInspectable_Interface;
-   type INumberParser is access all INumberParser_Interface'Class;
+   type INumberParser is access INumberParser_Interface'Class;
 
    type INumberRounder_Interface is interface and WinRt.IInspectable_Interface;
-   type INumberRounder is access all INumberRounder_Interface'Class;
+   type INumberRounder is access INumberRounder_Interface'Class;
    type INumberRounder_Ptr is access all INumberRounder;
 
    type INumberRounderOption_Interface is interface and WinRt.IInspectable_Interface;
-   type INumberRounderOption is access all INumberRounderOption_Interface'Class;
+   type INumberRounderOption is access INumberRounderOption_Interface'Class;
 
    type INumeralSystemTranslator_Interface is interface and WinRt.IInspectable_Interface;
-   type INumeralSystemTranslator is access all INumeralSystemTranslator_Interface'Class;
+   type INumeralSystemTranslator is access INumeralSystemTranslator_Interface'Class;
    type INumeralSystemTranslator_Ptr is access all INumeralSystemTranslator;
 
    type INumeralSystemTranslatorFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type INumeralSystemTranslatorFactory is access all INumeralSystemTranslatorFactory_Interface'Class;
+   type INumeralSystemTranslatorFactory is access INumeralSystemTranslatorFactory_Interface'Class;
 
    type IPercentFormatterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPercentFormatterFactory is access all IPercentFormatterFactory_Interface'Class;
+   type IPercentFormatterFactory is access IPercentFormatterFactory_Interface'Class;
 
    type IPermilleFormatterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPermilleFormatterFactory is access all IPermilleFormatterFactory_Interface'Class;
+   type IPermilleFormatterFactory is access IPermilleFormatterFactory_Interface'Class;
 
    type ISignedZeroOption_Interface is interface and WinRt.IInspectable_Interface;
-   type ISignedZeroOption is access all ISignedZeroOption_Interface'Class;
+   type ISignedZeroOption is access ISignedZeroOption_Interface'Class;
 
    type ISignificantDigitsNumberRounder_Interface is interface and WinRt.IInspectable_Interface;
-   type ISignificantDigitsNumberRounder is access all ISignificantDigitsNumberRounder_Interface'Class;
+   type ISignificantDigitsNumberRounder is access ISignificantDigitsNumberRounder_Interface'Class;
 
    type ISignificantDigitsOption_Interface is interface and WinRt.IInspectable_Interface;
-   type ISignificantDigitsOption is access all ISignificantDigitsOption_Interface'Class;
+   type ISignificantDigitsOption is access ISignificantDigitsOption_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

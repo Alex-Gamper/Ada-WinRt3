@@ -41,73 +41,73 @@ package WinRt.Windows.Media.PlayTo is
    -----------------------------------------------------------------------------
 
    type ICurrentTimeChangeRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrentTimeChangeRequestedEventArgs is access all ICurrentTimeChangeRequestedEventArgs_Interface'Class;
+   type ICurrentTimeChangeRequestedEventArgs is access ICurrentTimeChangeRequestedEventArgs_Interface'Class;
    type ICurrentTimeChangeRequestedEventArgs_Ptr is access all ICurrentTimeChangeRequestedEventArgs;
 
    type IMuteChangeRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMuteChangeRequestedEventArgs is access all IMuteChangeRequestedEventArgs_Interface'Class;
+   type IMuteChangeRequestedEventArgs is access IMuteChangeRequestedEventArgs_Interface'Class;
    type IMuteChangeRequestedEventArgs_Ptr is access all IMuteChangeRequestedEventArgs;
 
    type IPlayToConnection_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayToConnection is access all IPlayToConnection_Interface'Class;
+   type IPlayToConnection is access IPlayToConnection_Interface'Class;
    type IPlayToConnection_Ptr is access all IPlayToConnection;
 
    type IPlayToConnectionErrorEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayToConnectionErrorEventArgs is access all IPlayToConnectionErrorEventArgs_Interface'Class;
+   type IPlayToConnectionErrorEventArgs is access IPlayToConnectionErrorEventArgs_Interface'Class;
    type IPlayToConnectionErrorEventArgs_Ptr is access all IPlayToConnectionErrorEventArgs;
 
    type IPlayToConnectionStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayToConnectionStateChangedEventArgs is access all IPlayToConnectionStateChangedEventArgs_Interface'Class;
+   type IPlayToConnectionStateChangedEventArgs is access IPlayToConnectionStateChangedEventArgs_Interface'Class;
    type IPlayToConnectionStateChangedEventArgs_Ptr is access all IPlayToConnectionStateChangedEventArgs;
 
    type IPlayToConnectionTransferredEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayToConnectionTransferredEventArgs is access all IPlayToConnectionTransferredEventArgs_Interface'Class;
+   type IPlayToConnectionTransferredEventArgs is access IPlayToConnectionTransferredEventArgs_Interface'Class;
    type IPlayToConnectionTransferredEventArgs_Ptr is access all IPlayToConnectionTransferredEventArgs;
 
    type IPlayToManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayToManager is access all IPlayToManager_Interface'Class;
+   type IPlayToManager is access IPlayToManager_Interface'Class;
    type IPlayToManager_Ptr is access all IPlayToManager;
 
    type IPlayToManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayToManagerStatics is access all IPlayToManagerStatics_Interface'Class;
+   type IPlayToManagerStatics is access IPlayToManagerStatics_Interface'Class;
 
    type IPlayToReceiver_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayToReceiver is access all IPlayToReceiver_Interface'Class;
+   type IPlayToReceiver is access IPlayToReceiver_Interface'Class;
    type IPlayToReceiver_Ptr is access all IPlayToReceiver;
 
    type IPlayToSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayToSource is access all IPlayToSource_Interface'Class;
+   type IPlayToSource is access IPlayToSource_Interface'Class;
    type IPlayToSource_Ptr is access all IPlayToSource;
 
    type IPlayToSourceDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayToSourceDeferral is access all IPlayToSourceDeferral_Interface'Class;
+   type IPlayToSourceDeferral is access IPlayToSourceDeferral_Interface'Class;
    type IPlayToSourceDeferral_Ptr is access all IPlayToSourceDeferral;
 
    type IPlayToSourceRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayToSourceRequest is access all IPlayToSourceRequest_Interface'Class;
+   type IPlayToSourceRequest is access IPlayToSourceRequest_Interface'Class;
    type IPlayToSourceRequest_Ptr is access all IPlayToSourceRequest;
 
    type IPlayToSourceRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayToSourceRequestedEventArgs is access all IPlayToSourceRequestedEventArgs_Interface'Class;
+   type IPlayToSourceRequestedEventArgs is access IPlayToSourceRequestedEventArgs_Interface'Class;
    type IPlayToSourceRequestedEventArgs_Ptr is access all IPlayToSourceRequestedEventArgs;
 
    type IPlayToSourceSelectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayToSourceSelectedEventArgs is access all IPlayToSourceSelectedEventArgs_Interface'Class;
+   type IPlayToSourceSelectedEventArgs is access IPlayToSourceSelectedEventArgs_Interface'Class;
    type IPlayToSourceSelectedEventArgs_Ptr is access all IPlayToSourceSelectedEventArgs;
 
    type IPlayToSourceWithPreferredSourceUri_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayToSourceWithPreferredSourceUri is access all IPlayToSourceWithPreferredSourceUri_Interface'Class;
+   type IPlayToSourceWithPreferredSourceUri is access IPlayToSourceWithPreferredSourceUri_Interface'Class;
 
    type IPlaybackRateChangeRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlaybackRateChangeRequestedEventArgs is access all IPlaybackRateChangeRequestedEventArgs_Interface'Class;
+   type IPlaybackRateChangeRequestedEventArgs is access IPlaybackRateChangeRequestedEventArgs_Interface'Class;
    type IPlaybackRateChangeRequestedEventArgs_Ptr is access all IPlaybackRateChangeRequestedEventArgs;
 
    type ISourceChangeRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISourceChangeRequestedEventArgs is access all ISourceChangeRequestedEventArgs_Interface'Class;
+   type ISourceChangeRequestedEventArgs is access ISourceChangeRequestedEventArgs_Interface'Class;
    type ISourceChangeRequestedEventArgs_Ptr is access all ISourceChangeRequestedEventArgs;
 
    type IVolumeChangeRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IVolumeChangeRequestedEventArgs is access all IVolumeChangeRequestedEventArgs_Interface'Class;
+   type IVolumeChangeRequestedEventArgs is access IVolumeChangeRequestedEventArgs_Interface'Class;
    type IVolumeChangeRequestedEventArgs_Ptr is access all IVolumeChangeRequestedEventArgs;
 
    -----------------------------------------------------------------------------

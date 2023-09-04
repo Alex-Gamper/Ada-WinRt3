@@ -50,150 +50,150 @@ package WinRt.Windows.Graphics.Printing3D is
    -----------------------------------------------------------------------------
 
    type IPrint3DManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrint3DManager is access all IPrint3DManager_Interface'Class;
+   type IPrint3DManager is access IPrint3DManager_Interface'Class;
    type IPrint3DManager_Ptr is access all IPrint3DManager;
 
    type IPrint3DManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrint3DManagerStatics is access all IPrint3DManagerStatics_Interface'Class;
+   type IPrint3DManagerStatics is access IPrint3DManagerStatics_Interface'Class;
 
    type IPrint3DTask_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrint3DTask is access all IPrint3DTask_Interface'Class;
+   type IPrint3DTask is access IPrint3DTask_Interface'Class;
    type IPrint3DTask_Ptr is access all IPrint3DTask;
 
    type IPrint3DTaskCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrint3DTaskCompletedEventArgs is access all IPrint3DTaskCompletedEventArgs_Interface'Class;
+   type IPrint3DTaskCompletedEventArgs is access IPrint3DTaskCompletedEventArgs_Interface'Class;
    type IPrint3DTaskCompletedEventArgs_Ptr is access all IPrint3DTaskCompletedEventArgs;
 
    type IPrint3DTaskRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrint3DTaskRequest is access all IPrint3DTaskRequest_Interface'Class;
+   type IPrint3DTaskRequest is access IPrint3DTaskRequest_Interface'Class;
    type IPrint3DTaskRequest_Ptr is access all IPrint3DTaskRequest;
 
    type IPrint3DTaskRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrint3DTaskRequestedEventArgs is access all IPrint3DTaskRequestedEventArgs_Interface'Class;
+   type IPrint3DTaskRequestedEventArgs is access IPrint3DTaskRequestedEventArgs_Interface'Class;
    type IPrint3DTaskRequestedEventArgs_Ptr is access all IPrint3DTaskRequestedEventArgs;
 
    type IPrint3DTaskSourceChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrint3DTaskSourceChangedEventArgs is access all IPrint3DTaskSourceChangedEventArgs_Interface'Class;
+   type IPrint3DTaskSourceChangedEventArgs is access IPrint3DTaskSourceChangedEventArgs_Interface'Class;
    type IPrint3DTaskSourceChangedEventArgs_Ptr is access all IPrint3DTaskSourceChangedEventArgs;
 
    type IPrint3DTaskSourceRequestedArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrint3DTaskSourceRequestedArgs is access all IPrint3DTaskSourceRequestedArgs_Interface'Class;
+   type IPrint3DTaskSourceRequestedArgs is access IPrint3DTaskSourceRequestedArgs_Interface'Class;
    type IPrint3DTaskSourceRequestedArgs_Ptr is access all IPrint3DTaskSourceRequestedArgs;
 
    type IPrinting3D3MFPackage_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3D3MFPackage is access all IPrinting3D3MFPackage_Interface'Class;
+   type IPrinting3D3MFPackage is access IPrinting3D3MFPackage_Interface'Class;
    type IPrinting3D3MFPackage_Ptr is access all IPrinting3D3MFPackage;
 
    type IPrinting3D3MFPackage2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3D3MFPackage2 is access all IPrinting3D3MFPackage2_Interface'Class;
+   type IPrinting3D3MFPackage2 is access IPrinting3D3MFPackage2_Interface'Class;
 
    type IPrinting3D3MFPackageStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3D3MFPackageStatics is access all IPrinting3D3MFPackageStatics_Interface'Class;
+   type IPrinting3D3MFPackageStatics is access IPrinting3D3MFPackageStatics_Interface'Class;
 
    type IPrinting3DBaseMaterial_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DBaseMaterial is access all IPrinting3DBaseMaterial_Interface'Class;
+   type IPrinting3DBaseMaterial is access IPrinting3DBaseMaterial_Interface'Class;
    type IPrinting3DBaseMaterial_Ptr is access all IPrinting3DBaseMaterial;
 
    type IPrinting3DBaseMaterialGroup_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DBaseMaterialGroup is access all IPrinting3DBaseMaterialGroup_Interface'Class;
+   type IPrinting3DBaseMaterialGroup is access IPrinting3DBaseMaterialGroup_Interface'Class;
    type IPrinting3DBaseMaterialGroup_Ptr is access all IPrinting3DBaseMaterialGroup;
 
    type IPrinting3DBaseMaterialGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DBaseMaterialGroupFactory is access all IPrinting3DBaseMaterialGroupFactory_Interface'Class;
+   type IPrinting3DBaseMaterialGroupFactory is access IPrinting3DBaseMaterialGroupFactory_Interface'Class;
 
    type IPrinting3DBaseMaterialStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DBaseMaterialStatics is access all IPrinting3DBaseMaterialStatics_Interface'Class;
+   type IPrinting3DBaseMaterialStatics is access IPrinting3DBaseMaterialStatics_Interface'Class;
 
    type IPrinting3DColorMaterial_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DColorMaterial is access all IPrinting3DColorMaterial_Interface'Class;
+   type IPrinting3DColorMaterial is access IPrinting3DColorMaterial_Interface'Class;
    type IPrinting3DColorMaterial_Ptr is access all IPrinting3DColorMaterial;
 
    type IPrinting3DColorMaterial2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DColorMaterial2 is access all IPrinting3DColorMaterial2_Interface'Class;
+   type IPrinting3DColorMaterial2 is access IPrinting3DColorMaterial2_Interface'Class;
 
    type IPrinting3DColorMaterialGroup_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DColorMaterialGroup is access all IPrinting3DColorMaterialGroup_Interface'Class;
+   type IPrinting3DColorMaterialGroup is access IPrinting3DColorMaterialGroup_Interface'Class;
    type IPrinting3DColorMaterialGroup_Ptr is access all IPrinting3DColorMaterialGroup;
 
    type IPrinting3DColorMaterialGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DColorMaterialGroupFactory is access all IPrinting3DColorMaterialGroupFactory_Interface'Class;
+   type IPrinting3DColorMaterialGroupFactory is access IPrinting3DColorMaterialGroupFactory_Interface'Class;
 
    type IPrinting3DComponent_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DComponent is access all IPrinting3DComponent_Interface'Class;
+   type IPrinting3DComponent is access IPrinting3DComponent_Interface'Class;
    type IPrinting3DComponent_Ptr is access all IPrinting3DComponent;
 
    type IPrinting3DComponentWithMatrix_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DComponentWithMatrix is access all IPrinting3DComponentWithMatrix_Interface'Class;
+   type IPrinting3DComponentWithMatrix is access IPrinting3DComponentWithMatrix_Interface'Class;
    type IPrinting3DComponentWithMatrix_Ptr is access all IPrinting3DComponentWithMatrix;
 
    type IPrinting3DCompositeMaterial_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DCompositeMaterial is access all IPrinting3DCompositeMaterial_Interface'Class;
+   type IPrinting3DCompositeMaterial is access IPrinting3DCompositeMaterial_Interface'Class;
    type IPrinting3DCompositeMaterial_Ptr is access all IPrinting3DCompositeMaterial;
 
    type IPrinting3DCompositeMaterialGroup_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DCompositeMaterialGroup is access all IPrinting3DCompositeMaterialGroup_Interface'Class;
+   type IPrinting3DCompositeMaterialGroup is access IPrinting3DCompositeMaterialGroup_Interface'Class;
    type IPrinting3DCompositeMaterialGroup_Ptr is access all IPrinting3DCompositeMaterialGroup;
 
    type IPrinting3DCompositeMaterialGroup2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DCompositeMaterialGroup2 is access all IPrinting3DCompositeMaterialGroup2_Interface'Class;
+   type IPrinting3DCompositeMaterialGroup2 is access IPrinting3DCompositeMaterialGroup2_Interface'Class;
 
    type IPrinting3DCompositeMaterialGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DCompositeMaterialGroupFactory is access all IPrinting3DCompositeMaterialGroupFactory_Interface'Class;
+   type IPrinting3DCompositeMaterialGroupFactory is access IPrinting3DCompositeMaterialGroupFactory_Interface'Class;
 
    type IPrinting3DFaceReductionOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DFaceReductionOptions is access all IPrinting3DFaceReductionOptions_Interface'Class;
+   type IPrinting3DFaceReductionOptions is access IPrinting3DFaceReductionOptions_Interface'Class;
    type IPrinting3DFaceReductionOptions_Ptr is access all IPrinting3DFaceReductionOptions;
 
    type IPrinting3DMaterial_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DMaterial is access all IPrinting3DMaterial_Interface'Class;
+   type IPrinting3DMaterial is access IPrinting3DMaterial_Interface'Class;
    type IPrinting3DMaterial_Ptr is access all IPrinting3DMaterial;
 
    type IPrinting3DMesh_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DMesh is access all IPrinting3DMesh_Interface'Class;
+   type IPrinting3DMesh is access IPrinting3DMesh_Interface'Class;
    type IPrinting3DMesh_Ptr is access all IPrinting3DMesh;
 
    type IPrinting3DMeshVerificationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DMeshVerificationResult is access all IPrinting3DMeshVerificationResult_Interface'Class;
+   type IPrinting3DMeshVerificationResult is access IPrinting3DMeshVerificationResult_Interface'Class;
    type IPrinting3DMeshVerificationResult_Ptr is access all IPrinting3DMeshVerificationResult;
 
    type IPrinting3DModel_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DModel is access all IPrinting3DModel_Interface'Class;
+   type IPrinting3DModel is access IPrinting3DModel_Interface'Class;
    type IPrinting3DModel_Ptr is access all IPrinting3DModel;
 
    type IPrinting3DModel2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DModel2 is access all IPrinting3DModel2_Interface'Class;
+   type IPrinting3DModel2 is access IPrinting3DModel2_Interface'Class;
 
    type IPrinting3DModelTexture_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DModelTexture is access all IPrinting3DModelTexture_Interface'Class;
+   type IPrinting3DModelTexture is access IPrinting3DModelTexture_Interface'Class;
    type IPrinting3DModelTexture_Ptr is access all IPrinting3DModelTexture;
 
    type IPrinting3DMultiplePropertyMaterial_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DMultiplePropertyMaterial is access all IPrinting3DMultiplePropertyMaterial_Interface'Class;
+   type IPrinting3DMultiplePropertyMaterial is access IPrinting3DMultiplePropertyMaterial_Interface'Class;
    type IPrinting3DMultiplePropertyMaterial_Ptr is access all IPrinting3DMultiplePropertyMaterial;
 
    type IPrinting3DMultiplePropertyMaterialGroup_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DMultiplePropertyMaterialGroup is access all IPrinting3DMultiplePropertyMaterialGroup_Interface'Class;
+   type IPrinting3DMultiplePropertyMaterialGroup is access IPrinting3DMultiplePropertyMaterialGroup_Interface'Class;
    type IPrinting3DMultiplePropertyMaterialGroup_Ptr is access all IPrinting3DMultiplePropertyMaterialGroup;
 
    type IPrinting3DMultiplePropertyMaterialGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DMultiplePropertyMaterialGroupFactory is access all IPrinting3DMultiplePropertyMaterialGroupFactory_Interface'Class;
+   type IPrinting3DMultiplePropertyMaterialGroupFactory is access IPrinting3DMultiplePropertyMaterialGroupFactory_Interface'Class;
 
    type IPrinting3DTexture2CoordMaterial_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DTexture2CoordMaterial is access all IPrinting3DTexture2CoordMaterial_Interface'Class;
+   type IPrinting3DTexture2CoordMaterial is access IPrinting3DTexture2CoordMaterial_Interface'Class;
    type IPrinting3DTexture2CoordMaterial_Ptr is access all IPrinting3DTexture2CoordMaterial;
 
    type IPrinting3DTexture2CoordMaterialGroup_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DTexture2CoordMaterialGroup is access all IPrinting3DTexture2CoordMaterialGroup_Interface'Class;
+   type IPrinting3DTexture2CoordMaterialGroup is access IPrinting3DTexture2CoordMaterialGroup_Interface'Class;
    type IPrinting3DTexture2CoordMaterialGroup_Ptr is access all IPrinting3DTexture2CoordMaterialGroup;
 
    type IPrinting3DTexture2CoordMaterialGroup2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DTexture2CoordMaterialGroup2 is access all IPrinting3DTexture2CoordMaterialGroup2_Interface'Class;
+   type IPrinting3DTexture2CoordMaterialGroup2 is access IPrinting3DTexture2CoordMaterialGroup2_Interface'Class;
 
    type IPrinting3DTexture2CoordMaterialGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DTexture2CoordMaterialGroupFactory is access all IPrinting3DTexture2CoordMaterialGroupFactory_Interface'Class;
+   type IPrinting3DTexture2CoordMaterialGroupFactory is access IPrinting3DTexture2CoordMaterialGroupFactory_Interface'Class;
 
    type IPrinting3DTextureResource_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrinting3DTextureResource is access all IPrinting3DTextureResource_Interface'Class;
+   type IPrinting3DTextureResource is access IPrinting3DTextureResource_Interface'Class;
    type IPrinting3DTextureResource_Ptr is access all IPrinting3DTextureResource;
 
    -----------------------------------------------------------------------------

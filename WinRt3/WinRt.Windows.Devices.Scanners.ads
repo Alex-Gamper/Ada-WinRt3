@@ -43,29 +43,29 @@ package WinRt.Windows.Devices.Scanners is
    -----------------------------------------------------------------------------
 
    type IImageScanner_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageScanner is access all IImageScanner_Interface'Class;
+   type IImageScanner is access IImageScanner_Interface'Class;
    type IImageScanner_Ptr is access all IImageScanner;
 
    type IImageScannerFeederConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageScannerFeederConfiguration is access all IImageScannerFeederConfiguration_Interface'Class;
+   type IImageScannerFeederConfiguration is access IImageScannerFeederConfiguration_Interface'Class;
 
    type IImageScannerFormatConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageScannerFormatConfiguration is access all IImageScannerFormatConfiguration_Interface'Class;
+   type IImageScannerFormatConfiguration is access IImageScannerFormatConfiguration_Interface'Class;
    type IImageScannerFormatConfiguration_Ptr is access all IImageScannerFormatConfiguration;
 
    type IImageScannerPreviewResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageScannerPreviewResult is access all IImageScannerPreviewResult_Interface'Class;
+   type IImageScannerPreviewResult is access IImageScannerPreviewResult_Interface'Class;
    type IImageScannerPreviewResult_Ptr is access all IImageScannerPreviewResult;
 
    type IImageScannerScanResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageScannerScanResult is access all IImageScannerScanResult_Interface'Class;
+   type IImageScannerScanResult is access IImageScannerScanResult_Interface'Class;
    type IImageScannerScanResult_Ptr is access all IImageScannerScanResult;
 
    type IImageScannerSourceConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageScannerSourceConfiguration is access all IImageScannerSourceConfiguration_Interface'Class;
+   type IImageScannerSourceConfiguration is access IImageScannerSourceConfiguration_Interface'Class;
 
    type IImageScannerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageScannerStatics is access all IImageScannerStatics_Interface'Class;
+   type IImageScannerStatics is access IImageScannerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

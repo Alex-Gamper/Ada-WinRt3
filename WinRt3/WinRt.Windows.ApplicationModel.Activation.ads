@@ -61,240 +61,240 @@ package WinRt.Windows.ApplicationModel.Activation is
    -----------------------------------------------------------------------------
 
    type IActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IActivatedEventArgs is access all IActivatedEventArgs_Interface'Class;
+   type IActivatedEventArgs is access IActivatedEventArgs_Interface'Class;
    type IActivatedEventArgs_Ptr is access all IActivatedEventArgs;
 
    type IActivatedEventArgsWithUser_Interface is interface and WinRt.IInspectable_Interface;
-   type IActivatedEventArgsWithUser is access all IActivatedEventArgsWithUser_Interface'Class;
+   type IActivatedEventArgsWithUser is access IActivatedEventArgsWithUser_Interface'Class;
 
    type IApplicationViewActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewActivatedEventArgs is access all IApplicationViewActivatedEventArgs_Interface'Class;
+   type IApplicationViewActivatedEventArgs is access IApplicationViewActivatedEventArgs_Interface'Class;
 
    type IAppointmentsProviderActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentsProviderActivatedEventArgs is access all IAppointmentsProviderActivatedEventArgs_Interface'Class;
+   type IAppointmentsProviderActivatedEventArgs is access IAppointmentsProviderActivatedEventArgs_Interface'Class;
 
    type IAppointmentsProviderAddAppointmentActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentsProviderAddAppointmentActivatedEventArgs is access all IAppointmentsProviderAddAppointmentActivatedEventArgs_Interface'Class;
+   type IAppointmentsProviderAddAppointmentActivatedEventArgs is access IAppointmentsProviderAddAppointmentActivatedEventArgs_Interface'Class;
    type IAppointmentsProviderAddAppointmentActivatedEventArgs_Ptr is access all IAppointmentsProviderAddAppointmentActivatedEventArgs;
 
    type IAppointmentsProviderRemoveAppointmentActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentsProviderRemoveAppointmentActivatedEventArgs is access all IAppointmentsProviderRemoveAppointmentActivatedEventArgs_Interface'Class;
+   type IAppointmentsProviderRemoveAppointmentActivatedEventArgs is access IAppointmentsProviderRemoveAppointmentActivatedEventArgs_Interface'Class;
    type IAppointmentsProviderRemoveAppointmentActivatedEventArgs_Ptr is access all IAppointmentsProviderRemoveAppointmentActivatedEventArgs;
 
    type IAppointmentsProviderReplaceAppointmentActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentsProviderReplaceAppointmentActivatedEventArgs is access all IAppointmentsProviderReplaceAppointmentActivatedEventArgs_Interface'Class;
+   type IAppointmentsProviderReplaceAppointmentActivatedEventArgs is access IAppointmentsProviderReplaceAppointmentActivatedEventArgs_Interface'Class;
    type IAppointmentsProviderReplaceAppointmentActivatedEventArgs_Ptr is access all IAppointmentsProviderReplaceAppointmentActivatedEventArgs;
 
    type IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs is access all IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs_Interface'Class;
+   type IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs is access IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs_Interface'Class;
    type IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs_Ptr is access all IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs;
 
    type IAppointmentsProviderShowTimeFrameActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentsProviderShowTimeFrameActivatedEventArgs is access all IAppointmentsProviderShowTimeFrameActivatedEventArgs_Interface'Class;
+   type IAppointmentsProviderShowTimeFrameActivatedEventArgs is access IAppointmentsProviderShowTimeFrameActivatedEventArgs_Interface'Class;
    type IAppointmentsProviderShowTimeFrameActivatedEventArgs_Ptr is access all IAppointmentsProviderShowTimeFrameActivatedEventArgs;
 
    type IBackgroundActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundActivatedEventArgs is access all IBackgroundActivatedEventArgs_Interface'Class;
+   type IBackgroundActivatedEventArgs is access IBackgroundActivatedEventArgs_Interface'Class;
    type IBackgroundActivatedEventArgs_Ptr is access all IBackgroundActivatedEventArgs;
 
    type IBarcodeScannerPreviewActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerPreviewActivatedEventArgs is access all IBarcodeScannerPreviewActivatedEventArgs_Interface'Class;
+   type IBarcodeScannerPreviewActivatedEventArgs is access IBarcodeScannerPreviewActivatedEventArgs_Interface'Class;
    type IBarcodeScannerPreviewActivatedEventArgs_Ptr is access all IBarcodeScannerPreviewActivatedEventArgs;
 
    type ICachedFileUpdaterActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICachedFileUpdaterActivatedEventArgs is access all ICachedFileUpdaterActivatedEventArgs_Interface'Class;
+   type ICachedFileUpdaterActivatedEventArgs is access ICachedFileUpdaterActivatedEventArgs_Interface'Class;
    type ICachedFileUpdaterActivatedEventArgs_Ptr is access all ICachedFileUpdaterActivatedEventArgs;
 
    type ICameraSettingsActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICameraSettingsActivatedEventArgs is access all ICameraSettingsActivatedEventArgs_Interface'Class;
+   type ICameraSettingsActivatedEventArgs is access ICameraSettingsActivatedEventArgs_Interface'Class;
    type ICameraSettingsActivatedEventArgs_Ptr is access all ICameraSettingsActivatedEventArgs;
 
    type ICommandLineActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICommandLineActivatedEventArgs is access all ICommandLineActivatedEventArgs_Interface'Class;
+   type ICommandLineActivatedEventArgs is access ICommandLineActivatedEventArgs_Interface'Class;
    type ICommandLineActivatedEventArgs_Ptr is access all ICommandLineActivatedEventArgs;
 
    type ICommandLineActivationOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type ICommandLineActivationOperation is access all ICommandLineActivationOperation_Interface'Class;
+   type ICommandLineActivationOperation is access ICommandLineActivationOperation_Interface'Class;
    type ICommandLineActivationOperation_Ptr is access all ICommandLineActivationOperation;
 
    type IContactActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactActivatedEventArgs is access all IContactActivatedEventArgs_Interface'Class;
+   type IContactActivatedEventArgs is access IContactActivatedEventArgs_Interface'Class;
 
    type IContactCallActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactCallActivatedEventArgs is access all IContactCallActivatedEventArgs_Interface'Class;
+   type IContactCallActivatedEventArgs is access IContactCallActivatedEventArgs_Interface'Class;
    type IContactCallActivatedEventArgs_Ptr is access all IContactCallActivatedEventArgs;
 
    type IContactMapActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactMapActivatedEventArgs is access all IContactMapActivatedEventArgs_Interface'Class;
+   type IContactMapActivatedEventArgs is access IContactMapActivatedEventArgs_Interface'Class;
    type IContactMapActivatedEventArgs_Ptr is access all IContactMapActivatedEventArgs;
 
    type IContactMessageActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactMessageActivatedEventArgs is access all IContactMessageActivatedEventArgs_Interface'Class;
+   type IContactMessageActivatedEventArgs is access IContactMessageActivatedEventArgs_Interface'Class;
    type IContactMessageActivatedEventArgs_Ptr is access all IContactMessageActivatedEventArgs;
 
    type IContactPanelActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactPanelActivatedEventArgs is access all IContactPanelActivatedEventArgs_Interface'Class;
+   type IContactPanelActivatedEventArgs is access IContactPanelActivatedEventArgs_Interface'Class;
    type IContactPanelActivatedEventArgs_Ptr is access all IContactPanelActivatedEventArgs;
 
    type IContactPickerActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactPickerActivatedEventArgs is access all IContactPickerActivatedEventArgs_Interface'Class;
+   type IContactPickerActivatedEventArgs is access IContactPickerActivatedEventArgs_Interface'Class;
    type IContactPickerActivatedEventArgs_Ptr is access all IContactPickerActivatedEventArgs;
 
    type IContactPostActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactPostActivatedEventArgs is access all IContactPostActivatedEventArgs_Interface'Class;
+   type IContactPostActivatedEventArgs is access IContactPostActivatedEventArgs_Interface'Class;
    type IContactPostActivatedEventArgs_Ptr is access all IContactPostActivatedEventArgs;
 
    type IContactVideoCallActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactVideoCallActivatedEventArgs is access all IContactVideoCallActivatedEventArgs_Interface'Class;
+   type IContactVideoCallActivatedEventArgs is access IContactVideoCallActivatedEventArgs_Interface'Class;
    type IContactVideoCallActivatedEventArgs_Ptr is access all IContactVideoCallActivatedEventArgs;
 
    type IContactsProviderActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactsProviderActivatedEventArgs is access all IContactsProviderActivatedEventArgs_Interface'Class;
+   type IContactsProviderActivatedEventArgs is access IContactsProviderActivatedEventArgs_Interface'Class;
 
    type IContinuationActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContinuationActivatedEventArgs is access all IContinuationActivatedEventArgs_Interface'Class;
+   type IContinuationActivatedEventArgs is access IContinuationActivatedEventArgs_Interface'Class;
 
    type IDeviceActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceActivatedEventArgs is access all IDeviceActivatedEventArgs_Interface'Class;
+   type IDeviceActivatedEventArgs is access IDeviceActivatedEventArgs_Interface'Class;
    type IDeviceActivatedEventArgs_Ptr is access all IDeviceActivatedEventArgs;
 
    type IDevicePairingActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDevicePairingActivatedEventArgs is access all IDevicePairingActivatedEventArgs_Interface'Class;
+   type IDevicePairingActivatedEventArgs is access IDevicePairingActivatedEventArgs_Interface'Class;
    type IDevicePairingActivatedEventArgs_Ptr is access all IDevicePairingActivatedEventArgs;
 
    type IDialReceiverActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDialReceiverActivatedEventArgs is access all IDialReceiverActivatedEventArgs_Interface'Class;
+   type IDialReceiverActivatedEventArgs is access IDialReceiverActivatedEventArgs_Interface'Class;
    type IDialReceiverActivatedEventArgs_Ptr is access all IDialReceiverActivatedEventArgs;
 
    type IFileActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileActivatedEventArgs is access all IFileActivatedEventArgs_Interface'Class;
+   type IFileActivatedEventArgs is access IFileActivatedEventArgs_Interface'Class;
    type IFileActivatedEventArgs_Ptr is access all IFileActivatedEventArgs;
 
    type IFileActivatedEventArgsWithCallerPackageFamilyName_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileActivatedEventArgsWithCallerPackageFamilyName is access all IFileActivatedEventArgsWithCallerPackageFamilyName_Interface'Class;
+   type IFileActivatedEventArgsWithCallerPackageFamilyName is access IFileActivatedEventArgsWithCallerPackageFamilyName_Interface'Class;
 
    type IFileActivatedEventArgsWithNeighboringFiles_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileActivatedEventArgsWithNeighboringFiles is access all IFileActivatedEventArgsWithNeighboringFiles_Interface'Class;
+   type IFileActivatedEventArgsWithNeighboringFiles is access IFileActivatedEventArgsWithNeighboringFiles_Interface'Class;
 
    type IFileOpenPickerActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileOpenPickerActivatedEventArgs is access all IFileOpenPickerActivatedEventArgs_Interface'Class;
+   type IFileOpenPickerActivatedEventArgs is access IFileOpenPickerActivatedEventArgs_Interface'Class;
    type IFileOpenPickerActivatedEventArgs_Ptr is access all IFileOpenPickerActivatedEventArgs;
 
    type IFileOpenPickerActivatedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileOpenPickerActivatedEventArgs2 is access all IFileOpenPickerActivatedEventArgs2_Interface'Class;
+   type IFileOpenPickerActivatedEventArgs2 is access IFileOpenPickerActivatedEventArgs2_Interface'Class;
 
    type IFileOpenPickerContinuationEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileOpenPickerContinuationEventArgs is access all IFileOpenPickerContinuationEventArgs_Interface'Class;
+   type IFileOpenPickerContinuationEventArgs is access IFileOpenPickerContinuationEventArgs_Interface'Class;
    type IFileOpenPickerContinuationEventArgs_Ptr is access all IFileOpenPickerContinuationEventArgs;
 
    type IFileSavePickerActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileSavePickerActivatedEventArgs is access all IFileSavePickerActivatedEventArgs_Interface'Class;
+   type IFileSavePickerActivatedEventArgs is access IFileSavePickerActivatedEventArgs_Interface'Class;
    type IFileSavePickerActivatedEventArgs_Ptr is access all IFileSavePickerActivatedEventArgs;
 
    type IFileSavePickerActivatedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileSavePickerActivatedEventArgs2 is access all IFileSavePickerActivatedEventArgs2_Interface'Class;
+   type IFileSavePickerActivatedEventArgs2 is access IFileSavePickerActivatedEventArgs2_Interface'Class;
 
    type IFileSavePickerContinuationEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileSavePickerContinuationEventArgs is access all IFileSavePickerContinuationEventArgs_Interface'Class;
+   type IFileSavePickerContinuationEventArgs is access IFileSavePickerContinuationEventArgs_Interface'Class;
    type IFileSavePickerContinuationEventArgs_Ptr is access all IFileSavePickerContinuationEventArgs;
 
    type IFolderPickerContinuationEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IFolderPickerContinuationEventArgs is access all IFolderPickerContinuationEventArgs_Interface'Class;
+   type IFolderPickerContinuationEventArgs is access IFolderPickerContinuationEventArgs_Interface'Class;
    type IFolderPickerContinuationEventArgs_Ptr is access all IFolderPickerContinuationEventArgs;
 
    type ILaunchActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ILaunchActivatedEventArgs is access all ILaunchActivatedEventArgs_Interface'Class;
+   type ILaunchActivatedEventArgs is access ILaunchActivatedEventArgs_Interface'Class;
    type ILaunchActivatedEventArgs_Ptr is access all ILaunchActivatedEventArgs;
 
    type ILaunchActivatedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type ILaunchActivatedEventArgs2 is access all ILaunchActivatedEventArgs2_Interface'Class;
+   type ILaunchActivatedEventArgs2 is access ILaunchActivatedEventArgs2_Interface'Class;
 
    type ILockScreenActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ILockScreenActivatedEventArgs is access all ILockScreenActivatedEventArgs_Interface'Class;
+   type ILockScreenActivatedEventArgs is access ILockScreenActivatedEventArgs_Interface'Class;
    type ILockScreenActivatedEventArgs_Ptr is access all ILockScreenActivatedEventArgs;
 
    type ILockScreenCallActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ILockScreenCallActivatedEventArgs is access all ILockScreenCallActivatedEventArgs_Interface'Class;
+   type ILockScreenCallActivatedEventArgs is access ILockScreenCallActivatedEventArgs_Interface'Class;
    type ILockScreenCallActivatedEventArgs_Ptr is access all ILockScreenCallActivatedEventArgs;
 
    type IPickerReturnedActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPickerReturnedActivatedEventArgs is access all IPickerReturnedActivatedEventArgs_Interface'Class;
+   type IPickerReturnedActivatedEventArgs is access IPickerReturnedActivatedEventArgs_Interface'Class;
    type IPickerReturnedActivatedEventArgs_Ptr is access all IPickerReturnedActivatedEventArgs;
 
    type IPrelaunchActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrelaunchActivatedEventArgs is access all IPrelaunchActivatedEventArgs_Interface'Class;
+   type IPrelaunchActivatedEventArgs is access IPrelaunchActivatedEventArgs_Interface'Class;
 
    type IPrint3DWorkflowActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrint3DWorkflowActivatedEventArgs is access all IPrint3DWorkflowActivatedEventArgs_Interface'Class;
+   type IPrint3DWorkflowActivatedEventArgs is access IPrint3DWorkflowActivatedEventArgs_Interface'Class;
    type IPrint3DWorkflowActivatedEventArgs_Ptr is access all IPrint3DWorkflowActivatedEventArgs;
 
    type IPrintTaskSettingsActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskSettingsActivatedEventArgs is access all IPrintTaskSettingsActivatedEventArgs_Interface'Class;
+   type IPrintTaskSettingsActivatedEventArgs is access IPrintTaskSettingsActivatedEventArgs_Interface'Class;
    type IPrintTaskSettingsActivatedEventArgs_Ptr is access all IPrintTaskSettingsActivatedEventArgs;
 
    type IProtocolActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtocolActivatedEventArgs is access all IProtocolActivatedEventArgs_Interface'Class;
+   type IProtocolActivatedEventArgs is access IProtocolActivatedEventArgs_Interface'Class;
    type IProtocolActivatedEventArgs_Ptr is access all IProtocolActivatedEventArgs;
 
    type IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData is access all IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData_Interface'Class;
+   type IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData is access IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData_Interface'Class;
 
    type IProtocolForResultsActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtocolForResultsActivatedEventArgs is access all IProtocolForResultsActivatedEventArgs_Interface'Class;
+   type IProtocolForResultsActivatedEventArgs is access IProtocolForResultsActivatedEventArgs_Interface'Class;
    type IProtocolForResultsActivatedEventArgs_Ptr is access all IProtocolForResultsActivatedEventArgs;
 
    type IRestrictedLaunchActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRestrictedLaunchActivatedEventArgs is access all IRestrictedLaunchActivatedEventArgs_Interface'Class;
+   type IRestrictedLaunchActivatedEventArgs is access IRestrictedLaunchActivatedEventArgs_Interface'Class;
    type IRestrictedLaunchActivatedEventArgs_Ptr is access all IRestrictedLaunchActivatedEventArgs;
 
    type ISearchActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchActivatedEventArgs is access all ISearchActivatedEventArgs_Interface'Class;
+   type ISearchActivatedEventArgs is access ISearchActivatedEventArgs_Interface'Class;
    type ISearchActivatedEventArgs_Ptr is access all ISearchActivatedEventArgs;
 
    type ISearchActivatedEventArgsWithLinguisticDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchActivatedEventArgsWithLinguisticDetails is access all ISearchActivatedEventArgsWithLinguisticDetails_Interface'Class;
+   type ISearchActivatedEventArgsWithLinguisticDetails is access ISearchActivatedEventArgsWithLinguisticDetails_Interface'Class;
 
    type IShareTargetActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IShareTargetActivatedEventArgs is access all IShareTargetActivatedEventArgs_Interface'Class;
+   type IShareTargetActivatedEventArgs is access IShareTargetActivatedEventArgs_Interface'Class;
    type IShareTargetActivatedEventArgs_Ptr is access all IShareTargetActivatedEventArgs;
 
    type ISplashScreen_Interface is interface and WinRt.IInspectable_Interface;
-   type ISplashScreen is access all ISplashScreen_Interface'Class;
+   type ISplashScreen is access ISplashScreen_Interface'Class;
    type ISplashScreen_Ptr is access all ISplashScreen;
 
    type IStartupTaskActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IStartupTaskActivatedEventArgs is access all IStartupTaskActivatedEventArgs_Interface'Class;
+   type IStartupTaskActivatedEventArgs is access IStartupTaskActivatedEventArgs_Interface'Class;
    type IStartupTaskActivatedEventArgs_Ptr is access all IStartupTaskActivatedEventArgs;
 
    type ITileActivatedInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ITileActivatedInfo is access all ITileActivatedInfo_Interface'Class;
+   type ITileActivatedInfo is access ITileActivatedInfo_Interface'Class;
    type ITileActivatedInfo_Ptr is access all ITileActivatedInfo;
 
    type IToastNotificationActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IToastNotificationActivatedEventArgs is access all IToastNotificationActivatedEventArgs_Interface'Class;
+   type IToastNotificationActivatedEventArgs is access IToastNotificationActivatedEventArgs_Interface'Class;
    type IToastNotificationActivatedEventArgs_Ptr is access all IToastNotificationActivatedEventArgs;
 
    type IUserDataAccountProviderActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccountProviderActivatedEventArgs is access all IUserDataAccountProviderActivatedEventArgs_Interface'Class;
+   type IUserDataAccountProviderActivatedEventArgs is access IUserDataAccountProviderActivatedEventArgs_Interface'Class;
    type IUserDataAccountProviderActivatedEventArgs_Ptr is access all IUserDataAccountProviderActivatedEventArgs;
 
    type IViewSwitcherProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IViewSwitcherProvider is access all IViewSwitcherProvider_Interface'Class;
+   type IViewSwitcherProvider is access IViewSwitcherProvider_Interface'Class;
 
    type IVoiceCommandActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceCommandActivatedEventArgs is access all IVoiceCommandActivatedEventArgs_Interface'Class;
+   type IVoiceCommandActivatedEventArgs is access IVoiceCommandActivatedEventArgs_Interface'Class;
    type IVoiceCommandActivatedEventArgs_Ptr is access all IVoiceCommandActivatedEventArgs;
 
    type IWalletActionActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWalletActionActivatedEventArgs is access all IWalletActionActivatedEventArgs_Interface'Class;
+   type IWalletActionActivatedEventArgs is access IWalletActionActivatedEventArgs_Interface'Class;
    type IWalletActionActivatedEventArgs_Ptr is access all IWalletActionActivatedEventArgs;
 
    type IWebAccountProviderActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProviderActivatedEventArgs is access all IWebAccountProviderActivatedEventArgs_Interface'Class;
+   type IWebAccountProviderActivatedEventArgs is access IWebAccountProviderActivatedEventArgs_Interface'Class;
    type IWebAccountProviderActivatedEventArgs_Ptr is access all IWebAccountProviderActivatedEventArgs;
 
    type IWebAuthenticationBrokerContinuationEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAuthenticationBrokerContinuationEventArgs is access all IWebAuthenticationBrokerContinuationEventArgs_Interface'Class;
+   type IWebAuthenticationBrokerContinuationEventArgs is access IWebAuthenticationBrokerContinuationEventArgs_Interface'Class;
    type IWebAuthenticationBrokerContinuationEventArgs_Ptr is access all IWebAuthenticationBrokerContinuationEventArgs;
 
    -----------------------------------------------------------------------------

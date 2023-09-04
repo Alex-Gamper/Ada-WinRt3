@@ -43,67 +43,67 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    -----------------------------------------------------------------------------
 
    type IPrintWorkflowBackgroundSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintWorkflowBackgroundSession is access all IPrintWorkflowBackgroundSession_Interface'Class;
+   type IPrintWorkflowBackgroundSession is access IPrintWorkflowBackgroundSession_Interface'Class;
    type IPrintWorkflowBackgroundSession_Ptr is access all IPrintWorkflowBackgroundSession;
 
    type IPrintWorkflowBackgroundSetupRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintWorkflowBackgroundSetupRequestedEventArgs is access all IPrintWorkflowBackgroundSetupRequestedEventArgs_Interface'Class;
+   type IPrintWorkflowBackgroundSetupRequestedEventArgs is access IPrintWorkflowBackgroundSetupRequestedEventArgs_Interface'Class;
    type IPrintWorkflowBackgroundSetupRequestedEventArgs_Ptr is access all IPrintWorkflowBackgroundSetupRequestedEventArgs;
 
    type IPrintWorkflowConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintWorkflowConfiguration is access all IPrintWorkflowConfiguration_Interface'Class;
+   type IPrintWorkflowConfiguration is access IPrintWorkflowConfiguration_Interface'Class;
    type IPrintWorkflowConfiguration_Ptr is access all IPrintWorkflowConfiguration;
 
    type IPrintWorkflowForegroundSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintWorkflowForegroundSession is access all IPrintWorkflowForegroundSession_Interface'Class;
+   type IPrintWorkflowForegroundSession is access IPrintWorkflowForegroundSession_Interface'Class;
    type IPrintWorkflowForegroundSession_Ptr is access all IPrintWorkflowForegroundSession;
 
    type IPrintWorkflowForegroundSetupRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintWorkflowForegroundSetupRequestedEventArgs is access all IPrintWorkflowForegroundSetupRequestedEventArgs_Interface'Class;
+   type IPrintWorkflowForegroundSetupRequestedEventArgs is access IPrintWorkflowForegroundSetupRequestedEventArgs_Interface'Class;
    type IPrintWorkflowForegroundSetupRequestedEventArgs_Ptr is access all IPrintWorkflowForegroundSetupRequestedEventArgs;
 
    type IPrintWorkflowObjectModelSourceFileContent_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintWorkflowObjectModelSourceFileContent is access all IPrintWorkflowObjectModelSourceFileContent_Interface'Class;
+   type IPrintWorkflowObjectModelSourceFileContent is access IPrintWorkflowObjectModelSourceFileContent_Interface'Class;
    type IPrintWorkflowObjectModelSourceFileContent_Ptr is access all IPrintWorkflowObjectModelSourceFileContent;
 
    type IPrintWorkflowObjectModelTargetPackage_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintWorkflowObjectModelTargetPackage is access all IPrintWorkflowObjectModelTargetPackage_Interface'Class;
+   type IPrintWorkflowObjectModelTargetPackage is access IPrintWorkflowObjectModelTargetPackage_Interface'Class;
    type IPrintWorkflowObjectModelTargetPackage_Ptr is access all IPrintWorkflowObjectModelTargetPackage;
 
    type IPrintWorkflowSourceContent_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintWorkflowSourceContent is access all IPrintWorkflowSourceContent_Interface'Class;
+   type IPrintWorkflowSourceContent is access IPrintWorkflowSourceContent_Interface'Class;
    type IPrintWorkflowSourceContent_Ptr is access all IPrintWorkflowSourceContent;
 
    type IPrintWorkflowSpoolStreamContent_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintWorkflowSpoolStreamContent is access all IPrintWorkflowSpoolStreamContent_Interface'Class;
+   type IPrintWorkflowSpoolStreamContent is access IPrintWorkflowSpoolStreamContent_Interface'Class;
    type IPrintWorkflowSpoolStreamContent_Ptr is access all IPrintWorkflowSpoolStreamContent;
 
    type IPrintWorkflowStreamTarget_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintWorkflowStreamTarget is access all IPrintWorkflowStreamTarget_Interface'Class;
+   type IPrintWorkflowStreamTarget is access IPrintWorkflowStreamTarget_Interface'Class;
    type IPrintWorkflowStreamTarget_Ptr is access all IPrintWorkflowStreamTarget;
 
    type IPrintWorkflowSubmittedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintWorkflowSubmittedEventArgs is access all IPrintWorkflowSubmittedEventArgs_Interface'Class;
+   type IPrintWorkflowSubmittedEventArgs is access IPrintWorkflowSubmittedEventArgs_Interface'Class;
    type IPrintWorkflowSubmittedEventArgs_Ptr is access all IPrintWorkflowSubmittedEventArgs;
 
    type IPrintWorkflowSubmittedOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintWorkflowSubmittedOperation is access all IPrintWorkflowSubmittedOperation_Interface'Class;
+   type IPrintWorkflowSubmittedOperation is access IPrintWorkflowSubmittedOperation_Interface'Class;
    type IPrintWorkflowSubmittedOperation_Ptr is access all IPrintWorkflowSubmittedOperation;
 
    type IPrintWorkflowTarget_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintWorkflowTarget is access all IPrintWorkflowTarget_Interface'Class;
+   type IPrintWorkflowTarget is access IPrintWorkflowTarget_Interface'Class;
    type IPrintWorkflowTarget_Ptr is access all IPrintWorkflowTarget;
 
    type IPrintWorkflowTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintWorkflowTriggerDetails is access all IPrintWorkflowTriggerDetails_Interface'Class;
+   type IPrintWorkflowTriggerDetails is access IPrintWorkflowTriggerDetails_Interface'Class;
    type IPrintWorkflowTriggerDetails_Ptr is access all IPrintWorkflowTriggerDetails;
 
    type IPrintWorkflowUIActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintWorkflowUIActivatedEventArgs is access all IPrintWorkflowUIActivatedEventArgs_Interface'Class;
+   type IPrintWorkflowUIActivatedEventArgs is access IPrintWorkflowUIActivatedEventArgs_Interface'Class;
    type IPrintWorkflowUIActivatedEventArgs_Ptr is access all IPrintWorkflowUIActivatedEventArgs;
 
    type IPrintWorkflowXpsDataAvailableEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintWorkflowXpsDataAvailableEventArgs is access all IPrintWorkflowXpsDataAvailableEventArgs_Interface'Class;
+   type IPrintWorkflowXpsDataAvailableEventArgs is access IPrintWorkflowXpsDataAvailableEventArgs_Interface'Class;
    type IPrintWorkflowXpsDataAvailableEventArgs_Ptr is access all IPrintWorkflowXpsDataAvailableEventArgs;
 
    -----------------------------------------------------------------------------

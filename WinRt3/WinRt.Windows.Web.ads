@@ -40,10 +40,10 @@ package WinRt.Windows.Web is
    -----------------------------------------------------------------------------
 
    type IUriToStreamResolver_Interface is interface and WinRt.IInspectable_Interface;
-   type IUriToStreamResolver is access all IUriToStreamResolver_Interface'Class;
+   type IUriToStreamResolver is access IUriToStreamResolver_Interface'Class;
 
    type IWebErrorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebErrorStatics is access all IWebErrorStatics_Interface'Class;
+   type IWebErrorStatics is access IWebErrorStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Enum declarations

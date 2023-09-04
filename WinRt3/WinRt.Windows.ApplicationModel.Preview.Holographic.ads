@@ -41,14 +41,14 @@ package WinRt.Windows.ApplicationModel.Preview.Holographic is
    -----------------------------------------------------------------------------
 
    type IHolographicApplicationPreviewStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicApplicationPreviewStatics is access all IHolographicApplicationPreviewStatics_Interface'Class;
+   type IHolographicApplicationPreviewStatics is access IHolographicApplicationPreviewStatics_Interface'Class;
 
    type IHolographicKeyboardPlacementOverridePreview_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicKeyboardPlacementOverridePreview is access all IHolographicKeyboardPlacementOverridePreview_Interface'Class;
+   type IHolographicKeyboardPlacementOverridePreview is access IHolographicKeyboardPlacementOverridePreview_Interface'Class;
    type IHolographicKeyboardPlacementOverridePreview_Ptr is access all IHolographicKeyboardPlacementOverridePreview;
 
    type IHolographicKeyboardPlacementOverridePreviewStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicKeyboardPlacementOverridePreviewStatics is access all IHolographicKeyboardPlacementOverridePreviewStatics_Interface'Class;
+   type IHolographicKeyboardPlacementOverridePreviewStatics is access IHolographicKeyboardPlacementOverridePreviewStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

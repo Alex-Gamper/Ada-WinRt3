@@ -49,49 +49,49 @@ package WinRt.Windows.Media.Editing is
    -----------------------------------------------------------------------------
 
    type IBackgroundAudioTrack_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundAudioTrack is access all IBackgroundAudioTrack_Interface'Class;
+   type IBackgroundAudioTrack is access IBackgroundAudioTrack_Interface'Class;
    type IBackgroundAudioTrack_Ptr is access all IBackgroundAudioTrack;
 
    type IBackgroundAudioTrackStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundAudioTrackStatics is access all IBackgroundAudioTrackStatics_Interface'Class;
+   type IBackgroundAudioTrackStatics is access IBackgroundAudioTrackStatics_Interface'Class;
 
    type IEmbeddedAudioTrack_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmbeddedAudioTrack is access all IEmbeddedAudioTrack_Interface'Class;
+   type IEmbeddedAudioTrack is access IEmbeddedAudioTrack_Interface'Class;
    type IEmbeddedAudioTrack_Ptr is access all IEmbeddedAudioTrack;
 
    type IMediaClip_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaClip is access all IMediaClip_Interface'Class;
+   type IMediaClip is access IMediaClip_Interface'Class;
    type IMediaClip_Ptr is access all IMediaClip;
 
    type IMediaClipStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaClipStatics is access all IMediaClipStatics_Interface'Class;
+   type IMediaClipStatics is access IMediaClipStatics_Interface'Class;
 
    type IMediaClipStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaClipStatics2 is access all IMediaClipStatics2_Interface'Class;
+   type IMediaClipStatics2 is access IMediaClipStatics2_Interface'Class;
 
    type IMediaComposition_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaComposition is access all IMediaComposition_Interface'Class;
+   type IMediaComposition is access IMediaComposition_Interface'Class;
    type IMediaComposition_Ptr is access all IMediaComposition;
 
    type IMediaComposition2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaComposition2 is access all IMediaComposition2_Interface'Class;
+   type IMediaComposition2 is access IMediaComposition2_Interface'Class;
 
    type IMediaCompositionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCompositionStatics is access all IMediaCompositionStatics_Interface'Class;
+   type IMediaCompositionStatics is access IMediaCompositionStatics_Interface'Class;
 
    type IMediaOverlay_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaOverlay is access all IMediaOverlay_Interface'Class;
+   type IMediaOverlay is access IMediaOverlay_Interface'Class;
    type IMediaOverlay_Ptr is access all IMediaOverlay;
 
    type IMediaOverlayFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaOverlayFactory is access all IMediaOverlayFactory_Interface'Class;
+   type IMediaOverlayFactory is access IMediaOverlayFactory_Interface'Class;
 
    type IMediaOverlayLayer_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaOverlayLayer is access all IMediaOverlayLayer_Interface'Class;
+   type IMediaOverlayLayer is access IMediaOverlayLayer_Interface'Class;
    type IMediaOverlayLayer_Ptr is access all IMediaOverlayLayer;
 
    type IMediaOverlayLayerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaOverlayLayerFactory is access all IMediaOverlayLayerFactory_Interface'Class;
+   type IMediaOverlayLayerFactory is access IMediaOverlayLayerFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

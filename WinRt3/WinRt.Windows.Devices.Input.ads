@@ -40,77 +40,77 @@ package WinRt.Windows.Devices.Input is
    -----------------------------------------------------------------------------
 
    type IKeyboardCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyboardCapabilities is access all IKeyboardCapabilities_Interface'Class;
+   type IKeyboardCapabilities is access IKeyboardCapabilities_Interface'Class;
    type IKeyboardCapabilities_Ptr is access all IKeyboardCapabilities;
 
    type IMouseCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IMouseCapabilities is access all IMouseCapabilities_Interface'Class;
+   type IMouseCapabilities is access IMouseCapabilities_Interface'Class;
    type IMouseCapabilities_Ptr is access all IMouseCapabilities;
 
    type IMouseDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IMouseDevice is access all IMouseDevice_Interface'Class;
+   type IMouseDevice is access IMouseDevice_Interface'Class;
    type IMouseDevice_Ptr is access all IMouseDevice;
 
    type IMouseDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMouseDeviceStatics is access all IMouseDeviceStatics_Interface'Class;
+   type IMouseDeviceStatics is access IMouseDeviceStatics_Interface'Class;
 
    type IMouseEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMouseEventArgs is access all IMouseEventArgs_Interface'Class;
+   type IMouseEventArgs is access IMouseEventArgs_Interface'Class;
    type IMouseEventArgs_Ptr is access all IMouseEventArgs;
 
    type IPenButtonListener_Interface is interface and WinRt.IInspectable_Interface;
-   type IPenButtonListener is access all IPenButtonListener_Interface'Class;
+   type IPenButtonListener is access IPenButtonListener_Interface'Class;
    type IPenButtonListener_Ptr is access all IPenButtonListener;
 
    type IPenButtonListenerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPenButtonListenerStatics is access all IPenButtonListenerStatics_Interface'Class;
+   type IPenButtonListenerStatics is access IPenButtonListenerStatics_Interface'Class;
 
    type IPenDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IPenDevice is access all IPenDevice_Interface'Class;
+   type IPenDevice is access IPenDevice_Interface'Class;
    type IPenDevice_Ptr is access all IPenDevice;
 
    type IPenDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPenDeviceStatics is access all IPenDeviceStatics_Interface'Class;
+   type IPenDeviceStatics is access IPenDeviceStatics_Interface'Class;
 
    type IPenDockListener_Interface is interface and WinRt.IInspectable_Interface;
-   type IPenDockListener is access all IPenDockListener_Interface'Class;
+   type IPenDockListener is access IPenDockListener_Interface'Class;
    type IPenDockListener_Ptr is access all IPenDockListener;
 
    type IPenDockListenerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPenDockListenerStatics is access all IPenDockListenerStatics_Interface'Class;
+   type IPenDockListenerStatics is access IPenDockListenerStatics_Interface'Class;
 
    type IPenDockedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPenDockedEventArgs is access all IPenDockedEventArgs_Interface'Class;
+   type IPenDockedEventArgs is access IPenDockedEventArgs_Interface'Class;
    type IPenDockedEventArgs_Ptr is access all IPenDockedEventArgs;
 
    type IPenTailButtonClickedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPenTailButtonClickedEventArgs is access all IPenTailButtonClickedEventArgs_Interface'Class;
+   type IPenTailButtonClickedEventArgs is access IPenTailButtonClickedEventArgs_Interface'Class;
    type IPenTailButtonClickedEventArgs_Ptr is access all IPenTailButtonClickedEventArgs;
 
    type IPenTailButtonDoubleClickedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPenTailButtonDoubleClickedEventArgs is access all IPenTailButtonDoubleClickedEventArgs_Interface'Class;
+   type IPenTailButtonDoubleClickedEventArgs is access IPenTailButtonDoubleClickedEventArgs_Interface'Class;
    type IPenTailButtonDoubleClickedEventArgs_Ptr is access all IPenTailButtonDoubleClickedEventArgs;
 
    type IPenTailButtonLongPressedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPenTailButtonLongPressedEventArgs is access all IPenTailButtonLongPressedEventArgs_Interface'Class;
+   type IPenTailButtonLongPressedEventArgs is access IPenTailButtonLongPressedEventArgs_Interface'Class;
    type IPenTailButtonLongPressedEventArgs_Ptr is access all IPenTailButtonLongPressedEventArgs;
 
    type IPenUndockedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPenUndockedEventArgs is access all IPenUndockedEventArgs_Interface'Class;
+   type IPenUndockedEventArgs is access IPenUndockedEventArgs_Interface'Class;
    type IPenUndockedEventArgs_Ptr is access all IPenUndockedEventArgs;
 
    type IPointerDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointerDevice is access all IPointerDevice_Interface'Class;
+   type IPointerDevice is access IPointerDevice_Interface'Class;
    type IPointerDevice_Ptr is access all IPointerDevice;
 
    type IPointerDevice2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointerDevice2 is access all IPointerDevice2_Interface'Class;
+   type IPointerDevice2 is access IPointerDevice2_Interface'Class;
 
    type IPointerDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointerDeviceStatics is access all IPointerDeviceStatics_Interface'Class;
+   type IPointerDeviceStatics is access IPointerDeviceStatics_Interface'Class;
 
    type ITouchCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type ITouchCapabilities is access all ITouchCapabilities_Interface'Class;
+   type ITouchCapabilities is access ITouchCapabilities_Interface'Class;
    type ITouchCapabilities_Ptr is access all ITouchCapabilities;
 
    -----------------------------------------------------------------------------

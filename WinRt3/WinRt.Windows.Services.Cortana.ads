@@ -43,29 +43,29 @@ package WinRt.Windows.Services.Cortana is
    -----------------------------------------------------------------------------
 
    type ICortanaActionableInsights_Interface is interface and WinRt.IInspectable_Interface;
-   type ICortanaActionableInsights is access all ICortanaActionableInsights_Interface'Class;
+   type ICortanaActionableInsights is access ICortanaActionableInsights_Interface'Class;
    type ICortanaActionableInsights_Ptr is access all ICortanaActionableInsights;
 
    type ICortanaActionableInsightsOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type ICortanaActionableInsightsOptions is access all ICortanaActionableInsightsOptions_Interface'Class;
+   type ICortanaActionableInsightsOptions is access ICortanaActionableInsightsOptions_Interface'Class;
    type ICortanaActionableInsightsOptions_Ptr is access all ICortanaActionableInsightsOptions;
 
    type ICortanaActionableInsightsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICortanaActionableInsightsStatics is access all ICortanaActionableInsightsStatics_Interface'Class;
+   type ICortanaActionableInsightsStatics is access ICortanaActionableInsightsStatics_Interface'Class;
 
    type ICortanaPermissionsManager_Interface is interface and WinRt.IInspectable_Interface;
-   type ICortanaPermissionsManager is access all ICortanaPermissionsManager_Interface'Class;
+   type ICortanaPermissionsManager is access ICortanaPermissionsManager_Interface'Class;
    type ICortanaPermissionsManager_Ptr is access all ICortanaPermissionsManager;
 
    type ICortanaPermissionsManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICortanaPermissionsManagerStatics is access all ICortanaPermissionsManagerStatics_Interface'Class;
+   type ICortanaPermissionsManagerStatics is access ICortanaPermissionsManagerStatics_Interface'Class;
 
    type ICortanaSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type ICortanaSettings is access all ICortanaSettings_Interface'Class;
+   type ICortanaSettings is access ICortanaSettings_Interface'Class;
    type ICortanaSettings_Ptr is access all ICortanaSettings;
 
    type ICortanaSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICortanaSettingsStatics is access all ICortanaSettingsStatics_Interface'Class;
+   type ICortanaSettingsStatics is access ICortanaSettingsStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -40,18 +40,18 @@ package WinRt.Windows.Devices.Adc is
    -----------------------------------------------------------------------------
 
    type IAdcChannel_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdcChannel is access all IAdcChannel_Interface'Class;
+   type IAdcChannel is access IAdcChannel_Interface'Class;
    type IAdcChannel_Ptr is access all IAdcChannel;
 
    type IAdcController_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdcController is access all IAdcController_Interface'Class;
+   type IAdcController is access IAdcController_Interface'Class;
    type IAdcController_Ptr is access all IAdcController;
 
    type IAdcControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdcControllerStatics is access all IAdcControllerStatics_Interface'Class;
+   type IAdcControllerStatics is access IAdcControllerStatics_Interface'Class;
 
    type IAdcControllerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdcControllerStatics2 is access all IAdcControllerStatics2_Interface'Class;
+   type IAdcControllerStatics2 is access IAdcControllerStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

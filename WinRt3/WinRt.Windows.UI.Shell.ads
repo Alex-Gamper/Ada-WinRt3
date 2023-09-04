@@ -41,24 +41,24 @@ package WinRt.Windows.UI.Shell is
    -----------------------------------------------------------------------------
 
    type IAdaptiveCard_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdaptiveCard is access all IAdaptiveCard_Interface'Class;
+   type IAdaptiveCard is access IAdaptiveCard_Interface'Class;
 
    type IAdaptiveCardBuilderStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdaptiveCardBuilderStatics is access all IAdaptiveCardBuilderStatics_Interface'Class;
+   type IAdaptiveCardBuilderStatics is access IAdaptiveCardBuilderStatics_Interface'Class;
 
    type ISecurityAppManager_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecurityAppManager is access all ISecurityAppManager_Interface'Class;
+   type ISecurityAppManager is access ISecurityAppManager_Interface'Class;
    type ISecurityAppManager_Ptr is access all ISecurityAppManager;
 
    type ITaskbarManager_Interface is interface and WinRt.IInspectable_Interface;
-   type ITaskbarManager is access all ITaskbarManager_Interface'Class;
+   type ITaskbarManager is access ITaskbarManager_Interface'Class;
    type ITaskbarManager_Ptr is access all ITaskbarManager;
 
    type ITaskbarManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITaskbarManager2 is access all ITaskbarManager2_Interface'Class;
+   type ITaskbarManager2 is access ITaskbarManager2_Interface'Class;
 
    type ITaskbarManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITaskbarManagerStatics is access all ITaskbarManagerStatics_Interface'Class;
+   type ITaskbarManagerStatics is access ITaskbarManagerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

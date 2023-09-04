@@ -44,168 +44,168 @@ package WinRt.Windows.UI.ViewManagement is
    -----------------------------------------------------------------------------
 
    type IAccessibilitySettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccessibilitySettings is access all IAccessibilitySettings_Interface'Class;
+   type IAccessibilitySettings is access IAccessibilitySettings_Interface'Class;
    type IAccessibilitySettings_Ptr is access all IAccessibilitySettings;
 
    type IActivationViewSwitcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IActivationViewSwitcher is access all IActivationViewSwitcher_Interface'Class;
+   type IActivationViewSwitcher is access IActivationViewSwitcher_Interface'Class;
    type IActivationViewSwitcher_Ptr is access all IActivationViewSwitcher;
 
    type IApplicationView_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationView is access all IApplicationView_Interface'Class;
+   type IApplicationView is access IApplicationView_Interface'Class;
    type IApplicationView_Ptr is access all IApplicationView;
 
    type IApplicationView2_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationView2 is access all IApplicationView2_Interface'Class;
+   type IApplicationView2 is access IApplicationView2_Interface'Class;
 
    type IApplicationView3_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationView3 is access all IApplicationView3_Interface'Class;
+   type IApplicationView3 is access IApplicationView3_Interface'Class;
 
    type IApplicationView4_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationView4 is access all IApplicationView4_Interface'Class;
+   type IApplicationView4 is access IApplicationView4_Interface'Class;
 
    type IApplicationView7_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationView7 is access all IApplicationView7_Interface'Class;
+   type IApplicationView7 is access IApplicationView7_Interface'Class;
 
    type IApplicationView9_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationView9 is access all IApplicationView9_Interface'Class;
+   type IApplicationView9 is access IApplicationView9_Interface'Class;
 
    type IApplicationViewConsolidatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewConsolidatedEventArgs is access all IApplicationViewConsolidatedEventArgs_Interface'Class;
+   type IApplicationViewConsolidatedEventArgs is access IApplicationViewConsolidatedEventArgs_Interface'Class;
    type IApplicationViewConsolidatedEventArgs_Ptr is access all IApplicationViewConsolidatedEventArgs;
 
    type IApplicationViewConsolidatedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewConsolidatedEventArgs2 is access all IApplicationViewConsolidatedEventArgs2_Interface'Class;
+   type IApplicationViewConsolidatedEventArgs2 is access IApplicationViewConsolidatedEventArgs2_Interface'Class;
 
    type IApplicationViewFullscreenStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewFullscreenStatics is access all IApplicationViewFullscreenStatics_Interface'Class;
+   type IApplicationViewFullscreenStatics is access IApplicationViewFullscreenStatics_Interface'Class;
 
    type IApplicationViewInteropStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewInteropStatics is access all IApplicationViewInteropStatics_Interface'Class;
+   type IApplicationViewInteropStatics is access IApplicationViewInteropStatics_Interface'Class;
 
    type IApplicationViewScaling_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewScaling is access all IApplicationViewScaling_Interface'Class;
+   type IApplicationViewScaling is access IApplicationViewScaling_Interface'Class;
    type IApplicationViewScaling_Ptr is access all IApplicationViewScaling;
 
    type IApplicationViewScalingStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewScalingStatics is access all IApplicationViewScalingStatics_Interface'Class;
+   type IApplicationViewScalingStatics is access IApplicationViewScalingStatics_Interface'Class;
 
    type IApplicationViewStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewStatics is access all IApplicationViewStatics_Interface'Class;
+   type IApplicationViewStatics is access IApplicationViewStatics_Interface'Class;
 
    type IApplicationViewStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewStatics2 is access all IApplicationViewStatics2_Interface'Class;
+   type IApplicationViewStatics2 is access IApplicationViewStatics2_Interface'Class;
 
    type IApplicationViewStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewStatics3 is access all IApplicationViewStatics3_Interface'Class;
+   type IApplicationViewStatics3 is access IApplicationViewStatics3_Interface'Class;
 
    type IApplicationViewStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewStatics4 is access all IApplicationViewStatics4_Interface'Class;
+   type IApplicationViewStatics4 is access IApplicationViewStatics4_Interface'Class;
 
    type IApplicationViewSwitcherStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewSwitcherStatics is access all IApplicationViewSwitcherStatics_Interface'Class;
+   type IApplicationViewSwitcherStatics is access IApplicationViewSwitcherStatics_Interface'Class;
 
    type IApplicationViewSwitcherStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewSwitcherStatics2 is access all IApplicationViewSwitcherStatics2_Interface'Class;
+   type IApplicationViewSwitcherStatics2 is access IApplicationViewSwitcherStatics2_Interface'Class;
 
    type IApplicationViewSwitcherStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewSwitcherStatics3 is access all IApplicationViewSwitcherStatics3_Interface'Class;
+   type IApplicationViewSwitcherStatics3 is access IApplicationViewSwitcherStatics3_Interface'Class;
 
    type IApplicationViewTitleBar_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewTitleBar is access all IApplicationViewTitleBar_Interface'Class;
+   type IApplicationViewTitleBar is access IApplicationViewTitleBar_Interface'Class;
    type IApplicationViewTitleBar_Ptr is access all IApplicationViewTitleBar;
 
    type IApplicationViewTransferContext_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewTransferContext is access all IApplicationViewTransferContext_Interface'Class;
+   type IApplicationViewTransferContext is access IApplicationViewTransferContext_Interface'Class;
    type IApplicationViewTransferContext_Ptr is access all IApplicationViewTransferContext;
 
    type IApplicationViewTransferContextStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewTransferContextStatics is access all IApplicationViewTransferContextStatics_Interface'Class;
+   type IApplicationViewTransferContextStatics is access IApplicationViewTransferContextStatics_Interface'Class;
 
    type IApplicationViewWithContext_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationViewWithContext is access all IApplicationViewWithContext_Interface'Class;
+   type IApplicationViewWithContext is access IApplicationViewWithContext_Interface'Class;
 
    type IInputPane_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputPane is access all IInputPane_Interface'Class;
+   type IInputPane is access IInputPane_Interface'Class;
    type IInputPane_Ptr is access all IInputPane;
 
    type IInputPane2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputPane2 is access all IInputPane2_Interface'Class;
+   type IInputPane2 is access IInputPane2_Interface'Class;
 
    type IInputPaneControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputPaneControl is access all IInputPaneControl_Interface'Class;
+   type IInputPaneControl is access IInputPaneControl_Interface'Class;
 
    type IInputPaneStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputPaneStatics is access all IInputPaneStatics_Interface'Class;
+   type IInputPaneStatics is access IInputPaneStatics_Interface'Class;
 
    type IInputPaneStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputPaneStatics2 is access all IInputPaneStatics2_Interface'Class;
+   type IInputPaneStatics2 is access IInputPaneStatics2_Interface'Class;
 
    type IInputPaneVisibilityEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputPaneVisibilityEventArgs is access all IInputPaneVisibilityEventArgs_Interface'Class;
+   type IInputPaneVisibilityEventArgs is access IInputPaneVisibilityEventArgs_Interface'Class;
    type IInputPaneVisibilityEventArgs_Ptr is access all IInputPaneVisibilityEventArgs;
 
    type IProjectionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IProjectionManagerStatics is access all IProjectionManagerStatics_Interface'Class;
+   type IProjectionManagerStatics is access IProjectionManagerStatics_Interface'Class;
 
    type IProjectionManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IProjectionManagerStatics2 is access all IProjectionManagerStatics2_Interface'Class;
+   type IProjectionManagerStatics2 is access IProjectionManagerStatics2_Interface'Class;
 
    type IStatusBar_Interface is interface and WinRt.IInspectable_Interface;
-   type IStatusBar is access all IStatusBar_Interface'Class;
+   type IStatusBar is access IStatusBar_Interface'Class;
    type IStatusBar_Ptr is access all IStatusBar;
 
    type IStatusBarProgressIndicator_Interface is interface and WinRt.IInspectable_Interface;
-   type IStatusBarProgressIndicator is access all IStatusBarProgressIndicator_Interface'Class;
+   type IStatusBarProgressIndicator is access IStatusBarProgressIndicator_Interface'Class;
    type IStatusBarProgressIndicator_Ptr is access all IStatusBarProgressIndicator;
 
    type IStatusBarStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStatusBarStatics is access all IStatusBarStatics_Interface'Class;
+   type IStatusBarStatics is access IStatusBarStatics_Interface'Class;
 
    type IUISettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IUISettings is access all IUISettings_Interface'Class;
+   type IUISettings is access IUISettings_Interface'Class;
    type IUISettings_Ptr is access all IUISettings;
 
    type IUISettings2_Interface is interface and WinRt.IInspectable_Interface;
-   type IUISettings2 is access all IUISettings2_Interface'Class;
+   type IUISettings2 is access IUISettings2_Interface'Class;
 
    type IUISettings3_Interface is interface and WinRt.IInspectable_Interface;
-   type IUISettings3 is access all IUISettings3_Interface'Class;
+   type IUISettings3 is access IUISettings3_Interface'Class;
 
    type IUISettings4_Interface is interface and WinRt.IInspectable_Interface;
-   type IUISettings4 is access all IUISettings4_Interface'Class;
+   type IUISettings4 is access IUISettings4_Interface'Class;
 
    type IUISettings5_Interface is interface and WinRt.IInspectable_Interface;
-   type IUISettings5 is access all IUISettings5_Interface'Class;
+   type IUISettings5 is access IUISettings5_Interface'Class;
 
    type IUISettings6_Interface is interface and WinRt.IInspectable_Interface;
-   type IUISettings6 is access all IUISettings6_Interface'Class;
+   type IUISettings6 is access IUISettings6_Interface'Class;
 
    type IUISettingsAnimationsEnabledChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUISettingsAnimationsEnabledChangedEventArgs is access all IUISettingsAnimationsEnabledChangedEventArgs_Interface'Class;
+   type IUISettingsAnimationsEnabledChangedEventArgs is access IUISettingsAnimationsEnabledChangedEventArgs_Interface'Class;
    type IUISettingsAnimationsEnabledChangedEventArgs_Ptr is access all IUISettingsAnimationsEnabledChangedEventArgs;
 
    type IUISettingsAutoHideScrollBarsChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUISettingsAutoHideScrollBarsChangedEventArgs is access all IUISettingsAutoHideScrollBarsChangedEventArgs_Interface'Class;
+   type IUISettingsAutoHideScrollBarsChangedEventArgs is access IUISettingsAutoHideScrollBarsChangedEventArgs_Interface'Class;
    type IUISettingsAutoHideScrollBarsChangedEventArgs_Ptr is access all IUISettingsAutoHideScrollBarsChangedEventArgs;
 
    type IUISettingsMessageDurationChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUISettingsMessageDurationChangedEventArgs is access all IUISettingsMessageDurationChangedEventArgs_Interface'Class;
+   type IUISettingsMessageDurationChangedEventArgs is access IUISettingsMessageDurationChangedEventArgs_Interface'Class;
    type IUISettingsMessageDurationChangedEventArgs_Ptr is access all IUISettingsMessageDurationChangedEventArgs;
 
    type IUIViewSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IUIViewSettings is access all IUIViewSettings_Interface'Class;
+   type IUIViewSettings is access IUIViewSettings_Interface'Class;
    type IUIViewSettings_Ptr is access all IUIViewSettings;
 
    type IUIViewSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUIViewSettingsStatics is access all IUIViewSettingsStatics_Interface'Class;
+   type IUIViewSettingsStatics is access IUIViewSettingsStatics_Interface'Class;
 
    type IViewModePreferences_Interface is interface and WinRt.IInspectable_Interface;
-   type IViewModePreferences is access all IViewModePreferences_Interface'Class;
+   type IViewModePreferences is access IViewModePreferences_Interface'Class;
    type IViewModePreferences_Ptr is access all IViewModePreferences;
 
    type IViewModePreferencesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IViewModePreferencesStatics is access all IViewModePreferencesStatics_Interface'Class;
+   type IViewModePreferencesStatics is access IViewModePreferencesStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -41,50 +41,50 @@ package WinRt.Windows.Media.Control is
    -----------------------------------------------------------------------------
 
    type ICurrentSessionChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrentSessionChangedEventArgs is access all ICurrentSessionChangedEventArgs_Interface'Class;
+   type ICurrentSessionChangedEventArgs is access ICurrentSessionChangedEventArgs_Interface'Class;
    type ICurrentSessionChangedEventArgs_Ptr is access all ICurrentSessionChangedEventArgs;
 
    type IGlobalSystemMediaTransportControlsSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IGlobalSystemMediaTransportControlsSession is access all IGlobalSystemMediaTransportControlsSession_Interface'Class;
+   type IGlobalSystemMediaTransportControlsSession is access IGlobalSystemMediaTransportControlsSession_Interface'Class;
    type IGlobalSystemMediaTransportControlsSession_Ptr is access all IGlobalSystemMediaTransportControlsSession;
 
    type IGlobalSystemMediaTransportControlsSessionManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IGlobalSystemMediaTransportControlsSessionManager is access all IGlobalSystemMediaTransportControlsSessionManager_Interface'Class;
+   type IGlobalSystemMediaTransportControlsSessionManager is access IGlobalSystemMediaTransportControlsSessionManager_Interface'Class;
    type IGlobalSystemMediaTransportControlsSessionManager_Ptr is access all IGlobalSystemMediaTransportControlsSessionManager;
 
    type IGlobalSystemMediaTransportControlsSessionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGlobalSystemMediaTransportControlsSessionManagerStatics is access all IGlobalSystemMediaTransportControlsSessionManagerStatics_Interface'Class;
+   type IGlobalSystemMediaTransportControlsSessionManagerStatics is access IGlobalSystemMediaTransportControlsSessionManagerStatics_Interface'Class;
 
    type IGlobalSystemMediaTransportControlsSessionMediaProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IGlobalSystemMediaTransportControlsSessionMediaProperties is access all IGlobalSystemMediaTransportControlsSessionMediaProperties_Interface'Class;
+   type IGlobalSystemMediaTransportControlsSessionMediaProperties is access IGlobalSystemMediaTransportControlsSessionMediaProperties_Interface'Class;
    type IGlobalSystemMediaTransportControlsSessionMediaProperties_Ptr is access all IGlobalSystemMediaTransportControlsSessionMediaProperties;
 
    type IGlobalSystemMediaTransportControlsSessionPlaybackControls_Interface is interface and WinRt.IInspectable_Interface;
-   type IGlobalSystemMediaTransportControlsSessionPlaybackControls is access all IGlobalSystemMediaTransportControlsSessionPlaybackControls_Interface'Class;
+   type IGlobalSystemMediaTransportControlsSessionPlaybackControls is access IGlobalSystemMediaTransportControlsSessionPlaybackControls_Interface'Class;
    type IGlobalSystemMediaTransportControlsSessionPlaybackControls_Ptr is access all IGlobalSystemMediaTransportControlsSessionPlaybackControls;
 
    type IGlobalSystemMediaTransportControlsSessionPlaybackInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IGlobalSystemMediaTransportControlsSessionPlaybackInfo is access all IGlobalSystemMediaTransportControlsSessionPlaybackInfo_Interface'Class;
+   type IGlobalSystemMediaTransportControlsSessionPlaybackInfo is access IGlobalSystemMediaTransportControlsSessionPlaybackInfo_Interface'Class;
    type IGlobalSystemMediaTransportControlsSessionPlaybackInfo_Ptr is access all IGlobalSystemMediaTransportControlsSessionPlaybackInfo;
 
    type IGlobalSystemMediaTransportControlsSessionTimelineProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IGlobalSystemMediaTransportControlsSessionTimelineProperties is access all IGlobalSystemMediaTransportControlsSessionTimelineProperties_Interface'Class;
+   type IGlobalSystemMediaTransportControlsSessionTimelineProperties is access IGlobalSystemMediaTransportControlsSessionTimelineProperties_Interface'Class;
    type IGlobalSystemMediaTransportControlsSessionTimelineProperties_Ptr is access all IGlobalSystemMediaTransportControlsSessionTimelineProperties;
 
    type IMediaPropertiesChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPropertiesChangedEventArgs is access all IMediaPropertiesChangedEventArgs_Interface'Class;
+   type IMediaPropertiesChangedEventArgs is access IMediaPropertiesChangedEventArgs_Interface'Class;
    type IMediaPropertiesChangedEventArgs_Ptr is access all IMediaPropertiesChangedEventArgs;
 
    type IPlaybackInfoChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlaybackInfoChangedEventArgs is access all IPlaybackInfoChangedEventArgs_Interface'Class;
+   type IPlaybackInfoChangedEventArgs is access IPlaybackInfoChangedEventArgs_Interface'Class;
    type IPlaybackInfoChangedEventArgs_Ptr is access all IPlaybackInfoChangedEventArgs;
 
    type ISessionsChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISessionsChangedEventArgs is access all ISessionsChangedEventArgs_Interface'Class;
+   type ISessionsChangedEventArgs is access ISessionsChangedEventArgs_Interface'Class;
    type ISessionsChangedEventArgs_Ptr is access all ISessionsChangedEventArgs;
 
    type ITimelinePropertiesChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimelinePropertiesChangedEventArgs is access all ITimelinePropertiesChangedEventArgs_Interface'Class;
+   type ITimelinePropertiesChangedEventArgs is access ITimelinePropertiesChangedEventArgs_Interface'Class;
    type ITimelinePropertiesChangedEventArgs_Ptr is access all ITimelinePropertiesChangedEventArgs;
 
    -----------------------------------------------------------------------------

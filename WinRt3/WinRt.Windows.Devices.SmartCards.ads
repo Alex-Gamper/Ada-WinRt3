@@ -49,191 +49,191 @@ package WinRt.Windows.Devices.SmartCards is
    -----------------------------------------------------------------------------
 
    type ICardAddedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICardAddedEventArgs is access all ICardAddedEventArgs_Interface'Class;
+   type ICardAddedEventArgs is access ICardAddedEventArgs_Interface'Class;
    type ICardAddedEventArgs_Ptr is access all ICardAddedEventArgs;
 
    type ICardRemovedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICardRemovedEventArgs is access all ICardRemovedEventArgs_Interface'Class;
+   type ICardRemovedEventArgs is access ICardRemovedEventArgs_Interface'Class;
    type ICardRemovedEventArgs_Ptr is access all ICardRemovedEventArgs;
 
    type IKnownSmartCardAppletIds_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownSmartCardAppletIds is access all IKnownSmartCardAppletIds_Interface'Class;
+   type IKnownSmartCardAppletIds is access IKnownSmartCardAppletIds_Interface'Class;
 
    type ISmartCard_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCard is access all ISmartCard_Interface'Class;
+   type ISmartCard is access ISmartCard_Interface'Class;
    type ISmartCard_Ptr is access all ISmartCard;
 
    type ISmartCardAppletIdGroup_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardAppletIdGroup is access all ISmartCardAppletIdGroup_Interface'Class;
+   type ISmartCardAppletIdGroup is access ISmartCardAppletIdGroup_Interface'Class;
    type ISmartCardAppletIdGroup_Ptr is access all ISmartCardAppletIdGroup;
 
    type ISmartCardAppletIdGroup2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardAppletIdGroup2 is access all ISmartCardAppletIdGroup2_Interface'Class;
+   type ISmartCardAppletIdGroup2 is access ISmartCardAppletIdGroup2_Interface'Class;
 
    type ISmartCardAppletIdGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardAppletIdGroupFactory is access all ISmartCardAppletIdGroupFactory_Interface'Class;
+   type ISmartCardAppletIdGroupFactory is access ISmartCardAppletIdGroupFactory_Interface'Class;
 
    type ISmartCardAppletIdGroupRegistration_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardAppletIdGroupRegistration is access all ISmartCardAppletIdGroupRegistration_Interface'Class;
+   type ISmartCardAppletIdGroupRegistration is access ISmartCardAppletIdGroupRegistration_Interface'Class;
    type ISmartCardAppletIdGroupRegistration_Ptr is access all ISmartCardAppletIdGroupRegistration;
 
    type ISmartCardAppletIdGroupRegistration2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardAppletIdGroupRegistration2 is access all ISmartCardAppletIdGroupRegistration2_Interface'Class;
+   type ISmartCardAppletIdGroupRegistration2 is access ISmartCardAppletIdGroupRegistration2_Interface'Class;
 
    type ISmartCardAppletIdGroupStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardAppletIdGroupStatics is access all ISmartCardAppletIdGroupStatics_Interface'Class;
+   type ISmartCardAppletIdGroupStatics is access ISmartCardAppletIdGroupStatics_Interface'Class;
 
    type ISmartCardAutomaticResponseApdu_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardAutomaticResponseApdu is access all ISmartCardAutomaticResponseApdu_Interface'Class;
+   type ISmartCardAutomaticResponseApdu is access ISmartCardAutomaticResponseApdu_Interface'Class;
    type ISmartCardAutomaticResponseApdu_Ptr is access all ISmartCardAutomaticResponseApdu;
 
    type ISmartCardAutomaticResponseApdu2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardAutomaticResponseApdu2 is access all ISmartCardAutomaticResponseApdu2_Interface'Class;
+   type ISmartCardAutomaticResponseApdu2 is access ISmartCardAutomaticResponseApdu2_Interface'Class;
 
    type ISmartCardAutomaticResponseApdu3_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardAutomaticResponseApdu3 is access all ISmartCardAutomaticResponseApdu3_Interface'Class;
+   type ISmartCardAutomaticResponseApdu3 is access ISmartCardAutomaticResponseApdu3_Interface'Class;
 
    type ISmartCardAutomaticResponseApduFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardAutomaticResponseApduFactory is access all ISmartCardAutomaticResponseApduFactory_Interface'Class;
+   type ISmartCardAutomaticResponseApduFactory is access ISmartCardAutomaticResponseApduFactory_Interface'Class;
 
    type ISmartCardChallengeContext_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardChallengeContext is access all ISmartCardChallengeContext_Interface'Class;
+   type ISmartCardChallengeContext is access ISmartCardChallengeContext_Interface'Class;
    type ISmartCardChallengeContext_Ptr is access all ISmartCardChallengeContext;
 
    type ISmartCardConnect_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardConnect is access all ISmartCardConnect_Interface'Class;
+   type ISmartCardConnect is access ISmartCardConnect_Interface'Class;
 
    type ISmartCardConnection_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardConnection is access all ISmartCardConnection_Interface'Class;
+   type ISmartCardConnection is access ISmartCardConnection_Interface'Class;
    type ISmartCardConnection_Ptr is access all ISmartCardConnection;
 
    type ISmartCardCryptogramGenerator_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardCryptogramGenerator is access all ISmartCardCryptogramGenerator_Interface'Class;
+   type ISmartCardCryptogramGenerator is access ISmartCardCryptogramGenerator_Interface'Class;
    type ISmartCardCryptogramGenerator_Ptr is access all ISmartCardCryptogramGenerator;
 
    type ISmartCardCryptogramGenerator2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardCryptogramGenerator2 is access all ISmartCardCryptogramGenerator2_Interface'Class;
+   type ISmartCardCryptogramGenerator2 is access ISmartCardCryptogramGenerator2_Interface'Class;
 
    type ISmartCardCryptogramGeneratorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardCryptogramGeneratorStatics is access all ISmartCardCryptogramGeneratorStatics_Interface'Class;
+   type ISmartCardCryptogramGeneratorStatics is access ISmartCardCryptogramGeneratorStatics_Interface'Class;
 
    type ISmartCardCryptogramGeneratorStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardCryptogramGeneratorStatics2 is access all ISmartCardCryptogramGeneratorStatics2_Interface'Class;
+   type ISmartCardCryptogramGeneratorStatics2 is access ISmartCardCryptogramGeneratorStatics2_Interface'Class;
 
    type ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult is access all ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult_Interface'Class;
+   type ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult is access ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult_Interface'Class;
    type ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult_Ptr is access all ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult;
 
    type ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult is access all ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult_Interface'Class;
+   type ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult is access ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult_Interface'Class;
    type ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult_Ptr is access all ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult;
 
    type ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult is access all ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult_Interface'Class;
+   type ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult is access ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult_Interface'Class;
    type ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult_Ptr is access all ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult;
 
    type ISmartCardCryptogramMaterialCharacteristics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardCryptogramMaterialCharacteristics is access all ISmartCardCryptogramMaterialCharacteristics_Interface'Class;
+   type ISmartCardCryptogramMaterialCharacteristics is access ISmartCardCryptogramMaterialCharacteristics_Interface'Class;
    type ISmartCardCryptogramMaterialCharacteristics_Ptr is access all ISmartCardCryptogramMaterialCharacteristics;
 
    type ISmartCardCryptogramMaterialPackageCharacteristics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardCryptogramMaterialPackageCharacteristics is access all ISmartCardCryptogramMaterialPackageCharacteristics_Interface'Class;
+   type ISmartCardCryptogramMaterialPackageCharacteristics is access ISmartCardCryptogramMaterialPackageCharacteristics_Interface'Class;
    type ISmartCardCryptogramMaterialPackageCharacteristics_Ptr is access all ISmartCardCryptogramMaterialPackageCharacteristics;
 
    type ISmartCardCryptogramMaterialPossessionProof_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardCryptogramMaterialPossessionProof is access all ISmartCardCryptogramMaterialPossessionProof_Interface'Class;
+   type ISmartCardCryptogramMaterialPossessionProof is access ISmartCardCryptogramMaterialPossessionProof_Interface'Class;
    type ISmartCardCryptogramMaterialPossessionProof_Ptr is access all ISmartCardCryptogramMaterialPossessionProof;
 
    type ISmartCardCryptogramPlacementStep_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardCryptogramPlacementStep is access all ISmartCardCryptogramPlacementStep_Interface'Class;
+   type ISmartCardCryptogramPlacementStep is access ISmartCardCryptogramPlacementStep_Interface'Class;
    type ISmartCardCryptogramPlacementStep_Ptr is access all ISmartCardCryptogramPlacementStep;
 
    type ISmartCardCryptogramStorageKeyCharacteristics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardCryptogramStorageKeyCharacteristics is access all ISmartCardCryptogramStorageKeyCharacteristics_Interface'Class;
+   type ISmartCardCryptogramStorageKeyCharacteristics is access ISmartCardCryptogramStorageKeyCharacteristics_Interface'Class;
    type ISmartCardCryptogramStorageKeyCharacteristics_Ptr is access all ISmartCardCryptogramStorageKeyCharacteristics;
 
    type ISmartCardCryptogramStorageKeyInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardCryptogramStorageKeyInfo is access all ISmartCardCryptogramStorageKeyInfo_Interface'Class;
+   type ISmartCardCryptogramStorageKeyInfo is access ISmartCardCryptogramStorageKeyInfo_Interface'Class;
    type ISmartCardCryptogramStorageKeyInfo_Ptr is access all ISmartCardCryptogramStorageKeyInfo;
 
    type ISmartCardCryptogramStorageKeyInfo2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardCryptogramStorageKeyInfo2 is access all ISmartCardCryptogramStorageKeyInfo2_Interface'Class;
+   type ISmartCardCryptogramStorageKeyInfo2 is access ISmartCardCryptogramStorageKeyInfo2_Interface'Class;
 
    type ISmartCardEmulator_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardEmulator is access all ISmartCardEmulator_Interface'Class;
+   type ISmartCardEmulator is access ISmartCardEmulator_Interface'Class;
    type ISmartCardEmulator_Ptr is access all ISmartCardEmulator;
 
    type ISmartCardEmulator2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardEmulator2 is access all ISmartCardEmulator2_Interface'Class;
+   type ISmartCardEmulator2 is access ISmartCardEmulator2_Interface'Class;
 
    type ISmartCardEmulatorApduReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardEmulatorApduReceivedEventArgs is access all ISmartCardEmulatorApduReceivedEventArgs_Interface'Class;
+   type ISmartCardEmulatorApduReceivedEventArgs is access ISmartCardEmulatorApduReceivedEventArgs_Interface'Class;
    type ISmartCardEmulatorApduReceivedEventArgs_Ptr is access all ISmartCardEmulatorApduReceivedEventArgs;
 
    type ISmartCardEmulatorApduReceivedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardEmulatorApduReceivedEventArgs2 is access all ISmartCardEmulatorApduReceivedEventArgs2_Interface'Class;
+   type ISmartCardEmulatorApduReceivedEventArgs2 is access ISmartCardEmulatorApduReceivedEventArgs2_Interface'Class;
 
    type ISmartCardEmulatorApduReceivedEventArgsWithCryptograms_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardEmulatorApduReceivedEventArgsWithCryptograms is access all ISmartCardEmulatorApduReceivedEventArgsWithCryptograms_Interface'Class;
+   type ISmartCardEmulatorApduReceivedEventArgsWithCryptograms is access ISmartCardEmulatorApduReceivedEventArgsWithCryptograms_Interface'Class;
 
    type ISmartCardEmulatorConnectionDeactivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardEmulatorConnectionDeactivatedEventArgs is access all ISmartCardEmulatorConnectionDeactivatedEventArgs_Interface'Class;
+   type ISmartCardEmulatorConnectionDeactivatedEventArgs is access ISmartCardEmulatorConnectionDeactivatedEventArgs_Interface'Class;
    type ISmartCardEmulatorConnectionDeactivatedEventArgs_Ptr is access all ISmartCardEmulatorConnectionDeactivatedEventArgs;
 
    type ISmartCardEmulatorConnectionProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardEmulatorConnectionProperties is access all ISmartCardEmulatorConnectionProperties_Interface'Class;
+   type ISmartCardEmulatorConnectionProperties is access ISmartCardEmulatorConnectionProperties_Interface'Class;
    type ISmartCardEmulatorConnectionProperties_Ptr is access all ISmartCardEmulatorConnectionProperties;
 
    type ISmartCardEmulatorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardEmulatorStatics is access all ISmartCardEmulatorStatics_Interface'Class;
+   type ISmartCardEmulatorStatics is access ISmartCardEmulatorStatics_Interface'Class;
 
    type ISmartCardEmulatorStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardEmulatorStatics2 is access all ISmartCardEmulatorStatics2_Interface'Class;
+   type ISmartCardEmulatorStatics2 is access ISmartCardEmulatorStatics2_Interface'Class;
 
    type ISmartCardEmulatorStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardEmulatorStatics3 is access all ISmartCardEmulatorStatics3_Interface'Class;
+   type ISmartCardEmulatorStatics3 is access ISmartCardEmulatorStatics3_Interface'Class;
 
    type ISmartCardPinPolicy_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardPinPolicy is access all ISmartCardPinPolicy_Interface'Class;
+   type ISmartCardPinPolicy is access ISmartCardPinPolicy_Interface'Class;
    type ISmartCardPinPolicy_Ptr is access all ISmartCardPinPolicy;
 
    type ISmartCardPinResetDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardPinResetDeferral is access all ISmartCardPinResetDeferral_Interface'Class;
+   type ISmartCardPinResetDeferral is access ISmartCardPinResetDeferral_Interface'Class;
    type ISmartCardPinResetDeferral_Ptr is access all ISmartCardPinResetDeferral;
 
    type ISmartCardPinResetRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardPinResetRequest is access all ISmartCardPinResetRequest_Interface'Class;
+   type ISmartCardPinResetRequest is access ISmartCardPinResetRequest_Interface'Class;
    type ISmartCardPinResetRequest_Ptr is access all ISmartCardPinResetRequest;
 
    type ISmartCardProvisioning_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardProvisioning is access all ISmartCardProvisioning_Interface'Class;
+   type ISmartCardProvisioning is access ISmartCardProvisioning_Interface'Class;
    type ISmartCardProvisioning_Ptr is access all ISmartCardProvisioning;
 
    type ISmartCardProvisioning2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardProvisioning2 is access all ISmartCardProvisioning2_Interface'Class;
+   type ISmartCardProvisioning2 is access ISmartCardProvisioning2_Interface'Class;
 
    type ISmartCardProvisioningStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardProvisioningStatics is access all ISmartCardProvisioningStatics_Interface'Class;
+   type ISmartCardProvisioningStatics is access ISmartCardProvisioningStatics_Interface'Class;
 
    type ISmartCardProvisioningStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardProvisioningStatics2 is access all ISmartCardProvisioningStatics2_Interface'Class;
+   type ISmartCardProvisioningStatics2 is access ISmartCardProvisioningStatics2_Interface'Class;
 
    type ISmartCardReader_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardReader is access all ISmartCardReader_Interface'Class;
+   type ISmartCardReader is access ISmartCardReader_Interface'Class;
    type ISmartCardReader_Ptr is access all ISmartCardReader;
 
    type ISmartCardReaderStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardReaderStatics is access all ISmartCardReaderStatics_Interface'Class;
+   type ISmartCardReaderStatics is access ISmartCardReaderStatics_Interface'Class;
 
    type ISmartCardTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardTriggerDetails is access all ISmartCardTriggerDetails_Interface'Class;
+   type ISmartCardTriggerDetails is access ISmartCardTriggerDetails_Interface'Class;
    type ISmartCardTriggerDetails_Ptr is access all ISmartCardTriggerDetails;
 
    type ISmartCardTriggerDetails2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardTriggerDetails2 is access all ISmartCardTriggerDetails2_Interface'Class;
+   type ISmartCardTriggerDetails2 is access ISmartCardTriggerDetails2_Interface'Class;
 
    type ISmartCardTriggerDetails3_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardTriggerDetails3 is access all ISmartCardTriggerDetails3_Interface'Class;
+   type ISmartCardTriggerDetails3 is access ISmartCardTriggerDetails3_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

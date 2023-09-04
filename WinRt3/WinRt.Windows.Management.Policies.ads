@@ -41,11 +41,11 @@ package WinRt.Windows.Management.Policies is
    -----------------------------------------------------------------------------
 
    type INamedPolicyData_Interface is interface and WinRt.IInspectable_Interface;
-   type INamedPolicyData is access all INamedPolicyData_Interface'Class;
+   type INamedPolicyData is access INamedPolicyData_Interface'Class;
    type INamedPolicyData_Ptr is access all INamedPolicyData;
 
    type INamedPolicyStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type INamedPolicyStatics is access all INamedPolicyStatics_Interface'Class;
+   type INamedPolicyStatics is access INamedPolicyStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

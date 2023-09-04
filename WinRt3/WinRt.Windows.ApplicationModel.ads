@@ -45,186 +45,186 @@ package WinRt.Windows.ApplicationModel is
    -----------------------------------------------------------------------------
 
    type IAppDisplayInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppDisplayInfo is access all IAppDisplayInfo_Interface'Class;
+   type IAppDisplayInfo is access IAppDisplayInfo_Interface'Class;
    type IAppDisplayInfo_Ptr is access all IAppDisplayInfo;
 
    type IAppInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInfo is access all IAppInfo_Interface'Class;
+   type IAppInfo is access IAppInfo_Interface'Class;
    type IAppInfo_Ptr is access all IAppInfo;
 
    type IAppInfo2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInfo2 is access all IAppInfo2_Interface'Class;
+   type IAppInfo2 is access IAppInfo2_Interface'Class;
 
    type IAppInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInfoStatics is access all IAppInfoStatics_Interface'Class;
+   type IAppInfoStatics is access IAppInfoStatics_Interface'Class;
 
    type IAppInstallerInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstallerInfo is access all IAppInstallerInfo_Interface'Class;
+   type IAppInstallerInfo is access IAppInstallerInfo_Interface'Class;
    type IAppInstallerInfo_Ptr is access all IAppInstallerInfo;
 
    type IAppInstance_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstance is access all IAppInstance_Interface'Class;
+   type IAppInstance is access IAppInstance_Interface'Class;
    type IAppInstance_Ptr is access all IAppInstance;
 
    type IAppInstanceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppInstanceStatics is access all IAppInstanceStatics_Interface'Class;
+   type IAppInstanceStatics is access IAppInstanceStatics_Interface'Class;
 
    type ICameraApplicationManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICameraApplicationManagerStatics is access all ICameraApplicationManagerStatics_Interface'Class;
+   type ICameraApplicationManagerStatics is access ICameraApplicationManagerStatics_Interface'Class;
 
    type IDesignModeStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDesignModeStatics is access all IDesignModeStatics_Interface'Class;
+   type IDesignModeStatics is access IDesignModeStatics_Interface'Class;
 
    type IDesignModeStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDesignModeStatics2 is access all IDesignModeStatics2_Interface'Class;
+   type IDesignModeStatics2 is access IDesignModeStatics2_Interface'Class;
 
    type IEnteredBackgroundEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEnteredBackgroundEventArgs is access all IEnteredBackgroundEventArgs_Interface'Class;
+   type IEnteredBackgroundEventArgs is access IEnteredBackgroundEventArgs_Interface'Class;
    type IEnteredBackgroundEventArgs_Ptr is access all IEnteredBackgroundEventArgs;
 
    type IFullTrustProcessLauncherStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFullTrustProcessLauncherStatics is access all IFullTrustProcessLauncherStatics_Interface'Class;
+   type IFullTrustProcessLauncherStatics is access IFullTrustProcessLauncherStatics_Interface'Class;
 
    type ILeavingBackgroundEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ILeavingBackgroundEventArgs is access all ILeavingBackgroundEventArgs_Interface'Class;
+   type ILeavingBackgroundEventArgs is access ILeavingBackgroundEventArgs_Interface'Class;
    type ILeavingBackgroundEventArgs_Ptr is access all ILeavingBackgroundEventArgs;
 
    type ILimitedAccessFeatureRequestResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ILimitedAccessFeatureRequestResult is access all ILimitedAccessFeatureRequestResult_Interface'Class;
+   type ILimitedAccessFeatureRequestResult is access ILimitedAccessFeatureRequestResult_Interface'Class;
    type ILimitedAccessFeatureRequestResult_Ptr is access all ILimitedAccessFeatureRequestResult;
 
    type ILimitedAccessFeaturesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILimitedAccessFeaturesStatics is access all ILimitedAccessFeaturesStatics_Interface'Class;
+   type ILimitedAccessFeaturesStatics is access ILimitedAccessFeaturesStatics_Interface'Class;
 
    type IPackage_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackage is access all IPackage_Interface'Class;
+   type IPackage is access IPackage_Interface'Class;
    type IPackage_Ptr is access all IPackage;
 
    type IPackage2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackage2 is access all IPackage2_Interface'Class;
+   type IPackage2 is access IPackage2_Interface'Class;
 
    type IPackage3_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackage3 is access all IPackage3_Interface'Class;
+   type IPackage3 is access IPackage3_Interface'Class;
 
    type IPackage4_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackage4 is access all IPackage4_Interface'Class;
+   type IPackage4 is access IPackage4_Interface'Class;
 
    type IPackage5_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackage5 is access all IPackage5_Interface'Class;
+   type IPackage5 is access IPackage5_Interface'Class;
 
    type IPackage6_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackage6 is access all IPackage6_Interface'Class;
+   type IPackage6 is access IPackage6_Interface'Class;
 
    type IPackage7_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackage7 is access all IPackage7_Interface'Class;
+   type IPackage7 is access IPackage7_Interface'Class;
 
    type IPackage8_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackage8 is access all IPackage8_Interface'Class;
+   type IPackage8 is access IPackage8_Interface'Class;
 
    type IPackageCatalog_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageCatalog is access all IPackageCatalog_Interface'Class;
+   type IPackageCatalog is access IPackageCatalog_Interface'Class;
    type IPackageCatalog_Ptr is access all IPackageCatalog;
 
    type IPackageCatalog2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageCatalog2 is access all IPackageCatalog2_Interface'Class;
+   type IPackageCatalog2 is access IPackageCatalog2_Interface'Class;
 
    type IPackageCatalog3_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageCatalog3 is access all IPackageCatalog3_Interface'Class;
+   type IPackageCatalog3 is access IPackageCatalog3_Interface'Class;
 
    type IPackageCatalog4_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageCatalog4 is access all IPackageCatalog4_Interface'Class;
+   type IPackageCatalog4 is access IPackageCatalog4_Interface'Class;
 
    type IPackageCatalogAddOptionalPackageResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageCatalogAddOptionalPackageResult is access all IPackageCatalogAddOptionalPackageResult_Interface'Class;
+   type IPackageCatalogAddOptionalPackageResult is access IPackageCatalogAddOptionalPackageResult_Interface'Class;
    type IPackageCatalogAddOptionalPackageResult_Ptr is access all IPackageCatalogAddOptionalPackageResult;
 
    type IPackageCatalogAddResourcePackageResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageCatalogAddResourcePackageResult is access all IPackageCatalogAddResourcePackageResult_Interface'Class;
+   type IPackageCatalogAddResourcePackageResult is access IPackageCatalogAddResourcePackageResult_Interface'Class;
    type IPackageCatalogAddResourcePackageResult_Ptr is access all IPackageCatalogAddResourcePackageResult;
 
    type IPackageCatalogRemoveOptionalPackagesResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageCatalogRemoveOptionalPackagesResult is access all IPackageCatalogRemoveOptionalPackagesResult_Interface'Class;
+   type IPackageCatalogRemoveOptionalPackagesResult is access IPackageCatalogRemoveOptionalPackagesResult_Interface'Class;
    type IPackageCatalogRemoveOptionalPackagesResult_Ptr is access all IPackageCatalogRemoveOptionalPackagesResult;
 
    type IPackageCatalogRemoveResourcePackagesResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageCatalogRemoveResourcePackagesResult is access all IPackageCatalogRemoveResourcePackagesResult_Interface'Class;
+   type IPackageCatalogRemoveResourcePackagesResult is access IPackageCatalogRemoveResourcePackagesResult_Interface'Class;
    type IPackageCatalogRemoveResourcePackagesResult_Ptr is access all IPackageCatalogRemoveResourcePackagesResult;
 
    type IPackageCatalogStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageCatalogStatics is access all IPackageCatalogStatics_Interface'Class;
+   type IPackageCatalogStatics is access IPackageCatalogStatics_Interface'Class;
 
    type IPackageContentGroup_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageContentGroup is access all IPackageContentGroup_Interface'Class;
+   type IPackageContentGroup is access IPackageContentGroup_Interface'Class;
    type IPackageContentGroup_Ptr is access all IPackageContentGroup;
 
    type IPackageContentGroupStagingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageContentGroupStagingEventArgs is access all IPackageContentGroupStagingEventArgs_Interface'Class;
+   type IPackageContentGroupStagingEventArgs is access IPackageContentGroupStagingEventArgs_Interface'Class;
    type IPackageContentGroupStagingEventArgs_Ptr is access all IPackageContentGroupStagingEventArgs;
 
    type IPackageContentGroupStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageContentGroupStatics is access all IPackageContentGroupStatics_Interface'Class;
+   type IPackageContentGroupStatics is access IPackageContentGroupStatics_Interface'Class;
 
    type IPackageId_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageId is access all IPackageId_Interface'Class;
+   type IPackageId is access IPackageId_Interface'Class;
    type IPackageId_Ptr is access all IPackageId;
 
    type IPackageIdWithMetadata_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageIdWithMetadata is access all IPackageIdWithMetadata_Interface'Class;
+   type IPackageIdWithMetadata is access IPackageIdWithMetadata_Interface'Class;
 
    type IPackageInstallingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageInstallingEventArgs is access all IPackageInstallingEventArgs_Interface'Class;
+   type IPackageInstallingEventArgs is access IPackageInstallingEventArgs_Interface'Class;
    type IPackageInstallingEventArgs_Ptr is access all IPackageInstallingEventArgs;
 
    type IPackageStagingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageStagingEventArgs is access all IPackageStagingEventArgs_Interface'Class;
+   type IPackageStagingEventArgs is access IPackageStagingEventArgs_Interface'Class;
    type IPackageStagingEventArgs_Ptr is access all IPackageStagingEventArgs;
 
    type IPackageStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageStatics is access all IPackageStatics_Interface'Class;
+   type IPackageStatics is access IPackageStatics_Interface'Class;
 
    type IPackageStatus_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageStatus is access all IPackageStatus_Interface'Class;
+   type IPackageStatus is access IPackageStatus_Interface'Class;
    type IPackageStatus_Ptr is access all IPackageStatus;
 
    type IPackageStatus2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageStatus2 is access all IPackageStatus2_Interface'Class;
+   type IPackageStatus2 is access IPackageStatus2_Interface'Class;
 
    type IPackageStatusChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageStatusChangedEventArgs is access all IPackageStatusChangedEventArgs_Interface'Class;
+   type IPackageStatusChangedEventArgs is access IPackageStatusChangedEventArgs_Interface'Class;
    type IPackageStatusChangedEventArgs_Ptr is access all IPackageStatusChangedEventArgs;
 
    type IPackageUninstallingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageUninstallingEventArgs is access all IPackageUninstallingEventArgs_Interface'Class;
+   type IPackageUninstallingEventArgs is access IPackageUninstallingEventArgs_Interface'Class;
    type IPackageUninstallingEventArgs_Ptr is access all IPackageUninstallingEventArgs;
 
    type IPackageUpdateAvailabilityResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageUpdateAvailabilityResult is access all IPackageUpdateAvailabilityResult_Interface'Class;
+   type IPackageUpdateAvailabilityResult is access IPackageUpdateAvailabilityResult_Interface'Class;
    type IPackageUpdateAvailabilityResult_Ptr is access all IPackageUpdateAvailabilityResult;
 
    type IPackageUpdatingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageUpdatingEventArgs is access all IPackageUpdatingEventArgs_Interface'Class;
+   type IPackageUpdatingEventArgs is access IPackageUpdatingEventArgs_Interface'Class;
    type IPackageUpdatingEventArgs_Ptr is access all IPackageUpdatingEventArgs;
 
    type IPackageWithMetadata_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageWithMetadata is access all IPackageWithMetadata_Interface'Class;
+   type IPackageWithMetadata is access IPackageWithMetadata_Interface'Class;
 
    type IStartupTask_Interface is interface and WinRt.IInspectable_Interface;
-   type IStartupTask is access all IStartupTask_Interface'Class;
+   type IStartupTask is access IStartupTask_Interface'Class;
    type IStartupTask_Ptr is access all IStartupTask;
 
    type IStartupTaskStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStartupTaskStatics is access all IStartupTaskStatics_Interface'Class;
+   type IStartupTaskStatics is access IStartupTaskStatics_Interface'Class;
 
    type ISuspendingDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type ISuspendingDeferral is access all ISuspendingDeferral_Interface'Class;
+   type ISuspendingDeferral is access ISuspendingDeferral_Interface'Class;
    type ISuspendingDeferral_Ptr is access all ISuspendingDeferral;
 
    type ISuspendingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISuspendingEventArgs is access all ISuspendingEventArgs_Interface'Class;
+   type ISuspendingEventArgs is access ISuspendingEventArgs_Interface'Class;
    type ISuspendingEventArgs_Ptr is access all ISuspendingEventArgs;
 
    type ISuspendingOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type ISuspendingOperation is access all ISuspendingOperation_Interface'Class;
+   type ISuspendingOperation is access ISuspendingOperation_Interface'Class;
    type ISuspendingOperation_Ptr is access all ISuspendingOperation;
 
    -----------------------------------------------------------------------------

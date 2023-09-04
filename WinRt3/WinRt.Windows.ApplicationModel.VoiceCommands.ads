@@ -44,48 +44,48 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
    -----------------------------------------------------------------------------
 
    type IVoiceCommand_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceCommand is access all IVoiceCommand_Interface'Class;
+   type IVoiceCommand is access IVoiceCommand_Interface'Class;
    type IVoiceCommand_Ptr is access all IVoiceCommand;
 
    type IVoiceCommandCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceCommandCompletedEventArgs is access all IVoiceCommandCompletedEventArgs_Interface'Class;
+   type IVoiceCommandCompletedEventArgs is access IVoiceCommandCompletedEventArgs_Interface'Class;
    type IVoiceCommandCompletedEventArgs_Ptr is access all IVoiceCommandCompletedEventArgs;
 
    type IVoiceCommandConfirmationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceCommandConfirmationResult is access all IVoiceCommandConfirmationResult_Interface'Class;
+   type IVoiceCommandConfirmationResult is access IVoiceCommandConfirmationResult_Interface'Class;
    type IVoiceCommandConfirmationResult_Ptr is access all IVoiceCommandConfirmationResult;
 
    type IVoiceCommandContentTile_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceCommandContentTile is access all IVoiceCommandContentTile_Interface'Class;
+   type IVoiceCommandContentTile is access IVoiceCommandContentTile_Interface'Class;
    type IVoiceCommandContentTile_Ptr is access all IVoiceCommandContentTile;
 
    type IVoiceCommandDefinition_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceCommandDefinition is access all IVoiceCommandDefinition_Interface'Class;
+   type IVoiceCommandDefinition is access IVoiceCommandDefinition_Interface'Class;
    type IVoiceCommandDefinition_Ptr is access all IVoiceCommandDefinition;
 
    type IVoiceCommandDefinitionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceCommandDefinitionManagerStatics is access all IVoiceCommandDefinitionManagerStatics_Interface'Class;
+   type IVoiceCommandDefinitionManagerStatics is access IVoiceCommandDefinitionManagerStatics_Interface'Class;
 
    type IVoiceCommandDisambiguationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceCommandDisambiguationResult is access all IVoiceCommandDisambiguationResult_Interface'Class;
+   type IVoiceCommandDisambiguationResult is access IVoiceCommandDisambiguationResult_Interface'Class;
    type IVoiceCommandDisambiguationResult_Ptr is access all IVoiceCommandDisambiguationResult;
 
    type IVoiceCommandResponse_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceCommandResponse is access all IVoiceCommandResponse_Interface'Class;
+   type IVoiceCommandResponse is access IVoiceCommandResponse_Interface'Class;
    type IVoiceCommandResponse_Ptr is access all IVoiceCommandResponse;
 
    type IVoiceCommandResponseStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceCommandResponseStatics is access all IVoiceCommandResponseStatics_Interface'Class;
+   type IVoiceCommandResponseStatics is access IVoiceCommandResponseStatics_Interface'Class;
 
    type IVoiceCommandServiceConnection_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceCommandServiceConnection is access all IVoiceCommandServiceConnection_Interface'Class;
+   type IVoiceCommandServiceConnection is access IVoiceCommandServiceConnection_Interface'Class;
    type IVoiceCommandServiceConnection_Ptr is access all IVoiceCommandServiceConnection;
 
    type IVoiceCommandServiceConnectionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceCommandServiceConnectionStatics is access all IVoiceCommandServiceConnectionStatics_Interface'Class;
+   type IVoiceCommandServiceConnectionStatics is access IVoiceCommandServiceConnectionStatics_Interface'Class;
 
    type IVoiceCommandUserMessage_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceCommandUserMessage is access all IVoiceCommandUserMessage_Interface'Class;
+   type IVoiceCommandUserMessage is access IVoiceCommandUserMessage_Interface'Class;
    type IVoiceCommandUserMessage_Ptr is access all IVoiceCommandUserMessage;
 
    -----------------------------------------------------------------------------

@@ -45,246 +45,246 @@ package WinRt.Windows.UI.Input is
    -----------------------------------------------------------------------------
 
    type IAttachableInputObject_Interface is interface and WinRt.IInspectable_Interface;
-   type IAttachableInputObject is access all IAttachableInputObject_Interface'Class;
+   type IAttachableInputObject is access IAttachableInputObject_Interface'Class;
    type IAttachableInputObject_Ptr is access all IAttachableInputObject;
 
    type IAttachableInputObjectFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAttachableInputObjectFactory is access all IAttachableInputObjectFactory_Interface'Class;
+   type IAttachableInputObjectFactory is access IAttachableInputObjectFactory_Interface'Class;
 
    type ICrossSlidingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICrossSlidingEventArgs is access all ICrossSlidingEventArgs_Interface'Class;
+   type ICrossSlidingEventArgs is access ICrossSlidingEventArgs_Interface'Class;
    type ICrossSlidingEventArgs_Ptr is access all ICrossSlidingEventArgs;
 
    type ICrossSlidingEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICrossSlidingEventArgs2 is access all ICrossSlidingEventArgs2_Interface'Class;
+   type ICrossSlidingEventArgs2 is access ICrossSlidingEventArgs2_Interface'Class;
 
    type IDraggingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDraggingEventArgs is access all IDraggingEventArgs_Interface'Class;
+   type IDraggingEventArgs is access IDraggingEventArgs_Interface'Class;
    type IDraggingEventArgs_Ptr is access all IDraggingEventArgs;
 
    type IDraggingEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDraggingEventArgs2 is access all IDraggingEventArgs2_Interface'Class;
+   type IDraggingEventArgs2 is access IDraggingEventArgs2_Interface'Class;
 
    type IEdgeGesture_Interface is interface and WinRt.IInspectable_Interface;
-   type IEdgeGesture is access all IEdgeGesture_Interface'Class;
+   type IEdgeGesture is access IEdgeGesture_Interface'Class;
    type IEdgeGesture_Ptr is access all IEdgeGesture;
 
    type IEdgeGestureEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEdgeGestureEventArgs is access all IEdgeGestureEventArgs_Interface'Class;
+   type IEdgeGestureEventArgs is access IEdgeGestureEventArgs_Interface'Class;
    type IEdgeGestureEventArgs_Ptr is access all IEdgeGestureEventArgs;
 
    type IEdgeGestureStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IEdgeGestureStatics is access all IEdgeGestureStatics_Interface'Class;
+   type IEdgeGestureStatics is access IEdgeGestureStatics_Interface'Class;
 
    type IGestureRecognizer_Interface is interface and WinRt.IInspectable_Interface;
-   type IGestureRecognizer is access all IGestureRecognizer_Interface'Class;
+   type IGestureRecognizer is access IGestureRecognizer_Interface'Class;
    type IGestureRecognizer_Ptr is access all IGestureRecognizer;
 
    type IGestureRecognizer2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGestureRecognizer2 is access all IGestureRecognizer2_Interface'Class;
+   type IGestureRecognizer2 is access IGestureRecognizer2_Interface'Class;
 
    type IHoldingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IHoldingEventArgs is access all IHoldingEventArgs_Interface'Class;
+   type IHoldingEventArgs is access IHoldingEventArgs_Interface'Class;
    type IHoldingEventArgs_Ptr is access all IHoldingEventArgs;
 
    type IHoldingEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IHoldingEventArgs2 is access all IHoldingEventArgs2_Interface'Class;
+   type IHoldingEventArgs2 is access IHoldingEventArgs2_Interface'Class;
 
    type IInputActivationListener_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputActivationListener is access all IInputActivationListener_Interface'Class;
+   type IInputActivationListener is access IInputActivationListener_Interface'Class;
    type IInputActivationListener_Ptr is access all IInputActivationListener;
 
    type IInputActivationListenerActivationChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputActivationListenerActivationChangedEventArgs is access all IInputActivationListenerActivationChangedEventArgs_Interface'Class;
+   type IInputActivationListenerActivationChangedEventArgs is access IInputActivationListenerActivationChangedEventArgs_Interface'Class;
    type IInputActivationListenerActivationChangedEventArgs_Ptr is access all IInputActivationListenerActivationChangedEventArgs;
 
    type IKeyboardDeliveryInterceptor_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyboardDeliveryInterceptor is access all IKeyboardDeliveryInterceptor_Interface'Class;
+   type IKeyboardDeliveryInterceptor is access IKeyboardDeliveryInterceptor_Interface'Class;
    type IKeyboardDeliveryInterceptor_Ptr is access all IKeyboardDeliveryInterceptor;
 
    type IKeyboardDeliveryInterceptorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyboardDeliveryInterceptorStatics is access all IKeyboardDeliveryInterceptorStatics_Interface'Class;
+   type IKeyboardDeliveryInterceptorStatics is access IKeyboardDeliveryInterceptorStatics_Interface'Class;
 
    type IManipulationCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IManipulationCompletedEventArgs is access all IManipulationCompletedEventArgs_Interface'Class;
+   type IManipulationCompletedEventArgs is access IManipulationCompletedEventArgs_Interface'Class;
    type IManipulationCompletedEventArgs_Ptr is access all IManipulationCompletedEventArgs;
 
    type IManipulationCompletedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IManipulationCompletedEventArgs2 is access all IManipulationCompletedEventArgs2_Interface'Class;
+   type IManipulationCompletedEventArgs2 is access IManipulationCompletedEventArgs2_Interface'Class;
 
    type IManipulationInertiaStartingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IManipulationInertiaStartingEventArgs is access all IManipulationInertiaStartingEventArgs_Interface'Class;
+   type IManipulationInertiaStartingEventArgs is access IManipulationInertiaStartingEventArgs_Interface'Class;
    type IManipulationInertiaStartingEventArgs_Ptr is access all IManipulationInertiaStartingEventArgs;
 
    type IManipulationInertiaStartingEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IManipulationInertiaStartingEventArgs2 is access all IManipulationInertiaStartingEventArgs2_Interface'Class;
+   type IManipulationInertiaStartingEventArgs2 is access IManipulationInertiaStartingEventArgs2_Interface'Class;
 
    type IManipulationStartedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IManipulationStartedEventArgs is access all IManipulationStartedEventArgs_Interface'Class;
+   type IManipulationStartedEventArgs is access IManipulationStartedEventArgs_Interface'Class;
    type IManipulationStartedEventArgs_Ptr is access all IManipulationStartedEventArgs;
 
    type IManipulationStartedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IManipulationStartedEventArgs2 is access all IManipulationStartedEventArgs2_Interface'Class;
+   type IManipulationStartedEventArgs2 is access IManipulationStartedEventArgs2_Interface'Class;
 
    type IManipulationUpdatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IManipulationUpdatedEventArgs is access all IManipulationUpdatedEventArgs_Interface'Class;
+   type IManipulationUpdatedEventArgs is access IManipulationUpdatedEventArgs_Interface'Class;
    type IManipulationUpdatedEventArgs_Ptr is access all IManipulationUpdatedEventArgs;
 
    type IManipulationUpdatedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IManipulationUpdatedEventArgs2 is access all IManipulationUpdatedEventArgs2_Interface'Class;
+   type IManipulationUpdatedEventArgs2 is access IManipulationUpdatedEventArgs2_Interface'Class;
 
    type IMouseWheelParameters_Interface is interface and WinRt.IInspectable_Interface;
-   type IMouseWheelParameters is access all IMouseWheelParameters_Interface'Class;
+   type IMouseWheelParameters is access IMouseWheelParameters_Interface'Class;
    type IMouseWheelParameters_Ptr is access all IMouseWheelParameters;
 
    type IPointerPoint_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointerPoint is access all IPointerPoint_Interface'Class;
+   type IPointerPoint is access IPointerPoint_Interface'Class;
    type IPointerPoint_Ptr is access all IPointerPoint;
 
    type IPointerPointProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointerPointProperties is access all IPointerPointProperties_Interface'Class;
+   type IPointerPointProperties is access IPointerPointProperties_Interface'Class;
    type IPointerPointProperties_Ptr is access all IPointerPointProperties;
 
    type IPointerPointProperties2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointerPointProperties2 is access all IPointerPointProperties2_Interface'Class;
+   type IPointerPointProperties2 is access IPointerPointProperties2_Interface'Class;
 
    type IPointerPointStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointerPointStatics is access all IPointerPointStatics_Interface'Class;
+   type IPointerPointStatics is access IPointerPointStatics_Interface'Class;
 
    type IPointerPointTransform_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointerPointTransform is access all IPointerPointTransform_Interface'Class;
+   type IPointerPointTransform is access IPointerPointTransform_Interface'Class;
 
    type IPointerVisualizationSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointerVisualizationSettings is access all IPointerVisualizationSettings_Interface'Class;
+   type IPointerVisualizationSettings is access IPointerVisualizationSettings_Interface'Class;
    type IPointerVisualizationSettings_Ptr is access all IPointerVisualizationSettings;
 
    type IPointerVisualizationSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointerVisualizationSettingsStatics is access all IPointerVisualizationSettingsStatics_Interface'Class;
+   type IPointerVisualizationSettingsStatics is access IPointerVisualizationSettingsStatics_Interface'Class;
 
    type IRadialController_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialController is access all IRadialController_Interface'Class;
+   type IRadialController is access IRadialController_Interface'Class;
    type IRadialController_Ptr is access all IRadialController;
 
    type IRadialController2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialController2 is access all IRadialController2_Interface'Class;
+   type IRadialController2 is access IRadialController2_Interface'Class;
 
    type IRadialControllerButtonClickedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerButtonClickedEventArgs is access all IRadialControllerButtonClickedEventArgs_Interface'Class;
+   type IRadialControllerButtonClickedEventArgs is access IRadialControllerButtonClickedEventArgs_Interface'Class;
    type IRadialControllerButtonClickedEventArgs_Ptr is access all IRadialControllerButtonClickedEventArgs;
 
    type IRadialControllerButtonClickedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerButtonClickedEventArgs2 is access all IRadialControllerButtonClickedEventArgs2_Interface'Class;
+   type IRadialControllerButtonClickedEventArgs2 is access IRadialControllerButtonClickedEventArgs2_Interface'Class;
 
    type IRadialControllerButtonHoldingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerButtonHoldingEventArgs is access all IRadialControllerButtonHoldingEventArgs_Interface'Class;
+   type IRadialControllerButtonHoldingEventArgs is access IRadialControllerButtonHoldingEventArgs_Interface'Class;
    type IRadialControllerButtonHoldingEventArgs_Ptr is access all IRadialControllerButtonHoldingEventArgs;
 
    type IRadialControllerButtonPressedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerButtonPressedEventArgs is access all IRadialControllerButtonPressedEventArgs_Interface'Class;
+   type IRadialControllerButtonPressedEventArgs is access IRadialControllerButtonPressedEventArgs_Interface'Class;
    type IRadialControllerButtonPressedEventArgs_Ptr is access all IRadialControllerButtonPressedEventArgs;
 
    type IRadialControllerButtonReleasedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerButtonReleasedEventArgs is access all IRadialControllerButtonReleasedEventArgs_Interface'Class;
+   type IRadialControllerButtonReleasedEventArgs is access IRadialControllerButtonReleasedEventArgs_Interface'Class;
    type IRadialControllerButtonReleasedEventArgs_Ptr is access all IRadialControllerButtonReleasedEventArgs;
 
    type IRadialControllerConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerConfiguration is access all IRadialControllerConfiguration_Interface'Class;
+   type IRadialControllerConfiguration is access IRadialControllerConfiguration_Interface'Class;
    type IRadialControllerConfiguration_Ptr is access all IRadialControllerConfiguration;
 
    type IRadialControllerConfiguration2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerConfiguration2 is access all IRadialControllerConfiguration2_Interface'Class;
+   type IRadialControllerConfiguration2 is access IRadialControllerConfiguration2_Interface'Class;
 
    type IRadialControllerConfigurationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerConfigurationStatics is access all IRadialControllerConfigurationStatics_Interface'Class;
+   type IRadialControllerConfigurationStatics is access IRadialControllerConfigurationStatics_Interface'Class;
 
    type IRadialControllerConfigurationStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerConfigurationStatics2 is access all IRadialControllerConfigurationStatics2_Interface'Class;
+   type IRadialControllerConfigurationStatics2 is access IRadialControllerConfigurationStatics2_Interface'Class;
 
    type IRadialControllerControlAcquiredEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerControlAcquiredEventArgs is access all IRadialControllerControlAcquiredEventArgs_Interface'Class;
+   type IRadialControllerControlAcquiredEventArgs is access IRadialControllerControlAcquiredEventArgs_Interface'Class;
    type IRadialControllerControlAcquiredEventArgs_Ptr is access all IRadialControllerControlAcquiredEventArgs;
 
    type IRadialControllerControlAcquiredEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerControlAcquiredEventArgs2 is access all IRadialControllerControlAcquiredEventArgs2_Interface'Class;
+   type IRadialControllerControlAcquiredEventArgs2 is access IRadialControllerControlAcquiredEventArgs2_Interface'Class;
 
    type IRadialControllerMenu_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerMenu is access all IRadialControllerMenu_Interface'Class;
+   type IRadialControllerMenu is access IRadialControllerMenu_Interface'Class;
    type IRadialControllerMenu_Ptr is access all IRadialControllerMenu;
 
    type IRadialControllerMenuItem_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerMenuItem is access all IRadialControllerMenuItem_Interface'Class;
+   type IRadialControllerMenuItem is access IRadialControllerMenuItem_Interface'Class;
    type IRadialControllerMenuItem_Ptr is access all IRadialControllerMenuItem;
 
    type IRadialControllerMenuItemStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerMenuItemStatics is access all IRadialControllerMenuItemStatics_Interface'Class;
+   type IRadialControllerMenuItemStatics is access IRadialControllerMenuItemStatics_Interface'Class;
 
    type IRadialControllerMenuItemStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerMenuItemStatics2 is access all IRadialControllerMenuItemStatics2_Interface'Class;
+   type IRadialControllerMenuItemStatics2 is access IRadialControllerMenuItemStatics2_Interface'Class;
 
    type IRadialControllerRotationChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerRotationChangedEventArgs is access all IRadialControllerRotationChangedEventArgs_Interface'Class;
+   type IRadialControllerRotationChangedEventArgs is access IRadialControllerRotationChangedEventArgs_Interface'Class;
    type IRadialControllerRotationChangedEventArgs_Ptr is access all IRadialControllerRotationChangedEventArgs;
 
    type IRadialControllerRotationChangedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerRotationChangedEventArgs2 is access all IRadialControllerRotationChangedEventArgs2_Interface'Class;
+   type IRadialControllerRotationChangedEventArgs2 is access IRadialControllerRotationChangedEventArgs2_Interface'Class;
 
    type IRadialControllerScreenContact_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerScreenContact is access all IRadialControllerScreenContact_Interface'Class;
+   type IRadialControllerScreenContact is access IRadialControllerScreenContact_Interface'Class;
    type IRadialControllerScreenContact_Ptr is access all IRadialControllerScreenContact;
 
    type IRadialControllerScreenContactContinuedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerScreenContactContinuedEventArgs is access all IRadialControllerScreenContactContinuedEventArgs_Interface'Class;
+   type IRadialControllerScreenContactContinuedEventArgs is access IRadialControllerScreenContactContinuedEventArgs_Interface'Class;
    type IRadialControllerScreenContactContinuedEventArgs_Ptr is access all IRadialControllerScreenContactContinuedEventArgs;
 
    type IRadialControllerScreenContactContinuedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerScreenContactContinuedEventArgs2 is access all IRadialControllerScreenContactContinuedEventArgs2_Interface'Class;
+   type IRadialControllerScreenContactContinuedEventArgs2 is access IRadialControllerScreenContactContinuedEventArgs2_Interface'Class;
 
    type IRadialControllerScreenContactEndedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerScreenContactEndedEventArgs is access all IRadialControllerScreenContactEndedEventArgs_Interface'Class;
+   type IRadialControllerScreenContactEndedEventArgs is access IRadialControllerScreenContactEndedEventArgs_Interface'Class;
    type IRadialControllerScreenContactEndedEventArgs_Ptr is access all IRadialControllerScreenContactEndedEventArgs;
 
    type IRadialControllerScreenContactStartedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerScreenContactStartedEventArgs is access all IRadialControllerScreenContactStartedEventArgs_Interface'Class;
+   type IRadialControllerScreenContactStartedEventArgs is access IRadialControllerScreenContactStartedEventArgs_Interface'Class;
    type IRadialControllerScreenContactStartedEventArgs_Ptr is access all IRadialControllerScreenContactStartedEventArgs;
 
    type IRadialControllerScreenContactStartedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerScreenContactStartedEventArgs2 is access all IRadialControllerScreenContactStartedEventArgs2_Interface'Class;
+   type IRadialControllerScreenContactStartedEventArgs2 is access IRadialControllerScreenContactStartedEventArgs2_Interface'Class;
 
    type IRadialControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerStatics is access all IRadialControllerStatics_Interface'Class;
+   type IRadialControllerStatics is access IRadialControllerStatics_Interface'Class;
 
    type IRightTappedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRightTappedEventArgs is access all IRightTappedEventArgs_Interface'Class;
+   type IRightTappedEventArgs is access IRightTappedEventArgs_Interface'Class;
    type IRightTappedEventArgs_Ptr is access all IRightTappedEventArgs;
 
    type IRightTappedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRightTappedEventArgs2 is access all IRightTappedEventArgs2_Interface'Class;
+   type IRightTappedEventArgs2 is access IRightTappedEventArgs2_Interface'Class;
 
    type ISystemButtonEventController_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemButtonEventController is access all ISystemButtonEventController_Interface'Class;
+   type ISystemButtonEventController is access ISystemButtonEventController_Interface'Class;
    type ISystemButtonEventController_Ptr is access all ISystemButtonEventController;
 
    type ISystemButtonEventControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemButtonEventControllerStatics is access all ISystemButtonEventControllerStatics_Interface'Class;
+   type ISystemButtonEventControllerStatics is access ISystemButtonEventControllerStatics_Interface'Class;
 
    type ISystemFunctionButtonEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemFunctionButtonEventArgs is access all ISystemFunctionButtonEventArgs_Interface'Class;
+   type ISystemFunctionButtonEventArgs is access ISystemFunctionButtonEventArgs_Interface'Class;
    type ISystemFunctionButtonEventArgs_Ptr is access all ISystemFunctionButtonEventArgs;
 
    type ISystemFunctionLockChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemFunctionLockChangedEventArgs is access all ISystemFunctionLockChangedEventArgs_Interface'Class;
+   type ISystemFunctionLockChangedEventArgs is access ISystemFunctionLockChangedEventArgs_Interface'Class;
    type ISystemFunctionLockChangedEventArgs_Ptr is access all ISystemFunctionLockChangedEventArgs;
 
    type ISystemFunctionLockIndicatorChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemFunctionLockIndicatorChangedEventArgs is access all ISystemFunctionLockIndicatorChangedEventArgs_Interface'Class;
+   type ISystemFunctionLockIndicatorChangedEventArgs is access ISystemFunctionLockIndicatorChangedEventArgs_Interface'Class;
    type ISystemFunctionLockIndicatorChangedEventArgs_Ptr is access all ISystemFunctionLockIndicatorChangedEventArgs;
 
    type ITappedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ITappedEventArgs is access all ITappedEventArgs_Interface'Class;
+   type ITappedEventArgs is access ITappedEventArgs_Interface'Class;
    type ITappedEventArgs_Ptr is access all ITappedEventArgs;
 
    type ITappedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITappedEventArgs2 is access all ITappedEventArgs2_Interface'Class;
+   type ITappedEventArgs2 is access ITappedEventArgs2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

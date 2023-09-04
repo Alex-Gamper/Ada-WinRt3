@@ -45,110 +45,110 @@ package WinRt.Windows.Devices.Display.Core is
    -----------------------------------------------------------------------------
 
    type IDisplayAdapter_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayAdapter is access all IDisplayAdapter_Interface'Class;
+   type IDisplayAdapter is access IDisplayAdapter_Interface'Class;
    type IDisplayAdapter_Ptr is access all IDisplayAdapter;
 
    type IDisplayAdapterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayAdapterStatics is access all IDisplayAdapterStatics_Interface'Class;
+   type IDisplayAdapterStatics is access IDisplayAdapterStatics_Interface'Class;
 
    type IDisplayDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayDevice is access all IDisplayDevice_Interface'Class;
+   type IDisplayDevice is access IDisplayDevice_Interface'Class;
    type IDisplayDevice_Ptr is access all IDisplayDevice;
 
    type IDisplayFence_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayFence is access all IDisplayFence_Interface'Class;
+   type IDisplayFence is access IDisplayFence_Interface'Class;
    type IDisplayFence_Ptr is access all IDisplayFence;
 
    type IDisplayManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayManager is access all IDisplayManager_Interface'Class;
+   type IDisplayManager is access IDisplayManager_Interface'Class;
    type IDisplayManager_Ptr is access all IDisplayManager;
 
    type IDisplayManagerChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayManagerChangedEventArgs is access all IDisplayManagerChangedEventArgs_Interface'Class;
+   type IDisplayManagerChangedEventArgs is access IDisplayManagerChangedEventArgs_Interface'Class;
    type IDisplayManagerChangedEventArgs_Ptr is access all IDisplayManagerChangedEventArgs;
 
    type IDisplayManagerDisabledEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayManagerDisabledEventArgs is access all IDisplayManagerDisabledEventArgs_Interface'Class;
+   type IDisplayManagerDisabledEventArgs is access IDisplayManagerDisabledEventArgs_Interface'Class;
    type IDisplayManagerDisabledEventArgs_Ptr is access all IDisplayManagerDisabledEventArgs;
 
    type IDisplayManagerEnabledEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayManagerEnabledEventArgs is access all IDisplayManagerEnabledEventArgs_Interface'Class;
+   type IDisplayManagerEnabledEventArgs is access IDisplayManagerEnabledEventArgs_Interface'Class;
    type IDisplayManagerEnabledEventArgs_Ptr is access all IDisplayManagerEnabledEventArgs;
 
    type IDisplayManagerPathsFailedOrInvalidatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayManagerPathsFailedOrInvalidatedEventArgs is access all IDisplayManagerPathsFailedOrInvalidatedEventArgs_Interface'Class;
+   type IDisplayManagerPathsFailedOrInvalidatedEventArgs is access IDisplayManagerPathsFailedOrInvalidatedEventArgs_Interface'Class;
    type IDisplayManagerPathsFailedOrInvalidatedEventArgs_Ptr is access all IDisplayManagerPathsFailedOrInvalidatedEventArgs;
 
    type IDisplayManagerResultWithState_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayManagerResultWithState is access all IDisplayManagerResultWithState_Interface'Class;
+   type IDisplayManagerResultWithState is access IDisplayManagerResultWithState_Interface'Class;
    type IDisplayManagerResultWithState_Ptr is access all IDisplayManagerResultWithState;
 
    type IDisplayManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayManagerStatics is access all IDisplayManagerStatics_Interface'Class;
+   type IDisplayManagerStatics is access IDisplayManagerStatics_Interface'Class;
 
    type IDisplayModeInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayModeInfo is access all IDisplayModeInfo_Interface'Class;
+   type IDisplayModeInfo is access IDisplayModeInfo_Interface'Class;
    type IDisplayModeInfo_Ptr is access all IDisplayModeInfo;
 
    type IDisplayPath_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayPath is access all IDisplayPath_Interface'Class;
+   type IDisplayPath is access IDisplayPath_Interface'Class;
    type IDisplayPath_Ptr is access all IDisplayPath;
 
    type IDisplayPrimaryDescription_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayPrimaryDescription is access all IDisplayPrimaryDescription_Interface'Class;
+   type IDisplayPrimaryDescription is access IDisplayPrimaryDescription_Interface'Class;
    type IDisplayPrimaryDescription_Ptr is access all IDisplayPrimaryDescription;
 
    type IDisplayPrimaryDescriptionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayPrimaryDescriptionFactory is access all IDisplayPrimaryDescriptionFactory_Interface'Class;
+   type IDisplayPrimaryDescriptionFactory is access IDisplayPrimaryDescriptionFactory_Interface'Class;
 
    type IDisplayPrimaryDescriptionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayPrimaryDescriptionStatics is access all IDisplayPrimaryDescriptionStatics_Interface'Class;
+   type IDisplayPrimaryDescriptionStatics is access IDisplayPrimaryDescriptionStatics_Interface'Class;
 
    type IDisplayScanout_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayScanout is access all IDisplayScanout_Interface'Class;
+   type IDisplayScanout is access IDisplayScanout_Interface'Class;
    type IDisplayScanout_Ptr is access all IDisplayScanout;
 
    type IDisplaySource_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplaySource is access all IDisplaySource_Interface'Class;
+   type IDisplaySource is access IDisplaySource_Interface'Class;
    type IDisplaySource_Ptr is access all IDisplaySource;
 
    type IDisplayState_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayState is access all IDisplayState_Interface'Class;
+   type IDisplayState is access IDisplayState_Interface'Class;
    type IDisplayState_Ptr is access all IDisplayState;
 
    type IDisplayStateOperationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayStateOperationResult is access all IDisplayStateOperationResult_Interface'Class;
+   type IDisplayStateOperationResult is access IDisplayStateOperationResult_Interface'Class;
    type IDisplayStateOperationResult_Ptr is access all IDisplayStateOperationResult;
 
    type IDisplaySurface_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplaySurface is access all IDisplaySurface_Interface'Class;
+   type IDisplaySurface is access IDisplaySurface_Interface'Class;
    type IDisplaySurface_Ptr is access all IDisplaySurface;
 
    type IDisplayTarget_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayTarget is access all IDisplayTarget_Interface'Class;
+   type IDisplayTarget is access IDisplayTarget_Interface'Class;
    type IDisplayTarget_Ptr is access all IDisplayTarget;
 
    type IDisplayTask_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayTask is access all IDisplayTask_Interface'Class;
+   type IDisplayTask is access IDisplayTask_Interface'Class;
    type IDisplayTask_Ptr is access all IDisplayTask;
 
    type IDisplayTaskPool_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayTaskPool is access all IDisplayTaskPool_Interface'Class;
+   type IDisplayTaskPool is access IDisplayTaskPool_Interface'Class;
    type IDisplayTaskPool_Ptr is access all IDisplayTaskPool;
 
    type IDisplayView_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayView is access all IDisplayView_Interface'Class;
+   type IDisplayView is access IDisplayView_Interface'Class;
    type IDisplayView_Ptr is access all IDisplayView;
 
    type IDisplayWireFormat_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayWireFormat is access all IDisplayWireFormat_Interface'Class;
+   type IDisplayWireFormat is access IDisplayWireFormat_Interface'Class;
    type IDisplayWireFormat_Ptr is access all IDisplayWireFormat;
 
    type IDisplayWireFormatFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayWireFormatFactory is access all IDisplayWireFormatFactory_Interface'Class;
+   type IDisplayWireFormatFactory is access IDisplayWireFormatFactory_Interface'Class;
 
    type IDisplayWireFormatStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayWireFormatStatics is access all IDisplayWireFormatStatics_Interface'Class;
+   type IDisplayWireFormatStatics is access IDisplayWireFormatStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

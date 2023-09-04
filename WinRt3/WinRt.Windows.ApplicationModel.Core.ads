@@ -43,78 +43,78 @@ package WinRt.Windows.ApplicationModel.Core is
    -----------------------------------------------------------------------------
 
    type IAppListEntry_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppListEntry is access all IAppListEntry_Interface'Class;
+   type IAppListEntry is access IAppListEntry_Interface'Class;
    type IAppListEntry_Ptr is access all IAppListEntry;
 
    type IAppListEntry2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppListEntry2 is access all IAppListEntry2_Interface'Class;
+   type IAppListEntry2 is access IAppListEntry2_Interface'Class;
 
    type IAppListEntry3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppListEntry3 is access all IAppListEntry3_Interface'Class;
+   type IAppListEntry3 is access IAppListEntry3_Interface'Class;
 
    type ICoreApplication_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreApplication is access all ICoreApplication_Interface'Class;
+   type ICoreApplication is access ICoreApplication_Interface'Class;
 
    type ICoreApplication2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreApplication2 is access all ICoreApplication2_Interface'Class;
+   type ICoreApplication2 is access ICoreApplication2_Interface'Class;
 
    type ICoreApplication3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreApplication3 is access all ICoreApplication3_Interface'Class;
+   type ICoreApplication3 is access ICoreApplication3_Interface'Class;
 
    type ICoreApplicationExit_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreApplicationExit is access all ICoreApplicationExit_Interface'Class;
+   type ICoreApplicationExit is access ICoreApplicationExit_Interface'Class;
 
    type ICoreApplicationUnhandledError_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreApplicationUnhandledError is access all ICoreApplicationUnhandledError_Interface'Class;
+   type ICoreApplicationUnhandledError is access ICoreApplicationUnhandledError_Interface'Class;
 
    type ICoreApplicationUseCount_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreApplicationUseCount is access all ICoreApplicationUseCount_Interface'Class;
+   type ICoreApplicationUseCount is access ICoreApplicationUseCount_Interface'Class;
 
    type ICoreApplicationView_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreApplicationView is access all ICoreApplicationView_Interface'Class;
+   type ICoreApplicationView is access ICoreApplicationView_Interface'Class;
    type ICoreApplicationView_Ptr is access all ICoreApplicationView;
 
    type ICoreApplicationView2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreApplicationView2 is access all ICoreApplicationView2_Interface'Class;
+   type ICoreApplicationView2 is access ICoreApplicationView2_Interface'Class;
 
    type ICoreApplicationView3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreApplicationView3 is access all ICoreApplicationView3_Interface'Class;
+   type ICoreApplicationView3 is access ICoreApplicationView3_Interface'Class;
 
    type ICoreApplicationView5_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreApplicationView5 is access all ICoreApplicationView5_Interface'Class;
+   type ICoreApplicationView5 is access ICoreApplicationView5_Interface'Class;
 
    type ICoreApplicationView6_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreApplicationView6 is access all ICoreApplicationView6_Interface'Class;
+   type ICoreApplicationView6 is access ICoreApplicationView6_Interface'Class;
 
    type ICoreApplicationViewTitleBar_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreApplicationViewTitleBar is access all ICoreApplicationViewTitleBar_Interface'Class;
+   type ICoreApplicationViewTitleBar is access ICoreApplicationViewTitleBar_Interface'Class;
    type ICoreApplicationViewTitleBar_Ptr is access all ICoreApplicationViewTitleBar;
 
    type ICoreImmersiveApplication_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreImmersiveApplication is access all ICoreImmersiveApplication_Interface'Class;
+   type ICoreImmersiveApplication is access ICoreImmersiveApplication_Interface'Class;
 
    type ICoreImmersiveApplication2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreImmersiveApplication2 is access all ICoreImmersiveApplication2_Interface'Class;
+   type ICoreImmersiveApplication2 is access ICoreImmersiveApplication2_Interface'Class;
 
    type ICoreImmersiveApplication3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreImmersiveApplication3 is access all ICoreImmersiveApplication3_Interface'Class;
+   type ICoreImmersiveApplication3 is access ICoreImmersiveApplication3_Interface'Class;
 
    type IFrameworkView_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameworkView is access all IFrameworkView_Interface'Class;
+   type IFrameworkView is access IFrameworkView_Interface'Class;
 
    type IFrameworkViewSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameworkViewSource is access all IFrameworkViewSource_Interface'Class;
+   type IFrameworkViewSource is access IFrameworkViewSource_Interface'Class;
 
    type IHostedViewClosingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IHostedViewClosingEventArgs is access all IHostedViewClosingEventArgs_Interface'Class;
+   type IHostedViewClosingEventArgs is access IHostedViewClosingEventArgs_Interface'Class;
    type IHostedViewClosingEventArgs_Ptr is access all IHostedViewClosingEventArgs;
 
    type IUnhandledError_Interface is interface and WinRt.IInspectable_Interface;
-   type IUnhandledError is access all IUnhandledError_Interface'Class;
+   type IUnhandledError is access IUnhandledError_Interface'Class;
    type IUnhandledError_Ptr is access all IUnhandledError;
 
    type IUnhandledErrorDetectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUnhandledErrorDetectedEventArgs is access all IUnhandledErrorDetectedEventArgs_Interface'Class;
+   type IUnhandledErrorDetectedEventArgs is access IUnhandledErrorDetectedEventArgs_Interface'Class;
    type IUnhandledErrorDetectedEventArgs_Ptr is access all IUnhandledErrorDetectedEventArgs;
 
    -----------------------------------------------------------------------------

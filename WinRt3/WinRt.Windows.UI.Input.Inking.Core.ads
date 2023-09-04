@@ -43,33 +43,33 @@ package WinRt.Windows.UI.Input.Inking.Core is
    -----------------------------------------------------------------------------
 
    type ICoreIncrementalInkStroke_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreIncrementalInkStroke is access all ICoreIncrementalInkStroke_Interface'Class;
+   type ICoreIncrementalInkStroke is access ICoreIncrementalInkStroke_Interface'Class;
    type ICoreIncrementalInkStroke_Ptr is access all ICoreIncrementalInkStroke;
 
    type ICoreIncrementalInkStrokeFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreIncrementalInkStrokeFactory is access all ICoreIncrementalInkStrokeFactory_Interface'Class;
+   type ICoreIncrementalInkStrokeFactory is access ICoreIncrementalInkStrokeFactory_Interface'Class;
 
    type ICoreInkIndependentInputSource_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreInkIndependentInputSource is access all ICoreInkIndependentInputSource_Interface'Class;
+   type ICoreInkIndependentInputSource is access ICoreInkIndependentInputSource_Interface'Class;
    type ICoreInkIndependentInputSource_Ptr is access all ICoreInkIndependentInputSource;
 
    type ICoreInkIndependentInputSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreInkIndependentInputSourceStatics is access all ICoreInkIndependentInputSourceStatics_Interface'Class;
+   type ICoreInkIndependentInputSourceStatics is access ICoreInkIndependentInputSourceStatics_Interface'Class;
 
    type ICoreInkPresenterHost_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreInkPresenterHost is access all ICoreInkPresenterHost_Interface'Class;
+   type ICoreInkPresenterHost is access ICoreInkPresenterHost_Interface'Class;
    type ICoreInkPresenterHost_Ptr is access all ICoreInkPresenterHost;
 
    type ICoreWetStrokeUpdateEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWetStrokeUpdateEventArgs is access all ICoreWetStrokeUpdateEventArgs_Interface'Class;
+   type ICoreWetStrokeUpdateEventArgs is access ICoreWetStrokeUpdateEventArgs_Interface'Class;
    type ICoreWetStrokeUpdateEventArgs_Ptr is access all ICoreWetStrokeUpdateEventArgs;
 
    type ICoreWetStrokeUpdateSource_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWetStrokeUpdateSource is access all ICoreWetStrokeUpdateSource_Interface'Class;
+   type ICoreWetStrokeUpdateSource is access ICoreWetStrokeUpdateSource_Interface'Class;
    type ICoreWetStrokeUpdateSource_Ptr is access all ICoreWetStrokeUpdateSource;
 
    type ICoreWetStrokeUpdateSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWetStrokeUpdateSourceStatics is access all ICoreWetStrokeUpdateSourceStatics_Interface'Class;
+   type ICoreWetStrokeUpdateSourceStatics is access ICoreWetStrokeUpdateSourceStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

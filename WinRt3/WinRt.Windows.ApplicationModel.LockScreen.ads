@@ -41,26 +41,26 @@ package WinRt.Windows.ApplicationModel.LockScreen is
    -----------------------------------------------------------------------------
 
    type ILockApplicationHost_Interface is interface and WinRt.IInspectable_Interface;
-   type ILockApplicationHost is access all ILockApplicationHost_Interface'Class;
+   type ILockApplicationHost is access ILockApplicationHost_Interface'Class;
    type ILockApplicationHost_Ptr is access all ILockApplicationHost;
 
    type ILockApplicationHostStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILockApplicationHostStatics is access all ILockApplicationHostStatics_Interface'Class;
+   type ILockApplicationHostStatics is access ILockApplicationHostStatics_Interface'Class;
 
    type ILockScreenBadge_Interface is interface and WinRt.IInspectable_Interface;
-   type ILockScreenBadge is access all ILockScreenBadge_Interface'Class;
+   type ILockScreenBadge is access ILockScreenBadge_Interface'Class;
    type ILockScreenBadge_Ptr is access all ILockScreenBadge;
 
    type ILockScreenInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ILockScreenInfo is access all ILockScreenInfo_Interface'Class;
+   type ILockScreenInfo is access ILockScreenInfo_Interface'Class;
    type ILockScreenInfo_Ptr is access all ILockScreenInfo;
 
    type ILockScreenUnlockingDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type ILockScreenUnlockingDeferral is access all ILockScreenUnlockingDeferral_Interface'Class;
+   type ILockScreenUnlockingDeferral is access ILockScreenUnlockingDeferral_Interface'Class;
    type ILockScreenUnlockingDeferral_Ptr is access all ILockScreenUnlockingDeferral;
 
    type ILockScreenUnlockingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ILockScreenUnlockingEventArgs is access all ILockScreenUnlockingEventArgs_Interface'Class;
+   type ILockScreenUnlockingEventArgs is access ILockScreenUnlockingEventArgs_Interface'Class;
    type ILockScreenUnlockingEventArgs_Ptr is access all ILockScreenUnlockingEventArgs;
 
    -----------------------------------------------------------------------------

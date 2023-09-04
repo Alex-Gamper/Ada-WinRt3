@@ -39,11 +39,11 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
    -----------------------------------------------------------------------------
 
    type IExtendedExecutionForegroundRevokedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IExtendedExecutionForegroundRevokedEventArgs is access all IExtendedExecutionForegroundRevokedEventArgs_Interface'Class;
+   type IExtendedExecutionForegroundRevokedEventArgs is access IExtendedExecutionForegroundRevokedEventArgs_Interface'Class;
    type IExtendedExecutionForegroundRevokedEventArgs_Ptr is access all IExtendedExecutionForegroundRevokedEventArgs;
 
    type IExtendedExecutionForegroundSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IExtendedExecutionForegroundSession is access all IExtendedExecutionForegroundSession_Interface'Class;
+   type IExtendedExecutionForegroundSession is access IExtendedExecutionForegroundSession_Interface'Class;
    type IExtendedExecutionForegroundSession_Ptr is access all IExtendedExecutionForegroundSession;
 
    -----------------------------------------------------------------------------

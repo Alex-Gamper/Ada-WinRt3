@@ -41,14 +41,14 @@ package WinRt.Windows.UI.Input.Core is
    -----------------------------------------------------------------------------
 
    type IRadialControllerIndependentInputSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerIndependentInputSource is access all IRadialControllerIndependentInputSource_Interface'Class;
+   type IRadialControllerIndependentInputSource is access IRadialControllerIndependentInputSource_Interface'Class;
    type IRadialControllerIndependentInputSource_Ptr is access all IRadialControllerIndependentInputSource;
 
    type IRadialControllerIndependentInputSource2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerIndependentInputSource2 is access all IRadialControllerIndependentInputSource2_Interface'Class;
+   type IRadialControllerIndependentInputSource2 is access IRadialControllerIndependentInputSource2_Interface'Class;
 
    type IRadialControllerIndependentInputSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadialControllerIndependentInputSourceStatics is access all IRadialControllerIndependentInputSourceStatics_Interface'Class;
+   type IRadialControllerIndependentInputSourceStatics is access IRadialControllerIndependentInputSourceStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

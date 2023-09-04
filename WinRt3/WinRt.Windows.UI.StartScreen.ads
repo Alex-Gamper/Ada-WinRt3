@@ -44,75 +44,75 @@ package WinRt.Windows.UI.StartScreen is
    -----------------------------------------------------------------------------
 
    type IJumpList_Interface is interface and WinRt.IInspectable_Interface;
-   type IJumpList is access all IJumpList_Interface'Class;
+   type IJumpList is access IJumpList_Interface'Class;
    type IJumpList_Ptr is access all IJumpList;
 
    type IJumpListItem_Interface is interface and WinRt.IInspectable_Interface;
-   type IJumpListItem is access all IJumpListItem_Interface'Class;
+   type IJumpListItem is access IJumpListItem_Interface'Class;
    type IJumpListItem_Ptr is access all IJumpListItem;
 
    type IJumpListItemStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IJumpListItemStatics is access all IJumpListItemStatics_Interface'Class;
+   type IJumpListItemStatics is access IJumpListItemStatics_Interface'Class;
 
    type IJumpListStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IJumpListStatics is access all IJumpListStatics_Interface'Class;
+   type IJumpListStatics is access IJumpListStatics_Interface'Class;
 
    type ISecondaryTile_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryTile is access all ISecondaryTile_Interface'Class;
+   type ISecondaryTile is access ISecondaryTile_Interface'Class;
    type ISecondaryTile_Ptr is access all ISecondaryTile;
 
    type ISecondaryTile2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryTile2 is access all ISecondaryTile2_Interface'Class;
+   type ISecondaryTile2 is access ISecondaryTile2_Interface'Class;
 
    type ISecondaryTileFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryTileFactory is access all ISecondaryTileFactory_Interface'Class;
+   type ISecondaryTileFactory is access ISecondaryTileFactory_Interface'Class;
 
    type ISecondaryTileFactory2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryTileFactory2 is access all ISecondaryTileFactory2_Interface'Class;
+   type ISecondaryTileFactory2 is access ISecondaryTileFactory2_Interface'Class;
 
    type ISecondaryTileStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryTileStatics is access all ISecondaryTileStatics_Interface'Class;
+   type ISecondaryTileStatics is access ISecondaryTileStatics_Interface'Class;
 
    type ISecondaryTileVisualElements_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryTileVisualElements is access all ISecondaryTileVisualElements_Interface'Class;
+   type ISecondaryTileVisualElements is access ISecondaryTileVisualElements_Interface'Class;
    type ISecondaryTileVisualElements_Ptr is access all ISecondaryTileVisualElements;
 
    type ISecondaryTileVisualElements2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryTileVisualElements2 is access all ISecondaryTileVisualElements2_Interface'Class;
+   type ISecondaryTileVisualElements2 is access ISecondaryTileVisualElements2_Interface'Class;
 
    type ISecondaryTileVisualElements3_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryTileVisualElements3 is access all ISecondaryTileVisualElements3_Interface'Class;
+   type ISecondaryTileVisualElements3 is access ISecondaryTileVisualElements3_Interface'Class;
 
    type ISecondaryTileVisualElements4_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryTileVisualElements4 is access all ISecondaryTileVisualElements4_Interface'Class;
+   type ISecondaryTileVisualElements4 is access ISecondaryTileVisualElements4_Interface'Class;
 
    type IStartScreenManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IStartScreenManager is access all IStartScreenManager_Interface'Class;
+   type IStartScreenManager is access IStartScreenManager_Interface'Class;
    type IStartScreenManager_Ptr is access all IStartScreenManager;
 
    type IStartScreenManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStartScreenManager2 is access all IStartScreenManager2_Interface'Class;
+   type IStartScreenManager2 is access IStartScreenManager2_Interface'Class;
 
    type IStartScreenManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStartScreenManagerStatics is access all IStartScreenManagerStatics_Interface'Class;
+   type IStartScreenManagerStatics is access IStartScreenManagerStatics_Interface'Class;
 
    type ITileMixedRealityModel_Interface is interface and WinRt.IInspectable_Interface;
-   type ITileMixedRealityModel is access all ITileMixedRealityModel_Interface'Class;
+   type ITileMixedRealityModel is access ITileMixedRealityModel_Interface'Class;
    type ITileMixedRealityModel_Ptr is access all ITileMixedRealityModel;
 
    type ITileMixedRealityModel2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITileMixedRealityModel2 is access all ITileMixedRealityModel2_Interface'Class;
+   type ITileMixedRealityModel2 is access ITileMixedRealityModel2_Interface'Class;
 
    type IVisualElementsRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IVisualElementsRequest is access all IVisualElementsRequest_Interface'Class;
+   type IVisualElementsRequest is access IVisualElementsRequest_Interface'Class;
    type IVisualElementsRequest_Ptr is access all IVisualElementsRequest;
 
    type IVisualElementsRequestDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IVisualElementsRequestDeferral is access all IVisualElementsRequestDeferral_Interface'Class;
+   type IVisualElementsRequestDeferral is access IVisualElementsRequestDeferral_Interface'Class;
    type IVisualElementsRequestDeferral_Ptr is access all IVisualElementsRequestDeferral;
 
    type IVisualElementsRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IVisualElementsRequestedEventArgs is access all IVisualElementsRequestedEventArgs_Interface'Class;
+   type IVisualElementsRequestedEventArgs is access IVisualElementsRequestedEventArgs_Interface'Class;
    type IVisualElementsRequestedEventArgs_Ptr is access all IVisualElementsRequestedEventArgs;
 
    -----------------------------------------------------------------------------

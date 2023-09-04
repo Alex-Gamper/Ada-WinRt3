@@ -46,134 +46,134 @@ package WinRt.Windows.Media is
    -----------------------------------------------------------------------------
 
    type IAudioBuffer_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioBuffer is access all IAudioBuffer_Interface'Class;
+   type IAudioBuffer is access IAudioBuffer_Interface'Class;
    type IAudioBuffer_Ptr is access all IAudioBuffer;
 
    type IAudioFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioFrame is access all IAudioFrame_Interface'Class;
+   type IAudioFrame is access IAudioFrame_Interface'Class;
    type IAudioFrame_Ptr is access all IAudioFrame;
 
    type IAudioFrameFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioFrameFactory is access all IAudioFrameFactory_Interface'Class;
+   type IAudioFrameFactory is access IAudioFrameFactory_Interface'Class;
 
    type IAutoRepeatModeChangeRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutoRepeatModeChangeRequestedEventArgs is access all IAutoRepeatModeChangeRequestedEventArgs_Interface'Class;
+   type IAutoRepeatModeChangeRequestedEventArgs is access IAutoRepeatModeChangeRequestedEventArgs_Interface'Class;
    type IAutoRepeatModeChangeRequestedEventArgs_Ptr is access all IAutoRepeatModeChangeRequestedEventArgs;
 
    type IImageDisplayProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageDisplayProperties is access all IImageDisplayProperties_Interface'Class;
+   type IImageDisplayProperties is access IImageDisplayProperties_Interface'Class;
    type IImageDisplayProperties_Ptr is access all IImageDisplayProperties;
 
    type IMediaControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaControl is access all IMediaControl_Interface'Class;
+   type IMediaControl is access IMediaControl_Interface'Class;
 
    type IMediaExtension_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaExtension is access all IMediaExtension_Interface'Class;
+   type IMediaExtension is access IMediaExtension_Interface'Class;
 
    type IMediaExtensionManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaExtensionManager is access all IMediaExtensionManager_Interface'Class;
+   type IMediaExtensionManager is access IMediaExtensionManager_Interface'Class;
    type IMediaExtensionManager_Ptr is access all IMediaExtensionManager;
 
    type IMediaExtensionManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaExtensionManager2 is access all IMediaExtensionManager2_Interface'Class;
+   type IMediaExtensionManager2 is access IMediaExtensionManager2_Interface'Class;
 
    type IMediaFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaFrame is access all IMediaFrame_Interface'Class;
+   type IMediaFrame is access IMediaFrame_Interface'Class;
 
    type IMediaMarker_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaMarker is access all IMediaMarker_Interface'Class;
+   type IMediaMarker is access IMediaMarker_Interface'Class;
 
    type IMediaMarkerTypesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaMarkerTypesStatics is access all IMediaMarkerTypesStatics_Interface'Class;
+   type IMediaMarkerTypesStatics is access IMediaMarkerTypesStatics_Interface'Class;
 
    type IMediaMarkers_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaMarkers is access all IMediaMarkers_Interface'Class;
+   type IMediaMarkers is access IMediaMarkers_Interface'Class;
 
    type IMediaProcessingTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaProcessingTriggerDetails is access all IMediaProcessingTriggerDetails_Interface'Class;
+   type IMediaProcessingTriggerDetails is access IMediaProcessingTriggerDetails_Interface'Class;
    type IMediaProcessingTriggerDetails_Ptr is access all IMediaProcessingTriggerDetails;
 
    type IMediaTimelineController_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaTimelineController is access all IMediaTimelineController_Interface'Class;
+   type IMediaTimelineController is access IMediaTimelineController_Interface'Class;
    type IMediaTimelineController_Ptr is access all IMediaTimelineController;
 
    type IMediaTimelineController2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaTimelineController2 is access all IMediaTimelineController2_Interface'Class;
+   type IMediaTimelineController2 is access IMediaTimelineController2_Interface'Class;
 
    type IMediaTimelineControllerFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaTimelineControllerFailedEventArgs is access all IMediaTimelineControllerFailedEventArgs_Interface'Class;
+   type IMediaTimelineControllerFailedEventArgs is access IMediaTimelineControllerFailedEventArgs_Interface'Class;
    type IMediaTimelineControllerFailedEventArgs_Ptr is access all IMediaTimelineControllerFailedEventArgs;
 
    type IMusicDisplayProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IMusicDisplayProperties is access all IMusicDisplayProperties_Interface'Class;
+   type IMusicDisplayProperties is access IMusicDisplayProperties_Interface'Class;
    type IMusicDisplayProperties_Ptr is access all IMusicDisplayProperties;
 
    type IMusicDisplayProperties2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMusicDisplayProperties2 is access all IMusicDisplayProperties2_Interface'Class;
+   type IMusicDisplayProperties2 is access IMusicDisplayProperties2_Interface'Class;
 
    type IMusicDisplayProperties3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMusicDisplayProperties3 is access all IMusicDisplayProperties3_Interface'Class;
+   type IMusicDisplayProperties3 is access IMusicDisplayProperties3_Interface'Class;
 
    type IPlaybackPositionChangeRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlaybackPositionChangeRequestedEventArgs is access all IPlaybackPositionChangeRequestedEventArgs_Interface'Class;
+   type IPlaybackPositionChangeRequestedEventArgs is access IPlaybackPositionChangeRequestedEventArgs_Interface'Class;
    type IPlaybackPositionChangeRequestedEventArgs_Ptr is access all IPlaybackPositionChangeRequestedEventArgs;
 
    type IPlaybackRateChangeRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlaybackRateChangeRequestedEventArgs is access all IPlaybackRateChangeRequestedEventArgs_Interface'Class;
+   type IPlaybackRateChangeRequestedEventArgs is access IPlaybackRateChangeRequestedEventArgs_Interface'Class;
    type IPlaybackRateChangeRequestedEventArgs_Ptr is access all IPlaybackRateChangeRequestedEventArgs;
 
    type IShuffleEnabledChangeRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IShuffleEnabledChangeRequestedEventArgs is access all IShuffleEnabledChangeRequestedEventArgs_Interface'Class;
+   type IShuffleEnabledChangeRequestedEventArgs is access IShuffleEnabledChangeRequestedEventArgs_Interface'Class;
    type IShuffleEnabledChangeRequestedEventArgs_Ptr is access all IShuffleEnabledChangeRequestedEventArgs;
 
    type ISystemMediaTransportControls_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemMediaTransportControls is access all ISystemMediaTransportControls_Interface'Class;
+   type ISystemMediaTransportControls is access ISystemMediaTransportControls_Interface'Class;
    type ISystemMediaTransportControls_Ptr is access all ISystemMediaTransportControls;
 
    type ISystemMediaTransportControls2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemMediaTransportControls2 is access all ISystemMediaTransportControls2_Interface'Class;
+   type ISystemMediaTransportControls2 is access ISystemMediaTransportControls2_Interface'Class;
 
    type ISystemMediaTransportControlsButtonPressedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemMediaTransportControlsButtonPressedEventArgs is access all ISystemMediaTransportControlsButtonPressedEventArgs_Interface'Class;
+   type ISystemMediaTransportControlsButtonPressedEventArgs is access ISystemMediaTransportControlsButtonPressedEventArgs_Interface'Class;
    type ISystemMediaTransportControlsButtonPressedEventArgs_Ptr is access all ISystemMediaTransportControlsButtonPressedEventArgs;
 
    type ISystemMediaTransportControlsDisplayUpdater_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemMediaTransportControlsDisplayUpdater is access all ISystemMediaTransportControlsDisplayUpdater_Interface'Class;
+   type ISystemMediaTransportControlsDisplayUpdater is access ISystemMediaTransportControlsDisplayUpdater_Interface'Class;
    type ISystemMediaTransportControlsDisplayUpdater_Ptr is access all ISystemMediaTransportControlsDisplayUpdater;
 
    type ISystemMediaTransportControlsPropertyChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemMediaTransportControlsPropertyChangedEventArgs is access all ISystemMediaTransportControlsPropertyChangedEventArgs_Interface'Class;
+   type ISystemMediaTransportControlsPropertyChangedEventArgs is access ISystemMediaTransportControlsPropertyChangedEventArgs_Interface'Class;
    type ISystemMediaTransportControlsPropertyChangedEventArgs_Ptr is access all ISystemMediaTransportControlsPropertyChangedEventArgs;
 
    type ISystemMediaTransportControlsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemMediaTransportControlsStatics is access all ISystemMediaTransportControlsStatics_Interface'Class;
+   type ISystemMediaTransportControlsStatics is access ISystemMediaTransportControlsStatics_Interface'Class;
 
    type ISystemMediaTransportControlsTimelineProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemMediaTransportControlsTimelineProperties is access all ISystemMediaTransportControlsTimelineProperties_Interface'Class;
+   type ISystemMediaTransportControlsTimelineProperties is access ISystemMediaTransportControlsTimelineProperties_Interface'Class;
    type ISystemMediaTransportControlsTimelineProperties_Ptr is access all ISystemMediaTransportControlsTimelineProperties;
 
    type IVideoDisplayProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoDisplayProperties is access all IVideoDisplayProperties_Interface'Class;
+   type IVideoDisplayProperties is access IVideoDisplayProperties_Interface'Class;
    type IVideoDisplayProperties_Ptr is access all IVideoDisplayProperties;
 
    type IVideoDisplayProperties2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoDisplayProperties2 is access all IVideoDisplayProperties2_Interface'Class;
+   type IVideoDisplayProperties2 is access IVideoDisplayProperties2_Interface'Class;
 
    type IVideoEffectsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoEffectsStatics is access all IVideoEffectsStatics_Interface'Class;
+   type IVideoEffectsStatics is access IVideoEffectsStatics_Interface'Class;
 
    type IVideoFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoFrame is access all IVideoFrame_Interface'Class;
+   type IVideoFrame is access IVideoFrame_Interface'Class;
    type IVideoFrame_Ptr is access all IVideoFrame;
 
    type IVideoFrame2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoFrame2 is access all IVideoFrame2_Interface'Class;
+   type IVideoFrame2 is access IVideoFrame2_Interface'Class;
 
    type IVideoFrameFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoFrameFactory is access all IVideoFrameFactory_Interface'Class;
+   type IVideoFrameFactory is access IVideoFrameFactory_Interface'Class;
 
    type IVideoFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoFrameStatics is access all IVideoFrameStatics_Interface'Class;
+   type IVideoFrameStatics is access IVideoFrameStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

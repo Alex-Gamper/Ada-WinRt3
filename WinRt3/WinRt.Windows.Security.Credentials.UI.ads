@@ -40,18 +40,18 @@ package WinRt.Windows.Security.Credentials.UI is
    -----------------------------------------------------------------------------
 
    type ICredentialPickerOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type ICredentialPickerOptions is access all ICredentialPickerOptions_Interface'Class;
+   type ICredentialPickerOptions is access ICredentialPickerOptions_Interface'Class;
    type ICredentialPickerOptions_Ptr is access all ICredentialPickerOptions;
 
    type ICredentialPickerResults_Interface is interface and WinRt.IInspectable_Interface;
-   type ICredentialPickerResults is access all ICredentialPickerResults_Interface'Class;
+   type ICredentialPickerResults is access ICredentialPickerResults_Interface'Class;
    type ICredentialPickerResults_Ptr is access all ICredentialPickerResults;
 
    type ICredentialPickerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICredentialPickerStatics is access all ICredentialPickerStatics_Interface'Class;
+   type ICredentialPickerStatics is access ICredentialPickerStatics_Interface'Class;
 
    type IUserConsentVerifierStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserConsentVerifierStatics is access all IUserConsentVerifierStatics_Interface'Class;
+   type IUserConsentVerifierStatics is access IUserConsentVerifierStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

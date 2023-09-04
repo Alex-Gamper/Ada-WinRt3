@@ -44,80 +44,80 @@ package WinRt.Windows.ApplicationModel.UserActivities is
    -----------------------------------------------------------------------------
 
    type IUserActivity_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivity is access all IUserActivity_Interface'Class;
+   type IUserActivity is access IUserActivity_Interface'Class;
    type IUserActivity_Ptr is access all IUserActivity;
 
    type IUserActivity2_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivity2 is access all IUserActivity2_Interface'Class;
+   type IUserActivity2 is access IUserActivity2_Interface'Class;
 
    type IUserActivity3_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivity3 is access all IUserActivity3_Interface'Class;
+   type IUserActivity3 is access IUserActivity3_Interface'Class;
 
    type IUserActivityAttribution_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivityAttribution is access all IUserActivityAttribution_Interface'Class;
+   type IUserActivityAttribution is access IUserActivityAttribution_Interface'Class;
    type IUserActivityAttribution_Ptr is access all IUserActivityAttribution;
 
    type IUserActivityAttributionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivityAttributionFactory is access all IUserActivityAttributionFactory_Interface'Class;
+   type IUserActivityAttributionFactory is access IUserActivityAttributionFactory_Interface'Class;
 
    type IUserActivityChannel_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivityChannel is access all IUserActivityChannel_Interface'Class;
+   type IUserActivityChannel is access IUserActivityChannel_Interface'Class;
    type IUserActivityChannel_Ptr is access all IUserActivityChannel;
 
    type IUserActivityChannel2_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivityChannel2 is access all IUserActivityChannel2_Interface'Class;
+   type IUserActivityChannel2 is access IUserActivityChannel2_Interface'Class;
 
    type IUserActivityChannelStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivityChannelStatics is access all IUserActivityChannelStatics_Interface'Class;
+   type IUserActivityChannelStatics is access IUserActivityChannelStatics_Interface'Class;
 
    type IUserActivityChannelStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivityChannelStatics2 is access all IUserActivityChannelStatics2_Interface'Class;
+   type IUserActivityChannelStatics2 is access IUserActivityChannelStatics2_Interface'Class;
 
    type IUserActivityChannelStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivityChannelStatics3 is access all IUserActivityChannelStatics3_Interface'Class;
+   type IUserActivityChannelStatics3 is access IUserActivityChannelStatics3_Interface'Class;
 
    type IUserActivityContentInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivityContentInfo is access all IUserActivityContentInfo_Interface'Class;
+   type IUserActivityContentInfo is access IUserActivityContentInfo_Interface'Class;
    type IUserActivityContentInfo_Ptr is access all IUserActivityContentInfo;
 
    type IUserActivityContentInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivityContentInfoStatics is access all IUserActivityContentInfoStatics_Interface'Class;
+   type IUserActivityContentInfoStatics is access IUserActivityContentInfoStatics_Interface'Class;
 
    type IUserActivityFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivityFactory is access all IUserActivityFactory_Interface'Class;
+   type IUserActivityFactory is access IUserActivityFactory_Interface'Class;
 
    type IUserActivityRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivityRequest is access all IUserActivityRequest_Interface'Class;
+   type IUserActivityRequest is access IUserActivityRequest_Interface'Class;
    type IUserActivityRequest_Ptr is access all IUserActivityRequest;
 
    type IUserActivityRequestManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivityRequestManager is access all IUserActivityRequestManager_Interface'Class;
+   type IUserActivityRequestManager is access IUserActivityRequestManager_Interface'Class;
    type IUserActivityRequestManager_Ptr is access all IUserActivityRequestManager;
 
    type IUserActivityRequestManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivityRequestManagerStatics is access all IUserActivityRequestManagerStatics_Interface'Class;
+   type IUserActivityRequestManagerStatics is access IUserActivityRequestManagerStatics_Interface'Class;
 
    type IUserActivityRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivityRequestedEventArgs is access all IUserActivityRequestedEventArgs_Interface'Class;
+   type IUserActivityRequestedEventArgs is access IUserActivityRequestedEventArgs_Interface'Class;
    type IUserActivityRequestedEventArgs_Ptr is access all IUserActivityRequestedEventArgs;
 
    type IUserActivitySession_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivitySession is access all IUserActivitySession_Interface'Class;
+   type IUserActivitySession is access IUserActivitySession_Interface'Class;
    type IUserActivitySession_Ptr is access all IUserActivitySession;
 
    type IUserActivitySessionHistoryItem_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivitySessionHistoryItem is access all IUserActivitySessionHistoryItem_Interface'Class;
+   type IUserActivitySessionHistoryItem is access IUserActivitySessionHistoryItem_Interface'Class;
    type IUserActivitySessionHistoryItem_Ptr is access all IUserActivitySessionHistoryItem;
 
    type IUserActivityStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivityStatics is access all IUserActivityStatics_Interface'Class;
+   type IUserActivityStatics is access IUserActivityStatics_Interface'Class;
 
    type IUserActivityVisualElements_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivityVisualElements is access all IUserActivityVisualElements_Interface'Class;
+   type IUserActivityVisualElements is access IUserActivityVisualElements_Interface'Class;
    type IUserActivityVisualElements_Ptr is access all IUserActivityVisualElements;
 
    type IUserActivityVisualElements2_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserActivityVisualElements2 is access all IUserActivityVisualElements2_Interface'Class;
+   type IUserActivityVisualElements2 is access IUserActivityVisualElements2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

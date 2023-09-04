@@ -41,35 +41,35 @@ package WinRt.Windows.Devices.Gpio is
    -----------------------------------------------------------------------------
 
    type IGpioChangeCounter_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioChangeCounter is access all IGpioChangeCounter_Interface'Class;
+   type IGpioChangeCounter is access IGpioChangeCounter_Interface'Class;
    type IGpioChangeCounter_Ptr is access all IGpioChangeCounter;
 
    type IGpioChangeCounterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioChangeCounterFactory is access all IGpioChangeCounterFactory_Interface'Class;
+   type IGpioChangeCounterFactory is access IGpioChangeCounterFactory_Interface'Class;
 
    type IGpioChangeReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioChangeReader is access all IGpioChangeReader_Interface'Class;
+   type IGpioChangeReader is access IGpioChangeReader_Interface'Class;
    type IGpioChangeReader_Ptr is access all IGpioChangeReader;
 
    type IGpioChangeReaderFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioChangeReaderFactory is access all IGpioChangeReaderFactory_Interface'Class;
+   type IGpioChangeReaderFactory is access IGpioChangeReaderFactory_Interface'Class;
 
    type IGpioController_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioController is access all IGpioController_Interface'Class;
+   type IGpioController is access IGpioController_Interface'Class;
    type IGpioController_Ptr is access all IGpioController;
 
    type IGpioControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioControllerStatics is access all IGpioControllerStatics_Interface'Class;
+   type IGpioControllerStatics is access IGpioControllerStatics_Interface'Class;
 
    type IGpioControllerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioControllerStatics2 is access all IGpioControllerStatics2_Interface'Class;
+   type IGpioControllerStatics2 is access IGpioControllerStatics2_Interface'Class;
 
    type IGpioPin_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioPin is access all IGpioPin_Interface'Class;
+   type IGpioPin is access IGpioPin_Interface'Class;
    type IGpioPin_Ptr is access all IGpioPin;
 
    type IGpioPinValueChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioPinValueChangedEventArgs is access all IGpioPinValueChangedEventArgs_Interface'Class;
+   type IGpioPinValueChangedEventArgs is access IGpioPinValueChangedEventArgs_Interface'Class;
    type IGpioPinValueChangedEventArgs_Ptr is access all IGpioPinValueChangedEventArgs;
 
    -----------------------------------------------------------------------------

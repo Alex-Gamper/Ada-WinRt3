@@ -38,7 +38,7 @@ package WinRt.Windows.Graphics is
    -----------------------------------------------------------------------------
 
    type IGeometrySource2D_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeometrySource2D is access all IGeometrySource2D_Interface'Class;
+   type IGeometrySource2D is access IGeometrySource2D_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Record declarations

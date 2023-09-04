@@ -40,13 +40,13 @@ package WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
    -----------------------------------------------------------------------------
 
    type IGameService_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameService is access all IGameService_Interface'Class;
+   type IGameService is access IGameService_Interface'Class;
 
    type IGameService2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameService2 is access all IGameService2_Interface'Class;
+   type IGameService2 is access IGameService2_Interface'Class;
 
    type IGameServicePropertyCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameServicePropertyCollection is access all IGameServicePropertyCollection_Interface'Class;
+   type IGameServicePropertyCollection is access IGameServicePropertyCollection_Interface'Class;
    type IGameServicePropertyCollection_Ptr is access all IGameServicePropertyCollection;
 
    -----------------------------------------------------------------------------

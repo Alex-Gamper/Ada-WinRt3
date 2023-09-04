@@ -39,16 +39,16 @@ package WinRt.Windows.Devices.I2c.Provider is
    -----------------------------------------------------------------------------
 
    type II2cControllerProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type II2cControllerProvider is access all II2cControllerProvider_Interface'Class;
+   type II2cControllerProvider is access II2cControllerProvider_Interface'Class;
 
    type II2cDeviceProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type II2cDeviceProvider is access all II2cDeviceProvider_Interface'Class;
+   type II2cDeviceProvider is access II2cDeviceProvider_Interface'Class;
 
    type II2cProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type II2cProvider is access all II2cProvider_Interface'Class;
+   type II2cProvider is access II2cProvider_Interface'Class;
 
    type IProviderI2cConnectionSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IProviderI2cConnectionSettings is access all IProviderI2cConnectionSettings_Interface'Class;
+   type IProviderI2cConnectionSettings is access IProviderI2cConnectionSettings_Interface'Class;
    type IProviderI2cConnectionSettings_Ptr is access all IProviderI2cConnectionSettings;
 
    -----------------------------------------------------------------------------

@@ -41,25 +41,25 @@ package WinRt.Windows.Gaming.UI is
    -----------------------------------------------------------------------------
 
    type IGameBarStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameBarStatics is access all IGameBarStatics_Interface'Class;
+   type IGameBarStatics is access IGameBarStatics_Interface'Class;
 
    type IGameChatMessageReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameChatMessageReceivedEventArgs is access all IGameChatMessageReceivedEventArgs_Interface'Class;
+   type IGameChatMessageReceivedEventArgs is access IGameChatMessageReceivedEventArgs_Interface'Class;
    type IGameChatMessageReceivedEventArgs_Ptr is access all IGameChatMessageReceivedEventArgs;
 
    type IGameChatOverlay_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameChatOverlay is access all IGameChatOverlay_Interface'Class;
+   type IGameChatOverlay is access IGameChatOverlay_Interface'Class;
    type IGameChatOverlay_Ptr is access all IGameChatOverlay;
 
    type IGameChatOverlayMessageSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameChatOverlayMessageSource is access all IGameChatOverlayMessageSource_Interface'Class;
+   type IGameChatOverlayMessageSource is access IGameChatOverlayMessageSource_Interface'Class;
    type IGameChatOverlayMessageSource_Ptr is access all IGameChatOverlayMessageSource;
 
    type IGameChatOverlayStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameChatOverlayStatics is access all IGameChatOverlayStatics_Interface'Class;
+   type IGameChatOverlayStatics is access IGameChatOverlayStatics_Interface'Class;
 
    type IGameUIProviderActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameUIProviderActivatedEventArgs is access all IGameUIProviderActivatedEventArgs_Interface'Class;
+   type IGameUIProviderActivatedEventArgs is access IGameUIProviderActivatedEventArgs_Interface'Class;
    type IGameUIProviderActivatedEventArgs_Ptr is access all IGameUIProviderActivatedEventArgs;
 
    -----------------------------------------------------------------------------

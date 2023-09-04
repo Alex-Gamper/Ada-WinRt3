@@ -41,131 +41,131 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    -----------------------------------------------------------------------------
 
    type IEmailDataProviderConnection_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailDataProviderConnection is access all IEmailDataProviderConnection_Interface'Class;
+   type IEmailDataProviderConnection is access IEmailDataProviderConnection_Interface'Class;
    type IEmailDataProviderConnection_Ptr is access all IEmailDataProviderConnection;
 
    type IEmailDataProviderTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailDataProviderTriggerDetails is access all IEmailDataProviderTriggerDetails_Interface'Class;
+   type IEmailDataProviderTriggerDetails is access IEmailDataProviderTriggerDetails_Interface'Class;
    type IEmailDataProviderTriggerDetails_Ptr is access all IEmailDataProviderTriggerDetails;
 
    type IEmailMailboxCreateFolderRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxCreateFolderRequest is access all IEmailMailboxCreateFolderRequest_Interface'Class;
+   type IEmailMailboxCreateFolderRequest is access IEmailMailboxCreateFolderRequest_Interface'Class;
    type IEmailMailboxCreateFolderRequest_Ptr is access all IEmailMailboxCreateFolderRequest;
 
    type IEmailMailboxCreateFolderRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxCreateFolderRequestEventArgs is access all IEmailMailboxCreateFolderRequestEventArgs_Interface'Class;
+   type IEmailMailboxCreateFolderRequestEventArgs is access IEmailMailboxCreateFolderRequestEventArgs_Interface'Class;
    type IEmailMailboxCreateFolderRequestEventArgs_Ptr is access all IEmailMailboxCreateFolderRequestEventArgs;
 
    type IEmailMailboxDeleteFolderRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxDeleteFolderRequest is access all IEmailMailboxDeleteFolderRequest_Interface'Class;
+   type IEmailMailboxDeleteFolderRequest is access IEmailMailboxDeleteFolderRequest_Interface'Class;
    type IEmailMailboxDeleteFolderRequest_Ptr is access all IEmailMailboxDeleteFolderRequest;
 
    type IEmailMailboxDeleteFolderRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxDeleteFolderRequestEventArgs is access all IEmailMailboxDeleteFolderRequestEventArgs_Interface'Class;
+   type IEmailMailboxDeleteFolderRequestEventArgs is access IEmailMailboxDeleteFolderRequestEventArgs_Interface'Class;
    type IEmailMailboxDeleteFolderRequestEventArgs_Ptr is access all IEmailMailboxDeleteFolderRequestEventArgs;
 
    type IEmailMailboxDownloadAttachmentRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxDownloadAttachmentRequest is access all IEmailMailboxDownloadAttachmentRequest_Interface'Class;
+   type IEmailMailboxDownloadAttachmentRequest is access IEmailMailboxDownloadAttachmentRequest_Interface'Class;
    type IEmailMailboxDownloadAttachmentRequest_Ptr is access all IEmailMailboxDownloadAttachmentRequest;
 
    type IEmailMailboxDownloadAttachmentRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxDownloadAttachmentRequestEventArgs is access all IEmailMailboxDownloadAttachmentRequestEventArgs_Interface'Class;
+   type IEmailMailboxDownloadAttachmentRequestEventArgs is access IEmailMailboxDownloadAttachmentRequestEventArgs_Interface'Class;
    type IEmailMailboxDownloadAttachmentRequestEventArgs_Ptr is access all IEmailMailboxDownloadAttachmentRequestEventArgs;
 
    type IEmailMailboxDownloadMessageRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxDownloadMessageRequest is access all IEmailMailboxDownloadMessageRequest_Interface'Class;
+   type IEmailMailboxDownloadMessageRequest is access IEmailMailboxDownloadMessageRequest_Interface'Class;
    type IEmailMailboxDownloadMessageRequest_Ptr is access all IEmailMailboxDownloadMessageRequest;
 
    type IEmailMailboxDownloadMessageRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxDownloadMessageRequestEventArgs is access all IEmailMailboxDownloadMessageRequestEventArgs_Interface'Class;
+   type IEmailMailboxDownloadMessageRequestEventArgs is access IEmailMailboxDownloadMessageRequestEventArgs_Interface'Class;
    type IEmailMailboxDownloadMessageRequestEventArgs_Ptr is access all IEmailMailboxDownloadMessageRequestEventArgs;
 
    type IEmailMailboxEmptyFolderRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxEmptyFolderRequest is access all IEmailMailboxEmptyFolderRequest_Interface'Class;
+   type IEmailMailboxEmptyFolderRequest is access IEmailMailboxEmptyFolderRequest_Interface'Class;
    type IEmailMailboxEmptyFolderRequest_Ptr is access all IEmailMailboxEmptyFolderRequest;
 
    type IEmailMailboxEmptyFolderRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxEmptyFolderRequestEventArgs is access all IEmailMailboxEmptyFolderRequestEventArgs_Interface'Class;
+   type IEmailMailboxEmptyFolderRequestEventArgs is access IEmailMailboxEmptyFolderRequestEventArgs_Interface'Class;
    type IEmailMailboxEmptyFolderRequestEventArgs_Ptr is access all IEmailMailboxEmptyFolderRequestEventArgs;
 
    type IEmailMailboxForwardMeetingRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxForwardMeetingRequest is access all IEmailMailboxForwardMeetingRequest_Interface'Class;
+   type IEmailMailboxForwardMeetingRequest is access IEmailMailboxForwardMeetingRequest_Interface'Class;
    type IEmailMailboxForwardMeetingRequest_Ptr is access all IEmailMailboxForwardMeetingRequest;
 
    type IEmailMailboxForwardMeetingRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxForwardMeetingRequestEventArgs is access all IEmailMailboxForwardMeetingRequestEventArgs_Interface'Class;
+   type IEmailMailboxForwardMeetingRequestEventArgs is access IEmailMailboxForwardMeetingRequestEventArgs_Interface'Class;
    type IEmailMailboxForwardMeetingRequestEventArgs_Ptr is access all IEmailMailboxForwardMeetingRequestEventArgs;
 
    type IEmailMailboxGetAutoReplySettingsRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxGetAutoReplySettingsRequest is access all IEmailMailboxGetAutoReplySettingsRequest_Interface'Class;
+   type IEmailMailboxGetAutoReplySettingsRequest is access IEmailMailboxGetAutoReplySettingsRequest_Interface'Class;
    type IEmailMailboxGetAutoReplySettingsRequest_Ptr is access all IEmailMailboxGetAutoReplySettingsRequest;
 
    type IEmailMailboxGetAutoReplySettingsRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxGetAutoReplySettingsRequestEventArgs is access all IEmailMailboxGetAutoReplySettingsRequestEventArgs_Interface'Class;
+   type IEmailMailboxGetAutoReplySettingsRequestEventArgs is access IEmailMailboxGetAutoReplySettingsRequestEventArgs_Interface'Class;
    type IEmailMailboxGetAutoReplySettingsRequestEventArgs_Ptr is access all IEmailMailboxGetAutoReplySettingsRequestEventArgs;
 
    type IEmailMailboxMoveFolderRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxMoveFolderRequest is access all IEmailMailboxMoveFolderRequest_Interface'Class;
+   type IEmailMailboxMoveFolderRequest is access IEmailMailboxMoveFolderRequest_Interface'Class;
    type IEmailMailboxMoveFolderRequest_Ptr is access all IEmailMailboxMoveFolderRequest;
 
    type IEmailMailboxMoveFolderRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxMoveFolderRequestEventArgs is access all IEmailMailboxMoveFolderRequestEventArgs_Interface'Class;
+   type IEmailMailboxMoveFolderRequestEventArgs is access IEmailMailboxMoveFolderRequestEventArgs_Interface'Class;
    type IEmailMailboxMoveFolderRequestEventArgs_Ptr is access all IEmailMailboxMoveFolderRequestEventArgs;
 
    type IEmailMailboxProposeNewTimeForMeetingRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxProposeNewTimeForMeetingRequest is access all IEmailMailboxProposeNewTimeForMeetingRequest_Interface'Class;
+   type IEmailMailboxProposeNewTimeForMeetingRequest is access IEmailMailboxProposeNewTimeForMeetingRequest_Interface'Class;
    type IEmailMailboxProposeNewTimeForMeetingRequest_Ptr is access all IEmailMailboxProposeNewTimeForMeetingRequest;
 
    type IEmailMailboxProposeNewTimeForMeetingRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxProposeNewTimeForMeetingRequestEventArgs is access all IEmailMailboxProposeNewTimeForMeetingRequestEventArgs_Interface'Class;
+   type IEmailMailboxProposeNewTimeForMeetingRequestEventArgs is access IEmailMailboxProposeNewTimeForMeetingRequestEventArgs_Interface'Class;
    type IEmailMailboxProposeNewTimeForMeetingRequestEventArgs_Ptr is access all IEmailMailboxProposeNewTimeForMeetingRequestEventArgs;
 
    type IEmailMailboxResolveRecipientsRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxResolveRecipientsRequest is access all IEmailMailboxResolveRecipientsRequest_Interface'Class;
+   type IEmailMailboxResolveRecipientsRequest is access IEmailMailboxResolveRecipientsRequest_Interface'Class;
    type IEmailMailboxResolveRecipientsRequest_Ptr is access all IEmailMailboxResolveRecipientsRequest;
 
    type IEmailMailboxResolveRecipientsRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxResolveRecipientsRequestEventArgs is access all IEmailMailboxResolveRecipientsRequestEventArgs_Interface'Class;
+   type IEmailMailboxResolveRecipientsRequestEventArgs is access IEmailMailboxResolveRecipientsRequestEventArgs_Interface'Class;
    type IEmailMailboxResolveRecipientsRequestEventArgs_Ptr is access all IEmailMailboxResolveRecipientsRequestEventArgs;
 
    type IEmailMailboxServerSearchReadBatchRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxServerSearchReadBatchRequest is access all IEmailMailboxServerSearchReadBatchRequest_Interface'Class;
+   type IEmailMailboxServerSearchReadBatchRequest is access IEmailMailboxServerSearchReadBatchRequest_Interface'Class;
    type IEmailMailboxServerSearchReadBatchRequest_Ptr is access all IEmailMailboxServerSearchReadBatchRequest;
 
    type IEmailMailboxServerSearchReadBatchRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxServerSearchReadBatchRequestEventArgs is access all IEmailMailboxServerSearchReadBatchRequestEventArgs_Interface'Class;
+   type IEmailMailboxServerSearchReadBatchRequestEventArgs is access IEmailMailboxServerSearchReadBatchRequestEventArgs_Interface'Class;
    type IEmailMailboxServerSearchReadBatchRequestEventArgs_Ptr is access all IEmailMailboxServerSearchReadBatchRequestEventArgs;
 
    type IEmailMailboxSetAutoReplySettingsRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxSetAutoReplySettingsRequest is access all IEmailMailboxSetAutoReplySettingsRequest_Interface'Class;
+   type IEmailMailboxSetAutoReplySettingsRequest is access IEmailMailboxSetAutoReplySettingsRequest_Interface'Class;
    type IEmailMailboxSetAutoReplySettingsRequest_Ptr is access all IEmailMailboxSetAutoReplySettingsRequest;
 
    type IEmailMailboxSetAutoReplySettingsRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxSetAutoReplySettingsRequestEventArgs is access all IEmailMailboxSetAutoReplySettingsRequestEventArgs_Interface'Class;
+   type IEmailMailboxSetAutoReplySettingsRequestEventArgs is access IEmailMailboxSetAutoReplySettingsRequestEventArgs_Interface'Class;
    type IEmailMailboxSetAutoReplySettingsRequestEventArgs_Ptr is access all IEmailMailboxSetAutoReplySettingsRequestEventArgs;
 
    type IEmailMailboxSyncManagerSyncRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxSyncManagerSyncRequest is access all IEmailMailboxSyncManagerSyncRequest_Interface'Class;
+   type IEmailMailboxSyncManagerSyncRequest is access IEmailMailboxSyncManagerSyncRequest_Interface'Class;
    type IEmailMailboxSyncManagerSyncRequest_Ptr is access all IEmailMailboxSyncManagerSyncRequest;
 
    type IEmailMailboxSyncManagerSyncRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxSyncManagerSyncRequestEventArgs is access all IEmailMailboxSyncManagerSyncRequestEventArgs_Interface'Class;
+   type IEmailMailboxSyncManagerSyncRequestEventArgs is access IEmailMailboxSyncManagerSyncRequestEventArgs_Interface'Class;
    type IEmailMailboxSyncManagerSyncRequestEventArgs_Ptr is access all IEmailMailboxSyncManagerSyncRequestEventArgs;
 
    type IEmailMailboxUpdateMeetingResponseRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxUpdateMeetingResponseRequest is access all IEmailMailboxUpdateMeetingResponseRequest_Interface'Class;
+   type IEmailMailboxUpdateMeetingResponseRequest is access IEmailMailboxUpdateMeetingResponseRequest_Interface'Class;
    type IEmailMailboxUpdateMeetingResponseRequest_Ptr is access all IEmailMailboxUpdateMeetingResponseRequest;
 
    type IEmailMailboxUpdateMeetingResponseRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxUpdateMeetingResponseRequestEventArgs is access all IEmailMailboxUpdateMeetingResponseRequestEventArgs_Interface'Class;
+   type IEmailMailboxUpdateMeetingResponseRequestEventArgs is access IEmailMailboxUpdateMeetingResponseRequestEventArgs_Interface'Class;
    type IEmailMailboxUpdateMeetingResponseRequestEventArgs_Ptr is access all IEmailMailboxUpdateMeetingResponseRequestEventArgs;
 
    type IEmailMailboxValidateCertificatesRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxValidateCertificatesRequest is access all IEmailMailboxValidateCertificatesRequest_Interface'Class;
+   type IEmailMailboxValidateCertificatesRequest is access IEmailMailboxValidateCertificatesRequest_Interface'Class;
    type IEmailMailboxValidateCertificatesRequest_Ptr is access all IEmailMailboxValidateCertificatesRequest;
 
    type IEmailMailboxValidateCertificatesRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxValidateCertificatesRequestEventArgs is access all IEmailMailboxValidateCertificatesRequestEventArgs_Interface'Class;
+   type IEmailMailboxValidateCertificatesRequestEventArgs is access IEmailMailboxValidateCertificatesRequestEventArgs_Interface'Class;
    type IEmailMailboxValidateCertificatesRequestEventArgs_Ptr is access all IEmailMailboxValidateCertificatesRequestEventArgs;
 
    -----------------------------------------------------------------------------

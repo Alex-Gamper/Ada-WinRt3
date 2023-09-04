@@ -43,162 +43,162 @@ package WinRt.Windows.UI.Input.Inking is
    -----------------------------------------------------------------------------
 
    type IInkDrawingAttributes_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkDrawingAttributes is access all IInkDrawingAttributes_Interface'Class;
+   type IInkDrawingAttributes is access IInkDrawingAttributes_Interface'Class;
    type IInkDrawingAttributes_Ptr is access all IInkDrawingAttributes;
 
    type IInkDrawingAttributes2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkDrawingAttributes2 is access all IInkDrawingAttributes2_Interface'Class;
+   type IInkDrawingAttributes2 is access IInkDrawingAttributes2_Interface'Class;
 
    type IInkDrawingAttributes3_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkDrawingAttributes3 is access all IInkDrawingAttributes3_Interface'Class;
+   type IInkDrawingAttributes3 is access IInkDrawingAttributes3_Interface'Class;
 
    type IInkDrawingAttributes4_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkDrawingAttributes4 is access all IInkDrawingAttributes4_Interface'Class;
+   type IInkDrawingAttributes4 is access IInkDrawingAttributes4_Interface'Class;
 
    type IInkDrawingAttributes5_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkDrawingAttributes5 is access all IInkDrawingAttributes5_Interface'Class;
+   type IInkDrawingAttributes5 is access IInkDrawingAttributes5_Interface'Class;
 
    type IInkDrawingAttributesPencilProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkDrawingAttributesPencilProperties is access all IInkDrawingAttributesPencilProperties_Interface'Class;
+   type IInkDrawingAttributesPencilProperties is access IInkDrawingAttributesPencilProperties_Interface'Class;
    type IInkDrawingAttributesPencilProperties_Ptr is access all IInkDrawingAttributesPencilProperties;
 
    type IInkDrawingAttributesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkDrawingAttributesStatics is access all IInkDrawingAttributesStatics_Interface'Class;
+   type IInkDrawingAttributesStatics is access IInkDrawingAttributesStatics_Interface'Class;
 
    type IInkInputConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkInputConfiguration is access all IInkInputConfiguration_Interface'Class;
+   type IInkInputConfiguration is access IInkInputConfiguration_Interface'Class;
    type IInkInputConfiguration_Ptr is access all IInkInputConfiguration;
 
    type IInkInputProcessingConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkInputProcessingConfiguration is access all IInkInputProcessingConfiguration_Interface'Class;
+   type IInkInputProcessingConfiguration is access IInkInputProcessingConfiguration_Interface'Class;
    type IInkInputProcessingConfiguration_Ptr is access all IInkInputProcessingConfiguration;
 
    type IInkManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkManager is access all IInkManager_Interface'Class;
+   type IInkManager is access IInkManager_Interface'Class;
    type IInkManager_Ptr is access all IInkManager;
 
    type IInkModelerAttributes_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkModelerAttributes is access all IInkModelerAttributes_Interface'Class;
+   type IInkModelerAttributes is access IInkModelerAttributes_Interface'Class;
    type IInkModelerAttributes_Ptr is access all IInkModelerAttributes;
 
    type IInkModelerAttributes2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkModelerAttributes2 is access all IInkModelerAttributes2_Interface'Class;
+   type IInkModelerAttributes2 is access IInkModelerAttributes2_Interface'Class;
 
    type IInkPoint_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkPoint is access all IInkPoint_Interface'Class;
+   type IInkPoint is access IInkPoint_Interface'Class;
    type IInkPoint_Ptr is access all IInkPoint;
 
    type IInkPoint2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkPoint2 is access all IInkPoint2_Interface'Class;
+   type IInkPoint2 is access IInkPoint2_Interface'Class;
 
    type IInkPointFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkPointFactory is access all IInkPointFactory_Interface'Class;
+   type IInkPointFactory is access IInkPointFactory_Interface'Class;
 
    type IInkPointFactory2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkPointFactory2 is access all IInkPointFactory2_Interface'Class;
+   type IInkPointFactory2 is access IInkPointFactory2_Interface'Class;
 
    type IInkPresenter_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkPresenter is access all IInkPresenter_Interface'Class;
+   type IInkPresenter is access IInkPresenter_Interface'Class;
    type IInkPresenter_Ptr is access all IInkPresenter;
 
    type IInkPresenter2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkPresenter2 is access all IInkPresenter2_Interface'Class;
+   type IInkPresenter2 is access IInkPresenter2_Interface'Class;
 
    type IInkPresenter3_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkPresenter3 is access all IInkPresenter3_Interface'Class;
+   type IInkPresenter3 is access IInkPresenter3_Interface'Class;
 
    type IInkPresenterProtractor_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkPresenterProtractor is access all IInkPresenterProtractor_Interface'Class;
+   type IInkPresenterProtractor is access IInkPresenterProtractor_Interface'Class;
    type IInkPresenterProtractor_Ptr is access all IInkPresenterProtractor;
 
    type IInkPresenterProtractorFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkPresenterProtractorFactory is access all IInkPresenterProtractorFactory_Interface'Class;
+   type IInkPresenterProtractorFactory is access IInkPresenterProtractorFactory_Interface'Class;
 
    type IInkPresenterRuler_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkPresenterRuler is access all IInkPresenterRuler_Interface'Class;
+   type IInkPresenterRuler is access IInkPresenterRuler_Interface'Class;
    type IInkPresenterRuler_Ptr is access all IInkPresenterRuler;
 
    type IInkPresenterRuler2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkPresenterRuler2 is access all IInkPresenterRuler2_Interface'Class;
+   type IInkPresenterRuler2 is access IInkPresenterRuler2_Interface'Class;
 
    type IInkPresenterRulerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkPresenterRulerFactory is access all IInkPresenterRulerFactory_Interface'Class;
+   type IInkPresenterRulerFactory is access IInkPresenterRulerFactory_Interface'Class;
 
    type IInkPresenterStencil_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkPresenterStencil is access all IInkPresenterStencil_Interface'Class;
+   type IInkPresenterStencil is access IInkPresenterStencil_Interface'Class;
 
    type IInkRecognitionResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkRecognitionResult is access all IInkRecognitionResult_Interface'Class;
+   type IInkRecognitionResult is access IInkRecognitionResult_Interface'Class;
    type IInkRecognitionResult_Ptr is access all IInkRecognitionResult;
 
    type IInkRecognizer_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkRecognizer is access all IInkRecognizer_Interface'Class;
+   type IInkRecognizer is access IInkRecognizer_Interface'Class;
    type IInkRecognizer_Ptr is access all IInkRecognizer;
 
    type IInkRecognizerContainer_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkRecognizerContainer is access all IInkRecognizerContainer_Interface'Class;
+   type IInkRecognizerContainer is access IInkRecognizerContainer_Interface'Class;
    type IInkRecognizerContainer_Ptr is access all IInkRecognizerContainer;
 
    type IInkStroke_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkStroke is access all IInkStroke_Interface'Class;
+   type IInkStroke is access IInkStroke_Interface'Class;
    type IInkStroke_Ptr is access all IInkStroke;
 
    type IInkStroke2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkStroke2 is access all IInkStroke2_Interface'Class;
+   type IInkStroke2 is access IInkStroke2_Interface'Class;
 
    type IInkStroke3_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkStroke3 is access all IInkStroke3_Interface'Class;
+   type IInkStroke3 is access IInkStroke3_Interface'Class;
 
    type IInkStrokeBuilder_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkStrokeBuilder is access all IInkStrokeBuilder_Interface'Class;
+   type IInkStrokeBuilder is access IInkStrokeBuilder_Interface'Class;
    type IInkStrokeBuilder_Ptr is access all IInkStrokeBuilder;
 
    type IInkStrokeBuilder2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkStrokeBuilder2 is access all IInkStrokeBuilder2_Interface'Class;
+   type IInkStrokeBuilder2 is access IInkStrokeBuilder2_Interface'Class;
 
    type IInkStrokeBuilder3_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkStrokeBuilder3 is access all IInkStrokeBuilder3_Interface'Class;
+   type IInkStrokeBuilder3 is access IInkStrokeBuilder3_Interface'Class;
 
    type IInkStrokeContainer_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkStrokeContainer is access all IInkStrokeContainer_Interface'Class;
+   type IInkStrokeContainer is access IInkStrokeContainer_Interface'Class;
    type IInkStrokeContainer_Ptr is access all IInkStrokeContainer;
 
    type IInkStrokeContainer2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkStrokeContainer2 is access all IInkStrokeContainer2_Interface'Class;
+   type IInkStrokeContainer2 is access IInkStrokeContainer2_Interface'Class;
 
    type IInkStrokeContainer3_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkStrokeContainer3 is access all IInkStrokeContainer3_Interface'Class;
+   type IInkStrokeContainer3 is access IInkStrokeContainer3_Interface'Class;
 
    type IInkStrokeInput_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkStrokeInput is access all IInkStrokeInput_Interface'Class;
+   type IInkStrokeInput is access IInkStrokeInput_Interface'Class;
    type IInkStrokeInput_Ptr is access all IInkStrokeInput;
 
    type IInkStrokeRenderingSegment_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkStrokeRenderingSegment is access all IInkStrokeRenderingSegment_Interface'Class;
+   type IInkStrokeRenderingSegment is access IInkStrokeRenderingSegment_Interface'Class;
    type IInkStrokeRenderingSegment_Ptr is access all IInkStrokeRenderingSegment;
 
    type IInkStrokesCollectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkStrokesCollectedEventArgs is access all IInkStrokesCollectedEventArgs_Interface'Class;
+   type IInkStrokesCollectedEventArgs is access IInkStrokesCollectedEventArgs_Interface'Class;
    type IInkStrokesCollectedEventArgs_Ptr is access all IInkStrokesCollectedEventArgs;
 
    type IInkStrokesErasedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkStrokesErasedEventArgs is access all IInkStrokesErasedEventArgs_Interface'Class;
+   type IInkStrokesErasedEventArgs is access IInkStrokesErasedEventArgs_Interface'Class;
    type IInkStrokesErasedEventArgs_Ptr is access all IInkStrokesErasedEventArgs;
 
    type IInkSynchronizer_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkSynchronizer is access all IInkSynchronizer_Interface'Class;
+   type IInkSynchronizer is access IInkSynchronizer_Interface'Class;
    type IInkSynchronizer_Ptr is access all IInkSynchronizer;
 
    type IInkUnprocessedInput_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkUnprocessedInput is access all IInkUnprocessedInput_Interface'Class;
+   type IInkUnprocessedInput is access IInkUnprocessedInput_Interface'Class;
    type IInkUnprocessedInput_Ptr is access all IInkUnprocessedInput;
 
    type IPenAndInkSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IPenAndInkSettings is access all IPenAndInkSettings_Interface'Class;
+   type IPenAndInkSettings is access IPenAndInkSettings_Interface'Class;
    type IPenAndInkSettings_Ptr is access all IPenAndInkSettings;
 
    type IPenAndInkSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPenAndInkSettingsStatics is access all IPenAndInkSettingsStatics_Interface'Class;
+   type IPenAndInkSettingsStatics is access IPenAndInkSettingsStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

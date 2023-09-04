@@ -40,15 +40,15 @@ package WinRt.Windows.System.Update is
    -----------------------------------------------------------------------------
 
    type ISystemUpdateItem_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemUpdateItem is access all ISystemUpdateItem_Interface'Class;
+   type ISystemUpdateItem is access ISystemUpdateItem_Interface'Class;
    type ISystemUpdateItem_Ptr is access all ISystemUpdateItem;
 
    type ISystemUpdateLastErrorInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemUpdateLastErrorInfo is access all ISystemUpdateLastErrorInfo_Interface'Class;
+   type ISystemUpdateLastErrorInfo is access ISystemUpdateLastErrorInfo_Interface'Class;
    type ISystemUpdateLastErrorInfo_Ptr is access all ISystemUpdateLastErrorInfo;
 
    type ISystemUpdateManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemUpdateManagerStatics is access all ISystemUpdateManagerStatics_Interface'Class;
+   type ISystemUpdateManagerStatics is access ISystemUpdateManagerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

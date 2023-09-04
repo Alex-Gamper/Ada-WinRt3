@@ -40,40 +40,40 @@ package WinRt.Windows.UI.Input.Preview.Injection is
    -----------------------------------------------------------------------------
 
    type IInjectedInputGamepadInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IInjectedInputGamepadInfo is access all IInjectedInputGamepadInfo_Interface'Class;
+   type IInjectedInputGamepadInfo is access IInjectedInputGamepadInfo_Interface'Class;
    type IInjectedInputGamepadInfo_Ptr is access all IInjectedInputGamepadInfo;
 
    type IInjectedInputGamepadInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IInjectedInputGamepadInfoFactory is access all IInjectedInputGamepadInfoFactory_Interface'Class;
+   type IInjectedInputGamepadInfoFactory is access IInjectedInputGamepadInfoFactory_Interface'Class;
 
    type IInjectedInputKeyboardInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IInjectedInputKeyboardInfo is access all IInjectedInputKeyboardInfo_Interface'Class;
+   type IInjectedInputKeyboardInfo is access IInjectedInputKeyboardInfo_Interface'Class;
    type IInjectedInputKeyboardInfo_Ptr is access all IInjectedInputKeyboardInfo;
 
    type IInjectedInputMouseInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IInjectedInputMouseInfo is access all IInjectedInputMouseInfo_Interface'Class;
+   type IInjectedInputMouseInfo is access IInjectedInputMouseInfo_Interface'Class;
    type IInjectedInputMouseInfo_Ptr is access all IInjectedInputMouseInfo;
 
    type IInjectedInputPenInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IInjectedInputPenInfo is access all IInjectedInputPenInfo_Interface'Class;
+   type IInjectedInputPenInfo is access IInjectedInputPenInfo_Interface'Class;
    type IInjectedInputPenInfo_Ptr is access all IInjectedInputPenInfo;
 
    type IInjectedInputTouchInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IInjectedInputTouchInfo is access all IInjectedInputTouchInfo_Interface'Class;
+   type IInjectedInputTouchInfo is access IInjectedInputTouchInfo_Interface'Class;
    type IInjectedInputTouchInfo_Ptr is access all IInjectedInputTouchInfo;
 
    type IInputInjector_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputInjector is access all IInputInjector_Interface'Class;
+   type IInputInjector is access IInputInjector_Interface'Class;
    type IInputInjector_Ptr is access all IInputInjector;
 
    type IInputInjector2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputInjector2 is access all IInputInjector2_Interface'Class;
+   type IInputInjector2 is access IInputInjector2_Interface'Class;
 
    type IInputInjectorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputInjectorStatics is access all IInputInjectorStatics_Interface'Class;
+   type IInputInjectorStatics is access IInputInjectorStatics_Interface'Class;
 
    type IInputInjectorStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputInjectorStatics2 is access all IInputInjectorStatics2_Interface'Class;
+   type IInputInjectorStatics2 is access IInputInjectorStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

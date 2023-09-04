@@ -40,11 +40,11 @@ package WinRt.Windows.ApplicationModel.Preview.InkWorkspace is
    -----------------------------------------------------------------------------
 
    type IInkWorkspaceHostedAppManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkWorkspaceHostedAppManager is access all IInkWorkspaceHostedAppManager_Interface'Class;
+   type IInkWorkspaceHostedAppManager is access IInkWorkspaceHostedAppManager_Interface'Class;
    type IInkWorkspaceHostedAppManager_Ptr is access all IInkWorkspaceHostedAppManager;
 
    type IInkWorkspaceHostedAppManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkWorkspaceHostedAppManagerStatics is access all IInkWorkspaceHostedAppManagerStatics_Interface'Class;
+   type IInkWorkspaceHostedAppManagerStatics is access IInkWorkspaceHostedAppManagerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

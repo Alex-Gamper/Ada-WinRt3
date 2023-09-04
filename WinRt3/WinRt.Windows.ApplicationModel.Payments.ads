@@ -47,114 +47,114 @@ package WinRt.Windows.ApplicationModel.Payments is
    -----------------------------------------------------------------------------
 
    type IPaymentAddress_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentAddress is access all IPaymentAddress_Interface'Class;
+   type IPaymentAddress is access IPaymentAddress_Interface'Class;
    type IPaymentAddress_Ptr is access all IPaymentAddress;
 
    type IPaymentCanMakePaymentResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentCanMakePaymentResult is access all IPaymentCanMakePaymentResult_Interface'Class;
+   type IPaymentCanMakePaymentResult is access IPaymentCanMakePaymentResult_Interface'Class;
    type IPaymentCanMakePaymentResult_Ptr is access all IPaymentCanMakePaymentResult;
 
    type IPaymentCanMakePaymentResultFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentCanMakePaymentResultFactory is access all IPaymentCanMakePaymentResultFactory_Interface'Class;
+   type IPaymentCanMakePaymentResultFactory is access IPaymentCanMakePaymentResultFactory_Interface'Class;
 
    type IPaymentCurrencyAmount_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentCurrencyAmount is access all IPaymentCurrencyAmount_Interface'Class;
+   type IPaymentCurrencyAmount is access IPaymentCurrencyAmount_Interface'Class;
    type IPaymentCurrencyAmount_Ptr is access all IPaymentCurrencyAmount;
 
    type IPaymentCurrencyAmountFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentCurrencyAmountFactory is access all IPaymentCurrencyAmountFactory_Interface'Class;
+   type IPaymentCurrencyAmountFactory is access IPaymentCurrencyAmountFactory_Interface'Class;
 
    type IPaymentDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentDetails is access all IPaymentDetails_Interface'Class;
+   type IPaymentDetails is access IPaymentDetails_Interface'Class;
    type IPaymentDetails_Ptr is access all IPaymentDetails;
 
    type IPaymentDetailsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentDetailsFactory is access all IPaymentDetailsFactory_Interface'Class;
+   type IPaymentDetailsFactory is access IPaymentDetailsFactory_Interface'Class;
 
    type IPaymentDetailsModifier_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentDetailsModifier is access all IPaymentDetailsModifier_Interface'Class;
+   type IPaymentDetailsModifier is access IPaymentDetailsModifier_Interface'Class;
    type IPaymentDetailsModifier_Ptr is access all IPaymentDetailsModifier;
 
    type IPaymentDetailsModifierFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentDetailsModifierFactory is access all IPaymentDetailsModifierFactory_Interface'Class;
+   type IPaymentDetailsModifierFactory is access IPaymentDetailsModifierFactory_Interface'Class;
 
    type IPaymentItem_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentItem is access all IPaymentItem_Interface'Class;
+   type IPaymentItem is access IPaymentItem_Interface'Class;
    type IPaymentItem_Ptr is access all IPaymentItem;
 
    type IPaymentItemFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentItemFactory is access all IPaymentItemFactory_Interface'Class;
+   type IPaymentItemFactory is access IPaymentItemFactory_Interface'Class;
 
    type IPaymentMediator_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentMediator is access all IPaymentMediator_Interface'Class;
+   type IPaymentMediator is access IPaymentMediator_Interface'Class;
    type IPaymentMediator_Ptr is access all IPaymentMediator;
 
    type IPaymentMediator2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentMediator2 is access all IPaymentMediator2_Interface'Class;
+   type IPaymentMediator2 is access IPaymentMediator2_Interface'Class;
 
    type IPaymentMerchantInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentMerchantInfo is access all IPaymentMerchantInfo_Interface'Class;
+   type IPaymentMerchantInfo is access IPaymentMerchantInfo_Interface'Class;
    type IPaymentMerchantInfo_Ptr is access all IPaymentMerchantInfo;
 
    type IPaymentMerchantInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentMerchantInfoFactory is access all IPaymentMerchantInfoFactory_Interface'Class;
+   type IPaymentMerchantInfoFactory is access IPaymentMerchantInfoFactory_Interface'Class;
 
    type IPaymentMethodData_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentMethodData is access all IPaymentMethodData_Interface'Class;
+   type IPaymentMethodData is access IPaymentMethodData_Interface'Class;
    type IPaymentMethodData_Ptr is access all IPaymentMethodData;
 
    type IPaymentMethodDataFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentMethodDataFactory is access all IPaymentMethodDataFactory_Interface'Class;
+   type IPaymentMethodDataFactory is access IPaymentMethodDataFactory_Interface'Class;
 
    type IPaymentOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentOptions is access all IPaymentOptions_Interface'Class;
+   type IPaymentOptions is access IPaymentOptions_Interface'Class;
    type IPaymentOptions_Ptr is access all IPaymentOptions;
 
    type IPaymentRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentRequest is access all IPaymentRequest_Interface'Class;
+   type IPaymentRequest is access IPaymentRequest_Interface'Class;
    type IPaymentRequest_Ptr is access all IPaymentRequest;
 
    type IPaymentRequest2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentRequest2 is access all IPaymentRequest2_Interface'Class;
+   type IPaymentRequest2 is access IPaymentRequest2_Interface'Class;
 
    type IPaymentRequestChangedArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentRequestChangedArgs is access all IPaymentRequestChangedArgs_Interface'Class;
+   type IPaymentRequestChangedArgs is access IPaymentRequestChangedArgs_Interface'Class;
    type IPaymentRequestChangedArgs_Ptr is access all IPaymentRequestChangedArgs;
 
    type IPaymentRequestChangedResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentRequestChangedResult is access all IPaymentRequestChangedResult_Interface'Class;
+   type IPaymentRequestChangedResult is access IPaymentRequestChangedResult_Interface'Class;
    type IPaymentRequestChangedResult_Ptr is access all IPaymentRequestChangedResult;
 
    type IPaymentRequestChangedResultFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentRequestChangedResultFactory is access all IPaymentRequestChangedResultFactory_Interface'Class;
+   type IPaymentRequestChangedResultFactory is access IPaymentRequestChangedResultFactory_Interface'Class;
 
    type IPaymentRequestFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentRequestFactory is access all IPaymentRequestFactory_Interface'Class;
+   type IPaymentRequestFactory is access IPaymentRequestFactory_Interface'Class;
 
    type IPaymentRequestFactory2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentRequestFactory2 is access all IPaymentRequestFactory2_Interface'Class;
+   type IPaymentRequestFactory2 is access IPaymentRequestFactory2_Interface'Class;
 
    type IPaymentRequestSubmitResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentRequestSubmitResult is access all IPaymentRequestSubmitResult_Interface'Class;
+   type IPaymentRequestSubmitResult is access IPaymentRequestSubmitResult_Interface'Class;
    type IPaymentRequestSubmitResult_Ptr is access all IPaymentRequestSubmitResult;
 
    type IPaymentResponse_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentResponse is access all IPaymentResponse_Interface'Class;
+   type IPaymentResponse is access IPaymentResponse_Interface'Class;
    type IPaymentResponse_Ptr is access all IPaymentResponse;
 
    type IPaymentShippingOption_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentShippingOption is access all IPaymentShippingOption_Interface'Class;
+   type IPaymentShippingOption is access IPaymentShippingOption_Interface'Class;
    type IPaymentShippingOption_Ptr is access all IPaymentShippingOption;
 
    type IPaymentShippingOptionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentShippingOptionFactory is access all IPaymentShippingOptionFactory_Interface'Class;
+   type IPaymentShippingOptionFactory is access IPaymentShippingOptionFactory_Interface'Class;
 
    type IPaymentToken_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentToken is access all IPaymentToken_Interface'Class;
+   type IPaymentToken is access IPaymentToken_Interface'Class;
    type IPaymentToken_Ptr is access all IPaymentToken;
 
    type IPaymentTokenFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentTokenFactory is access all IPaymentTokenFactory_Interface'Class;
+   type IPaymentTokenFactory is access IPaymentTokenFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

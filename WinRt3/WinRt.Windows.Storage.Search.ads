@@ -42,64 +42,64 @@ package WinRt.Windows.Storage.Search is
    -----------------------------------------------------------------------------
 
    type IContentIndexer_Interface is interface and WinRt.IInspectable_Interface;
-   type IContentIndexer is access all IContentIndexer_Interface'Class;
+   type IContentIndexer is access IContentIndexer_Interface'Class;
    type IContentIndexer_Ptr is access all IContentIndexer;
 
    type IContentIndexerQuery_Interface is interface and WinRt.IInspectable_Interface;
-   type IContentIndexerQuery is access all IContentIndexerQuery_Interface'Class;
+   type IContentIndexerQuery is access IContentIndexerQuery_Interface'Class;
    type IContentIndexerQuery_Ptr is access all IContentIndexerQuery;
 
    type IContentIndexerQueryOperations_Interface is interface and WinRt.IInspectable_Interface;
-   type IContentIndexerQueryOperations is access all IContentIndexerQueryOperations_Interface'Class;
+   type IContentIndexerQueryOperations is access IContentIndexerQueryOperations_Interface'Class;
 
    type IContentIndexerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IContentIndexerStatics is access all IContentIndexerStatics_Interface'Class;
+   type IContentIndexerStatics is access IContentIndexerStatics_Interface'Class;
 
    type IIndexableContent_Interface is interface and WinRt.IInspectable_Interface;
-   type IIndexableContent is access all IIndexableContent_Interface'Class;
+   type IIndexableContent is access IIndexableContent_Interface'Class;
    type IIndexableContent_Ptr is access all IIndexableContent;
 
    type IQueryOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IQueryOptions is access all IQueryOptions_Interface'Class;
+   type IQueryOptions is access IQueryOptions_Interface'Class;
    type IQueryOptions_Ptr is access all IQueryOptions;
 
    type IQueryOptionsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IQueryOptionsFactory is access all IQueryOptionsFactory_Interface'Class;
+   type IQueryOptionsFactory is access IQueryOptionsFactory_Interface'Class;
 
    type IQueryOptionsWithProviderFilter_Interface is interface and WinRt.IInspectable_Interface;
-   type IQueryOptionsWithProviderFilter is access all IQueryOptionsWithProviderFilter_Interface'Class;
+   type IQueryOptionsWithProviderFilter is access IQueryOptionsWithProviderFilter_Interface'Class;
 
    type IStorageFileQueryResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageFileQueryResult is access all IStorageFileQueryResult_Interface'Class;
+   type IStorageFileQueryResult is access IStorageFileQueryResult_Interface'Class;
    type IStorageFileQueryResult_Ptr is access all IStorageFileQueryResult;
 
    type IStorageFileQueryResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageFileQueryResult2 is access all IStorageFileQueryResult2_Interface'Class;
+   type IStorageFileQueryResult2 is access IStorageFileQueryResult2_Interface'Class;
 
    type IStorageFolderQueryOperations_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageFolderQueryOperations is access all IStorageFolderQueryOperations_Interface'Class;
+   type IStorageFolderQueryOperations is access IStorageFolderQueryOperations_Interface'Class;
 
    type IStorageFolderQueryResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageFolderQueryResult is access all IStorageFolderQueryResult_Interface'Class;
+   type IStorageFolderQueryResult is access IStorageFolderQueryResult_Interface'Class;
    type IStorageFolderQueryResult_Ptr is access all IStorageFolderQueryResult;
 
    type IStorageItemQueryResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageItemQueryResult is access all IStorageItemQueryResult_Interface'Class;
+   type IStorageItemQueryResult is access IStorageItemQueryResult_Interface'Class;
    type IStorageItemQueryResult_Ptr is access all IStorageItemQueryResult;
 
    type IStorageLibraryChangeTrackerTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageLibraryChangeTrackerTriggerDetails is access all IStorageLibraryChangeTrackerTriggerDetails_Interface'Class;
+   type IStorageLibraryChangeTrackerTriggerDetails is access IStorageLibraryChangeTrackerTriggerDetails_Interface'Class;
    type IStorageLibraryChangeTrackerTriggerDetails_Ptr is access all IStorageLibraryChangeTrackerTriggerDetails;
 
    type IStorageLibraryContentChangedTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageLibraryContentChangedTriggerDetails is access all IStorageLibraryContentChangedTriggerDetails_Interface'Class;
+   type IStorageLibraryContentChangedTriggerDetails is access IStorageLibraryContentChangedTriggerDetails_Interface'Class;
    type IStorageLibraryContentChangedTriggerDetails_Ptr is access all IStorageLibraryContentChangedTriggerDetails;
 
    type IStorageQueryResultBase_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageQueryResultBase is access all IStorageQueryResultBase_Interface'Class;
+   type IStorageQueryResultBase is access IStorageQueryResultBase_Interface'Class;
 
    type IValueAndLanguage_Interface is interface and WinRt.IInspectable_Interface;
-   type IValueAndLanguage is access all IValueAndLanguage_Interface'Class;
+   type IValueAndLanguage is access IValueAndLanguage_Interface'Class;
    type IValueAndLanguage_Ptr is access all IValueAndLanguage;
 
    -----------------------------------------------------------------------------

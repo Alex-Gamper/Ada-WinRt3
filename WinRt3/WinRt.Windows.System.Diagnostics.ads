@@ -41,77 +41,77 @@ package WinRt.Windows.System.Diagnostics is
    -----------------------------------------------------------------------------
 
    type IDiagnosticActionResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IDiagnosticActionResult is access all IDiagnosticActionResult_Interface'Class;
+   type IDiagnosticActionResult is access IDiagnosticActionResult_Interface'Class;
    type IDiagnosticActionResult_Ptr is access all IDiagnosticActionResult;
 
    type IDiagnosticInvoker_Interface is interface and WinRt.IInspectable_Interface;
-   type IDiagnosticInvoker is access all IDiagnosticInvoker_Interface'Class;
+   type IDiagnosticInvoker is access IDiagnosticInvoker_Interface'Class;
    type IDiagnosticInvoker_Ptr is access all IDiagnosticInvoker;
 
    type IDiagnosticInvoker2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDiagnosticInvoker2 is access all IDiagnosticInvoker2_Interface'Class;
+   type IDiagnosticInvoker2 is access IDiagnosticInvoker2_Interface'Class;
 
    type IDiagnosticInvokerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDiagnosticInvokerStatics is access all IDiagnosticInvokerStatics_Interface'Class;
+   type IDiagnosticInvokerStatics is access IDiagnosticInvokerStatics_Interface'Class;
 
    type IProcessCpuUsage_Interface is interface and WinRt.IInspectable_Interface;
-   type IProcessCpuUsage is access all IProcessCpuUsage_Interface'Class;
+   type IProcessCpuUsage is access IProcessCpuUsage_Interface'Class;
    type IProcessCpuUsage_Ptr is access all IProcessCpuUsage;
 
    type IProcessCpuUsageReport_Interface is interface and WinRt.IInspectable_Interface;
-   type IProcessCpuUsageReport is access all IProcessCpuUsageReport_Interface'Class;
+   type IProcessCpuUsageReport is access IProcessCpuUsageReport_Interface'Class;
    type IProcessCpuUsageReport_Ptr is access all IProcessCpuUsageReport;
 
    type IProcessDiagnosticInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IProcessDiagnosticInfo is access all IProcessDiagnosticInfo_Interface'Class;
+   type IProcessDiagnosticInfo is access IProcessDiagnosticInfo_Interface'Class;
    type IProcessDiagnosticInfo_Ptr is access all IProcessDiagnosticInfo;
 
    type IProcessDiagnosticInfo2_Interface is interface and WinRt.IInspectable_Interface;
-   type IProcessDiagnosticInfo2 is access all IProcessDiagnosticInfo2_Interface'Class;
+   type IProcessDiagnosticInfo2 is access IProcessDiagnosticInfo2_Interface'Class;
 
    type IProcessDiagnosticInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IProcessDiagnosticInfoStatics is access all IProcessDiagnosticInfoStatics_Interface'Class;
+   type IProcessDiagnosticInfoStatics is access IProcessDiagnosticInfoStatics_Interface'Class;
 
    type IProcessDiagnosticInfoStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IProcessDiagnosticInfoStatics2 is access all IProcessDiagnosticInfoStatics2_Interface'Class;
+   type IProcessDiagnosticInfoStatics2 is access IProcessDiagnosticInfoStatics2_Interface'Class;
 
    type IProcessDiskUsage_Interface is interface and WinRt.IInspectable_Interface;
-   type IProcessDiskUsage is access all IProcessDiskUsage_Interface'Class;
+   type IProcessDiskUsage is access IProcessDiskUsage_Interface'Class;
    type IProcessDiskUsage_Ptr is access all IProcessDiskUsage;
 
    type IProcessDiskUsageReport_Interface is interface and WinRt.IInspectable_Interface;
-   type IProcessDiskUsageReport is access all IProcessDiskUsageReport_Interface'Class;
+   type IProcessDiskUsageReport is access IProcessDiskUsageReport_Interface'Class;
    type IProcessDiskUsageReport_Ptr is access all IProcessDiskUsageReport;
 
    type IProcessMemoryUsage_Interface is interface and WinRt.IInspectable_Interface;
-   type IProcessMemoryUsage is access all IProcessMemoryUsage_Interface'Class;
+   type IProcessMemoryUsage is access IProcessMemoryUsage_Interface'Class;
    type IProcessMemoryUsage_Ptr is access all IProcessMemoryUsage;
 
    type IProcessMemoryUsageReport_Interface is interface and WinRt.IInspectable_Interface;
-   type IProcessMemoryUsageReport is access all IProcessMemoryUsageReport_Interface'Class;
+   type IProcessMemoryUsageReport is access IProcessMemoryUsageReport_Interface'Class;
    type IProcessMemoryUsageReport_Ptr is access all IProcessMemoryUsageReport;
 
    type ISystemCpuUsage_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemCpuUsage is access all ISystemCpuUsage_Interface'Class;
+   type ISystemCpuUsage is access ISystemCpuUsage_Interface'Class;
    type ISystemCpuUsage_Ptr is access all ISystemCpuUsage;
 
    type ISystemCpuUsageReport_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemCpuUsageReport is access all ISystemCpuUsageReport_Interface'Class;
+   type ISystemCpuUsageReport is access ISystemCpuUsageReport_Interface'Class;
    type ISystemCpuUsageReport_Ptr is access all ISystemCpuUsageReport;
 
    type ISystemDiagnosticInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemDiagnosticInfo is access all ISystemDiagnosticInfo_Interface'Class;
+   type ISystemDiagnosticInfo is access ISystemDiagnosticInfo_Interface'Class;
    type ISystemDiagnosticInfo_Ptr is access all ISystemDiagnosticInfo;
 
    type ISystemDiagnosticInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemDiagnosticInfoStatics is access all ISystemDiagnosticInfoStatics_Interface'Class;
+   type ISystemDiagnosticInfoStatics is access ISystemDiagnosticInfoStatics_Interface'Class;
 
    type ISystemMemoryUsage_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemMemoryUsage is access all ISystemMemoryUsage_Interface'Class;
+   type ISystemMemoryUsage is access ISystemMemoryUsage_Interface'Class;
    type ISystemMemoryUsage_Ptr is access all ISystemMemoryUsage;
 
    type ISystemMemoryUsageReport_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemMemoryUsageReport is access all ISystemMemoryUsageReport_Interface'Class;
+   type ISystemMemoryUsageReport is access ISystemMemoryUsageReport_Interface'Class;
    type ISystemMemoryUsageReport_Ptr is access all ISystemMemoryUsageReport;
 
    -----------------------------------------------------------------------------

@@ -44,69 +44,69 @@ package WinRt.Windows.Web.UI is
    -----------------------------------------------------------------------------
 
    type IWebViewControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControl is access all IWebViewControl_Interface'Class;
+   type IWebViewControl is access IWebViewControl_Interface'Class;
    type IWebViewControl_Ptr is access all IWebViewControl;
 
    type IWebViewControl2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControl2 is access all IWebViewControl2_Interface'Class;
+   type IWebViewControl2 is access IWebViewControl2_Interface'Class;
 
    type IWebViewControlContentLoadingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlContentLoadingEventArgs is access all IWebViewControlContentLoadingEventArgs_Interface'Class;
+   type IWebViewControlContentLoadingEventArgs is access IWebViewControlContentLoadingEventArgs_Interface'Class;
    type IWebViewControlContentLoadingEventArgs_Ptr is access all IWebViewControlContentLoadingEventArgs;
 
    type IWebViewControlDOMContentLoadedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlDOMContentLoadedEventArgs is access all IWebViewControlDOMContentLoadedEventArgs_Interface'Class;
+   type IWebViewControlDOMContentLoadedEventArgs is access IWebViewControlDOMContentLoadedEventArgs_Interface'Class;
    type IWebViewControlDOMContentLoadedEventArgs_Ptr is access all IWebViewControlDOMContentLoadedEventArgs;
 
    type IWebViewControlDeferredPermissionRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlDeferredPermissionRequest is access all IWebViewControlDeferredPermissionRequest_Interface'Class;
+   type IWebViewControlDeferredPermissionRequest is access IWebViewControlDeferredPermissionRequest_Interface'Class;
    type IWebViewControlDeferredPermissionRequest_Ptr is access all IWebViewControlDeferredPermissionRequest;
 
    type IWebViewControlLongRunningScriptDetectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlLongRunningScriptDetectedEventArgs is access all IWebViewControlLongRunningScriptDetectedEventArgs_Interface'Class;
+   type IWebViewControlLongRunningScriptDetectedEventArgs is access IWebViewControlLongRunningScriptDetectedEventArgs_Interface'Class;
    type IWebViewControlLongRunningScriptDetectedEventArgs_Ptr is access all IWebViewControlLongRunningScriptDetectedEventArgs;
 
    type IWebViewControlNavigationCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlNavigationCompletedEventArgs is access all IWebViewControlNavigationCompletedEventArgs_Interface'Class;
+   type IWebViewControlNavigationCompletedEventArgs is access IWebViewControlNavigationCompletedEventArgs_Interface'Class;
    type IWebViewControlNavigationCompletedEventArgs_Ptr is access all IWebViewControlNavigationCompletedEventArgs;
 
    type IWebViewControlNavigationStartingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlNavigationStartingEventArgs is access all IWebViewControlNavigationStartingEventArgs_Interface'Class;
+   type IWebViewControlNavigationStartingEventArgs is access IWebViewControlNavigationStartingEventArgs_Interface'Class;
    type IWebViewControlNavigationStartingEventArgs_Ptr is access all IWebViewControlNavigationStartingEventArgs;
 
    type IWebViewControlNewWindowRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlNewWindowRequestedEventArgs is access all IWebViewControlNewWindowRequestedEventArgs_Interface'Class;
+   type IWebViewControlNewWindowRequestedEventArgs is access IWebViewControlNewWindowRequestedEventArgs_Interface'Class;
    type IWebViewControlNewWindowRequestedEventArgs_Ptr is access all IWebViewControlNewWindowRequestedEventArgs;
 
    type IWebViewControlNewWindowRequestedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlNewWindowRequestedEventArgs2 is access all IWebViewControlNewWindowRequestedEventArgs2_Interface'Class;
+   type IWebViewControlNewWindowRequestedEventArgs2 is access IWebViewControlNewWindowRequestedEventArgs2_Interface'Class;
 
    type IWebViewControlPermissionRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlPermissionRequest is access all IWebViewControlPermissionRequest_Interface'Class;
+   type IWebViewControlPermissionRequest is access IWebViewControlPermissionRequest_Interface'Class;
    type IWebViewControlPermissionRequest_Ptr is access all IWebViewControlPermissionRequest;
 
    type IWebViewControlPermissionRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlPermissionRequestedEventArgs is access all IWebViewControlPermissionRequestedEventArgs_Interface'Class;
+   type IWebViewControlPermissionRequestedEventArgs is access IWebViewControlPermissionRequestedEventArgs_Interface'Class;
    type IWebViewControlPermissionRequestedEventArgs_Ptr is access all IWebViewControlPermissionRequestedEventArgs;
 
    type IWebViewControlScriptNotifyEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlScriptNotifyEventArgs is access all IWebViewControlScriptNotifyEventArgs_Interface'Class;
+   type IWebViewControlScriptNotifyEventArgs is access IWebViewControlScriptNotifyEventArgs_Interface'Class;
    type IWebViewControlScriptNotifyEventArgs_Ptr is access all IWebViewControlScriptNotifyEventArgs;
 
    type IWebViewControlSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlSettings is access all IWebViewControlSettings_Interface'Class;
+   type IWebViewControlSettings is access IWebViewControlSettings_Interface'Class;
    type IWebViewControlSettings_Ptr is access all IWebViewControlSettings;
 
    type IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs is access all IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs_Interface'Class;
+   type IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs is access IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs_Interface'Class;
    type IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs_Ptr is access all IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs;
 
    type IWebViewControlUnviewableContentIdentifiedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlUnviewableContentIdentifiedEventArgs is access all IWebViewControlUnviewableContentIdentifiedEventArgs_Interface'Class;
+   type IWebViewControlUnviewableContentIdentifiedEventArgs is access IWebViewControlUnviewableContentIdentifiedEventArgs_Interface'Class;
    type IWebViewControlUnviewableContentIdentifiedEventArgs_Ptr is access all IWebViewControlUnviewableContentIdentifiedEventArgs;
 
    type IWebViewControlWebResourceRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlWebResourceRequestedEventArgs is access all IWebViewControlWebResourceRequestedEventArgs_Interface'Class;
+   type IWebViewControlWebResourceRequestedEventArgs is access IWebViewControlWebResourceRequestedEventArgs_Interface'Class;
    type IWebViewControlWebResourceRequestedEventArgs_Ptr is access all IWebViewControlWebResourceRequestedEventArgs;
 
    -----------------------------------------------------------------------------

@@ -40,26 +40,26 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
    -----------------------------------------------------------------------------
 
    type IMicrosoftAccountMultiFactorAuthenticationManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IMicrosoftAccountMultiFactorAuthenticationManager is access all IMicrosoftAccountMultiFactorAuthenticationManager_Interface'Class;
+   type IMicrosoftAccountMultiFactorAuthenticationManager is access IMicrosoftAccountMultiFactorAuthenticationManager_Interface'Class;
    type IMicrosoftAccountMultiFactorAuthenticationManager_Ptr is access all IMicrosoftAccountMultiFactorAuthenticationManager;
 
    type IMicrosoftAccountMultiFactorAuthenticatorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMicrosoftAccountMultiFactorAuthenticatorStatics is access all IMicrosoftAccountMultiFactorAuthenticatorStatics_Interface'Class;
+   type IMicrosoftAccountMultiFactorAuthenticatorStatics is access IMicrosoftAccountMultiFactorAuthenticatorStatics_Interface'Class;
 
    type IMicrosoftAccountMultiFactorGetSessionsResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IMicrosoftAccountMultiFactorGetSessionsResult is access all IMicrosoftAccountMultiFactorGetSessionsResult_Interface'Class;
+   type IMicrosoftAccountMultiFactorGetSessionsResult is access IMicrosoftAccountMultiFactorGetSessionsResult_Interface'Class;
    type IMicrosoftAccountMultiFactorGetSessionsResult_Ptr is access all IMicrosoftAccountMultiFactorGetSessionsResult;
 
    type IMicrosoftAccountMultiFactorOneTimeCodedInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IMicrosoftAccountMultiFactorOneTimeCodedInfo is access all IMicrosoftAccountMultiFactorOneTimeCodedInfo_Interface'Class;
+   type IMicrosoftAccountMultiFactorOneTimeCodedInfo is access IMicrosoftAccountMultiFactorOneTimeCodedInfo_Interface'Class;
    type IMicrosoftAccountMultiFactorOneTimeCodedInfo_Ptr is access all IMicrosoftAccountMultiFactorOneTimeCodedInfo;
 
    type IMicrosoftAccountMultiFactorSessionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IMicrosoftAccountMultiFactorSessionInfo is access all IMicrosoftAccountMultiFactorSessionInfo_Interface'Class;
+   type IMicrosoftAccountMultiFactorSessionInfo is access IMicrosoftAccountMultiFactorSessionInfo_Interface'Class;
    type IMicrosoftAccountMultiFactorSessionInfo_Ptr is access all IMicrosoftAccountMultiFactorSessionInfo;
 
    type IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo is access all IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo_Interface'Class;
+   type IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo is access IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo_Interface'Class;
    type IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo_Ptr is access all IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo;
 
    -----------------------------------------------------------------------------

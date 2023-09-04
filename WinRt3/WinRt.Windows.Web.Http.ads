@@ -45,98 +45,98 @@ package WinRt.Windows.Web.Http is
    -----------------------------------------------------------------------------
 
    type IHttpBufferContentFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpBufferContentFactory is access all IHttpBufferContentFactory_Interface'Class;
+   type IHttpBufferContentFactory is access IHttpBufferContentFactory_Interface'Class;
 
    type IHttpClient_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpClient is access all IHttpClient_Interface'Class;
+   type IHttpClient is access IHttpClient_Interface'Class;
    type IHttpClient_Ptr is access all IHttpClient;
 
    type IHttpClient2_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpClient2 is access all IHttpClient2_Interface'Class;
+   type IHttpClient2 is access IHttpClient2_Interface'Class;
 
    type IHttpClientFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpClientFactory is access all IHttpClientFactory_Interface'Class;
+   type IHttpClientFactory is access IHttpClientFactory_Interface'Class;
 
    type IHttpContent_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpContent is access all IHttpContent_Interface'Class;
+   type IHttpContent is access IHttpContent_Interface'Class;
    type IHttpContent_Ptr is access all IHttpContent;
 
    type IHttpCookie_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpCookie is access all IHttpCookie_Interface'Class;
+   type IHttpCookie is access IHttpCookie_Interface'Class;
    type IHttpCookie_Ptr is access all IHttpCookie;
    type IHttpCookie_Array is array (Natural range <>) of IHttpCookie;
 
    type IHttpCookieFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpCookieFactory is access all IHttpCookieFactory_Interface'Class;
+   type IHttpCookieFactory is access IHttpCookieFactory_Interface'Class;
 
    type IHttpCookieManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpCookieManager is access all IHttpCookieManager_Interface'Class;
+   type IHttpCookieManager is access IHttpCookieManager_Interface'Class;
    type IHttpCookieManager_Ptr is access all IHttpCookieManager;
 
    type IHttpFormUrlEncodedContentFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpFormUrlEncodedContentFactory is access all IHttpFormUrlEncodedContentFactory_Interface'Class;
+   type IHttpFormUrlEncodedContentFactory is access IHttpFormUrlEncodedContentFactory_Interface'Class;
 
    type IHttpGetBufferResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpGetBufferResult is access all IHttpGetBufferResult_Interface'Class;
+   type IHttpGetBufferResult is access IHttpGetBufferResult_Interface'Class;
    type IHttpGetBufferResult_Ptr is access all IHttpGetBufferResult;
 
    type IHttpGetInputStreamResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpGetInputStreamResult is access all IHttpGetInputStreamResult_Interface'Class;
+   type IHttpGetInputStreamResult is access IHttpGetInputStreamResult_Interface'Class;
    type IHttpGetInputStreamResult_Ptr is access all IHttpGetInputStreamResult;
 
    type IHttpGetStringResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpGetStringResult is access all IHttpGetStringResult_Interface'Class;
+   type IHttpGetStringResult is access IHttpGetStringResult_Interface'Class;
    type IHttpGetStringResult_Ptr is access all IHttpGetStringResult;
 
    type IHttpMethod_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpMethod is access all IHttpMethod_Interface'Class;
+   type IHttpMethod is access IHttpMethod_Interface'Class;
    type IHttpMethod_Ptr is access all IHttpMethod;
    type IHttpMethod_Array is array (Natural range <>) of IHttpMethod;
 
    type IHttpMethodFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpMethodFactory is access all IHttpMethodFactory_Interface'Class;
+   type IHttpMethodFactory is access IHttpMethodFactory_Interface'Class;
 
    type IHttpMethodStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpMethodStatics is access all IHttpMethodStatics_Interface'Class;
+   type IHttpMethodStatics is access IHttpMethodStatics_Interface'Class;
 
    type IHttpMultipartContent_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpMultipartContent is access all IHttpMultipartContent_Interface'Class;
+   type IHttpMultipartContent is access IHttpMultipartContent_Interface'Class;
 
    type IHttpMultipartContentFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpMultipartContentFactory is access all IHttpMultipartContentFactory_Interface'Class;
+   type IHttpMultipartContentFactory is access IHttpMultipartContentFactory_Interface'Class;
 
    type IHttpMultipartFormDataContent_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpMultipartFormDataContent is access all IHttpMultipartFormDataContent_Interface'Class;
+   type IHttpMultipartFormDataContent is access IHttpMultipartFormDataContent_Interface'Class;
 
    type IHttpMultipartFormDataContentFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpMultipartFormDataContentFactory is access all IHttpMultipartFormDataContentFactory_Interface'Class;
+   type IHttpMultipartFormDataContentFactory is access IHttpMultipartFormDataContentFactory_Interface'Class;
 
    type IHttpRequestMessage_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpRequestMessage is access all IHttpRequestMessage_Interface'Class;
+   type IHttpRequestMessage is access IHttpRequestMessage_Interface'Class;
    type IHttpRequestMessage_Ptr is access all IHttpRequestMessage;
 
    type IHttpRequestMessageFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpRequestMessageFactory is access all IHttpRequestMessageFactory_Interface'Class;
+   type IHttpRequestMessageFactory is access IHttpRequestMessageFactory_Interface'Class;
 
    type IHttpRequestResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpRequestResult is access all IHttpRequestResult_Interface'Class;
+   type IHttpRequestResult is access IHttpRequestResult_Interface'Class;
    type IHttpRequestResult_Ptr is access all IHttpRequestResult;
 
    type IHttpResponseMessage_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpResponseMessage is access all IHttpResponseMessage_Interface'Class;
+   type IHttpResponseMessage is access IHttpResponseMessage_Interface'Class;
    type IHttpResponseMessage_Ptr is access all IHttpResponseMessage;
 
    type IHttpResponseMessageFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpResponseMessageFactory is access all IHttpResponseMessageFactory_Interface'Class;
+   type IHttpResponseMessageFactory is access IHttpResponseMessageFactory_Interface'Class;
 
    type IHttpStreamContentFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpStreamContentFactory is access all IHttpStreamContentFactory_Interface'Class;
+   type IHttpStreamContentFactory is access IHttpStreamContentFactory_Interface'Class;
 
    type IHttpStringContentFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpStringContentFactory is access all IHttpStringContentFactory_Interface'Class;
+   type IHttpStringContentFactory is access IHttpStringContentFactory_Interface'Class;
 
    type IHttpTransportInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpTransportInformation is access all IHttpTransportInformation_Interface'Class;
+   type IHttpTransportInformation is access IHttpTransportInformation_Interface'Class;
    type IHttpTransportInformation_Ptr is access all IHttpTransportInformation;
 
    -----------------------------------------------------------------------------

@@ -42,75 +42,75 @@ package WinRt.Windows.UI.Text.Core is
    -----------------------------------------------------------------------------
 
    type ICoreTextCompositionCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextCompositionCompletedEventArgs is access all ICoreTextCompositionCompletedEventArgs_Interface'Class;
+   type ICoreTextCompositionCompletedEventArgs is access ICoreTextCompositionCompletedEventArgs_Interface'Class;
    type ICoreTextCompositionCompletedEventArgs_Ptr is access all ICoreTextCompositionCompletedEventArgs;
 
    type ICoreTextCompositionSegment_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextCompositionSegment is access all ICoreTextCompositionSegment_Interface'Class;
+   type ICoreTextCompositionSegment is access ICoreTextCompositionSegment_Interface'Class;
    type ICoreTextCompositionSegment_Ptr is access all ICoreTextCompositionSegment;
 
    type ICoreTextCompositionStartedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextCompositionStartedEventArgs is access all ICoreTextCompositionStartedEventArgs_Interface'Class;
+   type ICoreTextCompositionStartedEventArgs is access ICoreTextCompositionStartedEventArgs_Interface'Class;
    type ICoreTextCompositionStartedEventArgs_Ptr is access all ICoreTextCompositionStartedEventArgs;
 
    type ICoreTextEditContext_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextEditContext is access all ICoreTextEditContext_Interface'Class;
+   type ICoreTextEditContext is access ICoreTextEditContext_Interface'Class;
    type ICoreTextEditContext_Ptr is access all ICoreTextEditContext;
 
    type ICoreTextEditContext2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextEditContext2 is access all ICoreTextEditContext2_Interface'Class;
+   type ICoreTextEditContext2 is access ICoreTextEditContext2_Interface'Class;
 
    type ICoreTextFormatUpdatingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextFormatUpdatingEventArgs is access all ICoreTextFormatUpdatingEventArgs_Interface'Class;
+   type ICoreTextFormatUpdatingEventArgs is access ICoreTextFormatUpdatingEventArgs_Interface'Class;
    type ICoreTextFormatUpdatingEventArgs_Ptr is access all ICoreTextFormatUpdatingEventArgs;
 
    type ICoreTextLayoutBounds_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextLayoutBounds is access all ICoreTextLayoutBounds_Interface'Class;
+   type ICoreTextLayoutBounds is access ICoreTextLayoutBounds_Interface'Class;
    type ICoreTextLayoutBounds_Ptr is access all ICoreTextLayoutBounds;
 
    type ICoreTextLayoutRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextLayoutRequest is access all ICoreTextLayoutRequest_Interface'Class;
+   type ICoreTextLayoutRequest is access ICoreTextLayoutRequest_Interface'Class;
    type ICoreTextLayoutRequest_Ptr is access all ICoreTextLayoutRequest;
 
    type ICoreTextLayoutRequest2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextLayoutRequest2 is access all ICoreTextLayoutRequest2_Interface'Class;
+   type ICoreTextLayoutRequest2 is access ICoreTextLayoutRequest2_Interface'Class;
 
    type ICoreTextLayoutRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextLayoutRequestedEventArgs is access all ICoreTextLayoutRequestedEventArgs_Interface'Class;
+   type ICoreTextLayoutRequestedEventArgs is access ICoreTextLayoutRequestedEventArgs_Interface'Class;
    type ICoreTextLayoutRequestedEventArgs_Ptr is access all ICoreTextLayoutRequestedEventArgs;
 
    type ICoreTextSelectionRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextSelectionRequest is access all ICoreTextSelectionRequest_Interface'Class;
+   type ICoreTextSelectionRequest is access ICoreTextSelectionRequest_Interface'Class;
    type ICoreTextSelectionRequest_Ptr is access all ICoreTextSelectionRequest;
 
    type ICoreTextSelectionRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextSelectionRequestedEventArgs is access all ICoreTextSelectionRequestedEventArgs_Interface'Class;
+   type ICoreTextSelectionRequestedEventArgs is access ICoreTextSelectionRequestedEventArgs_Interface'Class;
    type ICoreTextSelectionRequestedEventArgs_Ptr is access all ICoreTextSelectionRequestedEventArgs;
 
    type ICoreTextSelectionUpdatingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextSelectionUpdatingEventArgs is access all ICoreTextSelectionUpdatingEventArgs_Interface'Class;
+   type ICoreTextSelectionUpdatingEventArgs is access ICoreTextSelectionUpdatingEventArgs_Interface'Class;
    type ICoreTextSelectionUpdatingEventArgs_Ptr is access all ICoreTextSelectionUpdatingEventArgs;
 
    type ICoreTextServicesManager_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextServicesManager is access all ICoreTextServicesManager_Interface'Class;
+   type ICoreTextServicesManager is access ICoreTextServicesManager_Interface'Class;
    type ICoreTextServicesManager_Ptr is access all ICoreTextServicesManager;
 
    type ICoreTextServicesManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextServicesManagerStatics is access all ICoreTextServicesManagerStatics_Interface'Class;
+   type ICoreTextServicesManagerStatics is access ICoreTextServicesManagerStatics_Interface'Class;
 
    type ICoreTextServicesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextServicesStatics is access all ICoreTextServicesStatics_Interface'Class;
+   type ICoreTextServicesStatics is access ICoreTextServicesStatics_Interface'Class;
 
    type ICoreTextTextRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextTextRequest is access all ICoreTextTextRequest_Interface'Class;
+   type ICoreTextTextRequest is access ICoreTextTextRequest_Interface'Class;
    type ICoreTextTextRequest_Ptr is access all ICoreTextTextRequest;
 
    type ICoreTextTextRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextTextRequestedEventArgs is access all ICoreTextTextRequestedEventArgs_Interface'Class;
+   type ICoreTextTextRequestedEventArgs is access ICoreTextTextRequestedEventArgs_Interface'Class;
    type ICoreTextTextRequestedEventArgs_Ptr is access all ICoreTextTextRequestedEventArgs;
 
    type ICoreTextTextUpdatingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTextTextUpdatingEventArgs is access all ICoreTextTextUpdatingEventArgs_Interface'Class;
+   type ICoreTextTextUpdatingEventArgs is access ICoreTextTextUpdatingEventArgs_Interface'Class;
    type ICoreTextTextUpdatingEventArgs_Ptr is access all ICoreTextTextUpdatingEventArgs;
 
    -----------------------------------------------------------------------------

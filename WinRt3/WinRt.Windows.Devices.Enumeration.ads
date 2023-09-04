@@ -45,120 +45,120 @@ package WinRt.Windows.Devices.Enumeration is
    -----------------------------------------------------------------------------
 
    type IDeviceAccessChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceAccessChangedEventArgs is access all IDeviceAccessChangedEventArgs_Interface'Class;
+   type IDeviceAccessChangedEventArgs is access IDeviceAccessChangedEventArgs_Interface'Class;
    type IDeviceAccessChangedEventArgs_Ptr is access all IDeviceAccessChangedEventArgs;
 
    type IDeviceAccessChangedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceAccessChangedEventArgs2 is access all IDeviceAccessChangedEventArgs2_Interface'Class;
+   type IDeviceAccessChangedEventArgs2 is access IDeviceAccessChangedEventArgs2_Interface'Class;
 
    type IDeviceAccessInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceAccessInformation is access all IDeviceAccessInformation_Interface'Class;
+   type IDeviceAccessInformation is access IDeviceAccessInformation_Interface'Class;
    type IDeviceAccessInformation_Ptr is access all IDeviceAccessInformation;
 
    type IDeviceAccessInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceAccessInformationStatics is access all IDeviceAccessInformationStatics_Interface'Class;
+   type IDeviceAccessInformationStatics is access IDeviceAccessInformationStatics_Interface'Class;
 
    type IDeviceConnectionChangeTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceConnectionChangeTriggerDetails is access all IDeviceConnectionChangeTriggerDetails_Interface'Class;
+   type IDeviceConnectionChangeTriggerDetails is access IDeviceConnectionChangeTriggerDetails_Interface'Class;
    type IDeviceConnectionChangeTriggerDetails_Ptr is access all IDeviceConnectionChangeTriggerDetails;
 
    type IDeviceDisconnectButtonClickedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceDisconnectButtonClickedEventArgs is access all IDeviceDisconnectButtonClickedEventArgs_Interface'Class;
+   type IDeviceDisconnectButtonClickedEventArgs is access IDeviceDisconnectButtonClickedEventArgs_Interface'Class;
    type IDeviceDisconnectButtonClickedEventArgs_Ptr is access all IDeviceDisconnectButtonClickedEventArgs;
 
    type IDeviceInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceInformation is access all IDeviceInformation_Interface'Class;
+   type IDeviceInformation is access IDeviceInformation_Interface'Class;
    type IDeviceInformation_Ptr is access all IDeviceInformation;
    type IDeviceInformation_Array is array (Natural range <>) of IDeviceInformation;
 
    type IDeviceInformation2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceInformation2 is access all IDeviceInformation2_Interface'Class;
+   type IDeviceInformation2 is access IDeviceInformation2_Interface'Class;
 
    type IDeviceInformationCustomPairing_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceInformationCustomPairing is access all IDeviceInformationCustomPairing_Interface'Class;
+   type IDeviceInformationCustomPairing is access IDeviceInformationCustomPairing_Interface'Class;
    type IDeviceInformationCustomPairing_Ptr is access all IDeviceInformationCustomPairing;
 
    type IDeviceInformationPairing_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceInformationPairing is access all IDeviceInformationPairing_Interface'Class;
+   type IDeviceInformationPairing is access IDeviceInformationPairing_Interface'Class;
    type IDeviceInformationPairing_Ptr is access all IDeviceInformationPairing;
 
    type IDeviceInformationPairing2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceInformationPairing2 is access all IDeviceInformationPairing2_Interface'Class;
+   type IDeviceInformationPairing2 is access IDeviceInformationPairing2_Interface'Class;
 
    type IDeviceInformationPairingStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceInformationPairingStatics is access all IDeviceInformationPairingStatics_Interface'Class;
+   type IDeviceInformationPairingStatics is access IDeviceInformationPairingStatics_Interface'Class;
 
    type IDeviceInformationPairingStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceInformationPairingStatics2 is access all IDeviceInformationPairingStatics2_Interface'Class;
+   type IDeviceInformationPairingStatics2 is access IDeviceInformationPairingStatics2_Interface'Class;
 
    type IDeviceInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceInformationStatics is access all IDeviceInformationStatics_Interface'Class;
+   type IDeviceInformationStatics is access IDeviceInformationStatics_Interface'Class;
 
    type IDeviceInformationStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceInformationStatics2 is access all IDeviceInformationStatics2_Interface'Class;
+   type IDeviceInformationStatics2 is access IDeviceInformationStatics2_Interface'Class;
 
    type IDeviceInformationUpdate_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceInformationUpdate is access all IDeviceInformationUpdate_Interface'Class;
+   type IDeviceInformationUpdate is access IDeviceInformationUpdate_Interface'Class;
    type IDeviceInformationUpdate_Ptr is access all IDeviceInformationUpdate;
 
    type IDeviceInformationUpdate2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceInformationUpdate2 is access all IDeviceInformationUpdate2_Interface'Class;
+   type IDeviceInformationUpdate2 is access IDeviceInformationUpdate2_Interface'Class;
 
    type IDevicePairingRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDevicePairingRequestedEventArgs is access all IDevicePairingRequestedEventArgs_Interface'Class;
+   type IDevicePairingRequestedEventArgs is access IDevicePairingRequestedEventArgs_Interface'Class;
    type IDevicePairingRequestedEventArgs_Ptr is access all IDevicePairingRequestedEventArgs;
 
    type IDevicePairingRequestedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDevicePairingRequestedEventArgs2 is access all IDevicePairingRequestedEventArgs2_Interface'Class;
+   type IDevicePairingRequestedEventArgs2 is access IDevicePairingRequestedEventArgs2_Interface'Class;
 
    type IDevicePairingResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IDevicePairingResult is access all IDevicePairingResult_Interface'Class;
+   type IDevicePairingResult is access IDevicePairingResult_Interface'Class;
    type IDevicePairingResult_Ptr is access all IDevicePairingResult;
 
    type IDevicePairingSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IDevicePairingSettings is access all IDevicePairingSettings_Interface'Class;
+   type IDevicePairingSettings is access IDevicePairingSettings_Interface'Class;
 
    type IDevicePicker_Interface is interface and WinRt.IInspectable_Interface;
-   type IDevicePicker is access all IDevicePicker_Interface'Class;
+   type IDevicePicker is access IDevicePicker_Interface'Class;
    type IDevicePicker_Ptr is access all IDevicePicker;
 
    type IDevicePickerAppearance_Interface is interface and WinRt.IInspectable_Interface;
-   type IDevicePickerAppearance is access all IDevicePickerAppearance_Interface'Class;
+   type IDevicePickerAppearance is access IDevicePickerAppearance_Interface'Class;
    type IDevicePickerAppearance_Ptr is access all IDevicePickerAppearance;
 
    type IDevicePickerFilter_Interface is interface and WinRt.IInspectable_Interface;
-   type IDevicePickerFilter is access all IDevicePickerFilter_Interface'Class;
+   type IDevicePickerFilter is access IDevicePickerFilter_Interface'Class;
    type IDevicePickerFilter_Ptr is access all IDevicePickerFilter;
 
    type IDeviceSelectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceSelectedEventArgs is access all IDeviceSelectedEventArgs_Interface'Class;
+   type IDeviceSelectedEventArgs is access IDeviceSelectedEventArgs_Interface'Class;
    type IDeviceSelectedEventArgs_Ptr is access all IDeviceSelectedEventArgs;
 
    type IDeviceUnpairingResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceUnpairingResult is access all IDeviceUnpairingResult_Interface'Class;
+   type IDeviceUnpairingResult is access IDeviceUnpairingResult_Interface'Class;
    type IDeviceUnpairingResult_Ptr is access all IDeviceUnpairingResult;
 
    type IDeviceWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceWatcher is access all IDeviceWatcher_Interface'Class;
+   type IDeviceWatcher is access IDeviceWatcher_Interface'Class;
    type IDeviceWatcher_Ptr is access all IDeviceWatcher;
 
    type IDeviceWatcher2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceWatcher2 is access all IDeviceWatcher2_Interface'Class;
+   type IDeviceWatcher2 is access IDeviceWatcher2_Interface'Class;
 
    type IDeviceWatcherEvent_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceWatcherEvent is access all IDeviceWatcherEvent_Interface'Class;
+   type IDeviceWatcherEvent is access IDeviceWatcherEvent_Interface'Class;
    type IDeviceWatcherEvent_Ptr is access all IDeviceWatcherEvent;
 
    type IDeviceWatcherTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceWatcherTriggerDetails is access all IDeviceWatcherTriggerDetails_Interface'Class;
+   type IDeviceWatcherTriggerDetails is access IDeviceWatcherTriggerDetails_Interface'Class;
    type IDeviceWatcherTriggerDetails_Ptr is access all IDeviceWatcherTriggerDetails;
 
    type IEnclosureLocation_Interface is interface and WinRt.IInspectable_Interface;
-   type IEnclosureLocation is access all IEnclosureLocation_Interface'Class;
+   type IEnclosureLocation is access IEnclosureLocation_Interface'Class;
    type IEnclosureLocation_Ptr is access all IEnclosureLocation;
 
    type IEnclosureLocation2_Interface is interface and WinRt.IInspectable_Interface;
-   type IEnclosureLocation2 is access all IEnclosureLocation2_Interface'Class;
+   type IEnclosureLocation2 is access IEnclosureLocation2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

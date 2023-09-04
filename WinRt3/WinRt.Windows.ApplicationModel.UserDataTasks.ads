@@ -41,50 +41,50 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    -----------------------------------------------------------------------------
 
    type IUserDataTask_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTask is access all IUserDataTask_Interface'Class;
+   type IUserDataTask is access IUserDataTask_Interface'Class;
    type IUserDataTask_Ptr is access all IUserDataTask;
 
    type IUserDataTaskBatch_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskBatch is access all IUserDataTaskBatch_Interface'Class;
+   type IUserDataTaskBatch is access IUserDataTaskBatch_Interface'Class;
    type IUserDataTaskBatch_Ptr is access all IUserDataTaskBatch;
 
    type IUserDataTaskList_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskList is access all IUserDataTaskList_Interface'Class;
+   type IUserDataTaskList is access IUserDataTaskList_Interface'Class;
    type IUserDataTaskList_Ptr is access all IUserDataTaskList;
 
    type IUserDataTaskListLimitedWriteOperations_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskListLimitedWriteOperations is access all IUserDataTaskListLimitedWriteOperations_Interface'Class;
+   type IUserDataTaskListLimitedWriteOperations is access IUserDataTaskListLimitedWriteOperations_Interface'Class;
    type IUserDataTaskListLimitedWriteOperations_Ptr is access all IUserDataTaskListLimitedWriteOperations;
 
    type IUserDataTaskListSyncManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskListSyncManager is access all IUserDataTaskListSyncManager_Interface'Class;
+   type IUserDataTaskListSyncManager is access IUserDataTaskListSyncManager_Interface'Class;
    type IUserDataTaskListSyncManager_Ptr is access all IUserDataTaskListSyncManager;
 
    type IUserDataTaskManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskManager is access all IUserDataTaskManager_Interface'Class;
+   type IUserDataTaskManager is access IUserDataTaskManager_Interface'Class;
    type IUserDataTaskManager_Ptr is access all IUserDataTaskManager;
 
    type IUserDataTaskManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskManagerStatics is access all IUserDataTaskManagerStatics_Interface'Class;
+   type IUserDataTaskManagerStatics is access IUserDataTaskManagerStatics_Interface'Class;
 
    type IUserDataTaskQueryOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskQueryOptions is access all IUserDataTaskQueryOptions_Interface'Class;
+   type IUserDataTaskQueryOptions is access IUserDataTaskQueryOptions_Interface'Class;
    type IUserDataTaskQueryOptions_Ptr is access all IUserDataTaskQueryOptions;
 
    type IUserDataTaskReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskReader is access all IUserDataTaskReader_Interface'Class;
+   type IUserDataTaskReader is access IUserDataTaskReader_Interface'Class;
    type IUserDataTaskReader_Ptr is access all IUserDataTaskReader;
 
    type IUserDataTaskRecurrenceProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskRecurrenceProperties is access all IUserDataTaskRecurrenceProperties_Interface'Class;
+   type IUserDataTaskRecurrenceProperties is access IUserDataTaskRecurrenceProperties_Interface'Class;
    type IUserDataTaskRecurrenceProperties_Ptr is access all IUserDataTaskRecurrenceProperties;
 
    type IUserDataTaskRegenerationProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskRegenerationProperties is access all IUserDataTaskRegenerationProperties_Interface'Class;
+   type IUserDataTaskRegenerationProperties is access IUserDataTaskRegenerationProperties_Interface'Class;
    type IUserDataTaskRegenerationProperties_Ptr is access all IUserDataTaskRegenerationProperties;
 
    type IUserDataTaskStore_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskStore is access all IUserDataTaskStore_Interface'Class;
+   type IUserDataTaskStore is access IUserDataTaskStore_Interface'Class;
    type IUserDataTaskStore_Ptr is access all IUserDataTaskStore;
 
    -----------------------------------------------------------------------------

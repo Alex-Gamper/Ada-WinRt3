@@ -39,22 +39,22 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
    -----------------------------------------------------------------------------
 
    type IEasClientDeviceInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasClientDeviceInformation is access all IEasClientDeviceInformation_Interface'Class;
+   type IEasClientDeviceInformation is access IEasClientDeviceInformation_Interface'Class;
    type IEasClientDeviceInformation_Ptr is access all IEasClientDeviceInformation;
 
    type IEasClientDeviceInformation2_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasClientDeviceInformation2 is access all IEasClientDeviceInformation2_Interface'Class;
+   type IEasClientDeviceInformation2 is access IEasClientDeviceInformation2_Interface'Class;
 
    type IEasClientSecurityPolicy_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasClientSecurityPolicy is access all IEasClientSecurityPolicy_Interface'Class;
+   type IEasClientSecurityPolicy is access IEasClientSecurityPolicy_Interface'Class;
    type IEasClientSecurityPolicy_Ptr is access all IEasClientSecurityPolicy;
 
    type IEasComplianceResults_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasComplianceResults is access all IEasComplianceResults_Interface'Class;
+   type IEasComplianceResults is access IEasComplianceResults_Interface'Class;
    type IEasComplianceResults_Ptr is access all IEasComplianceResults;
 
    type IEasComplianceResults2_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasComplianceResults2 is access all IEasComplianceResults2_Interface'Class;
+   type IEasComplianceResults2 is access IEasComplianceResults2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

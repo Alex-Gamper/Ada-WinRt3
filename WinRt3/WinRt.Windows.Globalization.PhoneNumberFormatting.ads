@@ -39,21 +39,21 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
    -----------------------------------------------------------------------------
 
    type IPhoneNumberFormatter_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneNumberFormatter is access all IPhoneNumberFormatter_Interface'Class;
+   type IPhoneNumberFormatter is access IPhoneNumberFormatter_Interface'Class;
    type IPhoneNumberFormatter_Ptr is access all IPhoneNumberFormatter;
 
    type IPhoneNumberFormatterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneNumberFormatterStatics is access all IPhoneNumberFormatterStatics_Interface'Class;
+   type IPhoneNumberFormatterStatics is access IPhoneNumberFormatterStatics_Interface'Class;
 
    type IPhoneNumberInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneNumberInfo is access all IPhoneNumberInfo_Interface'Class;
+   type IPhoneNumberInfo is access IPhoneNumberInfo_Interface'Class;
    type IPhoneNumberInfo_Ptr is access all IPhoneNumberInfo;
 
    type IPhoneNumberInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneNumberInfoFactory is access all IPhoneNumberInfoFactory_Interface'Class;
+   type IPhoneNumberInfoFactory is access IPhoneNumberInfoFactory_Interface'Class;
 
    type IPhoneNumberInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneNumberInfoStatics is access all IPhoneNumberInfoStatics_Interface'Class;
+   type IPhoneNumberInfoStatics is access IPhoneNumberInfoStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -44,191 +44,191 @@ package WinRt.Windows.Networking.Vpn is
    -----------------------------------------------------------------------------
 
    type IVpnAppId_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnAppId is access all IVpnAppId_Interface'Class;
+   type IVpnAppId is access IVpnAppId_Interface'Class;
    type IVpnAppId_Ptr is access all IVpnAppId;
 
    type IVpnAppIdFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnAppIdFactory is access all IVpnAppIdFactory_Interface'Class;
+   type IVpnAppIdFactory is access IVpnAppIdFactory_Interface'Class;
 
    type IVpnChannel_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnChannel is access all IVpnChannel_Interface'Class;
+   type IVpnChannel is access IVpnChannel_Interface'Class;
    type IVpnChannel_Ptr is access all IVpnChannel;
 
    type IVpnChannel2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnChannel2 is access all IVpnChannel2_Interface'Class;
+   type IVpnChannel2 is access IVpnChannel2_Interface'Class;
 
    type IVpnChannel4_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnChannel4 is access all IVpnChannel4_Interface'Class;
+   type IVpnChannel4 is access IVpnChannel4_Interface'Class;
 
    type IVpnChannelActivityEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnChannelActivityEventArgs is access all IVpnChannelActivityEventArgs_Interface'Class;
+   type IVpnChannelActivityEventArgs is access IVpnChannelActivityEventArgs_Interface'Class;
    type IVpnChannelActivityEventArgs_Ptr is access all IVpnChannelActivityEventArgs;
 
    type IVpnChannelActivityStateChangedArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnChannelActivityStateChangedArgs is access all IVpnChannelActivityStateChangedArgs_Interface'Class;
+   type IVpnChannelActivityStateChangedArgs is access IVpnChannelActivityStateChangedArgs_Interface'Class;
    type IVpnChannelActivityStateChangedArgs_Ptr is access all IVpnChannelActivityStateChangedArgs;
 
    type IVpnChannelConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnChannelConfiguration is access all IVpnChannelConfiguration_Interface'Class;
+   type IVpnChannelConfiguration is access IVpnChannelConfiguration_Interface'Class;
    type IVpnChannelConfiguration_Ptr is access all IVpnChannelConfiguration;
 
    type IVpnChannelConfiguration2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnChannelConfiguration2 is access all IVpnChannelConfiguration2_Interface'Class;
+   type IVpnChannelConfiguration2 is access IVpnChannelConfiguration2_Interface'Class;
 
    type IVpnChannelStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnChannelStatics is access all IVpnChannelStatics_Interface'Class;
+   type IVpnChannelStatics is access IVpnChannelStatics_Interface'Class;
 
    type IVpnCredential_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnCredential is access all IVpnCredential_Interface'Class;
+   type IVpnCredential is access IVpnCredential_Interface'Class;
    type IVpnCredential_Ptr is access all IVpnCredential;
 
    type IVpnCustomCheckBox_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnCustomCheckBox is access all IVpnCustomCheckBox_Interface'Class;
+   type IVpnCustomCheckBox is access IVpnCustomCheckBox_Interface'Class;
    type IVpnCustomCheckBox_Ptr is access all IVpnCustomCheckBox;
 
    type IVpnCustomComboBox_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnCustomComboBox is access all IVpnCustomComboBox_Interface'Class;
+   type IVpnCustomComboBox is access IVpnCustomComboBox_Interface'Class;
    type IVpnCustomComboBox_Ptr is access all IVpnCustomComboBox;
 
    type IVpnCustomEditBox_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnCustomEditBox is access all IVpnCustomEditBox_Interface'Class;
+   type IVpnCustomEditBox is access IVpnCustomEditBox_Interface'Class;
    type IVpnCustomEditBox_Ptr is access all IVpnCustomEditBox;
 
    type IVpnCustomErrorBox_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnCustomErrorBox is access all IVpnCustomErrorBox_Interface'Class;
+   type IVpnCustomErrorBox is access IVpnCustomErrorBox_Interface'Class;
    type IVpnCustomErrorBox_Ptr is access all IVpnCustomErrorBox;
 
    type IVpnCustomPrompt_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnCustomPrompt is access all IVpnCustomPrompt_Interface'Class;
+   type IVpnCustomPrompt is access IVpnCustomPrompt_Interface'Class;
 
    type IVpnCustomPromptBooleanInput_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnCustomPromptBooleanInput is access all IVpnCustomPromptBooleanInput_Interface'Class;
+   type IVpnCustomPromptBooleanInput is access IVpnCustomPromptBooleanInput_Interface'Class;
    type IVpnCustomPromptBooleanInput_Ptr is access all IVpnCustomPromptBooleanInput;
 
    type IVpnCustomPromptElement_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnCustomPromptElement is access all IVpnCustomPromptElement_Interface'Class;
+   type IVpnCustomPromptElement is access IVpnCustomPromptElement_Interface'Class;
 
    type IVpnCustomPromptOptionSelector_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnCustomPromptOptionSelector is access all IVpnCustomPromptOptionSelector_Interface'Class;
+   type IVpnCustomPromptOptionSelector is access IVpnCustomPromptOptionSelector_Interface'Class;
    type IVpnCustomPromptOptionSelector_Ptr is access all IVpnCustomPromptOptionSelector;
 
    type IVpnCustomPromptText_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnCustomPromptText is access all IVpnCustomPromptText_Interface'Class;
+   type IVpnCustomPromptText is access IVpnCustomPromptText_Interface'Class;
    type IVpnCustomPromptText_Ptr is access all IVpnCustomPromptText;
 
    type IVpnCustomPromptTextInput_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnCustomPromptTextInput is access all IVpnCustomPromptTextInput_Interface'Class;
+   type IVpnCustomPromptTextInput is access IVpnCustomPromptTextInput_Interface'Class;
    type IVpnCustomPromptTextInput_Ptr is access all IVpnCustomPromptTextInput;
 
    type IVpnCustomTextBox_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnCustomTextBox is access all IVpnCustomTextBox_Interface'Class;
+   type IVpnCustomTextBox is access IVpnCustomTextBox_Interface'Class;
    type IVpnCustomTextBox_Ptr is access all IVpnCustomTextBox;
 
    type IVpnDomainNameAssignment_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnDomainNameAssignment is access all IVpnDomainNameAssignment_Interface'Class;
+   type IVpnDomainNameAssignment is access IVpnDomainNameAssignment_Interface'Class;
    type IVpnDomainNameAssignment_Ptr is access all IVpnDomainNameAssignment;
 
    type IVpnDomainNameInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnDomainNameInfo is access all IVpnDomainNameInfo_Interface'Class;
+   type IVpnDomainNameInfo is access IVpnDomainNameInfo_Interface'Class;
    type IVpnDomainNameInfo_Ptr is access all IVpnDomainNameInfo;
 
    type IVpnDomainNameInfo2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnDomainNameInfo2 is access all IVpnDomainNameInfo2_Interface'Class;
+   type IVpnDomainNameInfo2 is access IVpnDomainNameInfo2_Interface'Class;
 
    type IVpnDomainNameInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnDomainNameInfoFactory is access all IVpnDomainNameInfoFactory_Interface'Class;
+   type IVpnDomainNameInfoFactory is access IVpnDomainNameInfoFactory_Interface'Class;
 
    type IVpnInterfaceId_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnInterfaceId is access all IVpnInterfaceId_Interface'Class;
+   type IVpnInterfaceId is access IVpnInterfaceId_Interface'Class;
    type IVpnInterfaceId_Ptr is access all IVpnInterfaceId;
 
    type IVpnInterfaceIdFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnInterfaceIdFactory is access all IVpnInterfaceIdFactory_Interface'Class;
+   type IVpnInterfaceIdFactory is access IVpnInterfaceIdFactory_Interface'Class;
 
    type IVpnManagementAgent_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnManagementAgent is access all IVpnManagementAgent_Interface'Class;
+   type IVpnManagementAgent is access IVpnManagementAgent_Interface'Class;
    type IVpnManagementAgent_Ptr is access all IVpnManagementAgent;
 
    type IVpnNamespaceAssignment_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnNamespaceAssignment is access all IVpnNamespaceAssignment_Interface'Class;
+   type IVpnNamespaceAssignment is access IVpnNamespaceAssignment_Interface'Class;
    type IVpnNamespaceAssignment_Ptr is access all IVpnNamespaceAssignment;
 
    type IVpnNamespaceInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnNamespaceInfo is access all IVpnNamespaceInfo_Interface'Class;
+   type IVpnNamespaceInfo is access IVpnNamespaceInfo_Interface'Class;
    type IVpnNamespaceInfo_Ptr is access all IVpnNamespaceInfo;
 
    type IVpnNamespaceInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnNamespaceInfoFactory is access all IVpnNamespaceInfoFactory_Interface'Class;
+   type IVpnNamespaceInfoFactory is access IVpnNamespaceInfoFactory_Interface'Class;
 
    type IVpnNativeProfile_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnNativeProfile is access all IVpnNativeProfile_Interface'Class;
+   type IVpnNativeProfile is access IVpnNativeProfile_Interface'Class;
    type IVpnNativeProfile_Ptr is access all IVpnNativeProfile;
 
    type IVpnNativeProfile2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnNativeProfile2 is access all IVpnNativeProfile2_Interface'Class;
+   type IVpnNativeProfile2 is access IVpnNativeProfile2_Interface'Class;
 
    type IVpnPacketBuffer_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnPacketBuffer is access all IVpnPacketBuffer_Interface'Class;
+   type IVpnPacketBuffer is access IVpnPacketBuffer_Interface'Class;
    type IVpnPacketBuffer_Ptr is access all IVpnPacketBuffer;
 
    type IVpnPacketBuffer2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnPacketBuffer2 is access all IVpnPacketBuffer2_Interface'Class;
+   type IVpnPacketBuffer2 is access IVpnPacketBuffer2_Interface'Class;
 
    type IVpnPacketBuffer3_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnPacketBuffer3 is access all IVpnPacketBuffer3_Interface'Class;
+   type IVpnPacketBuffer3 is access IVpnPacketBuffer3_Interface'Class;
 
    type IVpnPacketBufferFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnPacketBufferFactory is access all IVpnPacketBufferFactory_Interface'Class;
+   type IVpnPacketBufferFactory is access IVpnPacketBufferFactory_Interface'Class;
 
    type IVpnPacketBufferList_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnPacketBufferList is access all IVpnPacketBufferList_Interface'Class;
+   type IVpnPacketBufferList is access IVpnPacketBufferList_Interface'Class;
    type IVpnPacketBufferList_Ptr is access all IVpnPacketBufferList;
 
    type IVpnPacketBufferList2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnPacketBufferList2 is access all IVpnPacketBufferList2_Interface'Class;
+   type IVpnPacketBufferList2 is access IVpnPacketBufferList2_Interface'Class;
 
    type IVpnPickedCredential_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnPickedCredential is access all IVpnPickedCredential_Interface'Class;
+   type IVpnPickedCredential is access IVpnPickedCredential_Interface'Class;
    type IVpnPickedCredential_Ptr is access all IVpnPickedCredential;
 
    type IVpnPlugIn_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnPlugIn is access all IVpnPlugIn_Interface'Class;
+   type IVpnPlugIn is access IVpnPlugIn_Interface'Class;
 
    type IVpnPlugInProfile_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnPlugInProfile is access all IVpnPlugInProfile_Interface'Class;
+   type IVpnPlugInProfile is access IVpnPlugInProfile_Interface'Class;
    type IVpnPlugInProfile_Ptr is access all IVpnPlugInProfile;
 
    type IVpnPlugInProfile2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnPlugInProfile2 is access all IVpnPlugInProfile2_Interface'Class;
+   type IVpnPlugInProfile2 is access IVpnPlugInProfile2_Interface'Class;
 
    type IVpnProfile_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnProfile is access all IVpnProfile_Interface'Class;
+   type IVpnProfile is access IVpnProfile_Interface'Class;
 
    type IVpnRoute_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnRoute is access all IVpnRoute_Interface'Class;
+   type IVpnRoute is access IVpnRoute_Interface'Class;
    type IVpnRoute_Ptr is access all IVpnRoute;
 
    type IVpnRouteAssignment_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnRouteAssignment is access all IVpnRouteAssignment_Interface'Class;
+   type IVpnRouteAssignment is access IVpnRouteAssignment_Interface'Class;
    type IVpnRouteAssignment_Ptr is access all IVpnRouteAssignment;
 
    type IVpnRouteFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnRouteFactory is access all IVpnRouteFactory_Interface'Class;
+   type IVpnRouteFactory is access IVpnRouteFactory_Interface'Class;
 
    type IVpnSystemHealth_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnSystemHealth is access all IVpnSystemHealth_Interface'Class;
+   type IVpnSystemHealth is access IVpnSystemHealth_Interface'Class;
    type IVpnSystemHealth_Ptr is access all IVpnSystemHealth;
 
    type IVpnTrafficFilter_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnTrafficFilter is access all IVpnTrafficFilter_Interface'Class;
+   type IVpnTrafficFilter is access IVpnTrafficFilter_Interface'Class;
    type IVpnTrafficFilter_Ptr is access all IVpnTrafficFilter;
 
    type IVpnTrafficFilterAssignment_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnTrafficFilterAssignment is access all IVpnTrafficFilterAssignment_Interface'Class;
+   type IVpnTrafficFilterAssignment is access IVpnTrafficFilterAssignment_Interface'Class;
    type IVpnTrafficFilterAssignment_Ptr is access all IVpnTrafficFilterAssignment;
 
    type IVpnTrafficFilterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IVpnTrafficFilterFactory is access all IVpnTrafficFilterFactory_Interface'Class;
+   type IVpnTrafficFilterFactory is access IVpnTrafficFilterFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -42,118 +42,118 @@ package WinRt.Windows.Devices.PointOfService.Provider is
    -----------------------------------------------------------------------------
 
    type IBarcodeScannerDisableScannerRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerDisableScannerRequest is access all IBarcodeScannerDisableScannerRequest_Interface'Class;
+   type IBarcodeScannerDisableScannerRequest is access IBarcodeScannerDisableScannerRequest_Interface'Class;
    type IBarcodeScannerDisableScannerRequest_Ptr is access all IBarcodeScannerDisableScannerRequest;
 
    type IBarcodeScannerDisableScannerRequest2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerDisableScannerRequest2 is access all IBarcodeScannerDisableScannerRequest2_Interface'Class;
+   type IBarcodeScannerDisableScannerRequest2 is access IBarcodeScannerDisableScannerRequest2_Interface'Class;
 
    type IBarcodeScannerDisableScannerRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerDisableScannerRequestEventArgs is access all IBarcodeScannerDisableScannerRequestEventArgs_Interface'Class;
+   type IBarcodeScannerDisableScannerRequestEventArgs is access IBarcodeScannerDisableScannerRequestEventArgs_Interface'Class;
    type IBarcodeScannerDisableScannerRequestEventArgs_Ptr is access all IBarcodeScannerDisableScannerRequestEventArgs;
 
    type IBarcodeScannerEnableScannerRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerEnableScannerRequest is access all IBarcodeScannerEnableScannerRequest_Interface'Class;
+   type IBarcodeScannerEnableScannerRequest is access IBarcodeScannerEnableScannerRequest_Interface'Class;
    type IBarcodeScannerEnableScannerRequest_Ptr is access all IBarcodeScannerEnableScannerRequest;
 
    type IBarcodeScannerEnableScannerRequest2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerEnableScannerRequest2 is access all IBarcodeScannerEnableScannerRequest2_Interface'Class;
+   type IBarcodeScannerEnableScannerRequest2 is access IBarcodeScannerEnableScannerRequest2_Interface'Class;
 
    type IBarcodeScannerEnableScannerRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerEnableScannerRequestEventArgs is access all IBarcodeScannerEnableScannerRequestEventArgs_Interface'Class;
+   type IBarcodeScannerEnableScannerRequestEventArgs is access IBarcodeScannerEnableScannerRequestEventArgs_Interface'Class;
    type IBarcodeScannerEnableScannerRequestEventArgs_Ptr is access all IBarcodeScannerEnableScannerRequestEventArgs;
 
    type IBarcodeScannerFrameReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerFrameReader is access all IBarcodeScannerFrameReader_Interface'Class;
+   type IBarcodeScannerFrameReader is access IBarcodeScannerFrameReader_Interface'Class;
    type IBarcodeScannerFrameReader_Ptr is access all IBarcodeScannerFrameReader;
 
    type IBarcodeScannerFrameReaderFrameArrivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerFrameReaderFrameArrivedEventArgs is access all IBarcodeScannerFrameReaderFrameArrivedEventArgs_Interface'Class;
+   type IBarcodeScannerFrameReaderFrameArrivedEventArgs is access IBarcodeScannerFrameReaderFrameArrivedEventArgs_Interface'Class;
    type IBarcodeScannerFrameReaderFrameArrivedEventArgs_Ptr is access all IBarcodeScannerFrameReaderFrameArrivedEventArgs;
 
    type IBarcodeScannerGetSymbologyAttributesRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerGetSymbologyAttributesRequest is access all IBarcodeScannerGetSymbologyAttributesRequest_Interface'Class;
+   type IBarcodeScannerGetSymbologyAttributesRequest is access IBarcodeScannerGetSymbologyAttributesRequest_Interface'Class;
    type IBarcodeScannerGetSymbologyAttributesRequest_Ptr is access all IBarcodeScannerGetSymbologyAttributesRequest;
 
    type IBarcodeScannerGetSymbologyAttributesRequest2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerGetSymbologyAttributesRequest2 is access all IBarcodeScannerGetSymbologyAttributesRequest2_Interface'Class;
+   type IBarcodeScannerGetSymbologyAttributesRequest2 is access IBarcodeScannerGetSymbologyAttributesRequest2_Interface'Class;
 
    type IBarcodeScannerGetSymbologyAttributesRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerGetSymbologyAttributesRequestEventArgs is access all IBarcodeScannerGetSymbologyAttributesRequestEventArgs_Interface'Class;
+   type IBarcodeScannerGetSymbologyAttributesRequestEventArgs is access IBarcodeScannerGetSymbologyAttributesRequestEventArgs_Interface'Class;
    type IBarcodeScannerGetSymbologyAttributesRequestEventArgs_Ptr is access all IBarcodeScannerGetSymbologyAttributesRequestEventArgs;
 
    type IBarcodeScannerHideVideoPreviewRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerHideVideoPreviewRequest is access all IBarcodeScannerHideVideoPreviewRequest_Interface'Class;
+   type IBarcodeScannerHideVideoPreviewRequest is access IBarcodeScannerHideVideoPreviewRequest_Interface'Class;
    type IBarcodeScannerHideVideoPreviewRequest_Ptr is access all IBarcodeScannerHideVideoPreviewRequest;
 
    type IBarcodeScannerHideVideoPreviewRequest2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerHideVideoPreviewRequest2 is access all IBarcodeScannerHideVideoPreviewRequest2_Interface'Class;
+   type IBarcodeScannerHideVideoPreviewRequest2 is access IBarcodeScannerHideVideoPreviewRequest2_Interface'Class;
 
    type IBarcodeScannerHideVideoPreviewRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerHideVideoPreviewRequestEventArgs is access all IBarcodeScannerHideVideoPreviewRequestEventArgs_Interface'Class;
+   type IBarcodeScannerHideVideoPreviewRequestEventArgs is access IBarcodeScannerHideVideoPreviewRequestEventArgs_Interface'Class;
    type IBarcodeScannerHideVideoPreviewRequestEventArgs_Ptr is access all IBarcodeScannerHideVideoPreviewRequestEventArgs;
 
    type IBarcodeScannerProviderConnection_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerProviderConnection is access all IBarcodeScannerProviderConnection_Interface'Class;
+   type IBarcodeScannerProviderConnection is access IBarcodeScannerProviderConnection_Interface'Class;
    type IBarcodeScannerProviderConnection_Ptr is access all IBarcodeScannerProviderConnection;
 
    type IBarcodeScannerProviderConnection2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerProviderConnection2 is access all IBarcodeScannerProviderConnection2_Interface'Class;
+   type IBarcodeScannerProviderConnection2 is access IBarcodeScannerProviderConnection2_Interface'Class;
 
    type IBarcodeScannerProviderTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerProviderTriggerDetails is access all IBarcodeScannerProviderTriggerDetails_Interface'Class;
+   type IBarcodeScannerProviderTriggerDetails is access IBarcodeScannerProviderTriggerDetails_Interface'Class;
    type IBarcodeScannerProviderTriggerDetails_Ptr is access all IBarcodeScannerProviderTriggerDetails;
 
    type IBarcodeScannerSetActiveSymbologiesRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerSetActiveSymbologiesRequest is access all IBarcodeScannerSetActiveSymbologiesRequest_Interface'Class;
+   type IBarcodeScannerSetActiveSymbologiesRequest is access IBarcodeScannerSetActiveSymbologiesRequest_Interface'Class;
    type IBarcodeScannerSetActiveSymbologiesRequest_Ptr is access all IBarcodeScannerSetActiveSymbologiesRequest;
 
    type IBarcodeScannerSetActiveSymbologiesRequest2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerSetActiveSymbologiesRequest2 is access all IBarcodeScannerSetActiveSymbologiesRequest2_Interface'Class;
+   type IBarcodeScannerSetActiveSymbologiesRequest2 is access IBarcodeScannerSetActiveSymbologiesRequest2_Interface'Class;
 
    type IBarcodeScannerSetActiveSymbologiesRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerSetActiveSymbologiesRequestEventArgs is access all IBarcodeScannerSetActiveSymbologiesRequestEventArgs_Interface'Class;
+   type IBarcodeScannerSetActiveSymbologiesRequestEventArgs is access IBarcodeScannerSetActiveSymbologiesRequestEventArgs_Interface'Class;
    type IBarcodeScannerSetActiveSymbologiesRequestEventArgs_Ptr is access all IBarcodeScannerSetActiveSymbologiesRequestEventArgs;
 
    type IBarcodeScannerSetSymbologyAttributesRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerSetSymbologyAttributesRequest is access all IBarcodeScannerSetSymbologyAttributesRequest_Interface'Class;
+   type IBarcodeScannerSetSymbologyAttributesRequest is access IBarcodeScannerSetSymbologyAttributesRequest_Interface'Class;
    type IBarcodeScannerSetSymbologyAttributesRequest_Ptr is access all IBarcodeScannerSetSymbologyAttributesRequest;
 
    type IBarcodeScannerSetSymbologyAttributesRequest2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerSetSymbologyAttributesRequest2 is access all IBarcodeScannerSetSymbologyAttributesRequest2_Interface'Class;
+   type IBarcodeScannerSetSymbologyAttributesRequest2 is access IBarcodeScannerSetSymbologyAttributesRequest2_Interface'Class;
 
    type IBarcodeScannerSetSymbologyAttributesRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerSetSymbologyAttributesRequestEventArgs is access all IBarcodeScannerSetSymbologyAttributesRequestEventArgs_Interface'Class;
+   type IBarcodeScannerSetSymbologyAttributesRequestEventArgs is access IBarcodeScannerSetSymbologyAttributesRequestEventArgs_Interface'Class;
    type IBarcodeScannerSetSymbologyAttributesRequestEventArgs_Ptr is access all IBarcodeScannerSetSymbologyAttributesRequestEventArgs;
 
    type IBarcodeScannerStartSoftwareTriggerRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerStartSoftwareTriggerRequest is access all IBarcodeScannerStartSoftwareTriggerRequest_Interface'Class;
+   type IBarcodeScannerStartSoftwareTriggerRequest is access IBarcodeScannerStartSoftwareTriggerRequest_Interface'Class;
    type IBarcodeScannerStartSoftwareTriggerRequest_Ptr is access all IBarcodeScannerStartSoftwareTriggerRequest;
 
    type IBarcodeScannerStartSoftwareTriggerRequest2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerStartSoftwareTriggerRequest2 is access all IBarcodeScannerStartSoftwareTriggerRequest2_Interface'Class;
+   type IBarcodeScannerStartSoftwareTriggerRequest2 is access IBarcodeScannerStartSoftwareTriggerRequest2_Interface'Class;
 
    type IBarcodeScannerStartSoftwareTriggerRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerStartSoftwareTriggerRequestEventArgs is access all IBarcodeScannerStartSoftwareTriggerRequestEventArgs_Interface'Class;
+   type IBarcodeScannerStartSoftwareTriggerRequestEventArgs is access IBarcodeScannerStartSoftwareTriggerRequestEventArgs_Interface'Class;
    type IBarcodeScannerStartSoftwareTriggerRequestEventArgs_Ptr is access all IBarcodeScannerStartSoftwareTriggerRequestEventArgs;
 
    type IBarcodeScannerStopSoftwareTriggerRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerStopSoftwareTriggerRequest is access all IBarcodeScannerStopSoftwareTriggerRequest_Interface'Class;
+   type IBarcodeScannerStopSoftwareTriggerRequest is access IBarcodeScannerStopSoftwareTriggerRequest_Interface'Class;
    type IBarcodeScannerStopSoftwareTriggerRequest_Ptr is access all IBarcodeScannerStopSoftwareTriggerRequest;
 
    type IBarcodeScannerStopSoftwareTriggerRequest2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerStopSoftwareTriggerRequest2 is access all IBarcodeScannerStopSoftwareTriggerRequest2_Interface'Class;
+   type IBarcodeScannerStopSoftwareTriggerRequest2 is access IBarcodeScannerStopSoftwareTriggerRequest2_Interface'Class;
 
    type IBarcodeScannerStopSoftwareTriggerRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerStopSoftwareTriggerRequestEventArgs is access all IBarcodeScannerStopSoftwareTriggerRequestEventArgs_Interface'Class;
+   type IBarcodeScannerStopSoftwareTriggerRequestEventArgs is access IBarcodeScannerStopSoftwareTriggerRequestEventArgs_Interface'Class;
    type IBarcodeScannerStopSoftwareTriggerRequestEventArgs_Ptr is access all IBarcodeScannerStopSoftwareTriggerRequestEventArgs;
 
    type IBarcodeScannerVideoFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeScannerVideoFrame is access all IBarcodeScannerVideoFrame_Interface'Class;
+   type IBarcodeScannerVideoFrame is access IBarcodeScannerVideoFrame_Interface'Class;
    type IBarcodeScannerVideoFrame_Ptr is access all IBarcodeScannerVideoFrame;
 
    type IBarcodeSymbologyAttributesBuilder_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarcodeSymbologyAttributesBuilder is access all IBarcodeSymbologyAttributesBuilder_Interface'Class;
+   type IBarcodeSymbologyAttributesBuilder is access IBarcodeSymbologyAttributesBuilder_Interface'Class;
    type IBarcodeSymbologyAttributesBuilder_Ptr is access all IBarcodeSymbologyAttributesBuilder;
 
    -----------------------------------------------------------------------------

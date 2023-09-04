@@ -43,34 +43,34 @@ package WinRt.Windows.Media.Casting is
    -----------------------------------------------------------------------------
 
    type ICastingConnection_Interface is interface and WinRt.IInspectable_Interface;
-   type ICastingConnection is access all ICastingConnection_Interface'Class;
+   type ICastingConnection is access ICastingConnection_Interface'Class;
    type ICastingConnection_Ptr is access all ICastingConnection;
 
    type ICastingConnectionErrorOccurredEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICastingConnectionErrorOccurredEventArgs is access all ICastingConnectionErrorOccurredEventArgs_Interface'Class;
+   type ICastingConnectionErrorOccurredEventArgs is access ICastingConnectionErrorOccurredEventArgs_Interface'Class;
    type ICastingConnectionErrorOccurredEventArgs_Ptr is access all ICastingConnectionErrorOccurredEventArgs;
 
    type ICastingDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type ICastingDevice is access all ICastingDevice_Interface'Class;
+   type ICastingDevice is access ICastingDevice_Interface'Class;
    type ICastingDevice_Ptr is access all ICastingDevice;
 
    type ICastingDevicePicker_Interface is interface and WinRt.IInspectable_Interface;
-   type ICastingDevicePicker is access all ICastingDevicePicker_Interface'Class;
+   type ICastingDevicePicker is access ICastingDevicePicker_Interface'Class;
    type ICastingDevicePicker_Ptr is access all ICastingDevicePicker;
 
    type ICastingDevicePickerFilter_Interface is interface and WinRt.IInspectable_Interface;
-   type ICastingDevicePickerFilter is access all ICastingDevicePickerFilter_Interface'Class;
+   type ICastingDevicePickerFilter is access ICastingDevicePickerFilter_Interface'Class;
    type ICastingDevicePickerFilter_Ptr is access all ICastingDevicePickerFilter;
 
    type ICastingDeviceSelectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICastingDeviceSelectedEventArgs is access all ICastingDeviceSelectedEventArgs_Interface'Class;
+   type ICastingDeviceSelectedEventArgs is access ICastingDeviceSelectedEventArgs_Interface'Class;
    type ICastingDeviceSelectedEventArgs_Ptr is access all ICastingDeviceSelectedEventArgs;
 
    type ICastingDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICastingDeviceStatics is access all ICastingDeviceStatics_Interface'Class;
+   type ICastingDeviceStatics is access ICastingDeviceStatics_Interface'Class;
 
    type ICastingSource_Interface is interface and WinRt.IInspectable_Interface;
-   type ICastingSource is access all ICastingSource_Interface'Class;
+   type ICastingSource is access ICastingSource_Interface'Class;
    type ICastingSource_Ptr is access all ICastingSource;
 
    -----------------------------------------------------------------------------

@@ -39,51 +39,51 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    -----------------------------------------------------------------------------
 
    type IUserDataTaskDataProviderConnection_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskDataProviderConnection is access all IUserDataTaskDataProviderConnection_Interface'Class;
+   type IUserDataTaskDataProviderConnection is access IUserDataTaskDataProviderConnection_Interface'Class;
    type IUserDataTaskDataProviderConnection_Ptr is access all IUserDataTaskDataProviderConnection;
 
    type IUserDataTaskDataProviderTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskDataProviderTriggerDetails is access all IUserDataTaskDataProviderTriggerDetails_Interface'Class;
+   type IUserDataTaskDataProviderTriggerDetails is access IUserDataTaskDataProviderTriggerDetails_Interface'Class;
    type IUserDataTaskDataProviderTriggerDetails_Ptr is access all IUserDataTaskDataProviderTriggerDetails;
 
    type IUserDataTaskListCompleteTaskRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskListCompleteTaskRequest is access all IUserDataTaskListCompleteTaskRequest_Interface'Class;
+   type IUserDataTaskListCompleteTaskRequest is access IUserDataTaskListCompleteTaskRequest_Interface'Class;
    type IUserDataTaskListCompleteTaskRequest_Ptr is access all IUserDataTaskListCompleteTaskRequest;
 
    type IUserDataTaskListCompleteTaskRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskListCompleteTaskRequestEventArgs is access all IUserDataTaskListCompleteTaskRequestEventArgs_Interface'Class;
+   type IUserDataTaskListCompleteTaskRequestEventArgs is access IUserDataTaskListCompleteTaskRequestEventArgs_Interface'Class;
    type IUserDataTaskListCompleteTaskRequestEventArgs_Ptr is access all IUserDataTaskListCompleteTaskRequestEventArgs;
 
    type IUserDataTaskListCreateOrUpdateTaskRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskListCreateOrUpdateTaskRequest is access all IUserDataTaskListCreateOrUpdateTaskRequest_Interface'Class;
+   type IUserDataTaskListCreateOrUpdateTaskRequest is access IUserDataTaskListCreateOrUpdateTaskRequest_Interface'Class;
    type IUserDataTaskListCreateOrUpdateTaskRequest_Ptr is access all IUserDataTaskListCreateOrUpdateTaskRequest;
 
    type IUserDataTaskListCreateOrUpdateTaskRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskListCreateOrUpdateTaskRequestEventArgs is access all IUserDataTaskListCreateOrUpdateTaskRequestEventArgs_Interface'Class;
+   type IUserDataTaskListCreateOrUpdateTaskRequestEventArgs is access IUserDataTaskListCreateOrUpdateTaskRequestEventArgs_Interface'Class;
    type IUserDataTaskListCreateOrUpdateTaskRequestEventArgs_Ptr is access all IUserDataTaskListCreateOrUpdateTaskRequestEventArgs;
 
    type IUserDataTaskListDeleteTaskRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskListDeleteTaskRequest is access all IUserDataTaskListDeleteTaskRequest_Interface'Class;
+   type IUserDataTaskListDeleteTaskRequest is access IUserDataTaskListDeleteTaskRequest_Interface'Class;
    type IUserDataTaskListDeleteTaskRequest_Ptr is access all IUserDataTaskListDeleteTaskRequest;
 
    type IUserDataTaskListDeleteTaskRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskListDeleteTaskRequestEventArgs is access all IUserDataTaskListDeleteTaskRequestEventArgs_Interface'Class;
+   type IUserDataTaskListDeleteTaskRequestEventArgs is access IUserDataTaskListDeleteTaskRequestEventArgs_Interface'Class;
    type IUserDataTaskListDeleteTaskRequestEventArgs_Ptr is access all IUserDataTaskListDeleteTaskRequestEventArgs;
 
    type IUserDataTaskListSkipOccurrenceRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskListSkipOccurrenceRequest is access all IUserDataTaskListSkipOccurrenceRequest_Interface'Class;
+   type IUserDataTaskListSkipOccurrenceRequest is access IUserDataTaskListSkipOccurrenceRequest_Interface'Class;
    type IUserDataTaskListSkipOccurrenceRequest_Ptr is access all IUserDataTaskListSkipOccurrenceRequest;
 
    type IUserDataTaskListSkipOccurrenceRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskListSkipOccurrenceRequestEventArgs is access all IUserDataTaskListSkipOccurrenceRequestEventArgs_Interface'Class;
+   type IUserDataTaskListSkipOccurrenceRequestEventArgs is access IUserDataTaskListSkipOccurrenceRequestEventArgs_Interface'Class;
    type IUserDataTaskListSkipOccurrenceRequestEventArgs_Ptr is access all IUserDataTaskListSkipOccurrenceRequestEventArgs;
 
    type IUserDataTaskListSyncManagerSyncRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskListSyncManagerSyncRequest is access all IUserDataTaskListSyncManagerSyncRequest_Interface'Class;
+   type IUserDataTaskListSyncManagerSyncRequest is access IUserDataTaskListSyncManagerSyncRequest_Interface'Class;
    type IUserDataTaskListSyncManagerSyncRequest_Ptr is access all IUserDataTaskListSyncManagerSyncRequest;
 
    type IUserDataTaskListSyncManagerSyncRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataTaskListSyncManagerSyncRequestEventArgs is access all IUserDataTaskListSyncManagerSyncRequestEventArgs_Interface'Class;
+   type IUserDataTaskListSyncManagerSyncRequestEventArgs is access IUserDataTaskListSyncManagerSyncRequestEventArgs_Interface'Class;
    type IUserDataTaskListSyncManagerSyncRequestEventArgs_Ptr is access all IUserDataTaskListSyncManagerSyncRequestEventArgs;
 
    -----------------------------------------------------------------------------

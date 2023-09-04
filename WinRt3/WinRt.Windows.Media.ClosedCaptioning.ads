@@ -39,7 +39,7 @@ package WinRt.Windows.Media.ClosedCaptioning is
    -----------------------------------------------------------------------------
 
    type IClosedCaptionPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IClosedCaptionPropertiesStatics is access all IClosedCaptionPropertiesStatics_Interface'Class;
+   type IClosedCaptionPropertiesStatics is access IClosedCaptionPropertiesStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Enum declarations

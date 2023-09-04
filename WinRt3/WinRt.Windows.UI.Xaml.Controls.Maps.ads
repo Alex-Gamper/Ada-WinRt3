@@ -45,398 +45,398 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    -----------------------------------------------------------------------------
 
    type ICustomMapTileDataSource_Interface is interface and WinRt.IInspectable_Interface;
-   type ICustomMapTileDataSource is access all ICustomMapTileDataSource_Interface'Class;
+   type ICustomMapTileDataSource is access ICustomMapTileDataSource_Interface'Class;
    type ICustomMapTileDataSource_Ptr is access all ICustomMapTileDataSource;
 
    type ICustomMapTileDataSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICustomMapTileDataSourceFactory is access all ICustomMapTileDataSourceFactory_Interface'Class;
+   type ICustomMapTileDataSourceFactory is access ICustomMapTileDataSourceFactory_Interface'Class;
 
    type IHttpMapTileDataSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpMapTileDataSource is access all IHttpMapTileDataSource_Interface'Class;
+   type IHttpMapTileDataSource is access IHttpMapTileDataSource_Interface'Class;
    type IHttpMapTileDataSource_Ptr is access all IHttpMapTileDataSource;
 
    type IHttpMapTileDataSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpMapTileDataSourceFactory is access all IHttpMapTileDataSourceFactory_Interface'Class;
+   type IHttpMapTileDataSourceFactory is access IHttpMapTileDataSourceFactory_Interface'Class;
 
    type ILocalMapTileDataSource_Interface is interface and WinRt.IInspectable_Interface;
-   type ILocalMapTileDataSource is access all ILocalMapTileDataSource_Interface'Class;
+   type ILocalMapTileDataSource is access ILocalMapTileDataSource_Interface'Class;
    type ILocalMapTileDataSource_Ptr is access all ILocalMapTileDataSource;
 
    type ILocalMapTileDataSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ILocalMapTileDataSourceFactory is access all ILocalMapTileDataSourceFactory_Interface'Class;
+   type ILocalMapTileDataSourceFactory is access ILocalMapTileDataSourceFactory_Interface'Class;
 
    type IMapActualCameraChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapActualCameraChangedEventArgs is access all IMapActualCameraChangedEventArgs_Interface'Class;
+   type IMapActualCameraChangedEventArgs is access IMapActualCameraChangedEventArgs_Interface'Class;
    type IMapActualCameraChangedEventArgs_Ptr is access all IMapActualCameraChangedEventArgs;
 
    type IMapActualCameraChangedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapActualCameraChangedEventArgs2 is access all IMapActualCameraChangedEventArgs2_Interface'Class;
+   type IMapActualCameraChangedEventArgs2 is access IMapActualCameraChangedEventArgs2_Interface'Class;
 
    type IMapActualCameraChangingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapActualCameraChangingEventArgs is access all IMapActualCameraChangingEventArgs_Interface'Class;
+   type IMapActualCameraChangingEventArgs is access IMapActualCameraChangingEventArgs_Interface'Class;
    type IMapActualCameraChangingEventArgs_Ptr is access all IMapActualCameraChangingEventArgs;
 
    type IMapActualCameraChangingEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapActualCameraChangingEventArgs2 is access all IMapActualCameraChangingEventArgs2_Interface'Class;
+   type IMapActualCameraChangingEventArgs2 is access IMapActualCameraChangingEventArgs2_Interface'Class;
 
    type IMapBillboard_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapBillboard is access all IMapBillboard_Interface'Class;
+   type IMapBillboard is access IMapBillboard_Interface'Class;
    type IMapBillboard_Ptr is access all IMapBillboard;
 
    type IMapBillboardFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapBillboardFactory is access all IMapBillboardFactory_Interface'Class;
+   type IMapBillboardFactory is access IMapBillboardFactory_Interface'Class;
 
    type IMapBillboardStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapBillboardStatics is access all IMapBillboardStatics_Interface'Class;
+   type IMapBillboardStatics is access IMapBillboardStatics_Interface'Class;
 
    type IMapCamera_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapCamera is access all IMapCamera_Interface'Class;
+   type IMapCamera is access IMapCamera_Interface'Class;
    type IMapCamera_Ptr is access all IMapCamera;
 
    type IMapCameraFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapCameraFactory is access all IMapCameraFactory_Interface'Class;
+   type IMapCameraFactory is access IMapCameraFactory_Interface'Class;
 
    type IMapContextRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapContextRequestedEventArgs is access all IMapContextRequestedEventArgs_Interface'Class;
+   type IMapContextRequestedEventArgs is access IMapContextRequestedEventArgs_Interface'Class;
    type IMapContextRequestedEventArgs_Ptr is access all IMapContextRequestedEventArgs;
 
    type IMapControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControl is access all IMapControl_Interface'Class;
+   type IMapControl is access IMapControl_Interface'Class;
    type IMapControl_Ptr is access all IMapControl;
 
    type IMapControl2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControl2 is access all IMapControl2_Interface'Class;
+   type IMapControl2 is access IMapControl2_Interface'Class;
 
    type IMapControl3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControl3 is access all IMapControl3_Interface'Class;
+   type IMapControl3 is access IMapControl3_Interface'Class;
 
    type IMapControl4_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControl4 is access all IMapControl4_Interface'Class;
+   type IMapControl4 is access IMapControl4_Interface'Class;
 
    type IMapControl5_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControl5 is access all IMapControl5_Interface'Class;
+   type IMapControl5 is access IMapControl5_Interface'Class;
 
    type IMapControl6_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControl6 is access all IMapControl6_Interface'Class;
+   type IMapControl6 is access IMapControl6_Interface'Class;
 
    type IMapControl7_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControl7 is access all IMapControl7_Interface'Class;
+   type IMapControl7 is access IMapControl7_Interface'Class;
 
    type IMapControl8_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControl8 is access all IMapControl8_Interface'Class;
+   type IMapControl8 is access IMapControl8_Interface'Class;
 
    type IMapControlBusinessLandmarkClickEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlBusinessLandmarkClickEventArgs is access all IMapControlBusinessLandmarkClickEventArgs_Interface'Class;
+   type IMapControlBusinessLandmarkClickEventArgs is access IMapControlBusinessLandmarkClickEventArgs_Interface'Class;
    type IMapControlBusinessLandmarkClickEventArgs_Ptr is access all IMapControlBusinessLandmarkClickEventArgs;
 
    type IMapControlBusinessLandmarkPointerEnteredEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlBusinessLandmarkPointerEnteredEventArgs is access all IMapControlBusinessLandmarkPointerEnteredEventArgs_Interface'Class;
+   type IMapControlBusinessLandmarkPointerEnteredEventArgs is access IMapControlBusinessLandmarkPointerEnteredEventArgs_Interface'Class;
    type IMapControlBusinessLandmarkPointerEnteredEventArgs_Ptr is access all IMapControlBusinessLandmarkPointerEnteredEventArgs;
 
    type IMapControlBusinessLandmarkPointerExitedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlBusinessLandmarkPointerExitedEventArgs is access all IMapControlBusinessLandmarkPointerExitedEventArgs_Interface'Class;
+   type IMapControlBusinessLandmarkPointerExitedEventArgs is access IMapControlBusinessLandmarkPointerExitedEventArgs_Interface'Class;
    type IMapControlBusinessLandmarkPointerExitedEventArgs_Ptr is access all IMapControlBusinessLandmarkPointerExitedEventArgs;
 
    type IMapControlBusinessLandmarkRightTappedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlBusinessLandmarkRightTappedEventArgs is access all IMapControlBusinessLandmarkRightTappedEventArgs_Interface'Class;
+   type IMapControlBusinessLandmarkRightTappedEventArgs is access IMapControlBusinessLandmarkRightTappedEventArgs_Interface'Class;
    type IMapControlBusinessLandmarkRightTappedEventArgs_Ptr is access all IMapControlBusinessLandmarkRightTappedEventArgs;
 
    type IMapControlDataHelper_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlDataHelper is access all IMapControlDataHelper_Interface'Class;
+   type IMapControlDataHelper is access IMapControlDataHelper_Interface'Class;
    type IMapControlDataHelper_Ptr is access all IMapControlDataHelper;
 
    type IMapControlDataHelper2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlDataHelper2 is access all IMapControlDataHelper2_Interface'Class;
+   type IMapControlDataHelper2 is access IMapControlDataHelper2_Interface'Class;
 
    type IMapControlDataHelperFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlDataHelperFactory is access all IMapControlDataHelperFactory_Interface'Class;
+   type IMapControlDataHelperFactory is access IMapControlDataHelperFactory_Interface'Class;
 
    type IMapControlDataHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlDataHelperStatics is access all IMapControlDataHelperStatics_Interface'Class;
+   type IMapControlDataHelperStatics is access IMapControlDataHelperStatics_Interface'Class;
 
    type IMapControlStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlStatics is access all IMapControlStatics_Interface'Class;
+   type IMapControlStatics is access IMapControlStatics_Interface'Class;
 
    type IMapControlStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlStatics2 is access all IMapControlStatics2_Interface'Class;
+   type IMapControlStatics2 is access IMapControlStatics2_Interface'Class;
 
    type IMapControlStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlStatics4 is access all IMapControlStatics4_Interface'Class;
+   type IMapControlStatics4 is access IMapControlStatics4_Interface'Class;
 
    type IMapControlStatics5_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlStatics5 is access all IMapControlStatics5_Interface'Class;
+   type IMapControlStatics5 is access IMapControlStatics5_Interface'Class;
 
    type IMapControlStatics6_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlStatics6 is access all IMapControlStatics6_Interface'Class;
+   type IMapControlStatics6 is access IMapControlStatics6_Interface'Class;
 
    type IMapControlStatics7_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlStatics7 is access all IMapControlStatics7_Interface'Class;
+   type IMapControlStatics7 is access IMapControlStatics7_Interface'Class;
 
    type IMapControlStatics8_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlStatics8 is access all IMapControlStatics8_Interface'Class;
+   type IMapControlStatics8 is access IMapControlStatics8_Interface'Class;
 
    type IMapControlTransitFeatureClickEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlTransitFeatureClickEventArgs is access all IMapControlTransitFeatureClickEventArgs_Interface'Class;
+   type IMapControlTransitFeatureClickEventArgs is access IMapControlTransitFeatureClickEventArgs_Interface'Class;
    type IMapControlTransitFeatureClickEventArgs_Ptr is access all IMapControlTransitFeatureClickEventArgs;
 
    type IMapControlTransitFeaturePointerEnteredEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlTransitFeaturePointerEnteredEventArgs is access all IMapControlTransitFeaturePointerEnteredEventArgs_Interface'Class;
+   type IMapControlTransitFeaturePointerEnteredEventArgs is access IMapControlTransitFeaturePointerEnteredEventArgs_Interface'Class;
    type IMapControlTransitFeaturePointerEnteredEventArgs_Ptr is access all IMapControlTransitFeaturePointerEnteredEventArgs;
 
    type IMapControlTransitFeaturePointerExitedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlTransitFeaturePointerExitedEventArgs is access all IMapControlTransitFeaturePointerExitedEventArgs_Interface'Class;
+   type IMapControlTransitFeaturePointerExitedEventArgs is access IMapControlTransitFeaturePointerExitedEventArgs_Interface'Class;
    type IMapControlTransitFeaturePointerExitedEventArgs_Ptr is access all IMapControlTransitFeaturePointerExitedEventArgs;
 
    type IMapControlTransitFeatureRightTappedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlTransitFeatureRightTappedEventArgs is access all IMapControlTransitFeatureRightTappedEventArgs_Interface'Class;
+   type IMapControlTransitFeatureRightTappedEventArgs is access IMapControlTransitFeatureRightTappedEventArgs_Interface'Class;
    type IMapControlTransitFeatureRightTappedEventArgs_Ptr is access all IMapControlTransitFeatureRightTappedEventArgs;
 
    type IMapCustomExperience_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapCustomExperience is access all IMapCustomExperience_Interface'Class;
+   type IMapCustomExperience is access IMapCustomExperience_Interface'Class;
    type IMapCustomExperience_Ptr is access all IMapCustomExperience;
 
    type IMapCustomExperienceChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapCustomExperienceChangedEventArgs is access all IMapCustomExperienceChangedEventArgs_Interface'Class;
+   type IMapCustomExperienceChangedEventArgs is access IMapCustomExperienceChangedEventArgs_Interface'Class;
    type IMapCustomExperienceChangedEventArgs_Ptr is access all IMapCustomExperienceChangedEventArgs;
 
    type IMapCustomExperienceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapCustomExperienceFactory is access all IMapCustomExperienceFactory_Interface'Class;
+   type IMapCustomExperienceFactory is access IMapCustomExperienceFactory_Interface'Class;
 
    type IMapElement_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElement is access all IMapElement_Interface'Class;
+   type IMapElement is access IMapElement_Interface'Class;
    type IMapElement_Ptr is access all IMapElement;
 
    type IMapElement2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElement2 is access all IMapElement2_Interface'Class;
+   type IMapElement2 is access IMapElement2_Interface'Class;
 
    type IMapElement3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElement3 is access all IMapElement3_Interface'Class;
+   type IMapElement3 is access IMapElement3_Interface'Class;
 
    type IMapElement3D_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElement3D is access all IMapElement3D_Interface'Class;
+   type IMapElement3D is access IMapElement3D_Interface'Class;
    type IMapElement3D_Ptr is access all IMapElement3D;
 
    type IMapElement3DStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElement3DStatics is access all IMapElement3DStatics_Interface'Class;
+   type IMapElement3DStatics is access IMapElement3DStatics_Interface'Class;
 
    type IMapElement4_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElement4 is access all IMapElement4_Interface'Class;
+   type IMapElement4 is access IMapElement4_Interface'Class;
 
    type IMapElementClickEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElementClickEventArgs is access all IMapElementClickEventArgs_Interface'Class;
+   type IMapElementClickEventArgs is access IMapElementClickEventArgs_Interface'Class;
    type IMapElementClickEventArgs_Ptr is access all IMapElementClickEventArgs;
 
    type IMapElementFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElementFactory is access all IMapElementFactory_Interface'Class;
+   type IMapElementFactory is access IMapElementFactory_Interface'Class;
 
    type IMapElementPointerEnteredEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElementPointerEnteredEventArgs is access all IMapElementPointerEnteredEventArgs_Interface'Class;
+   type IMapElementPointerEnteredEventArgs is access IMapElementPointerEnteredEventArgs_Interface'Class;
    type IMapElementPointerEnteredEventArgs_Ptr is access all IMapElementPointerEnteredEventArgs;
 
    type IMapElementPointerExitedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElementPointerExitedEventArgs is access all IMapElementPointerExitedEventArgs_Interface'Class;
+   type IMapElementPointerExitedEventArgs is access IMapElementPointerExitedEventArgs_Interface'Class;
    type IMapElementPointerExitedEventArgs_Ptr is access all IMapElementPointerExitedEventArgs;
 
    type IMapElementStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElementStatics is access all IMapElementStatics_Interface'Class;
+   type IMapElementStatics is access IMapElementStatics_Interface'Class;
 
    type IMapElementStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElementStatics2 is access all IMapElementStatics2_Interface'Class;
+   type IMapElementStatics2 is access IMapElementStatics2_Interface'Class;
 
    type IMapElementStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElementStatics3 is access all IMapElementStatics3_Interface'Class;
+   type IMapElementStatics3 is access IMapElementStatics3_Interface'Class;
 
    type IMapElementStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElementStatics4 is access all IMapElementStatics4_Interface'Class;
+   type IMapElementStatics4 is access IMapElementStatics4_Interface'Class;
 
    type IMapElementsLayer_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElementsLayer is access all IMapElementsLayer_Interface'Class;
+   type IMapElementsLayer is access IMapElementsLayer_Interface'Class;
    type IMapElementsLayer_Ptr is access all IMapElementsLayer;
 
    type IMapElementsLayerClickEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElementsLayerClickEventArgs is access all IMapElementsLayerClickEventArgs_Interface'Class;
+   type IMapElementsLayerClickEventArgs is access IMapElementsLayerClickEventArgs_Interface'Class;
    type IMapElementsLayerClickEventArgs_Ptr is access all IMapElementsLayerClickEventArgs;
 
    type IMapElementsLayerContextRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElementsLayerContextRequestedEventArgs is access all IMapElementsLayerContextRequestedEventArgs_Interface'Class;
+   type IMapElementsLayerContextRequestedEventArgs is access IMapElementsLayerContextRequestedEventArgs_Interface'Class;
    type IMapElementsLayerContextRequestedEventArgs_Ptr is access all IMapElementsLayerContextRequestedEventArgs;
 
    type IMapElementsLayerPointerEnteredEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElementsLayerPointerEnteredEventArgs is access all IMapElementsLayerPointerEnteredEventArgs_Interface'Class;
+   type IMapElementsLayerPointerEnteredEventArgs is access IMapElementsLayerPointerEnteredEventArgs_Interface'Class;
    type IMapElementsLayerPointerEnteredEventArgs_Ptr is access all IMapElementsLayerPointerEnteredEventArgs;
 
    type IMapElementsLayerPointerExitedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElementsLayerPointerExitedEventArgs is access all IMapElementsLayerPointerExitedEventArgs_Interface'Class;
+   type IMapElementsLayerPointerExitedEventArgs is access IMapElementsLayerPointerExitedEventArgs_Interface'Class;
    type IMapElementsLayerPointerExitedEventArgs_Ptr is access all IMapElementsLayerPointerExitedEventArgs;
 
    type IMapElementsLayerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapElementsLayerStatics is access all IMapElementsLayerStatics_Interface'Class;
+   type IMapElementsLayerStatics is access IMapElementsLayerStatics_Interface'Class;
 
    type IMapIcon_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapIcon is access all IMapIcon_Interface'Class;
+   type IMapIcon is access IMapIcon_Interface'Class;
    type IMapIcon_Ptr is access all IMapIcon;
 
    type IMapIcon2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapIcon2 is access all IMapIcon2_Interface'Class;
+   type IMapIcon2 is access IMapIcon2_Interface'Class;
 
    type IMapIconStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapIconStatics is access all IMapIconStatics_Interface'Class;
+   type IMapIconStatics is access IMapIconStatics_Interface'Class;
 
    type IMapIconStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapIconStatics2 is access all IMapIconStatics2_Interface'Class;
+   type IMapIconStatics2 is access IMapIconStatics2_Interface'Class;
 
    type IMapInputEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapInputEventArgs is access all IMapInputEventArgs_Interface'Class;
+   type IMapInputEventArgs is access IMapInputEventArgs_Interface'Class;
    type IMapInputEventArgs_Ptr is access all IMapInputEventArgs;
 
    type IMapItemsControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapItemsControl is access all IMapItemsControl_Interface'Class;
+   type IMapItemsControl is access IMapItemsControl_Interface'Class;
    type IMapItemsControl_Ptr is access all IMapItemsControl;
 
    type IMapItemsControlStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapItemsControlStatics is access all IMapItemsControlStatics_Interface'Class;
+   type IMapItemsControlStatics is access IMapItemsControlStatics_Interface'Class;
 
    type IMapLayer_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapLayer is access all IMapLayer_Interface'Class;
+   type IMapLayer is access IMapLayer_Interface'Class;
    type IMapLayer_Ptr is access all IMapLayer;
 
    type IMapLayerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapLayerFactory is access all IMapLayerFactory_Interface'Class;
+   type IMapLayerFactory is access IMapLayerFactory_Interface'Class;
 
    type IMapLayerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapLayerStatics is access all IMapLayerStatics_Interface'Class;
+   type IMapLayerStatics is access IMapLayerStatics_Interface'Class;
 
    type IMapModel3D_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapModel3D is access all IMapModel3D_Interface'Class;
+   type IMapModel3D is access IMapModel3D_Interface'Class;
    type IMapModel3D_Ptr is access all IMapModel3D;
 
    type IMapModel3DFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapModel3DFactory is access all IMapModel3DFactory_Interface'Class;
+   type IMapModel3DFactory is access IMapModel3DFactory_Interface'Class;
 
    type IMapModel3DStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapModel3DStatics is access all IMapModel3DStatics_Interface'Class;
+   type IMapModel3DStatics is access IMapModel3DStatics_Interface'Class;
 
    type IMapPolygon_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapPolygon is access all IMapPolygon_Interface'Class;
+   type IMapPolygon is access IMapPolygon_Interface'Class;
    type IMapPolygon_Ptr is access all IMapPolygon;
 
    type IMapPolygon2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapPolygon2 is access all IMapPolygon2_Interface'Class;
+   type IMapPolygon2 is access IMapPolygon2_Interface'Class;
 
    type IMapPolygonStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapPolygonStatics is access all IMapPolygonStatics_Interface'Class;
+   type IMapPolygonStatics is access IMapPolygonStatics_Interface'Class;
 
    type IMapPolyline_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapPolyline is access all IMapPolyline_Interface'Class;
+   type IMapPolyline is access IMapPolyline_Interface'Class;
    type IMapPolyline_Ptr is access all IMapPolyline;
 
    type IMapPolylineStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapPolylineStatics is access all IMapPolylineStatics_Interface'Class;
+   type IMapPolylineStatics is access IMapPolylineStatics_Interface'Class;
 
    type IMapRightTappedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRightTappedEventArgs is access all IMapRightTappedEventArgs_Interface'Class;
+   type IMapRightTappedEventArgs is access IMapRightTappedEventArgs_Interface'Class;
    type IMapRightTappedEventArgs_Ptr is access all IMapRightTappedEventArgs;
 
    type IMapRouteView_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRouteView is access all IMapRouteView_Interface'Class;
+   type IMapRouteView is access IMapRouteView_Interface'Class;
    type IMapRouteView_Ptr is access all IMapRouteView;
 
    type IMapRouteViewFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRouteViewFactory is access all IMapRouteViewFactory_Interface'Class;
+   type IMapRouteViewFactory is access IMapRouteViewFactory_Interface'Class;
 
    type IMapScene_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapScene is access all IMapScene_Interface'Class;
+   type IMapScene is access IMapScene_Interface'Class;
    type IMapScene_Ptr is access all IMapScene;
 
    type IMapSceneStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapSceneStatics is access all IMapSceneStatics_Interface'Class;
+   type IMapSceneStatics is access IMapSceneStatics_Interface'Class;
 
    type IMapStyleSheet_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapStyleSheet is access all IMapStyleSheet_Interface'Class;
+   type IMapStyleSheet is access IMapStyleSheet_Interface'Class;
    type IMapStyleSheet_Ptr is access all IMapStyleSheet;
 
    type IMapStyleSheetEntriesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapStyleSheetEntriesStatics is access all IMapStyleSheetEntriesStatics_Interface'Class;
+   type IMapStyleSheetEntriesStatics is access IMapStyleSheetEntriesStatics_Interface'Class;
 
    type IMapStyleSheetEntryStatesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapStyleSheetEntryStatesStatics is access all IMapStyleSheetEntryStatesStatics_Interface'Class;
+   type IMapStyleSheetEntryStatesStatics is access IMapStyleSheetEntryStatesStatics_Interface'Class;
 
    type IMapStyleSheetStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapStyleSheetStatics is access all IMapStyleSheetStatics_Interface'Class;
+   type IMapStyleSheetStatics is access IMapStyleSheetStatics_Interface'Class;
 
    type IMapTargetCameraChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapTargetCameraChangedEventArgs is access all IMapTargetCameraChangedEventArgs_Interface'Class;
+   type IMapTargetCameraChangedEventArgs is access IMapTargetCameraChangedEventArgs_Interface'Class;
    type IMapTargetCameraChangedEventArgs_Ptr is access all IMapTargetCameraChangedEventArgs;
 
    type IMapTargetCameraChangedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapTargetCameraChangedEventArgs2 is access all IMapTargetCameraChangedEventArgs2_Interface'Class;
+   type IMapTargetCameraChangedEventArgs2 is access IMapTargetCameraChangedEventArgs2_Interface'Class;
 
    type IMapTileBitmapRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapTileBitmapRequest is access all IMapTileBitmapRequest_Interface'Class;
+   type IMapTileBitmapRequest is access IMapTileBitmapRequest_Interface'Class;
    type IMapTileBitmapRequest_Ptr is access all IMapTileBitmapRequest;
 
    type IMapTileBitmapRequestDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapTileBitmapRequestDeferral is access all IMapTileBitmapRequestDeferral_Interface'Class;
+   type IMapTileBitmapRequestDeferral is access IMapTileBitmapRequestDeferral_Interface'Class;
    type IMapTileBitmapRequestDeferral_Ptr is access all IMapTileBitmapRequestDeferral;
 
    type IMapTileBitmapRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapTileBitmapRequestedEventArgs is access all IMapTileBitmapRequestedEventArgs_Interface'Class;
+   type IMapTileBitmapRequestedEventArgs is access IMapTileBitmapRequestedEventArgs_Interface'Class;
    type IMapTileBitmapRequestedEventArgs_Ptr is access all IMapTileBitmapRequestedEventArgs;
 
    type IMapTileBitmapRequestedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapTileBitmapRequestedEventArgs2 is access all IMapTileBitmapRequestedEventArgs2_Interface'Class;
+   type IMapTileBitmapRequestedEventArgs2 is access IMapTileBitmapRequestedEventArgs2_Interface'Class;
 
    type IMapTileDataSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapTileDataSource is access all IMapTileDataSource_Interface'Class;
+   type IMapTileDataSource is access IMapTileDataSource_Interface'Class;
    type IMapTileDataSource_Ptr is access all IMapTileDataSource;
 
    type IMapTileDataSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapTileDataSourceFactory is access all IMapTileDataSourceFactory_Interface'Class;
+   type IMapTileDataSourceFactory is access IMapTileDataSourceFactory_Interface'Class;
 
    type IMapTileSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapTileSource is access all IMapTileSource_Interface'Class;
+   type IMapTileSource is access IMapTileSource_Interface'Class;
    type IMapTileSource_Ptr is access all IMapTileSource;
 
    type IMapTileSource2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapTileSource2 is access all IMapTileSource2_Interface'Class;
+   type IMapTileSource2 is access IMapTileSource2_Interface'Class;
 
    type IMapTileSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapTileSourceFactory is access all IMapTileSourceFactory_Interface'Class;
+   type IMapTileSourceFactory is access IMapTileSourceFactory_Interface'Class;
 
    type IMapTileSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapTileSourceStatics is access all IMapTileSourceStatics_Interface'Class;
+   type IMapTileSourceStatics is access IMapTileSourceStatics_Interface'Class;
 
    type IMapTileSourceStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapTileSourceStatics2 is access all IMapTileSourceStatics2_Interface'Class;
+   type IMapTileSourceStatics2 is access IMapTileSourceStatics2_Interface'Class;
 
    type IMapTileUriRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapTileUriRequest is access all IMapTileUriRequest_Interface'Class;
+   type IMapTileUriRequest is access IMapTileUriRequest_Interface'Class;
    type IMapTileUriRequest_Ptr is access all IMapTileUriRequest;
 
    type IMapTileUriRequestDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapTileUriRequestDeferral is access all IMapTileUriRequestDeferral_Interface'Class;
+   type IMapTileUriRequestDeferral is access IMapTileUriRequestDeferral_Interface'Class;
    type IMapTileUriRequestDeferral_Ptr is access all IMapTileUriRequestDeferral;
 
    type IMapTileUriRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapTileUriRequestedEventArgs is access all IMapTileUriRequestedEventArgs_Interface'Class;
+   type IMapTileUriRequestedEventArgs is access IMapTileUriRequestedEventArgs_Interface'Class;
    type IMapTileUriRequestedEventArgs_Ptr is access all IMapTileUriRequestedEventArgs;
 
    type IMapTileUriRequestedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapTileUriRequestedEventArgs2 is access all IMapTileUriRequestedEventArgs2_Interface'Class;
+   type IMapTileUriRequestedEventArgs2 is access IMapTileUriRequestedEventArgs2_Interface'Class;
 
    type IStreetsideExperience_Interface is interface and WinRt.IInspectable_Interface;
-   type IStreetsideExperience is access all IStreetsideExperience_Interface'Class;
+   type IStreetsideExperience is access IStreetsideExperience_Interface'Class;
    type IStreetsideExperience_Ptr is access all IStreetsideExperience;
 
    type IStreetsideExperienceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IStreetsideExperienceFactory is access all IStreetsideExperienceFactory_Interface'Class;
+   type IStreetsideExperienceFactory is access IStreetsideExperienceFactory_Interface'Class;
 
    type IStreetsidePanorama_Interface is interface and WinRt.IInspectable_Interface;
-   type IStreetsidePanorama is access all IStreetsidePanorama_Interface'Class;
+   type IStreetsidePanorama is access IStreetsidePanorama_Interface'Class;
    type IStreetsidePanorama_Ptr is access all IStreetsidePanorama;
 
    type IStreetsidePanoramaStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStreetsidePanoramaStatics is access all IStreetsidePanoramaStatics_Interface'Class;
+   type IStreetsidePanoramaStatics is access IStreetsidePanoramaStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

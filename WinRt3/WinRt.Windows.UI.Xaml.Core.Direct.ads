@@ -41,14 +41,14 @@ package WinRt.Windows.UI.Xaml.Core.Direct is
    -----------------------------------------------------------------------------
 
    type IXamlDirect_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlDirect is access all IXamlDirect_Interface'Class;
+   type IXamlDirect is access IXamlDirect_Interface'Class;
    type IXamlDirect_Ptr is access all IXamlDirect;
 
    type IXamlDirectObject_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlDirectObject is access all IXamlDirectObject_Interface'Class;
+   type IXamlDirectObject is access IXamlDirectObject_Interface'Class;
 
    type IXamlDirectStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlDirectStatics is access all IXamlDirectStatics_Interface'Class;
+   type IXamlDirectStatics is access IXamlDirectStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

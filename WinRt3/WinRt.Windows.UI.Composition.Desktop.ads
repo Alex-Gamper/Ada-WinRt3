@@ -38,7 +38,7 @@ package WinRt.Windows.UI.Composition.Desktop is
    -----------------------------------------------------------------------------
 
    type IDesktopWindowTarget_Interface is interface and WinRt.IInspectable_Interface;
-   type IDesktopWindowTarget is access all IDesktopWindowTarget_Interface'Class;
+   type IDesktopWindowTarget is access IDesktopWindowTarget_Interface'Class;
    type IDesktopWindowTarget_Ptr is access all IDesktopWindowTarget;
 
    -----------------------------------------------------------------------------

@@ -40,19 +40,19 @@ package WinRt.Windows.Devices.SerialCommunication is
    -----------------------------------------------------------------------------
 
    type IErrorReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IErrorReceivedEventArgs is access all IErrorReceivedEventArgs_Interface'Class;
+   type IErrorReceivedEventArgs is access IErrorReceivedEventArgs_Interface'Class;
    type IErrorReceivedEventArgs_Ptr is access all IErrorReceivedEventArgs;
 
    type IPinChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPinChangedEventArgs is access all IPinChangedEventArgs_Interface'Class;
+   type IPinChangedEventArgs is access IPinChangedEventArgs_Interface'Class;
    type IPinChangedEventArgs_Ptr is access all IPinChangedEventArgs;
 
    type ISerialDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type ISerialDevice is access all ISerialDevice_Interface'Class;
+   type ISerialDevice is access ISerialDevice_Interface'Class;
    type ISerialDevice_Ptr is access all ISerialDevice;
 
    type ISerialDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISerialDeviceStatics is access all ISerialDeviceStatics_Interface'Class;
+   type ISerialDeviceStatics is access ISerialDeviceStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

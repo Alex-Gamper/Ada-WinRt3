@@ -40,22 +40,22 @@ package WinRt.Windows.UI.Core.Preview is
    -----------------------------------------------------------------------------
 
    type ICoreAppWindowPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreAppWindowPreview is access all ICoreAppWindowPreview_Interface'Class;
+   type ICoreAppWindowPreview is access ICoreAppWindowPreview_Interface'Class;
    type ICoreAppWindowPreview_Ptr is access all ICoreAppWindowPreview;
 
    type ICoreAppWindowPreviewStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreAppWindowPreviewStatics is access all ICoreAppWindowPreviewStatics_Interface'Class;
+   type ICoreAppWindowPreviewStatics is access ICoreAppWindowPreviewStatics_Interface'Class;
 
    type ISystemNavigationCloseRequestedPreviewEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemNavigationCloseRequestedPreviewEventArgs is access all ISystemNavigationCloseRequestedPreviewEventArgs_Interface'Class;
+   type ISystemNavigationCloseRequestedPreviewEventArgs is access ISystemNavigationCloseRequestedPreviewEventArgs_Interface'Class;
    type ISystemNavigationCloseRequestedPreviewEventArgs_Ptr is access all ISystemNavigationCloseRequestedPreviewEventArgs;
 
    type ISystemNavigationManagerPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemNavigationManagerPreview is access all ISystemNavigationManagerPreview_Interface'Class;
+   type ISystemNavigationManagerPreview is access ISystemNavigationManagerPreview_Interface'Class;
    type ISystemNavigationManagerPreview_Ptr is access all ISystemNavigationManagerPreview;
 
    type ISystemNavigationManagerPreviewStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemNavigationManagerPreviewStatics is access all ISystemNavigationManagerPreviewStatics_Interface'Class;
+   type ISystemNavigationManagerPreviewStatics is access ISystemNavigationManagerPreviewStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

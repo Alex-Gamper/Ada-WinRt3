@@ -38,7 +38,7 @@ package WinRt.Windows.Phone.ApplicationModel is
    -----------------------------------------------------------------------------
 
    type IApplicationProfileStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationProfileStatics is access all IApplicationProfileStatics_Interface'Class;
+   type IApplicationProfileStatics is access IApplicationProfileStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Enum declarations

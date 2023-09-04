@@ -38,7 +38,7 @@ package WinRt.Windows.System.Display is
    -----------------------------------------------------------------------------
 
    type IDisplayRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayRequest is access all IDisplayRequest_Interface'Class;
+   type IDisplayRequest is access IDisplayRequest_Interface'Class;
    type IDisplayRequest_Ptr is access all IDisplayRequest;
 
    -----------------------------------------------------------------------------

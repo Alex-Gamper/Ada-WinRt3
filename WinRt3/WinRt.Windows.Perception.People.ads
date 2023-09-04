@@ -43,26 +43,26 @@ package WinRt.Windows.Perception.People is
    -----------------------------------------------------------------------------
 
    type IEyesPose_Interface is interface and WinRt.IInspectable_Interface;
-   type IEyesPose is access all IEyesPose_Interface'Class;
+   type IEyesPose is access IEyesPose_Interface'Class;
    type IEyesPose_Ptr is access all IEyesPose;
 
    type IEyesPoseStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IEyesPoseStatics is access all IEyesPoseStatics_Interface'Class;
+   type IEyesPoseStatics is access IEyesPoseStatics_Interface'Class;
 
    type IHandMeshObserver_Interface is interface and WinRt.IInspectable_Interface;
-   type IHandMeshObserver is access all IHandMeshObserver_Interface'Class;
+   type IHandMeshObserver is access IHandMeshObserver_Interface'Class;
    type IHandMeshObserver_Ptr is access all IHandMeshObserver;
 
    type IHandMeshVertexState_Interface is interface and WinRt.IInspectable_Interface;
-   type IHandMeshVertexState is access all IHandMeshVertexState_Interface'Class;
+   type IHandMeshVertexState is access IHandMeshVertexState_Interface'Class;
    type IHandMeshVertexState_Ptr is access all IHandMeshVertexState;
 
    type IHandPose_Interface is interface and WinRt.IInspectable_Interface;
-   type IHandPose is access all IHandPose_Interface'Class;
+   type IHandPose is access IHandPose_Interface'Class;
    type IHandPose_Ptr is access all IHandPose;
 
    type IHeadPose_Interface is interface and WinRt.IInspectable_Interface;
-   type IHeadPose is access all IHeadPose_Interface'Class;
+   type IHeadPose is access IHeadPose_Interface'Class;
    type IHeadPose_Ptr is access all IHeadPose;
 
    -----------------------------------------------------------------------------

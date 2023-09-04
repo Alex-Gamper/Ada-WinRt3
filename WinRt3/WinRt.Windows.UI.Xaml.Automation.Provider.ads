@@ -41,114 +41,114 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
    -----------------------------------------------------------------------------
 
    type IAnnotationProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IAnnotationProvider is access all IAnnotationProvider_Interface'Class;
+   type IAnnotationProvider is access IAnnotationProvider_Interface'Class;
 
    type ICustomNavigationProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ICustomNavigationProvider is access all ICustomNavigationProvider_Interface'Class;
+   type ICustomNavigationProvider is access ICustomNavigationProvider_Interface'Class;
 
    type IDockProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IDockProvider is access all IDockProvider_Interface'Class;
+   type IDockProvider is access IDockProvider_Interface'Class;
 
    type IDragProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IDragProvider is access all IDragProvider_Interface'Class;
+   type IDragProvider is access IDragProvider_Interface'Class;
 
    type IDropTargetProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IDropTargetProvider is access all IDropTargetProvider_Interface'Class;
+   type IDropTargetProvider is access IDropTargetProvider_Interface'Class;
 
    type IExpandCollapseProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IExpandCollapseProvider is access all IExpandCollapseProvider_Interface'Class;
+   type IExpandCollapseProvider is access IExpandCollapseProvider_Interface'Class;
 
    type IGridItemProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridItemProvider is access all IGridItemProvider_Interface'Class;
+   type IGridItemProvider is access IGridItemProvider_Interface'Class;
 
    type IGridProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridProvider is access all IGridProvider_Interface'Class;
+   type IGridProvider is access IGridProvider_Interface'Class;
 
    type IIRawElementProviderSimple_Interface is interface and WinRt.IInspectable_Interface;
-   type IIRawElementProviderSimple is access all IIRawElementProviderSimple_Interface'Class;
+   type IIRawElementProviderSimple is access IIRawElementProviderSimple_Interface'Class;
    type IIRawElementProviderSimple_Ptr is access all IIRawElementProviderSimple;
 
    type IInvokeProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IInvokeProvider is access all IInvokeProvider_Interface'Class;
+   type IInvokeProvider is access IInvokeProvider_Interface'Class;
 
    type IItemContainerProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IItemContainerProvider is access all IItemContainerProvider_Interface'Class;
+   type IItemContainerProvider is access IItemContainerProvider_Interface'Class;
 
    type IMultipleViewProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IMultipleViewProvider is access all IMultipleViewProvider_Interface'Class;
+   type IMultipleViewProvider is access IMultipleViewProvider_Interface'Class;
 
    type IObjectModelProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IObjectModelProvider is access all IObjectModelProvider_Interface'Class;
+   type IObjectModelProvider is access IObjectModelProvider_Interface'Class;
 
    type IRangeValueProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IRangeValueProvider is access all IRangeValueProvider_Interface'Class;
+   type IRangeValueProvider is access IRangeValueProvider_Interface'Class;
 
    type IScrollItemProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IScrollItemProvider is access all IScrollItemProvider_Interface'Class;
+   type IScrollItemProvider is access IScrollItemProvider_Interface'Class;
 
    type IScrollProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IScrollProvider is access all IScrollProvider_Interface'Class;
+   type IScrollProvider is access IScrollProvider_Interface'Class;
 
    type ISelectionItemProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ISelectionItemProvider is access all ISelectionItemProvider_Interface'Class;
+   type ISelectionItemProvider is access ISelectionItemProvider_Interface'Class;
 
    type ISelectionProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ISelectionProvider is access all ISelectionProvider_Interface'Class;
+   type ISelectionProvider is access ISelectionProvider_Interface'Class;
 
    type ISpreadsheetItemProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpreadsheetItemProvider is access all ISpreadsheetItemProvider_Interface'Class;
+   type ISpreadsheetItemProvider is access ISpreadsheetItemProvider_Interface'Class;
 
    type ISpreadsheetProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpreadsheetProvider is access all ISpreadsheetProvider_Interface'Class;
+   type ISpreadsheetProvider is access ISpreadsheetProvider_Interface'Class;
 
    type IStylesProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IStylesProvider is access all IStylesProvider_Interface'Class;
+   type IStylesProvider is access IStylesProvider_Interface'Class;
 
    type ISynchronizedInputProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ISynchronizedInputProvider is access all ISynchronizedInputProvider_Interface'Class;
+   type ISynchronizedInputProvider is access ISynchronizedInputProvider_Interface'Class;
 
    type ITableItemProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ITableItemProvider is access all ITableItemProvider_Interface'Class;
+   type ITableItemProvider is access ITableItemProvider_Interface'Class;
 
    type ITableProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ITableProvider is access all ITableProvider_Interface'Class;
+   type ITableProvider is access ITableProvider_Interface'Class;
 
    type ITextChildProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextChildProvider is access all ITextChildProvider_Interface'Class;
+   type ITextChildProvider is access ITextChildProvider_Interface'Class;
 
    type ITextEditProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextEditProvider is access all ITextEditProvider_Interface'Class;
+   type ITextEditProvider is access ITextEditProvider_Interface'Class;
 
    type ITextProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextProvider is access all ITextProvider_Interface'Class;
+   type ITextProvider is access ITextProvider_Interface'Class;
 
    type ITextProvider2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextProvider2 is access all ITextProvider2_Interface'Class;
+   type ITextProvider2 is access ITextProvider2_Interface'Class;
 
    type ITextRangeProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextRangeProvider is access all ITextRangeProvider_Interface'Class;
+   type ITextRangeProvider is access ITextRangeProvider_Interface'Class;
    type ITextRangeProvider_Array is array (Natural range <>) of ITextRangeProvider;
 
    type ITextRangeProvider2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextRangeProvider2 is access all ITextRangeProvider2_Interface'Class;
+   type ITextRangeProvider2 is access ITextRangeProvider2_Interface'Class;
 
    type IToggleProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IToggleProvider is access all IToggleProvider_Interface'Class;
+   type IToggleProvider is access IToggleProvider_Interface'Class;
 
    type ITransformProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ITransformProvider is access all ITransformProvider_Interface'Class;
+   type ITransformProvider is access ITransformProvider_Interface'Class;
 
    type ITransformProvider2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITransformProvider2 is access all ITransformProvider2_Interface'Class;
+   type ITransformProvider2 is access ITransformProvider2_Interface'Class;
 
    type IValueProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IValueProvider is access all IValueProvider_Interface'Class;
+   type IValueProvider is access IValueProvider_Interface'Class;
 
    type IVirtualizedItemProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IVirtualizedItemProvider is access all IVirtualizedItemProvider_Interface'Class;
+   type IVirtualizedItemProvider is access IVirtualizedItemProvider_Interface'Class;
 
    type IWindowProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IWindowProvider is access all IWindowProvider_Interface'Class;
+   type IWindowProvider is access IWindowProvider_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

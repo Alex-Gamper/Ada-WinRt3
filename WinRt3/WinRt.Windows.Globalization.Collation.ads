@@ -39,16 +39,16 @@ package WinRt.Windows.Globalization.Collation is
    -----------------------------------------------------------------------------
 
    type ICharacterGrouping_Interface is interface and WinRt.IInspectable_Interface;
-   type ICharacterGrouping is access all ICharacterGrouping_Interface'Class;
+   type ICharacterGrouping is access ICharacterGrouping_Interface'Class;
    type ICharacterGrouping_Ptr is access all ICharacterGrouping;
    type ICharacterGrouping_Array is array (Natural range <>) of ICharacterGrouping;
 
    type ICharacterGroupings_Interface is interface and WinRt.IInspectable_Interface;
-   type ICharacterGroupings is access all ICharacterGroupings_Interface'Class;
+   type ICharacterGroupings is access ICharacterGroupings_Interface'Class;
    type ICharacterGroupings_Ptr is access all ICharacterGroupings;
 
    type ICharacterGroupingsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICharacterGroupingsFactory is access all ICharacterGroupingsFactory_Interface'Class;
+   type ICharacterGroupingsFactory is access ICharacterGroupingsFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

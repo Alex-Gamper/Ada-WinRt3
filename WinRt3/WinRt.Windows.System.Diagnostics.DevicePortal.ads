@@ -43,25 +43,25 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
    -----------------------------------------------------------------------------
 
    type IDevicePortalConnection_Interface is interface and WinRt.IInspectable_Interface;
-   type IDevicePortalConnection is access all IDevicePortalConnection_Interface'Class;
+   type IDevicePortalConnection is access IDevicePortalConnection_Interface'Class;
    type IDevicePortalConnection_Ptr is access all IDevicePortalConnection;
 
    type IDevicePortalConnectionClosedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDevicePortalConnectionClosedEventArgs is access all IDevicePortalConnectionClosedEventArgs_Interface'Class;
+   type IDevicePortalConnectionClosedEventArgs is access IDevicePortalConnectionClosedEventArgs_Interface'Class;
    type IDevicePortalConnectionClosedEventArgs_Ptr is access all IDevicePortalConnectionClosedEventArgs;
 
    type IDevicePortalConnectionRequestReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDevicePortalConnectionRequestReceivedEventArgs is access all IDevicePortalConnectionRequestReceivedEventArgs_Interface'Class;
+   type IDevicePortalConnectionRequestReceivedEventArgs is access IDevicePortalConnectionRequestReceivedEventArgs_Interface'Class;
    type IDevicePortalConnectionRequestReceivedEventArgs_Ptr is access all IDevicePortalConnectionRequestReceivedEventArgs;
 
    type IDevicePortalConnectionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDevicePortalConnectionStatics is access all IDevicePortalConnectionStatics_Interface'Class;
+   type IDevicePortalConnectionStatics is access IDevicePortalConnectionStatics_Interface'Class;
 
    type IDevicePortalWebSocketConnection_Interface is interface and WinRt.IInspectable_Interface;
-   type IDevicePortalWebSocketConnection is access all IDevicePortalWebSocketConnection_Interface'Class;
+   type IDevicePortalWebSocketConnection is access IDevicePortalWebSocketConnection_Interface'Class;
 
    type IDevicePortalWebSocketConnectionRequestReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDevicePortalWebSocketConnectionRequestReceivedEventArgs is access all IDevicePortalWebSocketConnectionRequestReceivedEventArgs_Interface'Class;
+   type IDevicePortalWebSocketConnectionRequestReceivedEventArgs is access IDevicePortalWebSocketConnectionRequestReceivedEventArgs_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

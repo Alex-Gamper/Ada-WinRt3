@@ -40,25 +40,25 @@ package WinRt.Windows.Devices.Sensors.Custom is
    -----------------------------------------------------------------------------
 
    type ICustomSensor_Interface is interface and WinRt.IInspectable_Interface;
-   type ICustomSensor is access all ICustomSensor_Interface'Class;
+   type ICustomSensor is access ICustomSensor_Interface'Class;
    type ICustomSensor_Ptr is access all ICustomSensor;
 
    type ICustomSensor2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICustomSensor2 is access all ICustomSensor2_Interface'Class;
+   type ICustomSensor2 is access ICustomSensor2_Interface'Class;
 
    type ICustomSensorReading_Interface is interface and WinRt.IInspectable_Interface;
-   type ICustomSensorReading is access all ICustomSensorReading_Interface'Class;
+   type ICustomSensorReading is access ICustomSensorReading_Interface'Class;
    type ICustomSensorReading_Ptr is access all ICustomSensorReading;
 
    type ICustomSensorReading2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICustomSensorReading2 is access all ICustomSensorReading2_Interface'Class;
+   type ICustomSensorReading2 is access ICustomSensorReading2_Interface'Class;
 
    type ICustomSensorReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICustomSensorReadingChangedEventArgs is access all ICustomSensorReadingChangedEventArgs_Interface'Class;
+   type ICustomSensorReadingChangedEventArgs is access ICustomSensorReadingChangedEventArgs_Interface'Class;
    type ICustomSensorReadingChangedEventArgs_Ptr is access all ICustomSensorReadingChangedEventArgs;
 
    type ICustomSensorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICustomSensorStatics is access all ICustomSensorStatics_Interface'Class;
+   type ICustomSensorStatics is access ICustomSensorStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

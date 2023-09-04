@@ -41,22 +41,22 @@ package WinRt.Windows.Media.ContentRestrictions is
    -----------------------------------------------------------------------------
 
    type IContentRestrictionsBrowsePolicy_Interface is interface and WinRt.IInspectable_Interface;
-   type IContentRestrictionsBrowsePolicy is access all IContentRestrictionsBrowsePolicy_Interface'Class;
+   type IContentRestrictionsBrowsePolicy is access IContentRestrictionsBrowsePolicy_Interface'Class;
    type IContentRestrictionsBrowsePolicy_Ptr is access all IContentRestrictionsBrowsePolicy;
 
    type IRatedContentDescription_Interface is interface and WinRt.IInspectable_Interface;
-   type IRatedContentDescription is access all IRatedContentDescription_Interface'Class;
+   type IRatedContentDescription is access IRatedContentDescription_Interface'Class;
    type IRatedContentDescription_Ptr is access all IRatedContentDescription;
 
    type IRatedContentDescriptionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRatedContentDescriptionFactory is access all IRatedContentDescriptionFactory_Interface'Class;
+   type IRatedContentDescriptionFactory is access IRatedContentDescriptionFactory_Interface'Class;
 
    type IRatedContentRestrictions_Interface is interface and WinRt.IInspectable_Interface;
-   type IRatedContentRestrictions is access all IRatedContentRestrictions_Interface'Class;
+   type IRatedContentRestrictions is access IRatedContentRestrictions_Interface'Class;
    type IRatedContentRestrictions_Ptr is access all IRatedContentRestrictions;
 
    type IRatedContentRestrictionsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRatedContentRestrictionsFactory is access all IRatedContentRestrictionsFactory_Interface'Class;
+   type IRatedContentRestrictionsFactory is access IRatedContentRestrictionsFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -40,15 +40,15 @@ package WinRt.Windows.Management is
    -----------------------------------------------------------------------------
 
    type IMdmAlert_Interface is interface and WinRt.IInspectable_Interface;
-   type IMdmAlert is access all IMdmAlert_Interface'Class;
+   type IMdmAlert is access IMdmAlert_Interface'Class;
    type IMdmAlert_Ptr is access all IMdmAlert;
 
    type IMdmSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IMdmSession is access all IMdmSession_Interface'Class;
+   type IMdmSession is access IMdmSession_Interface'Class;
    type IMdmSession_Ptr is access all IMdmSession;
 
    type IMdmSessionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMdmSessionManagerStatics is access all IMdmSessionManagerStatics_Interface'Class;
+   type IMdmSessionManagerStatics is access IMdmSessionManagerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

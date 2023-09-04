@@ -54,52 +54,52 @@ package WinRt.Windows.Media.Protection is
    -----------------------------------------------------------------------------
 
    type IComponentLoadFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IComponentLoadFailedEventArgs is access all IComponentLoadFailedEventArgs_Interface'Class;
+   type IComponentLoadFailedEventArgs is access IComponentLoadFailedEventArgs_Interface'Class;
    type IComponentLoadFailedEventArgs_Ptr is access all IComponentLoadFailedEventArgs;
 
    type IComponentRenewalStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IComponentRenewalStatics is access all IComponentRenewalStatics_Interface'Class;
+   type IComponentRenewalStatics is access IComponentRenewalStatics_Interface'Class;
 
    type IHdcpSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IHdcpSession is access all IHdcpSession_Interface'Class;
+   type IHdcpSession is access IHdcpSession_Interface'Class;
    type IHdcpSession_Ptr is access all IHdcpSession;
 
    type IMediaProtectionManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaProtectionManager is access all IMediaProtectionManager_Interface'Class;
+   type IMediaProtectionManager is access IMediaProtectionManager_Interface'Class;
    type IMediaProtectionManager_Ptr is access all IMediaProtectionManager;
 
    type IMediaProtectionPMPServer_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaProtectionPMPServer is access all IMediaProtectionPMPServer_Interface'Class;
+   type IMediaProtectionPMPServer is access IMediaProtectionPMPServer_Interface'Class;
    type IMediaProtectionPMPServer_Ptr is access all IMediaProtectionPMPServer;
 
    type IMediaProtectionPMPServerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaProtectionPMPServerFactory is access all IMediaProtectionPMPServerFactory_Interface'Class;
+   type IMediaProtectionPMPServerFactory is access IMediaProtectionPMPServerFactory_Interface'Class;
 
    type IMediaProtectionServiceCompletion_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaProtectionServiceCompletion is access all IMediaProtectionServiceCompletion_Interface'Class;
+   type IMediaProtectionServiceCompletion is access IMediaProtectionServiceCompletion_Interface'Class;
    type IMediaProtectionServiceCompletion_Ptr is access all IMediaProtectionServiceCompletion;
 
    type IMediaProtectionServiceRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaProtectionServiceRequest is access all IMediaProtectionServiceRequest_Interface'Class;
+   type IMediaProtectionServiceRequest is access IMediaProtectionServiceRequest_Interface'Class;
 
    type IProtectionCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtectionCapabilities is access all IProtectionCapabilities_Interface'Class;
+   type IProtectionCapabilities is access IProtectionCapabilities_Interface'Class;
    type IProtectionCapabilities_Ptr is access all IProtectionCapabilities;
 
    type IRevocationAndRenewalInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IRevocationAndRenewalInformation is access all IRevocationAndRenewalInformation_Interface'Class;
+   type IRevocationAndRenewalInformation is access IRevocationAndRenewalInformation_Interface'Class;
    type IRevocationAndRenewalInformation_Ptr is access all IRevocationAndRenewalInformation;
 
    type IRevocationAndRenewalItem_Interface is interface and WinRt.IInspectable_Interface;
-   type IRevocationAndRenewalItem is access all IRevocationAndRenewalItem_Interface'Class;
+   type IRevocationAndRenewalItem is access IRevocationAndRenewalItem_Interface'Class;
    type IRevocationAndRenewalItem_Ptr is access all IRevocationAndRenewalItem;
 
    type IServiceRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IServiceRequestedEventArgs is access all IServiceRequestedEventArgs_Interface'Class;
+   type IServiceRequestedEventArgs is access IServiceRequestedEventArgs_Interface'Class;
    type IServiceRequestedEventArgs_Ptr is access all IServiceRequestedEventArgs;
 
    type IServiceRequestedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IServiceRequestedEventArgs2 is access all IServiceRequestedEventArgs2_Interface'Class;
+   type IServiceRequestedEventArgs2 is access IServiceRequestedEventArgs2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

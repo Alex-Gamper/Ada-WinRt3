@@ -43,106 +43,106 @@ package WinRt.Windows.Phone.Notification.Management is
    -----------------------------------------------------------------------------
 
    type IAccessoryManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccessoryManager is access all IAccessoryManager_Interface'Class;
+   type IAccessoryManager is access IAccessoryManager_Interface'Class;
 
    type IAccessoryManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccessoryManager2 is access all IAccessoryManager2_Interface'Class;
+   type IAccessoryManager2 is access IAccessoryManager2_Interface'Class;
 
    type IAccessoryManager3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccessoryManager3 is access all IAccessoryManager3_Interface'Class;
+   type IAccessoryManager3 is access IAccessoryManager3_Interface'Class;
 
    type IAccessoryNotificationTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccessoryNotificationTriggerDetails is access all IAccessoryNotificationTriggerDetails_Interface'Class;
+   type IAccessoryNotificationTriggerDetails is access IAccessoryNotificationTriggerDetails_Interface'Class;
 
    type IAlarmNotificationTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IAlarmNotificationTriggerDetails is access all IAlarmNotificationTriggerDetails_Interface'Class;
+   type IAlarmNotificationTriggerDetails is access IAlarmNotificationTriggerDetails_Interface'Class;
    type IAlarmNotificationTriggerDetails_Ptr is access all IAlarmNotificationTriggerDetails;
 
    type IAlarmNotificationTriggerDetails2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAlarmNotificationTriggerDetails2 is access all IAlarmNotificationTriggerDetails2_Interface'Class;
+   type IAlarmNotificationTriggerDetails2 is access IAlarmNotificationTriggerDetails2_Interface'Class;
 
    type IAppNotificationInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppNotificationInfo is access all IAppNotificationInfo_Interface'Class;
+   type IAppNotificationInfo is access IAppNotificationInfo_Interface'Class;
    type IAppNotificationInfo_Ptr is access all IAppNotificationInfo;
 
    type IBinaryId_Interface is interface and WinRt.IInspectable_Interface;
-   type IBinaryId is access all IBinaryId_Interface'Class;
+   type IBinaryId is access IBinaryId_Interface'Class;
    type IBinaryId_Ptr is access all IBinaryId;
 
    type ICalendarChangedNotificationTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type ICalendarChangedNotificationTriggerDetails is access all ICalendarChangedNotificationTriggerDetails_Interface'Class;
+   type ICalendarChangedNotificationTriggerDetails is access ICalendarChangedNotificationTriggerDetails_Interface'Class;
    type ICalendarChangedNotificationTriggerDetails_Ptr is access all ICalendarChangedNotificationTriggerDetails;
 
    type ICortanaTileNotificationTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type ICortanaTileNotificationTriggerDetails is access all ICortanaTileNotificationTriggerDetails_Interface'Class;
+   type ICortanaTileNotificationTriggerDetails is access ICortanaTileNotificationTriggerDetails_Interface'Class;
    type ICortanaTileNotificationTriggerDetails_Ptr is access all ICortanaTileNotificationTriggerDetails;
 
    type IEmailAccountInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailAccountInfo is access all IEmailAccountInfo_Interface'Class;
+   type IEmailAccountInfo is access IEmailAccountInfo_Interface'Class;
    type IEmailAccountInfo_Ptr is access all IEmailAccountInfo;
 
    type IEmailFolderInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailFolderInfo is access all IEmailFolderInfo_Interface'Class;
+   type IEmailFolderInfo is access IEmailFolderInfo_Interface'Class;
    type IEmailFolderInfo_Ptr is access all IEmailFolderInfo;
 
    type IEmailNotificationTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailNotificationTriggerDetails is access all IEmailNotificationTriggerDetails_Interface'Class;
+   type IEmailNotificationTriggerDetails is access IEmailNotificationTriggerDetails_Interface'Class;
    type IEmailNotificationTriggerDetails_Ptr is access all IEmailNotificationTriggerDetails;
 
    type IEmailNotificationTriggerDetails2_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailNotificationTriggerDetails2 is access all IEmailNotificationTriggerDetails2_Interface'Class;
+   type IEmailNotificationTriggerDetails2 is access IEmailNotificationTriggerDetails2_Interface'Class;
 
    type IEmailReadNotificationTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailReadNotificationTriggerDetails is access all IEmailReadNotificationTriggerDetails_Interface'Class;
+   type IEmailReadNotificationTriggerDetails is access IEmailReadNotificationTriggerDetails_Interface'Class;
    type IEmailReadNotificationTriggerDetails_Ptr is access all IEmailReadNotificationTriggerDetails;
 
    type IMediaControlsTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaControlsTriggerDetails is access all IMediaControlsTriggerDetails_Interface'Class;
+   type IMediaControlsTriggerDetails is access IMediaControlsTriggerDetails_Interface'Class;
    type IMediaControlsTriggerDetails_Ptr is access all IMediaControlsTriggerDetails;
 
    type IMediaMetadata_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaMetadata is access all IMediaMetadata_Interface'Class;
+   type IMediaMetadata is access IMediaMetadata_Interface'Class;
    type IMediaMetadata_Ptr is access all IMediaMetadata;
 
    type IPhoneCallDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallDetails is access all IPhoneCallDetails_Interface'Class;
+   type IPhoneCallDetails is access IPhoneCallDetails_Interface'Class;
    type IPhoneCallDetails_Ptr is access all IPhoneCallDetails;
 
    type IPhoneLineDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneLineDetails is access all IPhoneLineDetails_Interface'Class;
+   type IPhoneLineDetails is access IPhoneLineDetails_Interface'Class;
    type IPhoneLineDetails_Ptr is access all IPhoneLineDetails;
 
    type IPhoneLineDetails2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneLineDetails2 is access all IPhoneLineDetails2_Interface'Class;
+   type IPhoneLineDetails2 is access IPhoneLineDetails2_Interface'Class;
 
    type IPhoneNotificationTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneNotificationTriggerDetails is access all IPhoneNotificationTriggerDetails_Interface'Class;
+   type IPhoneNotificationTriggerDetails is access IPhoneNotificationTriggerDetails_Interface'Class;
    type IPhoneNotificationTriggerDetails_Ptr is access all IPhoneNotificationTriggerDetails;
 
    type IReminderNotificationTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IReminderNotificationTriggerDetails is access all IReminderNotificationTriggerDetails_Interface'Class;
+   type IReminderNotificationTriggerDetails is access IReminderNotificationTriggerDetails_Interface'Class;
    type IReminderNotificationTriggerDetails_Ptr is access all IReminderNotificationTriggerDetails;
 
    type IReminderNotificationTriggerDetails2_Interface is interface and WinRt.IInspectable_Interface;
-   type IReminderNotificationTriggerDetails2 is access all IReminderNotificationTriggerDetails2_Interface'Class;
+   type IReminderNotificationTriggerDetails2 is access IReminderNotificationTriggerDetails2_Interface'Class;
 
    type ISpeedDialEntry_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeedDialEntry is access all ISpeedDialEntry_Interface'Class;
+   type ISpeedDialEntry is access ISpeedDialEntry_Interface'Class;
    type ISpeedDialEntry_Ptr is access all ISpeedDialEntry;
 
    type ITextResponse_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextResponse is access all ITextResponse_Interface'Class;
+   type ITextResponse is access ITextResponse_Interface'Class;
    type ITextResponse_Ptr is access all ITextResponse;
 
    type IToastNotificationTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IToastNotificationTriggerDetails is access all IToastNotificationTriggerDetails_Interface'Class;
+   type IToastNotificationTriggerDetails is access IToastNotificationTriggerDetails_Interface'Class;
    type IToastNotificationTriggerDetails_Ptr is access all IToastNotificationTriggerDetails;
 
    type IToastNotificationTriggerDetails2_Interface is interface and WinRt.IInspectable_Interface;
-   type IToastNotificationTriggerDetails2 is access all IToastNotificationTriggerDetails2_Interface'Class;
+   type IToastNotificationTriggerDetails2 is access IToastNotificationTriggerDetails2_Interface'Class;
 
    type IVolumeInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IVolumeInfo is access all IVolumeInfo_Interface'Class;
+   type IVolumeInfo is access IVolumeInfo_Interface'Class;
    type IVolumeInfo_Ptr is access all IVolumeInfo;
 
    -----------------------------------------------------------------------------

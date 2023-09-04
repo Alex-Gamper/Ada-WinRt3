@@ -41,46 +41,46 @@ package WinRt.Windows.Devices.Input.Preview is
    -----------------------------------------------------------------------------
 
    type IGazeDevicePreview_Interface is interface and WinRt.IInspectable_Interface;
-   type IGazeDevicePreview is access all IGazeDevicePreview_Interface'Class;
+   type IGazeDevicePreview is access IGazeDevicePreview_Interface'Class;
    type IGazeDevicePreview_Ptr is access all IGazeDevicePreview;
 
    type IGazeDeviceWatcherAddedPreviewEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGazeDeviceWatcherAddedPreviewEventArgs is access all IGazeDeviceWatcherAddedPreviewEventArgs_Interface'Class;
+   type IGazeDeviceWatcherAddedPreviewEventArgs is access IGazeDeviceWatcherAddedPreviewEventArgs_Interface'Class;
    type IGazeDeviceWatcherAddedPreviewEventArgs_Ptr is access all IGazeDeviceWatcherAddedPreviewEventArgs;
 
    type IGazeDeviceWatcherPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type IGazeDeviceWatcherPreview is access all IGazeDeviceWatcherPreview_Interface'Class;
+   type IGazeDeviceWatcherPreview is access IGazeDeviceWatcherPreview_Interface'Class;
    type IGazeDeviceWatcherPreview_Ptr is access all IGazeDeviceWatcherPreview;
 
    type IGazeDeviceWatcherRemovedPreviewEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGazeDeviceWatcherRemovedPreviewEventArgs is access all IGazeDeviceWatcherRemovedPreviewEventArgs_Interface'Class;
+   type IGazeDeviceWatcherRemovedPreviewEventArgs is access IGazeDeviceWatcherRemovedPreviewEventArgs_Interface'Class;
    type IGazeDeviceWatcherRemovedPreviewEventArgs_Ptr is access all IGazeDeviceWatcherRemovedPreviewEventArgs;
 
    type IGazeDeviceWatcherUpdatedPreviewEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGazeDeviceWatcherUpdatedPreviewEventArgs is access all IGazeDeviceWatcherUpdatedPreviewEventArgs_Interface'Class;
+   type IGazeDeviceWatcherUpdatedPreviewEventArgs is access IGazeDeviceWatcherUpdatedPreviewEventArgs_Interface'Class;
    type IGazeDeviceWatcherUpdatedPreviewEventArgs_Ptr is access all IGazeDeviceWatcherUpdatedPreviewEventArgs;
 
    type IGazeEnteredPreviewEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGazeEnteredPreviewEventArgs is access all IGazeEnteredPreviewEventArgs_Interface'Class;
+   type IGazeEnteredPreviewEventArgs is access IGazeEnteredPreviewEventArgs_Interface'Class;
    type IGazeEnteredPreviewEventArgs_Ptr is access all IGazeEnteredPreviewEventArgs;
 
    type IGazeExitedPreviewEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGazeExitedPreviewEventArgs is access all IGazeExitedPreviewEventArgs_Interface'Class;
+   type IGazeExitedPreviewEventArgs is access IGazeExitedPreviewEventArgs_Interface'Class;
    type IGazeExitedPreviewEventArgs_Ptr is access all IGazeExitedPreviewEventArgs;
 
    type IGazeInputSourcePreview_Interface is interface and WinRt.IInspectable_Interface;
-   type IGazeInputSourcePreview is access all IGazeInputSourcePreview_Interface'Class;
+   type IGazeInputSourcePreview is access IGazeInputSourcePreview_Interface'Class;
    type IGazeInputSourcePreview_Ptr is access all IGazeInputSourcePreview;
 
    type IGazeInputSourcePreviewStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGazeInputSourcePreviewStatics is access all IGazeInputSourcePreviewStatics_Interface'Class;
+   type IGazeInputSourcePreviewStatics is access IGazeInputSourcePreviewStatics_Interface'Class;
 
    type IGazeMovedPreviewEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGazeMovedPreviewEventArgs is access all IGazeMovedPreviewEventArgs_Interface'Class;
+   type IGazeMovedPreviewEventArgs is access IGazeMovedPreviewEventArgs_Interface'Class;
    type IGazeMovedPreviewEventArgs_Ptr is access all IGazeMovedPreviewEventArgs;
 
    type IGazePointPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type IGazePointPreview is access all IGazePointPreview_Interface'Class;
+   type IGazePointPreview is access IGazePointPreview_Interface'Class;
    type IGazePointPreview_Ptr is access all IGazePointPreview;
 
    -----------------------------------------------------------------------------

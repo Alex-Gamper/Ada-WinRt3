@@ -41,100 +41,100 @@ package WinRt.Windows.Globalization is
    -----------------------------------------------------------------------------
 
    type IApplicationLanguagesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationLanguagesStatics is access all IApplicationLanguagesStatics_Interface'Class;
+   type IApplicationLanguagesStatics is access IApplicationLanguagesStatics_Interface'Class;
 
    type IApplicationLanguagesStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationLanguagesStatics2 is access all IApplicationLanguagesStatics2_Interface'Class;
+   type IApplicationLanguagesStatics2 is access IApplicationLanguagesStatics2_Interface'Class;
 
    type ICalendar_Interface is interface and WinRt.IInspectable_Interface;
-   type ICalendar is access all ICalendar_Interface'Class;
+   type ICalendar is access ICalendar_Interface'Class;
    type ICalendar_Ptr is access all ICalendar;
 
    type ICalendarFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICalendarFactory is access all ICalendarFactory_Interface'Class;
+   type ICalendarFactory is access ICalendarFactory_Interface'Class;
 
    type ICalendarFactory2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICalendarFactory2 is access all ICalendarFactory2_Interface'Class;
+   type ICalendarFactory2 is access ICalendarFactory2_Interface'Class;
 
    type ICalendarIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICalendarIdentifiersStatics is access all ICalendarIdentifiersStatics_Interface'Class;
+   type ICalendarIdentifiersStatics is access ICalendarIdentifiersStatics_Interface'Class;
 
    type ICalendarIdentifiersStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICalendarIdentifiersStatics2 is access all ICalendarIdentifiersStatics2_Interface'Class;
+   type ICalendarIdentifiersStatics2 is access ICalendarIdentifiersStatics2_Interface'Class;
 
    type ICalendarIdentifiersStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICalendarIdentifiersStatics3 is access all ICalendarIdentifiersStatics3_Interface'Class;
+   type ICalendarIdentifiersStatics3 is access ICalendarIdentifiersStatics3_Interface'Class;
 
    type IClockIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IClockIdentifiersStatics is access all IClockIdentifiersStatics_Interface'Class;
+   type IClockIdentifiersStatics is access IClockIdentifiersStatics_Interface'Class;
 
    type ICurrencyAmount_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrencyAmount is access all ICurrencyAmount_Interface'Class;
+   type ICurrencyAmount is access ICurrencyAmount_Interface'Class;
    type ICurrencyAmount_Ptr is access all ICurrencyAmount;
 
    type ICurrencyAmountFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrencyAmountFactory is access all ICurrencyAmountFactory_Interface'Class;
+   type ICurrencyAmountFactory is access ICurrencyAmountFactory_Interface'Class;
 
    type ICurrencyIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrencyIdentifiersStatics is access all ICurrencyIdentifiersStatics_Interface'Class;
+   type ICurrencyIdentifiersStatics is access ICurrencyIdentifiersStatics_Interface'Class;
 
    type ICurrencyIdentifiersStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrencyIdentifiersStatics2 is access all ICurrencyIdentifiersStatics2_Interface'Class;
+   type ICurrencyIdentifiersStatics2 is access ICurrencyIdentifiersStatics2_Interface'Class;
 
    type ICurrencyIdentifiersStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrencyIdentifiersStatics3 is access all ICurrencyIdentifiersStatics3_Interface'Class;
+   type ICurrencyIdentifiersStatics3 is access ICurrencyIdentifiersStatics3_Interface'Class;
 
    type IGeographicRegion_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeographicRegion is access all IGeographicRegion_Interface'Class;
+   type IGeographicRegion is access IGeographicRegion_Interface'Class;
    type IGeographicRegion_Ptr is access all IGeographicRegion;
 
    type IGeographicRegionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeographicRegionFactory is access all IGeographicRegionFactory_Interface'Class;
+   type IGeographicRegionFactory is access IGeographicRegionFactory_Interface'Class;
 
    type IGeographicRegionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeographicRegionStatics is access all IGeographicRegionStatics_Interface'Class;
+   type IGeographicRegionStatics is access IGeographicRegionStatics_Interface'Class;
 
    type IJapanesePhoneme_Interface is interface and WinRt.IInspectable_Interface;
-   type IJapanesePhoneme is access all IJapanesePhoneme_Interface'Class;
+   type IJapanesePhoneme is access IJapanesePhoneme_Interface'Class;
    type IJapanesePhoneme_Ptr is access all IJapanesePhoneme;
 
    type IJapanesePhoneticAnalyzerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IJapanesePhoneticAnalyzerStatics is access all IJapanesePhoneticAnalyzerStatics_Interface'Class;
+   type IJapanesePhoneticAnalyzerStatics is access IJapanesePhoneticAnalyzerStatics_Interface'Class;
 
    type ILanguage_Interface is interface and WinRt.IInspectable_Interface;
-   type ILanguage is access all ILanguage_Interface'Class;
+   type ILanguage is access ILanguage_Interface'Class;
    type ILanguage_Ptr is access all ILanguage;
    type ILanguage_Array is array (Natural range <>) of ILanguage;
 
    type ILanguage2_Interface is interface and WinRt.IInspectable_Interface;
-   type ILanguage2 is access all ILanguage2_Interface'Class;
+   type ILanguage2 is access ILanguage2_Interface'Class;
 
    type ILanguage3_Interface is interface and WinRt.IInspectable_Interface;
-   type ILanguage3 is access all ILanguage3_Interface'Class;
+   type ILanguage3 is access ILanguage3_Interface'Class;
 
    type ILanguageExtensionSubtags_Interface is interface and WinRt.IInspectable_Interface;
-   type ILanguageExtensionSubtags is access all ILanguageExtensionSubtags_Interface'Class;
+   type ILanguageExtensionSubtags is access ILanguageExtensionSubtags_Interface'Class;
 
    type ILanguageFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ILanguageFactory is access all ILanguageFactory_Interface'Class;
+   type ILanguageFactory is access ILanguageFactory_Interface'Class;
 
    type ILanguageStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILanguageStatics is access all ILanguageStatics_Interface'Class;
+   type ILanguageStatics is access ILanguageStatics_Interface'Class;
 
    type ILanguageStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ILanguageStatics2 is access all ILanguageStatics2_Interface'Class;
+   type ILanguageStatics2 is access ILanguageStatics2_Interface'Class;
 
    type ILanguageStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type ILanguageStatics3 is access all ILanguageStatics3_Interface'Class;
+   type ILanguageStatics3 is access ILanguageStatics3_Interface'Class;
 
    type INumeralSystemIdentifiersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type INumeralSystemIdentifiersStatics is access all INumeralSystemIdentifiersStatics_Interface'Class;
+   type INumeralSystemIdentifiersStatics is access INumeralSystemIdentifiersStatics_Interface'Class;
 
    type INumeralSystemIdentifiersStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type INumeralSystemIdentifiersStatics2 is access all INumeralSystemIdentifiersStatics2_Interface'Class;
+   type INumeralSystemIdentifiersStatics2 is access INumeralSystemIdentifiersStatics2_Interface'Class;
 
    type ITimeZoneOnCalendar_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimeZoneOnCalendar is access all ITimeZoneOnCalendar_Interface'Class;
+   type ITimeZoneOnCalendar is access ITimeZoneOnCalendar_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
