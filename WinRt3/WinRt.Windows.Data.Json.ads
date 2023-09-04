@@ -110,7 +110,7 @@ package WinRt.Windows.Data.Json is
       JsonValueNotFound_e => 3,
       ImplementationLimit_e => 4
    );
-   type JsonErrorStatus_Ptr is access all JsonErrorStatus;
+   type JsonErrorStatus_Ptr is access JsonErrorStatus;
 
    type JsonValueType is (
       Null_e,
@@ -128,7 +128,7 @@ package WinRt.Windows.Data.Json is
       Array_e => 4,
       Object_e => 5
    );
-   type JsonValueType_Ptr is access all JsonValueType;
+   type JsonValueType_Ptr is access JsonValueType;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

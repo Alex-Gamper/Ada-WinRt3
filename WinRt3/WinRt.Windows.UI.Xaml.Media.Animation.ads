@@ -1134,7 +1134,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       Filling_e => 1,
       Stopped_e => 2
    );
-   type ClockState_Ptr is access all ClockState;
+   type ClockState_Ptr is access ClockState;
 
    type ConnectedAnimationComponent is (
       OffsetX_e,
@@ -1148,7 +1148,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       CrossFade_e => 2,
       Scale_e => 3
    );
-   type ConnectedAnimationComponent_Ptr is access all ConnectedAnimationComponent;
+   type ConnectedAnimationComponent_Ptr is access ConnectedAnimationComponent;
 
    type EasingMode is (
       EaseOut_e,
@@ -1160,7 +1160,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       EaseIn_e => 1,
       EaseInOut_e => 2
    );
-   type EasingMode_Ptr is access all EasingMode;
+   type EasingMode_Ptr is access EasingMode;
 
    type FillBehavior is (
       HoldEnd_e,
@@ -1170,7 +1170,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       HoldEnd_e => 0,
       Stop_e => 1
    );
-   type FillBehavior_Ptr is access all FillBehavior;
+   type FillBehavior_Ptr is access FillBehavior;
 
    type RepeatBehaviorType is (
       Count_e,
@@ -1182,7 +1182,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       Duration_e => 1,
       Forever_e => 2
    );
-   type RepeatBehaviorType_Ptr is access all RepeatBehaviorType;
+   type RepeatBehaviorType_Ptr is access RepeatBehaviorType;
 
    type SlideNavigationTransitionEffect is (
       FromBottom_e,
@@ -1194,7 +1194,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       FromLeft_e => 1,
       FromRight_e => 2
    );
-   type SlideNavigationTransitionEffect_Ptr is access all SlideNavigationTransitionEffect;
+   type SlideNavigationTransitionEffect_Ptr is access SlideNavigationTransitionEffect;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1203,14 +1203,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    type KeyTime is record
       TimeSpan : WinRt.Windows.Foundation.TimeSpan;
    end record with Convention => C_Pass_By_Copy;
-   type KeyTime_Ptr is access all KeyTime;
+   type KeyTime_Ptr is access KeyTime;
 
    type RepeatBehavior is record
       Count : WinRt.Double;
       Duration : WinRt.Windows.Foundation.TimeSpan;
       Type_x : Windows.UI.Xaml.Media.Animation.RepeatBehaviorType;
    end record with Convention => C_Pass_By_Copy;
-   type RepeatBehavior_Ptr is access all RepeatBehavior;
+   type RepeatBehavior_Ptr is access RepeatBehavior;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

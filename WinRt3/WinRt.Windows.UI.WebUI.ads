@@ -68,25 +68,25 @@ package WinRt.Windows.UI.WebUI is
    -----------------------------------------------------------------------------
 
    type ActivatedEventHandler_Delegate;
-   type ActivatedEventHandler is access all ActivatedEventHandler_Delegate;
+   type ActivatedEventHandler is access ActivatedEventHandler_Delegate;
 
    type BackgroundActivatedEventHandler_Delegate;
-   type BackgroundActivatedEventHandler is access all BackgroundActivatedEventHandler_Delegate;
+   type BackgroundActivatedEventHandler is access BackgroundActivatedEventHandler_Delegate;
 
    type EnteredBackgroundEventHandler_Delegate;
-   type EnteredBackgroundEventHandler is access all EnteredBackgroundEventHandler_Delegate;
+   type EnteredBackgroundEventHandler is access EnteredBackgroundEventHandler_Delegate;
 
    type LeavingBackgroundEventHandler_Delegate;
-   type LeavingBackgroundEventHandler is access all LeavingBackgroundEventHandler_Delegate;
+   type LeavingBackgroundEventHandler is access LeavingBackgroundEventHandler_Delegate;
 
    type NavigatedEventHandler_Delegate;
-   type NavigatedEventHandler is access all NavigatedEventHandler_Delegate;
+   type NavigatedEventHandler is access NavigatedEventHandler_Delegate;
 
    type ResumingEventHandler_Delegate;
-   type ResumingEventHandler is access all ResumingEventHandler_Delegate;
+   type ResumingEventHandler is access ResumingEventHandler_Delegate;
 
    type SuspendingEventHandler_Delegate;
-   type SuspendingEventHandler is access all SuspendingEventHandler_Delegate;
+   type SuspendingEventHandler is access SuspendingEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -523,7 +523,7 @@ package WinRt.Windows.UI.WebUI is
       CustomPageRange_e => 2,
       CurrentSelection_e => 3
    );
-   type PrintContent_Ptr is access all PrintContent;
+   type PrintContent_Ptr is access PrintContent;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

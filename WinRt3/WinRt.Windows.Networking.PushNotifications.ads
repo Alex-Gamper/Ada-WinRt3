@@ -135,7 +135,7 @@ package WinRt.Windows.Networking.PushNotifications is
       Raw_e => 3,
       TileFlyout_e => 4
    );
-   type PushNotificationType_Ptr is access all PushNotificationType;
+   type PushNotificationType_Ptr is access PushNotificationType;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

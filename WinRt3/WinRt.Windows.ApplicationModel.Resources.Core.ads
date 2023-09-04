@@ -194,7 +194,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       File_e => 1,
       EmbeddedData_e => 2
    );
-   type ResourceCandidateKind_Ptr is access all ResourceCandidateKind;
+   type ResourceCandidateKind_Ptr is access ResourceCandidateKind;
 
    type ResourceQualifierPersistence is (
       None_e,
@@ -204,7 +204,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       None_e => 0,
       LocalMachine_e => 1
    );
-   type ResourceQualifierPersistence_Ptr is access all ResourceQualifierPersistence;
+   type ResourceQualifierPersistence_Ptr is access ResourceQualifierPersistence;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -217,7 +217,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       NamedResourceCount : WinRt.UInt32;
       Checksum : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type ResourceLayoutInfo_Ptr is access all ResourceLayoutInfo;
+   type ResourceLayoutInfo_Ptr is access ResourceLayoutInfo;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

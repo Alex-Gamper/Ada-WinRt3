@@ -196,7 +196,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
       ObjectExpired_e => -2138898419,
       Ok_e => 0
    );
-   type GameSaveErrorStatus_Ptr is access all GameSaveErrorStatus;
+   type GameSaveErrorStatus_Ptr is access GameSaveErrorStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

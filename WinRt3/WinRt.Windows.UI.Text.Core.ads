@@ -225,7 +225,7 @@ package WinRt.Windows.UI.Text.Core is
       CompositionTargetUnconverted_e => 3,
       CompositionTargetConverted_e => 4
    );
-   type CoreTextFormatUpdatingReason_Ptr is access all CoreTextFormatUpdatingReason;
+   type CoreTextFormatUpdatingReason_Ptr is access CoreTextFormatUpdatingReason;
 
    type CoreTextFormatUpdatingResult is (
       Succeeded_e,
@@ -235,7 +235,7 @@ package WinRt.Windows.UI.Text.Core is
       Succeeded_e => 0,
       Failed_e => 1
    );
-   type CoreTextFormatUpdatingResult_Ptr is access all CoreTextFormatUpdatingResult;
+   type CoreTextFormatUpdatingResult_Ptr is access CoreTextFormatUpdatingResult;
 
    type CoreTextInputPaneDisplayPolicy is (
       Automatic_e,
@@ -245,7 +245,7 @@ package WinRt.Windows.UI.Text.Core is
       Automatic_e => 0,
       Manual_e => 1
    );
-   type CoreTextInputPaneDisplayPolicy_Ptr is access all CoreTextInputPaneDisplayPolicy;
+   type CoreTextInputPaneDisplayPolicy_Ptr is access CoreTextInputPaneDisplayPolicy;
 
    type CoreTextInputScope is (
       Default_e,
@@ -385,7 +385,7 @@ package WinRt.Windows.UI.Text.Core is
       FormulaNumber_e => 67,
       ChatWithoutEmoji_e => 68
    );
-   type CoreTextInputScope_Ptr is access all CoreTextInputScope;
+   type CoreTextInputScope_Ptr is access CoreTextInputScope;
 
    type CoreTextSelectionUpdatingResult is (
       Succeeded_e,
@@ -395,7 +395,7 @@ package WinRt.Windows.UI.Text.Core is
       Succeeded_e => 0,
       Failed_e => 1
    );
-   type CoreTextSelectionUpdatingResult_Ptr is access all CoreTextSelectionUpdatingResult;
+   type CoreTextSelectionUpdatingResult_Ptr is access CoreTextSelectionUpdatingResult;
 
    type CoreTextTextUpdatingResult is (
       Succeeded_e,
@@ -405,7 +405,7 @@ package WinRt.Windows.UI.Text.Core is
       Succeeded_e => 0,
       Failed_e => 1
    );
-   type CoreTextTextUpdatingResult_Ptr is access all CoreTextTextUpdatingResult;
+   type CoreTextTextUpdatingResult_Ptr is access CoreTextTextUpdatingResult;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -415,7 +415,7 @@ package WinRt.Windows.UI.Text.Core is
       StartCaretPosition : WinRt.Int32;
       EndCaretPosition : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type CoreTextRange_Ptr is access all CoreTextRange;
+   type CoreTextRange_Ptr is access CoreTextRange;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

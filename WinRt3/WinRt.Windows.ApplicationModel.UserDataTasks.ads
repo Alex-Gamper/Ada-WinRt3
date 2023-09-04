@@ -181,7 +181,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       Friday_e => 32,
       Saturday_e => 64
    );
-   type UserDataTaskDaysOfWeek_Ptr is access all UserDataTaskDaysOfWeek;
+   type UserDataTaskDaysOfWeek_Ptr is access UserDataTaskDaysOfWeek;
 
    type UserDataTaskDetailsKind is (
       PlainText_e,
@@ -191,7 +191,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       PlainText_e => 0,
       Html_e => 1
    );
-   type UserDataTaskDetailsKind_Ptr is access all UserDataTaskDetailsKind;
+   type UserDataTaskDetailsKind_Ptr is access UserDataTaskDetailsKind;
 
    type UserDataTaskKind is (
       Single_e,
@@ -203,7 +203,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       Recurring_e => 1,
       Regenerating_e => 2
    );
-   type UserDataTaskKind_Ptr is access all UserDataTaskKind;
+   type UserDataTaskKind_Ptr is access UserDataTaskKind;
 
    type UserDataTaskListOtherAppReadAccess is (
       Full_e,
@@ -215,7 +215,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       SystemOnly_e => 1,
       None_e => 2
    );
-   type UserDataTaskListOtherAppReadAccess_Ptr is access all UserDataTaskListOtherAppReadAccess;
+   type UserDataTaskListOtherAppReadAccess_Ptr is access UserDataTaskListOtherAppReadAccess;
 
    type UserDataTaskListOtherAppWriteAccess is (
       Limited_e,
@@ -225,7 +225,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       Limited_e => 0,
       None_e => 1
    );
-   type UserDataTaskListOtherAppWriteAccess_Ptr is access all UserDataTaskListOtherAppWriteAccess;
+   type UserDataTaskListOtherAppWriteAccess_Ptr is access UserDataTaskListOtherAppWriteAccess;
 
    type UserDataTaskListSyncStatus is (
       Idle_e,
@@ -243,7 +243,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       PolicyError_e => 4,
       UnknownError_e => 5
    );
-   type UserDataTaskListSyncStatus_Ptr is access all UserDataTaskListSyncStatus;
+   type UserDataTaskListSyncStatus_Ptr is access UserDataTaskListSyncStatus;
 
    type UserDataTaskPriority is (
       Low_e,
@@ -255,7 +255,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       Normal_e => 0,
       High_e => 1
    );
-   type UserDataTaskPriority_Ptr is access all UserDataTaskPriority;
+   type UserDataTaskPriority_Ptr is access UserDataTaskPriority;
 
    type UserDataTaskQueryKind is (
       All_e,
@@ -267,7 +267,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       Incomplete_e => 1,
       Complete_e => 2
    );
-   type UserDataTaskQueryKind_Ptr is access all UserDataTaskQueryKind;
+   type UserDataTaskQueryKind_Ptr is access UserDataTaskQueryKind;
 
    type UserDataTaskQuerySortProperty is (
       DueDate_e
@@ -275,7 +275,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    for UserDataTaskQuerySortProperty use (
       DueDate_e => 0
    );
-   type UserDataTaskQuerySortProperty_Ptr is access all UserDataTaskQuerySortProperty;
+   type UserDataTaskQuerySortProperty_Ptr is access UserDataTaskQuerySortProperty;
 
    type UserDataTaskRecurrenceUnit is (
       Daily_e,
@@ -293,7 +293,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       Yearly_e => 4,
       YearlyOnDay_e => 5
    );
-   type UserDataTaskRecurrenceUnit_Ptr is access all UserDataTaskRecurrenceUnit;
+   type UserDataTaskRecurrenceUnit_Ptr is access UserDataTaskRecurrenceUnit;
 
    type UserDataTaskRegenerationUnit is (
       Daily_e,
@@ -307,7 +307,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       Monthly_e => 2,
       Yearly_e => 4
    );
-   type UserDataTaskRegenerationUnit_Ptr is access all UserDataTaskRegenerationUnit;
+   type UserDataTaskRegenerationUnit_Ptr is access UserDataTaskRegenerationUnit;
 
    type UserDataTaskSensitivity is (
       Public_e,
@@ -317,7 +317,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       Public_e => 0,
       Private_e => 1
    );
-   type UserDataTaskSensitivity_Ptr is access all UserDataTaskSensitivity;
+   type UserDataTaskSensitivity_Ptr is access UserDataTaskSensitivity;
 
    type UserDataTaskStoreAccessType is (
       AppTasksReadWrite_e,
@@ -327,7 +327,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       AppTasksReadWrite_e => 0,
       AllTasksLimitedReadWrite_e => 1
    );
-   type UserDataTaskStoreAccessType_Ptr is access all UserDataTaskStoreAccessType;
+   type UserDataTaskStoreAccessType_Ptr is access UserDataTaskStoreAccessType;
 
    type UserDataTaskWeekOfMonth is (
       First_e,
@@ -343,7 +343,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       Fourth_e => 3,
       Last_e => 4
    );
-   type UserDataTaskWeekOfMonth_Ptr is access all UserDataTaskWeekOfMonth;
+   type UserDataTaskWeekOfMonth_Ptr is access UserDataTaskWeekOfMonth;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

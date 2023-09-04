@@ -66,7 +66,7 @@ package WinRt.Windows.Phone.StartScreen is
    type DualSimTileContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type DualSimTileContract_Ptr is access all DualSimTileContract;
+   type DualSimTileContract_Ptr is access DualSimTileContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

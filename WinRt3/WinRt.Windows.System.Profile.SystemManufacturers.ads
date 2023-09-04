@@ -78,7 +78,7 @@ package WinRt.Windows.System.Profile.SystemManufacturers is
    type SystemManufacturersContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type SystemManufacturersContract_Ptr is access all SystemManufacturersContract;
+   type SystemManufacturersContract_Ptr is access SystemManufacturersContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

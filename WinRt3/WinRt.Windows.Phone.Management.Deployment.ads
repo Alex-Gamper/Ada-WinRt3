@@ -101,7 +101,7 @@ package WinRt.Windows.Phone.Management.Deployment is
       CancelledByUser_e => 1,
       UnknownFailure_e => 2
    );
-   type EnterpriseEnrollmentStatus_Ptr is access all EnterpriseEnrollmentStatus;
+   type EnterpriseEnrollmentStatus_Ptr is access EnterpriseEnrollmentStatus;
 
    type EnterpriseStatus is (
       Enrolled_e,
@@ -115,7 +115,7 @@ package WinRt.Windows.Phone.Management.Deployment is
       Revoked_e => 2,
       Expired_e => 3
    );
-   type EnterpriseStatus_Ptr is access all EnterpriseStatus;
+   type EnterpriseStatus_Ptr is access EnterpriseStatus;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

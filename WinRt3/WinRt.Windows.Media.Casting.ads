@@ -141,7 +141,7 @@ package WinRt.Windows.Media.Casting is
       InvalidCastingSource_e => 5,
       Unknown_e => 6
    );
-   type CastingConnectionErrorStatus_Ptr is access all CastingConnectionErrorStatus;
+   type CastingConnectionErrorStatus_Ptr is access CastingConnectionErrorStatus;
 
    type CastingConnectionState is (
       Disconnected_e,
@@ -157,7 +157,7 @@ package WinRt.Windows.Media.Casting is
       Disconnecting_e => 3,
       Connecting_e => 4
    );
-   type CastingConnectionState_Ptr is access all CastingConnectionState;
+   type CastingConnectionState_Ptr is access CastingConnectionState;
 
    type CastingPlaybackTypes is (
       None_e,
@@ -171,7 +171,7 @@ package WinRt.Windows.Media.Casting is
       Video_e => 2,
       Picture_e => 4
    );
-   type CastingPlaybackTypes_Ptr is access all CastingPlaybackTypes;
+   type CastingPlaybackTypes_Ptr is access CastingPlaybackTypes;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

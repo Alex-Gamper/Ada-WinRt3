@@ -61,7 +61,7 @@ package WinRt.Windows.Management.Deployment.Preview is
    type DeploymentPreviewContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type DeploymentPreviewContract_Ptr is access all DeploymentPreviewContract;
+   type DeploymentPreviewContract_Ptr is access DeploymentPreviewContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

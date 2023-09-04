@@ -73,7 +73,7 @@ package WinRt.Windows.ApplicationModel.Wallet.System is
       AppInstalled_e => 1,
       AppNotInstalled_e => 2
    );
-   type WalletItemAppAssociation_Ptr is access all WalletItemAppAssociation;
+   type WalletItemAppAssociation_Ptr is access WalletItemAppAssociation;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

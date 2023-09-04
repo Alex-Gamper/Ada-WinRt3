@@ -94,7 +94,7 @@ package WinRt.Windows.Devices.SerialCommunication is
       ReceiveParity_e => 3,
       TransmitFull_e => 4
    );
-   type SerialError_Ptr is access all SerialError;
+   type SerialError_Ptr is access SerialError;
 
    type SerialHandshake is (
       None_e,
@@ -108,7 +108,7 @@ package WinRt.Windows.Devices.SerialCommunication is
       XOnXOff_e => 2,
       RequestToSendXOnXOff_e => 3
    );
-   type SerialHandshake_Ptr is access all SerialHandshake;
+   type SerialHandshake_Ptr is access SerialHandshake;
 
    type SerialParity is (
       None_e,
@@ -124,7 +124,7 @@ package WinRt.Windows.Devices.SerialCommunication is
       Mark_e => 3,
       Space_e => 4
    );
-   type SerialParity_Ptr is access all SerialParity;
+   type SerialParity_Ptr is access SerialParity;
 
    type SerialPinChange is (
       BreakSignal_e,
@@ -140,7 +140,7 @@ package WinRt.Windows.Devices.SerialCommunication is
       DataSetReady_e => 3,
       RingIndicator_e => 4
    );
-   type SerialPinChange_Ptr is access all SerialPinChange;
+   type SerialPinChange_Ptr is access SerialPinChange;
 
    type SerialStopBitCount is (
       One_e,
@@ -152,7 +152,7 @@ package WinRt.Windows.Devices.SerialCommunication is
       OnePointFive_e => 1,
       Two_e => 2
    );
-   type SerialStopBitCount_Ptr is access all SerialStopBitCount;
+   type SerialStopBitCount_Ptr is access SerialStopBitCount;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

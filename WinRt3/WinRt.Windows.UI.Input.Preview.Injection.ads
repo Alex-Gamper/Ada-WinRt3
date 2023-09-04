@@ -145,7 +145,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       FifthButtonDown_e => 9,
       FifthButtonUp_e => 10
    );
-   type InjectedInputButtonChangeKind_Ptr is access all InjectedInputButtonChangeKind;
+   type InjectedInputButtonChangeKind_Ptr is access InjectedInputButtonChangeKind;
 
    type InjectedInputKeyOptions is (
       None_e,
@@ -161,7 +161,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       Unicode_e => 4,
       ScanCode_e => 8
    );
-   type InjectedInputKeyOptions_Ptr is access all InjectedInputKeyOptions;
+   type InjectedInputKeyOptions_Ptr is access InjectedInputKeyOptions;
 
    type InjectedInputMouseOptions is (
       None_e,
@@ -197,7 +197,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       VirtualDesk_e => 16384,
       Absolute_e => 32768
    );
-   type InjectedInputMouseOptions_Ptr is access all InjectedInputMouseOptions;
+   type InjectedInputMouseOptions_Ptr is access InjectedInputMouseOptions;
 
    type InjectedInputPenButtons is (
       None_e,
@@ -211,7 +211,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       Inverted_e => 2,
       Eraser_e => 4
    );
-   type InjectedInputPenButtons_Ptr is access all InjectedInputPenButtons;
+   type InjectedInputPenButtons_Ptr is access InjectedInputPenButtons;
 
    type InjectedInputPenParameters is (
       None_e,
@@ -227,7 +227,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       TiltX_e => 4,
       TiltY_e => 8
    );
-   type InjectedInputPenParameters_Ptr is access all InjectedInputPenParameters;
+   type InjectedInputPenParameters_Ptr is access InjectedInputPenParameters;
 
    type InjectedInputPointerOptions is (
       None_e,
@@ -259,7 +259,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       PointerUp_e => 262144,
       CaptureChanged_e => 2097152
    );
-   type InjectedInputPointerOptions_Ptr is access all InjectedInputPointerOptions;
+   type InjectedInputPointerOptions_Ptr is access InjectedInputPointerOptions;
 
    type InjectedInputShortcut is (
       Back_e,
@@ -271,7 +271,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       Start_e => 1,
       Search_e => 2
    );
-   type InjectedInputShortcut_Ptr is access all InjectedInputShortcut;
+   type InjectedInputShortcut_Ptr is access InjectedInputShortcut;
 
    type InjectedInputTouchParameters is (
       None_e,
@@ -285,7 +285,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       Orientation_e => 2,
       Pressure_e => 4
    );
-   type InjectedInputTouchParameters_Ptr is access all InjectedInputTouchParameters;
+   type InjectedInputTouchParameters_Ptr is access InjectedInputTouchParameters;
 
    type InjectedInputVisualizationMode is (
       None_e,
@@ -297,7 +297,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       Default_e => 1,
       Indirect_e => 2
    );
-   type InjectedInputVisualizationMode_Ptr is access all InjectedInputVisualizationMode;
+   type InjectedInputVisualizationMode_Ptr is access InjectedInputVisualizationMode;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -307,7 +307,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       PositionX : WinRt.Int32;
       PositionY : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type InjectedInputPoint_Ptr is access all InjectedInputPoint;
+   type InjectedInputPoint_Ptr is access InjectedInputPoint;
 
    type InjectedInputPointerInfo is record
       PointerId : WinRt.UInt32;
@@ -316,7 +316,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       TimeOffsetInMilliseconds : WinRt.UInt32;
       PerformanceCount : WinRt.UInt64;
    end record with Convention => C_Pass_By_Copy;
-   type InjectedInputPointerInfo_Ptr is access all InjectedInputPointerInfo;
+   type InjectedInputPointerInfo_Ptr is access InjectedInputPointerInfo;
 
    type InjectedInputRectangle is record
       Left : WinRt.Int32;
@@ -324,7 +324,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       Bottom : WinRt.Int32;
       Right : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type InjectedInputRectangle_Ptr is access all InjectedInputRectangle;
+   type InjectedInputRectangle_Ptr is access InjectedInputRectangle;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

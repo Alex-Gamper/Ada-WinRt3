@@ -42,7 +42,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    -----------------------------------------------------------------------------
 
    type DownloadProgressEventHandler_Delegate;
-   type DownloadProgressEventHandler is access all DownloadProgressEventHandler_Delegate;
+   type DownloadProgressEventHandler is access DownloadProgressEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -232,7 +232,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       None_e => 0,
       IgnoreImageCache_e => 8
    );
-   type BitmapCreateOptions_Ptr is access all BitmapCreateOptions;
+   type BitmapCreateOptions_Ptr is access BitmapCreateOptions;
 
    type DecodePixelType is (
       Physical_e,
@@ -242,7 +242,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       Physical_e => 0,
       Logical_e => 1
    );
-   type DecodePixelType_Ptr is access all DecodePixelType;
+   type DecodePixelType_Ptr is access DecodePixelType;
 
    type SvgImageSourceLoadStatus is (
       Success_e,
@@ -256,7 +256,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       InvalidFormat_e => 2,
       Other_e => 3
    );
-   type SvgImageSourceLoadStatus_Ptr is access all SvgImageSourceLoadStatus;
+   type SvgImageSourceLoadStatus_Ptr is access SvgImageSourceLoadStatus;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

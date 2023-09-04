@@ -139,7 +139,7 @@ package WinRt.Windows.System.Profile is
       Enhanced_e => 2,
       Full_e => 3
    );
-   type PlatformDataCollectionLevel_Ptr is access all PlatformDataCollectionLevel;
+   type PlatformDataCollectionLevel_Ptr is access PlatformDataCollectionLevel;
 
    type SystemIdentificationSource is (
       None_e,
@@ -153,7 +153,7 @@ package WinRt.Windows.System.Profile is
       Uefi_e => 2,
       Registry_e => 3
    );
-   type SystemIdentificationSource_Ptr is access all SystemIdentificationSource;
+   type SystemIdentificationSource_Ptr is access SystemIdentificationSource;
 
    type SystemOutOfBoxExperienceState is (
       NotStarted_e,
@@ -165,7 +165,7 @@ package WinRt.Windows.System.Profile is
       InProgress_e => 1,
       Completed_e => 2
    );
-   type SystemOutOfBoxExperienceState_Ptr is access all SystemOutOfBoxExperienceState;
+   type SystemOutOfBoxExperienceState_Ptr is access SystemOutOfBoxExperienceState;
 
    type UnsupportedAppRequirementReasons is (
       Unknown_e,
@@ -175,7 +175,7 @@ package WinRt.Windows.System.Profile is
       Unknown_e => 0,
       DeniedBySystem_e => 1
    );
-   type UnsupportedAppRequirementReasons_Ptr is access all UnsupportedAppRequirementReasons;
+   type UnsupportedAppRequirementReasons_Ptr is access UnsupportedAppRequirementReasons;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -184,17 +184,17 @@ package WinRt.Windows.System.Profile is
    type ProfileHardwareTokenContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type ProfileHardwareTokenContract_Ptr is access all ProfileHardwareTokenContract;
+   type ProfileHardwareTokenContract_Ptr is access ProfileHardwareTokenContract;
 
    type ProfileRetailInfoContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type ProfileRetailInfoContract_Ptr is access all ProfileRetailInfoContract;
+   type ProfileRetailInfoContract_Ptr is access ProfileRetailInfoContract;
 
    type ProfileSharedModeContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type ProfileSharedModeContract_Ptr is access all ProfileSharedModeContract;
+   type ProfileSharedModeContract_Ptr is access ProfileSharedModeContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

@@ -109,7 +109,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
       AssociationEndpointService_e => 7,
       DevicePanel_e => 8
    );
-   type PnpObjectType_Ptr is access all PnpObjectType;
+   type PnpObjectType_Ptr is access PnpObjectType;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

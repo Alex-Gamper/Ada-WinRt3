@@ -43,10 +43,10 @@ package WinRt.Windows.UI.Core is
    -----------------------------------------------------------------------------
 
    type DispatchedHandler_Delegate;
-   type DispatchedHandler is access all DispatchedHandler_Delegate;
+   type DispatchedHandler is access DispatchedHandler_Delegate;
 
    type IdleDispatchedHandler_Delegate;
-   type IdleDispatchedHandler is access all IdleDispatchedHandler_Delegate;
+   type IdleDispatchedHandler is access IdleDispatchedHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -394,7 +394,7 @@ package WinRt.Windows.UI.Core is
       Collapsed_e => 1,
       Disabled_e => 2
    );
-   type AppViewBackButtonVisibility_Ptr is access all AppViewBackButtonVisibility;
+   type AppViewBackButtonVisibility_Ptr is access AppViewBackButtonVisibility;
 
    type CoreAcceleratorKeyEventType is (
       KeyDown_e,
@@ -418,7 +418,7 @@ package WinRt.Windows.UI.Core is
       SystemDeadCharacter_e => 7,
       UnicodeCharacter_e => 8
    );
-   type CoreAcceleratorKeyEventType_Ptr is access all CoreAcceleratorKeyEventType;
+   type CoreAcceleratorKeyEventType_Ptr is access CoreAcceleratorKeyEventType;
 
    type CoreCursorType is (
       Arrow_e,
@@ -456,7 +456,7 @@ package WinRt.Windows.UI.Core is
       Pin_e => 14,
       Person_e => 15
    );
-   type CoreCursorType_Ptr is access all CoreCursorType;
+   type CoreCursorType_Ptr is access CoreCursorType;
 
    type CoreDispatcherPriority is (
       Idle_e,
@@ -470,7 +470,7 @@ package WinRt.Windows.UI.Core is
       Normal_e => 0,
       High_e => 1
    );
-   type CoreDispatcherPriority_Ptr is access all CoreDispatcherPriority;
+   type CoreDispatcherPriority_Ptr is access CoreDispatcherPriority;
 
    type CoreInputDeviceTypes is (
       None_e,
@@ -484,7 +484,7 @@ package WinRt.Windows.UI.Core is
       Pen_e => 2,
       Mouse_e => 4
    );
-   type CoreInputDeviceTypes_Ptr is access all CoreInputDeviceTypes;
+   type CoreInputDeviceTypes_Ptr is access CoreInputDeviceTypes;
 
    type CoreProcessEventsOption is (
       ProcessOneAndAllPending_e,
@@ -498,7 +498,7 @@ package WinRt.Windows.UI.Core is
       ProcessUntilQuit_e => 2,
       ProcessAllIfPresent_e => 3
    );
-   type CoreProcessEventsOption_Ptr is access all CoreProcessEventsOption;
+   type CoreProcessEventsOption_Ptr is access CoreProcessEventsOption;
 
    type CoreProximityEvaluationScore is (
       Closest_e,
@@ -508,7 +508,7 @@ package WinRt.Windows.UI.Core is
       Closest_e => 0,
       Farthest_e => 2147483647
    );
-   type CoreProximityEvaluationScore_Ptr is access all CoreProximityEvaluationScore;
+   type CoreProximityEvaluationScore_Ptr is access CoreProximityEvaluationScore;
 
    type CoreVirtualKeyStates is (
       None_e,
@@ -520,7 +520,7 @@ package WinRt.Windows.UI.Core is
       Down_e => 1,
       Locked_e => 2
    );
-   type CoreVirtualKeyStates_Ptr is access all CoreVirtualKeyStates;
+   type CoreVirtualKeyStates_Ptr is access CoreVirtualKeyStates;
 
    type CoreWindowActivationMode is (
       None_e,
@@ -534,7 +534,7 @@ package WinRt.Windows.UI.Core is
       ActivatedNotForeground_e => 2,
       ActivatedInForeground_e => 3
    );
-   type CoreWindowActivationMode_Ptr is access all CoreWindowActivationMode;
+   type CoreWindowActivationMode_Ptr is access CoreWindowActivationMode;
 
    type CoreWindowActivationState is (
       CodeActivated_e,
@@ -546,7 +546,7 @@ package WinRt.Windows.UI.Core is
       Deactivated_e => 1,
       PointerActivated_e => 2
    );
-   type CoreWindowActivationState_Ptr is access all CoreWindowActivationState;
+   type CoreWindowActivationState_Ptr is access CoreWindowActivationState;
 
    type CoreWindowFlowDirection is (
       LeftToRight_e,
@@ -556,7 +556,7 @@ package WinRt.Windows.UI.Core is
       LeftToRight_e => 0,
       RightToLeft_e => 1
    );
-   type CoreWindowFlowDirection_Ptr is access all CoreWindowFlowDirection;
+   type CoreWindowFlowDirection_Ptr is access CoreWindowFlowDirection;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -570,18 +570,18 @@ package WinRt.Windows.UI.Core is
       WasKeyDown : WinRt.Boolean;
       IsKeyReleased : WinRt.Boolean;
    end record with Convention => C_Pass_By_Copy;
-   type CorePhysicalKeyStatus_Ptr is access all CorePhysicalKeyStatus;
+   type CorePhysicalKeyStatus_Ptr is access CorePhysicalKeyStatus;
 
    type CoreProximityEvaluation is record
       Score : WinRt.Int32;
       AdjustedPoint : WinRt.Windows.Foundation.Point;
    end record with Convention => C_Pass_By_Copy;
-   type CoreProximityEvaluation_Ptr is access all CoreProximityEvaluation;
+   type CoreProximityEvaluation_Ptr is access CoreProximityEvaluation;
 
    type CoreWindowDialogsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type CoreWindowDialogsContract_Ptr is access all CoreWindowDialogsContract;
+   type CoreWindowDialogsContract_Ptr is access CoreWindowDialogsContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

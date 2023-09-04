@@ -69,7 +69,7 @@ package WinRt.Windows.UI.Notifications.Management is
       Allowed_e => 1,
       Denied_e => 2
    );
-   type UserNotificationListenerAccessStatus_Ptr is access all UserNotificationListenerAccessStatus;
+   type UserNotificationListenerAccessStatus_Ptr is access UserNotificationListenerAccessStatus;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

@@ -155,7 +155,7 @@ package WinRt.Windows.Globalization.NumberFormatting is
       UseSymbol_e => 0,
       UseCurrencyCode_e => 1
    );
-   type CurrencyFormatterMode_Ptr is access all CurrencyFormatterMode;
+   type CurrencyFormatterMode_Ptr is access CurrencyFormatterMode;
 
    type RoundingAlgorithm is (
       None_e,
@@ -183,7 +183,7 @@ package WinRt.Windows.Globalization.NumberFormatting is
       RoundHalfToEven_e => 9,
       RoundHalfToOdd_e => 10
    );
-   type RoundingAlgorithm_Ptr is access all RoundingAlgorithm;
+   type RoundingAlgorithm_Ptr is access RoundingAlgorithm;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

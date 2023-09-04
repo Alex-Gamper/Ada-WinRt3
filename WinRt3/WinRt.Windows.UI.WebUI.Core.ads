@@ -40,13 +40,13 @@ package WinRt.Windows.UI.WebUI.Core is
    -----------------------------------------------------------------------------
 
    type MenuClosedEventHandler_Delegate;
-   type MenuClosedEventHandler is access all MenuClosedEventHandler_Delegate;
+   type MenuClosedEventHandler is access MenuClosedEventHandler_Delegate;
 
    type MenuOpenedEventHandler_Delegate;
-   type MenuOpenedEventHandler is access all MenuOpenedEventHandler_Delegate;
+   type MenuOpenedEventHandler is access MenuOpenedEventHandler_Delegate;
 
    type SizeChangedEventHandler_Delegate;
-   type SizeChangedEventHandler is access all SizeChangedEventHandler_Delegate;
+   type SizeChangedEventHandler is access SizeChangedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -155,7 +155,7 @@ package WinRt.Windows.UI.WebUI.Core is
       Minimal_e => 1,
       Compact_e => 2
    );
-   type WebUICommandBarClosedDisplayMode_Ptr is access all WebUICommandBarClosedDisplayMode;
+   type WebUICommandBarClosedDisplayMode_Ptr is access WebUICommandBarClosedDisplayMode;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -164,7 +164,7 @@ package WinRt.Windows.UI.WebUI.Core is
    type WebUICommandBarContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type WebUICommandBarContract_Ptr is access all WebUICommandBarContract;
+   type WebUICommandBarContract_Ptr is access WebUICommandBarContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

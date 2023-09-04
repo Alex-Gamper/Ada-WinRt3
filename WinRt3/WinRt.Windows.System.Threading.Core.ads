@@ -39,7 +39,7 @@ package WinRt.Windows.System.Threading.Core is
    -----------------------------------------------------------------------------
 
    type SignalHandler_Delegate;
-   type SignalHandler is access all SignalHandler_Delegate;
+   type SignalHandler is access SignalHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations

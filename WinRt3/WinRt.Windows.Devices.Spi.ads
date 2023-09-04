@@ -109,7 +109,7 @@ package WinRt.Windows.Devices.Spi is
       Mode2_e => 2,
       Mode3_e => 3
    );
-   type SpiMode_Ptr is access all SpiMode;
+   type SpiMode_Ptr is access SpiMode;
 
    type SpiSharingMode is (
       Exclusive_e,
@@ -119,7 +119,7 @@ package WinRt.Windows.Devices.Spi is
       Exclusive_e => 0,
       Shared_e => 1
    );
-   type SpiSharingMode_Ptr is access all SpiSharingMode;
+   type SpiSharingMode_Ptr is access SpiSharingMode;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

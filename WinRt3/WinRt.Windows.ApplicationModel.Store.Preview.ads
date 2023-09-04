@@ -142,7 +142,7 @@ package WinRt.Windows.ApplicationModel.Store.Preview is
       Internet_e => 4,
       Bypass_e => 5
    );
-   type DeliveryOptimizationDownloadMode_Ptr is access all DeliveryOptimizationDownloadMode;
+   type DeliveryOptimizationDownloadMode_Ptr is access DeliveryOptimizationDownloadMode;
 
    type DeliveryOptimizationDownloadModeSource is (
       Default_e,
@@ -152,7 +152,7 @@ package WinRt.Windows.ApplicationModel.Store.Preview is
       Default_e => 0,
       Policy_e => 1
    );
-   type DeliveryOptimizationDownloadModeSource_Ptr is access all DeliveryOptimizationDownloadModeSource;
+   type DeliveryOptimizationDownloadModeSource_Ptr is access DeliveryOptimizationDownloadModeSource;
 
    type StoreLogOptions is (
       None_e,
@@ -162,7 +162,7 @@ package WinRt.Windows.ApplicationModel.Store.Preview is
       None_e => 0,
       TryElevate_e => 1
    );
-   type StoreLogOptions_Ptr is access all StoreLogOptions;
+   type StoreLogOptions_Ptr is access StoreLogOptions;
 
    type StorePreviewProductPurchaseStatus is (
       Succeeded_e,
@@ -176,7 +176,7 @@ package WinRt.Windows.ApplicationModel.Store.Preview is
       NotFulfilled_e => 2,
       NotPurchased_e => 3
    );
-   type StorePreviewProductPurchaseStatus_Ptr is access all StorePreviewProductPurchaseStatus;
+   type StorePreviewProductPurchaseStatus_Ptr is access StorePreviewProductPurchaseStatus;
 
    type StoreSystemFeature is (
       ArchitectureX86_e,
@@ -252,7 +252,7 @@ package WinRt.Windows.ApplicationModel.Store.Preview is
       VideoMemory1GB_e => 33,
       ArchitectureArm64_e => 34
    );
-   type StoreSystemFeature_Ptr is access all StoreSystemFeature;
+   type StoreSystemFeature_Ptr is access StoreSystemFeature;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

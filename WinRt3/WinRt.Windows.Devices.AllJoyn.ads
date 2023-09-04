@@ -343,7 +343,7 @@ package WinRt.Windows.Devices.AllJoyn is
       EcdheEcdsa_e => 5,
       EcdheSpeke_e => 6
    );
-   type AllJoynAuthenticationMechanism_Ptr is access all AllJoynAuthenticationMechanism;
+   type AllJoynAuthenticationMechanism_Ptr is access AllJoynAuthenticationMechanism;
 
    type AllJoynBusAttachmentState is (
       Disconnected_e,
@@ -357,7 +357,7 @@ package WinRt.Windows.Devices.AllJoyn is
       Connected_e => 2,
       Disconnecting_e => 3
    );
-   type AllJoynBusAttachmentState_Ptr is access all AllJoynBusAttachmentState;
+   type AllJoynBusAttachmentState_Ptr is access AllJoynBusAttachmentState;
 
    type AllJoynSessionLostReason is (
       None_e,
@@ -375,7 +375,7 @@ package WinRt.Windows.Devices.AllJoyn is
       LinkTimeout_e => 4,
       Other_e => 5
    );
-   type AllJoynSessionLostReason_Ptr is access all AllJoynSessionLostReason;
+   type AllJoynSessionLostReason_Ptr is access AllJoynSessionLostReason;
 
    type AllJoynTrafficType is (
       Unknown_e,
@@ -389,7 +389,7 @@ package WinRt.Windows.Devices.AllJoyn is
       RawUnreliable_e => 2,
       RawReliable_e => 4
    );
-   type AllJoynTrafficType_Ptr is access all AllJoynTrafficType;
+   type AllJoynTrafficType_Ptr is access AllJoynTrafficType;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

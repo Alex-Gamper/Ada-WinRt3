@@ -185,7 +185,7 @@ package WinRt.Windows.UI.StartScreen is
       Dark_e => 0,
       Light_e => 1
    );
-   type ForegroundText_Ptr is access all ForegroundText;
+   type ForegroundText_Ptr is access ForegroundText;
 
    type JumpListItemKind is (
       Arguments_e,
@@ -195,7 +195,7 @@ package WinRt.Windows.UI.StartScreen is
       Arguments_e => 0,
       Separator_e => 1
    );
-   type JumpListItemKind_Ptr is access all JumpListItemKind;
+   type JumpListItemKind_Ptr is access JumpListItemKind;
 
    type JumpListSystemGroupKind is (
       None_e,
@@ -207,7 +207,7 @@ package WinRt.Windows.UI.StartScreen is
       Frequent_e => 1,
       Recent_e => 2
    );
-   type JumpListSystemGroupKind_Ptr is access all JumpListSystemGroupKind;
+   type JumpListSystemGroupKind_Ptr is access JumpListSystemGroupKind;
 
    type TileMixedRealityModelActivationBehavior is (
       Default_e,
@@ -217,7 +217,7 @@ package WinRt.Windows.UI.StartScreen is
       Default_e => 0,
       None_e => 1
    );
-   type TileMixedRealityModelActivationBehavior_Ptr is access all TileMixedRealityModelActivationBehavior;
+   type TileMixedRealityModelActivationBehavior_Ptr is access TileMixedRealityModelActivationBehavior;
 
    type TileOptions is (
       None_e,
@@ -231,7 +231,7 @@ package WinRt.Windows.UI.StartScreen is
       ShowNameOnWideLogo_e => 2,
       CopyOnDeployment_e => 4
    );
-   type TileOptions_Ptr is access all TileOptions;
+   type TileOptions_Ptr is access TileOptions;
 
    type TileSize is (
       Default_e,
@@ -253,7 +253,7 @@ package WinRt.Windows.UI.StartScreen is
       Square71x71_e => 6,
       Square44x44_e => 7
    );
-   type TileSize_Ptr is access all TileSize;
+   type TileSize_Ptr is access TileSize;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

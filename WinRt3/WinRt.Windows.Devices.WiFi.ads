@@ -117,7 +117,7 @@ package WinRt.Windows.Devices.WiFi is
       DeniedByUser_e => 2,
       DeniedBySystem_e => 3
    );
-   type WiFiAccessStatus_Ptr is access all WiFiAccessStatus;
+   type WiFiAccessStatus_Ptr is access WiFiAccessStatus;
 
    type WiFiConnectionMethod is (
       Default_e,
@@ -129,7 +129,7 @@ package WinRt.Windows.Devices.WiFi is
       WpsPin_e => 1,
       WpsPushButton_e => 2
    );
-   type WiFiConnectionMethod_Ptr is access all WiFiConnectionMethod;
+   type WiFiConnectionMethod_Ptr is access WiFiConnectionMethod;
 
    type WiFiConnectionStatus is (
       UnspecifiedFailure_e,
@@ -149,7 +149,7 @@ package WinRt.Windows.Devices.WiFi is
       Timeout_e => 5,
       UnsupportedAuthenticationProtocol_e => 6
    );
-   type WiFiConnectionStatus_Ptr is access all WiFiConnectionStatus;
+   type WiFiConnectionStatus_Ptr is access WiFiConnectionStatus;
 
    type WiFiNetworkKind is (
       Any_e,
@@ -161,7 +161,7 @@ package WinRt.Windows.Devices.WiFi is
       Infrastructure_e => 1,
       Adhoc_e => 2
    );
-   type WiFiNetworkKind_Ptr is access all WiFiNetworkKind;
+   type WiFiNetworkKind_Ptr is access WiFiNetworkKind;
 
    type WiFiPhyKind is (
       Unknown_e,
@@ -189,7 +189,7 @@ package WinRt.Windows.Devices.WiFi is
       Dmg_e => 9,
       HE_e => 10
    );
-   type WiFiPhyKind_Ptr is access all WiFiPhyKind;
+   type WiFiPhyKind_Ptr is access WiFiPhyKind;
 
    type WiFiReconnectionKind is (
       Automatic_e,
@@ -199,7 +199,7 @@ package WinRt.Windows.Devices.WiFi is
       Automatic_e => 0,
       Manual_e => 1
    );
-   type WiFiReconnectionKind_Ptr is access all WiFiReconnectionKind;
+   type WiFiReconnectionKind_Ptr is access WiFiReconnectionKind;
 
    type WiFiWpsConfigurationStatus is (
       UnspecifiedFailure_e,
@@ -211,7 +211,7 @@ package WinRt.Windows.Devices.WiFi is
       Success_e => 1,
       Timeout_e => 2
    );
-   type WiFiWpsConfigurationStatus_Ptr is access all WiFiWpsConfigurationStatus;
+   type WiFiWpsConfigurationStatus_Ptr is access WiFiWpsConfigurationStatus;
 
    type WiFiWpsKind is (
       Unknown_e,
@@ -229,7 +229,7 @@ package WinRt.Windows.Devices.WiFi is
       Ethernet_e => 4,
       Usb_e => 5
    );
-   type WiFiWpsKind_Ptr is access all WiFiWpsKind;
+   type WiFiWpsKind_Ptr is access WiFiWpsKind;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

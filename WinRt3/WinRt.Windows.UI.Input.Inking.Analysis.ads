@@ -194,7 +194,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       Pentagon_e => 13,
       Hexagon_e => 14
    );
-   type InkAnalysisDrawingKind_Ptr is access all InkAnalysisDrawingKind;
+   type InkAnalysisDrawingKind_Ptr is access InkAnalysisDrawingKind;
 
    type InkAnalysisNodeKind is (
       UnclassifiedInk_e,
@@ -218,7 +218,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       InkDrawing_e => 7,
       ListItem_e => 8
    );
-   type InkAnalysisNodeKind_Ptr is access all InkAnalysisNodeKind;
+   type InkAnalysisNodeKind_Ptr is access InkAnalysisNodeKind;
 
    type InkAnalysisStatus is (
       Updated_e,
@@ -228,7 +228,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       Updated_e => 0,
       Unchanged_e => 1
    );
-   type InkAnalysisStatus_Ptr is access all InkAnalysisStatus;
+   type InkAnalysisStatus_Ptr is access InkAnalysisStatus;
 
    type InkAnalysisStrokeKind is (
       Auto_e,
@@ -240,7 +240,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       Writing_e => 1,
       Drawing_e => 2
    );
-   type InkAnalysisStrokeKind_Ptr is access all InkAnalysisStrokeKind;
+   type InkAnalysisStrokeKind_Ptr is access InkAnalysisStrokeKind;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -422,7 +422,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       Backward_e => 0,
       Forward_e => 1
    );
-   type LogicalDirection_Ptr is access all LogicalDirection;
+   type LogicalDirection_Ptr is access LogicalDirection;
 
    type UnderlineStyle is (
       None_e,
@@ -432,7 +432,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       None_e => 0,
       Single_e => 1
    );
-   type UnderlineStyle_Ptr is access all UnderlineStyle;
+   type UnderlineStyle_Ptr is access UnderlineStyle;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -442,7 +442,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       StartIndex : WinRt.Int32;
       Length : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type TextRange_Ptr is access all TextRange;
+   type TextRange_Ptr is access TextRange;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

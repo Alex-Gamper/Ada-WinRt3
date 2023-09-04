@@ -82,7 +82,7 @@ package WinRt.Windows.Management is
       Boolean_e => 2,
       Integer_e => 3
    );
-   type MdmAlertDataType_Ptr is access all MdmAlertDataType;
+   type MdmAlertDataType_Ptr is access MdmAlertDataType;
 
    type MdmAlertMark is (
       None_e,
@@ -98,7 +98,7 @@ package WinRt.Windows.Management is
       Warning_e => 3,
       Informational_e => 4
    );
-   type MdmAlertMark_Ptr is access all MdmAlertMark;
+   type MdmAlertMark_Ptr is access MdmAlertMark;
 
    type MdmSessionState is (
       NotStarted_e,
@@ -118,7 +118,7 @@ package WinRt.Windows.Management is
       Retrying_e => 5,
       Completed_e => 6
    );
-   type MdmSessionState_Ptr is access all MdmSessionState;
+   type MdmSessionState_Ptr is access MdmSessionState;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

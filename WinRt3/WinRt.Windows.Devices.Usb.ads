@@ -300,7 +300,7 @@ package WinRt.Windows.Devices.Usb is
       Other_e => 3,
       DefaultInterface_e => 4
    );
-   type UsbControlRecipient_Ptr is access all UsbControlRecipient;
+   type UsbControlRecipient_Ptr is access UsbControlRecipient;
 
    type UsbControlTransferType is (
       Standard_e,
@@ -312,7 +312,7 @@ package WinRt.Windows.Devices.Usb is
       Class_e => 1,
       Vendor_e => 2
    );
-   type UsbControlTransferType_Ptr is access all UsbControlTransferType;
+   type UsbControlTransferType_Ptr is access UsbControlTransferType;
 
    type UsbEndpointType is (
       Control_e,
@@ -326,7 +326,7 @@ package WinRt.Windows.Devices.Usb is
       Bulk_e => 2,
       Interrupt_e => 3
    );
-   type UsbEndpointType_Ptr is access all UsbEndpointType;
+   type UsbEndpointType_Ptr is access UsbEndpointType;
 
    type UsbReadOptions is (
       None_e,
@@ -342,7 +342,7 @@ package WinRt.Windows.Devices.Usb is
       IgnoreShortPacket_e => 4,
       AllowPartialReads_e => 8
    );
-   type UsbReadOptions_Ptr is access all UsbReadOptions;
+   type UsbReadOptions_Ptr is access UsbReadOptions;
 
    type UsbTransferDirection is (
       Out_e,
@@ -352,7 +352,7 @@ package WinRt.Windows.Devices.Usb is
       Out_e => 0,
       In_e => 1
    );
-   type UsbTransferDirection_Ptr is access all UsbTransferDirection;
+   type UsbTransferDirection_Ptr is access UsbTransferDirection;
 
    type UsbWriteOptions is (
       None_e,
@@ -364,7 +364,7 @@ package WinRt.Windows.Devices.Usb is
       AutoClearStall_e => 1,
       ShortPacketTerminate_e => 2
    );
-   type UsbWriteOptions_Ptr is access all UsbWriteOptions;
+   type UsbWriteOptions_Ptr is access UsbWriteOptions;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

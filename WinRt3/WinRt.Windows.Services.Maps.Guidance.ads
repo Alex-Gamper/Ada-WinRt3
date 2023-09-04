@@ -187,7 +187,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       MilesAndYards_e => 1,
       MilesAndFeet_e => 2
    );
-   type GuidanceAudioMeasurementSystem_Ptr is access all GuidanceAudioMeasurementSystem;
+   type GuidanceAudioMeasurementSystem_Ptr is access GuidanceAudioMeasurementSystem;
 
    type GuidanceAudioNotificationKind is (
       Maneuver_e,
@@ -205,7 +205,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       Traffic_e => 4,
       TrafficCamera_e => 5
    );
-   type GuidanceAudioNotificationKind_Ptr is access all GuidanceAudioNotificationKind;
+   type GuidanceAudioNotificationKind_Ptr is access GuidanceAudioNotificationKind;
 
    type GuidanceAudioNotifications is (
       None_e,
@@ -225,7 +225,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       Traffic_e => 16,
       TrafficCamera_e => 32
    );
-   type GuidanceAudioNotifications_Ptr is access all GuidanceAudioNotifications;
+   type GuidanceAudioNotifications_Ptr is access GuidanceAudioNotifications;
 
    type GuidanceLaneMarkers is (
       None_e,
@@ -253,7 +253,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       UTurnRight_e => 256,
       Unknown_e => 4294967295
    );
-   type GuidanceLaneMarkers_Ptr is access all GuidanceLaneMarkers;
+   type GuidanceLaneMarkers_Ptr is access GuidanceLaneMarkers;
 
    type GuidanceManeuverKind is (
       None_e,
@@ -355,7 +355,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       PassTransitStation_e => 46,
       LeaveTransitStation_e => 47
    );
-   type GuidanceManeuverKind_Ptr is access all GuidanceManeuverKind;
+   type GuidanceManeuverKind_Ptr is access GuidanceManeuverKind;
 
    type GuidanceMode is (
       None_e,
@@ -369,7 +369,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       Navigation_e => 2,
       Tracking_e => 3
    );
-   type GuidanceMode_Ptr is access all GuidanceMode;
+   type GuidanceMode_Ptr is access GuidanceMode;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

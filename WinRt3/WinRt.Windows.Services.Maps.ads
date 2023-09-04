@@ -311,7 +311,7 @@ package WinRt.Windows.Services.Maps is
       UnscheduledConstruction_e => 34,
       Weather_e => 35
    );
-   type ManeuverWarningKind_Ptr is access all ManeuverWarningKind;
+   type ManeuverWarningKind_Ptr is access ManeuverWarningKind;
 
    type ManeuverWarningSeverity is (
       None_e,
@@ -327,7 +327,7 @@ package WinRt.Windows.Services.Maps is
       Moderate_e => 3,
       Serious_e => 4
    );
-   type ManeuverWarningSeverity_Ptr is access all ManeuverWarningSeverity;
+   type ManeuverWarningSeverity_Ptr is access ManeuverWarningSeverity;
 
    type MapLocationDesiredAccuracy is (
       High_e,
@@ -337,7 +337,7 @@ package WinRt.Windows.Services.Maps is
       High_e => 0,
       Low_e => 1
    );
-   type MapLocationDesiredAccuracy_Ptr is access all MapLocationDesiredAccuracy;
+   type MapLocationDesiredAccuracy_Ptr is access MapLocationDesiredAccuracy;
 
    type MapLocationFinderStatus is (
       Success_e,
@@ -357,7 +357,7 @@ package WinRt.Windows.Services.Maps is
       NetworkFailure_e => 5,
       NotSupported_e => 6
    );
-   type MapLocationFinderStatus_Ptr is access all MapLocationFinderStatus;
+   type MapLocationFinderStatus_Ptr is access MapLocationFinderStatus;
 
    type MapManeuverNotices is (
       None_e,
@@ -369,7 +369,7 @@ package WinRt.Windows.Services.Maps is
       Toll_e => 1,
       Unpaved_e => 2
    );
-   type MapManeuverNotices_Ptr is access all MapManeuverNotices;
+   type MapManeuverNotices_Ptr is access MapManeuverNotices;
 
    type MapRouteFinderStatus is (
       Success_e,
@@ -395,7 +395,7 @@ package WinRt.Windows.Services.Maps is
       NetworkFailure_e => 8,
       NotSupported_e => 9
    );
-   type MapRouteFinderStatus_Ptr is access all MapRouteFinderStatus;
+   type MapRouteFinderStatus_Ptr is access MapRouteFinderStatus;
 
    type MapRouteManeuverKind is (
       None_e,
@@ -451,7 +451,7 @@ package WinRt.Windows.Services.Maps is
       TrafficCircleRight_e => 23,
       TakeFerry_e => 24
    );
-   type MapRouteManeuverKind_Ptr is access all MapRouteManeuverKind;
+   type MapRouteManeuverKind_Ptr is access MapRouteManeuverKind;
 
    type MapRouteOptimization is (
       Time_e,
@@ -465,7 +465,7 @@ package WinRt.Windows.Services.Maps is
       TimeWithTraffic_e => 2,
       Scenic_e => 3
    );
-   type MapRouteOptimization_Ptr is access all MapRouteOptimization;
+   type MapRouteOptimization_Ptr is access MapRouteOptimization;
 
    type MapRouteRestrictions is (
       None_e,
@@ -485,7 +485,7 @@ package WinRt.Windows.Services.Maps is
       DirtRoads_e => 16,
       Motorail_e => 32
    );
-   type MapRouteRestrictions_Ptr is access all MapRouteRestrictions;
+   type MapRouteRestrictions_Ptr is access MapRouteRestrictions;
 
    type MapServiceDataUsagePreference is (
       Default_e,
@@ -495,7 +495,7 @@ package WinRt.Windows.Services.Maps is
       Default_e => 0,
       OfflineMapDataOnly_e => 1
    );
-   type MapServiceDataUsagePreference_Ptr is access all MapServiceDataUsagePreference;
+   type MapServiceDataUsagePreference_Ptr is access MapServiceDataUsagePreference;
 
    type TrafficCongestion is (
       Unknown_e,
@@ -511,7 +511,7 @@ package WinRt.Windows.Services.Maps is
       Medium_e => 3,
       Heavy_e => 4
    );
-   type TrafficCongestion_Ptr is access all TrafficCongestion;
+   type TrafficCongestion_Ptr is access TrafficCongestion;
 
    type WaypointKind is (
       Stop_e,
@@ -521,7 +521,7 @@ package WinRt.Windows.Services.Maps is
       Stop_e => 0,
       Via_e => 1
    );
-   type WaypointKind_Ptr is access all WaypointKind;
+   type WaypointKind_Ptr is access WaypointKind;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -530,12 +530,12 @@ package WinRt.Windows.Services.Maps is
    type GuidanceContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type GuidanceContract_Ptr is access all GuidanceContract;
+   type GuidanceContract_Ptr is access GuidanceContract;
 
    type LocalSearchContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type LocalSearchContract_Ptr is access all LocalSearchContract;
+   type LocalSearchContract_Ptr is access LocalSearchContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -251,7 +251,7 @@ package WinRt.Windows.Media.Miracast is
       ModelNumberTooLong_e => 6,
       InvalidSettings_e => 7
    );
-   type MiracastReceiverApplySettingsStatus_Ptr is access all MiracastReceiverApplySettingsStatus;
+   type MiracastReceiverApplySettingsStatus_Ptr is access MiracastReceiverApplySettingsStatus;
 
    type MiracastReceiverAuthorizationMethod is (
       None_e,
@@ -265,7 +265,7 @@ package WinRt.Windows.Media.Miracast is
       PinDisplayIfRequested_e => 2,
       PinDisplayRequired_e => 3
    );
-   type MiracastReceiverAuthorizationMethod_Ptr is access all MiracastReceiverAuthorizationMethod;
+   type MiracastReceiverAuthorizationMethod_Ptr is access MiracastReceiverAuthorizationMethod;
 
    type MiracastReceiverDisconnectReason is (
       Finished_e,
@@ -287,7 +287,7 @@ package WinRt.Windows.Media.Miracast is
       MediaStreamingError_e => 6,
       MediaDecryptionError_e => 7
    );
-   type MiracastReceiverDisconnectReason_Ptr is access all MiracastReceiverDisconnectReason;
+   type MiracastReceiverDisconnectReason_Ptr is access MiracastReceiverDisconnectReason;
 
    type MiracastReceiverGameControllerDeviceUsageMode is (
       AsGameController_e,
@@ -297,7 +297,7 @@ package WinRt.Windows.Media.Miracast is
       AsGameController_e => 0,
       AsMouseAndKeyboard_e => 1
    );
-   type MiracastReceiverGameControllerDeviceUsageMode_Ptr is access all MiracastReceiverGameControllerDeviceUsageMode;
+   type MiracastReceiverGameControllerDeviceUsageMode_Ptr is access MiracastReceiverGameControllerDeviceUsageMode;
 
    type MiracastReceiverListeningStatus is (
       NotListening_e,
@@ -315,7 +315,7 @@ package WinRt.Windows.Media.Miracast is
       DisabledByPolicy_e => 4,
       TemporarilyDisabled_e => 5
    );
-   type MiracastReceiverListeningStatus_Ptr is access all MiracastReceiverListeningStatus;
+   type MiracastReceiverListeningStatus_Ptr is access MiracastReceiverListeningStatus;
 
    type MiracastReceiverSessionStartStatus is (
       Success_e,
@@ -329,7 +329,7 @@ package WinRt.Windows.Media.Miracast is
       MiracastNotSupported_e => 2,
       AccessDenied_e => 3
    );
-   type MiracastReceiverSessionStartStatus_Ptr is access all MiracastReceiverSessionStartStatus;
+   type MiracastReceiverSessionStartStatus_Ptr is access MiracastReceiverSessionStartStatus;
 
    type MiracastReceiverWiFiStatus is (
       MiracastSupportUndetermined_e,
@@ -343,7 +343,7 @@ package WinRt.Windows.Media.Miracast is
       MiracastSupportNotOptimized_e => 2,
       MiracastSupported_e => 3
    );
-   type MiracastReceiverWiFiStatus_Ptr is access all MiracastReceiverWiFiStatus;
+   type MiracastReceiverWiFiStatus_Ptr is access MiracastReceiverWiFiStatus;
 
    type MiracastTransmitterAuthorizationStatus is (
       Undecided_e,
@@ -357,7 +357,7 @@ package WinRt.Windows.Media.Miracast is
       AlwaysPrompt_e => 2,
       Blocked_e => 3
    );
-   type MiracastTransmitterAuthorizationStatus_Ptr is access all MiracastTransmitterAuthorizationStatus;
+   type MiracastTransmitterAuthorizationStatus_Ptr is access MiracastTransmitterAuthorizationStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

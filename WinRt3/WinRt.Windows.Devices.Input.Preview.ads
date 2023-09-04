@@ -165,7 +165,7 @@ package WinRt.Windows.Devices.Input.Preview is
       ScreenSetupNeeded_e => 3,
       UserCalibrationNeeded_e => 4
    );
-   type GazeDeviceConfigurationStatePreview_Ptr is access all GazeDeviceConfigurationStatePreview;
+   type GazeDeviceConfigurationStatePreview_Ptr is access GazeDeviceConfigurationStatePreview;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -48,7 +48,7 @@ package WinRt.Windows.Perception.Automation.Core is
    type PerceptionAutomationCoreContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type PerceptionAutomationCoreContract_Ptr is access all PerceptionAutomationCoreContract;
+   type PerceptionAutomationCoreContract_Ptr is access PerceptionAutomationCoreContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

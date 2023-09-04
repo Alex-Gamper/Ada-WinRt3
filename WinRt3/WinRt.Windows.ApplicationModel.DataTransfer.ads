@@ -44,10 +44,10 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    -----------------------------------------------------------------------------
 
    type DataProviderHandler_Delegate;
-   type DataProviderHandler is access all DataProviderHandler_Delegate;
+   type DataProviderHandler is access DataProviderHandler_Delegate;
 
    type ShareProviderHandler_Delegate;
-   type ShareProviderHandler is access all ShareProviderHandler_Delegate;
+   type ShareProviderHandler is access ShareProviderHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -369,7 +369,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       AccessDenied_e => 1,
       ClipboardHistoryDisabled_e => 2
    );
-   type ClipboardHistoryItemsResultStatus_Ptr is access all ClipboardHistoryItemsResultStatus;
+   type ClipboardHistoryItemsResultStatus_Ptr is access ClipboardHistoryItemsResultStatus;
 
    type DataPackageOperation is (
       None_e,
@@ -383,7 +383,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       Move_e => 2,
       Link_e => 4
    );
-   type DataPackageOperation_Ptr is access all DataPackageOperation;
+   type DataPackageOperation_Ptr is access DataPackageOperation;
 
    type SetHistoryItemAsContentStatus is (
       Success_e,
@@ -395,7 +395,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       AccessDenied_e => 1,
       ItemDeleted_e => 2
    );
-   type SetHistoryItemAsContentStatus_Ptr is access all SetHistoryItemAsContentStatus;
+   type SetHistoryItemAsContentStatus_Ptr is access SetHistoryItemAsContentStatus;
 
    type ShareUITheme is (
       Default_e,
@@ -407,7 +407,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       Light_e => 1,
       Dark_e => 2
    );
-   type ShareUITheme_Ptr is access all ShareUITheme;
+   type ShareUITheme_Ptr is access ShareUITheme;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

@@ -261,7 +261,7 @@ package WinRt.Windows.Data.Xml.Dom is
       DocumentFragmentNode_e => 11,
       NotationNode_e => 12
    );
-   type NodeType_Ptr is access all NodeType;
+   type NodeType_Ptr is access NodeType;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

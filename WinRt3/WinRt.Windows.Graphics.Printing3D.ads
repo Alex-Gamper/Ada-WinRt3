@@ -43,7 +43,7 @@ package WinRt.Windows.Graphics.Printing3D is
    -----------------------------------------------------------------------------
 
    type Print3DTaskSourceRequestedHandler_Delegate;
-   type Print3DTaskSourceRequestedHandler is access all Print3DTaskSourceRequestedHandler_Delegate;
+   type Print3DTaskSourceRequestedHandler is access Print3DTaskSourceRequestedHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -380,7 +380,7 @@ package WinRt.Windows.Graphics.Printing3D is
       Slicing_e => 3,
       Submitted_e => 4
    );
-   type Print3DTaskCompletion_Ptr is access all Print3DTaskCompletion;
+   type Print3DTaskCompletion_Ptr is access Print3DTaskCompletion;
 
    type Print3DTaskDetail is (
       Unknown_e,
@@ -400,7 +400,7 @@ package WinRt.Windows.Graphics.Printing3D is
       ModelNotManifold_e => 5,
       InvalidPrintTicket_e => 6
    );
-   type Print3DTaskDetail_Ptr is access all Print3DTaskDetail;
+   type Print3DTaskDetail_Ptr is access Print3DTaskDetail;
 
    type Printing3DBufferFormat is (
       Unknown_e,
@@ -420,7 +420,7 @@ package WinRt.Windows.Graphics.Printing3D is
       Printing3DDouble_e => 500,
       Printing3DUInt_e => 501
    );
-   type Printing3DBufferFormat_Ptr is access all Printing3DBufferFormat;
+   type Printing3DBufferFormat_Ptr is access Printing3DBufferFormat;
 
    type Printing3DMeshVerificationMode is (
       FindFirstError_e,
@@ -430,7 +430,7 @@ package WinRt.Windows.Graphics.Printing3D is
       FindFirstError_e => 0,
       FindAllErrors_e => 1
    );
-   type Printing3DMeshVerificationMode_Ptr is access all Printing3DMeshVerificationMode;
+   type Printing3DMeshVerificationMode_Ptr is access Printing3DMeshVerificationMode;
 
    type Printing3DModelUnit is (
       Meter_e,
@@ -448,7 +448,7 @@ package WinRt.Windows.Graphics.Printing3D is
       Inch_e => 4,
       Foot_e => 5
    );
-   type Printing3DModelUnit_Ptr is access all Printing3DModelUnit;
+   type Printing3DModelUnit_Ptr is access Printing3DModelUnit;
 
    type Printing3DObjectType is (
       Model_e,
@@ -460,7 +460,7 @@ package WinRt.Windows.Graphics.Printing3D is
       Support_e => 1,
       Others_e => 2
    );
-   type Printing3DObjectType_Ptr is access all Printing3DObjectType;
+   type Printing3DObjectType_Ptr is access Printing3DObjectType;
 
    type Printing3DPackageCompression is (
       Low_e,
@@ -472,7 +472,7 @@ package WinRt.Windows.Graphics.Printing3D is
       Medium_e => 1,
       High_e => 2
    );
-   type Printing3DPackageCompression_Ptr is access all Printing3DPackageCompression;
+   type Printing3DPackageCompression_Ptr is access Printing3DPackageCompression;
 
    type Printing3DTextureEdgeBehavior is (
       None_e,
@@ -486,7 +486,7 @@ package WinRt.Windows.Graphics.Printing3D is
       Mirror_e => 2,
       Clamp_e => 3
    );
-   type Printing3DTextureEdgeBehavior_Ptr is access all Printing3DTextureEdgeBehavior;
+   type Printing3DTextureEdgeBehavior_Ptr is access Printing3DTextureEdgeBehavior;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -496,12 +496,12 @@ package WinRt.Windows.Graphics.Printing3D is
       Format : Windows.Graphics.Printing3D.Printing3DBufferFormat;
       Stride : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type Printing3DBufferDescription_Ptr is access all Printing3DBufferDescription;
+   type Printing3DBufferDescription_Ptr is access Printing3DBufferDescription;
 
    type Printing3DContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type Printing3DContract_Ptr is access all Printing3DContract;
+   type Printing3DContract_Ptr is access Printing3DContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

@@ -71,7 +71,7 @@ package WinRt.Windows.Devices.Radios is
       DeniedByUser_e => 2,
       DeniedBySystem_e => 3
    );
-   type RadioAccessStatus_Ptr is access all RadioAccessStatus;
+   type RadioAccessStatus_Ptr is access RadioAccessStatus;
 
    type RadioKind is (
       Other_e,
@@ -87,7 +87,7 @@ package WinRt.Windows.Devices.Radios is
       Bluetooth_e => 3,
       FM_e => 4
    );
-   type RadioKind_Ptr is access all RadioKind;
+   type RadioKind_Ptr is access RadioKind;
 
    type RadioState is (
       Unknown_e,
@@ -101,7 +101,7 @@ package WinRt.Windows.Devices.Radios is
       Off_e => 2,
       Disabled_e => 3
    );
-   type RadioState_Ptr is access all RadioState;
+   type RadioState_Ptr is access RadioState;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

@@ -80,7 +80,7 @@ package WinRt.Windows.ApplicationModel.Contacts.Provider is
       AlreadyAdded_e => 1,
       Unavailable_e => 2
    );
-   type AddContactResult_Ptr is access all AddContactResult;
+   type AddContactResult_Ptr is access AddContactResult;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -356,7 +356,7 @@ package WinRt.Windows.UI.Input.Inking is
       Medium_e => 1,
       Large_e => 2
    );
-   type HandwritingLineHeight_Ptr is access all HandwritingLineHeight;
+   type HandwritingLineHeight_Ptr is access HandwritingLineHeight;
 
    type InkDrawingAttributesKind is (
       Default_e,
@@ -366,7 +366,7 @@ package WinRt.Windows.UI.Input.Inking is
       Default_e => 0,
       Pencil_e => 1
    );
-   type InkDrawingAttributesKind_Ptr is access all InkDrawingAttributesKind;
+   type InkDrawingAttributesKind_Ptr is access InkDrawingAttributesKind;
 
    type InkHighContrastAdjustment is (
       UseSystemColorsWhenNecessary_e,
@@ -378,7 +378,7 @@ package WinRt.Windows.UI.Input.Inking is
       UseSystemColors_e => 1,
       UseOriginalColors_e => 2
    );
-   type InkHighContrastAdjustment_Ptr is access all InkHighContrastAdjustment;
+   type InkHighContrastAdjustment_Ptr is access InkHighContrastAdjustment;
 
    type InkInputProcessingMode is (
       None_e,
@@ -390,7 +390,7 @@ package WinRt.Windows.UI.Input.Inking is
       Inking_e => 1,
       Erasing_e => 2
    );
-   type InkInputProcessingMode_Ptr is access all InkInputProcessingMode;
+   type InkInputProcessingMode_Ptr is access InkInputProcessingMode;
 
    type InkInputRightDragAction is (
       LeaveUnprocessed_e,
@@ -400,7 +400,7 @@ package WinRt.Windows.UI.Input.Inking is
       LeaveUnprocessed_e => 0,
       AllowProcessing_e => 1
    );
-   type InkInputRightDragAction_Ptr is access all InkInputRightDragAction;
+   type InkInputRightDragAction_Ptr is access InkInputRightDragAction;
 
    type InkManipulationMode is (
       Inking_e,
@@ -412,7 +412,7 @@ package WinRt.Windows.UI.Input.Inking is
       Erasing_e => 1,
       Selecting_e => 2
    );
-   type InkManipulationMode_Ptr is access all InkManipulationMode;
+   type InkManipulationMode_Ptr is access InkManipulationMode;
 
    type InkPersistenceFormat is (
       GifWithEmbeddedIsf_e,
@@ -422,7 +422,7 @@ package WinRt.Windows.UI.Input.Inking is
       GifWithEmbeddedIsf_e => 0,
       Isf_e => 1
    );
-   type InkPersistenceFormat_Ptr is access all InkPersistenceFormat;
+   type InkPersistenceFormat_Ptr is access InkPersistenceFormat;
 
    type InkPresenterPredefinedConfiguration is (
       SimpleSinglePointer_e,
@@ -432,7 +432,7 @@ package WinRt.Windows.UI.Input.Inking is
       SimpleSinglePointer_e => 0,
       SimpleMultiplePointer_e => 1
    );
-   type InkPresenterPredefinedConfiguration_Ptr is access all InkPresenterPredefinedConfiguration;
+   type InkPresenterPredefinedConfiguration_Ptr is access InkPresenterPredefinedConfiguration;
 
    type InkPresenterStencilKind is (
       Other_e,
@@ -444,7 +444,7 @@ package WinRt.Windows.UI.Input.Inking is
       Ruler_e => 1,
       Protractor_e => 2
    );
-   type InkPresenterStencilKind_Ptr is access all InkPresenterStencilKind;
+   type InkPresenterStencilKind_Ptr is access InkPresenterStencilKind;
 
    type InkRecognitionTarget is (
       All_e,
@@ -456,7 +456,7 @@ package WinRt.Windows.UI.Input.Inking is
       Selected_e => 1,
       Recent_e => 2
    );
-   type InkRecognitionTarget_Ptr is access all InkRecognitionTarget;
+   type InkRecognitionTarget_Ptr is access InkRecognitionTarget;
 
    type PenHandedness is (
       Right_e,
@@ -466,7 +466,7 @@ package WinRt.Windows.UI.Input.Inking is
       Right_e => 0,
       Left_e => 1
    );
-   type PenHandedness_Ptr is access all PenHandedness;
+   type PenHandedness_Ptr is access PenHandedness;
 
    type PenTipShape is (
       Circle_e,
@@ -476,7 +476,7 @@ package WinRt.Windows.UI.Input.Inking is
       Circle_e => 0,
       Rectangle_e => 1
    );
-   type PenTipShape_Ptr is access all PenTipShape;
+   type PenTipShape_Ptr is access PenTipShape;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

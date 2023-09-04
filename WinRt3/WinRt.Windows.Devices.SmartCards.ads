@@ -42,7 +42,7 @@ package WinRt.Windows.Devices.SmartCards is
    -----------------------------------------------------------------------------
 
    type SmartCardPinResetHandler_Delegate;
-   type SmartCardPinResetHandler is access all SmartCardPinResetHandler_Delegate;
+   type SmartCardPinResetHandler is access SmartCardPinResetHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -419,7 +419,7 @@ package WinRt.Windows.Devices.SmartCards is
       Denied_e => 0,
       Allowed_e => 1
    );
-   type SmartCardActivationPolicyChangeResult_Ptr is access all SmartCardActivationPolicyChangeResult;
+   type SmartCardActivationPolicyChangeResult_Ptr is access SmartCardActivationPolicyChangeResult;
 
    type SmartCardAppletIdGroupActivationPolicy is (
       Disabled_e,
@@ -431,7 +431,7 @@ package WinRt.Windows.Devices.SmartCards is
       ForegroundOverride_e => 1,
       Enabled_e => 2
    );
-   type SmartCardAppletIdGroupActivationPolicy_Ptr is access all SmartCardAppletIdGroupActivationPolicy;
+   type SmartCardAppletIdGroupActivationPolicy_Ptr is access SmartCardAppletIdGroupActivationPolicy;
 
    type SmartCardAutomaticResponseStatus is (
       None_e,
@@ -443,7 +443,7 @@ package WinRt.Windows.Devices.SmartCards is
       Success_e => 1,
       UnknownError_e => 2
    );
-   type SmartCardAutomaticResponseStatus_Ptr is access all SmartCardAutomaticResponseStatus;
+   type SmartCardAutomaticResponseStatus_Ptr is access SmartCardAutomaticResponseStatus;
 
    type SmartCardCryptogramAlgorithm is (
       None_e,
@@ -467,7 +467,7 @@ package WinRt.Windows.Devices.SmartCards is
       RsaPkcs1_e => 7,
       Sha256Hmac_e => 8
    );
-   type SmartCardCryptogramAlgorithm_Ptr is access all SmartCardCryptogramAlgorithm;
+   type SmartCardCryptogramAlgorithm_Ptr is access SmartCardCryptogramAlgorithm;
 
    type SmartCardCryptogramGeneratorOperationStatus is (
       Success_e,
@@ -501,7 +501,7 @@ package WinRt.Windows.Devices.SmartCards is
       ValidationFailed_e => 12,
       NotSupported_e => 13
    );
-   type SmartCardCryptogramGeneratorOperationStatus_Ptr is access all SmartCardCryptogramGeneratorOperationStatus;
+   type SmartCardCryptogramGeneratorOperationStatus_Ptr is access SmartCardCryptogramGeneratorOperationStatus;
 
    type SmartCardCryptogramMaterialPackageConfirmationResponseFormat is (
       None_e,
@@ -511,7 +511,7 @@ package WinRt.Windows.Devices.SmartCards is
       None_e => 0,
       VisaHmac_e => 1
    );
-   type SmartCardCryptogramMaterialPackageConfirmationResponseFormat_Ptr is access all SmartCardCryptogramMaterialPackageConfirmationResponseFormat;
+   type SmartCardCryptogramMaterialPackageConfirmationResponseFormat_Ptr is access SmartCardCryptogramMaterialPackageConfirmationResponseFormat;
 
    type SmartCardCryptogramMaterialPackageFormat is (
       None_e,
@@ -521,7 +521,7 @@ package WinRt.Windows.Devices.SmartCards is
       None_e => 0,
       JweRsaPki_e => 1
    );
-   type SmartCardCryptogramMaterialPackageFormat_Ptr is access all SmartCardCryptogramMaterialPackageFormat;
+   type SmartCardCryptogramMaterialPackageFormat_Ptr is access SmartCardCryptogramMaterialPackageFormat;
 
    type SmartCardCryptogramMaterialProtectionMethod is (
       None_e,
@@ -531,7 +531,7 @@ package WinRt.Windows.Devices.SmartCards is
       None_e => 0,
       WhiteBoxing_e => 1
    );
-   type SmartCardCryptogramMaterialProtectionMethod_Ptr is access all SmartCardCryptogramMaterialProtectionMethod;
+   type SmartCardCryptogramMaterialProtectionMethod_Ptr is access SmartCardCryptogramMaterialProtectionMethod;
 
    type SmartCardCryptogramMaterialType is (
       None_e,
@@ -547,7 +547,7 @@ package WinRt.Windows.Devices.SmartCards is
       Aes_e => 3,
       RsaPkcs1_e => 4
    );
-   type SmartCardCryptogramMaterialType_Ptr is access all SmartCardCryptogramMaterialType;
+   type SmartCardCryptogramMaterialType_Ptr is access SmartCardCryptogramMaterialType;
 
    type SmartCardCryptogramPlacementOptions is (
       None_e,
@@ -559,7 +559,7 @@ package WinRt.Windows.Devices.SmartCards is
       UnitsAreInNibbles_e => 1,
       ChainOutput_e => 2
    );
-   type SmartCardCryptogramPlacementOptions_Ptr is access all SmartCardCryptogramPlacementOptions;
+   type SmartCardCryptogramPlacementOptions_Ptr is access SmartCardCryptogramPlacementOptions;
 
    type SmartCardCryptogramStorageKeyAlgorithm is (
       None_e,
@@ -569,7 +569,7 @@ package WinRt.Windows.Devices.SmartCards is
       None_e => 0,
       Rsa2048_e => 1
    );
-   type SmartCardCryptogramStorageKeyAlgorithm_Ptr is access all SmartCardCryptogramStorageKeyAlgorithm;
+   type SmartCardCryptogramStorageKeyAlgorithm_Ptr is access SmartCardCryptogramStorageKeyAlgorithm;
 
    type SmartCardCryptogramStorageKeyCapabilities is (
       None_e,
@@ -581,7 +581,7 @@ package WinRt.Windows.Devices.SmartCards is
       HardwareProtection_e => 1,
       UnlockPrompt_e => 2
    );
-   type SmartCardCryptogramStorageKeyCapabilities_Ptr is access all SmartCardCryptogramStorageKeyCapabilities;
+   type SmartCardCryptogramStorageKeyCapabilities_Ptr is access SmartCardCryptogramStorageKeyCapabilities;
 
    type SmartCardCryptographicKeyAttestationStatus is (
       NoAttestation_e,
@@ -603,7 +603,7 @@ package WinRt.Windows.Devices.SmartCards is
       TpmKeyWithLongTermAttestationFailure_e => 6,
       TpmKeyWithAttestation_e => 7
    );
-   type SmartCardCryptographicKeyAttestationStatus_Ptr is access all SmartCardCryptographicKeyAttestationStatus;
+   type SmartCardCryptographicKeyAttestationStatus_Ptr is access SmartCardCryptographicKeyAttestationStatus;
 
    type SmartCardEmulationCategory is (
       Other_e,
@@ -613,7 +613,7 @@ package WinRt.Windows.Devices.SmartCards is
       Other_e => 0,
       Payment_e => 1
    );
-   type SmartCardEmulationCategory_Ptr is access all SmartCardEmulationCategory;
+   type SmartCardEmulationCategory_Ptr is access SmartCardEmulationCategory;
 
    type SmartCardEmulationType is (
       Host_e,
@@ -625,7 +625,7 @@ package WinRt.Windows.Devices.SmartCards is
       Uicc_e => 1,
       EmbeddedSE_e => 2
    );
-   type SmartCardEmulationType_Ptr is access all SmartCardEmulationType;
+   type SmartCardEmulationType_Ptr is access SmartCardEmulationType;
 
    type SmartCardEmulatorConnectionDeactivatedReason is (
       ConnectionLost_e,
@@ -635,7 +635,7 @@ package WinRt.Windows.Devices.SmartCards is
       ConnectionLost_e => 0,
       ConnectionRedirected_e => 1
    );
-   type SmartCardEmulatorConnectionDeactivatedReason_Ptr is access all SmartCardEmulatorConnectionDeactivatedReason;
+   type SmartCardEmulatorConnectionDeactivatedReason_Ptr is access SmartCardEmulatorConnectionDeactivatedReason;
 
    type SmartCardEmulatorConnectionSource is (
       Unknown_e,
@@ -645,7 +645,7 @@ package WinRt.Windows.Devices.SmartCards is
       Unknown_e => 0,
       NfcReader_e => 1
    );
-   type SmartCardEmulatorConnectionSource_Ptr is access all SmartCardEmulatorConnectionSource;
+   type SmartCardEmulatorConnectionSource_Ptr is access SmartCardEmulatorConnectionSource;
 
    type SmartCardEmulatorEnablementPolicy is (
       Never_e,
@@ -659,7 +659,7 @@ package WinRt.Windows.Devices.SmartCards is
       ScreenOn_e => 2,
       ScreenUnlocked_e => 3
    );
-   type SmartCardEmulatorEnablementPolicy_Ptr is access all SmartCardEmulatorEnablementPolicy;
+   type SmartCardEmulatorEnablementPolicy_Ptr is access SmartCardEmulatorEnablementPolicy;
 
    type SmartCardLaunchBehavior is (
       Default_e,
@@ -669,7 +669,7 @@ package WinRt.Windows.Devices.SmartCards is
       Default_e => 0,
       AboveLock_e => 1
    );
-   type SmartCardLaunchBehavior_Ptr is access all SmartCardLaunchBehavior;
+   type SmartCardLaunchBehavior_Ptr is access SmartCardLaunchBehavior;
 
    type SmartCardPinCharacterPolicyOption is (
       Allow_e,
@@ -681,7 +681,7 @@ package WinRt.Windows.Devices.SmartCards is
       RequireAtLeastOne_e => 1,
       Disallow_e => 2
    );
-   type SmartCardPinCharacterPolicyOption_Ptr is access all SmartCardPinCharacterPolicyOption;
+   type SmartCardPinCharacterPolicyOption_Ptr is access SmartCardPinCharacterPolicyOption;
 
    type SmartCardReaderKind is (
       Any_e,
@@ -699,7 +699,7 @@ package WinRt.Windows.Devices.SmartCards is
       Uicc_e => 4,
       EmbeddedSE_e => 5
    );
-   type SmartCardReaderKind_Ptr is access all SmartCardReaderKind;
+   type SmartCardReaderKind_Ptr is access SmartCardReaderKind;
 
    type SmartCardReaderStatus is (
       Disconnected_e,
@@ -711,7 +711,7 @@ package WinRt.Windows.Devices.SmartCards is
       Ready_e => 1,
       Exclusive_e => 2
    );
-   type SmartCardReaderStatus_Ptr is access all SmartCardReaderStatus;
+   type SmartCardReaderStatus_Ptr is access SmartCardReaderStatus;
 
    type SmartCardStatus is (
       Disconnected_e,
@@ -727,7 +727,7 @@ package WinRt.Windows.Devices.SmartCards is
       Exclusive_e => 3,
       Unresponsive_e => 4
    );
-   type SmartCardStatus_Ptr is access all SmartCardStatus;
+   type SmartCardStatus_Ptr is access SmartCardStatus;
 
    type SmartCardTriggerType is (
       EmulatorTransaction_e,
@@ -745,7 +745,7 @@ package WinRt.Windows.Devices.SmartCards is
       EmulatorAppletIdGroupRegistrationChanged_e => 4,
       ReaderCardAdded_e => 5
    );
-   type SmartCardTriggerType_Ptr is access all SmartCardTriggerType;
+   type SmartCardTriggerType_Ptr is access SmartCardTriggerType;
 
    type SmartCardUnlockPromptingBehavior is (
       AllowUnlockPrompt_e,
@@ -757,7 +757,7 @@ package WinRt.Windows.Devices.SmartCards is
       RequireUnlockPrompt_e => 1,
       PreventUnlockPrompt_e => 2
    );
-   type SmartCardUnlockPromptingBehavior_Ptr is access all SmartCardUnlockPromptingBehavior;
+   type SmartCardUnlockPromptingBehavior_Ptr is access SmartCardUnlockPromptingBehavior;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -766,12 +766,12 @@ package WinRt.Windows.Devices.SmartCards is
    type SmartCardBackgroundTriggerContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type SmartCardBackgroundTriggerContract_Ptr is access all SmartCardBackgroundTriggerContract;
+   type SmartCardBackgroundTriggerContract_Ptr is access SmartCardBackgroundTriggerContract;
 
    type SmartCardEmulatorContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type SmartCardEmulatorContract_Ptr is access all SmartCardEmulatorContract;
+   type SmartCardEmulatorContract_Ptr is access SmartCardEmulatorContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

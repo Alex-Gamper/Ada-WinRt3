@@ -161,7 +161,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       NotSupportedByProvider_e => 2,
       ProviderError_e => 3
    );
-   type FindAllWebAccountsStatus_Ptr is access all FindAllWebAccountsStatus;
+   type FindAllWebAccountsStatus_Ptr is access FindAllWebAccountsStatus;
 
    type WebTokenRequestPromptType is (
       Default_e,
@@ -171,7 +171,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       Default_e => 0,
       ForceAuthentication_e => 1
    );
-   type WebTokenRequestPromptType_Ptr is access all WebTokenRequestPromptType;
+   type WebTokenRequestPromptType_Ptr is access WebTokenRequestPromptType;
 
    type WebTokenRequestStatus is (
       Success_e,
@@ -189,7 +189,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       AccountProviderNotAvailable_e => 4,
       ProviderError_e => 5
    );
-   type WebTokenRequestStatus_Ptr is access all WebTokenRequestStatus;
+   type WebTokenRequestStatus_Ptr is access WebTokenRequestStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

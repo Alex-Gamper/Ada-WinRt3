@@ -67,7 +67,7 @@ package WinRt.Windows.UI.Composition.Effects is
       BlinnPhong_e => 0,
       PhysicallyBasedBlinnPhong_e => 1
    );
-   type SceneLightingEffectReflectanceModel_Ptr is access all SceneLightingEffectReflectanceModel;
+   type SceneLightingEffectReflectanceModel_Ptr is access SceneLightingEffectReflectanceModel;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

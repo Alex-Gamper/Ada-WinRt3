@@ -210,7 +210,7 @@ package WinRt.Windows.Security.Cryptography.Core is
       NotAes_e => 0,
       Aes_e => 1
    );
-   type Capi1KdfTargetAlgorithm_Ptr is access all Capi1KdfTargetAlgorithm;
+   type Capi1KdfTargetAlgorithm_Ptr is access Capi1KdfTargetAlgorithm;
 
    type CryptographicPadding is (
       None_e,
@@ -224,7 +224,7 @@ package WinRt.Windows.Security.Cryptography.Core is
       RsaPkcs1V15_e => 2,
       RsaPss_e => 3
    );
-   type CryptographicPadding_Ptr is access all CryptographicPadding;
+   type CryptographicPadding_Ptr is access CryptographicPadding;
 
    type CryptographicPrivateKeyBlobType is (
       Pkcs8RawPrivateKeyInfo_e,
@@ -240,7 +240,7 @@ package WinRt.Windows.Security.Cryptography.Core is
       Capi1PrivateKey_e => 3,
       BCryptEccFullPrivateKey_e => 4
    );
-   type CryptographicPrivateKeyBlobType_Ptr is access all CryptographicPrivateKeyBlobType;
+   type CryptographicPrivateKeyBlobType_Ptr is access CryptographicPrivateKeyBlobType;
 
    type CryptographicPublicKeyBlobType is (
       X509SubjectPublicKeyInfo_e,
@@ -256,7 +256,7 @@ package WinRt.Windows.Security.Cryptography.Core is
       Capi1PublicKey_e => 3,
       BCryptEccFullPublicKey_e => 4
    );
-   type CryptographicPublicKeyBlobType_Ptr is access all CryptographicPublicKeyBlobType;
+   type CryptographicPublicKeyBlobType_Ptr is access CryptographicPublicKeyBlobType;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

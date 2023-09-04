@@ -80,7 +80,7 @@ package WinRt.Windows.Devices.Spi.Provider is
       Mode2_e => 2,
       Mode3_e => 3
    );
-   type ProviderSpiMode_Ptr is access all ProviderSpiMode;
+   type ProviderSpiMode_Ptr is access ProviderSpiMode;
 
    type ProviderSpiSharingMode is (
       Exclusive_e,
@@ -90,7 +90,7 @@ package WinRt.Windows.Devices.Spi.Provider is
       Exclusive_e => 0,
       Shared_e => 1
    );
-   type ProviderSpiSharingMode_Ptr is access all ProviderSpiSharingMode;
+   type ProviderSpiSharingMode_Ptr is access ProviderSpiSharingMode;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

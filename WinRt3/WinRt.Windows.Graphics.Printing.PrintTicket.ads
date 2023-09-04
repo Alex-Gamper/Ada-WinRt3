@@ -136,7 +136,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
       PickOne_e => 0,
       PickMany_e => 1
    );
-   type PrintTicketFeatureSelectionType_Ptr is access all PrintTicketFeatureSelectionType;
+   type PrintTicketFeatureSelectionType_Ptr is access PrintTicketFeatureSelectionType;
 
    type PrintTicketParameterDataType is (
       Integer_e,
@@ -148,7 +148,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
       NumericString_e => 1,
       String_e => 2
    );
-   type PrintTicketParameterDataType_Ptr is access all PrintTicketParameterDataType;
+   type PrintTicketParameterDataType_Ptr is access PrintTicketParameterDataType;
 
    type PrintTicketValueType is (
       Integer_e,
@@ -160,7 +160,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
       String_e => 1,
       Unknown_e => 2
    );
-   type PrintTicketValueType_Ptr is access all PrintTicketValueType;
+   type PrintTicketValueType_Ptr is access PrintTicketValueType;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

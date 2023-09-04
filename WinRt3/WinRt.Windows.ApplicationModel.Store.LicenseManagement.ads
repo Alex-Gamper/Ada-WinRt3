@@ -82,7 +82,7 @@ package WinRt.Windows.ApplicationModel.Store.LicenseManagement is
       RunningLicenses_e => 0,
       AllLicenses_e => 1
    );
-   type LicenseRefreshOption_Ptr is access all LicenseRefreshOption;
+   type LicenseRefreshOption_Ptr is access LicenseRefreshOption;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

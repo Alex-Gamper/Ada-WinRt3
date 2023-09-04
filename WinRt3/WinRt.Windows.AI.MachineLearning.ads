@@ -421,7 +421,7 @@ package WinRt.Windows.AI.MachineLearning is
       DirectXHighPerformance_e => 3,
       DirectXMinPower_e => 4
    );
-   type LearningModelDeviceKind_Ptr is access all LearningModelDeviceKind;
+   type LearningModelDeviceKind_Ptr is access LearningModelDeviceKind;
 
    type LearningModelFeatureKind is (
       Tensor_e,
@@ -435,7 +435,7 @@ package WinRt.Windows.AI.MachineLearning is
       Map_e => 2,
       Image_e => 3
    );
-   type LearningModelFeatureKind_Ptr is access all LearningModelFeatureKind;
+   type LearningModelFeatureKind_Ptr is access LearningModelFeatureKind;
 
    type TensorKind is (
       Undefined_e,
@@ -473,7 +473,7 @@ package WinRt.Windows.AI.MachineLearning is
       Complex64_e => 14,
       Complex128_e => 15
    );
-   type TensorKind_Ptr is access all TensorKind;
+   type TensorKind_Ptr is access TensorKind;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -482,7 +482,7 @@ package WinRt.Windows.AI.MachineLearning is
    type MachineLearningContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type MachineLearningContract_Ptr is access all MachineLearningContract;
+   type MachineLearningContract_Ptr is access MachineLearningContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

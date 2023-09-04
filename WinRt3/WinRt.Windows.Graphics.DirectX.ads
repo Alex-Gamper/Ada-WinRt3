@@ -49,7 +49,7 @@ package WinRt.Windows.Graphics.DirectX is
       Straight_e => 2,
       Ignore_e => 3
    );
-   type DirectXAlphaMode_Ptr is access all DirectXAlphaMode;
+   type DirectXAlphaMode_Ptr is access DirectXAlphaMode;
 
    type DirectXColorSpace is (
       RgbFullG22NoneP709_e,
@@ -105,7 +105,7 @@ package WinRt.Windows.Graphics.DirectX is
       YccStudioG24LeftP2020_e => 23,
       YccStudioG24TopLeftP2020_e => 24
    );
-   type DirectXColorSpace_Ptr is access all DirectXColorSpace;
+   type DirectXColorSpace_Ptr is access DirectXColorSpace;
 
    type DirectXPixelFormat is (
       Unknown_e,
@@ -353,7 +353,7 @@ package WinRt.Windows.Graphics.DirectX is
       SamplerFeedbackMinMipOpaque_e => 189,
       SamplerFeedbackMipRegionUsedOpaque_e => 190
    );
-   type DirectXPixelFormat_Ptr is access all DirectXPixelFormat;
+   type DirectXPixelFormat_Ptr is access DirectXPixelFormat;
 
    type DirectXPrimitiveTopology is (
       Undefined_e,
@@ -371,6 +371,6 @@ package WinRt.Windows.Graphics.DirectX is
       TriangleList_e => 4,
       TriangleStrip_e => 5
    );
-   type DirectXPrimitiveTopology_Ptr is access all DirectXPrimitiveTopology;
+   type DirectXPrimitiveTopology_Ptr is access DirectXPrimitiveTopology;
 
 end;

@@ -235,7 +235,7 @@ package WinRt.Windows.Security.EnterpriseData is
       LicenseExpired_e => 4,
       AccessSuspended_e => 5
    );
-   type DataProtectionStatus_Ptr is access all DataProtectionStatus;
+   type DataProtectionStatus_Ptr is access DataProtectionStatus;
 
    type EnforcementLevel is (
       NoProtection_e,
@@ -249,7 +249,7 @@ package WinRt.Windows.Security.EnterpriseData is
       Override_e => 2,
       Block_e => 3
    );
-   type EnforcementLevel_Ptr is access all EnforcementLevel;
+   type EnforcementLevel_Ptr is access EnforcementLevel;
 
    type FileProtectionStatus is (
       Undetermined_e,
@@ -277,7 +277,7 @@ package WinRt.Windows.Security.EnterpriseData is
       AccessSuspended_e => 9,
       FileInUse_e => 10
    );
-   type FileProtectionStatus_Ptr is access all FileProtectionStatus;
+   type FileProtectionStatus_Ptr is access FileProtectionStatus;
 
    type ProtectedImportExportStatus is (
       Ok_e,
@@ -299,7 +299,7 @@ package WinRt.Windows.Security.EnterpriseData is
       LicenseExpired_e => 6,
       AccessSuspended_e => 7
    );
-   type ProtectedImportExportStatus_Ptr is access all ProtectedImportExportStatus;
+   type ProtectedImportExportStatus_Ptr is access ProtectedImportExportStatus;
 
    type ProtectionPolicyAuditAction is (
       Decrypt_e,
@@ -313,7 +313,7 @@ package WinRt.Windows.Security.EnterpriseData is
       SendToRecipient_e => 2,
       Other_e => 3
    );
-   type ProtectionPolicyAuditAction_Ptr is access all ProtectionPolicyAuditAction;
+   type ProtectionPolicyAuditAction_Ptr is access ProtectionPolicyAuditAction;
 
    type ProtectionPolicyEvaluationResult is (
       Allowed_e,
@@ -325,7 +325,7 @@ package WinRt.Windows.Security.EnterpriseData is
       Blocked_e => 1,
       ConsentRequired_e => 2
    );
-   type ProtectionPolicyEvaluationResult_Ptr is access all ProtectionPolicyEvaluationResult;
+   type ProtectionPolicyEvaluationResult_Ptr is access ProtectionPolicyEvaluationResult;
 
    type ProtectionPolicyRequestAccessBehavior is (
       Decrypt_e,
@@ -335,7 +335,7 @@ package WinRt.Windows.Security.EnterpriseData is
       Decrypt_e => 0,
       TreatOverridePolicyAsBlock_e => 1
    );
-   type ProtectionPolicyRequestAccessBehavior_Ptr is access all ProtectionPolicyRequestAccessBehavior;
+   type ProtectionPolicyRequestAccessBehavior_Ptr is access ProtectionPolicyRequestAccessBehavior;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -344,7 +344,7 @@ package WinRt.Windows.Security.EnterpriseData is
    type EnterpriseDataContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type EnterpriseDataContract_Ptr is access all EnterpriseDataContract;
+   type EnterpriseDataContract_Ptr is access EnterpriseDataContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

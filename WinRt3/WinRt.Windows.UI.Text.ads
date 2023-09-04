@@ -122,7 +122,7 @@ package WinRt.Windows.UI.Text is
       Normal_e => 0,
       Null_e => 1
    );
-   type CaretType_Ptr is access all CaretType;
+   type CaretType_Ptr is access CaretType;
 
    type FindOptions is (
       None_e,
@@ -134,7 +134,7 @@ package WinRt.Windows.UI.Text is
       Word_e => 2,
       Case_e => 4
    );
-   type FindOptions_Ptr is access all FindOptions;
+   type FindOptions_Ptr is access FindOptions;
 
    type FontStretch is (
       Undefined_e,
@@ -160,7 +160,7 @@ package WinRt.Windows.UI.Text is
       ExtraExpanded_e => 8,
       UltraExpanded_e => 9
    );
-   type FontStretch_Ptr is access all FontStretch;
+   type FontStretch_Ptr is access FontStretch;
 
    type FontStyle is (
       Normal_e,
@@ -172,7 +172,7 @@ package WinRt.Windows.UI.Text is
       Oblique_e => 1,
       Italic_e => 2
    );
-   type FontStyle_Ptr is access all FontStyle;
+   type FontStyle_Ptr is access FontStyle;
 
    type FormatEffect is (
       Off_e,
@@ -186,7 +186,7 @@ package WinRt.Windows.UI.Text is
       Toggle_e => 2,
       Undefined_e => 3
    );
-   type FormatEffect_Ptr is access all FormatEffect;
+   type FormatEffect_Ptr is access FormatEffect;
 
    type HorizontalCharacterAlignment is (
       Left_e,
@@ -198,7 +198,7 @@ package WinRt.Windows.UI.Text is
       Right_e => 1,
       Center_e => 2
    );
-   type HorizontalCharacterAlignment_Ptr is access all HorizontalCharacterAlignment;
+   type HorizontalCharacterAlignment_Ptr is access HorizontalCharacterAlignment;
 
    type LetterCase is (
       Lower_e,
@@ -208,7 +208,7 @@ package WinRt.Windows.UI.Text is
       Lower_e => 0,
       Upper_e => 1
    );
-   type LetterCase_Ptr is access all LetterCase;
+   type LetterCase_Ptr is access LetterCase;
 
    type LineSpacingRule is (
       Undefined_e,
@@ -230,7 +230,7 @@ package WinRt.Windows.UI.Text is
       Multiple_e => 6,
       Percent_e => 7
    );
-   type LineSpacingRule_Ptr is access all LineSpacingRule;
+   type LineSpacingRule_Ptr is access LineSpacingRule;
 
    type LinkType is (
       Undefined_e,
@@ -254,7 +254,7 @@ package WinRt.Windows.UI.Text is
       AutoLinkPhone_e => 7,
       AutoLinkPath_e => 8
    );
-   type LinkType_Ptr is access all LinkType;
+   type LinkType_Ptr is access LinkType;
 
    type MarkerAlignment is (
       Undefined_e,
@@ -268,7 +268,7 @@ package WinRt.Windows.UI.Text is
       Center_e => 2,
       Right_e => 3
    );
-   type MarkerAlignment_Ptr is access all MarkerAlignment;
+   type MarkerAlignment_Ptr is access MarkerAlignment;
 
    type MarkerStyle is (
       Undefined_e,
@@ -288,7 +288,7 @@ package WinRt.Windows.UI.Text is
       Minus_e => 5,
       NoNumber_e => 6
    );
-   type MarkerStyle_Ptr is access all MarkerStyle;
+   type MarkerStyle_Ptr is access MarkerStyle;
 
    type MarkerType is (
       Undefined_e,
@@ -344,7 +344,7 @@ package WinRt.Windows.UI.Text is
       DevanagariConsonant_e => 23,
       DevanagariNumeric_e => 24
    );
-   type MarkerType_Ptr is access all MarkerType;
+   type MarkerType_Ptr is access MarkerType;
 
    type ParagraphAlignment is (
       Undefined_e,
@@ -360,7 +360,7 @@ package WinRt.Windows.UI.Text is
       Right_e => 3,
       Justify_e => 4
    );
-   type ParagraphAlignment_Ptr is access all ParagraphAlignment;
+   type ParagraphAlignment_Ptr is access ParagraphAlignment;
 
    type ParagraphStyle is (
       Undefined_e,
@@ -390,7 +390,7 @@ package WinRt.Windows.UI.Text is
       Heading8_e => 10,
       Heading9_e => 11
    );
-   type ParagraphStyle_Ptr is access all ParagraphStyle;
+   type ParagraphStyle_Ptr is access ParagraphStyle;
 
    type PointOptions is (
       None_e,
@@ -412,7 +412,7 @@ package WinRt.Windows.UI.Text is
       NoHorizontalScroll_e => 65536,
       NoVerticalScroll_e => 262144
    );
-   type PointOptions_Ptr is access all PointOptions;
+   type PointOptions_Ptr is access PointOptions;
 
    type RangeGravity is (
       UIBehavior_e,
@@ -428,7 +428,7 @@ package WinRt.Windows.UI.Text is
       Inward_e => 3,
       Outward_e => 4
    );
-   type RangeGravity_Ptr is access all RangeGravity;
+   type RangeGravity_Ptr is access RangeGravity;
 
    type RichEditMathMode is (
       NoMath_e,
@@ -438,7 +438,7 @@ package WinRt.Windows.UI.Text is
       NoMath_e => 0,
       MathOnly_e => 1
    );
-   type RichEditMathMode_Ptr is access all RichEditMathMode;
+   type RichEditMathMode_Ptr is access RichEditMathMode;
 
    type SelectionOptions is (
       StartActive_e,
@@ -454,7 +454,7 @@ package WinRt.Windows.UI.Text is
       Active_e => 8,
       Replace_e => 16
    );
-   type SelectionOptions_Ptr is access all SelectionOptions;
+   type SelectionOptions_Ptr is access SelectionOptions;
 
    type SelectionType is (
       None_e,
@@ -470,7 +470,7 @@ package WinRt.Windows.UI.Text is
       InlineShape_e => 7,
       Shape_e => 8
    );
-   type SelectionType_Ptr is access all SelectionType;
+   type SelectionType_Ptr is access SelectionType;
 
    type TabAlignment is (
       Left_e,
@@ -486,7 +486,7 @@ package WinRt.Windows.UI.Text is
       Decimal_e => 3,
       Bar_e => 4
    );
-   type TabAlignment_Ptr is access all TabAlignment;
+   type TabAlignment_Ptr is access TabAlignment;
 
    type TabLeader is (
       Spaces_e,
@@ -504,7 +504,7 @@ package WinRt.Windows.UI.Text is
       ThickLines_e => 4,
       Equals_e => 5
    );
-   type TabLeader_Ptr is access all TabLeader;
+   type TabLeader_Ptr is access TabLeader;
 
    type TextDecorations is (
       None_e,
@@ -516,7 +516,7 @@ package WinRt.Windows.UI.Text is
       Underline_e => 1,
       Strikethrough_e => 2
    );
-   type TextDecorations_Ptr is access all TextDecorations;
+   type TextDecorations_Ptr is access TextDecorations;
 
    type TextGetOptions is (
       None_e,
@@ -540,7 +540,7 @@ package WinRt.Windows.UI.Text is
       FormatRtf_e => 8192,
       UseLf_e => 16777216
    );
-   type TextGetOptions_Ptr is access all TextGetOptions;
+   type TextGetOptions_Ptr is access TextGetOptions;
 
    type TextRangeUnit is (
       Character_e,
@@ -612,7 +612,7 @@ package WinRt.Windows.UI.Text is
       LinkProtected_e => 31,
       ContentLink_e => 32
    );
-   type TextRangeUnit_Ptr is access all TextRangeUnit;
+   type TextRangeUnit_Ptr is access TextRangeUnit;
 
    type TextScript is (
       Undefined_e,
@@ -746,7 +746,7 @@ package WinRt.Windows.UI.Text is
       Deseret_e => 62,
       Tifinagh_e => 63
    );
-   type TextScript_Ptr is access all TextScript;
+   type TextScript_Ptr is access TextScript;
 
    type TextSetOptions is (
       None_e,
@@ -766,7 +766,7 @@ package WinRt.Windows.UI.Text is
       FormatRtf_e => 8192,
       ApplyRtfDocumentDefaults_e => 16384
    );
-   type TextSetOptions_Ptr is access all TextSetOptions;
+   type TextSetOptions_Ptr is access TextSetOptions;
 
    type UnderlineType is (
       Undefined_e,
@@ -812,7 +812,7 @@ package WinRt.Windows.UI.Text is
       ThickDotted_e => 18,
       ThickLongDash_e => 19
    );
-   type UnderlineType_Ptr is access all UnderlineType;
+   type UnderlineType_Ptr is access UnderlineType;
 
    type VerticalCharacterAlignment is (
       Top_e,
@@ -824,7 +824,7 @@ package WinRt.Windows.UI.Text is
       Baseline_e => 1,
       Bottom_e => 2
    );
-   type VerticalCharacterAlignment_Ptr is access all VerticalCharacterAlignment;
+   type VerticalCharacterAlignment_Ptr is access VerticalCharacterAlignment;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -833,7 +833,7 @@ package WinRt.Windows.UI.Text is
    type FontWeight is record
       Weight : WinRt.UInt16;
    end record with Convention => C_Pass_By_Copy;
-   type FontWeight_Ptr is access all FontWeight;
+   type FontWeight_Ptr is access FontWeight;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

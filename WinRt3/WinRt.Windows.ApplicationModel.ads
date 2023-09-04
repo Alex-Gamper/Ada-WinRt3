@@ -407,7 +407,7 @@ package WinRt.Windows.ApplicationModel is
       ForceTargetAppShutdown_e => 1,
       ApplyUpdateIfAvailable_e => 2
    );
-   type AddResourcePackageOptions_Ptr is access all AddResourcePackageOptions;
+   type AddResourcePackageOptions_Ptr is access AddResourcePackageOptions;
 
    type LimitedAccessFeatureStatus is (
       Unavailable_e,
@@ -421,7 +421,7 @@ package WinRt.Windows.ApplicationModel is
       AvailableWithoutToken_e => 2,
       Unknown_e => 3
    );
-   type LimitedAccessFeatureStatus_Ptr is access all LimitedAccessFeatureStatus;
+   type LimitedAccessFeatureStatus_Ptr is access LimitedAccessFeatureStatus;
 
    type PackageContentGroupState is (
       NotStaged_e,
@@ -435,7 +435,7 @@ package WinRt.Windows.ApplicationModel is
       Staging_e => 2,
       Staged_e => 3
    );
-   type PackageContentGroupState_Ptr is access all PackageContentGroupState;
+   type PackageContentGroupState_Ptr is access PackageContentGroupState;
 
    type PackageSignatureKind is (
       None_e,
@@ -451,7 +451,7 @@ package WinRt.Windows.ApplicationModel is
       Store_e => 3,
       System_e => 4
    );
-   type PackageSignatureKind_Ptr is access all PackageSignatureKind;
+   type PackageSignatureKind_Ptr is access PackageSignatureKind;
 
    type PackageUpdateAvailability is (
       Unknown_e,
@@ -467,7 +467,7 @@ package WinRt.Windows.ApplicationModel is
       Required_e => 3,
       Error_e => 4
    );
-   type PackageUpdateAvailability_Ptr is access all PackageUpdateAvailability;
+   type PackageUpdateAvailability_Ptr is access PackageUpdateAvailability;
 
    type StartupTaskState is (
       Disabled_e,
@@ -483,7 +483,7 @@ package WinRt.Windows.ApplicationModel is
       DisabledByPolicy_e => 3,
       EnabledByPolicy_e => 4
    );
-   type StartupTaskState_Ptr is access all StartupTaskState;
+   type StartupTaskState_Ptr is access StartupTaskState;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -492,12 +492,12 @@ package WinRt.Windows.ApplicationModel is
    type FullTrustAppContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type FullTrustAppContract_Ptr is access all FullTrustAppContract;
+   type FullTrustAppContract_Ptr is access FullTrustAppContract;
 
    type PackageInstallProgress is record
       PercentComplete : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type PackageInstallProgress_Ptr is access all PackageInstallProgress;
+   type PackageInstallProgress_Ptr is access PackageInstallProgress;
 
    type PackageVersion is record
       Major : WinRt.UInt16;
@@ -505,12 +505,12 @@ package WinRt.Windows.ApplicationModel is
       Build : WinRt.UInt16;
       Revision : WinRt.UInt16;
    end record with Convention => C_Pass_By_Copy;
-   type PackageVersion_Ptr is access all PackageVersion;
+   type PackageVersion_Ptr is access PackageVersion;
 
    type StartupTaskContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type StartupTaskContract_Ptr is access all StartupTaskContract;
+   type StartupTaskContract_Ptr is access StartupTaskContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

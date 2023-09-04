@@ -891,7 +891,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       CdmaUmb_e => 4194304,
       Custom_e => 2147483648
    );
-   type DataClasses_Ptr is access all DataClasses;
+   type DataClasses_Ptr is access DataClasses;
 
    type ESimAuthenticationPreference is (
       OnEntry_e,
@@ -903,7 +903,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       OnAction_e => 1,
       Never_e => 2
    );
-   type ESimAuthenticationPreference_Ptr is access all ESimAuthenticationPreference;
+   type ESimAuthenticationPreference_Ptr is access ESimAuthenticationPreference;
 
    type ESimDiscoverResultKind is (
       None_e,
@@ -915,7 +915,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       Events_e => 1,
       ProfileMetadata_e => 2
    );
-   type ESimDiscoverResultKind_Ptr is access all ESimDiscoverResultKind;
+   type ESimDiscoverResultKind_Ptr is access ESimDiscoverResultKind;
 
    type ESimOperationStatus is (
       Success_e,
@@ -969,7 +969,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       ProfileNotPresent_e => 22,
       NoCorrespondingRequest_e => 23
    );
-   type ESimOperationStatus_Ptr is access all ESimOperationStatus;
+   type ESimOperationStatus_Ptr is access ESimOperationStatus;
 
    type ESimProfileClass is (
       Operational_e,
@@ -981,7 +981,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       Test_e => 1,
       Provisioning_e => 2
    );
-   type ESimProfileClass_Ptr is access all ESimProfileClass;
+   type ESimProfileClass_Ptr is access ESimProfileClass;
 
    type ESimProfileMetadataState is (
       Unknown_e,
@@ -1003,7 +1003,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       NoLongerAvailable_e => 6,
       DeniedByPolicy_e => 7
    );
-   type ESimProfileMetadataState_Ptr is access all ESimProfileMetadataState;
+   type ESimProfileMetadataState_Ptr is access ESimProfileMetadataState;
 
    type ESimProfileState is (
       Unknown_e,
@@ -1017,7 +1017,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       Enabled_e => 2,
       Deleted_e => 3
    );
-   type ESimProfileState_Ptr is access all ESimProfileState;
+   type ESimProfileState_Ptr is access ESimProfileState;
 
    type ESimState is (
       Unknown_e,
@@ -1031,7 +1031,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       Removed_e => 2,
       Busy_e => 3
    );
-   type ESimState_Ptr is access all ESimState;
+   type ESimState_Ptr is access ESimState;
 
    type ESimWatcherStatus is (
       Created_e,
@@ -1047,7 +1047,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       Stopping_e => 3,
       Stopped_e => 4
    );
-   type ESimWatcherStatus_Ptr is access all ESimWatcherStatus;
+   type ESimWatcherStatus_Ptr is access ESimWatcherStatus;
 
    type HotspotAuthenticationResponseCode is (
       NoError_e,
@@ -1067,7 +1067,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       LoginAborted_e => 151,
       AccessGatewayInternalError_e => 255
    );
-   type HotspotAuthenticationResponseCode_Ptr is access all HotspotAuthenticationResponseCode;
+   type HotspotAuthenticationResponseCode_Ptr is access HotspotAuthenticationResponseCode;
 
    type MobileBroadbandAccountWatcherStatus is (
       Created_e,
@@ -1083,7 +1083,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       Stopped_e => 3,
       Aborted_e => 4
    );
-   type MobileBroadbandAccountWatcherStatus_Ptr is access all MobileBroadbandAccountWatcherStatus;
+   type MobileBroadbandAccountWatcherStatus_Ptr is access MobileBroadbandAccountWatcherStatus;
 
    type MobileBroadbandDeviceType is (
       Unknown_e,
@@ -1097,7 +1097,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       Removable_e => 2,
       Remote_e => 3
    );
-   type MobileBroadbandDeviceType_Ptr is access all MobileBroadbandDeviceType;
+   type MobileBroadbandDeviceType_Ptr is access MobileBroadbandDeviceType;
 
    type MobileBroadbandModemStatus is (
       Success_e,
@@ -1111,7 +1111,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       Busy_e => 2,
       NoDeviceSupport_e => 3
    );
-   type MobileBroadbandModemStatus_Ptr is access all MobileBroadbandModemStatus;
+   type MobileBroadbandModemStatus_Ptr is access MobileBroadbandModemStatus;
 
    type MobileBroadbandPinFormat is (
       Unknown_e,
@@ -1123,7 +1123,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       Numeric_e => 1,
       Alphanumeric_e => 2
    );
-   type MobileBroadbandPinFormat_Ptr is access all MobileBroadbandPinFormat;
+   type MobileBroadbandPinFormat_Ptr is access MobileBroadbandPinFormat;
 
    type MobileBroadbandPinLockState is (
       Unknown_e,
@@ -1137,7 +1137,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       PinRequired_e => 2,
       PinUnblockKeyRequired_e => 3
    );
-   type MobileBroadbandPinLockState_Ptr is access all MobileBroadbandPinLockState;
+   type MobileBroadbandPinLockState_Ptr is access MobileBroadbandPinLockState;
 
    type MobileBroadbandPinType is (
       None_e,
@@ -1165,7 +1165,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       CorporatePin_e => 9,
       SubsidyLock_e => 10
    );
-   type MobileBroadbandPinType_Ptr is access all MobileBroadbandPinType;
+   type MobileBroadbandPinType_Ptr is access MobileBroadbandPinType;
 
    type MobileBroadbandRadioState is (
       Off_e,
@@ -1175,7 +1175,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       Off_e => 0,
       On_e => 1
    );
-   type MobileBroadbandRadioState_Ptr is access all MobileBroadbandRadioState;
+   type MobileBroadbandRadioState_Ptr is access MobileBroadbandRadioState;
 
    type MobileBroadbandUiccAppOperationStatus is (
       Success_e,
@@ -1189,7 +1189,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       AccessConditionNotHeld_e => 2,
       UiccBusy_e => 3
    );
-   type MobileBroadbandUiccAppOperationStatus_Ptr is access all MobileBroadbandUiccAppOperationStatus;
+   type MobileBroadbandUiccAppOperationStatus_Ptr is access MobileBroadbandUiccAppOperationStatus;
 
    type NetworkDeviceStatus is (
       DeviceNotReady_e,
@@ -1211,7 +1211,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       DeviceLocked_e => 6,
       DeviceBlocked_e => 7
    );
-   type NetworkDeviceStatus_Ptr is access all NetworkDeviceStatus;
+   type NetworkDeviceStatus_Ptr is access NetworkDeviceStatus;
 
    type NetworkOperatorDataUsageNotificationKind is (
       DataUsageProgress_e
@@ -1219,7 +1219,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    for NetworkOperatorDataUsageNotificationKind use (
       DataUsageProgress_e => 0
    );
-   type NetworkOperatorDataUsageNotificationKind_Ptr is access all NetworkOperatorDataUsageNotificationKind;
+   type NetworkOperatorDataUsageNotificationKind_Ptr is access NetworkOperatorDataUsageNotificationKind;
 
    type NetworkOperatorEventMessageType is (
       Gsm_e,
@@ -1251,7 +1251,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       TetheringOperationalStateChanged_e => 11,
       TetheringNumberOfClientsChanged_e => 12
    );
-   type NetworkOperatorEventMessageType_Ptr is access all NetworkOperatorEventMessageType;
+   type NetworkOperatorEventMessageType_Ptr is access NetworkOperatorEventMessageType;
 
    type NetworkRegistrationState is (
       None_e,
@@ -1271,7 +1271,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       Partner_e => 5,
       Denied_e => 6
    );
-   type NetworkRegistrationState_Ptr is access all NetworkRegistrationState;
+   type NetworkRegistrationState_Ptr is access NetworkRegistrationState;
 
    type ProfileMediaType is (
       Wlan_e,
@@ -1281,7 +1281,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       Wlan_e => 0,
       Wwan_e => 1
    );
-   type ProfileMediaType_Ptr is access all ProfileMediaType;
+   type ProfileMediaType_Ptr is access ProfileMediaType;
 
    type TetheringCapability is (
       Enabled_e,
@@ -1303,7 +1303,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       DisabledDueToUnknownCause_e => 6,
       DisabledBySystemCapability_e => 7
    );
-   type TetheringCapability_Ptr is access all TetheringCapability;
+   type TetheringCapability_Ptr is access TetheringCapability;
 
    type TetheringOperationStatus is (
       Success_e,
@@ -1327,7 +1327,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       BluetoothDeviceOff_e => 7,
       NetworkLimitedConnectivity_e => 8
    );
-   type TetheringOperationStatus_Ptr is access all TetheringOperationStatus;
+   type TetheringOperationStatus_Ptr is access TetheringOperationStatus;
 
    type TetheringOperationalState is (
       Unknown_e,
@@ -1341,7 +1341,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       Off_e => 2,
       InTransition_e => 3
    );
-   type TetheringOperationalState_Ptr is access all TetheringOperationalState;
+   type TetheringOperationalState_Ptr is access TetheringOperationalState;
 
    type TetheringWiFiBand is (
       Auto_e,
@@ -1353,7 +1353,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       TwoPointFourGigahertz_e => 1,
       FiveGigahertz_e => 2
    );
-   type TetheringWiFiBand_Ptr is access all TetheringWiFiBand;
+   type TetheringWiFiBand_Ptr is access TetheringWiFiBand;
 
    type UiccAccessCondition is (
       AlwaysAllowed_e,
@@ -1375,7 +1375,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       Administrative6_e => 6,
       NeverAllowed_e => 7
    );
-   type UiccAccessCondition_Ptr is access all UiccAccessCondition;
+   type UiccAccessCondition_Ptr is access UiccAccessCondition;
 
    type UiccAppKind is (
       Unknown_e,
@@ -1395,7 +1395,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       CSim_e => 5,
       ISim_e => 6
    );
-   type UiccAppKind_Ptr is access all UiccAppKind;
+   type UiccAppKind_Ptr is access UiccAppKind;
 
    type UiccAppRecordKind is (
       Unknown_e,
@@ -1407,7 +1407,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       Transparent_e => 1,
       RecordOriented_e => 2
    );
-   type UiccAppRecordKind_Ptr is access all UiccAppRecordKind;
+   type UiccAppRecordKind_Ptr is access UiccAppRecordKind;
 
    type UssdResultCode is (
       NoActionRequired_e,
@@ -1425,7 +1425,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       OperationNotSupported_e => 4,
       NetworkTimeout_e => 5
    );
-   type UssdResultCode_Ptr is access all UssdResultCode;
+   type UssdResultCode_Ptr is access UssdResultCode;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1435,23 +1435,23 @@ package WinRt.Windows.Networking.NetworkOperators is
       TotalSizeInBytes : WinRt.Int32;
       InstalledSizeInBytes : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type ESimProfileInstallProgress_Ptr is access all ESimProfileInstallProgress;
+   type ESimProfileInstallProgress_Ptr is access ESimProfileInstallProgress;
 
    type LegacyNetworkOperatorsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type LegacyNetworkOperatorsContract_Ptr is access all LegacyNetworkOperatorsContract;
+   type LegacyNetworkOperatorsContract_Ptr is access LegacyNetworkOperatorsContract;
 
    type NetworkOperatorsFdnContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type NetworkOperatorsFdnContract_Ptr is access all NetworkOperatorsFdnContract;
+   type NetworkOperatorsFdnContract_Ptr is access NetworkOperatorsFdnContract;
 
    type ProfileUsage is record
       UsageInMegabytes : WinRt.UInt32;
       LastSyncTime : WinRt.Windows.Foundation.DateTime;
    end record with Convention => C_Pass_By_Copy;
-   type ProfileUsage_Ptr is access all ProfileUsage;
+   type ProfileUsage_Ptr is access ProfileUsage;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

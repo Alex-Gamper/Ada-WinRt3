@@ -677,7 +677,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       CommandLineLaunch_e => 1021,
       BarcodeScannerProvider_e => 1022
    );
-   type ActivationKind_Ptr is access all ActivationKind;
+   type ActivationKind_Ptr is access ActivationKind;
 
    type ApplicationExecutionState is (
       NotRunning_e,
@@ -693,7 +693,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       Terminated_e => 3,
       ClosedByUser_e => 4
    );
-   type ApplicationExecutionState_Ptr is access all ApplicationExecutionState;
+   type ApplicationExecutionState_Ptr is access ApplicationExecutionState;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -702,22 +702,22 @@ package WinRt.Windows.ApplicationModel.Activation is
    type ActivatedEventsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type ActivatedEventsContract_Ptr is access all ActivatedEventsContract;
+   type ActivatedEventsContract_Ptr is access ActivatedEventsContract;
 
    type ActivationCameraSettingsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type ActivationCameraSettingsContract_Ptr is access all ActivationCameraSettingsContract;
+   type ActivationCameraSettingsContract_Ptr is access ActivationCameraSettingsContract;
 
    type ContactActivatedEventsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type ContactActivatedEventsContract_Ptr is access all ContactActivatedEventsContract;
+   type ContactActivatedEventsContract_Ptr is access ContactActivatedEventsContract;
 
    type WebUISearchActivatedEventsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type WebUISearchActivatedEventsContract_Ptr is access all WebUISearchActivatedEventsContract;
+   type WebUISearchActivatedEventsContract_Ptr is access WebUISearchActivatedEventsContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

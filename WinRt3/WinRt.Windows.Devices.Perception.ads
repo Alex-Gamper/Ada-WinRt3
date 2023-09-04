@@ -376,7 +376,7 @@ package WinRt.Windows.Devices.Perception is
       DeniedByUser_e => 2,
       DeniedBySystem_e => 3
    );
-   type PerceptionFrameSourceAccessStatus_Ptr is access all PerceptionFrameSourceAccessStatus;
+   type PerceptionFrameSourceAccessStatus_Ptr is access PerceptionFrameSourceAccessStatus;
 
    type PerceptionFrameSourcePropertyChangeStatus is (
       Unknown_e,
@@ -394,7 +394,7 @@ package WinRt.Windows.Devices.Perception is
       PropertyReadOnly_e => 4,
       ValueOutOfRange_e => 5
    );
-   type PerceptionFrameSourcePropertyChangeStatus_Ptr is access all PerceptionFrameSourcePropertyChangeStatus;
+   type PerceptionFrameSourcePropertyChangeStatus_Ptr is access PerceptionFrameSourcePropertyChangeStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -304,7 +304,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       Released_e => 0,
       Pressed_e => 1
    );
-   type BarcodeScannerTriggerState_Ptr is access all BarcodeScannerTriggerState;
+   type BarcodeScannerTriggerState_Ptr is access BarcodeScannerTriggerState;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

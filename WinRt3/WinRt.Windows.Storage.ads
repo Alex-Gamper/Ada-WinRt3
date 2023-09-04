@@ -45,10 +45,10 @@ package WinRt.Windows.Storage is
    -----------------------------------------------------------------------------
 
    type ApplicationDataSetVersionHandler_Delegate;
-   type ApplicationDataSetVersionHandler is access all ApplicationDataSetVersionHandler_Delegate;
+   type ApplicationDataSetVersionHandler is access ApplicationDataSetVersionHandler_Delegate;
 
    type StreamedFileDataRequestedHandler_Delegate;
-   type StreamedFileDataRequestedHandler is access all StreamedFileDataRequestedHandler_Delegate;
+   type StreamedFileDataRequestedHandler is access StreamedFileDataRequestedHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -426,7 +426,7 @@ package WinRt.Windows.Storage is
       Always_e => 0,
       Existing_e => 1
    );
-   type ApplicationDataCreateDisposition_Ptr is access all ApplicationDataCreateDisposition;
+   type ApplicationDataCreateDisposition_Ptr is access ApplicationDataCreateDisposition;
 
    type ApplicationDataLocality is (
       Local_e,
@@ -440,7 +440,7 @@ package WinRt.Windows.Storage is
       Temporary_e => 2,
       LocalCache_e => 3
    );
-   type ApplicationDataLocality_Ptr is access all ApplicationDataLocality;
+   type ApplicationDataLocality_Ptr is access ApplicationDataLocality;
 
    type CreationCollisionOption is (
       GenerateUniqueName_e,
@@ -454,7 +454,7 @@ package WinRt.Windows.Storage is
       FailIfExists_e => 2,
       OpenIfExists_e => 3
    );
-   type CreationCollisionOption_Ptr is access all CreationCollisionOption;
+   type CreationCollisionOption_Ptr is access CreationCollisionOption;
 
    type FileAccessMode is (
       Read_e,
@@ -464,7 +464,7 @@ package WinRt.Windows.Storage is
       Read_e => 0,
       ReadWrite_e => 1
    );
-   type FileAccessMode_Ptr is access all FileAccessMode;
+   type FileAccessMode_Ptr is access FileAccessMode;
 
    type FileAttributes is (
       Normal_e,
@@ -482,7 +482,7 @@ package WinRt.Windows.Storage is
       Temporary_e => 256,
       LocallyIncomplete_e => 512
    );
-   type FileAttributes_Ptr is access all FileAttributes;
+   type FileAttributes_Ptr is access FileAttributes;
 
    type KnownFolderId is (
       AppCaptures_e,
@@ -520,7 +520,7 @@ package WinRt.Windows.Storage is
       AllAppMods_e => 14,
       CurrentAppMods_e => 15
    );
-   type KnownFolderId_Ptr is access all KnownFolderId;
+   type KnownFolderId_Ptr is access KnownFolderId;
 
    type KnownFoldersAccessStatus is (
       DeniedBySystem_e,
@@ -536,7 +536,7 @@ package WinRt.Windows.Storage is
       UserPromptRequired_e => 3,
       Allowed_e => 4
    );
-   type KnownFoldersAccessStatus_Ptr is access all KnownFoldersAccessStatus;
+   type KnownFoldersAccessStatus_Ptr is access KnownFoldersAccessStatus;
 
    type KnownLibraryId is (
       Music_e,
@@ -550,7 +550,7 @@ package WinRt.Windows.Storage is
       Videos_e => 2,
       Documents_e => 3
    );
-   type KnownLibraryId_Ptr is access all KnownLibraryId;
+   type KnownLibraryId_Ptr is access KnownLibraryId;
 
    type NameCollisionOption is (
       GenerateUniqueName_e,
@@ -562,7 +562,7 @@ package WinRt.Windows.Storage is
       ReplaceExisting_e => 1,
       FailIfExists_e => 2
    );
-   type NameCollisionOption_Ptr is access all NameCollisionOption;
+   type NameCollisionOption_Ptr is access NameCollisionOption;
 
    type StorageDeleteOption is (
       Default_e,
@@ -572,7 +572,7 @@ package WinRt.Windows.Storage is
       Default_e => 0,
       PermanentDelete_e => 1
    );
-   type StorageDeleteOption_Ptr is access all StorageDeleteOption;
+   type StorageDeleteOption_Ptr is access StorageDeleteOption;
 
    type StorageItemTypes is (
       None_e,
@@ -584,7 +584,7 @@ package WinRt.Windows.Storage is
       File_e => 1,
       Folder_e => 2
    );
-   type StorageItemTypes_Ptr is access all StorageItemTypes;
+   type StorageItemTypes_Ptr is access StorageItemTypes;
 
    type StorageLibraryChangeType is (
       Created_e,
@@ -610,7 +610,7 @@ package WinRt.Windows.Storage is
       EncryptionChanged_e => 8,
       ChangeTrackingLost_e => 9
    );
-   type StorageLibraryChangeType_Ptr is access all StorageLibraryChangeType;
+   type StorageLibraryChangeType_Ptr is access StorageLibraryChangeType;
 
    type StorageOpenOptions is (
       None_e,
@@ -622,7 +622,7 @@ package WinRt.Windows.Storage is
       AllowOnlyReaders_e => 1,
       AllowReadersAndWriters_e => 2
    );
-   type StorageOpenOptions_Ptr is access all StorageOpenOptions;
+   type StorageOpenOptions_Ptr is access StorageOpenOptions;
 
    type StreamedFileFailureMode is (
       Failed_e,
@@ -634,7 +634,7 @@ package WinRt.Windows.Storage is
       CurrentlyUnavailable_e => 1,
       Incomplete_e => 2
    );
-   type StreamedFileFailureMode_Ptr is access all StreamedFileFailureMode;
+   type StreamedFileFailureMode_Ptr is access StreamedFileFailureMode;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

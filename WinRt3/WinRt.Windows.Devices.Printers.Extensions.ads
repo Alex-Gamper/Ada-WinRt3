@@ -150,7 +150,7 @@ package WinRt.Windows.Devices.Printers.Extensions is
       ModelNotManifold_e => 5,
       InvalidPrintTicket_e => 6
    );
-   type Print3DWorkflowDetail_Ptr is access all Print3DWorkflowDetail;
+   type Print3DWorkflowDetail_Ptr is access Print3DWorkflowDetail;
 
    type Print3DWorkflowStatus is (
       Abandoned_e,
@@ -166,7 +166,7 @@ package WinRt.Windows.Devices.Printers.Extensions is
       Slicing_e => 3,
       Submitted_e => 4
    );
-   type Print3DWorkflowStatus_Ptr is access all Print3DWorkflowStatus;
+   type Print3DWorkflowStatus_Ptr is access Print3DWorkflowStatus;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -175,7 +175,7 @@ package WinRt.Windows.Devices.Printers.Extensions is
    type ExtensionsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type ExtensionsContract_Ptr is access all ExtensionsContract;
+   type ExtensionsContract_Ptr is access ExtensionsContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

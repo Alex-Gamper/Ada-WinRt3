@@ -357,7 +357,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Continuous_e => 0,
       Burst_e => 1
    );
-   type CellularDtmfMode_Ptr is access all CellularDtmfMode;
+   type CellularDtmfMode_Ptr is access CellularDtmfMode;
 
    type PhoneAudioRoutingEndpoint is (
       Default_e,
@@ -369,7 +369,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Bluetooth_e => 1,
       Speakerphone_e => 2
    );
-   type PhoneAudioRoutingEndpoint_Ptr is access all PhoneAudioRoutingEndpoint;
+   type PhoneAudioRoutingEndpoint_Ptr is access PhoneAudioRoutingEndpoint;
 
    type PhoneCallHistoryEntryMedia is (
       Audio_e,
@@ -379,7 +379,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Audio_e => 0,
       Video_e => 1
    );
-   type PhoneCallHistoryEntryMedia_Ptr is access all PhoneCallHistoryEntryMedia;
+   type PhoneCallHistoryEntryMedia_Ptr is access PhoneCallHistoryEntryMedia;
 
    type PhoneCallHistoryEntryOtherAppReadAccess is (
       Full_e,
@@ -389,7 +389,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Full_e => 0,
       SystemOnly_e => 1
    );
-   type PhoneCallHistoryEntryOtherAppReadAccess_Ptr is access all PhoneCallHistoryEntryOtherAppReadAccess;
+   type PhoneCallHistoryEntryOtherAppReadAccess_Ptr is access PhoneCallHistoryEntryOtherAppReadAccess;
 
    type PhoneCallHistoryEntryQueryDesiredMedia is (
       None_e,
@@ -403,7 +403,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Video_e => 2,
       All_e => 4294967295
    );
-   type PhoneCallHistoryEntryQueryDesiredMedia_Ptr is access all PhoneCallHistoryEntryQueryDesiredMedia;
+   type PhoneCallHistoryEntryQueryDesiredMedia_Ptr is access PhoneCallHistoryEntryQueryDesiredMedia;
 
    type PhoneCallHistoryEntryRawAddressKind is (
       PhoneNumber_e,
@@ -413,7 +413,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       PhoneNumber_e => 0,
       Custom_e => 1
    );
-   type PhoneCallHistoryEntryRawAddressKind_Ptr is access all PhoneCallHistoryEntryRawAddressKind;
+   type PhoneCallHistoryEntryRawAddressKind_Ptr is access PhoneCallHistoryEntryRawAddressKind;
 
    type PhoneCallHistorySourceIdKind is (
       CellularPhoneLineId_e,
@@ -423,7 +423,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       CellularPhoneLineId_e => 0,
       PackageFamilyName_e => 1
    );
-   type PhoneCallHistorySourceIdKind_Ptr is access all PhoneCallHistorySourceIdKind;
+   type PhoneCallHistorySourceIdKind_Ptr is access PhoneCallHistorySourceIdKind;
 
    type PhoneCallHistoryStoreAccessType is (
       AppEntriesReadWrite_e,
@@ -435,7 +435,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       AllEntriesLimitedReadWrite_e => 1,
       AllEntriesReadWrite_e => 2
    );
-   type PhoneCallHistoryStoreAccessType_Ptr is access all PhoneCallHistoryStoreAccessType;
+   type PhoneCallHistoryStoreAccessType_Ptr is access PhoneCallHistoryStoreAccessType;
 
    type PhoneCallMedia is (
       Audio_e,
@@ -447,7 +447,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       AudioAndVideo_e => 1,
       AudioAndRealTimeText_e => 2
    );
-   type PhoneCallMedia_Ptr is access all PhoneCallMedia;
+   type PhoneCallMedia_Ptr is access PhoneCallMedia;
 
    type PhoneLineNetworkOperatorDisplayTextLocation is (
       Default_e,
@@ -461,7 +461,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Dialer_e => 2,
       InCallUI_e => 3
    );
-   type PhoneLineNetworkOperatorDisplayTextLocation_Ptr is access all PhoneLineNetworkOperatorDisplayTextLocation;
+   type PhoneLineNetworkOperatorDisplayTextLocation_Ptr is access PhoneLineNetworkOperatorDisplayTextLocation;
 
    type PhoneLineTransport is (
       Cellular_e,
@@ -473,7 +473,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       VoipApp_e => 1,
       Bluetooth_e => 2
    );
-   type PhoneLineTransport_Ptr is access all PhoneLineTransport;
+   type PhoneLineTransport_Ptr is access PhoneLineTransport;
 
    type PhoneLineWatcherStatus is (
       Created_e,
@@ -487,7 +487,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       EnumerationCompleted_e => 2,
       Stopped_e => 3
    );
-   type PhoneLineWatcherStatus_Ptr is access all PhoneLineWatcherStatus;
+   type PhoneLineWatcherStatus_Ptr is access PhoneLineWatcherStatus;
 
    type PhoneNetworkState is (
       Unknown_e,
@@ -509,7 +509,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       RoamingInternational_e => 6,
       RoamingDomestic_e => 7
    );
-   type PhoneNetworkState_Ptr is access all PhoneNetworkState;
+   type PhoneNetworkState_Ptr is access PhoneNetworkState;
 
    type PhoneSimState is (
       Unknown_e,
@@ -531,7 +531,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Invalid_e => 6,
       Disabled_e => 7
    );
-   type PhoneSimState_Ptr is access all PhoneSimState;
+   type PhoneSimState_Ptr is access PhoneSimState;
 
    type PhoneVoicemailType is (
       None_e,
@@ -543,7 +543,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Traditional_e => 1,
       Visual_e => 2
    );
-   type PhoneVoicemailType_Ptr is access all PhoneVoicemailType;
+   type PhoneVoicemailType_Ptr is access PhoneVoicemailType;
 
    type VoipPhoneCallMedia is (
       None_e,
@@ -555,7 +555,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Audio_e => 1,
       Video_e => 2
    );
-   type VoipPhoneCallMedia_Ptr is access all VoipPhoneCallMedia;
+   type VoipPhoneCallMedia_Ptr is access VoipPhoneCallMedia;
 
    type VoipPhoneCallRejectReason is (
       UserIgnored_e,
@@ -571,7 +571,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       EmergencyCallExists_e => 3,
       InvalidCallState_e => 4
    );
-   type VoipPhoneCallRejectReason_Ptr is access all VoipPhoneCallRejectReason;
+   type VoipPhoneCallRejectReason_Ptr is access VoipPhoneCallRejectReason;
 
    type VoipPhoneCallResourceReservationStatus is (
       Success_e,
@@ -581,7 +581,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Success_e => 0,
       ResourcesNotAvailable_e => 1
    );
-   type VoipPhoneCallResourceReservationStatus_Ptr is access all VoipPhoneCallResourceReservationStatus;
+   type VoipPhoneCallResourceReservationStatus_Ptr is access VoipPhoneCallResourceReservationStatus;
 
    type VoipPhoneCallState is (
       Ended_e,
@@ -597,7 +597,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Incoming_e => 3,
       Outgoing_e => 4
    );
-   type VoipPhoneCallState_Ptr is access all VoipPhoneCallState;
+   type VoipPhoneCallState_Ptr is access VoipPhoneCallState;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -606,17 +606,17 @@ package WinRt.Windows.ApplicationModel.Calls is
    type CallsPhoneContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type CallsPhoneContract_Ptr is access all CallsPhoneContract;
+   type CallsPhoneContract_Ptr is access CallsPhoneContract;
 
    type CallsVoipContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type CallsVoipContract_Ptr is access all CallsVoipContract;
+   type CallsVoipContract_Ptr is access CallsVoipContract;
 
    type LockScreenCallContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type LockScreenCallContract_Ptr is access all LockScreenCallContract;
+   type LockScreenCallContract_Ptr is access LockScreenCallContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

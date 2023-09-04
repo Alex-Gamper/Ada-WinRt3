@@ -173,7 +173,7 @@ package WinRt.Windows.ApplicationModel.Core is
       InvalidUser_e => 2,
       Other_e => 3
    );
-   type AppRestartFailureReason_Ptr is access all AppRestartFailureReason;
+   type AppRestartFailureReason_Ptr is access AppRestartFailureReason;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

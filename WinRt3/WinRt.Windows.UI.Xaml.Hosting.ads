@@ -207,7 +207,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
       Visible_e => 0,
       Hidden_e => 1
    );
-   type DesignerAppViewState_Ptr is access all DesignerAppViewState;
+   type DesignerAppViewState_Ptr is access DesignerAppViewState;
 
    type XamlSourceFocusNavigationReason is (
       Programmatic_e,
@@ -229,7 +229,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
       Right_e => 9,
       Down_e => 10
    );
-   type XamlSourceFocusNavigationReason_Ptr is access all XamlSourceFocusNavigationReason;
+   type XamlSourceFocusNavigationReason_Ptr is access XamlSourceFocusNavigationReason;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -238,7 +238,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
    type HostingContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type HostingContract_Ptr is access all HostingContract;
+   type HostingContract_Ptr is access HostingContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

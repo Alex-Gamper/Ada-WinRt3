@@ -66,7 +66,7 @@ package WinRt.Windows.Devices.Portable is
       SmsService_e => 5,
       TasksService_e => 6
    );
-   type ServiceDeviceType_Ptr is access all ServiceDeviceType;
+   type ServiceDeviceType_Ptr is access ServiceDeviceType;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -75,7 +75,7 @@ package WinRt.Windows.Devices.Portable is
    type PortableDeviceContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type PortableDeviceContract_Ptr is access all PortableDeviceContract;
+   type PortableDeviceContract_Ptr is access PortableDeviceContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

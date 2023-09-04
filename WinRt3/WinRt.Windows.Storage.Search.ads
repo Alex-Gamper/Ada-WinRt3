@@ -192,7 +192,7 @@ package WinRt.Windows.Storage.Search is
       OrderBySearchRank_e => 4,
       OrderByDate_e => 5
    );
-   type CommonFileQuery_Ptr is access all CommonFileQuery;
+   type CommonFileQuery_Ptr is access CommonFileQuery;
 
    type CommonFolderQuery is (
       DefaultQuery_e,
@@ -224,7 +224,7 @@ package WinRt.Windows.Storage.Search is
       GroupByAuthor_e => 110,
       GroupByType_e => 111
    );
-   type CommonFolderQuery_Ptr is access all CommonFolderQuery;
+   type CommonFolderQuery_Ptr is access CommonFolderQuery;
 
    type DateStackOption is (
       None_e,
@@ -236,7 +236,7 @@ package WinRt.Windows.Storage.Search is
       Year_e => 1,
       Month_e => 2
    );
-   type DateStackOption_Ptr is access all DateStackOption;
+   type DateStackOption_Ptr is access DateStackOption;
 
    type FolderDepth is (
       Shallow_e,
@@ -246,7 +246,7 @@ package WinRt.Windows.Storage.Search is
       Shallow_e => 0,
       Deep_e => 1
    );
-   type FolderDepth_Ptr is access all FolderDepth;
+   type FolderDepth_Ptr is access FolderDepth;
 
    type IndexedState is (
       Unknown_e,
@@ -260,7 +260,7 @@ package WinRt.Windows.Storage.Search is
       PartiallyIndexed_e => 2,
       FullyIndexed_e => 3
    );
-   type IndexedState_Ptr is access all IndexedState;
+   type IndexedState_Ptr is access IndexedState;
 
    type IndexerOption is (
       UseIndexerWhenAvailable_e,
@@ -274,7 +274,7 @@ package WinRt.Windows.Storage.Search is
       DoNotUseIndexer_e => 2,
       OnlyUseIndexerAndOptimizeForIndexedProperties_e => 3
    );
-   type IndexerOption_Ptr is access all IndexerOption;
+   type IndexerOption_Ptr is access IndexerOption;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -284,7 +284,7 @@ package WinRt.Windows.Storage.Search is
       PropertyName : WinRt.HString;
       AscendingOrder : WinRt.Boolean;
    end record with Convention => C_Pass_By_Copy;
-   type SortEntry_Ptr is access all SortEntry;
+   type SortEntry_Ptr is access SortEntry;
    type SortEntry_Array is array (Natural range <>) of aliased SortEntry;
 
    -----------------------------------------------------------------------------

@@ -73,7 +73,7 @@ package WinRt.Windows.Security.Authentication.Web is
       EcdsaP256_e => 1,
       AnyExisting_e => 2
    );
-   type TokenBindingKeyType_Ptr is access all TokenBindingKeyType;
+   type TokenBindingKeyType_Ptr is access TokenBindingKeyType;
 
    type WebAuthenticationOptions is (
       None_e,
@@ -89,7 +89,7 @@ package WinRt.Windows.Security.Authentication.Web is
       UseHttpPost_e => 4,
       UseCorporateNetwork_e => 8
    );
-   type WebAuthenticationOptions_Ptr is access all WebAuthenticationOptions;
+   type WebAuthenticationOptions_Ptr is access WebAuthenticationOptions;
 
    type WebAuthenticationStatus is (
       Success_e,
@@ -101,7 +101,7 @@ package WinRt.Windows.Security.Authentication.Web is
       UserCancel_e => 1,
       ErrorHttp_e => 2
    );
-   type WebAuthenticationStatus_Ptr is access all WebAuthenticationStatus;
+   type WebAuthenticationStatus_Ptr is access WebAuthenticationStatus;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

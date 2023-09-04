@@ -168,7 +168,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
       AppLaunched_e => 5,
       Completed_e => 6
    );
-   type VoiceCommandCompletionReason_Ptr is access all VoiceCommandCompletionReason;
+   type VoiceCommandCompletionReason_Ptr is access VoiceCommandCompletionReason;
 
    type VoiceCommandContentTileType is (
       TitleOnly_e,
@@ -190,7 +190,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
       TitleWith280x140Icon_e => 6,
       TitleWith280x140IconAndText_e => 7
    );
-   type VoiceCommandContentTileType_Ptr is access all VoiceCommandContentTileType;
+   type VoiceCommandContentTileType_Ptr is access VoiceCommandContentTileType;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

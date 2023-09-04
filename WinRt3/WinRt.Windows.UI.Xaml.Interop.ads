@@ -39,10 +39,10 @@ package WinRt.Windows.UI.Xaml.Interop is
    -----------------------------------------------------------------------------
 
    type BindableVectorChangedEventHandler_Delegate;
-   type BindableVectorChangedEventHandler is access all BindableVectorChangedEventHandler_Delegate;
+   type BindableVectorChangedEventHandler is access BindableVectorChangedEventHandler_Delegate;
 
    type NotifyCollectionChangedEventHandler_Delegate;
-   type NotifyCollectionChangedEventHandler is access all NotifyCollectionChangedEventHandler_Delegate;
+   type NotifyCollectionChangedEventHandler is access NotifyCollectionChangedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -101,7 +101,7 @@ package WinRt.Windows.UI.Xaml.Interop is
       Move_e => 3,
       Reset_e => 4
    );
-   type NotifyCollectionChangedAction_Ptr is access all NotifyCollectionChangedAction;
+   type NotifyCollectionChangedAction_Ptr is access NotifyCollectionChangedAction;
 
    type TypeKind is (
       Primitive_e,
@@ -113,7 +113,7 @@ package WinRt.Windows.UI.Xaml.Interop is
       Metadata_e => 1,
       Custom_e => 2
    );
-   type TypeKind_Ptr is access all TypeKind;
+   type TypeKind_Ptr is access TypeKind;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -123,7 +123,7 @@ package WinRt.Windows.UI.Xaml.Interop is
       Name : WinRt.HString;
       Kind : Windows.UI.Xaml.Interop.TypeKind;
    end record with Convention => C_Pass_By_Copy;
-   type TypeName_Ptr is access all TypeName;
+   type TypeName_Ptr is access TypeName;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

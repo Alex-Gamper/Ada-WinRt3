@@ -414,7 +414,7 @@ package WinRt.Windows.UI.Input.Spatial is
       NavigationRailsY_e => 256,
       NavigationRailsZ_e => 512
    );
-   type SpatialGestureSettings_Ptr is access all SpatialGestureSettings;
+   type SpatialGestureSettings_Ptr is access SpatialGestureSettings;
 
    type SpatialInteractionPressKind is (
       None_e,
@@ -432,7 +432,7 @@ package WinRt.Windows.UI.Input.Spatial is
       Touchpad_e => 4,
       Thumbstick_e => 5
    );
-   type SpatialInteractionPressKind_Ptr is access all SpatialInteractionPressKind;
+   type SpatialInteractionPressKind_Ptr is access SpatialInteractionPressKind;
 
    type SpatialInteractionSourceHandedness is (
       Unspecified_e,
@@ -444,7 +444,7 @@ package WinRt.Windows.UI.Input.Spatial is
       Left_e => 1,
       Right_e => 2
    );
-   type SpatialInteractionSourceHandedness_Ptr is access all SpatialInteractionSourceHandedness;
+   type SpatialInteractionSourceHandedness_Ptr is access SpatialInteractionSourceHandedness;
 
    type SpatialInteractionSourceKind is (
       Other_e,
@@ -458,7 +458,7 @@ package WinRt.Windows.UI.Input.Spatial is
       Voice_e => 2,
       Controller_e => 3
    );
-   type SpatialInteractionSourceKind_Ptr is access all SpatialInteractionSourceKind;
+   type SpatialInteractionSourceKind_Ptr is access SpatialInteractionSourceKind;
 
    type SpatialInteractionSourcePositionAccuracy is (
       High_e,
@@ -468,7 +468,7 @@ package WinRt.Windows.UI.Input.Spatial is
       High_e => 0,
       Approximate_e => 1
    );
-   type SpatialInteractionSourcePositionAccuracy_Ptr is access all SpatialInteractionSourcePositionAccuracy;
+   type SpatialInteractionSourcePositionAccuracy_Ptr is access SpatialInteractionSourcePositionAccuracy;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

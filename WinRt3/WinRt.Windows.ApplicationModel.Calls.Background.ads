@@ -106,7 +106,7 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       PrivateNumber_e => 1,
       UnknownNumber_e => 2
    );
-   type PhoneCallBlockedReason_Ptr is access all PhoneCallBlockedReason;
+   type PhoneCallBlockedReason_Ptr is access PhoneCallBlockedReason;
 
    type PhoneIncomingCallDismissedReason is (
       Unknown_e,
@@ -120,7 +120,7 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       TextReply_e => 2,
       ConnectionLost_e => 3
    );
-   type PhoneIncomingCallDismissedReason_Ptr is access all PhoneIncomingCallDismissedReason;
+   type PhoneIncomingCallDismissedReason_Ptr is access PhoneIncomingCallDismissedReason;
 
    type PhoneLineChangeKind is (
       Added_e,
@@ -132,7 +132,7 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       Removed_e => 1,
       PropertiesChanged_e => 2
    );
-   type PhoneLineChangeKind_Ptr is access all PhoneLineChangeKind;
+   type PhoneLineChangeKind_Ptr is access PhoneLineChangeKind;
 
    type PhoneLineProperties is (
       None_e,
@@ -158,7 +158,7 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       Transport_e => 128,
       Voicemail_e => 256
    );
-   type PhoneLineProperties_Ptr is access all PhoneLineProperties;
+   type PhoneLineProperties_Ptr is access PhoneLineProperties;
 
    type PhoneTriggerType is (
       NewVoicemailMessage_e,
@@ -178,7 +178,7 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       CallBlocked_e => 5,
       IncomingCallDismissed_e => 6
    );
-   type PhoneTriggerType_Ptr is access all PhoneTriggerType;
+   type PhoneTriggerType_Ptr is access PhoneTriggerType;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -187,7 +187,7 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
    type CallsBackgroundContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type CallsBackgroundContract_Ptr is access all CallsBackgroundContract;
+   type CallsBackgroundContract_Ptr is access CallsBackgroundContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

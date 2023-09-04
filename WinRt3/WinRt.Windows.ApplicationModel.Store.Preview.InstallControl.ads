@@ -193,7 +193,7 @@ package WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       PausedWiFiRequired_e => 12,
       ReadyToDownload_e => 13
    );
-   type AppInstallState_Ptr is access all AppInstallState;
+   type AppInstallState_Ptr is access AppInstallState;
 
    type AppInstallType is (
       Install_e,
@@ -205,7 +205,7 @@ package WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       Update_e => 1,
       Repair_e => 2
    );
-   type AppInstallType_Ptr is access all AppInstallType;
+   type AppInstallType_Ptr is access AppInstallType;
 
    type AppInstallationToastNotificationMode is (
       Default_e,
@@ -219,7 +219,7 @@ package WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       ToastWithoutPopup_e => 2,
       NoToast_e => 3
    );
-   type AppInstallationToastNotificationMode_Ptr is access all AppInstallationToastNotificationMode;
+   type AppInstallationToastNotificationMode_Ptr is access AppInstallationToastNotificationMode;
 
    type AutoUpdateSetting is (
       Disabled_e,
@@ -233,7 +233,7 @@ package WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       DisabledByPolicy_e => 2,
       EnabledByPolicy_e => 3
    );
-   type AutoUpdateSetting_Ptr is access all AutoUpdateSetting;
+   type AutoUpdateSetting_Ptr is access AutoUpdateSetting;
 
    type GetEntitlementStatus is (
       Succeeded_e,
@@ -247,7 +247,7 @@ package WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       NetworkError_e => 2,
       ServerError_e => 3
    );
-   type GetEntitlementStatus_Ptr is access all GetEntitlementStatus;
+   type GetEntitlementStatus_Ptr is access GetEntitlementStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

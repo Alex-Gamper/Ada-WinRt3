@@ -55,7 +55,7 @@ package WinRt.Windows.Security.Cryptography is
       Utf16LE_e => 1,
       Utf16BE_e => 2
    );
-   type BinaryStringEncoding_Ptr is access all BinaryStringEncoding;
+   type BinaryStringEncoding_Ptr is access BinaryStringEncoding;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

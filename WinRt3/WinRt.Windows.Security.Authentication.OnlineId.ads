@@ -146,7 +146,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
       RetypeCredentials_e => 1,
       DoNotPrompt_e => 2
    );
-   type CredentialPromptType_Ptr is access all CredentialPromptType;
+   type CredentialPromptType_Ptr is access CredentialPromptType;
 
    type OnlineIdSystemTicketStatus is (
       Success_e,
@@ -158,7 +158,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
       Error_e => 1,
       ServiceConnectionError_e => 2
    );
-   type OnlineIdSystemTicketStatus_Ptr is access all OnlineIdSystemTicketStatus;
+   type OnlineIdSystemTicketStatus_Ptr is access OnlineIdSystemTicketStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

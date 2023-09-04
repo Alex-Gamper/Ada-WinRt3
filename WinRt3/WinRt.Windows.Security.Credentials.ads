@@ -172,7 +172,7 @@ package WinRt.Windows.Security.Credentials is
       NotSupported_e => 2,
       TemporaryFailure_e => 3
    );
-   type KeyCredentialAttestationStatus_Ptr is access all KeyCredentialAttestationStatus;
+   type KeyCredentialAttestationStatus_Ptr is access KeyCredentialAttestationStatus;
 
    type KeyCredentialCreationOption is (
       ReplaceExisting_e,
@@ -182,7 +182,7 @@ package WinRt.Windows.Security.Credentials is
       ReplaceExisting_e => 0,
       FailIfExists_e => 1
    );
-   type KeyCredentialCreationOption_Ptr is access all KeyCredentialCreationOption;
+   type KeyCredentialCreationOption_Ptr is access KeyCredentialCreationOption;
 
    type KeyCredentialStatus is (
       Success_e,
@@ -202,7 +202,7 @@ package WinRt.Windows.Security.Credentials is
       CredentialAlreadyExists_e => 5,
       SecurityDeviceLocked_e => 6
    );
-   type KeyCredentialStatus_Ptr is access all KeyCredentialStatus;
+   type KeyCredentialStatus_Ptr is access KeyCredentialStatus;
 
    type WebAccountPictureSize is (
       Size64x64_e,
@@ -216,7 +216,7 @@ package WinRt.Windows.Security.Credentials is
       Size424x424_e => 424,
       Size1080x1080_e => 1080
    );
-   type WebAccountPictureSize_Ptr is access all WebAccountPictureSize;
+   type WebAccountPictureSize_Ptr is access WebAccountPictureSize;
 
    type WebAccountState is (
       None_e,
@@ -228,7 +228,7 @@ package WinRt.Windows.Security.Credentials is
       Connected_e => 1,
       Error_e => 2
    );
-   type WebAccountState_Ptr is access all WebAccountState;
+   type WebAccountState_Ptr is access WebAccountState;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

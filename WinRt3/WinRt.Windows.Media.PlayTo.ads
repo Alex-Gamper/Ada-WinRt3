@@ -228,7 +228,7 @@ package WinRt.Windows.Media.PlayTo is
       DeviceLocked_e => 3,
       ProtectedPlaybackFailed_e => 4
    );
-   type PlayToConnectionError_Ptr is access all PlayToConnectionError;
+   type PlayToConnectionError_Ptr is access PlayToConnectionError;
 
    type PlayToConnectionState is (
       Disconnected_e,
@@ -240,7 +240,7 @@ package WinRt.Windows.Media.PlayTo is
       Connected_e => 1,
       Rendering_e => 2
    );
-   type PlayToConnectionState_Ptr is access all PlayToConnectionState;
+   type PlayToConnectionState_Ptr is access PlayToConnectionState;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

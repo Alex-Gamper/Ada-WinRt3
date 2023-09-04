@@ -154,7 +154,7 @@ package WinRt.Windows.Media.DialProtocol is
       NotFound_e => 2,
       NetworkFailure_e => 3
    );
-   type DialAppLaunchResult_Ptr is access all DialAppLaunchResult;
+   type DialAppLaunchResult_Ptr is access DialAppLaunchResult;
 
    type DialAppState is (
       Unknown_e,
@@ -168,7 +168,7 @@ package WinRt.Windows.Media.DialProtocol is
       Running_e => 2,
       NetworkFailure_e => 3
    );
-   type DialAppState_Ptr is access all DialAppState;
+   type DialAppState_Ptr is access DialAppState;
 
    type DialAppStopResult is (
       Stopped_e,
@@ -182,7 +182,7 @@ package WinRt.Windows.Media.DialProtocol is
       OperationNotSupported_e => 2,
       NetworkFailure_e => 3
    );
-   type DialAppStopResult_Ptr is access all DialAppStopResult;
+   type DialAppStopResult_Ptr is access DialAppStopResult;
 
    type DialDeviceDisplayStatus is (
       None_e,
@@ -200,7 +200,7 @@ package WinRt.Windows.Media.DialProtocol is
       Disconnected_e => 4,
       Error_e => 5
    );
-   type DialDeviceDisplayStatus_Ptr is access all DialDeviceDisplayStatus;
+   type DialDeviceDisplayStatus_Ptr is access DialDeviceDisplayStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

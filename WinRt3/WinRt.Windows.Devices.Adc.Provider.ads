@@ -56,7 +56,7 @@ package WinRt.Windows.Devices.Adc.Provider is
       SingleEnded_e => 0,
       Differential_e => 1
    );
-   type ProviderAdcChannelMode_Ptr is access all ProviderAdcChannelMode;
+   type ProviderAdcChannelMode_Ptr is access ProviderAdcChannelMode;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

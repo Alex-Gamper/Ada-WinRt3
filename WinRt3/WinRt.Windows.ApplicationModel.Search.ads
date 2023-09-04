@@ -204,7 +204,7 @@ package WinRt.Windows.ApplicationModel.Search is
    type SearchContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type SearchContract_Ptr is access all SearchContract;
+   type SearchContract_Ptr is access SearchContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

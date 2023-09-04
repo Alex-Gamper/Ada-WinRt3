@@ -243,7 +243,7 @@ package WinRt.Windows.Media.Effects is
       SpeakerCompensation_e => 16,
       DynamicRangeCompression_e => 17
    );
-   type AudioEffectType_Ptr is access all AudioEffectType;
+   type AudioEffectType_Ptr is access AudioEffectType;
 
    type MediaEffectClosedReason is (
       Done_e,
@@ -257,7 +257,7 @@ package WinRt.Windows.Media.Effects is
       UnsupportedEncodingFormat_e => 2,
       EffectCurrentlyUnloaded_e => 3
    );
-   type MediaEffectClosedReason_Ptr is access all MediaEffectClosedReason;
+   type MediaEffectClosedReason_Ptr is access MediaEffectClosedReason;
 
    type MediaMemoryTypes is (
       Gpu_e,
@@ -269,7 +269,7 @@ package WinRt.Windows.Media.Effects is
       Cpu_e => 1,
       GpuAndCpu_e => 2
    );
-   type MediaMemoryTypes_Ptr is access all MediaMemoryTypes;
+   type MediaMemoryTypes_Ptr is access MediaMemoryTypes;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

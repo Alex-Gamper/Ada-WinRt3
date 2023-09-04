@@ -98,7 +98,7 @@ package WinRt.Windows.ApplicationModel.Search.Core is
       Result_e => 1,
       Separator_e => 2
    );
-   type SearchSuggestionKind_Ptr is access all SearchSuggestionKind;
+   type SearchSuggestionKind_Ptr is access SearchSuggestionKind;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -107,7 +107,7 @@ package WinRt.Windows.ApplicationModel.Search.Core is
    type SearchCoreContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type SearchCoreContract_Ptr is access all SearchCoreContract;
+   type SearchCoreContract_Ptr is access SearchCoreContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

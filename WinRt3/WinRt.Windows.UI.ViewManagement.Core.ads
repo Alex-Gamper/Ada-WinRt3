@@ -149,7 +149,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
       Emoji_e => 3,
       Symbols_e => 4
    );
-   type CoreInputViewKind_Ptr is access all CoreInputViewKind;
+   type CoreInputViewKind_Ptr is access CoreInputViewKind;
 
    type CoreInputViewOcclusionKind is (
       Docked_e,
@@ -161,7 +161,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
       Floating_e => 1,
       Overlay_e => 2
    );
-   type CoreInputViewOcclusionKind_Ptr is access all CoreInputViewOcclusionKind;
+   type CoreInputViewOcclusionKind_Ptr is access CoreInputViewOcclusionKind;
 
    type CoreInputViewXYFocusTransferDirection is (
       Up_e,
@@ -175,7 +175,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
       Down_e => 2,
       Left_e => 3
    );
-   type CoreInputViewXYFocusTransferDirection_Ptr is access all CoreInputViewXYFocusTransferDirection;
+   type CoreInputViewXYFocusTransferDirection_Ptr is access CoreInputViewXYFocusTransferDirection;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

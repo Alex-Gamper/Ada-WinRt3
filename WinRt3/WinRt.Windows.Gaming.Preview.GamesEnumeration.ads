@@ -42,10 +42,10 @@ package WinRt.Windows.Gaming.Preview.GamesEnumeration is
    -----------------------------------------------------------------------------
 
    type GameListChangedEventHandler_Delegate;
-   type GameListChangedEventHandler is access all GameListChangedEventHandler_Delegate;
+   type GameListChangedEventHandler is access GameListChangedEventHandler_Delegate;
 
    type GameListRemovedEventHandler_Delegate;
-   type GameListRemovedEventHandler is access all GameListRemovedEventHandler_Delegate;
+   type GameListRemovedEventHandler is access GameListRemovedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -111,7 +111,7 @@ package WinRt.Windows.Gaming.Preview.GamesEnumeration is
       ConfirmedBySystem_e => 1,
       ConfirmedByUser_e => 2
    );
-   type GameListCategory_Ptr is access all GameListCategory;
+   type GameListCategory_Ptr is access GameListCategory;
 
    type GameListEntryLaunchableState is (
       NotLaunchable_e,
@@ -125,7 +125,7 @@ package WinRt.Windows.Gaming.Preview.GamesEnumeration is
       ByUserProvidedPath_e => 2,
       ByTile_e => 3
    );
-   type GameListEntryLaunchableState_Ptr is access all GameListEntryLaunchableState;
+   type GameListEntryLaunchableState_Ptr is access GameListEntryLaunchableState;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

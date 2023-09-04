@@ -51,6 +51,6 @@ package WinRt.Windows.Phone.Speech.Recognition is
       Preempted_e => 3,
       PrivacyPolicyDeclined_e => 4
    );
-   type SpeechRecognitionUIStatus_Ptr is access all SpeechRecognitionUIStatus;
+   type SpeechRecognitionUIStatus_Ptr is access SpeechRecognitionUIStatus;
 
 end;

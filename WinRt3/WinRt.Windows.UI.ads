@@ -100,7 +100,7 @@ package WinRt.Windows.UI is
       G : WinRt.Byte;
       B : WinRt.Byte;
    end record with Convention => C_Pass_By_Copy;
-   type Color_Ptr is access all Color;
+   type Color_Ptr is access Color;
    type Color_Array is array (Natural range <>) of aliased Color;
 
    -----------------------------------------------------------------------------

@@ -107,7 +107,7 @@ package WinRt.Windows.Storage.AccessCache is
       UseReadOnlyCachedCopy_e => 4,
       SuppressAccessTimeUpdate_e => 8
    );
-   type AccessCacheOptions_Ptr is access all AccessCacheOptions;
+   type AccessCacheOptions_Ptr is access AccessCacheOptions;
 
    type RecentStorageItemVisibility is (
       AppOnly_e,
@@ -117,7 +117,7 @@ package WinRt.Windows.Storage.AccessCache is
       AppOnly_e => 0,
       AppAndSystem_e => 1
    );
-   type RecentStorageItemVisibility_Ptr is access all RecentStorageItemVisibility;
+   type RecentStorageItemVisibility_Ptr is access RecentStorageItemVisibility;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -127,7 +127,7 @@ package WinRt.Windows.Storage.AccessCache is
       Token : WinRt.HString;
       Metadata : WinRt.HString;
    end record with Convention => C_Pass_By_Copy;
-   type AccessListEntry_Ptr is access all AccessListEntry;
+   type AccessListEntry_Ptr is access AccessListEntry;
    type AccessListEntry_Array is array (Natural range <>) of aliased AccessListEntry;
 
    -----------------------------------------------------------------------------

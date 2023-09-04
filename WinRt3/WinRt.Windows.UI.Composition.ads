@@ -1208,7 +1208,7 @@ package WinRt.Windows.UI.Composition is
       Default_e => 0,
       IncludesDelayTime_e => 1
    );
-   type AnimationControllerProgressBehavior_Ptr is access all AnimationControllerProgressBehavior;
+   type AnimationControllerProgressBehavior_Ptr is access AnimationControllerProgressBehavior;
 
    type AnimationDelayBehavior is (
       SetInitialValueAfterDelay_e,
@@ -1218,7 +1218,7 @@ package WinRt.Windows.UI.Composition is
       SetInitialValueAfterDelay_e => 0,
       SetInitialValueBeforeDelay_e => 1
    );
-   type AnimationDelayBehavior_Ptr is access all AnimationDelayBehavior;
+   type AnimationDelayBehavior_Ptr is access AnimationDelayBehavior;
 
    type AnimationDirection is (
       Normal_e,
@@ -1232,7 +1232,7 @@ package WinRt.Windows.UI.Composition is
       Alternate_e => 2,
       AlternateReverse_e => 3
    );
-   type AnimationDirection_Ptr is access all AnimationDirection;
+   type AnimationDirection_Ptr is access AnimationDirection;
 
    type AnimationIterationBehavior is (
       Count_e,
@@ -1242,7 +1242,7 @@ package WinRt.Windows.UI.Composition is
       Count_e => 0,
       Forever_e => 1
    );
-   type AnimationIterationBehavior_Ptr is access all AnimationIterationBehavior;
+   type AnimationIterationBehavior_Ptr is access AnimationIterationBehavior;
 
    type AnimationPropertyAccessMode is (
       None_e,
@@ -1256,7 +1256,7 @@ package WinRt.Windows.UI.Composition is
       WriteOnly_e => 2,
       ReadWrite_e => 3
    );
-   type AnimationPropertyAccessMode_Ptr is access all AnimationPropertyAccessMode;
+   type AnimationPropertyAccessMode_Ptr is access AnimationPropertyAccessMode;
 
    type AnimationStopBehavior is (
       LeaveCurrentValue_e,
@@ -1268,7 +1268,7 @@ package WinRt.Windows.UI.Composition is
       SetToInitialValue_e => 1,
       SetToFinalValue_e => 2
    );
-   type AnimationStopBehavior_Ptr is access all AnimationStopBehavior;
+   type AnimationStopBehavior_Ptr is access AnimationStopBehavior;
 
    type CompositionBackfaceVisibility is (
       Inherit_e,
@@ -1280,7 +1280,7 @@ package WinRt.Windows.UI.Composition is
       Visible_e => 1,
       Hidden_e => 2
    );
-   type CompositionBackfaceVisibility_Ptr is access all CompositionBackfaceVisibility;
+   type CompositionBackfaceVisibility_Ptr is access CompositionBackfaceVisibility;
 
    type CompositionBatchTypes is (
       None_e,
@@ -1296,7 +1296,7 @@ package WinRt.Windows.UI.Composition is
       InfiniteAnimation_e => 4,
       AllAnimations_e => 5
    );
-   type CompositionBatchTypes_Ptr is access all CompositionBatchTypes;
+   type CompositionBatchTypes_Ptr is access CompositionBatchTypes;
 
    type CompositionBitmapInterpolationMode is (
       NearestNeighbor_e,
@@ -1322,7 +1322,7 @@ package WinRt.Windows.UI.Composition is
       MagNearestMinNearestMipLinear_e => 8,
       MagNearestMinNearestMipNearest_e => 9
    );
-   type CompositionBitmapInterpolationMode_Ptr is access all CompositionBitmapInterpolationMode;
+   type CompositionBitmapInterpolationMode_Ptr is access CompositionBitmapInterpolationMode;
 
    type CompositionBorderMode is (
       Inherit_e,
@@ -1334,7 +1334,7 @@ package WinRt.Windows.UI.Composition is
       Soft_e => 1,
       Hard_e => 2
    );
-   type CompositionBorderMode_Ptr is access all CompositionBorderMode;
+   type CompositionBorderMode_Ptr is access CompositionBorderMode;
 
    type CompositionColorSpace is (
       Auto_e,
@@ -1350,7 +1350,7 @@ package WinRt.Windows.UI.Composition is
       HslLinear_e => 3,
       RgbLinear_e => 4
    );
-   type CompositionColorSpace_Ptr is access all CompositionColorSpace;
+   type CompositionColorSpace_Ptr is access CompositionColorSpace;
 
    type CompositionCompositeMode is (
       Inherit_e,
@@ -1364,7 +1364,7 @@ package WinRt.Windows.UI.Composition is
       DestinationInvert_e => 2,
       MinBlend_e => 3
    );
-   type CompositionCompositeMode_Ptr is access all CompositionCompositeMode;
+   type CompositionCompositeMode_Ptr is access CompositionCompositeMode;
 
    type CompositionDropShadowSourcePolicy is (
       Default_e,
@@ -1374,7 +1374,7 @@ package WinRt.Windows.UI.Composition is
       Default_e => 0,
       InheritFromVisualContent_e => 1
    );
-   type CompositionDropShadowSourcePolicy_Ptr is access all CompositionDropShadowSourcePolicy;
+   type CompositionDropShadowSourcePolicy_Ptr is access CompositionDropShadowSourcePolicy;
 
    type CompositionEffectFactoryLoadStatus is (
       Other_e,
@@ -1388,7 +1388,7 @@ package WinRt.Windows.UI.Composition is
       EffectTooComplex_e => 1,
       Pending_e => 2
    );
-   type CompositionEffectFactoryLoadStatus_Ptr is access all CompositionEffectFactoryLoadStatus;
+   type CompositionEffectFactoryLoadStatus_Ptr is access CompositionEffectFactoryLoadStatus;
 
    type CompositionGetValueStatus is (
       Succeeded_e,
@@ -1400,7 +1400,7 @@ package WinRt.Windows.UI.Composition is
       TypeMismatch_e => 1,
       NotFound_e => 2
    );
-   type CompositionGetValueStatus_Ptr is access all CompositionGetValueStatus;
+   type CompositionGetValueStatus_Ptr is access CompositionGetValueStatus;
 
    type CompositionGradientExtendMode is (
       Clamp_e,
@@ -1412,7 +1412,7 @@ package WinRt.Windows.UI.Composition is
       Wrap_e => 1,
       Mirror_e => 2
    );
-   type CompositionGradientExtendMode_Ptr is access all CompositionGradientExtendMode;
+   type CompositionGradientExtendMode_Ptr is access CompositionGradientExtendMode;
 
    type CompositionMappingMode is (
       Absolute_e,
@@ -1422,7 +1422,7 @@ package WinRt.Windows.UI.Composition is
       Absolute_e => 0,
       Relative_e => 1
    );
-   type CompositionMappingMode_Ptr is access all CompositionMappingMode;
+   type CompositionMappingMode_Ptr is access CompositionMappingMode;
 
    type CompositionStretch is (
       None_e,
@@ -1436,7 +1436,7 @@ package WinRt.Windows.UI.Composition is
       Uniform_e => 2,
       UniformToFill_e => 3
    );
-   type CompositionStretch_Ptr is access all CompositionStretch;
+   type CompositionStretch_Ptr is access CompositionStretch;
 
    type CompositionStrokeCap is (
       Flat_e,
@@ -1450,7 +1450,7 @@ package WinRt.Windows.UI.Composition is
       Round_e => 2,
       Triangle_e => 3
    );
-   type CompositionStrokeCap_Ptr is access all CompositionStrokeCap;
+   type CompositionStrokeCap_Ptr is access CompositionStrokeCap;
 
    type CompositionStrokeLineJoin is (
       Miter_e,
@@ -1464,7 +1464,7 @@ package WinRt.Windows.UI.Composition is
       Round_e => 2,
       MiterOrBevel_e => 3
    );
-   type CompositionStrokeLineJoin_Ptr is access all CompositionStrokeLineJoin;
+   type CompositionStrokeLineJoin_Ptr is access CompositionStrokeLineJoin;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

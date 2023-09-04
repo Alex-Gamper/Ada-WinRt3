@@ -84,7 +84,7 @@ package WinRt.Windows.System.Update is
       InsufficientBattery_e => 3,
       UpdateBlocked_e => 4
    );
-   type SystemUpdateAttentionRequiredReason_Ptr is access all SystemUpdateAttentionRequiredReason;
+   type SystemUpdateAttentionRequiredReason_Ptr is access SystemUpdateAttentionRequiredReason;
 
    type SystemUpdateItemState is (
       NotStarted_e,
@@ -108,7 +108,7 @@ package WinRt.Windows.System.Update is
       RebootRequired_e => 7,
       Error_e => 8
    );
-   type SystemUpdateItemState_Ptr is access all SystemUpdateItemState;
+   type SystemUpdateItemState_Ptr is access SystemUpdateItemState;
 
    type SystemUpdateManagerState is (
       Idle_e,
@@ -138,7 +138,7 @@ package WinRt.Windows.System.Update is
       AttentionRequired_e => 10,
       Error_e => 11
    );
-   type SystemUpdateManagerState_Ptr is access all SystemUpdateManagerState;
+   type SystemUpdateManagerState_Ptr is access SystemUpdateManagerState;
 
    type SystemUpdateStartInstallAction is (
       UpToReboot_e,
@@ -148,7 +148,7 @@ package WinRt.Windows.System.Update is
       UpToReboot_e => 0,
       AllowReboot_e => 1
    );
-   type SystemUpdateStartInstallAction_Ptr is access all SystemUpdateStartInstallAction;
+   type SystemUpdateStartInstallAction_Ptr is access SystemUpdateStartInstallAction;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

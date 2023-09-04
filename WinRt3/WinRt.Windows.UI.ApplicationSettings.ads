@@ -43,13 +43,13 @@ package WinRt.Windows.UI.ApplicationSettings is
    -----------------------------------------------------------------------------
 
    type CredentialCommandCredentialDeletedHandler_Delegate;
-   type CredentialCommandCredentialDeletedHandler is access all CredentialCommandCredentialDeletedHandler_Delegate;
+   type CredentialCommandCredentialDeletedHandler is access CredentialCommandCredentialDeletedHandler_Delegate;
 
    type WebAccountCommandInvokedHandler_Delegate;
-   type WebAccountCommandInvokedHandler is access all WebAccountCommandInvokedHandler_Delegate;
+   type WebAccountCommandInvokedHandler is access WebAccountCommandInvokedHandler_Delegate;
 
    type WebAccountProviderCommandInvokedHandler_Delegate;
-   type WebAccountProviderCommandInvokedHandler is access all WebAccountProviderCommandInvokedHandler_Delegate;
+   type WebAccountProviderCommandInvokedHandler is access WebAccountProviderCommandInvokedHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -207,7 +207,7 @@ package WinRt.Windows.UI.ApplicationSettings is
       Right_e => 0,
       Left_e => 1
    );
-   type SettingsEdgeLocation_Ptr is access all SettingsEdgeLocation;
+   type SettingsEdgeLocation_Ptr is access SettingsEdgeLocation;
 
    type SupportedWebAccountActions is (
       None_e,
@@ -225,7 +225,7 @@ package WinRt.Windows.UI.ApplicationSettings is
       Manage_e => 8,
       More_e => 16
    );
-   type SupportedWebAccountActions_Ptr is access all SupportedWebAccountActions;
+   type SupportedWebAccountActions_Ptr is access SupportedWebAccountActions;
 
    type WebAccountAction is (
       Reconnect_e,
@@ -241,7 +241,7 @@ package WinRt.Windows.UI.ApplicationSettings is
       Manage_e => 3,
       More_e => 4
    );
-   type WebAccountAction_Ptr is access all WebAccountAction;
+   type WebAccountAction_Ptr is access WebAccountAction;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -250,7 +250,7 @@ package WinRt.Windows.UI.ApplicationSettings is
    type ApplicationsSettingsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type ApplicationsSettingsContract_Ptr is access all ApplicationsSettingsContract;
+   type ApplicationsSettingsContract_Ptr is access ApplicationsSettingsContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

@@ -284,7 +284,7 @@ package WinRt.Windows.Media.Capture.Frames is
       Realtime_e => 0,
       Buffered_e => 1
    );
-   type MediaFrameReaderAcquisitionMode_Ptr is access all MediaFrameReaderAcquisitionMode;
+   type MediaFrameReaderAcquisitionMode_Ptr is access MediaFrameReaderAcquisitionMode;
 
    type MediaFrameReaderStartStatus is (
       Success_e,
@@ -300,7 +300,7 @@ package WinRt.Windows.Media.Capture.Frames is
       OutputFormatNotSupported_e => 3,
       ExclusiveControlNotAvailable_e => 4
    );
-   type MediaFrameReaderStartStatus_Ptr is access all MediaFrameReaderStartStatus;
+   type MediaFrameReaderStartStatus_Ptr is access MediaFrameReaderStartStatus;
 
    type MediaFrameSourceGetPropertyStatus is (
       Success_e,
@@ -318,7 +318,7 @@ package WinRt.Windows.Media.Capture.Frames is
       MaxPropertyValueSizeTooSmall_e => 4,
       MaxPropertyValueSizeRequired_e => 5
    );
-   type MediaFrameSourceGetPropertyStatus_Ptr is access all MediaFrameSourceGetPropertyStatus;
+   type MediaFrameSourceGetPropertyStatus_Ptr is access MediaFrameSourceGetPropertyStatus;
 
    type MediaFrameSourceKind is (
       Custom_e,
@@ -336,7 +336,7 @@ package WinRt.Windows.Media.Capture.Frames is
       Audio_e => 4,
       Image_e => 5
    );
-   type MediaFrameSourceKind_Ptr is access all MediaFrameSourceKind;
+   type MediaFrameSourceKind_Ptr is access MediaFrameSourceKind;
 
    type MediaFrameSourceSetPropertyStatus is (
       Success_e,
@@ -354,7 +354,7 @@ package WinRt.Windows.Media.Capture.Frames is
       DeviceNotAvailable_e => 4,
       NotInControl_e => 5
    );
-   type MediaFrameSourceSetPropertyStatus_Ptr is access all MediaFrameSourceSetPropertyStatus;
+   type MediaFrameSourceSetPropertyStatus_Ptr is access MediaFrameSourceSetPropertyStatus;
 
    type MultiSourceMediaFrameReaderStartStatus is (
       Success_e,
@@ -370,7 +370,7 @@ package WinRt.Windows.Media.Capture.Frames is
       DeviceNotAvailable_e => 3,
       UnknownFailure_e => 4
    );
-   type MultiSourceMediaFrameReaderStartStatus_Ptr is access all MultiSourceMediaFrameReaderStartStatus;
+   type MultiSourceMediaFrameReaderStartStatus_Ptr is access MultiSourceMediaFrameReaderStartStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

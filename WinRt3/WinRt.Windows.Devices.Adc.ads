@@ -81,7 +81,7 @@ package WinRt.Windows.Devices.Adc is
       SingleEnded_e => 0,
       Differential_e => 1
    );
-   type AdcChannelMode_Ptr is access all AdcChannelMode;
+   type AdcChannelMode_Ptr is access AdcChannelMode;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

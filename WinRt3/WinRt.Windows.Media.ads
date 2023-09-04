@@ -307,7 +307,7 @@ package WinRt.Windows.Media is
       ReadWrite_e => 1,
       Write_e => 2
    );
-   type AudioBufferAccessMode_Ptr is access all AudioBufferAccessMode;
+   type AudioBufferAccessMode_Ptr is access AudioBufferAccessMode;
 
    type AudioProcessing is (
       Default_e,
@@ -317,7 +317,7 @@ package WinRt.Windows.Media is
       Default_e => 0,
       Raw_e => 1
    );
-   type AudioProcessing_Ptr is access all AudioProcessing;
+   type AudioProcessing_Ptr is access AudioProcessing;
 
    type MediaPlaybackAutoRepeatMode is (
       None_e,
@@ -329,7 +329,7 @@ package WinRt.Windows.Media is
       Track_e => 1,
       List_e => 2
    );
-   type MediaPlaybackAutoRepeatMode_Ptr is access all MediaPlaybackAutoRepeatMode;
+   type MediaPlaybackAutoRepeatMode_Ptr is access MediaPlaybackAutoRepeatMode;
 
    type MediaPlaybackStatus is (
       Closed_e,
@@ -345,7 +345,7 @@ package WinRt.Windows.Media is
       Playing_e => 3,
       Paused_e => 4
    );
-   type MediaPlaybackStatus_Ptr is access all MediaPlaybackStatus;
+   type MediaPlaybackStatus_Ptr is access MediaPlaybackStatus;
 
    type MediaPlaybackType is (
       Unknown_e,
@@ -359,7 +359,7 @@ package WinRt.Windows.Media is
       Video_e => 2,
       Image_e => 3
    );
-   type MediaPlaybackType_Ptr is access all MediaPlaybackType;
+   type MediaPlaybackType_Ptr is access MediaPlaybackType;
 
    type MediaTimelineControllerState is (
       Paused_e,
@@ -373,7 +373,7 @@ package WinRt.Windows.Media is
       Stalled_e => 2,
       Error_e => 3
    );
-   type MediaTimelineControllerState_Ptr is access all MediaTimelineControllerState;
+   type MediaTimelineControllerState_Ptr is access MediaTimelineControllerState;
 
    type SoundLevel is (
       Muted_e,
@@ -385,7 +385,7 @@ package WinRt.Windows.Media is
       Low_e => 1,
       Full_e => 2
    );
-   type SoundLevel_Ptr is access all SoundLevel;
+   type SoundLevel_Ptr is access SoundLevel;
 
    type SystemMediaTransportControlsButton is (
       Play_e,
@@ -411,7 +411,7 @@ package WinRt.Windows.Media is
       ChannelUp_e => 8,
       ChannelDown_e => 9
    );
-   type SystemMediaTransportControlsButton_Ptr is access all SystemMediaTransportControlsButton;
+   type SystemMediaTransportControlsButton_Ptr is access SystemMediaTransportControlsButton;
 
    type SystemMediaTransportControlsProperty is (
       SoundLevel_e
@@ -419,7 +419,7 @@ package WinRt.Windows.Media is
    for SystemMediaTransportControlsProperty use (
       SoundLevel_e => 0
    );
-   type SystemMediaTransportControlsProperty_Ptr is access all SystemMediaTransportControlsProperty;
+   type SystemMediaTransportControlsProperty_Ptr is access SystemMediaTransportControlsProperty;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -428,13 +428,13 @@ package WinRt.Windows.Media is
    type MediaControlContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type MediaControlContract_Ptr is access all MediaControlContract;
+   type MediaControlContract_Ptr is access MediaControlContract;
 
    type MediaTimeRange is record
       Start : WinRt.Windows.Foundation.TimeSpan;
       End_x : WinRt.Windows.Foundation.TimeSpan;
    end record with Convention => C_Pass_By_Copy;
-   type MediaTimeRange_Ptr is access all MediaTimeRange;
+   type MediaTimeRange_Ptr is access MediaTimeRange;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

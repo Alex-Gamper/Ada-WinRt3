@@ -194,7 +194,7 @@ package WinRt.Windows.Media.Import is
       ReadOnly_e => 1,
       ReadAndDelete_e => 2
    );
-   type PhotoImportAccessMode_Ptr is access all PhotoImportAccessMode;
+   type PhotoImportAccessMode_Ptr is access PhotoImportAccessMode;
 
    type PhotoImportConnectionTransport is (
       Unknown_e,
@@ -208,7 +208,7 @@ package WinRt.Windows.Media.Import is
       IP_e => 2,
       Bluetooth_e => 3
    );
-   type PhotoImportConnectionTransport_Ptr is access all PhotoImportConnectionTransport;
+   type PhotoImportConnectionTransport_Ptr is access PhotoImportConnectionTransport;
 
    type PhotoImportContentType is (
       Unknown_e,
@@ -220,7 +220,7 @@ package WinRt.Windows.Media.Import is
       Image_e => 1,
       Video_e => 2
    );
-   type PhotoImportContentType_Ptr is access all PhotoImportContentType;
+   type PhotoImportContentType_Ptr is access PhotoImportContentType;
 
    type PhotoImportContentTypeFilter is (
       OnlyImages_e,
@@ -234,7 +234,7 @@ package WinRt.Windows.Media.Import is
       ImagesAndVideos_e => 2,
       ImagesAndVideosFromCameraRoll_e => 3
    );
-   type PhotoImportContentTypeFilter_Ptr is access all PhotoImportContentTypeFilter;
+   type PhotoImportContentTypeFilter_Ptr is access PhotoImportContentTypeFilter;
 
    type PhotoImportImportMode is (
       ImportEverything_e,
@@ -248,7 +248,7 @@ package WinRt.Windows.Media.Import is
       IgnoreSiblings_e => 2,
       IgnoreSidecarsAndSiblings_e => 3
    );
-   type PhotoImportImportMode_Ptr is access all PhotoImportImportMode;
+   type PhotoImportImportMode_Ptr is access PhotoImportImportMode;
 
    type PhotoImportItemSelectionMode is (
       SelectAll_e,
@@ -260,7 +260,7 @@ package WinRt.Windows.Media.Import is
       SelectNone_e => 1,
       SelectNew_e => 2
    );
-   type PhotoImportItemSelectionMode_Ptr is access all PhotoImportItemSelectionMode;
+   type PhotoImportItemSelectionMode_Ptr is access PhotoImportItemSelectionMode;
 
    type PhotoImportPowerSource is (
       Unknown_e,
@@ -272,7 +272,7 @@ package WinRt.Windows.Media.Import is
       Battery_e => 1,
       External_e => 2
    );
-   type PhotoImportPowerSource_Ptr is access all PhotoImportPowerSource;
+   type PhotoImportPowerSource_Ptr is access PhotoImportPowerSource;
 
    type PhotoImportSourceType is (
       Generic_e,
@@ -292,7 +292,7 @@ package WinRt.Windows.Media.Import is
       PersonalInfoManager_e => 5,
       AudioRecorder_e => 6
    );
-   type PhotoImportSourceType_Ptr is access all PhotoImportSourceType;
+   type PhotoImportSourceType_Ptr is access PhotoImportSourceType;
 
    type PhotoImportStage is (
       NotStarted_e,
@@ -306,7 +306,7 @@ package WinRt.Windows.Media.Import is
       ImportingItems_e => 2,
       DeletingImportedItemsFromSource_e => 3
    );
-   type PhotoImportStage_Ptr is access all PhotoImportStage;
+   type PhotoImportStage_Ptr is access PhotoImportStage;
 
    type PhotoImportStorageMediumType is (
       Undefined_e,
@@ -318,7 +318,7 @@ package WinRt.Windows.Media.Import is
       Fixed_e => 1,
       Removable_e => 2
    );
-   type PhotoImportStorageMediumType_Ptr is access all PhotoImportStorageMediumType;
+   type PhotoImportStorageMediumType_Ptr is access PhotoImportStorageMediumType;
 
    type PhotoImportSubfolderCreationMode is (
       DoNotCreateSubfolders_e,
@@ -332,7 +332,7 @@ package WinRt.Windows.Media.Import is
       CreateSubfoldersFromExifDate_e => 2,
       KeepOriginalFolderStructure_e => 3
    );
-   type PhotoImportSubfolderCreationMode_Ptr is access all PhotoImportSubfolderCreationMode;
+   type PhotoImportSubfolderCreationMode_Ptr is access PhotoImportSubfolderCreationMode;
 
    type PhotoImportSubfolderDateFormat is (
       Year_e,
@@ -344,7 +344,7 @@ package WinRt.Windows.Media.Import is
       YearMonth_e => 1,
       YearMonthDay_e => 2
    );
-   type PhotoImportSubfolderDateFormat_Ptr is access all PhotoImportSubfolderDateFormat;
+   type PhotoImportSubfolderDateFormat_Ptr is access PhotoImportSubfolderDateFormat;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -357,7 +357,7 @@ package WinRt.Windows.Media.Import is
       TotalBytesToImport : WinRt.UInt64;
       ImportProgress : WinRt.Double;
    end record with Convention => C_Pass_By_Copy;
-   type PhotoImportProgress_Ptr is access all PhotoImportProgress;
+   type PhotoImportProgress_Ptr is access PhotoImportProgress;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

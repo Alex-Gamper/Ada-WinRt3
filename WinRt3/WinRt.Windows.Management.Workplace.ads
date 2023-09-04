@@ -60,7 +60,7 @@ package WinRt.Windows.Management.Workplace is
       Allowed_e => 1,
       Required_e => 2
    );
-   type MessagingSyncPolicy_Ptr is access all MessagingSyncPolicy;
+   type MessagingSyncPolicy_Ptr is access MessagingSyncPolicy;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -69,7 +69,7 @@ package WinRt.Windows.Management.Workplace is
    type WorkplaceSettingsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type WorkplaceSettingsContract_Ptr is access all WorkplaceSettingsContract;
+   type WorkplaceSettingsContract_Ptr is access WorkplaceSettingsContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

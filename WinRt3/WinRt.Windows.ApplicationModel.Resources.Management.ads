@@ -93,7 +93,7 @@ package WinRt.Windows.ApplicationModel.Resources.Management is
       Path_e => 1,
       EmbeddedData_e => 2
    );
-   type IndexedResourceType_Ptr is access all IndexedResourceType;
+   type IndexedResourceType_Ptr is access IndexedResourceType;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -102,7 +102,7 @@ package WinRt.Windows.ApplicationModel.Resources.Management is
    type ResourceIndexerContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type ResourceIndexerContract_Ptr is access all ResourceIndexerContract;
+   type ResourceIndexerContract_Ptr is access ResourceIndexerContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

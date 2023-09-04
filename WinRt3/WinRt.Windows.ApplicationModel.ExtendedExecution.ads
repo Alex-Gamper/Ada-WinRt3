@@ -76,7 +76,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution is
       LocationTracking_e => 1,
       SavingData_e => 2
    );
-   type ExtendedExecutionReason_Ptr is access all ExtendedExecutionReason;
+   type ExtendedExecutionReason_Ptr is access ExtendedExecutionReason;
 
    type ExtendedExecutionResult is (
       Allowed_e,
@@ -86,7 +86,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution is
       Allowed_e => 0,
       Denied_e => 1
    );
-   type ExtendedExecutionResult_Ptr is access all ExtendedExecutionResult;
+   type ExtendedExecutionResult_Ptr is access ExtendedExecutionResult;
 
    type ExtendedExecutionRevokedReason is (
       Resumed_e,
@@ -96,7 +96,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution is
       Resumed_e => 0,
       SystemPolicy_e => 1
    );
-   type ExtendedExecutionRevokedReason_Ptr is access all ExtendedExecutionRevokedReason;
+   type ExtendedExecutionRevokedReason_Ptr is access ExtendedExecutionRevokedReason;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

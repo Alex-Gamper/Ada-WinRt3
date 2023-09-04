@@ -265,7 +265,7 @@ package WinRt.Windows.UI.Composition.Scenes is
       AlphaTest_e => 1,
       Blend_e => 2
    );
-   type SceneAlphaMode_Ptr is access all SceneAlphaMode;
+   type SceneAlphaMode_Ptr is access SceneAlphaMode;
 
    type SceneAttributeSemantic is (
       Index_e,
@@ -285,7 +285,7 @@ package WinRt.Windows.UI.Composition.Scenes is
       Color_e => 5,
       Tangent_e => 6
    );
-   type SceneAttributeSemantic_Ptr is access all SceneAttributeSemantic;
+   type SceneAttributeSemantic_Ptr is access SceneAttributeSemantic;
 
    type SceneComponentType is (
       MeshRendererComponent_e
@@ -293,7 +293,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    for SceneComponentType use (
       MeshRendererComponent_e => 0
    );
-   type SceneComponentType_Ptr is access all SceneComponentType;
+   type SceneComponentType_Ptr is access SceneComponentType;
 
    type SceneWrappingMode is (
       ClampToEdge_e,
@@ -305,7 +305,7 @@ package WinRt.Windows.UI.Composition.Scenes is
       MirroredRepeat_e => 1,
       Repeat_e => 2
    );
-   type SceneWrappingMode_Ptr is access all SceneWrappingMode;
+   type SceneWrappingMode_Ptr is access SceneWrappingMode;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

@@ -196,7 +196,7 @@ package WinRt.Windows.Devices.Bluetooth is
       Random_e => 1,
       Unspecified_e => 2
    );
-   type BluetoothAddressType_Ptr is access all BluetoothAddressType;
+   type BluetoothAddressType_Ptr is access BluetoothAddressType;
 
    type BluetoothCacheMode is (
       Cached_e,
@@ -206,7 +206,7 @@ package WinRt.Windows.Devices.Bluetooth is
       Cached_e => 0,
       Uncached_e => 1
    );
-   type BluetoothCacheMode_Ptr is access all BluetoothCacheMode;
+   type BluetoothCacheMode_Ptr is access BluetoothCacheMode;
 
    type BluetoothConnectionStatus is (
       Disconnected_e,
@@ -216,7 +216,7 @@ package WinRt.Windows.Devices.Bluetooth is
       Disconnected_e => 0,
       Connected_e => 1
    );
-   type BluetoothConnectionStatus_Ptr is access all BluetoothConnectionStatus;
+   type BluetoothConnectionStatus_Ptr is access BluetoothConnectionStatus;
 
    type BluetoothError is (
       Success_e,
@@ -242,7 +242,7 @@ package WinRt.Windows.Devices.Bluetooth is
       ConsentRequired_e => 8,
       TransportNotSupported_e => 9
    );
-   type BluetoothError_Ptr is access all BluetoothError;
+   type BluetoothError_Ptr is access BluetoothError;
 
    type BluetoothMajorClass is (
       Miscellaneous_e,
@@ -268,7 +268,7 @@ package WinRt.Windows.Devices.Bluetooth is
       Toy_e => 8,
       Health_e => 9
    );
-   type BluetoothMajorClass_Ptr is access all BluetoothMajorClass;
+   type BluetoothMajorClass_Ptr is access BluetoothMajorClass;
 
    type BluetoothMinorClass is (
       Uncategorized_e,
@@ -320,7 +320,7 @@ package WinRt.Windows.Devices.Bluetooth is
       NetworkUsed83To99Percent_e => 48,
       NetworkNoServiceAvailable_e => 56
    );
-   type BluetoothMinorClass_Ptr is access all BluetoothMinorClass;
+   type BluetoothMinorClass_Ptr is access BluetoothMinorClass;
 
    type BluetoothServiceCapabilities is (
       None_e,
@@ -346,7 +346,7 @@ package WinRt.Windows.Devices.Bluetooth is
       TelephoneService_e => 512,
       InformationService_e => 1024
    );
-   type BluetoothServiceCapabilities_Ptr is access all BluetoothServiceCapabilities;
+   type BluetoothServiceCapabilities_Ptr is access BluetoothServiceCapabilities;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

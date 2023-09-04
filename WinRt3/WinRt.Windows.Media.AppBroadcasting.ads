@@ -93,7 +93,7 @@ package WinRt.Windows.Media.AppBroadcasting is
    type AppBroadcastingContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type AppBroadcastingContract_Ptr is access all AppBroadcastingContract;
+   type AppBroadcastingContract_Ptr is access AppBroadcastingContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

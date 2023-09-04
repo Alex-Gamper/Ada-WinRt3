@@ -192,7 +192,7 @@ package WinRt.Windows.AI.MachineLearning.Preview is
       Complex64_e => 14,
       Complex128_e => 15
    );
-   type FeatureElementKindPreview_Ptr is access all FeatureElementKindPreview;
+   type FeatureElementKindPreview_Ptr is access FeatureElementKindPreview;
 
    type LearningModelDeviceKindPreview is (
       LearningDeviceAny_e,
@@ -210,7 +210,7 @@ package WinRt.Windows.AI.MachineLearning.Preview is
       LearningDeviceDsp_e => 4,
       LearningDeviceFpga_e => 5
    );
-   type LearningModelDeviceKindPreview_Ptr is access all LearningModelDeviceKindPreview;
+   type LearningModelDeviceKindPreview_Ptr is access LearningModelDeviceKindPreview;
 
    type LearningModelFeatureKindPreview is (
       Undefined_e,
@@ -226,7 +226,7 @@ package WinRt.Windows.AI.MachineLearning.Preview is
       Map_e => 3,
       Image_e => 4
    );
-   type LearningModelFeatureKindPreview_Ptr is access all LearningModelFeatureKindPreview;
+   type LearningModelFeatureKindPreview_Ptr is access LearningModelFeatureKindPreview;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -235,7 +235,7 @@ package WinRt.Windows.AI.MachineLearning.Preview is
    type MachineLearningPreviewContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type MachineLearningPreviewContract_Ptr is access all MachineLearningPreviewContract;
+   type MachineLearningPreviewContract_Ptr is access MachineLearningPreviewContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

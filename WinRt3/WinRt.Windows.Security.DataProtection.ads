@@ -102,7 +102,7 @@ package WinRt.Windows.Security.DataProtection is
       AfterFirstUnlock_e => 1,
       WhileUnlocked_e => 2
    );
-   type UserDataAvailability_Ptr is access all UserDataAvailability;
+   type UserDataAvailability_Ptr is access UserDataAvailability;
 
    type UserDataBufferUnprotectStatus is (
       Succeeded_e,
@@ -112,7 +112,7 @@ package WinRt.Windows.Security.DataProtection is
       Succeeded_e => 0,
       Unavailable_e => 1
    );
-   type UserDataBufferUnprotectStatus_Ptr is access all UserDataBufferUnprotectStatus;
+   type UserDataBufferUnprotectStatus_Ptr is access UserDataBufferUnprotectStatus;
 
    type UserDataStorageItemProtectionStatus is (
       Succeeded_e,
@@ -124,7 +124,7 @@ package WinRt.Windows.Security.DataProtection is
       NotProtectable_e => 1,
       DataUnavailable_e => 2
    );
-   type UserDataStorageItemProtectionStatus_Ptr is access all UserDataStorageItemProtectionStatus;
+   type UserDataStorageItemProtectionStatus_Ptr is access UserDataStorageItemProtectionStatus;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

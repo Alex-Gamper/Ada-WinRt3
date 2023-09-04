@@ -120,7 +120,7 @@ package WinRt.Windows.Devices.Gpio is
       Rising_e => 1,
       Both_e => 2
    );
-   type GpioChangePolarity_Ptr is access all GpioChangePolarity;
+   type GpioChangePolarity_Ptr is access GpioChangePolarity;
 
    type GpioOpenStatus is (
       PinOpened_e,
@@ -136,7 +136,7 @@ package WinRt.Windows.Devices.Gpio is
       MuxingConflict_e => 3,
       UnknownError_e => 4
    );
-   type GpioOpenStatus_Ptr is access all GpioOpenStatus;
+   type GpioOpenStatus_Ptr is access GpioOpenStatus;
 
    type GpioPinDriveMode is (
       Input_e,
@@ -158,7 +158,7 @@ package WinRt.Windows.Devices.Gpio is
       OutputOpenSource_e => 6,
       OutputOpenSourcePullDown_e => 7
    );
-   type GpioPinDriveMode_Ptr is access all GpioPinDriveMode;
+   type GpioPinDriveMode_Ptr is access GpioPinDriveMode;
 
    type GpioPinEdge is (
       FallingEdge_e,
@@ -168,7 +168,7 @@ package WinRt.Windows.Devices.Gpio is
       FallingEdge_e => 0,
       RisingEdge_e => 1
    );
-   type GpioPinEdge_Ptr is access all GpioPinEdge;
+   type GpioPinEdge_Ptr is access GpioPinEdge;
 
    type GpioPinValue is (
       Low_e,
@@ -178,7 +178,7 @@ package WinRt.Windows.Devices.Gpio is
       Low_e => 0,
       High_e => 1
    );
-   type GpioPinValue_Ptr is access all GpioPinValue;
+   type GpioPinValue_Ptr is access GpioPinValue;
 
    type GpioSharingMode is (
       Exclusive_e,
@@ -188,7 +188,7 @@ package WinRt.Windows.Devices.Gpio is
       Exclusive_e => 0,
       SharedReadOnly_e => 1
    );
-   type GpioSharingMode_Ptr is access all GpioSharingMode;
+   type GpioSharingMode_Ptr is access GpioSharingMode;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -198,13 +198,13 @@ package WinRt.Windows.Devices.Gpio is
       Count : WinRt.UInt64;
       RelativeTime : WinRt.Windows.Foundation.TimeSpan;
    end record with Convention => C_Pass_By_Copy;
-   type GpioChangeCount_Ptr is access all GpioChangeCount;
+   type GpioChangeCount_Ptr is access GpioChangeCount;
 
    type GpioChangeRecord is record
       RelativeTime : WinRt.Windows.Foundation.TimeSpan;
       Edge : Windows.Devices.Gpio.GpioPinEdge;
    end record with Convention => C_Pass_By_Copy;
-   type GpioChangeRecord_Ptr is access all GpioChangeRecord;
+   type GpioChangeRecord_Ptr is access GpioChangeRecord;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

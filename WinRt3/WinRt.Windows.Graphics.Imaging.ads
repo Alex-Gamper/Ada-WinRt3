@@ -208,7 +208,7 @@ package WinRt.Windows.Graphics.Imaging is
       Straight_e => 1,
       Ignore_e => 2
    );
-   type BitmapAlphaMode_Ptr is access all BitmapAlphaMode;
+   type BitmapAlphaMode_Ptr is access BitmapAlphaMode;
 
    type BitmapBufferAccessMode is (
       Read_e,
@@ -220,7 +220,7 @@ package WinRt.Windows.Graphics.Imaging is
       ReadWrite_e => 1,
       Write_e => 2
    );
-   type BitmapBufferAccessMode_Ptr is access all BitmapBufferAccessMode;
+   type BitmapBufferAccessMode_Ptr is access BitmapBufferAccessMode;
 
    type BitmapFlip is (
       None_e,
@@ -232,7 +232,7 @@ package WinRt.Windows.Graphics.Imaging is
       Horizontal_e => 1,
       Vertical_e => 2
    );
-   type BitmapFlip_Ptr is access all BitmapFlip;
+   type BitmapFlip_Ptr is access BitmapFlip;
 
    type BitmapInterpolationMode is (
       NearestNeighbor_e,
@@ -246,7 +246,7 @@ package WinRt.Windows.Graphics.Imaging is
       Cubic_e => 2,
       Fant_e => 3
    );
-   type BitmapInterpolationMode_Ptr is access all BitmapInterpolationMode;
+   type BitmapInterpolationMode_Ptr is access BitmapInterpolationMode;
 
    type BitmapPixelFormat is (
       Unknown_e,
@@ -270,7 +270,7 @@ package WinRt.Windows.Graphics.Imaging is
       P010_e => 104,
       Yuy2_e => 107
    );
-   type BitmapPixelFormat_Ptr is access all BitmapPixelFormat;
+   type BitmapPixelFormat_Ptr is access BitmapPixelFormat;
 
    type BitmapRotation is (
       None_e,
@@ -284,7 +284,7 @@ package WinRt.Windows.Graphics.Imaging is
       Clockwise180Degrees_e => 2,
       Clockwise270Degrees_e => 3
    );
-   type BitmapRotation_Ptr is access all BitmapRotation;
+   type BitmapRotation_Ptr is access BitmapRotation;
 
    type ColorManagementMode is (
       DoNotColorManage_e,
@@ -294,7 +294,7 @@ package WinRt.Windows.Graphics.Imaging is
       DoNotColorManage_e => 0,
       ColorManageToSRgb_e => 1
    );
-   type ColorManagementMode_Ptr is access all ColorManagementMode;
+   type ColorManagementMode_Ptr is access ColorManagementMode;
 
    type ExifOrientationMode is (
       IgnoreExifOrientation_e,
@@ -304,7 +304,7 @@ package WinRt.Windows.Graphics.Imaging is
       IgnoreExifOrientation_e => 0,
       RespectExifOrientation_e => 1
    );
-   type ExifOrientationMode_Ptr is access all ExifOrientationMode;
+   type ExifOrientationMode_Ptr is access ExifOrientationMode;
 
    type JpegSubsamplingMode is (
       Default_e,
@@ -318,7 +318,7 @@ package WinRt.Windows.Graphics.Imaging is
       Y4Cb2Cr2_e => 2,
       Y4Cb4Cr4_e => 3
    );
-   type JpegSubsamplingMode_Ptr is access all JpegSubsamplingMode;
+   type JpegSubsamplingMode_Ptr is access JpegSubsamplingMode;
 
    type PngFilterMode is (
       Automatic_e,
@@ -338,7 +338,7 @@ package WinRt.Windows.Graphics.Imaging is
       Paeth_e => 5,
       Adaptive_e => 6
    );
-   type PngFilterMode_Ptr is access all PngFilterMode;
+   type PngFilterMode_Ptr is access PngFilterMode;
 
    type TiffCompressionMode is (
       Automatic_e,
@@ -360,7 +360,7 @@ package WinRt.Windows.Graphics.Imaging is
       Zip_e => 6,
       LzwhDifferencing_e => 7
    );
-   type TiffCompressionMode_Ptr is access all TiffCompressionMode;
+   type TiffCompressionMode_Ptr is access TiffCompressionMode;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -372,7 +372,7 @@ package WinRt.Windows.Graphics.Imaging is
       Width : WinRt.UInt32;
       Height : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type BitmapBounds_Ptr is access all BitmapBounds;
+   type BitmapBounds_Ptr is access BitmapBounds;
 
    type BitmapPlaneDescription is record
       StartIndex : WinRt.Int32;
@@ -380,13 +380,13 @@ package WinRt.Windows.Graphics.Imaging is
       Height : WinRt.Int32;
       Stride : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type BitmapPlaneDescription_Ptr is access all BitmapPlaneDescription;
+   type BitmapPlaneDescription_Ptr is access BitmapPlaneDescription;
 
    type BitmapSize is record
       Width : WinRt.UInt32;
       Height : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type BitmapSize_Ptr is access all BitmapSize;
+   type BitmapSize_Ptr is access BitmapSize;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

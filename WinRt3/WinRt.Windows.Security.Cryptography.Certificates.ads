@@ -309,7 +309,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       NTAuthentication_e => 2,
       MicrosoftRoot_e => 3
    );
-   type CertificateChainPolicy_Ptr is access all CertificateChainPolicy;
+   type CertificateChainPolicy_Ptr is access CertificateChainPolicy;
 
    type ChainValidationResult is (
       Success_e,
@@ -343,7 +343,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       RevocationFailure_e => 12,
       OtherErrors_e => 13
    );
-   type ChainValidationResult_Ptr is access all ChainValidationResult;
+   type ChainValidationResult_Ptr is access ChainValidationResult;
 
    type EnrollKeyUsages is (
       None_e,
@@ -359,7 +359,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       KeyAgreement_e => 4,
       All_e => 16777215
    );
-   type EnrollKeyUsages_Ptr is access all EnrollKeyUsages;
+   type EnrollKeyUsages_Ptr is access EnrollKeyUsages;
 
    type ExportOption is (
       NotExportable_e,
@@ -369,7 +369,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       NotExportable_e => 0,
       Exportable_e => 1
    );
-   type ExportOption_Ptr is access all ExportOption;
+   type ExportOption_Ptr is access ExportOption;
 
    type InstallOptions is (
       None_e,
@@ -379,7 +379,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       None_e => 0,
       DeleteExpired_e => 1
    );
-   type InstallOptions_Ptr is access all InstallOptions;
+   type InstallOptions_Ptr is access InstallOptions;
 
    type KeyProtectionLevel is (
       NoConsent_e,
@@ -393,7 +393,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       ConsentWithPassword_e => 2,
       ConsentWithFingerprint_e => 3
    );
-   type KeyProtectionLevel_Ptr is access all KeyProtectionLevel;
+   type KeyProtectionLevel_Ptr is access KeyProtectionLevel;
 
    type KeySize is (
       Invalid_e,
@@ -405,7 +405,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       Rsa2048_e => 2048,
       Rsa4096_e => 4096
    );
-   type KeySize_Ptr is access all KeySize;
+   type KeySize_Ptr is access KeySize;
 
    type SignatureValidationResult is (
       Success_e,
@@ -421,7 +421,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       InvalidSignature_e => 3,
       OtherErrors_e => 4
    );
-   type SignatureValidationResult_Ptr is access all SignatureValidationResult;
+   type SignatureValidationResult_Ptr is access SignatureValidationResult;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

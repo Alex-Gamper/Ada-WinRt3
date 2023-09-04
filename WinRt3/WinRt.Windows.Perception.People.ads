@@ -159,7 +159,7 @@ package WinRt.Windows.Perception.People is
       LittleDistal_e => 24,
       LittleTip_e => 25
    );
-   type HandJointKind_Ptr is access all HandJointKind;
+   type HandJointKind_Ptr is access HandJointKind;
    type HandJointKind_Array is array (Natural range <>) of aliased HandJointKind;
 
    type JointPoseAccuracy is (
@@ -170,7 +170,7 @@ package WinRt.Windows.Perception.People is
       High_e => 0,
       Approximate_e => 1
    );
-   type JointPoseAccuracy_Ptr is access all JointPoseAccuracy;
+   type JointPoseAccuracy_Ptr is access JointPoseAccuracy;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -180,7 +180,7 @@ package WinRt.Windows.Perception.People is
       Position : WinRt.Windows.Foundation.Numerics.Vector3;
       Normal : WinRt.Windows.Foundation.Numerics.Vector3;
    end record with Convention => C_Pass_By_Copy;
-   type HandMeshVertex_Ptr is access all HandMeshVertex;
+   type HandMeshVertex_Ptr is access HandMeshVertex;
    type HandMeshVertex_Array is array (Natural range <>) of aliased HandMeshVertex;
 
    type JointPose is record
@@ -189,7 +189,7 @@ package WinRt.Windows.Perception.People is
       Radius : WinRt.Single;
       Accuracy : Windows.Perception.People.JointPoseAccuracy;
    end record with Convention => C_Pass_By_Copy;
-   type JointPose_Ptr is access all JointPose;
+   type JointPose_Ptr is access JointPose;
    type JointPose_Array is array (Natural range <>) of aliased JointPose;
 
    -----------------------------------------------------------------------------

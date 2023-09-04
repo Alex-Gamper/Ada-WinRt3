@@ -156,7 +156,7 @@ package WinRt.Windows.Storage.Pickers is
       Objects3D_e => 8,
       Unspecified_e => 9
    );
-   type PickerLocationId_Ptr is access all PickerLocationId;
+   type PickerLocationId_Ptr is access PickerLocationId;
 
    type PickerViewMode is (
       List_e,
@@ -166,7 +166,7 @@ package WinRt.Windows.Storage.Pickers is
       List_e => 0,
       Thumbnail_e => 1
    );
-   type PickerViewMode_Ptr is access all PickerViewMode;
+   type PickerViewMode_Ptr is access PickerViewMode;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

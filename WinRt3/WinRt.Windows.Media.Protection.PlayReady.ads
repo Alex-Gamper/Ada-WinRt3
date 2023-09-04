@@ -408,7 +408,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       CRLS_e => 9,
       PlayReady3Features_e => 13
    );
-   type NDCertificateFeature_Ptr is access all NDCertificateFeature;
+   type NDCertificateFeature_Ptr is access NDCertificateFeature;
    type NDCertificateFeature_Array is array (Natural range <>) of aliased NDCertificateFeature;
 
    type NDCertificatePlatformID is (
@@ -439,7 +439,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       WindowsPhone81OnARM_e => 12,
       WindowsPhone81OnX86_e => 13
    );
-   type NDCertificatePlatformID_Ptr is access all NDCertificatePlatformID;
+   type NDCertificatePlatformID_Ptr is access NDCertificatePlatformID;
 
    type NDCertificateType is (
       Unknown_e,
@@ -471,7 +471,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       Server_e => 11,
       LicenseSigner_e => 12
    );
-   type NDCertificateType_Ptr is access all NDCertificateType;
+   type NDCertificateType_Ptr is access NDCertificateType;
 
    type NDClosedCaptionFormat is (
       ATSC_e,
@@ -483,7 +483,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       SCTE20_e => 1,
       Unknown_e => 2
    );
-   type NDClosedCaptionFormat_Ptr is access all NDClosedCaptionFormat;
+   type NDClosedCaptionFormat_Ptr is access NDClosedCaptionFormat;
 
    type NDContentIDType is (
       KeyID_e,
@@ -495,7 +495,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       PlayReadyObject_e => 2,
       Custom_e => 3
    );
-   type NDContentIDType_Ptr is access all NDContentIDType;
+   type NDContentIDType_Ptr is access NDContentIDType;
 
    type NDMediaStreamType is (
       Audio_e,
@@ -505,7 +505,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       Audio_e => 1,
       Video_e => 2
    );
-   type NDMediaStreamType_Ptr is access all NDMediaStreamType;
+   type NDMediaStreamType_Ptr is access NDMediaStreamType;
 
    type NDProximityDetectionType is (
       UDP_e,
@@ -517,7 +517,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       TCP_e => 2,
       TransportAgnostic_e => 4
    );
-   type NDProximityDetectionType_Ptr is access all NDProximityDetectionType;
+   type NDProximityDetectionType_Ptr is access NDProximityDetectionType;
 
    type NDStartAsyncOptions is (
       MutualAuthentication_e,
@@ -527,7 +527,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       MutualAuthentication_e => 1,
       WaitForLicenseDescriptor_e => 2
    );
-   type NDStartAsyncOptions_Ptr is access all NDStartAsyncOptions;
+   type NDStartAsyncOptions_Ptr is access NDStartAsyncOptions;
 
    type PlayReadyDecryptorSetup is (
       Uninitialized_e,
@@ -537,7 +537,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       Uninitialized_e => 0,
       OnDemand_e => 1
    );
-   type PlayReadyDecryptorSetup_Ptr is access all PlayReadyDecryptorSetup;
+   type PlayReadyDecryptorSetup_Ptr is access PlayReadyDecryptorSetup;
 
    type PlayReadyEncryptionAlgorithm is (
       Unprotected_e,
@@ -555,7 +555,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       Unspecified_e => 65535,
       Uninitialized_e => 2147483647
    );
-   type PlayReadyEncryptionAlgorithm_Ptr is access all PlayReadyEncryptionAlgorithm;
+   type PlayReadyEncryptionAlgorithm_Ptr is access PlayReadyEncryptionAlgorithm;
 
    type PlayReadyHardwareDRMFeatures is (
       HardwareDRM_e,
@@ -567,7 +567,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       HEVC_e => 2,
       Aes128Cbc_e => 3
    );
-   type PlayReadyHardwareDRMFeatures_Ptr is access all PlayReadyHardwareDRMFeatures;
+   type PlayReadyHardwareDRMFeatures_Ptr is access PlayReadyHardwareDRMFeatures;
 
    type PlayReadyITADataFormat is (
       SerializedProperties_e,
@@ -577,7 +577,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       SerializedProperties_e => 0,
       SerializedProperties_WithContentProtectionWrapper_e => 1
    );
-   type PlayReadyITADataFormat_Ptr is access all PlayReadyITADataFormat;
+   type PlayReadyITADataFormat_Ptr is access PlayReadyITADataFormat;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

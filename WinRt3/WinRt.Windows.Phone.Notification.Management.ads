@@ -303,7 +303,7 @@ package WinRt.Windows.Phone.Notification.Management is
       VolumeChanged_e => 8192,
       EmailReadStatusChanged_e => 16384
    );
-   type AccessoryNotificationType_Ptr is access all AccessoryNotificationType;
+   type AccessoryNotificationType_Ptr is access AccessoryNotificationType;
 
    type CalendarChangedEvent is (
       LostEvents_e,
@@ -323,7 +323,7 @@ package WinRt.Windows.Phone.Notification.Management is
       CalendarChanged_e => 5,
       CalendarDeleted_e => 6
    );
-   type CalendarChangedEvent_Ptr is access all CalendarChangedEvent;
+   type CalendarChangedEvent_Ptr is access CalendarChangedEvent;
 
    type PhoneCallAudioEndpoint is (
       Default_e,
@@ -335,7 +335,7 @@ package WinRt.Windows.Phone.Notification.Management is
       Speaker_e => 1,
       Handsfree_e => 2
    );
-   type PhoneCallAudioEndpoint_Ptr is access all PhoneCallAudioEndpoint;
+   type PhoneCallAudioEndpoint_Ptr is access PhoneCallAudioEndpoint;
 
    type PhoneCallDirection is (
       Incoming_e,
@@ -345,7 +345,7 @@ package WinRt.Windows.Phone.Notification.Management is
       Incoming_e => 0,
       Outgoing_e => 1
    );
-   type PhoneCallDirection_Ptr is access all PhoneCallDirection;
+   type PhoneCallDirection_Ptr is access PhoneCallDirection;
 
    type PhoneCallState is (
       Unknown_e,
@@ -361,7 +361,7 @@ package WinRt.Windows.Phone.Notification.Management is
       Held_e => 3,
       Ended_e => 4
    );
-   type PhoneCallState_Ptr is access all PhoneCallState;
+   type PhoneCallState_Ptr is access PhoneCallState;
 
    type PhoneCallTransport is (
       Cellular_e,
@@ -371,7 +371,7 @@ package WinRt.Windows.Phone.Notification.Management is
       Cellular_e => 0,
       Voip_e => 1
    );
-   type PhoneCallTransport_Ptr is access all PhoneCallTransport;
+   type PhoneCallTransport_Ptr is access PhoneCallTransport;
 
    type PhoneLineRegistrationState is (
       Disconnected_e,
@@ -383,7 +383,7 @@ package WinRt.Windows.Phone.Notification.Management is
       Home_e => 1,
       Roaming_e => 2
    );
-   type PhoneLineRegistrationState_Ptr is access all PhoneLineRegistrationState;
+   type PhoneLineRegistrationState_Ptr is access PhoneLineRegistrationState;
 
    type PhoneMediaType is (
       AudioOnly_e,
@@ -393,7 +393,7 @@ package WinRt.Windows.Phone.Notification.Management is
       AudioOnly_e => 0,
       AudioVideo_e => 1
    );
-   type PhoneMediaType_Ptr is access all PhoneMediaType;
+   type PhoneMediaType_Ptr is access PhoneMediaType;
 
    type PhoneNotificationType is (
       NewCall_e,
@@ -409,7 +409,7 @@ package WinRt.Windows.Phone.Notification.Management is
       PhoneCallAudioEndpointChanged_e => 3,
       PhoneMuteChanged_e => 4
    );
-   type PhoneNotificationType_Ptr is access all PhoneNotificationType;
+   type PhoneNotificationType_Ptr is access PhoneNotificationType;
 
    type PlaybackCapability is (
       None_e,
@@ -437,7 +437,7 @@ package WinRt.Windows.Phone.Notification.Management is
       ChannelUp_e => 256,
       ChannelDown_e => 512
    );
-   type PlaybackCapability_Ptr is access all PlaybackCapability;
+   type PlaybackCapability_Ptr is access PlaybackCapability;
 
    type PlaybackCommand is (
       Play_e,
@@ -463,7 +463,7 @@ package WinRt.Windows.Phone.Notification.Management is
       ChannelUp_e => 8,
       ChannelDown_e => 9
    );
-   type PlaybackCommand_Ptr is access all PlaybackCommand;
+   type PlaybackCommand_Ptr is access PlaybackCommand;
 
    type PlaybackStatus is (
       None_e,
@@ -479,7 +479,7 @@ package WinRt.Windows.Phone.Notification.Management is
       Playing_e => 3,
       Paused_e => 4
    );
-   type PlaybackStatus_Ptr is access all PlaybackStatus;
+   type PlaybackStatus_Ptr is access PlaybackStatus;
 
    type ReminderState is (
       Active_e,
@@ -491,7 +491,7 @@ package WinRt.Windows.Phone.Notification.Management is
       Snoozed_e => 1,
       Dismissed_e => 2
    );
-   type ReminderState_Ptr is access all ReminderState;
+   type ReminderState_Ptr is access ReminderState;
 
    type VibrateState is (
       RingerOffVibrateOff_e,
@@ -505,7 +505,7 @@ package WinRt.Windows.Phone.Notification.Management is
       RingerOnVibrateOff_e => 2,
       RingerOnVibrateOn_e => 3
    );
-   type VibrateState_Ptr is access all VibrateState;
+   type VibrateState_Ptr is access VibrateState;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

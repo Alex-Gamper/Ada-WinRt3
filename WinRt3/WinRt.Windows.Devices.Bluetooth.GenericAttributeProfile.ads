@@ -470,7 +470,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       ReliableWrites_e => 256,
       WritableAuxiliaries_e => 512
    );
-   type GattCharacteristicProperties_Ptr is access all GattCharacteristicProperties;
+   type GattCharacteristicProperties_Ptr is access GattCharacteristicProperties;
 
    type GattClientCharacteristicConfigurationDescriptorValue is (
       None_e,
@@ -482,7 +482,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Notify_e => 1,
       Indicate_e => 2
    );
-   type GattClientCharacteristicConfigurationDescriptorValue_Ptr is access all GattClientCharacteristicConfigurationDescriptorValue;
+   type GattClientCharacteristicConfigurationDescriptorValue_Ptr is access GattClientCharacteristicConfigurationDescriptorValue;
 
    type GattCommunicationStatus is (
       Success_e,
@@ -496,7 +496,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       ProtocolError_e => 2,
       AccessDenied_e => 3
    );
-   type GattCommunicationStatus_Ptr is access all GattCommunicationStatus;
+   type GattCommunicationStatus_Ptr is access GattCommunicationStatus;
 
    type GattOpenStatus is (
       Unspecified_e,
@@ -514,7 +514,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       SharingViolation_e => 4,
       AccessDenied_e => 5
    );
-   type GattOpenStatus_Ptr is access all GattOpenStatus;
+   type GattOpenStatus_Ptr is access GattOpenStatus;
 
    type GattProtectionLevel is (
       Plain_e,
@@ -528,7 +528,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       EncryptionRequired_e => 2,
       EncryptionAndAuthenticationRequired_e => 3
    );
-   type GattProtectionLevel_Ptr is access all GattProtectionLevel;
+   type GattProtectionLevel_Ptr is access GattProtectionLevel;
 
    type GattRequestState is (
       Pending_e,
@@ -540,7 +540,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Completed_e => 1,
       Canceled_e => 2
    );
-   type GattRequestState_Ptr is access all GattRequestState;
+   type GattRequestState_Ptr is access GattRequestState;
 
    type GattServiceProviderAdvertisementStatus is (
       Created_e,
@@ -556,7 +556,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Aborted_e => 3,
       StartedWithoutAllAdvertisementData_e => 4
    );
-   type GattServiceProviderAdvertisementStatus_Ptr is access all GattServiceProviderAdvertisementStatus;
+   type GattServiceProviderAdvertisementStatus_Ptr is access GattServiceProviderAdvertisementStatus;
 
    type GattSessionStatus is (
       Closed_e,
@@ -566,7 +566,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Closed_e => 0,
       Active_e => 1
    );
-   type GattSessionStatus_Ptr is access all GattSessionStatus;
+   type GattSessionStatus_Ptr is access GattSessionStatus;
 
    type GattSharingMode is (
       Unspecified_e,
@@ -580,7 +580,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       SharedReadOnly_e => 2,
       SharedReadAndWrite_e => 3
    );
-   type GattSharingMode_Ptr is access all GattSharingMode;
+   type GattSharingMode_Ptr is access GattSharingMode;
 
    type GattWriteOption is (
       WriteWithResponse_e,
@@ -590,7 +590,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       WriteWithResponse_e => 0,
       WriteWithoutResponse_e => 1
    );
-   type GattWriteOption_Ptr is access all GattWriteOption;
+   type GattWriteOption_Ptr is access GattWriteOption;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

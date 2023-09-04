@@ -120,7 +120,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       Contact_e => 2,
       Appointment_e => 4
    );
-   type UserDataAccountContentKinds_Ptr is access all UserDataAccountContentKinds;
+   type UserDataAccountContentKinds_Ptr is access UserDataAccountContentKinds;
 
    type UserDataAccountOtherAppReadAccess is (
       SystemOnly_e,
@@ -132,7 +132,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       Full_e => 1,
       None_e => 2
    );
-   type UserDataAccountOtherAppReadAccess_Ptr is access all UserDataAccountOtherAppReadAccess;
+   type UserDataAccountOtherAppReadAccess_Ptr is access UserDataAccountOtherAppReadAccess;
 
    type UserDataAccountStoreAccessType is (
       AllAccountsReadOnly_e,
@@ -142,7 +142,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       AllAccountsReadOnly_e => 0,
       AppAccountsReadWrite_e => 1
    );
-   type UserDataAccountStoreAccessType_Ptr is access all UserDataAccountStoreAccessType;
+   type UserDataAccountStoreAccessType_Ptr is access UserDataAccountStoreAccessType;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

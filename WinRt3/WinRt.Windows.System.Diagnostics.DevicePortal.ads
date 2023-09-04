@@ -105,7 +105,7 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
       UserNotPresent_e => 4,
       ServiceTerminated_e => 5
    );
-   type DevicePortalConnectionClosedReason_Ptr is access all DevicePortalConnectionClosedReason;
+   type DevicePortalConnectionClosedReason_Ptr is access DevicePortalConnectionClosedReason;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

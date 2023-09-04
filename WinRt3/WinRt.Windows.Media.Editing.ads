@@ -145,7 +145,7 @@ package WinRt.Windows.Media.Editing is
       Fast_e => 0,
       Precise_e => 1
    );
-   type MediaTrimmingPreference_Ptr is access all MediaTrimmingPreference;
+   type MediaTrimmingPreference_Ptr is access MediaTrimmingPreference;
 
    type VideoFramePrecision is (
       NearestFrame_e,
@@ -155,7 +155,7 @@ package WinRt.Windows.Media.Editing is
       NearestFrame_e => 0,
       NearestKeyFrame_e => 1
    );
-   type VideoFramePrecision_Ptr is access all VideoFramePrecision;
+   type VideoFramePrecision_Ptr is access VideoFramePrecision;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

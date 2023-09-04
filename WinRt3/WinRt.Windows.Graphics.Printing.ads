@@ -42,7 +42,7 @@ package WinRt.Windows.Graphics.Printing is
    -----------------------------------------------------------------------------
 
    type PrintTaskSourceRequestedHandler_Delegate;
-   type PrintTaskSourceRequestedHandler is access all PrintTaskSourceRequestedHandler_Delegate;
+   type PrintTaskSourceRequestedHandler is access PrintTaskSourceRequestedHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -263,7 +263,7 @@ package WinRt.Windows.Graphics.Printing is
       JogOffset_e => 15,
       Trim_e => 16
    );
-   type PrintBinding_Ptr is access all PrintBinding;
+   type PrintBinding_Ptr is access PrintBinding;
 
    type PrintBordering is (
       Default_e,
@@ -279,7 +279,7 @@ package WinRt.Windows.Graphics.Printing is
       Bordered_e => 3,
       Borderless_e => 4
    );
-   type PrintBordering_Ptr is access all PrintBordering;
+   type PrintBordering_Ptr is access PrintBordering;
 
    type PrintCollation is (
       Default_e,
@@ -295,7 +295,7 @@ package WinRt.Windows.Graphics.Printing is
       Collated_e => 3,
       Uncollated_e => 4
    );
-   type PrintCollation_Ptr is access all PrintCollation;
+   type PrintCollation_Ptr is access PrintCollation;
 
    type PrintColorMode is (
       Default_e,
@@ -313,7 +313,7 @@ package WinRt.Windows.Graphics.Printing is
       Grayscale_e => 4,
       Monochrome_e => 5
    );
-   type PrintColorMode_Ptr is access all PrintColorMode;
+   type PrintColorMode_Ptr is access PrintColorMode;
 
    type PrintDuplex is (
       Default_e,
@@ -331,7 +331,7 @@ package WinRt.Windows.Graphics.Printing is
       TwoSidedShortEdge_e => 4,
       TwoSidedLongEdge_e => 5
    );
-   type PrintDuplex_Ptr is access all PrintDuplex;
+   type PrintDuplex_Ptr is access PrintDuplex;
 
    type PrintHolePunch is (
       Default_e,
@@ -353,7 +353,7 @@ package WinRt.Windows.Graphics.Printing is
       TopEdge_e => 6,
       BottomEdge_e => 7
    );
-   type PrintHolePunch_Ptr is access all PrintHolePunch;
+   type PrintHolePunch_Ptr is access PrintHolePunch;
 
    type PrintMediaSize is (
       Default_e,
@@ -705,7 +705,7 @@ package WinRt.Windows.Graphics.Printing is
       Roll36Inch_e => 171,
       Roll54Inch_e => 172
    );
-   type PrintMediaSize_Ptr is access all PrintMediaSize;
+   type PrintMediaSize_Ptr is access PrintMediaSize;
 
    type PrintMediaType is (
       Default_e,
@@ -775,7 +775,7 @@ package WinRt.Windows.Graphics.Printing is
       TShirtTransfer_e => 30,
       None_e => 31
    );
-   type PrintMediaType_Ptr is access all PrintMediaType;
+   type PrintMediaType_Ptr is access PrintMediaType;
 
    type PrintOrientation is (
       Default_e,
@@ -795,7 +795,7 @@ package WinRt.Windows.Graphics.Printing is
       Landscape_e => 5,
       LandscapeFlipped_e => 6
    );
-   type PrintOrientation_Ptr is access all PrintOrientation;
+   type PrintOrientation_Ptr is access PrintOrientation;
 
    type PrintQuality is (
       Default_e,
@@ -821,7 +821,7 @@ package WinRt.Windows.Graphics.Printing is
       Photographic_e => 8,
       Text_e => 9
    );
-   type PrintQuality_Ptr is access all PrintQuality;
+   type PrintQuality_Ptr is access PrintQuality;
 
    type PrintStaple is (
       Default_e,
@@ -853,7 +853,7 @@ package WinRt.Windows.Graphics.Printing is
       StapleDualBottom_e => 11,
       SaddleStitch_e => 12
    );
-   type PrintStaple_Ptr is access all PrintStaple;
+   type PrintStaple_Ptr is access PrintStaple;
 
    type PrintTaskCompletion is (
       Abandoned_e,
@@ -867,7 +867,7 @@ package WinRt.Windows.Graphics.Printing is
       Failed_e => 2,
       Submitted_e => 3
    );
-   type PrintTaskCompletion_Ptr is access all PrintTaskCompletion;
+   type PrintTaskCompletion_Ptr is access PrintTaskCompletion;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -879,7 +879,7 @@ package WinRt.Windows.Graphics.Printing is
       DpiX : WinRt.UInt32;
       DpiY : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type PrintPageDescription_Ptr is access all PrintPageDescription;
+   type PrintPageDescription_Ptr is access PrintPageDescription;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

@@ -63,7 +63,7 @@ package WinRt.Windows.ApplicationModel.Preview.InkWorkspace is
    type PreviewInkWorkspaceContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type PreviewInkWorkspaceContract_Ptr is access all PreviewInkWorkspaceContract;
+   type PreviewInkWorkspaceContract_Ptr is access PreviewInkWorkspaceContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

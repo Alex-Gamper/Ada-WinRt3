@@ -73,7 +73,7 @@ package WinRt.Windows.Devices.Printers is
    type PrintersContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type PrintersContract_Ptr is access all PrintersContract;
+   type PrintersContract_Ptr is access PrintersContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

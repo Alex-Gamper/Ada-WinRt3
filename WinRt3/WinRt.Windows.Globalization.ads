@@ -192,7 +192,7 @@ package WinRt.Windows.Globalization is
       Friday_e => 5,
       Saturday_e => 6
    );
-   type DayOfWeek_Ptr is access all DayOfWeek;
+   type DayOfWeek_Ptr is access DayOfWeek;
 
    type LanguageLayoutDirection is (
       Ltr_e,
@@ -206,7 +206,7 @@ package WinRt.Windows.Globalization is
       TtbLtr_e => 2,
       TtbRtl_e => 3
    );
-   type LanguageLayoutDirection_Ptr is access all LanguageLayoutDirection;
+   type LanguageLayoutDirection_Ptr is access LanguageLayoutDirection;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -215,7 +215,7 @@ package WinRt.Windows.Globalization is
    type GlobalizationJapanesePhoneticAnalyzerContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type GlobalizationJapanesePhoneticAnalyzerContract_Ptr is access all GlobalizationJapanesePhoneticAnalyzerContract;
+   type GlobalizationJapanesePhoneticAnalyzerContract_Ptr is access GlobalizationJapanesePhoneticAnalyzerContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

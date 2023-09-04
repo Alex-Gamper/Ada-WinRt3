@@ -117,7 +117,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       Auto_e => 0,
       Deferred_e => 1
    );
-   type CoreDragUIContentMode_Ptr is access all CoreDragUIContentMode;
+   type CoreDragUIContentMode_Ptr is access CoreDragUIContentMode;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

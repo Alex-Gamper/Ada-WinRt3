@@ -42,16 +42,16 @@ package WinRt.Windows.Networking.Proximity is
    -----------------------------------------------------------------------------
 
    type DeviceArrivedEventHandler_Delegate;
-   type DeviceArrivedEventHandler is access all DeviceArrivedEventHandler_Delegate;
+   type DeviceArrivedEventHandler is access DeviceArrivedEventHandler_Delegate;
 
    type DeviceDepartedEventHandler_Delegate;
-   type DeviceDepartedEventHandler is access all DeviceDepartedEventHandler_Delegate;
+   type DeviceDepartedEventHandler is access DeviceDepartedEventHandler_Delegate;
 
    type MessageReceivedHandler_Delegate;
-   type MessageReceivedHandler is access all MessageReceivedHandler_Delegate;
+   type MessageReceivedHandler is access MessageReceivedHandler_Delegate;
 
    type MessageTransmittedHandler_Delegate;
-   type MessageTransmittedHandler is access all MessageTransmittedHandler_Delegate;
+   type MessageTransmittedHandler is access MessageTransmittedHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -150,7 +150,7 @@ package WinRt.Windows.Networking.Proximity is
       Browse_e => 1,
       Triggered_e => 2
    );
-   type PeerDiscoveryTypes_Ptr is access all PeerDiscoveryTypes;
+   type PeerDiscoveryTypes_Ptr is access PeerDiscoveryTypes;
 
    type PeerRole is (
       Peer_e,
@@ -162,7 +162,7 @@ package WinRt.Windows.Networking.Proximity is
       Host_e => 1,
       Client_e => 2
    );
-   type PeerRole_Ptr is access all PeerRole;
+   type PeerRole_Ptr is access PeerRole;
 
    type PeerWatcherStatus is (
       Created_e,
@@ -180,7 +180,7 @@ package WinRt.Windows.Networking.Proximity is
       Stopped_e => 4,
       Aborted_e => 5
    );
-   type PeerWatcherStatus_Ptr is access all PeerWatcherStatus;
+   type PeerWatcherStatus_Ptr is access PeerWatcherStatus;
 
    type TriggeredConnectState is (
       PeerFound_e,
@@ -198,7 +198,7 @@ package WinRt.Windows.Networking.Proximity is
       Canceled_e => 4,
       Failed_e => 5
    );
-   type TriggeredConnectState_Ptr is access all TriggeredConnectState;
+   type TriggeredConnectState_Ptr is access TriggeredConnectState;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

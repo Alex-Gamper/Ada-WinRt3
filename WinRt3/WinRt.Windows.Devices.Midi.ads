@@ -326,7 +326,7 @@ package WinRt.Windows.Devices.Midi is
       ActiveSensing_e => 254,
       SystemReset_e => 255
    );
-   type MidiMessageType_Ptr is access all MidiMessageType;
+   type MidiMessageType_Ptr is access MidiMessageType;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

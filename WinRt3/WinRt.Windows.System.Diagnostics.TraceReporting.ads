@@ -79,7 +79,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
       FreeNetworkNotAvailable_e => 1,
       ACPowerNotAvailable_e => 2
    );
-   type PlatformDiagnosticActionState_Ptr is access all PlatformDiagnosticActionState;
+   type PlatformDiagnosticActionState_Ptr is access PlatformDiagnosticActionState;
 
    type PlatformDiagnosticEscalationType is (
       OnCompletion_e,
@@ -89,7 +89,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
       OnCompletion_e => 0,
       OnFailure_e => 1
    );
-   type PlatformDiagnosticEscalationType_Ptr is access all PlatformDiagnosticEscalationType;
+   type PlatformDiagnosticEscalationType_Ptr is access PlatformDiagnosticEscalationType;
 
    type PlatformDiagnosticEventBufferLatencies is (
       Normal_e,
@@ -101,7 +101,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
       CostDeferred_e => 2,
       Realtime_e => 4
    );
-   type PlatformDiagnosticEventBufferLatencies_Ptr is access all PlatformDiagnosticEventBufferLatencies;
+   type PlatformDiagnosticEventBufferLatencies_Ptr is access PlatformDiagnosticEventBufferLatencies;
 
    type PlatformDiagnosticTracePriority is (
       Normal_e,
@@ -111,7 +111,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
       Normal_e => 0,
       UserElevated_e => 1
    );
-   type PlatformDiagnosticTracePriority_Ptr is access all PlatformDiagnosticTracePriority;
+   type PlatformDiagnosticTracePriority_Ptr is access PlatformDiagnosticTracePriority;
 
    type PlatformDiagnosticTraceSlotState is (
       NotRunning_e,
@@ -123,7 +123,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
       Running_e => 1,
       Throttled_e => 2
    );
-   type PlatformDiagnosticTraceSlotState_Ptr is access all PlatformDiagnosticTraceSlotState;
+   type PlatformDiagnosticTraceSlotState_Ptr is access PlatformDiagnosticTraceSlotState;
 
    type PlatformDiagnosticTraceSlotType is (
       Alternative_e,
@@ -135,7 +135,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
       AlwaysOn_e => 1,
       Mini_e => 2
    );
-   type PlatformDiagnosticTraceSlotType_Ptr is access all PlatformDiagnosticTraceSlotType;
+   type PlatformDiagnosticTraceSlotType_Ptr is access PlatformDiagnosticTraceSlotType;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

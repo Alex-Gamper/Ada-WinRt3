@@ -40,7 +40,7 @@ package WinRt.Windows.UI.Popups is
    -----------------------------------------------------------------------------
 
    type UICommandInvokedHandler_Delegate;
-   type UICommandInvokedHandler is access all UICommandInvokedHandler_Delegate;
+   type UICommandInvokedHandler is access UICommandInvokedHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -104,7 +104,7 @@ package WinRt.Windows.UI.Popups is
       None_e => 0,
       AcceptUserInputAfterDelay_e => 1
    );
-   type MessageDialogOptions_Ptr is access all MessageDialogOptions;
+   type MessageDialogOptions_Ptr is access MessageDialogOptions;
 
    type Placement is (
       Default_e,
@@ -120,7 +120,7 @@ package WinRt.Windows.UI.Popups is
       Left_e => 3,
       Right_e => 4
    );
-   type Placement_Ptr is access all Placement;
+   type Placement_Ptr is access Placement;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

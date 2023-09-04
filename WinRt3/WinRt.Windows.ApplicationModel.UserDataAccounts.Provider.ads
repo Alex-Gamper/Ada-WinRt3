@@ -99,7 +99,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       Settings_e => 1,
       ResolveErrors_e => 2
    );
-   type UserDataAccountProviderOperationKind_Ptr is access all UserDataAccountProviderOperationKind;
+   type UserDataAccountProviderOperationKind_Ptr is access UserDataAccountProviderOperationKind;
 
    type UserDataAccountProviderPartnerAccountKind is (
       Exchange_e,
@@ -109,7 +109,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       Exchange_e => 0,
       PopOrImap_e => 1
    );
-   type UserDataAccountProviderPartnerAccountKind_Ptr is access all UserDataAccountProviderPartnerAccountKind;
+   type UserDataAccountProviderPartnerAccountKind_Ptr is access UserDataAccountProviderPartnerAccountKind;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

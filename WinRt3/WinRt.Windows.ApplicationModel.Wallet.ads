@@ -152,7 +152,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
       Message_e => 3,
       Verb_e => 4
    );
-   type WalletActionKind_Ptr is access all WalletActionKind;
+   type WalletActionKind_Ptr is access WalletActionKind;
 
    type WalletBarcodeSymbology is (
       Invalid_e,
@@ -182,7 +182,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
       Aztec_e => 10,
       Custom_e => 100000
    );
-   type WalletBarcodeSymbology_Ptr is access all WalletBarcodeSymbology;
+   type WalletBarcodeSymbology_Ptr is access WalletBarcodeSymbology;
 
    type WalletDetailViewPosition is (
       Hidden_e,
@@ -218,7 +218,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
       FooterField3_e => 13,
       FooterField4_e => 14
    );
-   type WalletDetailViewPosition_Ptr is access all WalletDetailViewPosition;
+   type WalletDetailViewPosition_Ptr is access WalletDetailViewPosition;
 
    type WalletItemKind is (
       Invalid_e,
@@ -238,7 +238,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
       BoardingPass_e => 5,
       MembershipCard_e => 6
    );
-   type WalletItemKind_Ptr is access all WalletItemKind;
+   type WalletItemKind_Ptr is access WalletItemKind;
 
    type WalletSummaryViewPosition is (
       Hidden_e,
@@ -250,7 +250,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
       Field1_e => 1,
       Field2_e => 2
    );
-   type WalletSummaryViewPosition_Ptr is access all WalletSummaryViewPosition;
+   type WalletSummaryViewPosition_Ptr is access WalletSummaryViewPosition;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -259,7 +259,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    type WalletContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type WalletContract_Ptr is access all WalletContract;
+   type WalletContract_Ptr is access WalletContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

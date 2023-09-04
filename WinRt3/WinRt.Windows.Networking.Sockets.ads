@@ -456,7 +456,7 @@ package WinRt.Windows.Networking.Sockets is
       QuietHoursExit_e => 2,
       ApplicationRestart_e => 3
    );
-   type ControlChannelTriggerResetReason_Ptr is access all ControlChannelTriggerResetReason;
+   type ControlChannelTriggerResetReason_Ptr is access ControlChannelTriggerResetReason;
 
    type ControlChannelTriggerResourceType is (
       RequestSoftwareSlot_e,
@@ -466,7 +466,7 @@ package WinRt.Windows.Networking.Sockets is
       RequestSoftwareSlot_e => 0,
       RequestHardwareSlot_e => 1
    );
-   type ControlChannelTriggerResourceType_Ptr is access all ControlChannelTriggerResourceType;
+   type ControlChannelTriggerResourceType_Ptr is access ControlChannelTriggerResourceType;
 
    type ControlChannelTriggerStatus is (
       HardwareSlotRequested_e,
@@ -486,7 +486,7 @@ package WinRt.Windows.Networking.Sockets is
       TransportDisconnected_e => 5,
       ServiceUnavailable_e => 6
    );
-   type ControlChannelTriggerStatus_Ptr is access all ControlChannelTriggerStatus;
+   type ControlChannelTriggerStatus_Ptr is access ControlChannelTriggerStatus;
 
    type MessageWebSocketReceiveMode is (
       FullMessage_e,
@@ -496,7 +496,7 @@ package WinRt.Windows.Networking.Sockets is
       FullMessage_e => 0,
       PartialMessage_e => 1
    );
-   type MessageWebSocketReceiveMode_Ptr is access all MessageWebSocketReceiveMode;
+   type MessageWebSocketReceiveMode_Ptr is access MessageWebSocketReceiveMode;
 
    type SocketActivityConnectedStandbyAction is (
       DoNotWake_e,
@@ -506,7 +506,7 @@ package WinRt.Windows.Networking.Sockets is
       DoNotWake_e => 0,
       Wake_e => 1
    );
-   type SocketActivityConnectedStandbyAction_Ptr is access all SocketActivityConnectedStandbyAction;
+   type SocketActivityConnectedStandbyAction_Ptr is access SocketActivityConnectedStandbyAction;
 
    type SocketActivityKind is (
       None_e,
@@ -520,7 +520,7 @@ package WinRt.Windows.Networking.Sockets is
       DatagramSocket_e => 2,
       StreamSocket_e => 3
    );
-   type SocketActivityKind_Ptr is access all SocketActivityKind;
+   type SocketActivityKind_Ptr is access SocketActivityKind;
 
    type SocketActivityTriggerReason is (
       None_e,
@@ -536,7 +536,7 @@ package WinRt.Windows.Networking.Sockets is
       KeepAliveTimerExpired_e => 3,
       SocketClosed_e => 4
    );
-   type SocketActivityTriggerReason_Ptr is access all SocketActivityTriggerReason;
+   type SocketActivityTriggerReason_Ptr is access SocketActivityTriggerReason;
 
    type SocketErrorStatus is (
       Unknown_e,
@@ -604,7 +604,7 @@ package WinRt.Windows.Networking.Sockets is
       CertificateRevocationServerOffline_e => 29,
       CertificateIsInvalid_e => 30
    );
-   type SocketErrorStatus_Ptr is access all SocketErrorStatus;
+   type SocketErrorStatus_Ptr is access SocketErrorStatus;
 
    type SocketMessageType is (
       Binary_e,
@@ -614,7 +614,7 @@ package WinRt.Windows.Networking.Sockets is
       Binary_e => 0,
       Utf8_e => 1
    );
-   type SocketMessageType_Ptr is access all SocketMessageType;
+   type SocketMessageType_Ptr is access SocketMessageType;
 
    type SocketProtectionLevel is (
       PlainSocket_e,
@@ -640,7 +640,7 @@ package WinRt.Windows.Networking.Sockets is
       Tls12_e => 8,
       Unspecified_e => 9
    );
-   type SocketProtectionLevel_Ptr is access all SocketProtectionLevel;
+   type SocketProtectionLevel_Ptr is access SocketProtectionLevel;
 
    type SocketQualityOfService is (
       Normal_e,
@@ -650,7 +650,7 @@ package WinRt.Windows.Networking.Sockets is
       Normal_e => 0,
       LowLatency_e => 1
    );
-   type SocketQualityOfService_Ptr is access all SocketQualityOfService;
+   type SocketQualityOfService_Ptr is access SocketQualityOfService;
 
    type SocketSslErrorSeverity is (
       None_e,
@@ -662,7 +662,7 @@ package WinRt.Windows.Networking.Sockets is
       Ignorable_e => 1,
       Fatal_e => 2
    );
-   type SocketSslErrorSeverity_Ptr is access all SocketSslErrorSeverity;
+   type SocketSslErrorSeverity_Ptr is access SocketSslErrorSeverity;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -676,12 +676,12 @@ package WinRt.Windows.Networking.Sockets is
       OutboundBandwidthPeaked : WinRt.Boolean;
       InboundBandwidthPeaked : WinRt.Boolean;
    end record with Convention => C_Pass_By_Copy;
-   type BandwidthStatistics_Ptr is access all BandwidthStatistics;
+   type BandwidthStatistics_Ptr is access BandwidthStatistics;
 
    type ControlChannelTriggerContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type ControlChannelTriggerContract_Ptr is access all ControlChannelTriggerContract;
+   type ControlChannelTriggerContract_Ptr is access ControlChannelTriggerContract;
 
    type RoundTripTimeStatistics is record
       Variance : WinRt.UInt32;
@@ -689,7 +689,7 @@ package WinRt.Windows.Networking.Sockets is
       Min : WinRt.UInt32;
       Sum : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type RoundTripTimeStatistics_Ptr is access all RoundTripTimeStatistics;
+   type RoundTripTimeStatistics_Ptr is access RoundTripTimeStatistics;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

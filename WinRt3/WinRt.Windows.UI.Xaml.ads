@@ -60,61 +60,61 @@ package WinRt.Windows.UI.Xaml is
    -----------------------------------------------------------------------------
 
    type ApplicationInitializationCallback_Delegate;
-   type ApplicationInitializationCallback is access all ApplicationInitializationCallback_Delegate;
+   type ApplicationInitializationCallback is access ApplicationInitializationCallback_Delegate;
 
    type BindingFailedEventHandler_Delegate;
-   type BindingFailedEventHandler is access all BindingFailedEventHandler_Delegate;
+   type BindingFailedEventHandler is access BindingFailedEventHandler_Delegate;
 
    type CreateDefaultValueCallback_Delegate;
-   type CreateDefaultValueCallback is access all CreateDefaultValueCallback_Delegate;
+   type CreateDefaultValueCallback is access CreateDefaultValueCallback_Delegate;
 
    type DependencyPropertyChangedCallback_Delegate;
-   type DependencyPropertyChangedCallback is access all DependencyPropertyChangedCallback_Delegate;
+   type DependencyPropertyChangedCallback is access DependencyPropertyChangedCallback_Delegate;
 
    type DependencyPropertyChangedEventHandler_Delegate;
-   type DependencyPropertyChangedEventHandler is access all DependencyPropertyChangedEventHandler_Delegate;
+   type DependencyPropertyChangedEventHandler is access DependencyPropertyChangedEventHandler_Delegate;
 
    type DragEventHandler_Delegate;
-   type DragEventHandler is access all DragEventHandler_Delegate;
+   type DragEventHandler is access DragEventHandler_Delegate;
 
    type EnteredBackgroundEventHandler_Delegate;
-   type EnteredBackgroundEventHandler is access all EnteredBackgroundEventHandler_Delegate;
+   type EnteredBackgroundEventHandler is access EnteredBackgroundEventHandler_Delegate;
 
    type ExceptionRoutedEventHandler_Delegate;
-   type ExceptionRoutedEventHandler is access all ExceptionRoutedEventHandler_Delegate;
+   type ExceptionRoutedEventHandler is access ExceptionRoutedEventHandler_Delegate;
 
    type LeavingBackgroundEventHandler_Delegate;
-   type LeavingBackgroundEventHandler is access all LeavingBackgroundEventHandler_Delegate;
+   type LeavingBackgroundEventHandler is access LeavingBackgroundEventHandler_Delegate;
 
    type PropertyChangedCallback_Delegate;
-   type PropertyChangedCallback is access all PropertyChangedCallback_Delegate;
+   type PropertyChangedCallback is access PropertyChangedCallback_Delegate;
 
    type RoutedEventHandler_Delegate;
-   type RoutedEventHandler is access all RoutedEventHandler_Delegate;
+   type RoutedEventHandler is access RoutedEventHandler_Delegate;
 
    type SizeChangedEventHandler_Delegate;
-   type SizeChangedEventHandler is access all SizeChangedEventHandler_Delegate;
+   type SizeChangedEventHandler is access SizeChangedEventHandler_Delegate;
 
    type SuspendingEventHandler_Delegate;
-   type SuspendingEventHandler is access all SuspendingEventHandler_Delegate;
+   type SuspendingEventHandler is access SuspendingEventHandler_Delegate;
 
    type UnhandledExceptionEventHandler_Delegate;
-   type UnhandledExceptionEventHandler is access all UnhandledExceptionEventHandler_Delegate;
+   type UnhandledExceptionEventHandler is access UnhandledExceptionEventHandler_Delegate;
 
    type VisualStateChangedEventHandler_Delegate;
-   type VisualStateChangedEventHandler is access all VisualStateChangedEventHandler_Delegate;
+   type VisualStateChangedEventHandler is access VisualStateChangedEventHandler_Delegate;
 
    type WindowActivatedEventHandler_Delegate;
-   type WindowActivatedEventHandler is access all WindowActivatedEventHandler_Delegate;
+   type WindowActivatedEventHandler is access WindowActivatedEventHandler_Delegate;
 
    type WindowClosedEventHandler_Delegate;
-   type WindowClosedEventHandler is access all WindowClosedEventHandler_Delegate;
+   type WindowClosedEventHandler is access WindowClosedEventHandler_Delegate;
 
    type WindowSizeChangedEventHandler_Delegate;
-   type WindowSizeChangedEventHandler is access all WindowSizeChangedEventHandler_Delegate;
+   type WindowSizeChangedEventHandler is access WindowSizeChangedEventHandler_Delegate;
 
    type WindowVisibilityChangedEventHandler_Delegate;
-   type WindowVisibilityChangedEventHandler is access all WindowVisibilityChangedEventHandler_Delegate;
+   type WindowVisibilityChangedEventHandler is access WindowVisibilityChangedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -1164,7 +1164,7 @@ package WinRt.Windows.UI.Xaml is
       None_e => 0,
       Auto_e => 4294967295
    );
-   type ApplicationHighContrastAdjustment_Ptr is access all ApplicationHighContrastAdjustment;
+   type ApplicationHighContrastAdjustment_Ptr is access ApplicationHighContrastAdjustment;
 
    type ApplicationRequiresPointerMode is (
       Auto_e,
@@ -1174,7 +1174,7 @@ package WinRt.Windows.UI.Xaml is
       Auto_e => 0,
       WhenRequested_e => 1
    );
-   type ApplicationRequiresPointerMode_Ptr is access all ApplicationRequiresPointerMode;
+   type ApplicationRequiresPointerMode_Ptr is access ApplicationRequiresPointerMode;
 
    type ApplicationTheme is (
       Light_e,
@@ -1184,7 +1184,7 @@ package WinRt.Windows.UI.Xaml is
       Light_e => 0,
       Dark_e => 1
    );
-   type ApplicationTheme_Ptr is access all ApplicationTheme;
+   type ApplicationTheme_Ptr is access ApplicationTheme;
 
    type AutomationTextAttributesEnum is (
       AnimationStyleAttribute_e,
@@ -1270,7 +1270,7 @@ package WinRt.Windows.UI.Xaml is
       CaretPositionAttribute_e => 40038,
       CaretBidiModeAttribute_e => 40039
    );
-   type AutomationTextAttributesEnum_Ptr is access all AutomationTextAttributesEnum;
+   type AutomationTextAttributesEnum_Ptr is access AutomationTextAttributesEnum;
 
    type DurationType is (
       Automatic_e,
@@ -1282,7 +1282,7 @@ package WinRt.Windows.UI.Xaml is
       TimeSpan_e => 1,
       Forever_e => 2
    );
-   type DurationType_Ptr is access all DurationType;
+   type DurationType_Ptr is access DurationType;
 
    type ElementHighContrastAdjustment is (
       None_e,
@@ -1294,7 +1294,7 @@ package WinRt.Windows.UI.Xaml is
       Application_e => 2147483648,
       Auto_e => 4294967295
    );
-   type ElementHighContrastAdjustment_Ptr is access all ElementHighContrastAdjustment;
+   type ElementHighContrastAdjustment_Ptr is access ElementHighContrastAdjustment;
 
    type ElementSoundKind is (
       Focus_e,
@@ -1314,7 +1314,7 @@ package WinRt.Windows.UI.Xaml is
       MoveNext_e => 5,
       GoBack_e => 6
    );
-   type ElementSoundKind_Ptr is access all ElementSoundKind;
+   type ElementSoundKind_Ptr is access ElementSoundKind;
 
    type ElementSoundMode is (
       Default_e,
@@ -1326,7 +1326,7 @@ package WinRt.Windows.UI.Xaml is
       FocusOnly_e => 1,
       Off_e => 2
    );
-   type ElementSoundMode_Ptr is access all ElementSoundMode;
+   type ElementSoundMode_Ptr is access ElementSoundMode;
 
    type ElementSoundPlayerState is (
       Auto_e,
@@ -1338,7 +1338,7 @@ package WinRt.Windows.UI.Xaml is
       Off_e => 1,
       On_e => 2
    );
-   type ElementSoundPlayerState_Ptr is access all ElementSoundPlayerState;
+   type ElementSoundPlayerState_Ptr is access ElementSoundPlayerState;
 
    type ElementSpatialAudioMode is (
       Auto_e,
@@ -1350,7 +1350,7 @@ package WinRt.Windows.UI.Xaml is
       Off_e => 1,
       On_e => 2
    );
-   type ElementSpatialAudioMode_Ptr is access all ElementSpatialAudioMode;
+   type ElementSpatialAudioMode_Ptr is access ElementSpatialAudioMode;
 
    type ElementTheme is (
       Default_e,
@@ -1362,7 +1362,7 @@ package WinRt.Windows.UI.Xaml is
       Light_e => 1,
       Dark_e => 2
    );
-   type ElementTheme_Ptr is access all ElementTheme;
+   type ElementTheme_Ptr is access ElementTheme;
 
    type FlowDirection is (
       LeftToRight_e,
@@ -1372,7 +1372,7 @@ package WinRt.Windows.UI.Xaml is
       LeftToRight_e => 0,
       RightToLeft_e => 1
    );
-   type FlowDirection_Ptr is access all FlowDirection;
+   type FlowDirection_Ptr is access FlowDirection;
 
    type FocusState is (
       Unfocused_e,
@@ -1386,7 +1386,7 @@ package WinRt.Windows.UI.Xaml is
       Keyboard_e => 2,
       Programmatic_e => 3
    );
-   type FocusState_Ptr is access all FocusState;
+   type FocusState_Ptr is access FocusState;
 
    type FocusVisualKind is (
       DottedLine_e,
@@ -1398,7 +1398,7 @@ package WinRt.Windows.UI.Xaml is
       HighVisibility_e => 1,
       Reveal_e => 2
    );
-   type FocusVisualKind_Ptr is access all FocusVisualKind;
+   type FocusVisualKind_Ptr is access FocusVisualKind;
 
    type FontCapitals is (
       Normal_e,
@@ -1418,7 +1418,7 @@ package WinRt.Windows.UI.Xaml is
       Unicase_e => 5,
       Titling_e => 6
    );
-   type FontCapitals_Ptr is access all FontCapitals;
+   type FontCapitals_Ptr is access FontCapitals;
 
    type FontEastAsianLanguage is (
       Normal_e,
@@ -1444,7 +1444,7 @@ package WinRt.Windows.UI.Xaml is
       Traditional_e => 8,
       TraditionalNames_e => 9
    );
-   type FontEastAsianLanguage_Ptr is access all FontEastAsianLanguage;
+   type FontEastAsianLanguage_Ptr is access FontEastAsianLanguage;
 
    type FontEastAsianWidths is (
       Normal_e,
@@ -1462,7 +1462,7 @@ package WinRt.Windows.UI.Xaml is
       Quarter_e => 4,
       Third_e => 5
    );
-   type FontEastAsianWidths_Ptr is access all FontEastAsianWidths;
+   type FontEastAsianWidths_Ptr is access FontEastAsianWidths;
 
    type FontFraction is (
       Normal_e,
@@ -1474,7 +1474,7 @@ package WinRt.Windows.UI.Xaml is
       Stacked_e => 1,
       Slashed_e => 2
    );
-   type FontFraction_Ptr is access all FontFraction;
+   type FontFraction_Ptr is access FontFraction;
 
    type FontNumeralAlignment is (
       Normal_e,
@@ -1486,7 +1486,7 @@ package WinRt.Windows.UI.Xaml is
       Proportional_e => 1,
       Tabular_e => 2
    );
-   type FontNumeralAlignment_Ptr is access all FontNumeralAlignment;
+   type FontNumeralAlignment_Ptr is access FontNumeralAlignment;
 
    type FontNumeralStyle is (
       Normal_e,
@@ -1498,7 +1498,7 @@ package WinRt.Windows.UI.Xaml is
       Lining_e => 1,
       OldStyle_e => 2
    );
-   type FontNumeralStyle_Ptr is access all FontNumeralStyle;
+   type FontNumeralStyle_Ptr is access FontNumeralStyle;
 
    type FontVariants is (
       Normal_e,
@@ -1516,7 +1516,7 @@ package WinRt.Windows.UI.Xaml is
       Inferior_e => 4,
       Ruby_e => 5
    );
-   type FontVariants_Ptr is access all FontVariants;
+   type FontVariants_Ptr is access FontVariants;
 
    type GridUnitType is (
       Auto_e,
@@ -1528,7 +1528,7 @@ package WinRt.Windows.UI.Xaml is
       Pixel_e => 1,
       Star_e => 2
    );
-   type GridUnitType_Ptr is access all GridUnitType;
+   type GridUnitType_Ptr is access GridUnitType;
 
    type HorizontalAlignment is (
       Left_e,
@@ -1542,7 +1542,7 @@ package WinRt.Windows.UI.Xaml is
       Right_e => 2,
       Stretch_e => 3
    );
-   type HorizontalAlignment_Ptr is access all HorizontalAlignment;
+   type HorizontalAlignment_Ptr is access HorizontalAlignment;
 
    type LineStackingStrategy is (
       MaxHeight_e,
@@ -1554,7 +1554,7 @@ package WinRt.Windows.UI.Xaml is
       BlockLineHeight_e => 1,
       BaselineToBaseline_e => 2
    );
-   type LineStackingStrategy_Ptr is access all LineStackingStrategy;
+   type LineStackingStrategy_Ptr is access LineStackingStrategy;
 
    type OpticalMarginAlignment is (
       None_e,
@@ -1564,7 +1564,7 @@ package WinRt.Windows.UI.Xaml is
       None_e => 0,
       TrimSideBearings_e => 1
    );
-   type OpticalMarginAlignment_Ptr is access all OpticalMarginAlignment;
+   type OpticalMarginAlignment_Ptr is access OpticalMarginAlignment;
 
    type TextAlignment is (
       Center_e,
@@ -1580,7 +1580,7 @@ package WinRt.Windows.UI.Xaml is
       Justify_e => 3,
       DetectFromContent_e => 4
    );
-   type TextAlignment_Ptr is access all TextAlignment;
+   type TextAlignment_Ptr is access TextAlignment;
 
    type TextLineBounds is (
       Full_e,
@@ -1594,7 +1594,7 @@ package WinRt.Windows.UI.Xaml is
       TrimToBaseline_e => 2,
       Tight_e => 3
    );
-   type TextLineBounds_Ptr is access all TextLineBounds;
+   type TextLineBounds_Ptr is access TextLineBounds;
 
    type TextReadingOrder is (
       Default_e,
@@ -1604,7 +1604,7 @@ package WinRt.Windows.UI.Xaml is
       Default_e => 0,
       DetectFromContent_e => 1
    );
-   type TextReadingOrder_Ptr is access all TextReadingOrder;
+   type TextReadingOrder_Ptr is access TextReadingOrder;
 
    type TextTrimming is (
       None_e,
@@ -1618,7 +1618,7 @@ package WinRt.Windows.UI.Xaml is
       WordEllipsis_e => 2,
       Clip_e => 3
    );
-   type TextTrimming_Ptr is access all TextTrimming;
+   type TextTrimming_Ptr is access TextTrimming;
 
    type TextWrapping is (
       NoWrap_e,
@@ -1630,7 +1630,7 @@ package WinRt.Windows.UI.Xaml is
       Wrap_e => 2,
       WrapWholeWords_e => 3
    );
-   type TextWrapping_Ptr is access all TextWrapping;
+   type TextWrapping_Ptr is access TextWrapping;
 
    type Vector3TransitionComponents is (
       X_e,
@@ -1642,7 +1642,7 @@ package WinRt.Windows.UI.Xaml is
       Y_e => 2,
       Z_e => 4
    );
-   type Vector3TransitionComponents_Ptr is access all Vector3TransitionComponents;
+   type Vector3TransitionComponents_Ptr is access Vector3TransitionComponents;
 
    type VerticalAlignment is (
       Top_e,
@@ -1656,7 +1656,7 @@ package WinRt.Windows.UI.Xaml is
       Bottom_e => 2,
       Stretch_e => 3
    );
-   type VerticalAlignment_Ptr is access all VerticalAlignment;
+   type VerticalAlignment_Ptr is access VerticalAlignment;
 
    type Visibility is (
       Visible_e,
@@ -1666,7 +1666,7 @@ package WinRt.Windows.UI.Xaml is
       Visible_e => 0,
       Collapsed_e => 1
    );
-   type Visibility_Ptr is access all Visibility;
+   type Visibility_Ptr is access Visibility;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1678,19 +1678,19 @@ package WinRt.Windows.UI.Xaml is
       BottomRight : WinRt.Double;
       BottomLeft : WinRt.Double;
    end record with Convention => C_Pass_By_Copy;
-   type CornerRadius_Ptr is access all CornerRadius;
+   type CornerRadius_Ptr is access CornerRadius;
 
    type Duration is record
       TimeSpan : WinRt.Windows.Foundation.TimeSpan;
       Type_x : Windows.UI.Xaml.DurationType;
    end record with Convention => C_Pass_By_Copy;
-   type Duration_Ptr is access all Duration;
+   type Duration_Ptr is access Duration;
 
    type GridLength is record
       Value : WinRt.Double;
       GridUnitType : Windows.UI.Xaml.GridUnitType;
    end record with Convention => C_Pass_By_Copy;
-   type GridLength_Ptr is access all GridLength;
+   type GridLength_Ptr is access GridLength;
 
    type Thickness is record
       Left : WinRt.Double;
@@ -1698,7 +1698,7 @@ package WinRt.Windows.UI.Xaml is
       Right : WinRt.Double;
       Bottom : WinRt.Double;
    end record with Convention => C_Pass_By_Copy;
-   type Thickness_Ptr is access all Thickness;
+   type Thickness_Ptr is access Thickness;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

@@ -177,7 +177,7 @@ package WinRt.Windows.Media.Control is
       Playing_e => 4,
       Paused_e => 5
    );
-   type GlobalSystemMediaTransportControlsSessionPlaybackStatus_Ptr is access all GlobalSystemMediaTransportControlsSessionPlaybackStatus;
+   type GlobalSystemMediaTransportControlsSessionPlaybackStatus_Ptr is access GlobalSystemMediaTransportControlsSessionPlaybackStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

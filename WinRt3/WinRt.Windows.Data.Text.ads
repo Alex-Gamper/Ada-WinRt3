@@ -41,10 +41,10 @@ package WinRt.Windows.Data.Text is
    -----------------------------------------------------------------------------
 
    type SelectableWordSegmentsTokenizingHandler_Delegate;
-   type SelectableWordSegmentsTokenizingHandler is access all SelectableWordSegmentsTokenizingHandler_Delegate;
+   type SelectableWordSegmentsTokenizingHandler is access SelectableWordSegmentsTokenizingHandler_Delegate;
 
    type WordSegmentsTokenizingHandler_Delegate;
-   type WordSegmentsTokenizingHandler is access all WordSegmentsTokenizingHandler_Delegate;
+   type WordSegmentsTokenizingHandler is access WordSegmentsTokenizingHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -199,7 +199,7 @@ package WinRt.Windows.Data.Text is
       Date_e => 4,
       Time_e => 5
    );
-   type AlternateNormalizationFormat_Ptr is access all AlternateNormalizationFormat;
+   type AlternateNormalizationFormat_Ptr is access AlternateNormalizationFormat;
 
    type TextPredictionOptions is (
       None_e,
@@ -211,7 +211,7 @@ package WinRt.Windows.Data.Text is
       Predictions_e => 1,
       Corrections_e => 2
    );
-   type TextPredictionOptions_Ptr is access all TextPredictionOptions;
+   type TextPredictionOptions_Ptr is access TextPredictionOptions;
 
    type UnicodeGeneralCategory is (
       UppercaseLetter_e,
@@ -277,7 +277,7 @@ package WinRt.Windows.Data.Text is
       OtherSymbol_e => 28,
       NotAssigned_e => 29
    );
-   type UnicodeGeneralCategory_Ptr is access all UnicodeGeneralCategory;
+   type UnicodeGeneralCategory_Ptr is access UnicodeGeneralCategory;
 
    type UnicodeNumericType is (
       None_e,
@@ -291,7 +291,7 @@ package WinRt.Windows.Data.Text is
       Digit_e => 2,
       Numeric_e => 3
    );
-   type UnicodeNumericType_Ptr is access all UnicodeNumericType;
+   type UnicodeNumericType_Ptr is access UnicodeNumericType;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -301,7 +301,7 @@ package WinRt.Windows.Data.Text is
       StartPosition : WinRt.UInt32;
       Length : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type TextSegment_Ptr is access all TextSegment;
+   type TextSegment_Ptr is access TextSegment;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

@@ -68,52 +68,52 @@ package WinRt.Windows.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
 
    type BackClickEventHandler_Delegate;
-   type BackClickEventHandler is access all BackClickEventHandler_Delegate;
+   type BackClickEventHandler is access BackClickEventHandler_Delegate;
 
    type CalendarViewDayItemChangingEventHandler_Delegate;
-   type CalendarViewDayItemChangingEventHandler is access all CalendarViewDayItemChangingEventHandler_Delegate;
+   type CalendarViewDayItemChangingEventHandler is access CalendarViewDayItemChangingEventHandler_Delegate;
 
    type CleanUpVirtualizedItemEventHandler_Delegate;
-   type CleanUpVirtualizedItemEventHandler is access all CleanUpVirtualizedItemEventHandler_Delegate;
+   type CleanUpVirtualizedItemEventHandler is access CleanUpVirtualizedItemEventHandler_Delegate;
 
    type ContextMenuOpeningEventHandler_Delegate;
-   type ContextMenuOpeningEventHandler is access all ContextMenuOpeningEventHandler_Delegate;
+   type ContextMenuOpeningEventHandler is access ContextMenuOpeningEventHandler_Delegate;
 
    type DragItemsStartingEventHandler_Delegate;
-   type DragItemsStartingEventHandler is access all DragItemsStartingEventHandler_Delegate;
+   type DragItemsStartingEventHandler is access DragItemsStartingEventHandler_Delegate;
 
    type HubSectionHeaderClickEventHandler_Delegate;
-   type HubSectionHeaderClickEventHandler is access all HubSectionHeaderClickEventHandler_Delegate;
+   type HubSectionHeaderClickEventHandler is access HubSectionHeaderClickEventHandler_Delegate;
 
    type ItemClickEventHandler_Delegate;
-   type ItemClickEventHandler is access all ItemClickEventHandler_Delegate;
+   type ItemClickEventHandler is access ItemClickEventHandler_Delegate;
 
    type ListViewItemToKeyHandler_Delegate;
-   type ListViewItemToKeyHandler is access all ListViewItemToKeyHandler_Delegate;
+   type ListViewItemToKeyHandler is access ListViewItemToKeyHandler_Delegate;
 
    type ListViewKeyToItemHandler_Delegate;
-   type ListViewKeyToItemHandler is access all ListViewKeyToItemHandler_Delegate;
+   type ListViewKeyToItemHandler is access ListViewKeyToItemHandler_Delegate;
 
    type NotifyEventHandler_Delegate;
-   type NotifyEventHandler is access all NotifyEventHandler_Delegate;
+   type NotifyEventHandler is access NotifyEventHandler_Delegate;
 
    type SectionsInViewChangedEventHandler_Delegate;
-   type SectionsInViewChangedEventHandler is access all SectionsInViewChangedEventHandler_Delegate;
+   type SectionsInViewChangedEventHandler is access SectionsInViewChangedEventHandler_Delegate;
 
    type SelectionChangedEventHandler_Delegate;
-   type SelectionChangedEventHandler is access all SelectionChangedEventHandler_Delegate;
+   type SelectionChangedEventHandler is access SelectionChangedEventHandler_Delegate;
 
    type SemanticZoomViewChangedEventHandler_Delegate;
-   type SemanticZoomViewChangedEventHandler is access all SemanticZoomViewChangedEventHandler_Delegate;
+   type SemanticZoomViewChangedEventHandler is access SemanticZoomViewChangedEventHandler_Delegate;
 
    type TextChangedEventHandler_Delegate;
-   type TextChangedEventHandler is access all TextChangedEventHandler_Delegate;
+   type TextChangedEventHandler is access TextChangedEventHandler_Delegate;
 
    type TextControlPasteEventHandler_Delegate;
-   type TextControlPasteEventHandler is access all TextControlPasteEventHandler_Delegate;
+   type TextControlPasteEventHandler is access TextControlPasteEventHandler_Delegate;
 
    type WebViewNavigationFailedEventHandler_Delegate;
-   type WebViewNavigationFailedEventHandler is access all WebViewNavigationFailedEventHandler_Delegate;
+   type WebViewNavigationFailedEventHandler is access WebViewNavigationFailedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -4670,7 +4670,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Minimal_e => 1,
       Hidden_e => 2
    );
-   type AppBarClosedDisplayMode_Ptr is access all AppBarClosedDisplayMode;
+   type AppBarClosedDisplayMode_Ptr is access AppBarClosedDisplayMode;
 
    type AutoSuggestionBoxTextChangeReason is (
       UserInput_e,
@@ -4682,7 +4682,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       ProgrammaticChange_e => 1,
       SuggestionChosen_e => 2
    );
-   type AutoSuggestionBoxTextChangeReason_Ptr is access all AutoSuggestionBoxTextChangeReason;
+   type AutoSuggestionBoxTextChangeReason_Ptr is access AutoSuggestionBoxTextChangeReason;
 
    type BackgroundSizing is (
       InnerBorderEdge_e,
@@ -4692,7 +4692,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       InnerBorderEdge_e => 0,
       OuterBorderEdge_e => 1
    );
-   type BackgroundSizing_Ptr is access all BackgroundSizing;
+   type BackgroundSizing_Ptr is access BackgroundSizing;
 
    type CalendarViewDisplayMode is (
       Month_e,
@@ -4704,7 +4704,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Year_e => 1,
       Decade_e => 2
    );
-   type CalendarViewDisplayMode_Ptr is access all CalendarViewDisplayMode;
+   type CalendarViewDisplayMode_Ptr is access CalendarViewDisplayMode;
 
    type CalendarViewSelectionMode is (
       None_e,
@@ -4716,7 +4716,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Single_e => 1,
       Multiple_e => 2
    );
-   type CalendarViewSelectionMode_Ptr is access all CalendarViewSelectionMode;
+   type CalendarViewSelectionMode_Ptr is access CalendarViewSelectionMode;
 
    type CandidateWindowAlignment is (
       Default_e,
@@ -4726,7 +4726,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Default_e => 0,
       BottomEdge_e => 1
    );
-   type CandidateWindowAlignment_Ptr is access all CandidateWindowAlignment;
+   type CandidateWindowAlignment_Ptr is access CandidateWindowAlignment;
 
    type CharacterCasing is (
       Normal_e,
@@ -4738,7 +4738,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Lower_e => 1,
       Upper_e => 2
    );
-   type CharacterCasing_Ptr is access all CharacterCasing;
+   type CharacterCasing_Ptr is access CharacterCasing;
 
    type ClickMode is (
       Release_e,
@@ -4750,7 +4750,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Press_e => 1,
       Hover_e => 2
    );
-   type ClickMode_Ptr is access all ClickMode;
+   type ClickMode_Ptr is access ClickMode;
 
    type ColorPickerHsvChannel is (
       Hue_e,
@@ -4764,7 +4764,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Value_e => 2,
       Alpha_e => 3
    );
-   type ColorPickerHsvChannel_Ptr is access all ColorPickerHsvChannel;
+   type ColorPickerHsvChannel_Ptr is access ColorPickerHsvChannel;
 
    type ColorSpectrumComponents is (
       HueValue_e,
@@ -4782,7 +4782,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       SaturationValue_e => 4,
       ValueSaturation_e => 5
    );
-   type ColorSpectrumComponents_Ptr is access all ColorSpectrumComponents;
+   type ColorSpectrumComponents_Ptr is access ColorSpectrumComponents;
 
    type ColorSpectrumShape is (
       Box_e,
@@ -4792,7 +4792,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Box_e => 0,
       Ring_e => 1
    );
-   type ColorSpectrumShape_Ptr is access all ColorSpectrumShape;
+   type ColorSpectrumShape_Ptr is access ColorSpectrumShape;
 
    type ComboBoxSelectionChangedTrigger is (
       Committed_e,
@@ -4802,7 +4802,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Committed_e => 0,
       Always_e => 1
    );
-   type ComboBoxSelectionChangedTrigger_Ptr is access all ComboBoxSelectionChangedTrigger;
+   type ComboBoxSelectionChangedTrigger_Ptr is access ComboBoxSelectionChangedTrigger;
 
    type CommandBarDefaultLabelPosition is (
       Bottom_e,
@@ -4814,7 +4814,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Right_e => 1,
       Collapsed_e => 2
    );
-   type CommandBarDefaultLabelPosition_Ptr is access all CommandBarDefaultLabelPosition;
+   type CommandBarDefaultLabelPosition_Ptr is access CommandBarDefaultLabelPosition;
 
    type CommandBarDynamicOverflowAction is (
       AddingToOverflow_e,
@@ -4824,7 +4824,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       AddingToOverflow_e => 0,
       RemovingFromOverflow_e => 1
    );
-   type CommandBarDynamicOverflowAction_Ptr is access all CommandBarDynamicOverflowAction;
+   type CommandBarDynamicOverflowAction_Ptr is access CommandBarDynamicOverflowAction;
 
    type CommandBarLabelPosition is (
       Default_e,
@@ -4834,7 +4834,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Default_e => 0,
       Collapsed_e => 1
    );
-   type CommandBarLabelPosition_Ptr is access all CommandBarLabelPosition;
+   type CommandBarLabelPosition_Ptr is access CommandBarLabelPosition;
 
    type CommandBarOverflowButtonVisibility is (
       Auto_e,
@@ -4846,7 +4846,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Visible_e => 1,
       Collapsed_e => 2
    );
-   type CommandBarOverflowButtonVisibility_Ptr is access all CommandBarOverflowButtonVisibility;
+   type CommandBarOverflowButtonVisibility_Ptr is access CommandBarOverflowButtonVisibility;
 
    type ContentDialogButton is (
       None_e,
@@ -4860,7 +4860,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Secondary_e => 2,
       Close_e => 3
    );
-   type ContentDialogButton_Ptr is access all ContentDialogButton;
+   type ContentDialogButton_Ptr is access ContentDialogButton;
 
    type ContentDialogPlacement is (
       Popup_e,
@@ -4870,7 +4870,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Popup_e => 0,
       InPlace_e => 1
    );
-   type ContentDialogPlacement_Ptr is access all ContentDialogPlacement;
+   type ContentDialogPlacement_Ptr is access ContentDialogPlacement;
 
    type ContentDialogResult is (
       None_e,
@@ -4882,7 +4882,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Primary_e => 1,
       Secondary_e => 2
    );
-   type ContentDialogResult_Ptr is access all ContentDialogResult;
+   type ContentDialogResult_Ptr is access ContentDialogResult;
 
    type ContentLinkChangeKind is (
       Inserted_e,
@@ -4894,7 +4894,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Removed_e => 1,
       Edited_e => 2
    );
-   type ContentLinkChangeKind_Ptr is access all ContentLinkChangeKind;
+   type ContentLinkChangeKind_Ptr is access ContentLinkChangeKind;
 
    type DisabledFormattingAccelerators is (
       None_e,
@@ -4910,7 +4910,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Underline_e => 4,
       All_e => 4294967295
    );
-   type DisabledFormattingAccelerators_Ptr is access all DisabledFormattingAccelerators;
+   type DisabledFormattingAccelerators_Ptr is access DisabledFormattingAccelerators;
 
    type HandwritingPanelPlacementAlignment is (
       Auto_e,
@@ -4926,7 +4926,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       BottomLeft_e => 3,
       BottomRight_e => 4
    );
-   type HandwritingPanelPlacementAlignment_Ptr is access all HandwritingPanelPlacementAlignment;
+   type HandwritingPanelPlacementAlignment_Ptr is access HandwritingPanelPlacementAlignment;
 
    type IncrementalLoadingTrigger is (
       None_e,
@@ -4936,7 +4936,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       None_e => 0,
       Edge_e => 1
    );
-   type IncrementalLoadingTrigger_Ptr is access all IncrementalLoadingTrigger;
+   type IncrementalLoadingTrigger_Ptr is access IncrementalLoadingTrigger;
 
    type InkToolbarButtonFlyoutPlacement is (
       Auto_e,
@@ -4952,7 +4952,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Left_e => 3,
       Right_e => 4
    );
-   type InkToolbarButtonFlyoutPlacement_Ptr is access all InkToolbarButtonFlyoutPlacement;
+   type InkToolbarButtonFlyoutPlacement_Ptr is access InkToolbarButtonFlyoutPlacement;
 
    type InkToolbarFlyoutItemKind is (
       Simple_e,
@@ -4966,7 +4966,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Check_e => 2,
       RadioCheck_e => 3
    );
-   type InkToolbarFlyoutItemKind_Ptr is access all InkToolbarFlyoutItemKind;
+   type InkToolbarFlyoutItemKind_Ptr is access InkToolbarFlyoutItemKind;
 
    type InkToolbarInitialControls is (
       All_e,
@@ -4980,7 +4980,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       PensOnly_e => 2,
       AllExceptPens_e => 3
    );
-   type InkToolbarInitialControls_Ptr is access all InkToolbarInitialControls;
+   type InkToolbarInitialControls_Ptr is access InkToolbarInitialControls;
 
    type InkToolbarMenuKind is (
       Stencil_e
@@ -4988,7 +4988,7 @@ package WinRt.Windows.UI.Xaml.Controls is
    for InkToolbarMenuKind use (
       Stencil_e => 0
    );
-   type InkToolbarMenuKind_Ptr is access all InkToolbarMenuKind;
+   type InkToolbarMenuKind_Ptr is access InkToolbarMenuKind;
 
    type InkToolbarStencilKind is (
       Ruler_e,
@@ -4998,7 +4998,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Ruler_e => 0,
       Protractor_e => 1
    );
-   type InkToolbarStencilKind_Ptr is access all InkToolbarStencilKind;
+   type InkToolbarStencilKind_Ptr is access InkToolbarStencilKind;
 
    type InkToolbarToggle is (
       Ruler_e,
@@ -5008,7 +5008,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Ruler_e => 0,
       Custom_e => 1
    );
-   type InkToolbarToggle_Ptr is access all InkToolbarToggle;
+   type InkToolbarToggle_Ptr is access InkToolbarToggle;
 
    type InkToolbarTool is (
       BallpointPen_e,
@@ -5026,7 +5026,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       CustomPen_e => 4,
       CustomTool_e => 5
    );
-   type InkToolbarTool_Ptr is access all InkToolbarTool;
+   type InkToolbarTool_Ptr is access InkToolbarTool;
 
    type ItemsUpdatingScrollMode is (
       KeepItemsInView_e,
@@ -5038,7 +5038,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       KeepScrollOffset_e => 1,
       KeepLastItemInView_e => 2
    );
-   type ItemsUpdatingScrollMode_Ptr is access all ItemsUpdatingScrollMode;
+   type ItemsUpdatingScrollMode_Ptr is access ItemsUpdatingScrollMode;
 
    type LightDismissOverlayMode is (
       Auto_e,
@@ -5050,7 +5050,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       On_e => 1,
       Off_e => 2
    );
-   type LightDismissOverlayMode_Ptr is access all LightDismissOverlayMode;
+   type LightDismissOverlayMode_Ptr is access LightDismissOverlayMode;
 
    type ListPickerFlyoutSelectionMode is (
       Single_e,
@@ -5060,7 +5060,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Single_e => 0,
       Multiple_e => 1
    );
-   type ListPickerFlyoutSelectionMode_Ptr is access all ListPickerFlyoutSelectionMode;
+   type ListPickerFlyoutSelectionMode_Ptr is access ListPickerFlyoutSelectionMode;
 
    type ListViewReorderMode is (
       Disabled_e,
@@ -5070,7 +5070,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Disabled_e => 0,
       Enabled_e => 1
    );
-   type ListViewReorderMode_Ptr is access all ListViewReorderMode;
+   type ListViewReorderMode_Ptr is access ListViewReorderMode;
 
    type ListViewSelectionMode is (
       None_e,
@@ -5084,7 +5084,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Multiple_e => 2,
       Extended_e => 3
    );
-   type ListViewSelectionMode_Ptr is access all ListViewSelectionMode;
+   type ListViewSelectionMode_Ptr is access ListViewSelectionMode;
 
    type NavigationViewBackButtonVisible is (
       Collapsed_e,
@@ -5096,7 +5096,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Visible_e => 1,
       Auto_e => 2
    );
-   type NavigationViewBackButtonVisible_Ptr is access all NavigationViewBackButtonVisible;
+   type NavigationViewBackButtonVisible_Ptr is access NavigationViewBackButtonVisible;
 
    type NavigationViewDisplayMode is (
       Minimal_e,
@@ -5108,7 +5108,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Compact_e => 1,
       Expanded_e => 2
    );
-   type NavigationViewDisplayMode_Ptr is access all NavigationViewDisplayMode;
+   type NavigationViewDisplayMode_Ptr is access NavigationViewDisplayMode;
 
    type NavigationViewOverflowLabelMode is (
       MoreLabel_e,
@@ -5118,7 +5118,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       MoreLabel_e => 0,
       NoLabel_e => 1
    );
-   type NavigationViewOverflowLabelMode_Ptr is access all NavigationViewOverflowLabelMode;
+   type NavigationViewOverflowLabelMode_Ptr is access NavigationViewOverflowLabelMode;
 
    type NavigationViewPaneDisplayMode is (
       Auto_e,
@@ -5134,7 +5134,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       LeftCompact_e => 3,
       LeftMinimal_e => 4
    );
-   type NavigationViewPaneDisplayMode_Ptr is access all NavigationViewPaneDisplayMode;
+   type NavigationViewPaneDisplayMode_Ptr is access NavigationViewPaneDisplayMode;
 
    type NavigationViewSelectionFollowsFocus is (
       Disabled_e,
@@ -5144,7 +5144,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Disabled_e => 0,
       Enabled_e => 1
    );
-   type NavigationViewSelectionFollowsFocus_Ptr is access all NavigationViewSelectionFollowsFocus;
+   type NavigationViewSelectionFollowsFocus_Ptr is access NavigationViewSelectionFollowsFocus;
 
    type NavigationViewShoulderNavigationEnabled is (
       WhenSelectionFollowsFocus_e,
@@ -5156,7 +5156,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Always_e => 1,
       Never_e => 2
    );
-   type NavigationViewShoulderNavigationEnabled_Ptr is access all NavigationViewShoulderNavigationEnabled;
+   type NavigationViewShoulderNavigationEnabled_Ptr is access NavigationViewShoulderNavigationEnabled;
 
    type Orientation is (
       Vertical_e,
@@ -5166,7 +5166,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Vertical_e => 0,
       Horizontal_e => 1
    );
-   type Orientation_Ptr is access all Orientation;
+   type Orientation_Ptr is access Orientation;
 
    type PanelScrollingDirection is (
       None_e,
@@ -5178,7 +5178,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Forward_e => 1,
       Backward_e => 2
    );
-   type PanelScrollingDirection_Ptr is access all PanelScrollingDirection;
+   type PanelScrollingDirection_Ptr is access PanelScrollingDirection;
 
    type ParallaxSourceOffsetKind is (
       Absolute_e,
@@ -5188,7 +5188,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Absolute_e => 0,
       Relative_e => 1
    );
-   type ParallaxSourceOffsetKind_Ptr is access all ParallaxSourceOffsetKind;
+   type ParallaxSourceOffsetKind_Ptr is access ParallaxSourceOffsetKind;
 
    type PasswordRevealMode is (
       Peek_e,
@@ -5200,7 +5200,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Hidden_e => 1,
       Visible_e => 2
    );
-   type PasswordRevealMode_Ptr is access all PasswordRevealMode;
+   type PasswordRevealMode_Ptr is access PasswordRevealMode;
 
    type PivotHeaderFocusVisualPlacement is (
       ItemHeaders_e,
@@ -5210,7 +5210,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       ItemHeaders_e => 0,
       SelectedItemHeader_e => 1
    );
-   type PivotHeaderFocusVisualPlacement_Ptr is access all PivotHeaderFocusVisualPlacement;
+   type PivotHeaderFocusVisualPlacement_Ptr is access PivotHeaderFocusVisualPlacement;
 
    type PivotSlideInAnimationGroup is (
       Default_e,
@@ -5224,7 +5224,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       GroupTwo_e => 2,
       GroupThree_e => 3
    );
-   type PivotSlideInAnimationGroup_Ptr is access all PivotSlideInAnimationGroup;
+   type PivotSlideInAnimationGroup_Ptr is access PivotSlideInAnimationGroup;
 
    type RefreshPullDirection is (
       LeftToRight_e,
@@ -5238,7 +5238,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       RightToLeft_e => 2,
       BottomToTop_e => 3
    );
-   type RefreshPullDirection_Ptr is access all RefreshPullDirection;
+   type RefreshPullDirection_Ptr is access RefreshPullDirection;
 
    type RefreshVisualizerOrientation is (
       Auto_e,
@@ -5252,7 +5252,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Rotate90DegreesCounterclockwise_e => 2,
       Rotate270DegreesCounterclockwise_e => 3
    );
-   type RefreshVisualizerOrientation_Ptr is access all RefreshVisualizerOrientation;
+   type RefreshVisualizerOrientation_Ptr is access RefreshVisualizerOrientation;
 
    type RefreshVisualizerState is (
       Idle_e,
@@ -5268,7 +5268,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Pending_e => 3,
       Refreshing_e => 4
    );
-   type RefreshVisualizerState_Ptr is access all RefreshVisualizerState;
+   type RefreshVisualizerState_Ptr is access RefreshVisualizerState;
 
    type RequiresPointer is (
       Never_e,
@@ -5280,7 +5280,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       WhenEngaged_e => 1,
       WhenFocused_e => 2
    );
-   type RequiresPointer_Ptr is access all RequiresPointer;
+   type RequiresPointer_Ptr is access RequiresPointer;
 
    type RichEditClipboardFormat is (
       AllFormats_e,
@@ -5290,7 +5290,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       AllFormats_e => 0,
       PlainText_e => 1
    );
-   type RichEditClipboardFormat_Ptr is access all RichEditClipboardFormat;
+   type RichEditClipboardFormat_Ptr is access RichEditClipboardFormat;
 
    type ScrollBarVisibility is (
       Disabled_e,
@@ -5304,7 +5304,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Hidden_e => 2,
       Visible_e => 3
    );
-   type ScrollBarVisibility_Ptr is access all ScrollBarVisibility;
+   type ScrollBarVisibility_Ptr is access ScrollBarVisibility;
 
    type ScrollIntoViewAlignment is (
       Default_e,
@@ -5314,7 +5314,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Default_e => 0,
       Leading_e => 1
    );
-   type ScrollIntoViewAlignment_Ptr is access all ScrollIntoViewAlignment;
+   type ScrollIntoViewAlignment_Ptr is access ScrollIntoViewAlignment;
 
    type ScrollMode is (
       Disabled_e,
@@ -5326,7 +5326,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Enabled_e => 1,
       Auto_e => 2
    );
-   type ScrollMode_Ptr is access all ScrollMode;
+   type ScrollMode_Ptr is access ScrollMode;
 
    type SelectionMode is (
       Single_e,
@@ -5338,7 +5338,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Multiple_e => 1,
       Extended_e => 2
    );
-   type SelectionMode_Ptr is access all SelectionMode;
+   type SelectionMode_Ptr is access SelectionMode;
 
    type SnapPointsType is (
       None_e,
@@ -5354,7 +5354,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       OptionalSingle_e => 3,
       MandatorySingle_e => 4
    );
-   type SnapPointsType_Ptr is access all SnapPointsType;
+   type SnapPointsType_Ptr is access SnapPointsType;
 
    type SplitViewDisplayMode is (
       Overlay_e,
@@ -5368,7 +5368,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       CompactOverlay_e => 2,
       CompactInline_e => 3
    );
-   type SplitViewDisplayMode_Ptr is access all SplitViewDisplayMode;
+   type SplitViewDisplayMode_Ptr is access SplitViewDisplayMode;
 
    type SplitViewPanePlacement is (
       Left_e,
@@ -5378,7 +5378,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Left_e => 0,
       Right_e => 1
    );
-   type SplitViewPanePlacement_Ptr is access all SplitViewPanePlacement;
+   type SplitViewPanePlacement_Ptr is access SplitViewPanePlacement;
 
    type StretchDirection is (
       UpOnly_e,
@@ -5390,7 +5390,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       DownOnly_e => 1,
       Both_e => 2
    );
-   type StretchDirection_Ptr is access all StretchDirection;
+   type StretchDirection_Ptr is access StretchDirection;
 
    type SwipeBehaviorOnInvoked is (
       Auto_e,
@@ -5402,7 +5402,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Close_e => 1,
       RemainOpen_e => 2
    );
-   type SwipeBehaviorOnInvoked_Ptr is access all SwipeBehaviorOnInvoked;
+   type SwipeBehaviorOnInvoked_Ptr is access SwipeBehaviorOnInvoked;
 
    type SwipeMode is (
       Reveal_e,
@@ -5412,7 +5412,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Reveal_e => 0,
       Execute_e => 1
    );
-   type SwipeMode_Ptr is access all SwipeMode;
+   type SwipeMode_Ptr is access SwipeMode;
 
    type Symbol is (
       Previous_e,
@@ -5812,7 +5812,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Print_e => 59209,
       XboxOneConsole_e => 59792
    );
-   type Symbol_Ptr is access all Symbol;
+   type Symbol_Ptr is access Symbol;
 
    type TreeViewSelectionMode is (
       None_e,
@@ -5824,7 +5824,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Single_e => 1,
       Multiple_e => 2
    );
-   type TreeViewSelectionMode_Ptr is access all TreeViewSelectionMode;
+   type TreeViewSelectionMode_Ptr is access TreeViewSelectionMode;
 
    type TwoPaneViewMode is (
       SinglePane_e,
@@ -5836,7 +5836,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Wide_e => 1,
       Tall_e => 2
    );
-   type TwoPaneViewMode_Ptr is access all TwoPaneViewMode;
+   type TwoPaneViewMode_Ptr is access TwoPaneViewMode;
 
    type TwoPaneViewPriority is (
       Pane1_e,
@@ -5846,7 +5846,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Pane1_e => 0,
       Pane2_e => 1
    );
-   type TwoPaneViewPriority_Ptr is access all TwoPaneViewPriority;
+   type TwoPaneViewPriority_Ptr is access TwoPaneViewPriority;
 
    type TwoPaneViewTallModeConfiguration is (
       SinglePane_e,
@@ -5858,7 +5858,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       TopBottom_e => 1,
       BottomTop_e => 2
    );
-   type TwoPaneViewTallModeConfiguration_Ptr is access all TwoPaneViewTallModeConfiguration;
+   type TwoPaneViewTallModeConfiguration_Ptr is access TwoPaneViewTallModeConfiguration;
 
    type TwoPaneViewWideModeConfiguration is (
       SinglePane_e,
@@ -5870,7 +5870,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       LeftRight_e => 1,
       RightLeft_e => 2
    );
-   type TwoPaneViewWideModeConfiguration_Ptr is access all TwoPaneViewWideModeConfiguration;
+   type TwoPaneViewWideModeConfiguration_Ptr is access TwoPaneViewWideModeConfiguration;
 
    type VirtualizationMode is (
       Standard_e,
@@ -5880,7 +5880,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Standard_e => 0,
       Recycling_e => 1
    );
-   type VirtualizationMode_Ptr is access all VirtualizationMode;
+   type VirtualizationMode_Ptr is access VirtualizationMode;
 
    type WebViewExecutionMode is (
       SameThread_e,
@@ -5892,7 +5892,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       SeparateThread_e => 1,
       SeparateProcess_e => 2
    );
-   type WebViewExecutionMode_Ptr is access all WebViewExecutionMode;
+   type WebViewExecutionMode_Ptr is access WebViewExecutionMode;
 
    type WebViewPermissionState is (
       Unknown_e,
@@ -5906,7 +5906,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Allow_e => 2,
       Deny_e => 3
    );
-   type WebViewPermissionState_Ptr is access all WebViewPermissionState;
+   type WebViewPermissionState_Ptr is access WebViewPermissionState;
 
    type WebViewPermissionType is (
       Geolocation_e,
@@ -5926,7 +5926,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Screen_e => 5,
       ImmersiveView_e => 6
    );
-   type WebViewPermissionType_Ptr is access all WebViewPermissionType;
+   type WebViewPermissionType_Ptr is access WebViewPermissionType;
 
    type ZoomMode is (
       Disabled_e,
@@ -5936,7 +5936,7 @@ package WinRt.Windows.UI.Xaml.Controls is
       Disabled_e => 0,
       Enabled_e => 1
    );
-   type ZoomMode_Ptr is access all ZoomMode;
+   type ZoomMode_Ptr is access ZoomMode;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

@@ -281,7 +281,7 @@ package WinRt.Windows.Perception.Spatial is
       Relocalization_e => 0,
       Sharing_e => 1
    );
-   type SpatialAnchorExportPurpose_Ptr is access all SpatialAnchorExportPurpose;
+   type SpatialAnchorExportPurpose_Ptr is access SpatialAnchorExportPurpose;
 
    type SpatialEntityWatcherStatus is (
       Created_e,
@@ -299,7 +299,7 @@ package WinRt.Windows.Perception.Spatial is
       Stopped_e => 4,
       Aborted_e => 5
    );
-   type SpatialEntityWatcherStatus_Ptr is access all SpatialEntityWatcherStatus;
+   type SpatialEntityWatcherStatus_Ptr is access SpatialEntityWatcherStatus;
 
    type SpatialLocatability is (
       Unavailable_e,
@@ -315,7 +315,7 @@ package WinRt.Windows.Perception.Spatial is
       PositionalTrackingActive_e => 3,
       PositionalTrackingInhibited_e => 4
    );
-   type SpatialLocatability_Ptr is access all SpatialLocatability;
+   type SpatialLocatability_Ptr is access SpatialLocatability;
 
    type SpatialLookDirectionRange is (
       ForwardOnly_e,
@@ -325,7 +325,7 @@ package WinRt.Windows.Perception.Spatial is
       ForwardOnly_e => 0,
       Omnidirectional_e => 1
    );
-   type SpatialLookDirectionRange_Ptr is access all SpatialLookDirectionRange;
+   type SpatialLookDirectionRange_Ptr is access SpatialLookDirectionRange;
 
    type SpatialMovementRange is (
       NoMovement_e,
@@ -335,7 +335,7 @@ package WinRt.Windows.Perception.Spatial is
       NoMovement_e => 0,
       Bounded_e => 1
    );
-   type SpatialMovementRange_Ptr is access all SpatialMovementRange;
+   type SpatialMovementRange_Ptr is access SpatialMovementRange;
 
    type SpatialPerceptionAccessStatus is (
       Unspecified_e,
@@ -349,7 +349,7 @@ package WinRt.Windows.Perception.Spatial is
       DeniedByUser_e => 2,
       DeniedBySystem_e => 3
    );
-   type SpatialPerceptionAccessStatus_Ptr is access all SpatialPerceptionAccessStatus;
+   type SpatialPerceptionAccessStatus_Ptr is access SpatialPerceptionAccessStatus;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -359,7 +359,7 @@ package WinRt.Windows.Perception.Spatial is
       Center : WinRt.Windows.Foundation.Numerics.Vector3;
       Extents : WinRt.Windows.Foundation.Numerics.Vector3;
    end record with Convention => C_Pass_By_Copy;
-   type SpatialBoundingBox_Ptr is access all SpatialBoundingBox;
+   type SpatialBoundingBox_Ptr is access SpatialBoundingBox;
 
    type SpatialBoundingFrustum is record
       Near : WinRt.Windows.Foundation.Numerics.Plane;
@@ -369,26 +369,26 @@ package WinRt.Windows.Perception.Spatial is
       Top : WinRt.Windows.Foundation.Numerics.Plane;
       Bottom : WinRt.Windows.Foundation.Numerics.Plane;
    end record with Convention => C_Pass_By_Copy;
-   type SpatialBoundingFrustum_Ptr is access all SpatialBoundingFrustum;
+   type SpatialBoundingFrustum_Ptr is access SpatialBoundingFrustum;
 
    type SpatialBoundingOrientedBox is record
       Center : WinRt.Windows.Foundation.Numerics.Vector3;
       Extents : WinRt.Windows.Foundation.Numerics.Vector3;
       Orientation : WinRt.Windows.Foundation.Numerics.Quaternion;
    end record with Convention => C_Pass_By_Copy;
-   type SpatialBoundingOrientedBox_Ptr is access all SpatialBoundingOrientedBox;
+   type SpatialBoundingOrientedBox_Ptr is access SpatialBoundingOrientedBox;
 
    type SpatialBoundingSphere is record
       Center : WinRt.Windows.Foundation.Numerics.Vector3;
       Radius : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type SpatialBoundingSphere_Ptr is access all SpatialBoundingSphere;
+   type SpatialBoundingSphere_Ptr is access SpatialBoundingSphere;
 
    type SpatialRay is record
       Origin : WinRt.Windows.Foundation.Numerics.Vector3;
       Direction : WinRt.Windows.Foundation.Numerics.Vector3;
    end record with Convention => C_Pass_By_Copy;
-   type SpatialRay_Ptr is access all SpatialRay;
+   type SpatialRay_Ptr is access SpatialRay;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

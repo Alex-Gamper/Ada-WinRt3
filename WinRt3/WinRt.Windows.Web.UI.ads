@@ -213,7 +213,7 @@ package WinRt.Windows.Web.UI is
       Allow_e => 2,
       Deny_e => 3
    );
-   type WebViewControlPermissionState_Ptr is access all WebViewControlPermissionState;
+   type WebViewControlPermissionState_Ptr is access WebViewControlPermissionState;
 
    type WebViewControlPermissionType is (
       Geolocation_e,
@@ -233,7 +233,7 @@ package WinRt.Windows.Web.UI is
       Screen_e => 5,
       ImmersiveView_e => 6
    );
-   type WebViewControlPermissionType_Ptr is access all WebViewControlPermissionType;
+   type WebViewControlPermissionType_Ptr is access WebViewControlPermissionType;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

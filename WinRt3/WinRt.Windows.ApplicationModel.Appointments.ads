@@ -282,7 +282,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       OutOfOffice_e => 3,
       WorkingElsewhere_e => 4
    );
-   type AppointmentBusyStatus_Ptr is access all AppointmentBusyStatus;
+   type AppointmentBusyStatus_Ptr is access AppointmentBusyStatus;
 
    type AppointmentCalendarOtherAppReadAccess is (
       SystemOnly_e,
@@ -296,7 +296,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       Full_e => 2,
       None_e => 3
    );
-   type AppointmentCalendarOtherAppReadAccess_Ptr is access all AppointmentCalendarOtherAppReadAccess;
+   type AppointmentCalendarOtherAppReadAccess_Ptr is access AppointmentCalendarOtherAppReadAccess;
 
    type AppointmentCalendarOtherAppWriteAccess is (
       None_e,
@@ -308,7 +308,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       SystemOnly_e => 1,
       Limited_e => 2
    );
-   type AppointmentCalendarOtherAppWriteAccess_Ptr is access all AppointmentCalendarOtherAppWriteAccess;
+   type AppointmentCalendarOtherAppWriteAccess_Ptr is access AppointmentCalendarOtherAppWriteAccess;
 
    type AppointmentCalendarSyncStatus is (
       Idle_e,
@@ -328,7 +328,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       UnknownError_e => 5,
       ManualAccountRemovalRequired_e => 6
    );
-   type AppointmentCalendarSyncStatus_Ptr is access all AppointmentCalendarSyncStatus;
+   type AppointmentCalendarSyncStatus_Ptr is access AppointmentCalendarSyncStatus;
 
    type AppointmentConflictType is (
       None_e,
@@ -340,7 +340,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       Adjacent_e => 1,
       Overlap_e => 2
    );
-   type AppointmentConflictType_Ptr is access all AppointmentConflictType;
+   type AppointmentConflictType_Ptr is access AppointmentConflictType;
 
    type AppointmentDaysOfWeek is (
       None_e,
@@ -362,7 +362,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       Friday_e => 32,
       Saturday_e => 64
    );
-   type AppointmentDaysOfWeek_Ptr is access all AppointmentDaysOfWeek;
+   type AppointmentDaysOfWeek_Ptr is access AppointmentDaysOfWeek;
 
    type AppointmentDetailsKind is (
       PlainText_e,
@@ -372,7 +372,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       PlainText_e => 0,
       Html_e => 1
    );
-   type AppointmentDetailsKind_Ptr is access all AppointmentDetailsKind;
+   type AppointmentDetailsKind_Ptr is access AppointmentDetailsKind;
 
    type AppointmentParticipantResponse is (
       None_e,
@@ -388,7 +388,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       Declined_e => 3,
       Unknown_e => 4
    );
-   type AppointmentParticipantResponse_Ptr is access all AppointmentParticipantResponse;
+   type AppointmentParticipantResponse_Ptr is access AppointmentParticipantResponse;
 
    type AppointmentParticipantRole is (
       RequiredAttendee_e,
@@ -400,7 +400,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       OptionalAttendee_e => 1,
       Resource_e => 2
    );
-   type AppointmentParticipantRole_Ptr is access all AppointmentParticipantRole;
+   type AppointmentParticipantRole_Ptr is access AppointmentParticipantRole;
 
    type AppointmentRecurrenceUnit is (
       Daily_e,
@@ -418,7 +418,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       Yearly_e => 4,
       YearlyOnDay_e => 5
    );
-   type AppointmentRecurrenceUnit_Ptr is access all AppointmentRecurrenceUnit;
+   type AppointmentRecurrenceUnit_Ptr is access AppointmentRecurrenceUnit;
 
    type AppointmentSensitivity is (
       Public_e,
@@ -428,7 +428,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       Public_e => 0,
       Private_e => 1
    );
-   type AppointmentSensitivity_Ptr is access all AppointmentSensitivity;
+   type AppointmentSensitivity_Ptr is access AppointmentSensitivity;
 
    type AppointmentStoreAccessType is (
       AppCalendarsReadWrite_e,
@@ -440,7 +440,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       AllCalendarsReadOnly_e => 1,
       AllCalendarsReadWrite_e => 2
    );
-   type AppointmentStoreAccessType_Ptr is access all AppointmentStoreAccessType;
+   type AppointmentStoreAccessType_Ptr is access AppointmentStoreAccessType;
 
    type AppointmentStoreChangeType is (
       AppointmentCreated_e,
@@ -460,7 +460,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       CalendarModified_e => 5,
       CalendarDeleted_e => 6
    );
-   type AppointmentStoreChangeType_Ptr is access all AppointmentStoreChangeType;
+   type AppointmentStoreChangeType_Ptr is access AppointmentStoreChangeType;
 
    type AppointmentSummaryCardView is (
       System_e,
@@ -470,7 +470,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       System_e => 0,
       App_e => 1
    );
-   type AppointmentSummaryCardView_Ptr is access all AppointmentSummaryCardView;
+   type AppointmentSummaryCardView_Ptr is access AppointmentSummaryCardView;
 
    type AppointmentWeekOfMonth is (
       First_e,
@@ -486,7 +486,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       Fourth_e => 3,
       Last_e => 4
    );
-   type AppointmentWeekOfMonth_Ptr is access all AppointmentWeekOfMonth;
+   type AppointmentWeekOfMonth_Ptr is access AppointmentWeekOfMonth;
 
    type FindAppointmentCalendarsOptions is (
       None_e,
@@ -496,7 +496,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       None_e => 0,
       IncludeHidden_e => 1
    );
-   type FindAppointmentCalendarsOptions_Ptr is access all FindAppointmentCalendarsOptions;
+   type FindAppointmentCalendarsOptions_Ptr is access FindAppointmentCalendarsOptions;
 
    type RecurrenceType is (
       Master_e,
@@ -508,7 +508,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       Instance_e => 1,
       ExceptionInstance_e => 2
    );
-   type RecurrenceType_Ptr is access all RecurrenceType;
+   type RecurrenceType_Ptr is access RecurrenceType;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

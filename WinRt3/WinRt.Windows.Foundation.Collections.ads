@@ -86,7 +86,7 @@ package WinRt.Windows.Foundation.Collections is
       ItemRemoved_e => 2,
       ItemChanged_e => 3
    );
-   type CollectionChange_Ptr is access all CollectionChange;
+   type CollectionChange_Ptr is access CollectionChange;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

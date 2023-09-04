@@ -442,7 +442,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       ConversationId_e => 2,
       Custom_e => 3
    );
-   type ChatConversationThreadingKind_Ptr is access all ChatConversationThreadingKind;
+   type ChatConversationThreadingKind_Ptr is access ChatConversationThreadingKind;
 
    type ChatItemKind is (
       Message_e,
@@ -452,7 +452,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       Message_e => 0,
       Conversation_e => 1
    );
-   type ChatItemKind_Ptr is access all ChatItemKind;
+   type ChatItemKind_Ptr is access ChatItemKind;
 
    type ChatMessageChangeType is (
       MessageCreated_e,
@@ -466,7 +466,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       MessageDeleted_e => 2,
       ChangeTrackingLost_e => 3
    );
-   type ChatMessageChangeType_Ptr is access all ChatMessageChangeType;
+   type ChatMessageChangeType_Ptr is access ChatMessageChangeType;
 
    type ChatMessageKind is (
       Standard_e,
@@ -486,7 +486,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       OtherParticipantJoinedConversation_e => 5,
       OtherParticipantLeftConversation_e => 6
    );
-   type ChatMessageKind_Ptr is access all ChatMessageKind;
+   type ChatMessageKind_Ptr is access ChatMessageKind;
 
    type ChatMessageOperatorKind is (
       Unspecified_e,
@@ -500,7 +500,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       Mms_e => 2,
       Rcs_e => 3
    );
-   type ChatMessageOperatorKind_Ptr is access all ChatMessageOperatorKind;
+   type ChatMessageOperatorKind_Ptr is access ChatMessageOperatorKind;
 
    type ChatMessageStatus is (
       Draft_e,
@@ -534,7 +534,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       Recalled_e => 12,
       ReceiveRetryNeeded_e => 13
    );
-   type ChatMessageStatus_Ptr is access all ChatMessageStatus;
+   type ChatMessageStatus_Ptr is access ChatMessageStatus;
 
    type ChatMessageTransportKind is (
       Text_e,
@@ -548,7 +548,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       Blocked_e => 2,
       Custom_e => 3
    );
-   type ChatMessageTransportKind_Ptr is access all ChatMessageTransportKind;
+   type ChatMessageTransportKind_Ptr is access ChatMessageTransportKind;
 
    type ChatMessageValidationStatus is (
       Valid_e,
@@ -582,7 +582,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       VoiceRoamingRestriction_e => 12,
       DataRoamingRestriction_e => 13
    );
-   type ChatMessageValidationStatus_Ptr is access all ChatMessageValidationStatus;
+   type ChatMessageValidationStatus_Ptr is access ChatMessageValidationStatus;
 
    type ChatRestoreHistorySpan is (
       LastMonth_e,
@@ -594,7 +594,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       LastYear_e => 1,
       AnyTime_e => 2
    );
-   type ChatRestoreHistorySpan_Ptr is access all ChatRestoreHistorySpan;
+   type ChatRestoreHistorySpan_Ptr is access ChatRestoreHistorySpan;
 
    type ChatStoreChangedEventKind is (
       NotificationsMissed_e,
@@ -616,7 +616,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       ConversationDeleted_e => 6,
       ConversationTransportDeleted_e => 7
    );
-   type ChatStoreChangedEventKind_Ptr is access all ChatStoreChangedEventKind;
+   type ChatStoreChangedEventKind_Ptr is access ChatStoreChangedEventKind;
 
    type ChatTransportErrorCodeCategory is (
       None_e,
@@ -630,7 +630,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       Network_e => 2,
       MmsServer_e => 3
    );
-   type ChatTransportErrorCodeCategory_Ptr is access all ChatTransportErrorCodeCategory;
+   type ChatTransportErrorCodeCategory_Ptr is access ChatTransportErrorCodeCategory;
 
    type ChatTransportInterpretedErrorCode is (
       None_e,
@@ -648,7 +648,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       ServiceDenied_e => 4,
       Timeout_e => 5
    );
-   type ChatTransportInterpretedErrorCode_Ptr is access all ChatTransportInterpretedErrorCode;
+   type ChatTransportInterpretedErrorCode_Ptr is access ChatTransportInterpretedErrorCode;
 
    type RcsServiceKind is (
       Chat_e,
@@ -662,7 +662,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       FileTransfer_e => 2,
       Capability_e => 3
    );
-   type RcsServiceKind_Ptr is access all RcsServiceKind;
+   type RcsServiceKind_Ptr is access RcsServiceKind;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

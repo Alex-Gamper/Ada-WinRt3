@@ -78,7 +78,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
       BackgroundAudio_e => 2,
       Unconstrained_e => 3
    );
-   type ExtendedExecutionForegroundReason_Ptr is access all ExtendedExecutionForegroundReason;
+   type ExtendedExecutionForegroundReason_Ptr is access ExtendedExecutionForegroundReason;
 
    type ExtendedExecutionForegroundResult is (
       Allowed_e,
@@ -88,7 +88,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
       Allowed_e => 0,
       Denied_e => 1
    );
-   type ExtendedExecutionForegroundResult_Ptr is access all ExtendedExecutionForegroundResult;
+   type ExtendedExecutionForegroundResult_Ptr is access ExtendedExecutionForegroundResult;
 
    type ExtendedExecutionForegroundRevokedReason is (
       Resumed_e,
@@ -98,7 +98,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
       Resumed_e => 0,
       SystemPolicy_e => 1
    );
-   type ExtendedExecutionForegroundRevokedReason_Ptr is access all ExtendedExecutionForegroundRevokedReason;
+   type ExtendedExecutionForegroundRevokedReason_Ptr is access ExtendedExecutionForegroundRevokedReason;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

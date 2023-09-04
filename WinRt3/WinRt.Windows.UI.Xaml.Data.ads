@@ -41,10 +41,10 @@ package WinRt.Windows.UI.Xaml.Data is
    -----------------------------------------------------------------------------
 
    type CurrentChangingEventHandler_Delegate;
-   type CurrentChangingEventHandler is access all CurrentChangingEventHandler_Delegate;
+   type CurrentChangingEventHandler is access CurrentChangingEventHandler_Delegate;
 
    type PropertyChangedEventHandler_Delegate;
-   type PropertyChangedEventHandler is access all PropertyChangedEventHandler_Delegate;
+   type PropertyChangedEventHandler is access PropertyChangedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -231,7 +231,7 @@ package WinRt.Windows.UI.Xaml.Data is
       OneTime_e => 2,
       TwoWay_e => 3
    );
-   type BindingMode_Ptr is access all BindingMode;
+   type BindingMode_Ptr is access BindingMode;
 
    type RelativeSourceMode is (
       None_e,
@@ -243,7 +243,7 @@ package WinRt.Windows.UI.Xaml.Data is
       TemplatedParent_e => 1,
       Self_e => 2
    );
-   type RelativeSourceMode_Ptr is access all RelativeSourceMode;
+   type RelativeSourceMode_Ptr is access RelativeSourceMode;
 
    type UpdateSourceTrigger is (
       Default_e,
@@ -257,7 +257,7 @@ package WinRt.Windows.UI.Xaml.Data is
       Explicit_e => 2,
       LostFocus_e => 3
    );
-   type UpdateSourceTrigger_Ptr is access all UpdateSourceTrigger;
+   type UpdateSourceTrigger_Ptr is access UpdateSourceTrigger;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -266,7 +266,7 @@ package WinRt.Windows.UI.Xaml.Data is
    type LoadMoreItemsResult is record
       Count : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type LoadMoreItemsResult_Ptr is access all LoadMoreItemsResult;
+   type LoadMoreItemsResult_Ptr is access LoadMoreItemsResult;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

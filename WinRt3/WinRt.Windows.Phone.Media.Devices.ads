@@ -79,7 +79,7 @@ package WinRt.Windows.Phone.Media.Devices is
       BluetoothWithNoiseAndEchoCancellation_e => 6,
       BluetoothPreferred_e => 7
    );
-   type AudioRoutingEndpoint_Ptr is access all AudioRoutingEndpoint;
+   type AudioRoutingEndpoint_Ptr is access AudioRoutingEndpoint;
 
    type AvailableAudioRoutingEndpoints is (
       None_e,
@@ -93,7 +93,7 @@ package WinRt.Windows.Phone.Media.Devices is
       Speakerphone_e => 2,
       Bluetooth_e => 4
    );
-   type AvailableAudioRoutingEndpoints_Ptr is access all AvailableAudioRoutingEndpoints;
+   type AvailableAudioRoutingEndpoints_Ptr is access AvailableAudioRoutingEndpoints;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

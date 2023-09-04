@@ -254,7 +254,7 @@ package WinRt.Windows.UI.WindowManagement is
       AppInitiated_e => 1,
       UserInitiated_e => 2
    );
-   type AppWindowClosedReason_Ptr is access all AppWindowClosedReason;
+   type AppWindowClosedReason_Ptr is access AppWindowClosedReason;
 
    type AppWindowFrameStyle is (
       Default_e,
@@ -264,7 +264,7 @@ package WinRt.Windows.UI.WindowManagement is
       Default_e => 0,
       NoFrame_e => 1
    );
-   type AppWindowFrameStyle_Ptr is access all AppWindowFrameStyle;
+   type AppWindowFrameStyle_Ptr is access AppWindowFrameStyle;
 
    type AppWindowPresentationKind is (
       Default_e,
@@ -276,7 +276,7 @@ package WinRt.Windows.UI.WindowManagement is
       CompactOverlay_e => 1,
       FullScreen_e => 2
    );
-   type AppWindowPresentationKind_Ptr is access all AppWindowPresentationKind;
+   type AppWindowPresentationKind_Ptr is access AppWindowPresentationKind;
 
    type AppWindowTitleBarVisibility is (
       Default_e,
@@ -286,7 +286,7 @@ package WinRt.Windows.UI.WindowManagement is
       Default_e => 0,
       AlwaysHidden_e => 1
    );
-   type AppWindowTitleBarVisibility_Ptr is access all AppWindowTitleBarVisibility;
+   type AppWindowTitleBarVisibility_Ptr is access AppWindowTitleBarVisibility;
 
    type WindowingEnvironmentKind is (
       Unknown_e,
@@ -298,7 +298,7 @@ package WinRt.Windows.UI.WindowManagement is
       Overlapped_e => 1,
       Tiled_e => 2
    );
-   type WindowingEnvironmentKind_Ptr is access all WindowingEnvironmentKind;
+   type WindowingEnvironmentKind_Ptr is access WindowingEnvironmentKind;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

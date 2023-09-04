@@ -195,7 +195,7 @@ package WinRt.Windows.Storage.Streams is
       LittleEndian_e => 0,
       BigEndian_e => 1
    );
-   type ByteOrder_Ptr is access all ByteOrder;
+   type ByteOrder_Ptr is access ByteOrder;
 
    type FileOpenDisposition is (
       OpenExisting_e,
@@ -211,7 +211,7 @@ package WinRt.Windows.Storage.Streams is
       CreateAlways_e => 3,
       TruncateExisting_e => 4
    );
-   type FileOpenDisposition_Ptr is access all FileOpenDisposition;
+   type FileOpenDisposition_Ptr is access FileOpenDisposition;
 
    type InputStreamOptions is (
       None_e,
@@ -223,7 +223,7 @@ package WinRt.Windows.Storage.Streams is
       Partial_e => 1,
       ReadAhead_e => 2
    );
-   type InputStreamOptions_Ptr is access all InputStreamOptions;
+   type InputStreamOptions_Ptr is access InputStreamOptions;
 
    type UnicodeEncoding is (
       Utf8_e,
@@ -235,7 +235,7 @@ package WinRt.Windows.Storage.Streams is
       Utf16LE_e => 1,
       Utf16BE_e => 2
    );
-   type UnicodeEncoding_Ptr is access all UnicodeEncoding;
+   type UnicodeEncoding_Ptr is access UnicodeEncoding;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

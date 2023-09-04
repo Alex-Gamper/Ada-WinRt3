@@ -97,7 +97,7 @@ package WinRt.Windows.ApplicationModel.Preview.Notes is
    type PreviewNotesContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type PreviewNotesContract_Ptr is access all PreviewNotesContract;
+   type PreviewNotesContract_Ptr is access PreviewNotesContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

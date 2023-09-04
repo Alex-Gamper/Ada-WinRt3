@@ -55,7 +55,7 @@ package WinRt.Windows.ApplicationModel.CommunicationBlocking is
    type CommunicationBlockingContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type CommunicationBlockingContract_Ptr is access all CommunicationBlockingContract;
+   type CommunicationBlockingContract_Ptr is access CommunicationBlockingContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

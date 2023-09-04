@@ -77,7 +77,7 @@ package WinRt.Windows.Management.Policies is
       Int64_e => 4,
       String_e => 5
    );
-   type NamedPolicyKind_Ptr is access all NamedPolicyKind;
+   type NamedPolicyKind_Ptr is access NamedPolicyKind;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

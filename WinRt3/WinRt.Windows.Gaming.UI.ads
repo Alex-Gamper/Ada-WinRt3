@@ -102,7 +102,7 @@ package WinRt.Windows.Gaming.UI is
       Voice_e => 0,
       Text_e => 1
    );
-   type GameChatMessageOrigin_Ptr is access all GameChatMessageOrigin;
+   type GameChatMessageOrigin_Ptr is access GameChatMessageOrigin;
 
    type GameChatOverlayPosition is (
       BottomCenter_e,
@@ -124,7 +124,7 @@ package WinRt.Windows.Gaming.UI is
       TopLeft_e => 6,
       TopRight_e => 7
    );
-   type GameChatOverlayPosition_Ptr is access all GameChatOverlayPosition;
+   type GameChatOverlayPosition_Ptr is access GameChatOverlayPosition;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -133,12 +133,12 @@ package WinRt.Windows.Gaming.UI is
    type GameChatOverlayContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type GameChatOverlayContract_Ptr is access all GameChatOverlayContract;
+   type GameChatOverlayContract_Ptr is access GameChatOverlayContract;
 
    type GamingUIProviderContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type GamingUIProviderContract_Ptr is access all GamingUIProviderContract;
+   type GamingUIProviderContract_Ptr is access GamingUIProviderContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

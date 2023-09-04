@@ -99,7 +99,7 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
       NotInitialized_e => 4,
       NotAvailable_e => 5
    );
-   type GeofenceMonitorStatus_Ptr is access all GeofenceMonitorStatus;
+   type GeofenceMonitorStatus_Ptr is access GeofenceMonitorStatus;
 
    type GeofenceRemovalReason is (
       Used_e,
@@ -109,7 +109,7 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
       Used_e => 0,
       Expired_e => 1
    );
-   type GeofenceRemovalReason_Ptr is access all GeofenceRemovalReason;
+   type GeofenceRemovalReason_Ptr is access GeofenceRemovalReason;
 
    type GeofenceState is (
       None_e,
@@ -123,7 +123,7 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
       Exited_e => 2,
       Removed_e => 4
    );
-   type GeofenceState_Ptr is access all GeofenceState;
+   type GeofenceState_Ptr is access GeofenceState;
 
    type MonitoredGeofenceStates is (
       None_e,
@@ -137,7 +137,7 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
       Exited_e => 2,
       Removed_e => 4
    );
-   type MonitoredGeofenceStates_Ptr is access all MonitoredGeofenceStates;
+   type MonitoredGeofenceStates_Ptr is access MonitoredGeofenceStates;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -250,7 +250,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       UnsupportedManifestProfile_e => 5,
       UnknownFailure_e => 6
    );
-   type AdaptiveMediaSourceCreationStatus_Ptr is access all AdaptiveMediaSourceCreationStatus;
+   type AdaptiveMediaSourceCreationStatus_Ptr is access AdaptiveMediaSourceCreationStatus;
 
    type AdaptiveMediaSourceDiagnosticType is (
       ManifestUnchangedUponReload_e,
@@ -274,7 +274,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       BitrateDisabled_e => 7,
       FatalMediaSourceError_e => 8
    );
-   type AdaptiveMediaSourceDiagnosticType_Ptr is access all AdaptiveMediaSourceDiagnosticType;
+   type AdaptiveMediaSourceDiagnosticType_Ptr is access AdaptiveMediaSourceDiagnosticType;
 
    type AdaptiveMediaSourceDownloadBitrateChangedReason is (
       SufficientInboundBitsPerSecond_e,
@@ -294,7 +294,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       DesiredBitratesChanged_e => 5,
       ErrorInPreviousBitrate_e => 6
    );
-   type AdaptiveMediaSourceDownloadBitrateChangedReason_Ptr is access all AdaptiveMediaSourceDownloadBitrateChangedReason;
+   type AdaptiveMediaSourceDownloadBitrateChangedReason_Ptr is access AdaptiveMediaSourceDownloadBitrateChangedReason;
 
    type AdaptiveMediaSourceResourceType is (
       Manifest_e,
@@ -312,7 +312,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       InitializationVector_e => 4,
       MediaSegmentIndex_e => 5
    );
-   type AdaptiveMediaSourceResourceType_Ptr is access all AdaptiveMediaSourceResourceType;
+   type AdaptiveMediaSourceResourceType_Ptr is access AdaptiveMediaSourceResourceType;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -41,10 +41,10 @@ package WinRt.Windows.Devices.Sms is
    -----------------------------------------------------------------------------
 
    type SmsDeviceStatusChangedEventHandler_Delegate;
-   type SmsDeviceStatusChangedEventHandler is access all SmsDeviceStatusChangedEventHandler_Delegate;
+   type SmsDeviceStatusChangedEventHandler is access SmsDeviceStatusChangedEventHandler_Delegate;
 
    type SmsMessageReceivedEventHandler_Delegate;
-   type SmsMessageReceivedEventHandler is access all SmsMessageReceivedEventHandler_Delegate;
+   type SmsMessageReceivedEventHandler is access SmsMessageReceivedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -314,7 +314,7 @@ package WinRt.Windows.Devices.Sms is
       Gsm_e => 1,
       Cdma_e => 2
    );
-   type CellularClass_Ptr is access all CellularClass;
+   type CellularClass_Ptr is access CellularClass;
 
    type SmsBroadcastType is (
       Other_e,
@@ -350,7 +350,7 @@ package WinRt.Windows.Devices.Sms is
       EtwsTsunamiAndEarthquake_e => 13,
       LatAlertLocal_e => 14
    );
-   type SmsBroadcastType_Ptr is access all SmsBroadcastType;
+   type SmsBroadcastType_Ptr is access SmsBroadcastType;
 
    type SmsDataFormat is (
       Unknown_e,
@@ -366,7 +366,7 @@ package WinRt.Windows.Devices.Sms is
       CdmaDeliver_e => 3,
       GsmDeliver_e => 4
    );
-   type SmsDataFormat_Ptr is access all SmsDataFormat;
+   type SmsDataFormat_Ptr is access SmsDataFormat;
 
    type SmsDeviceStatus is (
       Off_e,
@@ -388,7 +388,7 @@ package WinRt.Windows.Devices.Sms is
       DeviceLocked_e => 6,
       DeviceBlocked_e => 7
    );
-   type SmsDeviceStatus_Ptr is access all SmsDeviceStatus;
+   type SmsDeviceStatus_Ptr is access SmsDeviceStatus;
 
    type SmsEncoding is (
       Unknown_e,
@@ -416,7 +416,7 @@ package WinRt.Windows.Devices.Sms is
       ShiftJis_e => 9,
       LatinHebrew_e => 10
    );
-   type SmsEncoding_Ptr is access all SmsEncoding;
+   type SmsEncoding_Ptr is access SmsEncoding;
 
    type SmsFilterActionType is (
       AcceptImmediately_e,
@@ -430,7 +430,7 @@ package WinRt.Windows.Devices.Sms is
       Peek_e => 2,
       Accept_e => 3
    );
-   type SmsFilterActionType_Ptr is access all SmsFilterActionType;
+   type SmsFilterActionType_Ptr is access SmsFilterActionType;
 
    type SmsGeographicalScope is (
       None_e,
@@ -446,7 +446,7 @@ package WinRt.Windows.Devices.Sms is
       Plmn_e => 3,
       Cell_e => 4
    );
-   type SmsGeographicalScope_Ptr is access all SmsGeographicalScope;
+   type SmsGeographicalScope_Ptr is access SmsGeographicalScope;
 
    type SmsMessageClass is (
       None_e,
@@ -462,7 +462,7 @@ package WinRt.Windows.Devices.Sms is
       Class2_e => 3,
       Class3_e => 4
    );
-   type SmsMessageClass_Ptr is access all SmsMessageClass;
+   type SmsMessageClass_Ptr is access SmsMessageClass;
 
    type SmsMessageFilter is (
       All_e,
@@ -478,7 +478,7 @@ package WinRt.Windows.Devices.Sms is
       Sent_e => 3,
       Draft_e => 4
    );
-   type SmsMessageFilter_Ptr is access all SmsMessageFilter;
+   type SmsMessageFilter_Ptr is access SmsMessageFilter;
 
    type SmsMessageType is (
       Binary_e,
@@ -498,7 +498,7 @@ package WinRt.Windows.Devices.Sms is
       Voicemail_e => 5,
       Status_e => 6
    );
-   type SmsMessageType_Ptr is access all SmsMessageType;
+   type SmsMessageType_Ptr is access SmsMessageType;
 
    type SmsModemErrorCode is (
       Other_e,
@@ -528,7 +528,7 @@ package WinRt.Windows.Devices.Sms is
       NetworkFailure_e => 10,
       FixedDialingNumberRestricted_e => 11
    );
-   type SmsModemErrorCode_Ptr is access all SmsModemErrorCode;
+   type SmsModemErrorCode_Ptr is access SmsModemErrorCode;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -537,7 +537,7 @@ package WinRt.Windows.Devices.Sms is
    type LegacySmsApiContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type LegacySmsApiContract_Ptr is access all LegacySmsApiContract;
+   type LegacySmsApiContract_Ptr is access LegacySmsApiContract;
 
    type SmsEncodedLength is record
       SegmentCount : WinRt.UInt32;
@@ -546,7 +546,7 @@ package WinRt.Windows.Devices.Sms is
       ByteCountLastSegment : WinRt.UInt32;
       BytesPerSegment : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type SmsEncodedLength_Ptr is access all SmsEncodedLength;
+   type SmsEncodedLength_Ptr is access SmsEncodedLength;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

@@ -82,7 +82,7 @@ package WinRt.Windows.Media.Transcoding is
       Default_e => 0,
       MrfCrf444_e => 1
    );
-   type MediaVideoProcessingAlgorithm_Ptr is access all MediaVideoProcessingAlgorithm;
+   type MediaVideoProcessingAlgorithm_Ptr is access MediaVideoProcessingAlgorithm;
 
    type TranscodeFailureReason is (
       None_e,
@@ -96,7 +96,7 @@ package WinRt.Windows.Media.Transcoding is
       InvalidProfile_e => 2,
       CodecNotFound_e => 3
    );
-   type TranscodeFailureReason_Ptr is access all TranscodeFailureReason;
+   type TranscodeFailureReason_Ptr is access TranscodeFailureReason;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

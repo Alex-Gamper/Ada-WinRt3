@@ -394,7 +394,7 @@ package WinRt.Windows.Services.Store is
       NetworkError_e => 3,
       ServerError_e => 4
    );
-   type StoreCanLicenseStatus_Ptr is access all StoreCanLicenseStatus;
+   type StoreCanLicenseStatus_Ptr is access StoreCanLicenseStatus;
 
    type StoreConsumableStatus is (
       Succeeded_e,
@@ -408,7 +408,7 @@ package WinRt.Windows.Services.Store is
       NetworkError_e => 2,
       ServerError_e => 3
    );
-   type StoreConsumableStatus_Ptr is access all StoreConsumableStatus;
+   type StoreConsumableStatus_Ptr is access StoreConsumableStatus;
 
    type StoreDurationUnit is (
       Minute_e,
@@ -426,7 +426,7 @@ package WinRt.Windows.Services.Store is
       Month_e => 4,
       Year_e => 5
    );
-   type StoreDurationUnit_Ptr is access all StoreDurationUnit;
+   type StoreDurationUnit_Ptr is access StoreDurationUnit;
 
    type StorePackageUpdateState is (
       Pending_e,
@@ -450,7 +450,7 @@ package WinRt.Windows.Services.Store is
       ErrorWiFiRecommended_e => 7,
       ErrorWiFiRequired_e => 8
    );
-   type StorePackageUpdateState_Ptr is access all StorePackageUpdateState;
+   type StorePackageUpdateState_Ptr is access StorePackageUpdateState;
 
    type StorePurchaseStatus is (
       Succeeded_e,
@@ -466,7 +466,7 @@ package WinRt.Windows.Services.Store is
       NetworkError_e => 3,
       ServerError_e => 4
    );
-   type StorePurchaseStatus_Ptr is access all StorePurchaseStatus;
+   type StorePurchaseStatus_Ptr is access StorePurchaseStatus;
 
    type StoreQueueItemExtendedState is (
       ActivePending_e,
@@ -502,7 +502,7 @@ package WinRt.Windows.Services.Store is
       PausedWiFiRequired_e => 13,
       PausedReadyToInstall_e => 14
    );
-   type StoreQueueItemExtendedState_Ptr is access all StoreQueueItemExtendedState;
+   type StoreQueueItemExtendedState_Ptr is access StoreQueueItemExtendedState;
 
    type StoreQueueItemKind is (
       Install_e,
@@ -514,7 +514,7 @@ package WinRt.Windows.Services.Store is
       Update_e => 1,
       Repair_e => 2
    );
-   type StoreQueueItemKind_Ptr is access all StoreQueueItemKind;
+   type StoreQueueItemKind_Ptr is access StoreQueueItemKind;
 
    type StoreQueueItemState is (
       Active_e,
@@ -530,7 +530,7 @@ package WinRt.Windows.Services.Store is
       Error_e => 3,
       Paused_e => 4
    );
-   type StoreQueueItemState_Ptr is access all StoreQueueItemState;
+   type StoreQueueItemState_Ptr is access StoreQueueItemState;
 
    type StoreRateAndReviewStatus is (
       Succeeded_e,
@@ -544,7 +544,7 @@ package WinRt.Windows.Services.Store is
       NetworkError_e => 2,
       Error_e => 3
    );
-   type StoreRateAndReviewStatus_Ptr is access all StoreRateAndReviewStatus;
+   type StoreRateAndReviewStatus_Ptr is access StoreRateAndReviewStatus;
 
    type StoreUninstallStorePackageStatus is (
       Succeeded_e,
@@ -560,7 +560,7 @@ package WinRt.Windows.Services.Store is
       UninstallNotApplicable_e => 3,
       Error_e => 4
    );
-   type StoreUninstallStorePackageStatus_Ptr is access all StoreUninstallStorePackageStatus;
+   type StoreUninstallStorePackageStatus_Ptr is access StoreUninstallStorePackageStatus;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -569,7 +569,7 @@ package WinRt.Windows.Services.Store is
    type StoreContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type StoreContract_Ptr is access all StoreContract;
+   type StoreContract_Ptr is access StoreContract;
 
    type StorePackageUpdateStatus is record
       PackageFamilyName : WinRt.HString;
@@ -579,7 +579,7 @@ package WinRt.Windows.Services.Store is
       TotalDownloadProgress : WinRt.Double;
       PackageUpdateState : Windows.Services.Store.StorePackageUpdateState;
    end record with Convention => C_Pass_By_Copy;
-   type StorePackageUpdateStatus_Ptr is access all StorePackageUpdateStatus;
+   type StorePackageUpdateStatus_Ptr is access StorePackageUpdateStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

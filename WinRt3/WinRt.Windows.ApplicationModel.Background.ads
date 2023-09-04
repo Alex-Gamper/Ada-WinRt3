@@ -56,13 +56,13 @@ package WinRt.Windows.ApplicationModel.Background is
    -----------------------------------------------------------------------------
 
    type BackgroundTaskCanceledEventHandler_Delegate;
-   type BackgroundTaskCanceledEventHandler is access all BackgroundTaskCanceledEventHandler_Delegate;
+   type BackgroundTaskCanceledEventHandler is access BackgroundTaskCanceledEventHandler_Delegate;
 
    type BackgroundTaskCompletedEventHandler_Delegate;
-   type BackgroundTaskCompletedEventHandler is access all BackgroundTaskCompletedEventHandler_Delegate;
+   type BackgroundTaskCompletedEventHandler is access BackgroundTaskCompletedEventHandler_Delegate;
 
    type BackgroundTaskProgressEventHandler_Delegate;
-   type BackgroundTaskProgressEventHandler is access all BackgroundTaskProgressEventHandler_Delegate;
+   type BackgroundTaskProgressEventHandler is access BackgroundTaskProgressEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -800,7 +800,7 @@ package WinRt.Windows.ApplicationModel.Background is
       AllowedWithoutWakeupCapability_e => 2,
       Denied_e => 3
    );
-   type AlarmAccessStatus_Ptr is access all AlarmAccessStatus;
+   type AlarmAccessStatus_Ptr is access AlarmAccessStatus;
 
    type ApplicationTriggerResult is (
       Allowed_e,
@@ -814,7 +814,7 @@ package WinRt.Windows.ApplicationModel.Background is
       DisabledByPolicy_e => 2,
       UnknownError_e => 3
    );
-   type ApplicationTriggerResult_Ptr is access all ApplicationTriggerResult;
+   type ApplicationTriggerResult_Ptr is access ApplicationTriggerResult;
 
    type BackgroundAccessRequestKind is (
       AlwaysAllowed_e,
@@ -824,7 +824,7 @@ package WinRt.Windows.ApplicationModel.Background is
       AlwaysAllowed_e => 0,
       AllowedSubjectToSystemPolicy_e => 1
    );
-   type BackgroundAccessRequestKind_Ptr is access all BackgroundAccessRequestKind;
+   type BackgroundAccessRequestKind_Ptr is access BackgroundAccessRequestKind;
 
    type BackgroundAccessStatus is (
       Unspecified_e,
@@ -846,7 +846,7 @@ package WinRt.Windows.ApplicationModel.Background is
       DeniedBySystemPolicy_e => 6,
       DeniedByUser_e => 7
    );
-   type BackgroundAccessStatus_Ptr is access all BackgroundAccessStatus;
+   type BackgroundAccessStatus_Ptr is access BackgroundAccessStatus;
 
    type BackgroundTaskCancellationReason is (
       Abort_e,
@@ -876,7 +876,7 @@ package WinRt.Windows.ApplicationModel.Background is
       ResourceRevocation_e => 10,
       EnergySaver_e => 11
    );
-   type BackgroundTaskCancellationReason_Ptr is access all BackgroundTaskCancellationReason;
+   type BackgroundTaskCancellationReason_Ptr is access BackgroundTaskCancellationReason;
 
    type BackgroundTaskThrottleCounter is (
       All_e,
@@ -888,7 +888,7 @@ package WinRt.Windows.ApplicationModel.Background is
       Cpu_e => 1,
       Network_e => 2
    );
-   type BackgroundTaskThrottleCounter_Ptr is access all BackgroundTaskThrottleCounter;
+   type BackgroundTaskThrottleCounter_Ptr is access BackgroundTaskThrottleCounter;
 
    type BackgroundWorkCostValue is (
       Low_e,
@@ -900,7 +900,7 @@ package WinRt.Windows.ApplicationModel.Background is
       Medium_e => 1,
       High_e => 2
    );
-   type BackgroundWorkCostValue_Ptr is access all BackgroundWorkCostValue;
+   type BackgroundWorkCostValue_Ptr is access BackgroundWorkCostValue;
 
    type CustomSystemEventTriggerRecurrence is (
       Once_e,
@@ -910,7 +910,7 @@ package WinRt.Windows.ApplicationModel.Background is
       Once_e => 0,
       Always_e => 1
    );
-   type CustomSystemEventTriggerRecurrence_Ptr is access all CustomSystemEventTriggerRecurrence;
+   type CustomSystemEventTriggerRecurrence_Ptr is access CustomSystemEventTriggerRecurrence;
 
    type DeviceTriggerResult is (
       Allowed_e,
@@ -924,7 +924,7 @@ package WinRt.Windows.ApplicationModel.Background is
       DeniedBySystem_e => 2,
       LowBattery_e => 3
    );
-   type DeviceTriggerResult_Ptr is access all DeviceTriggerResult;
+   type DeviceTriggerResult_Ptr is access DeviceTriggerResult;
 
    type LocationTriggerType is (
       Geofence_e
@@ -932,7 +932,7 @@ package WinRt.Windows.ApplicationModel.Background is
    for LocationTriggerType use (
       Geofence_e => 0
    );
-   type LocationTriggerType_Ptr is access all LocationTriggerType;
+   type LocationTriggerType_Ptr is access LocationTriggerType;
 
    type MediaProcessingTriggerResult is (
       Allowed_e,
@@ -946,7 +946,7 @@ package WinRt.Windows.ApplicationModel.Background is
       DisabledByPolicy_e => 2,
       UnknownError_e => 3
    );
-   type MediaProcessingTriggerResult_Ptr is access all MediaProcessingTriggerResult;
+   type MediaProcessingTriggerResult_Ptr is access MediaProcessingTriggerResult;
 
    type SystemConditionType is (
       Invalid_e,
@@ -970,7 +970,7 @@ package WinRt.Windows.ApplicationModel.Background is
       FreeNetworkAvailable_e => 7,
       BackgroundWorkCostNotHigh_e => 8
    );
-   type SystemConditionType_Ptr is access all SystemConditionType;
+   type SystemConditionType_Ptr is access SystemConditionType;
 
    type SystemTriggerType is (
       Invalid_e,
@@ -1008,7 +1008,7 @@ package WinRt.Windows.ApplicationModel.Background is
       PowerStateChange_e => 14,
       DefaultSignInAccountChange_e => 15
    );
-   type SystemTriggerType_Ptr is access all SystemTriggerType;
+   type SystemTriggerType_Ptr is access SystemTriggerType;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1017,7 +1017,7 @@ package WinRt.Windows.ApplicationModel.Background is
    type BackgroundAlarmApplicationContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type BackgroundAlarmApplicationContract_Ptr is access all BackgroundAlarmApplicationContract;
+   type BackgroundAlarmApplicationContract_Ptr is access BackgroundAlarmApplicationContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

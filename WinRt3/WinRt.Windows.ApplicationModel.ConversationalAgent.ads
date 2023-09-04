@@ -181,7 +181,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       AudioOEMDefined_e => 9,
       OtherOEMDefined_e => 10
    );
-   type ActivationSignalDetectionTrainingDataFormat_Ptr is access all ActivationSignalDetectionTrainingDataFormat;
+   type ActivationSignalDetectionTrainingDataFormat_Ptr is access ActivationSignalDetectionTrainingDataFormat;
 
    type ActivationSignalDetectorKind is (
       AudioPattern_e,
@@ -193,7 +193,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       AudioImpulse_e => 1,
       HardwareEvent_e => 2
    );
-   type ActivationSignalDetectorKind_Ptr is access all ActivationSignalDetectorKind;
+   type ActivationSignalDetectorKind_Ptr is access ActivationSignalDetectorKind;
 
    type ActivationSignalDetectorPowerState is (
       HighPower_e,
@@ -205,7 +205,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       ConnectedLowPower_e => 1,
       DisconnectedLowPower_e => 2
    );
-   type ActivationSignalDetectorPowerState_Ptr is access all ActivationSignalDetectorPowerState;
+   type ActivationSignalDetectorPowerState_Ptr is access ActivationSignalDetectorPowerState;
 
    type ConversationalAgentSessionUpdateResponse is (
       Success_e,
@@ -215,7 +215,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       Success_e => 0,
       Failed_e => 1
    );
-   type ConversationalAgentSessionUpdateResponse_Ptr is access all ConversationalAgentSessionUpdateResponse;
+   type ConversationalAgentSessionUpdateResponse_Ptr is access ConversationalAgentSessionUpdateResponse;
 
    type ConversationalAgentState is (
       Inactive_e,
@@ -233,7 +233,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       Speaking_e => 4,
       ListeningAndSpeaking_e => 5
    );
-   type ConversationalAgentState_Ptr is access all ConversationalAgentState;
+   type ConversationalAgentState_Ptr is access ConversationalAgentState;
 
    type ConversationalAgentSystemStateChangeType is (
       UserAuthentication_e,
@@ -247,7 +247,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       IndicatorLightAvailability_e => 2,
       VoiceActivationAvailability_e => 3
    );
-   type ConversationalAgentSystemStateChangeType_Ptr is access all ConversationalAgentSystemStateChangeType;
+   type ConversationalAgentSystemStateChangeType_Ptr is access ConversationalAgentSystemStateChangeType;
 
    type DetectionConfigurationAvailabilityChangeKind is (
       SystemResourceAccess_e,
@@ -259,7 +259,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       Permission_e => 1,
       LockScreenPermission_e => 2
    );
-   type DetectionConfigurationAvailabilityChangeKind_Ptr is access all DetectionConfigurationAvailabilityChangeKind;
+   type DetectionConfigurationAvailabilityChangeKind_Ptr is access DetectionConfigurationAvailabilityChangeKind;
 
    type DetectionConfigurationTrainingStatus is (
       Success_e,
@@ -281,7 +281,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       VoiceQualityProblem_e => 6,
       TrainingSystemInternalError_e => 7
    );
-   type DetectionConfigurationTrainingStatus_Ptr is access all DetectionConfigurationTrainingStatus;
+   type DetectionConfigurationTrainingStatus_Ptr is access DetectionConfigurationTrainingStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -96,7 +96,7 @@ package WinRt.Windows.Media.ContentRestrictions is
       Block_e => 2,
       Hide_e => 3
    );
-   type ContentAccessRestrictionLevel_Ptr is access all ContentAccessRestrictionLevel;
+   type ContentAccessRestrictionLevel_Ptr is access ContentAccessRestrictionLevel;
 
    type RatedContentCategory is (
       General_e,
@@ -114,7 +114,7 @@ package WinRt.Windows.Media.ContentRestrictions is
       Television_e => 4,
       Music_e => 5
    );
-   type RatedContentCategory_Ptr is access all RatedContentCategory;
+   type RatedContentCategory_Ptr is access RatedContentCategory;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

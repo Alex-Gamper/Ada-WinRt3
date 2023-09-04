@@ -122,7 +122,7 @@ package WinRt.Windows.Devices.Lights is
       Furniture_e => 9,
       Art_e => 10
    );
-   type LampArrayKind_Ptr is access all LampArrayKind;
+   type LampArrayKind_Ptr is access LampArrayKind;
 
    type LampPurposes is (
       Undefined_e,
@@ -142,7 +142,7 @@ package WinRt.Windows.Devices.Lights is
       Illumination_e => 16,
       Presentation_e => 32
    );
-   type LampPurposes_Ptr is access all LampPurposes;
+   type LampPurposes_Ptr is access LampPurposes;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

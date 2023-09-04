@@ -75,7 +75,7 @@ package WinRt.Windows.Devices.Display is
       Wireless_e => 2,
       Virtual_e => 3
    );
-   type DisplayMonitorConnectionKind_Ptr is access all DisplayMonitorConnectionKind;
+   type DisplayMonitorConnectionKind_Ptr is access DisplayMonitorConnectionKind;
 
    type DisplayMonitorDescriptorKind is (
       Edid_e,
@@ -85,7 +85,7 @@ package WinRt.Windows.Devices.Display is
       Edid_e => 0,
       DisplayId_e => 1
    );
-   type DisplayMonitorDescriptorKind_Ptr is access all DisplayMonitorDescriptorKind;
+   type DisplayMonitorDescriptorKind_Ptr is access DisplayMonitorDescriptorKind;
 
    type DisplayMonitorPhysicalConnectorKind is (
       Unknown_e,
@@ -107,7 +107,7 @@ package WinRt.Windows.Devices.Display is
       Sdi_e => 6,
       DisplayPort_e => 7
    );
-   type DisplayMonitorPhysicalConnectorKind_Ptr is access all DisplayMonitorPhysicalConnectorKind;
+   type DisplayMonitorPhysicalConnectorKind_Ptr is access DisplayMonitorPhysicalConnectorKind;
 
    type DisplayMonitorUsageKind is (
       Standard_e,
@@ -119,7 +119,7 @@ package WinRt.Windows.Devices.Display is
       HeadMounted_e => 1,
       SpecialPurpose_e => 2
    );
-   type DisplayMonitorUsageKind_Ptr is access all DisplayMonitorUsageKind;
+   type DisplayMonitorUsageKind_Ptr is access DisplayMonitorUsageKind;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

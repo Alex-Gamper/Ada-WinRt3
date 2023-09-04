@@ -193,7 +193,7 @@ package WinRt.Windows.Gaming.Input is
       Special1_e => 1024,
       Special2_e => 2048
    );
-   type ArcadeStickButtons_Ptr is access all ArcadeStickButtons;
+   type ArcadeStickButtons_Ptr is access ArcadeStickButtons;
 
    type FlightStickButtons is (
       None_e,
@@ -205,7 +205,7 @@ package WinRt.Windows.Gaming.Input is
       FirePrimary_e => 1,
       FireSecondary_e => 2
    );
-   type FlightStickButtons_Ptr is access all FlightStickButtons;
+   type FlightStickButtons_Ptr is access FlightStickButtons;
 
    type GameControllerButtonLabel is (
       None_e,
@@ -349,7 +349,7 @@ package WinRt.Windows.Gaming.Input is
       DialRight_e => 67,
       Suspension_e => 68
    );
-   type GameControllerButtonLabel_Ptr is access all GameControllerButtonLabel;
+   type GameControllerButtonLabel_Ptr is access GameControllerButtonLabel;
 
    type GameControllerSwitchKind is (
       TwoWay_e,
@@ -361,7 +361,7 @@ package WinRt.Windows.Gaming.Input is
       FourWay_e => 1,
       EightWay_e => 2
    );
-   type GameControllerSwitchKind_Ptr is access all GameControllerSwitchKind;
+   type GameControllerSwitchKind_Ptr is access GameControllerSwitchKind;
 
    type GameControllerSwitchPosition is (
       Center_e,
@@ -385,7 +385,7 @@ package WinRt.Windows.Gaming.Input is
       Left_e => 7,
       UpLeft_e => 8
    );
-   type GameControllerSwitchPosition_Ptr is access all GameControllerSwitchPosition;
+   type GameControllerSwitchPosition_Ptr is access GameControllerSwitchPosition;
    type GameControllerSwitchPosition_Array is array (Natural range <>) of aliased GameControllerSwitchPosition;
 
    type GamepadButtons is (
@@ -430,7 +430,7 @@ package WinRt.Windows.Gaming.Input is
       Paddle3_e => 65536,
       Paddle4_e => 131072
    );
-   type GamepadButtons_Ptr is access all GamepadButtons;
+   type GamepadButtons_Ptr is access GamepadButtons;
 
    type OptionalUINavigationButtons is (
       None_e,
@@ -462,7 +462,7 @@ package WinRt.Windows.Gaming.Input is
       ScrollLeft_e => 1024,
       ScrollRight_e => 2048
    );
-   type OptionalUINavigationButtons_Ptr is access all OptionalUINavigationButtons;
+   type OptionalUINavigationButtons_Ptr is access OptionalUINavigationButtons;
 
    type RacingWheelButtons is (
       None_e,
@@ -514,7 +514,7 @@ package WinRt.Windows.Gaming.Input is
       Button15_e => 1048576,
       Button16_e => 2097152
    );
-   type RacingWheelButtons_Ptr is access all RacingWheelButtons;
+   type RacingWheelButtons_Ptr is access RacingWheelButtons;
 
    type RequiredUINavigationButtons is (
       None_e,
@@ -538,7 +538,7 @@ package WinRt.Windows.Gaming.Input is
       Left_e => 64,
       Right_e => 128
    );
-   type RequiredUINavigationButtons_Ptr is access all RequiredUINavigationButtons;
+   type RequiredUINavigationButtons_Ptr is access RequiredUINavigationButtons;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -548,7 +548,7 @@ package WinRt.Windows.Gaming.Input is
       Timestamp : WinRt.UInt64;
       Buttons : Windows.Gaming.Input.ArcadeStickButtons;
    end record with Convention => C_Pass_By_Copy;
-   type ArcadeStickReading_Ptr is access all ArcadeStickReading;
+   type ArcadeStickReading_Ptr is access ArcadeStickReading;
 
    type FlightStickReading is record
       Timestamp : WinRt.UInt64;
@@ -559,7 +559,7 @@ package WinRt.Windows.Gaming.Input is
       Yaw : WinRt.Double;
       Throttle : WinRt.Double;
    end record with Convention => C_Pass_By_Copy;
-   type FlightStickReading_Ptr is access all FlightStickReading;
+   type FlightStickReading_Ptr is access FlightStickReading;
 
    type GamepadReading is record
       Timestamp : WinRt.UInt64;
@@ -571,7 +571,7 @@ package WinRt.Windows.Gaming.Input is
       RightThumbstickX : WinRt.Double;
       RightThumbstickY : WinRt.Double;
    end record with Convention => C_Pass_By_Copy;
-   type GamepadReading_Ptr is access all GamepadReading;
+   type GamepadReading_Ptr is access GamepadReading;
 
    type GamepadVibration is record
       LeftMotor : WinRt.Double;
@@ -579,12 +579,12 @@ package WinRt.Windows.Gaming.Input is
       LeftTrigger : WinRt.Double;
       RightTrigger : WinRt.Double;
    end record with Convention => C_Pass_By_Copy;
-   type GamepadVibration_Ptr is access all GamepadVibration;
+   type GamepadVibration_Ptr is access GamepadVibration;
 
    type GamingInputPreviewContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type GamingInputPreviewContract_Ptr is access all GamingInputPreviewContract;
+   type GamingInputPreviewContract_Ptr is access GamingInputPreviewContract;
 
    type RacingWheelReading is record
       Timestamp : WinRt.UInt64;
@@ -596,14 +596,14 @@ package WinRt.Windows.Gaming.Input is
       Clutch : WinRt.Double;
       Handbrake : WinRt.Double;
    end record with Convention => C_Pass_By_Copy;
-   type RacingWheelReading_Ptr is access all RacingWheelReading;
+   type RacingWheelReading_Ptr is access RacingWheelReading;
 
    type UINavigationReading is record
       Timestamp : WinRt.UInt64;
       RequiredButtons : Windows.Gaming.Input.RequiredUINavigationButtons;
       OptionalButtons : Windows.Gaming.Input.OptionalUINavigationButtons;
    end record with Convention => C_Pass_By_Copy;
-   type UINavigationReading_Ptr is access all UINavigationReading;
+   type UINavigationReading_Ptr is access UINavigationReading;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

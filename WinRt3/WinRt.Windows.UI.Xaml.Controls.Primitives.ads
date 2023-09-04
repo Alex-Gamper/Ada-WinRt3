@@ -46,22 +46,22 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    -----------------------------------------------------------------------------
 
    type DragCompletedEventHandler_Delegate;
-   type DragCompletedEventHandler is access all DragCompletedEventHandler_Delegate;
+   type DragCompletedEventHandler is access DragCompletedEventHandler_Delegate;
 
    type DragDeltaEventHandler_Delegate;
-   type DragDeltaEventHandler is access all DragDeltaEventHandler_Delegate;
+   type DragDeltaEventHandler is access DragDeltaEventHandler_Delegate;
 
    type DragStartedEventHandler_Delegate;
-   type DragStartedEventHandler is access all DragStartedEventHandler_Delegate;
+   type DragStartedEventHandler is access DragStartedEventHandler_Delegate;
 
    type ItemsChangedEventHandler_Delegate;
-   type ItemsChangedEventHandler is access all ItemsChangedEventHandler_Delegate;
+   type ItemsChangedEventHandler is access ItemsChangedEventHandler_Delegate;
 
    type RangeBaseValueChangedEventHandler_Delegate;
-   type RangeBaseValueChangedEventHandler is access all RangeBaseValueChangedEventHandler_Delegate;
+   type RangeBaseValueChangedEventHandler is access RangeBaseValueChangedEventHandler_Delegate;
 
    type ScrollEventHandler_Delegate;
-   type ScrollEventHandler is access all ScrollEventHandler_Delegate;
+   type ScrollEventHandler is access ScrollEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -860,7 +860,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Right_e => 2,
       Bottom_e => 3
    );
-   type AnimationDirection_Ptr is access all AnimationDirection;
+   type AnimationDirection_Ptr is access AnimationDirection;
 
    type ComponentResourceLocation is (
       Application_e,
@@ -870,7 +870,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Application_e => 0,
       Nested_e => 1
    );
-   type ComponentResourceLocation_Ptr is access all ComponentResourceLocation;
+   type ComponentResourceLocation_Ptr is access ComponentResourceLocation;
 
    type EdgeTransitionLocation is (
       Left_e,
@@ -884,7 +884,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Right_e => 2,
       Bottom_e => 3
    );
-   type EdgeTransitionLocation_Ptr is access all EdgeTransitionLocation;
+   type EdgeTransitionLocation_Ptr is access EdgeTransitionLocation;
 
    type FlyoutPlacementMode is (
       Top_e,
@@ -918,7 +918,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       RightEdgeAlignedBottom_e => 12,
       Auto_e => 13
    );
-   type FlyoutPlacementMode_Ptr is access all FlyoutPlacementMode;
+   type FlyoutPlacementMode_Ptr is access FlyoutPlacementMode;
 
    type FlyoutShowMode is (
       Auto_e,
@@ -932,7 +932,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Transient_e => 2,
       TransientWithDismissOnPointerMoveAway_e => 3
    );
-   type FlyoutShowMode_Ptr is access all FlyoutShowMode;
+   type FlyoutShowMode_Ptr is access FlyoutShowMode;
 
    type GeneratorDirection is (
       Forward_e,
@@ -942,7 +942,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Forward_e => 0,
       Backward_e => 1
    );
-   type GeneratorDirection_Ptr is access all GeneratorDirection;
+   type GeneratorDirection_Ptr is access GeneratorDirection;
 
    type GroupHeaderPlacement is (
       Top_e,
@@ -952,7 +952,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Top_e => 0,
       Left_e => 1
    );
-   type GroupHeaderPlacement_Ptr is access all GroupHeaderPlacement;
+   type GroupHeaderPlacement_Ptr is access GroupHeaderPlacement;
 
    type ListViewItemPresenterCheckMode is (
       Inline_e,
@@ -962,7 +962,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Inline_e => 0,
       Overlay_e => 1
    );
-   type ListViewItemPresenterCheckMode_Ptr is access all ListViewItemPresenterCheckMode;
+   type ListViewItemPresenterCheckMode_Ptr is access ListViewItemPresenterCheckMode;
 
    type PlacementMode is (
       Bottom_e,
@@ -978,7 +978,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Left_e => 9,
       Top_e => 10
    );
-   type PlacementMode_Ptr is access all PlacementMode;
+   type PlacementMode_Ptr is access PlacementMode;
 
    type ScrollEventType is (
       SmallDecrement_e,
@@ -1002,7 +1002,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Last_e => 7,
       EndScroll_e => 8
    );
-   type ScrollEventType_Ptr is access all ScrollEventType;
+   type ScrollEventType_Ptr is access ScrollEventType;
 
    type ScrollingIndicatorMode is (
       None_e,
@@ -1014,7 +1014,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       TouchIndicator_e => 1,
       MouseIndicator_e => 2
    );
-   type ScrollingIndicatorMode_Ptr is access all ScrollingIndicatorMode;
+   type ScrollingIndicatorMode_Ptr is access ScrollingIndicatorMode;
 
    type SliderSnapsTo is (
       StepValues_e,
@@ -1024,7 +1024,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       StepValues_e => 0,
       Ticks_e => 1
    );
-   type SliderSnapsTo_Ptr is access all SliderSnapsTo;
+   type SliderSnapsTo_Ptr is access SliderSnapsTo;
 
    type SnapPointsAlignment is (
       Near_e,
@@ -1036,7 +1036,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Center_e => 1,
       Far_e => 2
    );
-   type SnapPointsAlignment_Ptr is access all SnapPointsAlignment;
+   type SnapPointsAlignment_Ptr is access SnapPointsAlignment;
 
    type TickPlacement is (
       None_e,
@@ -1052,7 +1052,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Outside_e => 3,
       Inline_e => 4
    );
-   type TickPlacement_Ptr is access all TickPlacement;
+   type TickPlacement_Ptr is access TickPlacement;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1062,7 +1062,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Index : WinRt.Int32;
       Offset : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type GeneratorPosition_Ptr is access all GeneratorPosition;
+   type GeneratorPosition_Ptr is access GeneratorPosition;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

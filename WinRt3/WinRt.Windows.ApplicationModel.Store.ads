@@ -41,7 +41,7 @@ package WinRt.Windows.ApplicationModel.Store is
    -----------------------------------------------------------------------------
 
    type LicenseChangedEventHandler_Delegate;
-   type LicenseChangedEventHandler is access all LicenseChangedEventHandler_Delegate;
+   type LicenseChangedEventHandler is access LicenseChangedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -184,7 +184,7 @@ package WinRt.Windows.ApplicationModel.Store is
       PurchaseReverted_e => 3,
       ServerError_e => 4
    );
-   type FulfillmentResult_Ptr is access all FulfillmentResult;
+   type FulfillmentResult_Ptr is access FulfillmentResult;
 
    type ProductPurchaseStatus is (
       Succeeded_e,
@@ -198,7 +198,7 @@ package WinRt.Windows.ApplicationModel.Store is
       NotFulfilled_e => 2,
       NotPurchased_e => 3
    );
-   type ProductPurchaseStatus_Ptr is access all ProductPurchaseStatus;
+   type ProductPurchaseStatus_Ptr is access ProductPurchaseStatus;
 
    type ProductType is (
       Unknown_e,
@@ -210,7 +210,7 @@ package WinRt.Windows.ApplicationModel.Store is
       Durable_e => 1,
       Consumable_e => 2
    );
-   type ProductType_Ptr is access all ProductType;
+   type ProductType_Ptr is access ProductType;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

@@ -301,7 +301,7 @@ package WinRt.Windows.Graphics.Holographic is
       Success_e => 0,
       DeviceRemoved_e => 1
    );
-   type HolographicFramePresentResult_Ptr is access all HolographicFramePresentResult;
+   type HolographicFramePresentResult_Ptr is access HolographicFramePresentResult;
 
    type HolographicFramePresentWaitBehavior is (
       WaitForFrameToFinish_e,
@@ -311,7 +311,7 @@ package WinRt.Windows.Graphics.Holographic is
       WaitForFrameToFinish_e => 0,
       DoNotWaitForFrameToFinish_e => 1
    );
-   type HolographicFramePresentWaitBehavior_Ptr is access all HolographicFramePresentWaitBehavior;
+   type HolographicFramePresentWaitBehavior_Ptr is access HolographicFramePresentWaitBehavior;
 
    type HolographicReprojectionMode is (
       PositionAndOrientation_e,
@@ -323,7 +323,7 @@ package WinRt.Windows.Graphics.Holographic is
       OrientationOnly_e => 1,
       Disabled_e => 2
    );
-   type HolographicReprojectionMode_Ptr is access all HolographicReprojectionMode;
+   type HolographicReprojectionMode_Ptr is access HolographicReprojectionMode;
 
    type HolographicSpaceUserPresence is (
       Absent_e,
@@ -335,7 +335,7 @@ package WinRt.Windows.Graphics.Holographic is
       PresentPassive_e => 1,
       PresentActive_e => 2
    );
-   type HolographicSpaceUserPresence_Ptr is access all HolographicSpaceUserPresence;
+   type HolographicSpaceUserPresence_Ptr is access HolographicSpaceUserPresence;
 
    type HolographicViewConfigurationKind is (
       Display_e,
@@ -345,7 +345,7 @@ package WinRt.Windows.Graphics.Holographic is
       Display_e => 0,
       PhotoVideoCamera_e => 1
    );
-   type HolographicViewConfigurationKind_Ptr is access all HolographicViewConfigurationKind;
+   type HolographicViewConfigurationKind_Ptr is access HolographicViewConfigurationKind;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -355,18 +355,18 @@ package WinRt.Windows.Graphics.Holographic is
       LowPart : WinRt.UInt32;
       HighPart : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type HolographicAdapterId_Ptr is access all HolographicAdapterId;
+   type HolographicAdapterId_Ptr is access HolographicAdapterId;
 
    type HolographicFrameId is record
       Value : WinRt.UInt64;
    end record with Convention => C_Pass_By_Copy;
-   type HolographicFrameId_Ptr is access all HolographicFrameId;
+   type HolographicFrameId_Ptr is access HolographicFrameId;
 
    type HolographicStereoTransform is record
       Left : WinRt.Windows.Foundation.Numerics.Matrix4x4;
       Right : WinRt.Windows.Foundation.Numerics.Matrix4x4;
    end record with Convention => C_Pass_By_Copy;
-   type HolographicStereoTransform_Ptr is access all HolographicStereoTransform;
+   type HolographicStereoTransform_Ptr is access HolographicStereoTransform;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

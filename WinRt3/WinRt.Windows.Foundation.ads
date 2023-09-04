@@ -39,10 +39,10 @@ package WinRt.Windows.Foundation is
    -----------------------------------------------------------------------------
 
    type AsyncActionCompletedHandler_Delegate;
-   type AsyncActionCompletedHandler is access all AsyncActionCompletedHandler_Delegate;
+   type AsyncActionCompletedHandler is access AsyncActionCompletedHandler_Delegate;
 
    type DeferralCompletedHandler_Delegate;
-   type DeferralCompletedHandler is access all DeferralCompletedHandler_Delegate;
+   type DeferralCompletedHandler is access DeferralCompletedHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -166,7 +166,7 @@ package WinRt.Windows.Foundation is
       Canceled_e => 2,
       Error_e => 3
    );
-   type AsyncStatus_Ptr is access all AsyncStatus;
+   type AsyncStatus_Ptr is access AsyncStatus;
 
    type PropertyType is (
       Empty_e,
@@ -254,7 +254,7 @@ package WinRt.Windows.Foundation is
       RectArray_e => 1043,
       OtherTypeArray_e => 1044
    );
-   type PropertyType_Ptr is access all PropertyType;
+   type PropertyType_Ptr is access PropertyType;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -263,29 +263,29 @@ package WinRt.Windows.Foundation is
    type DateTime is record
       UniversalTime : WinRt.Int64;
    end record with Convention => C_Pass_By_Copy;
-   type DateTime_Ptr is access all DateTime;
+   type DateTime_Ptr is access DateTime;
    type DateTime_Array is array (Natural range <>) of aliased DateTime;
 
    type EventRegistrationToken is record
       Value : WinRt.Int64;
    end record with Convention => C_Pass_By_Copy;
-   type EventRegistrationToken_Ptr is access all EventRegistrationToken;
+   type EventRegistrationToken_Ptr is access EventRegistrationToken;
 
    type FoundationContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type FoundationContract_Ptr is access all FoundationContract;
+   type FoundationContract_Ptr is access FoundationContract;
 
    type HResult is record
       Value : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type HResult_Ptr is access all HResult;
+   type HResult_Ptr is access HResult;
 
    type Point is record
       X : WinRt.Single;
       Y : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type Point_Ptr is access all Point;
+   type Point_Ptr is access Point;
    type Point_Array is array (Natural range <>) of aliased Point;
 
    type Rect is record
@@ -294,26 +294,26 @@ package WinRt.Windows.Foundation is
       Width : WinRt.Single;
       Height : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type Rect_Ptr is access all Rect;
+   type Rect_Ptr is access Rect;
    type Rect_Array is array (Natural range <>) of aliased Rect;
 
    type Size is record
       Width : WinRt.Single;
       Height : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type Size_Ptr is access all Size;
+   type Size_Ptr is access Size;
    type Size_Array is array (Natural range <>) of aliased Size;
 
    type TimeSpan is record
       Duration : WinRt.Int64;
    end record with Convention => C_Pass_By_Copy;
-   type TimeSpan_Ptr is access all TimeSpan;
+   type TimeSpan_Ptr is access TimeSpan;
    type TimeSpan_Array is array (Natural range <>) of aliased TimeSpan;
 
    type UniversalApiContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type UniversalApiContract_Ptr is access all UniversalApiContract;
+   type UniversalApiContract_Ptr is access UniversalApiContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

@@ -84,7 +84,7 @@ package WinRt.Windows.Networking is
       Suffix_e => 0,
       FullyQualified_e => 1
    );
-   type DomainNameType_Ptr is access all DomainNameType;
+   type DomainNameType_Ptr is access DomainNameType;
 
    type HostNameSortOptions is (
       None_e,
@@ -94,7 +94,7 @@ package WinRt.Windows.Networking is
       None_e => 0,
       OptimizeForLongConnections_e => 2
    );
-   type HostNameSortOptions_Ptr is access all HostNameSortOptions;
+   type HostNameSortOptions_Ptr is access HostNameSortOptions;
 
    type HostNameType is (
       DomainName_e,
@@ -108,7 +108,7 @@ package WinRt.Windows.Networking is
       Ipv6_e => 2,
       Bluetooth_e => 3
    );
-   type HostNameType_Ptr is access all HostNameType;
+   type HostNameType_Ptr is access HostNameType;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

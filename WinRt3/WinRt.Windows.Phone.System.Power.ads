@@ -56,7 +56,7 @@ package WinRt.Windows.Phone.System.Power is
       Off_e => 0,
       On_e => 1
    );
-   type PowerSavingMode_Ptr is access all PowerSavingMode;
+   type PowerSavingMode_Ptr is access PowerSavingMode;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

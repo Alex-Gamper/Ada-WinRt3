@@ -163,7 +163,7 @@ package WinRt.Windows.Web is
       GatewayTimeout_e => 504,
       HttpVersionNotSupported_e => 505
    );
-   type WebErrorStatus_Ptr is access all WebErrorStatus;
+   type WebErrorStatus_Ptr is access WebErrorStatus;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

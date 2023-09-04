@@ -851,7 +851,7 @@ package WinRt.Windows.Devices.Sensors is
       Linear_e => 1,
       Gravity_e => 2
    );
-   type AccelerometerReadingType_Ptr is access all AccelerometerReadingType;
+   type AccelerometerReadingType_Ptr is access AccelerometerReadingType;
 
    type ActivitySensorReadingConfidence is (
       High_e,
@@ -861,7 +861,7 @@ package WinRt.Windows.Devices.Sensors is
       High_e => 0,
       Low_e => 1
    );
-   type ActivitySensorReadingConfidence_Ptr is access all ActivitySensorReadingConfidence;
+   type ActivitySensorReadingConfidence_Ptr is access ActivitySensorReadingConfidence;
 
    type ActivityType is (
       Unknown_e,
@@ -883,7 +883,7 @@ package WinRt.Windows.Devices.Sensors is
       InVehicle_e => 6,
       Biking_e => 7
    );
-   type ActivityType_Ptr is access all ActivityType;
+   type ActivityType_Ptr is access ActivityType;
 
    type MagnetometerAccuracy is (
       Unknown_e,
@@ -897,7 +897,7 @@ package WinRt.Windows.Devices.Sensors is
       Approximate_e => 2,
       High_e => 3
    );
-   type MagnetometerAccuracy_Ptr is access all MagnetometerAccuracy;
+   type MagnetometerAccuracy_Ptr is access MagnetometerAccuracy;
 
    type PedometerStepKind is (
       Unknown_e,
@@ -909,7 +909,7 @@ package WinRt.Windows.Devices.Sensors is
       Walking_e => 1,
       Running_e => 2
    );
-   type PedometerStepKind_Ptr is access all PedometerStepKind;
+   type PedometerStepKind_Ptr is access PedometerStepKind;
 
    type SensorOptimizationGoal is (
       Precision_e,
@@ -919,7 +919,7 @@ package WinRt.Windows.Devices.Sensors is
       Precision_e => 0,
       PowerEfficiency_e => 1
    );
-   type SensorOptimizationGoal_Ptr is access all SensorOptimizationGoal;
+   type SensorOptimizationGoal_Ptr is access SensorOptimizationGoal;
 
    type SensorReadingType is (
       Absolute_e,
@@ -929,7 +929,7 @@ package WinRt.Windows.Devices.Sensors is
       Absolute_e => 0,
       Relative_e => 1
    );
-   type SensorReadingType_Ptr is access all SensorReadingType;
+   type SensorReadingType_Ptr is access SensorReadingType;
 
    type SensorType is (
       Accelerometer_e,
@@ -963,7 +963,7 @@ package WinRt.Windows.Devices.Sensors is
       RelativeOrientationSensor_e => 12,
       SimpleOrientationSensor_e => 13
    );
-   type SensorType_Ptr is access all SensorType;
+   type SensorType_Ptr is access SensorType;
 
    type SimpleOrientation is (
       NotRotated_e,
@@ -981,7 +981,7 @@ package WinRt.Windows.Devices.Sensors is
       Faceup_e => 4,
       Facedown_e => 5
    );
-   type SimpleOrientation_Ptr is access all SimpleOrientation;
+   type SimpleOrientation_Ptr is access SimpleOrientation;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

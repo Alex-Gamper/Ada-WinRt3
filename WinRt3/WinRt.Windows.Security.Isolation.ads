@@ -40,10 +40,10 @@ package WinRt.Windows.Security.Isolation is
    -----------------------------------------------------------------------------
 
    type HostMessageReceivedCallback_Delegate;
-   type HostMessageReceivedCallback is access all HostMessageReceivedCallback_Delegate;
+   type HostMessageReceivedCallback is access HostMessageReceivedCallback_Delegate;
 
    type MessageReceivedCallback_Delegate;
-   type MessageReceivedCallback is access all MessageReceivedCallback_Delegate;
+   type MessageReceivedCallback is access MessageReceivedCallback_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -213,7 +213,7 @@ package WinRt.Windows.Security.Isolation is
       System_e => 0,
       User_e => 1
    );
-   type IsolatedWindowsEnvironmentActivator_Ptr is access all IsolatedWindowsEnvironmentActivator;
+   type IsolatedWindowsEnvironmentActivator_Ptr is access IsolatedWindowsEnvironmentActivator;
 
    type IsolatedWindowsEnvironmentAllowedClipboardFormats is (
       None_e,
@@ -225,7 +225,7 @@ package WinRt.Windows.Security.Isolation is
       Text_e => 1,
       Image_e => 2
    );
-   type IsolatedWindowsEnvironmentAllowedClipboardFormats_Ptr is access all IsolatedWindowsEnvironmentAllowedClipboardFormats;
+   type IsolatedWindowsEnvironmentAllowedClipboardFormats_Ptr is access IsolatedWindowsEnvironmentAllowedClipboardFormats;
 
    type IsolatedWindowsEnvironmentAvailablePrinters is (
       None_e,
@@ -241,7 +241,7 @@ package WinRt.Windows.Security.Isolation is
       SystemPrintToPdf_e => 4,
       SystemPrintToXps_e => 8
    );
-   type IsolatedWindowsEnvironmentAvailablePrinters_Ptr is access all IsolatedWindowsEnvironmentAvailablePrinters;
+   type IsolatedWindowsEnvironmentAvailablePrinters_Ptr is access IsolatedWindowsEnvironmentAvailablePrinters;
 
    type IsolatedWindowsEnvironmentClipboardCopyPasteDirections is (
       None_e,
@@ -253,7 +253,7 @@ package WinRt.Windows.Security.Isolation is
       HostToIsolatedWindowsEnvironment_e => 1,
       IsolatedWindowsEnvironmentToHost_e => 2
    );
-   type IsolatedWindowsEnvironmentClipboardCopyPasteDirections_Ptr is access all IsolatedWindowsEnvironmentClipboardCopyPasteDirections;
+   type IsolatedWindowsEnvironmentClipboardCopyPasteDirections_Ptr is access IsolatedWindowsEnvironmentClipboardCopyPasteDirections;
 
    type IsolatedWindowsEnvironmentCreateStatus is (
       Success_e,
@@ -265,7 +265,7 @@ package WinRt.Windows.Security.Isolation is
       FailureByPolicy_e => 1,
       UnknownFailure_e => 2
    );
-   type IsolatedWindowsEnvironmentCreateStatus_Ptr is access all IsolatedWindowsEnvironmentCreateStatus;
+   type IsolatedWindowsEnvironmentCreateStatus_Ptr is access IsolatedWindowsEnvironmentCreateStatus;
 
    type IsolatedWindowsEnvironmentHostError is (
       AdminPolicyIsDisabledOrNotPresent_e,
@@ -281,7 +281,7 @@ package WinRt.Windows.Security.Isolation is
       RebootRequired_e => 3,
       UnknownError_e => 4
    );
-   type IsolatedWindowsEnvironmentHostError_Ptr is access all IsolatedWindowsEnvironmentHostError;
+   type IsolatedWindowsEnvironmentHostError_Ptr is access IsolatedWindowsEnvironmentHostError;
 
    type IsolatedWindowsEnvironmentLaunchFileStatus is (
       Success_e,
@@ -297,7 +297,7 @@ package WinRt.Windows.Security.Isolation is
       FileNotFound_e => 3,
       TimedOut_e => 4
    );
-   type IsolatedWindowsEnvironmentLaunchFileStatus_Ptr is access all IsolatedWindowsEnvironmentLaunchFileStatus;
+   type IsolatedWindowsEnvironmentLaunchFileStatus_Ptr is access IsolatedWindowsEnvironmentLaunchFileStatus;
 
    type IsolatedWindowsEnvironmentOwnerRegistrationStatus is (
       Success_e,
@@ -313,7 +313,7 @@ package WinRt.Windows.Security.Isolation is
       InsufficientMemory_e => 3,
       UnknownFailure_e => 4
    );
-   type IsolatedWindowsEnvironmentOwnerRegistrationStatus_Ptr is access all IsolatedWindowsEnvironmentOwnerRegistrationStatus;
+   type IsolatedWindowsEnvironmentOwnerRegistrationStatus_Ptr is access IsolatedWindowsEnvironmentOwnerRegistrationStatus;
 
    type IsolatedWindowsEnvironmentPostMessageStatus is (
       Success_e,
@@ -325,7 +325,7 @@ package WinRt.Windows.Security.Isolation is
       UnknownFailure_e => 1,
       EnvironmentUnavailable_e => 2
    );
-   type IsolatedWindowsEnvironmentPostMessageStatus_Ptr is access all IsolatedWindowsEnvironmentPostMessageStatus;
+   type IsolatedWindowsEnvironmentPostMessageStatus_Ptr is access IsolatedWindowsEnvironmentPostMessageStatus;
 
    type IsolatedWindowsEnvironmentProcessState is (
       Running_e,
@@ -337,7 +337,7 @@ package WinRt.Windows.Security.Isolation is
       Aborted_e => 2,
       Completed_e => 3
    );
-   type IsolatedWindowsEnvironmentProcessState_Ptr is access all IsolatedWindowsEnvironmentProcessState;
+   type IsolatedWindowsEnvironmentProcessState_Ptr is access IsolatedWindowsEnvironmentProcessState;
 
    type IsolatedWindowsEnvironmentProgressState is (
       Queued_e,
@@ -349,7 +349,7 @@ package WinRt.Windows.Security.Isolation is
       Processing_e => 1,
       Completed_e => 2
    );
-   type IsolatedWindowsEnvironmentProgressState_Ptr is access all IsolatedWindowsEnvironmentProgressState;
+   type IsolatedWindowsEnvironmentProgressState_Ptr is access IsolatedWindowsEnvironmentProgressState;
 
    type IsolatedWindowsEnvironmentShareFolderStatus is (
       Success_e,
@@ -365,7 +365,7 @@ package WinRt.Windows.Security.Isolation is
       FolderNotFound_e => 3,
       AccessDenied_e => 4
    );
-   type IsolatedWindowsEnvironmentShareFolderStatus_Ptr is access all IsolatedWindowsEnvironmentShareFolderStatus;
+   type IsolatedWindowsEnvironmentShareFolderStatus_Ptr is access IsolatedWindowsEnvironmentShareFolderStatus;
 
    type IsolatedWindowsEnvironmentStartProcessStatus is (
       Success_e,
@@ -381,7 +381,7 @@ package WinRt.Windows.Security.Isolation is
       FileNotFound_e => 3,
       AppNotRegistered_e => 4
    );
-   type IsolatedWindowsEnvironmentStartProcessStatus_Ptr is access all IsolatedWindowsEnvironmentStartProcessStatus;
+   type IsolatedWindowsEnvironmentStartProcessStatus_Ptr is access IsolatedWindowsEnvironmentStartProcessStatus;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -390,13 +390,13 @@ package WinRt.Windows.Security.Isolation is
    type IsolatedWindowsEnvironmentContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type IsolatedWindowsEnvironmentContract_Ptr is access all IsolatedWindowsEnvironmentContract;
+   type IsolatedWindowsEnvironmentContract_Ptr is access IsolatedWindowsEnvironmentContract;
 
    type IsolatedWindowsEnvironmentCreateProgress is record
       State : Windows.Security.Isolation.IsolatedWindowsEnvironmentProgressState;
       PercentComplete : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type IsolatedWindowsEnvironmentCreateProgress_Ptr is access all IsolatedWindowsEnvironmentCreateProgress;
+   type IsolatedWindowsEnvironmentCreateProgress_Ptr is access IsolatedWindowsEnvironmentCreateProgress;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

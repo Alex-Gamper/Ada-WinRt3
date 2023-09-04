@@ -112,7 +112,7 @@ package WinRt.Windows.Media.SpeechSynthesis is
       Default_e => 0,
       Min_e => 1
    );
-   type SpeechAppendedSilence_Ptr is access all SpeechAppendedSilence;
+   type SpeechAppendedSilence_Ptr is access SpeechAppendedSilence;
 
    type SpeechPunctuationSilence is (
       Default_e,
@@ -122,7 +122,7 @@ package WinRt.Windows.Media.SpeechSynthesis is
       Default_e => 0,
       Min_e => 1
    );
-   type SpeechPunctuationSilence_Ptr is access all SpeechPunctuationSilence;
+   type SpeechPunctuationSilence_Ptr is access SpeechPunctuationSilence;
 
    type VoiceGender is (
       Male_e,
@@ -132,7 +132,7 @@ package WinRt.Windows.Media.SpeechSynthesis is
       Male_e => 0,
       Female_e => 1
    );
-   type VoiceGender_Ptr is access all VoiceGender;
+   type VoiceGender_Ptr is access VoiceGender;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

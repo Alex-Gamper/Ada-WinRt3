@@ -196,7 +196,7 @@ package WinRt.Windows.Storage.Provider is
       UseCachedFileWhenOffline_e => 2,
       DenyAccessWhenOffline_e => 4
    );
-   type CachedFileOptions_Ptr is access all CachedFileOptions;
+   type CachedFileOptions_Ptr is access CachedFileOptions;
 
    type CachedFileTarget is (
       Local_e,
@@ -206,7 +206,7 @@ package WinRt.Windows.Storage.Provider is
       Local_e => 0,
       Remote_e => 1
    );
-   type CachedFileTarget_Ptr is access all CachedFileTarget;
+   type CachedFileTarget_Ptr is access CachedFileTarget;
 
    type FileUpdateStatus is (
       Incomplete_e,
@@ -224,7 +224,7 @@ package WinRt.Windows.Storage.Provider is
       Failed_e => 4,
       CompleteAndRenamed_e => 5
    );
-   type FileUpdateStatus_Ptr is access all FileUpdateStatus;
+   type FileUpdateStatus_Ptr is access FileUpdateStatus;
 
    type ReadActivationMode is (
       NotNeeded_e,
@@ -234,7 +234,7 @@ package WinRt.Windows.Storage.Provider is
       NotNeeded_e => 0,
       BeforeAccess_e => 1
    );
-   type ReadActivationMode_Ptr is access all ReadActivationMode;
+   type ReadActivationMode_Ptr is access ReadActivationMode;
 
    type StorageProviderHardlinkPolicy is (
       None_e,
@@ -244,7 +244,7 @@ package WinRt.Windows.Storage.Provider is
       None_e => 0,
       Allowed_e => 1
    );
-   type StorageProviderHardlinkPolicy_Ptr is access all StorageProviderHardlinkPolicy;
+   type StorageProviderHardlinkPolicy_Ptr is access StorageProviderHardlinkPolicy;
 
    type StorageProviderHydrationPolicy is (
       Partial_e,
@@ -258,7 +258,7 @@ package WinRt.Windows.Storage.Provider is
       Full_e => 2,
       AlwaysFull_e => 3
    );
-   type StorageProviderHydrationPolicy_Ptr is access all StorageProviderHydrationPolicy;
+   type StorageProviderHydrationPolicy_Ptr is access StorageProviderHydrationPolicy;
 
    type StorageProviderHydrationPolicyModifier is (
       None_e,
@@ -272,7 +272,7 @@ package WinRt.Windows.Storage.Provider is
       StreamingAllowed_e => 2,
       AutoDehydrationAllowed_e => 4
    );
-   type StorageProviderHydrationPolicyModifier_Ptr is access all StorageProviderHydrationPolicyModifier;
+   type StorageProviderHydrationPolicyModifier_Ptr is access StorageProviderHydrationPolicyModifier;
 
    type StorageProviderInSyncPolicy is (
       Default_e,
@@ -302,7 +302,7 @@ package WinRt.Windows.Storage.Provider is
       DirectoryLastWriteTime_e => 512,
       PreserveInsyncForSyncEngine_e => 2147483648
    );
-   type StorageProviderInSyncPolicy_Ptr is access all StorageProviderInSyncPolicy;
+   type StorageProviderInSyncPolicy_Ptr is access StorageProviderInSyncPolicy;
 
    type StorageProviderPopulationPolicy is (
       Full_e,
@@ -312,7 +312,7 @@ package WinRt.Windows.Storage.Provider is
       Full_e => 1,
       AlwaysFull_e => 2
    );
-   type StorageProviderPopulationPolicy_Ptr is access all StorageProviderPopulationPolicy;
+   type StorageProviderPopulationPolicy_Ptr is access StorageProviderPopulationPolicy;
 
    type StorageProviderProtectionMode is (
       Unknown_e,
@@ -322,7 +322,7 @@ package WinRt.Windows.Storage.Provider is
       Unknown_e => 0,
       Personal_e => 1
    );
-   type StorageProviderProtectionMode_Ptr is access all StorageProviderProtectionMode;
+   type StorageProviderProtectionMode_Ptr is access StorageProviderProtectionMode;
 
    type StorageProviderUriSourceStatus is (
       Success_e,
@@ -334,7 +334,7 @@ package WinRt.Windows.Storage.Provider is
       NoSyncRoot_e => 1,
       FileNotFound_e => 2
    );
-   type StorageProviderUriSourceStatus_Ptr is access all StorageProviderUriSourceStatus;
+   type StorageProviderUriSourceStatus_Ptr is access StorageProviderUriSourceStatus;
 
    type UIStatus is (
       Unavailable_e,
@@ -348,7 +348,7 @@ package WinRt.Windows.Storage.Provider is
       Visible_e => 2,
       Complete_e => 3
    );
-   type UIStatus_Ptr is access all UIStatus;
+   type UIStatus_Ptr is access UIStatus;
 
    type WriteActivationMode is (
       ReadOnly_e,
@@ -360,7 +360,7 @@ package WinRt.Windows.Storage.Provider is
       NotNeeded_e => 1,
       AfterWrite_e => 2
    );
-   type WriteActivationMode_Ptr is access all WriteActivationMode;
+   type WriteActivationMode_Ptr is access WriteActivationMode;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -369,7 +369,7 @@ package WinRt.Windows.Storage.Provider is
    type CloudFilesContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type CloudFilesContract_Ptr is access all CloudFilesContract;
+   type CloudFilesContract_Ptr is access CloudFilesContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

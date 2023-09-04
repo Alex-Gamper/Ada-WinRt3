@@ -770,7 +770,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       Linear_e => 2,
       Bow_e => 3
    );
-   type MapAnimationKind_Ptr is access all MapAnimationKind;
+   type MapAnimationKind_Ptr is access MapAnimationKind;
 
    type MapCameraChangeReason is (
       System_e,
@@ -782,7 +782,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       UserInteraction_e => 1,
       Programmatic_e => 2
    );
-   type MapCameraChangeReason_Ptr is access all MapCameraChangeReason;
+   type MapCameraChangeReason_Ptr is access MapCameraChangeReason;
 
    type MapColorScheme is (
       Light_e,
@@ -792,7 +792,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       Light_e => 0,
       Dark_e => 1
    );
-   type MapColorScheme_Ptr is access all MapColorScheme;
+   type MapColorScheme_Ptr is access MapColorScheme;
 
    type MapElementCollisionBehavior is (
       Hide_e,
@@ -802,7 +802,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       Hide_e => 0,
       RemainVisible_e => 1
    );
-   type MapElementCollisionBehavior_Ptr is access all MapElementCollisionBehavior;
+   type MapElementCollisionBehavior_Ptr is access MapElementCollisionBehavior;
 
    type MapInteractionMode is (
       Auto_e,
@@ -820,7 +820,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       GestureAndControl_e => 4,
       PointerOnly_e => 5
    );
-   type MapInteractionMode_Ptr is access all MapInteractionMode;
+   type MapInteractionMode_Ptr is access MapInteractionMode;
 
    type MapLoadingStatus is (
       Loading_e,
@@ -834,7 +834,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       DataUnavailable_e => 2,
       DownloadedMapsManagerUnavailable_e => 3
    );
-   type MapLoadingStatus_Ptr is access all MapLoadingStatus;
+   type MapLoadingStatus_Ptr is access MapLoadingStatus;
 
    type MapModel3DShadingOption is (
       Default_e,
@@ -846,7 +846,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       Flat_e => 1,
       Smooth_e => 2
    );
-   type MapModel3DShadingOption_Ptr is access all MapModel3DShadingOption;
+   type MapModel3DShadingOption_Ptr is access MapModel3DShadingOption;
 
    type MapPanInteractionMode is (
       Auto_e,
@@ -856,7 +856,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       Auto_e => 0,
       Disabled_e => 1
    );
-   type MapPanInteractionMode_Ptr is access all MapPanInteractionMode;
+   type MapPanInteractionMode_Ptr is access MapPanInteractionMode;
 
    type MapProjection is (
       WebMercator_e,
@@ -866,7 +866,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       WebMercator_e => 0,
       Globe_e => 1
    );
-   type MapProjection_Ptr is access all MapProjection;
+   type MapProjection_Ptr is access MapProjection;
 
    type MapStyle is (
       None_e,
@@ -888,7 +888,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       Aerial3DWithRoads_e => 6,
       Custom_e => 7
    );
-   type MapStyle_Ptr is access all MapStyle;
+   type MapStyle_Ptr is access MapStyle;
 
    type MapTileAnimationState is (
       Stopped_e,
@@ -900,7 +900,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       Paused_e => 1,
       Playing_e => 2
    );
-   type MapTileAnimationState_Ptr is access all MapTileAnimationState;
+   type MapTileAnimationState_Ptr is access MapTileAnimationState;
 
    type MapTileLayer is (
       LabelOverlay_e,
@@ -916,7 +916,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       BackgroundOverlay_e => 3,
       BackgroundReplacement_e => 4
    );
-   type MapTileLayer_Ptr is access all MapTileLayer;
+   type MapTileLayer_Ptr is access MapTileLayer;
 
    type MapVisibleRegionKind is (
       Near_e,
@@ -926,7 +926,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       Near_e => 0,
       Full_e => 1
    );
-   type MapVisibleRegionKind_Ptr is access all MapVisibleRegionKind;
+   type MapVisibleRegionKind_Ptr is access MapVisibleRegionKind;
 
    type MapWatermarkMode is (
       Automatic_e,
@@ -936,7 +936,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       Automatic_e => 0,
       On_e => 1
    );
-   type MapWatermarkMode_Ptr is access all MapWatermarkMode;
+   type MapWatermarkMode_Ptr is access MapWatermarkMode;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -946,7 +946,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       Min : WinRt.Double;
       Max : WinRt.Double;
    end record with Convention => C_Pass_By_Copy;
-   type MapZoomLevelRange_Ptr is access all MapZoomLevelRange;
+   type MapZoomLevelRange_Ptr is access MapZoomLevelRange;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

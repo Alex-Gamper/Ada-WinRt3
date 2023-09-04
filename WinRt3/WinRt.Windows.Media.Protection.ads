@@ -41,13 +41,13 @@ package WinRt.Windows.Media.Protection is
    -----------------------------------------------------------------------------
 
    type ComponentLoadFailedEventHandler_Delegate;
-   type ComponentLoadFailedEventHandler is access all ComponentLoadFailedEventHandler_Delegate;
+   type ComponentLoadFailedEventHandler is access ComponentLoadFailedEventHandler_Delegate;
 
    type RebootNeededEventHandler_Delegate;
-   type RebootNeededEventHandler is access all RebootNeededEventHandler_Delegate;
+   type RebootNeededEventHandler is access RebootNeededEventHandler_Delegate;
 
    type ServiceRequestedEventHandler_Delegate;
-   type ServiceRequestedEventHandler is access all ServiceRequestedEventHandler_Delegate;
+   type ServiceRequestedEventHandler is access ServiceRequestedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -179,7 +179,7 @@ package WinRt.Windows.Media.Protection is
       DriverSigningFailure_e => 4,
       UnknownFailure_e => 5
    );
-   type GraphicsTrustStatus_Ptr is access all GraphicsTrustStatus;
+   type GraphicsTrustStatus_Ptr is access GraphicsTrustStatus;
 
    type HdcpProtection is (
       Off_e,
@@ -191,7 +191,7 @@ package WinRt.Windows.Media.Protection is
       On_e => 1,
       OnWithTypeEnforcement_e => 2
    );
-   type HdcpProtection_Ptr is access all HdcpProtection;
+   type HdcpProtection_Ptr is access HdcpProtection;
 
    type HdcpSetProtectionResult is (
       Success_e,
@@ -205,7 +205,7 @@ package WinRt.Windows.Media.Protection is
       NotSupported_e => 2,
       UnknownFailure_e => 3
    );
-   type HdcpSetProtectionResult_Ptr is access all HdcpSetProtectionResult;
+   type HdcpSetProtectionResult_Ptr is access HdcpSetProtectionResult;
 
    type ProtectionCapabilityResult is (
       NotSupported_e,
@@ -217,7 +217,7 @@ package WinRt.Windows.Media.Protection is
       Maybe_e => 1,
       Probably_e => 2
    );
-   type ProtectionCapabilityResult_Ptr is access all ProtectionCapabilityResult;
+   type ProtectionCapabilityResult_Ptr is access ProtectionCapabilityResult;
 
    type RenewalStatus is (
       NotStarted_e,
@@ -233,7 +233,7 @@ package WinRt.Windows.Media.Protection is
       AppComponentsMayNeedUpdating_e => 3,
       NoComponentsFound_e => 4
    );
-   type RenewalStatus_Ptr is access all RenewalStatus;
+   type RenewalStatus_Ptr is access RenewalStatus;
 
    type RevocationAndRenewalReasons is (
       UserModeComponentLoad_e,
@@ -269,7 +269,7 @@ package WinRt.Windows.Media.Protection is
       ComponentSignedWithTestCertificate_e => 16777216,
       EncryptionFailure_e => 268435456
    );
-   type RevocationAndRenewalReasons_Ptr is access all RevocationAndRenewalReasons;
+   type RevocationAndRenewalReasons_Ptr is access RevocationAndRenewalReasons;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -278,7 +278,7 @@ package WinRt.Windows.Media.Protection is
    type ProtectionRenewalContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type ProtectionRenewalContract_Ptr is access all ProtectionRenewalContract;
+   type ProtectionRenewalContract_Ptr is access ProtectionRenewalContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

@@ -306,7 +306,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       PositionY_e => 2,
       Scale_e => 4
    );
-   type InteractionBindingAxisModes_Ptr is access all InteractionBindingAxisModes;
+   type InteractionBindingAxisModes_Ptr is access InteractionBindingAxisModes;
 
    type InteractionChainingMode is (
       Auto_e,
@@ -318,7 +318,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       Always_e => 1,
       Never_e => 2
    );
-   type InteractionChainingMode_Ptr is access all InteractionChainingMode;
+   type InteractionChainingMode_Ptr is access InteractionChainingMode;
 
    type InteractionSourceMode is (
       Disabled_e,
@@ -330,7 +330,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       EnabledWithInertia_e => 1,
       EnabledWithoutInertia_e => 2
    );
-   type InteractionSourceMode_Ptr is access all InteractionSourceMode;
+   type InteractionSourceMode_Ptr is access InteractionSourceMode;
 
    type InteractionSourceRedirectionMode is (
       Disabled_e,
@@ -340,7 +340,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       Disabled_e => 0,
       Enabled_e => 1
    );
-   type InteractionSourceRedirectionMode_Ptr is access all InteractionSourceRedirectionMode;
+   type InteractionSourceRedirectionMode_Ptr is access InteractionSourceRedirectionMode;
 
    type InteractionTrackerClampingOption is (
       Auto_e,
@@ -350,7 +350,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       Auto_e => 0,
       Disabled_e => 1
    );
-   type InteractionTrackerClampingOption_Ptr is access all InteractionTrackerClampingOption;
+   type InteractionTrackerClampingOption_Ptr is access InteractionTrackerClampingOption;
 
    type InteractionTrackerPositionUpdateOption is (
       Default_e,
@@ -360,7 +360,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       Default_e => 0,
       AllowActiveCustomScaleAnimation_e => 1
    );
-   type InteractionTrackerPositionUpdateOption_Ptr is access all InteractionTrackerPositionUpdateOption;
+   type InteractionTrackerPositionUpdateOption_Ptr is access InteractionTrackerPositionUpdateOption;
 
    type VisualInteractionSourceRedirectionMode is (
       Off_e,
@@ -374,7 +374,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       PointerWheelOnly_e => 2,
       CapableTouchpadAndPointerWheel_e => 3
    );
-   type VisualInteractionSourceRedirectionMode_Ptr is access all VisualInteractionSourceRedirectionMode;
+   type VisualInteractionSourceRedirectionMode_Ptr is access VisualInteractionSourceRedirectionMode;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

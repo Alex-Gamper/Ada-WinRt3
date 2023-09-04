@@ -41,7 +41,7 @@ package WinRt.Windows.Graphics.Display is
    -----------------------------------------------------------------------------
 
    type DisplayPropertiesEventHandler_Delegate;
-   type DisplayPropertiesEventHandler is access all DisplayPropertiesEventHandler_Delegate;
+   type DisplayPropertiesEventHandler is access DisplayPropertiesEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -175,7 +175,7 @@ package WinRt.Windows.Graphics.Display is
       WideColorGamut_e => 1,
       HighDynamicRange_e => 2
    );
-   type AdvancedColorKind_Ptr is access all AdvancedColorKind;
+   type AdvancedColorKind_Ptr is access AdvancedColorKind;
 
    type DisplayBrightnessOverrideOptions is (
       None_e,
@@ -185,7 +185,7 @@ package WinRt.Windows.Graphics.Display is
       None_e => 0,
       UseDimmedPolicyWhenBatteryIsLow_e => 1
    );
-   type DisplayBrightnessOverrideOptions_Ptr is access all DisplayBrightnessOverrideOptions;
+   type DisplayBrightnessOverrideOptions_Ptr is access DisplayBrightnessOverrideOptions;
 
    type DisplayBrightnessOverrideScenario is (
       IdleBrightness_e,
@@ -197,7 +197,7 @@ package WinRt.Windows.Graphics.Display is
       BarcodeReadingBrightness_e => 1,
       FullBrightness_e => 2
    );
-   type DisplayBrightnessOverrideScenario_Ptr is access all DisplayBrightnessOverrideScenario;
+   type DisplayBrightnessOverrideScenario_Ptr is access DisplayBrightnessOverrideScenario;
 
    type DisplayBrightnessScenario is (
       DefaultBrightness_e,
@@ -211,7 +211,7 @@ package WinRt.Windows.Graphics.Display is
       BarcodeReadingBrightness_e => 2,
       FullBrightness_e => 3
    );
-   type DisplayBrightnessScenario_Ptr is access all DisplayBrightnessScenario;
+   type DisplayBrightnessScenario_Ptr is access DisplayBrightnessScenario;
 
    type DisplayColorOverrideScenario is (
       Accurate_e
@@ -219,7 +219,7 @@ package WinRt.Windows.Graphics.Display is
    for DisplayColorOverrideScenario use (
       Accurate_e => 0
    );
-   type DisplayColorOverrideScenario_Ptr is access all DisplayColorOverrideScenario;
+   type DisplayColorOverrideScenario_Ptr is access DisplayColorOverrideScenario;
 
    type DisplayOrientations is (
       None_e,
@@ -235,7 +235,7 @@ package WinRt.Windows.Graphics.Display is
       LandscapeFlipped_e => 4,
       PortraitFlipped_e => 8
    );
-   type DisplayOrientations_Ptr is access all DisplayOrientations;
+   type DisplayOrientations_Ptr is access DisplayOrientations;
 
    type HdrMetadataFormat is (
       Hdr10_e,
@@ -245,7 +245,7 @@ package WinRt.Windows.Graphics.Display is
       Hdr10_e => 0,
       Hdr10Plus_e => 1
    );
-   type HdrMetadataFormat_Ptr is access all HdrMetadataFormat;
+   type HdrMetadataFormat_Ptr is access HdrMetadataFormat;
 
    type ResolutionScale is (
       Invalid_e,
@@ -285,7 +285,7 @@ package WinRt.Windows.Graphics.Display is
       Scale450Percent_e => 450,
       Scale500Percent_e => 500
    );
-   type ResolutionScale_Ptr is access all ResolutionScale;
+   type ResolutionScale_Ptr is access ResolutionScale;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -296,7 +296,7 @@ package WinRt.Windows.Graphics.Display is
       MaxNits : WinRt.Single;
       StepSizeNits : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type NitRange_Ptr is access all NitRange;
+   type NitRange_Ptr is access NitRange;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

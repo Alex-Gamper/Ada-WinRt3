@@ -48,7 +48,7 @@ package WinRt.Windows.System is
    -----------------------------------------------------------------------------
 
    type DispatcherQueueHandler_Delegate;
-   type DispatcherQueueHandler is access all DispatcherQueueHandler_Delegate;
+   type DispatcherQueueHandler is access DispatcherQueueHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -556,7 +556,7 @@ package WinRt.Windows.System is
       Stopped_e => 4,
       Aborted_e => 5
    );
-   type AppDiagnosticInfoWatcherStatus_Ptr is access all AppDiagnosticInfoWatcherStatus;
+   type AppDiagnosticInfoWatcherStatus_Ptr is access AppDiagnosticInfoWatcherStatus;
 
    type AppMemoryUsageLevel is (
       Low_e,
@@ -570,7 +570,7 @@ package WinRt.Windows.System is
       High_e => 2,
       OverLimit_e => 3
    );
-   type AppMemoryUsageLevel_Ptr is access all AppMemoryUsageLevel;
+   type AppMemoryUsageLevel_Ptr is access AppMemoryUsageLevel;
 
    type AppResourceGroupEnergyQuotaState is (
       Unknown_e,
@@ -582,7 +582,7 @@ package WinRt.Windows.System is
       Over_e => 1,
       Under_e => 2
    );
-   type AppResourceGroupEnergyQuotaState_Ptr is access all AppResourceGroupEnergyQuotaState;
+   type AppResourceGroupEnergyQuotaState_Ptr is access AppResourceGroupEnergyQuotaState;
 
    type AppResourceGroupExecutionState is (
       Unknown_e,
@@ -598,7 +598,7 @@ package WinRt.Windows.System is
       Suspended_e => 3,
       NotRunning_e => 4
    );
-   type AppResourceGroupExecutionState_Ptr is access all AppResourceGroupExecutionState;
+   type AppResourceGroupExecutionState_Ptr is access AppResourceGroupExecutionState;
 
    type AppResourceGroupInfoWatcherStatus is (
       Created_e,
@@ -616,7 +616,7 @@ package WinRt.Windows.System is
       Stopped_e => 4,
       Aborted_e => 5
    );
-   type AppResourceGroupInfoWatcherStatus_Ptr is access all AppResourceGroupInfoWatcherStatus;
+   type AppResourceGroupInfoWatcherStatus_Ptr is access AppResourceGroupInfoWatcherStatus;
 
    type AutoUpdateTimeZoneStatus is (
       Attempted_e,
@@ -628,7 +628,7 @@ package WinRt.Windows.System is
       TimedOut_e => 1,
       Failed_e => 2
    );
-   type AutoUpdateTimeZoneStatus_Ptr is access all AutoUpdateTimeZoneStatus;
+   type AutoUpdateTimeZoneStatus_Ptr is access AutoUpdateTimeZoneStatus;
 
    type DiagnosticAccessStatus is (
       Unspecified_e,
@@ -642,7 +642,7 @@ package WinRt.Windows.System is
       Limited_e => 2,
       Allowed_e => 3
    );
-   type DiagnosticAccessStatus_Ptr is access all DiagnosticAccessStatus;
+   type DiagnosticAccessStatus_Ptr is access DiagnosticAccessStatus;
 
    type DispatcherQueuePriority is (
       Low_e,
@@ -654,7 +654,7 @@ package WinRt.Windows.System is
       Normal_e => 0,
       High_e => 10
    );
-   type DispatcherQueuePriority_Ptr is access all DispatcherQueuePriority;
+   type DispatcherQueuePriority_Ptr is access DispatcherQueuePriority;
 
    type LaunchFileStatus is (
       Success_e,
@@ -670,7 +670,7 @@ package WinRt.Windows.System is
       FileTypeNotSupported_e => 3,
       Unknown_e => 4
    );
-   type LaunchFileStatus_Ptr is access all LaunchFileStatus;
+   type LaunchFileStatus_Ptr is access LaunchFileStatus;
 
    type LaunchQuerySupportStatus is (
       Available_e,
@@ -686,7 +686,7 @@ package WinRt.Windows.System is
       NotSupported_e => 3,
       Unknown_e => 4
    );
-   type LaunchQuerySupportStatus_Ptr is access all LaunchQuerySupportStatus;
+   type LaunchQuerySupportStatus_Ptr is access LaunchQuerySupportStatus;
 
    type LaunchQuerySupportType is (
       Uri_e,
@@ -696,7 +696,7 @@ package WinRt.Windows.System is
       Uri_e => 0,
       UriForResults_e => 1
    );
-   type LaunchQuerySupportType_Ptr is access all LaunchQuerySupportType;
+   type LaunchQuerySupportType_Ptr is access LaunchQuerySupportType;
 
    type LaunchUriStatus is (
       Success_e,
@@ -710,7 +710,7 @@ package WinRt.Windows.System is
       ProtocolUnavailable_e => 2,
       Unknown_e => 3
    );
-   type LaunchUriStatus_Ptr is access all LaunchUriStatus;
+   type LaunchUriStatus_Ptr is access LaunchUriStatus;
 
    type PowerState is (
       ConnectedStandby_e,
@@ -720,7 +720,7 @@ package WinRt.Windows.System is
       ConnectedStandby_e => 0,
       SleepS3_e => 1
    );
-   type PowerState_Ptr is access all PowerState;
+   type PowerState_Ptr is access PowerState;
 
    type ProcessorArchitecture is (
       X86_e,
@@ -740,7 +740,7 @@ package WinRt.Windows.System is
       X86OnArm64_e => 14,
       Unknown_e => 65535
    );
-   type ProcessorArchitecture_Ptr is access all ProcessorArchitecture;
+   type ProcessorArchitecture_Ptr is access ProcessorArchitecture;
 
    type RemoteLaunchUriStatus is (
       Unknown_e,
@@ -762,7 +762,7 @@ package WinRt.Windows.System is
       DeniedByLocalSystem_e => 6,
       DeniedByRemoteSystem_e => 7
    );
-   type RemoteLaunchUriStatus_Ptr is access all RemoteLaunchUriStatus;
+   type RemoteLaunchUriStatus_Ptr is access RemoteLaunchUriStatus;
 
    type ShutdownKind is (
       Shutdown_e,
@@ -772,7 +772,7 @@ package WinRt.Windows.System is
       Shutdown_e => 0,
       Restart_e => 1
    );
-   type ShutdownKind_Ptr is access all ShutdownKind;
+   type ShutdownKind_Ptr is access ShutdownKind;
 
    type UserAuthenticationStatus is (
       Unauthenticated_e,
@@ -784,7 +784,7 @@ package WinRt.Windows.System is
       LocallyAuthenticated_e => 1,
       RemotelyAuthenticated_e => 2
    );
-   type UserAuthenticationStatus_Ptr is access all UserAuthenticationStatus;
+   type UserAuthenticationStatus_Ptr is access UserAuthenticationStatus;
 
    type UserPictureSize is (
       Size64x64_e,
@@ -798,7 +798,7 @@ package WinRt.Windows.System is
       Size424x424_e => 2,
       Size1080x1080_e => 3
    );
-   type UserPictureSize_Ptr is access all UserPictureSize;
+   type UserPictureSize_Ptr is access UserPictureSize;
 
    type UserType is (
       LocalUser_e,
@@ -812,7 +812,7 @@ package WinRt.Windows.System is
       LocalGuest_e => 2,
       RemoteGuest_e => 3
    );
-   type UserType_Ptr is access all UserType;
+   type UserType_Ptr is access UserType;
 
    type UserWatcherStatus is (
       Created_e,
@@ -830,7 +830,7 @@ package WinRt.Windows.System is
       Stopped_e => 4,
       Aborted_e => 5
    );
-   type UserWatcherStatus_Ptr is access all UserWatcherStatus;
+   type UserWatcherStatus_Ptr is access UserWatcherStatus;
 
    type UserWatcherUpdateKind is (
       Properties_e,
@@ -840,7 +840,7 @@ package WinRt.Windows.System is
       Properties_e => 0,
       Picture_e => 1
    );
-   type UserWatcherUpdateKind_Ptr is access all UserWatcherUpdateKind;
+   type UserWatcherUpdateKind_Ptr is access UserWatcherUpdateKind;
 
    type VirtualKey is (
       None_e,
@@ -1186,7 +1186,7 @@ package WinRt.Windows.System is
       GamepadRightThumbstickRight_e => 217,
       GamepadRightThumbstickLeft_e => 218
    );
-   type VirtualKey_Ptr is access all VirtualKey;
+   type VirtualKey_Ptr is access VirtualKey;
    type VirtualKey_Array is array (Natural range <>) of aliased VirtualKey;
 
    type VirtualKeyModifiers is (
@@ -1203,7 +1203,7 @@ package WinRt.Windows.System is
       Shift_e => 4,
       Windows_e => 8
    );
-   type VirtualKeyModifiers_Ptr is access all VirtualKeyModifiers;
+   type VirtualKeyModifiers_Ptr is access VirtualKeyModifiers;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1212,7 +1212,7 @@ package WinRt.Windows.System is
    type SystemManagementContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type SystemManagementContract_Ptr is access all SystemManagementContract;
+   type SystemManagementContract_Ptr is access SystemManagementContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

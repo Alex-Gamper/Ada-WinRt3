@@ -212,7 +212,7 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
       IdOnly_e => 0,
       IdAndProperties_e => 1
    );
-   type WebAccountClientViewType_Ptr is access all WebAccountClientViewType;
+   type WebAccountClientViewType_Ptr is access WebAccountClientViewType;
 
    type WebAccountProviderOperationKind is (
       RequestToken_e,
@@ -232,7 +232,7 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
       RetrieveCookies_e => 5,
       SignOutAccount_e => 6
    );
-   type WebAccountProviderOperationKind_Ptr is access all WebAccountProviderOperationKind;
+   type WebAccountProviderOperationKind_Ptr is access WebAccountProviderOperationKind;
 
    type WebAccountScope is (
       PerUser_e,
@@ -242,7 +242,7 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
       PerUser_e => 0,
       PerApplication_e => 1
    );
-   type WebAccountScope_Ptr is access all WebAccountScope;
+   type WebAccountScope_Ptr is access WebAccountScope;
 
    type WebAccountSelectionOptions is (
       Default_e,
@@ -252,7 +252,7 @@ package WinRt.Windows.Security.Authentication.Web.Provider is
       Default_e => 0,
       New_e => 1
    );
-   type WebAccountSelectionOptions_Ptr is access all WebAccountSelectionOptions;
+   type WebAccountSelectionOptions_Ptr is access WebAccountSelectionOptions;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -101,7 +101,7 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       ServerError_e => 2,
       SecurityError_e => 3
    );
-   type DnssdRegistrationStatus_Ptr is access all DnssdRegistrationStatus;
+   type DnssdRegistrationStatus_Ptr is access DnssdRegistrationStatus;
 
    type DnssdServiceWatcherStatus is (
       Created_e,
@@ -119,7 +119,7 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       Stopped_e => 4,
       Aborted_e => 5
    );
-   type DnssdServiceWatcherStatus_Ptr is access all DnssdServiceWatcherStatus;
+   type DnssdServiceWatcherStatus_Ptr is access DnssdServiceWatcherStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -40,7 +40,7 @@ package WinRt.Windows.ApplicationModel.Payments is
    -----------------------------------------------------------------------------
 
    type PaymentRequestChangedHandler_Delegate;
-   type PaymentRequestChangedHandler is access all PaymentRequestChangedHandler_Delegate;
+   type PaymentRequestChangedHandler is access PaymentRequestChangedHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -284,7 +284,7 @@ package WinRt.Windows.ApplicationModel.Payments is
       SpecifiedPaymentMethodIdsNotSupported_e => 5,
       NoQualifyingCardOnFile_e => 6
    );
-   type PaymentCanMakePaymentResultStatus_Ptr is access all PaymentCanMakePaymentResultStatus;
+   type PaymentCanMakePaymentResultStatus_Ptr is access PaymentCanMakePaymentResultStatus;
 
    type PaymentOptionPresence is (
       None_e,
@@ -296,7 +296,7 @@ package WinRt.Windows.ApplicationModel.Payments is
       Optional_e => 1,
       Required_e => 2
    );
-   type PaymentOptionPresence_Ptr is access all PaymentOptionPresence;
+   type PaymentOptionPresence_Ptr is access PaymentOptionPresence;
 
    type PaymentRequestChangeKind is (
       ShippingOption_e,
@@ -306,7 +306,7 @@ package WinRt.Windows.ApplicationModel.Payments is
       ShippingOption_e => 0,
       ShippingAddress_e => 1
    );
-   type PaymentRequestChangeKind_Ptr is access all PaymentRequestChangeKind;
+   type PaymentRequestChangeKind_Ptr is access PaymentRequestChangeKind;
 
    type PaymentRequestCompletionStatus is (
       Succeeded_e,
@@ -318,7 +318,7 @@ package WinRt.Windows.ApplicationModel.Payments is
       Failed_e => 1,
       Unknown_e => 2
    );
-   type PaymentRequestCompletionStatus_Ptr is access all PaymentRequestCompletionStatus;
+   type PaymentRequestCompletionStatus_Ptr is access PaymentRequestCompletionStatus;
 
    type PaymentRequestStatus is (
       Succeeded_e,
@@ -330,7 +330,7 @@ package WinRt.Windows.ApplicationModel.Payments is
       Failed_e => 1,
       Canceled_e => 2
    );
-   type PaymentRequestStatus_Ptr is access all PaymentRequestStatus;
+   type PaymentRequestStatus_Ptr is access PaymentRequestStatus;
 
    type PaymentShippingType is (
       Shipping_e,
@@ -342,7 +342,7 @@ package WinRt.Windows.ApplicationModel.Payments is
       Delivery_e => 1,
       Pickup_e => 2
    );
-   type PaymentShippingType_Ptr is access all PaymentShippingType;
+   type PaymentShippingType_Ptr is access PaymentShippingType;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

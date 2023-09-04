@@ -263,7 +263,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
       Enabled_e => 1,
       Constrained_e => 2
    );
-   type PrintOptionStates_Ptr is access all PrintOptionStates;
+   type PrintOptionStates_Ptr is access PrintOptionStates;
 
    type PrintOptionType is (
       Unknown_e,
@@ -279,7 +279,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
       ItemList_e => 3,
       Toggle_e => 4
    );
-   type PrintOptionType_Ptr is access all PrintOptionType;
+   type PrintOptionType_Ptr is access PrintOptionType;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

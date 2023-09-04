@@ -206,7 +206,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       Cancel_e => 3,
       Error_e => 4
    );
-   type CausalityRelation_Ptr is access all CausalityRelation;
+   type CausalityRelation_Ptr is access CausalityRelation;
 
    type CausalitySource is (
       Application_e,
@@ -218,7 +218,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       Library_e => 1,
       System_e => 2
    );
-   type CausalitySource_Ptr is access all CausalitySource;
+   type CausalitySource_Ptr is access CausalitySource;
 
    type CausalitySynchronousWork is (
       CompletionNotification_e,
@@ -230,7 +230,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       ProgressNotification_e => 1,
       Execution_e => 2
    );
-   type CausalitySynchronousWork_Ptr is access all CausalitySynchronousWork;
+   type CausalitySynchronousWork_Ptr is access CausalitySynchronousWork;
 
    type CausalityTraceLevel is (
       Required_e,
@@ -242,7 +242,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       Important_e => 1,
       Verbose_e => 2
    );
-   type CausalityTraceLevel_Ptr is access all CausalityTraceLevel;
+   type CausalityTraceLevel_Ptr is access CausalityTraceLevel;
 
    type ErrorOptions is (
       None_e,
@@ -258,7 +258,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       UseSetErrorInfo_e => 4,
       SuppressSetErrorInfo_e => 8
    );
-   type ErrorOptions_Ptr is access all ErrorOptions;
+   type ErrorOptions_Ptr is access ErrorOptions;
 
    type LoggingFieldFormat is (
       Default_e,
@@ -302,7 +302,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       Signed_e => 17,
       Unsigned_e => 18
    );
-   type LoggingFieldFormat_Ptr is access all LoggingFieldFormat;
+   type LoggingFieldFormat_Ptr is access LoggingFieldFormat;
 
    type LoggingLevel is (
       Verbose_e,
@@ -318,7 +318,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       Error_e => 3,
       Critical_e => 4
    );
-   type LoggingLevel_Ptr is access all LoggingLevel;
+   type LoggingLevel_Ptr is access LoggingLevel;
 
    type LoggingOpcode is (
       Info_e,
@@ -338,7 +338,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       Suspend_e => 8,
       Send_e => 9
    );
-   type LoggingOpcode_Ptr is access all LoggingOpcode;
+   type LoggingOpcode_Ptr is access LoggingOpcode;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

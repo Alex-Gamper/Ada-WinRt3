@@ -434,7 +434,7 @@ package WinRt.Windows.Networking.Vpn is
       FullyQualifiedBinaryName_e => 1,
       FilePath_e => 2
    );
-   type VpnAppIdType_Ptr is access all VpnAppIdType;
+   type VpnAppIdType_Ptr is access VpnAppIdType;
 
    type VpnAuthenticationMethod is (
       Mschapv2_e,
@@ -448,7 +448,7 @@ package WinRt.Windows.Networking.Vpn is
       Certificate_e => 2,
       PresharedKey_e => 3
    );
-   type VpnAuthenticationMethod_Ptr is access all VpnAuthenticationMethod;
+   type VpnAuthenticationMethod_Ptr is access VpnAuthenticationMethod;
 
    type VpnChannelActivityEventType is (
       Idle_e,
@@ -458,7 +458,7 @@ package WinRt.Windows.Networking.Vpn is
       Idle_e => 0,
       Active_e => 1
    );
-   type VpnChannelActivityEventType_Ptr is access all VpnChannelActivityEventType;
+   type VpnChannelActivityEventType_Ptr is access VpnChannelActivityEventType;
 
    type VpnChannelRequestCredentialsOptions is (
       None_e,
@@ -470,7 +470,7 @@ package WinRt.Windows.Networking.Vpn is
       Retrying_e => 1,
       UseForSingleSignIn_e => 2
    );
-   type VpnChannelRequestCredentialsOptions_Ptr is access all VpnChannelRequestCredentialsOptions;
+   type VpnChannelRequestCredentialsOptions_Ptr is access VpnChannelRequestCredentialsOptions;
 
    type VpnCredentialType is (
       UsernamePassword_e,
@@ -490,7 +490,7 @@ package WinRt.Windows.Networking.Vpn is
       ProtectedCertificate_e => 5,
       UnProtectedCertificate_e => 6
    );
-   type VpnCredentialType_Ptr is access all VpnCredentialType;
+   type VpnCredentialType_Ptr is access VpnCredentialType;
 
    type VpnDataPathType is (
       Send_e,
@@ -500,7 +500,7 @@ package WinRt.Windows.Networking.Vpn is
       Send_e => 0,
       Receive_e => 1
    );
-   type VpnDataPathType_Ptr is access all VpnDataPathType;
+   type VpnDataPathType_Ptr is access VpnDataPathType;
 
    type VpnDomainNameType is (
       Suffix_e,
@@ -512,7 +512,7 @@ package WinRt.Windows.Networking.Vpn is
       FullyQualified_e => 1,
       Reserved_e => 65535
    );
-   type VpnDomainNameType_Ptr is access all VpnDomainNameType;
+   type VpnDomainNameType_Ptr is access VpnDomainNameType;
 
    type VpnIPProtocol is (
       None_e,
@@ -532,7 +532,7 @@ package WinRt.Windows.Networking.Vpn is
       Ipv6Icmp_e => 58,
       Pgm_e => 113
    );
-   type VpnIPProtocol_Ptr is access all VpnIPProtocol;
+   type VpnIPProtocol_Ptr is access VpnIPProtocol;
 
    type VpnManagementConnectionStatus is (
       Disconnected_e,
@@ -546,7 +546,7 @@ package WinRt.Windows.Networking.Vpn is
       Connected_e => 2,
       Connecting_e => 3
    );
-   type VpnManagementConnectionStatus_Ptr is access all VpnManagementConnectionStatus;
+   type VpnManagementConnectionStatus_Ptr is access VpnManagementConnectionStatus;
 
    type VpnManagementErrorStatus is (
       Ok_e,
@@ -590,7 +590,7 @@ package WinRt.Windows.Networking.Vpn is
       DnsNotResolvable_e => 17,
       InvalidIP_e => 18
    );
-   type VpnManagementErrorStatus_Ptr is access all VpnManagementErrorStatus;
+   type VpnManagementErrorStatus_Ptr is access VpnManagementErrorStatus;
 
    type VpnNativeProtocolType is (
       Pptp_e,
@@ -602,7 +602,7 @@ package WinRt.Windows.Networking.Vpn is
       L2tp_e => 1,
       IpsecIkev2_e => 2
    );
-   type VpnNativeProtocolType_Ptr is access all VpnNativeProtocolType;
+   type VpnNativeProtocolType_Ptr is access VpnNativeProtocolType;
 
    type VpnPacketBufferStatus is (
       Ok_e,
@@ -612,7 +612,7 @@ package WinRt.Windows.Networking.Vpn is
       Ok_e => 0,
       InvalidBufferSize_e => 1
    );
-   type VpnPacketBufferStatus_Ptr is access all VpnPacketBufferStatus;
+   type VpnPacketBufferStatus_Ptr is access VpnPacketBufferStatus;
 
    type VpnRoutingPolicyType is (
       SplitRouting_e,
@@ -622,7 +622,7 @@ package WinRt.Windows.Networking.Vpn is
       SplitRouting_e => 0,
       ForceAllTrafficOverVpn_e => 1
    );
-   type VpnRoutingPolicyType_Ptr is access all VpnRoutingPolicyType;
+   type VpnRoutingPolicyType_Ptr is access VpnRoutingPolicyType;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

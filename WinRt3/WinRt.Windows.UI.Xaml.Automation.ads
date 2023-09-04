@@ -464,7 +464,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       DataValidationError_e => 60021,
       CircularReferenceError_e => 60022
    );
-   type AnnotationType_Ptr is access all AnnotationType;
+   type AnnotationType_Ptr is access AnnotationType;
    type AnnotationType_Array is array (Natural range <>) of aliased AnnotationType;
 
    type AutomationActiveEnd is (
@@ -477,7 +477,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       Start_e => 1,
       End_e => 2
    );
-   type AutomationActiveEnd_Ptr is access all AutomationActiveEnd;
+   type AutomationActiveEnd_Ptr is access AutomationActiveEnd;
 
    type AutomationAnimationStyle is (
       None_e,
@@ -499,7 +499,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       Shimmer_e => 6,
       Other_e => 7
    );
-   type AutomationAnimationStyle_Ptr is access all AutomationAnimationStyle;
+   type AutomationAnimationStyle_Ptr is access AutomationAnimationStyle;
 
    type AutomationBulletStyle is (
       None_e,
@@ -519,7 +519,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       DashBullet_e => 5,
       Other_e => 6
    );
-   type AutomationBulletStyle_Ptr is access all AutomationBulletStyle;
+   type AutomationBulletStyle_Ptr is access AutomationBulletStyle;
 
    type AutomationCaretBidiMode is (
       LTR_e,
@@ -529,7 +529,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       LTR_e => 0,
       RTL_e => 1
    );
-   type AutomationCaretBidiMode_Ptr is access all AutomationCaretBidiMode;
+   type AutomationCaretBidiMode_Ptr is access AutomationCaretBidiMode;
 
    type AutomationCaretPosition is (
       Unknown_e,
@@ -541,7 +541,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       EndOfLine_e => 1,
       BeginningOfLine_e => 2
    );
-   type AutomationCaretPosition_Ptr is access all AutomationCaretPosition;
+   type AutomationCaretPosition_Ptr is access AutomationCaretPosition;
 
    type AutomationFlowDirections is (
       Default_e,
@@ -555,7 +555,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       BottomToTop_e => 2,
       Vertical_e => 3
    );
-   type AutomationFlowDirections_Ptr is access all AutomationFlowDirections;
+   type AutomationFlowDirections_Ptr is access AutomationFlowDirections;
 
    type AutomationOutlineStyles is (
       None_e,
@@ -571,7 +571,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       Engraved_e => 3,
       Embossed_e => 4
    );
-   type AutomationOutlineStyles_Ptr is access all AutomationOutlineStyles;
+   type AutomationOutlineStyles_Ptr is access AutomationOutlineStyles;
 
    type AutomationStyleId is (
       Heading1_e,
@@ -607,7 +607,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       Quote_e => 70014,
       BulletedList_e => 70015
    );
-   type AutomationStyleId_Ptr is access all AutomationStyleId;
+   type AutomationStyleId_Ptr is access AutomationStyleId;
 
    type AutomationTextDecorationLineStyle is (
       None_e,
@@ -651,7 +651,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       ThickLongDash_e => 17,
       Other_e => 18
    );
-   type AutomationTextDecorationLineStyle_Ptr is access all AutomationTextDecorationLineStyle;
+   type AutomationTextDecorationLineStyle_Ptr is access AutomationTextDecorationLineStyle;
 
    type AutomationTextEditChangeType is (
       None_e,
@@ -665,7 +665,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       Composition_e => 2,
       CompositionFinalized_e => 3
    );
-   type AutomationTextEditChangeType_Ptr is access all AutomationTextEditChangeType;
+   type AutomationTextEditChangeType_Ptr is access AutomationTextEditChangeType;
 
    type DockPosition is (
       Top_e,
@@ -683,7 +683,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       Fill_e => 4,
       None_e => 5
    );
-   type DockPosition_Ptr is access all DockPosition;
+   type DockPosition_Ptr is access DockPosition;
 
    type ExpandCollapseState is (
       Collapsed_e,
@@ -697,7 +697,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       PartiallyExpanded_e => 2,
       LeafNode_e => 3
    );
-   type ExpandCollapseState_Ptr is access all ExpandCollapseState;
+   type ExpandCollapseState_Ptr is access ExpandCollapseState;
 
    type RowOrColumnMajor is (
       RowMajor_e,
@@ -709,7 +709,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       ColumnMajor_e => 1,
       Indeterminate_e => 2
    );
-   type RowOrColumnMajor_Ptr is access all RowOrColumnMajor;
+   type RowOrColumnMajor_Ptr is access RowOrColumnMajor;
 
    type ScrollAmount is (
       LargeDecrement_e,
@@ -725,7 +725,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       LargeIncrement_e => 3,
       SmallIncrement_e => 4
    );
-   type ScrollAmount_Ptr is access all ScrollAmount;
+   type ScrollAmount_Ptr is access ScrollAmount;
 
    type SupportedTextSelection is (
       None_e,
@@ -737,7 +737,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       Single_e => 1,
       Multiple_e => 2
    );
-   type SupportedTextSelection_Ptr is access all SupportedTextSelection;
+   type SupportedTextSelection_Ptr is access SupportedTextSelection;
 
    type SynchronizedInputType is (
       KeyUp_e,
@@ -755,7 +755,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       RightMouseUp_e => 16,
       RightMouseDown_e => 32
    );
-   type SynchronizedInputType_Ptr is access all SynchronizedInputType;
+   type SynchronizedInputType_Ptr is access SynchronizedInputType;
 
    type ToggleState is (
       Off_e,
@@ -767,7 +767,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       On_e => 1,
       Indeterminate_e => 2
    );
-   type ToggleState_Ptr is access all ToggleState;
+   type ToggleState_Ptr is access ToggleState;
 
    type WindowInteractionState is (
       Running_e,
@@ -783,7 +783,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       BlockedByModalWindow_e => 3,
       NotResponding_e => 4
    );
-   type WindowInteractionState_Ptr is access all WindowInteractionState;
+   type WindowInteractionState_Ptr is access WindowInteractionState;
 
    type WindowVisualState is (
       Normal_e,
@@ -795,7 +795,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       Maximized_e => 1,
       Minimized_e => 2
    );
-   type WindowVisualState_Ptr is access all WindowVisualState;
+   type WindowVisualState_Ptr is access WindowVisualState;
 
    type ZoomUnit is (
       NoAmount_e,
@@ -811,7 +811,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       LargeIncrement_e => 3,
       SmallIncrement_e => 4
    );
-   type ZoomUnit_Ptr is access all ZoomUnit;
+   type ZoomUnit_Ptr is access ZoomUnit;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

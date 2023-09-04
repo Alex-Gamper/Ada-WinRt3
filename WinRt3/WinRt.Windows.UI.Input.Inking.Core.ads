@@ -119,7 +119,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
       Completed_e => 1,
       Canceled_e => 2
    );
-   type CoreWetStrokeDisposition_Ptr is access all CoreWetStrokeDisposition;
+   type CoreWetStrokeDisposition_Ptr is access CoreWetStrokeDisposition;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -45,10 +45,10 @@ package WinRt.Windows.UI.Xaml.Media is
    -----------------------------------------------------------------------------
 
    type RateChangedRoutedEventHandler_Delegate;
-   type RateChangedRoutedEventHandler is access all RateChangedRoutedEventHandler_Delegate;
+   type RateChangedRoutedEventHandler is access RateChangedRoutedEventHandler_Delegate;
 
    type TimelineMarkerRoutedEventHandler_Delegate;
-   type TimelineMarkerRoutedEventHandler is access all TimelineMarkerRoutedEventHandler_Delegate;
+   type TimelineMarkerRoutedEventHandler is access TimelineMarkerRoutedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -930,7 +930,7 @@ package WinRt.Windows.UI.Xaml.Media is
       HostBackdrop_e => 0,
       Backdrop_e => 1
    );
-   type AcrylicBackgroundSource_Ptr is access all AcrylicBackgroundSource;
+   type AcrylicBackgroundSource_Ptr is access AcrylicBackgroundSource;
 
    type AlignmentX is (
       Left_e,
@@ -942,7 +942,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Center_e => 1,
       Right_e => 2
    );
-   type AlignmentX_Ptr is access all AlignmentX;
+   type AlignmentX_Ptr is access AlignmentX;
 
    type AlignmentY is (
       Top_e,
@@ -954,7 +954,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Center_e => 1,
       Bottom_e => 2
    );
-   type AlignmentY_Ptr is access all AlignmentY;
+   type AlignmentY_Ptr is access AlignmentY;
 
    type AudioCategory is (
       Other_e,
@@ -984,7 +984,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Movie_e => 10,
       Media_e => 11
    );
-   type AudioCategory_Ptr is access all AudioCategory;
+   type AudioCategory_Ptr is access AudioCategory;
 
    type AudioDeviceType is (
       Console_e,
@@ -996,7 +996,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Multimedia_e => 1,
       Communications_e => 2
    );
-   type AudioDeviceType_Ptr is access all AudioDeviceType;
+   type AudioDeviceType_Ptr is access AudioDeviceType;
 
    type BrushMappingMode is (
       Absolute_e,
@@ -1006,7 +1006,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Absolute_e => 0,
       RelativeToBoundingBox_e => 1
    );
-   type BrushMappingMode_Ptr is access all BrushMappingMode;
+   type BrushMappingMode_Ptr is access BrushMappingMode;
 
    type ColorInterpolationMode is (
       ScRgbLinearInterpolation_e,
@@ -1016,7 +1016,7 @@ package WinRt.Windows.UI.Xaml.Media is
       ScRgbLinearInterpolation_e => 0,
       SRgbLinearInterpolation_e => 1
    );
-   type ColorInterpolationMode_Ptr is access all ColorInterpolationMode;
+   type ColorInterpolationMode_Ptr is access ColorInterpolationMode;
 
    type ElementCompositeMode is (
       Inherit_e,
@@ -1028,7 +1028,7 @@ package WinRt.Windows.UI.Xaml.Media is
       SourceOver_e => 1,
       MinBlend_e => 2
    );
-   type ElementCompositeMode_Ptr is access all ElementCompositeMode;
+   type ElementCompositeMode_Ptr is access ElementCompositeMode;
 
    type FastPlayFallbackBehaviour is (
       Skip_e,
@@ -1040,7 +1040,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Hide_e => 1,
       Disable_e => 2
    );
-   type FastPlayFallbackBehaviour_Ptr is access all FastPlayFallbackBehaviour;
+   type FastPlayFallbackBehaviour_Ptr is access FastPlayFallbackBehaviour;
 
    type FillRule is (
       EvenOdd_e,
@@ -1050,7 +1050,7 @@ package WinRt.Windows.UI.Xaml.Media is
       EvenOdd_e => 0,
       Nonzero_e => 1
    );
-   type FillRule_Ptr is access all FillRule;
+   type FillRule_Ptr is access FillRule;
 
    type GradientSpreadMethod is (
       Pad_e,
@@ -1062,7 +1062,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Reflect_e => 1,
       Repeat_e => 2
    );
-   type GradientSpreadMethod_Ptr is access all GradientSpreadMethod;
+   type GradientSpreadMethod_Ptr is access GradientSpreadMethod;
 
    type LoadedImageSourceLoadStatus is (
       Success_e,
@@ -1076,7 +1076,7 @@ package WinRt.Windows.UI.Xaml.Media is
       InvalidFormat_e => 2,
       Other_e => 3
    );
-   type LoadedImageSourceLoadStatus_Ptr is access all LoadedImageSourceLoadStatus;
+   type LoadedImageSourceLoadStatus_Ptr is access LoadedImageSourceLoadStatus;
 
    type MediaCanPlayResponse is (
       NotSupported_e,
@@ -1088,7 +1088,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Maybe_e => 1,
       Probably_e => 2
    );
-   type MediaCanPlayResponse_Ptr is access all MediaCanPlayResponse;
+   type MediaCanPlayResponse_Ptr is access MediaCanPlayResponse;
 
    type MediaElementState is (
       Closed_e,
@@ -1106,7 +1106,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Paused_e => 4,
       Stopped_e => 5
    );
-   type MediaElementState_Ptr is access all MediaElementState;
+   type MediaElementState_Ptr is access MediaElementState;
 
    type PenLineCap is (
       Flat_e,
@@ -1120,7 +1120,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Round_e => 2,
       Triangle_e => 3
    );
-   type PenLineCap_Ptr is access all PenLineCap;
+   type PenLineCap_Ptr is access PenLineCap;
 
    type PenLineJoin is (
       Miter_e,
@@ -1132,7 +1132,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Bevel_e => 1,
       Round_e => 2
    );
-   type PenLineJoin_Ptr is access all PenLineJoin;
+   type PenLineJoin_Ptr is access PenLineJoin;
 
    type RevealBrushState is (
       Normal_e,
@@ -1144,7 +1144,7 @@ package WinRt.Windows.UI.Xaml.Media is
       PointerOver_e => 1,
       Pressed_e => 2
    );
-   type RevealBrushState_Ptr is access all RevealBrushState;
+   type RevealBrushState_Ptr is access RevealBrushState;
 
    type Stereo3DVideoPackingMode is (
       None_e,
@@ -1156,7 +1156,7 @@ package WinRt.Windows.UI.Xaml.Media is
       SideBySide_e => 1,
       TopBottom_e => 2
    );
-   type Stereo3DVideoPackingMode_Ptr is access all Stereo3DVideoPackingMode;
+   type Stereo3DVideoPackingMode_Ptr is access Stereo3DVideoPackingMode;
 
    type Stereo3DVideoRenderMode is (
       Mono_e,
@@ -1166,7 +1166,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Mono_e => 0,
       Stereo_e => 1
    );
-   type Stereo3DVideoRenderMode_Ptr is access all Stereo3DVideoRenderMode;
+   type Stereo3DVideoRenderMode_Ptr is access Stereo3DVideoRenderMode;
 
    type Stretch is (
       None_e,
@@ -1180,7 +1180,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Uniform_e => 2,
       UniformToFill_e => 3
    );
-   type Stretch_Ptr is access all Stretch;
+   type Stretch_Ptr is access Stretch;
 
    type StyleSimulations is (
       None_e,
@@ -1194,7 +1194,7 @@ package WinRt.Windows.UI.Xaml.Media is
       ItalicSimulation_e => 2,
       BoldItalicSimulation_e => 3
    );
-   type StyleSimulations_Ptr is access all StyleSimulations;
+   type StyleSimulations_Ptr is access StyleSimulations;
 
    type SweepDirection is (
       Counterclockwise_e,
@@ -1204,7 +1204,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Counterclockwise_e => 0,
       Clockwise_e => 1
    );
-   type SweepDirection_Ptr is access all SweepDirection;
+   type SweepDirection_Ptr is access SweepDirection;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1218,7 +1218,7 @@ package WinRt.Windows.UI.Xaml.Media is
       OffsetX : WinRt.Double;
       OffsetY : WinRt.Double;
    end record with Convention => C_Pass_By_Copy;
-   type Matrix_Ptr is access all Matrix;
+   type Matrix_Ptr is access Matrix;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

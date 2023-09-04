@@ -151,7 +151,7 @@ package WinRt.Windows.Devices.Bluetooth.Background is
       Batch_e => 1,
       KeepLatest_e => 2
    );
-   type BluetoothEventTriggeringMode_Ptr is access all BluetoothEventTriggeringMode;
+   type BluetoothEventTriggeringMode_Ptr is access BluetoothEventTriggeringMode;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

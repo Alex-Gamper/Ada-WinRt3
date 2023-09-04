@@ -48,13 +48,13 @@ package WinRt.Windows.Graphics is
       LowPart : WinRt.UInt32;
       HighPart : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type DisplayAdapterId_Ptr is access all DisplayAdapterId;
+   type DisplayAdapterId_Ptr is access DisplayAdapterId;
 
    type PointInt32 is record
       X : WinRt.Int32;
       Y : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type PointInt32_Ptr is access all PointInt32;
+   type PointInt32_Ptr is access PointInt32;
 
    type RectInt32 is record
       X : WinRt.Int32;
@@ -62,14 +62,14 @@ package WinRt.Windows.Graphics is
       Width : WinRt.Int32;
       Height : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type RectInt32_Ptr is access all RectInt32;
+   type RectInt32_Ptr is access RectInt32;
    type RectInt32_Array is array (Natural range <>) of aliased RectInt32;
 
    type SizeInt32 is record
       Width : WinRt.Int32;
       Height : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type SizeInt32_Ptr is access all SizeInt32;
+   type SizeInt32_Ptr is access SizeInt32;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

@@ -71,7 +71,7 @@ package WinRt.Windows.Media.Playlists is
       Zune_e => 1,
       M3u_e => 2
    );
-   type PlaylistFormat_Ptr is access all PlaylistFormat;
+   type PlaylistFormat_Ptr is access PlaylistFormat;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -80,7 +80,7 @@ package WinRt.Windows.Media.Playlists is
    type PlaylistsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type PlaylistsContract_Ptr is access all PlaylistsContract;
+   type PlaylistsContract_Ptr is access PlaylistsContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

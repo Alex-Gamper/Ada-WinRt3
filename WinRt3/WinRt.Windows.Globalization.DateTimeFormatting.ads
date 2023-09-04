@@ -74,7 +74,7 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
       None_e => 0,
       Default_e => 1
    );
-   type DayFormat_Ptr is access all DayFormat;
+   type DayFormat_Ptr is access DayFormat;
 
    type DayOfWeekFormat is (
       None_e,
@@ -88,7 +88,7 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
       Abbreviated_e => 2,
       Full_e => 3
    );
-   type DayOfWeekFormat_Ptr is access all DayOfWeekFormat;
+   type DayOfWeekFormat_Ptr is access DayOfWeekFormat;
 
    type HourFormat is (
       None_e,
@@ -98,7 +98,7 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
       None_e => 0,
       Default_e => 1
    );
-   type HourFormat_Ptr is access all HourFormat;
+   type HourFormat_Ptr is access HourFormat;
 
    type MinuteFormat is (
       None_e,
@@ -108,7 +108,7 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
       None_e => 0,
       Default_e => 1
    );
-   type MinuteFormat_Ptr is access all MinuteFormat;
+   type MinuteFormat_Ptr is access MinuteFormat;
 
    type MonthFormat is (
       None_e,
@@ -124,7 +124,7 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
       Full_e => 3,
       Numeric_e => 4
    );
-   type MonthFormat_Ptr is access all MonthFormat;
+   type MonthFormat_Ptr is access MonthFormat;
 
    type SecondFormat is (
       None_e,
@@ -134,7 +134,7 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
       None_e => 0,
       Default_e => 1
    );
-   type SecondFormat_Ptr is access all SecondFormat;
+   type SecondFormat_Ptr is access SecondFormat;
 
    type YearFormat is (
       None_e,
@@ -148,7 +148,7 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
       Abbreviated_e => 2,
       Full_e => 3
    );
-   type YearFormat_Ptr is access all YearFormat;
+   type YearFormat_Ptr is access YearFormat;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

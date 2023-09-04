@@ -816,7 +816,7 @@ package WinRt.Windows.Devices.PointOfService is
       OffOrOffline_e => 3,
       Extended_e => 4
    );
-   type BarcodeScannerStatus_Ptr is access all BarcodeScannerStatus;
+   type BarcodeScannerStatus_Ptr is access BarcodeScannerStatus;
 
    type BarcodeSymbologyDecodeLengthKind is (
       AnyLength_e,
@@ -828,7 +828,7 @@ package WinRt.Windows.Devices.PointOfService is
       Discrete_e => 1,
       Range_e => 2
    );
-   type BarcodeSymbologyDecodeLengthKind_Ptr is access all BarcodeSymbologyDecodeLengthKind;
+   type BarcodeSymbologyDecodeLengthKind_Ptr is access BarcodeSymbologyDecodeLengthKind;
 
    type CashDrawerStatusKind is (
       Online_e,
@@ -844,7 +844,7 @@ package WinRt.Windows.Devices.PointOfService is
       OffOrOffline_e => 3,
       Extended_e => 4
    );
-   type CashDrawerStatusKind_Ptr is access all CashDrawerStatusKind;
+   type CashDrawerStatusKind_Ptr is access CashDrawerStatusKind;
 
    type LineDisplayCursorType is (
       None_e,
@@ -862,7 +862,7 @@ package WinRt.Windows.Devices.PointOfService is
       Reverse_e => 4,
       Other_e => 5
    );
-   type LineDisplayCursorType_Ptr is access all LineDisplayCursorType;
+   type LineDisplayCursorType_Ptr is access LineDisplayCursorType;
 
    type LineDisplayDescriptorState is (
       Off_e,
@@ -874,7 +874,7 @@ package WinRt.Windows.Devices.PointOfService is
       On_e => 1,
       Blink_e => 2
    );
-   type LineDisplayDescriptorState_Ptr is access all LineDisplayDescriptorState;
+   type LineDisplayDescriptorState_Ptr is access LineDisplayDescriptorState;
 
    type LineDisplayHorizontalAlignment is (
       Left_e,
@@ -886,7 +886,7 @@ package WinRt.Windows.Devices.PointOfService is
       Center_e => 1,
       Right_e => 2
    );
-   type LineDisplayHorizontalAlignment_Ptr is access all LineDisplayHorizontalAlignment;
+   type LineDisplayHorizontalAlignment_Ptr is access LineDisplayHorizontalAlignment;
 
    type LineDisplayMarqueeFormat is (
       None_e,
@@ -898,7 +898,7 @@ package WinRt.Windows.Devices.PointOfService is
       Walk_e => 1,
       Place_e => 2
    );
-   type LineDisplayMarqueeFormat_Ptr is access all LineDisplayMarqueeFormat;
+   type LineDisplayMarqueeFormat_Ptr is access LineDisplayMarqueeFormat;
 
    type LineDisplayPowerStatus is (
       Unknown_e,
@@ -914,7 +914,7 @@ package WinRt.Windows.Devices.PointOfService is
       Offline_e => 3,
       OffOrOffline_e => 4
    );
-   type LineDisplayPowerStatus_Ptr is access all LineDisplayPowerStatus;
+   type LineDisplayPowerStatus_Ptr is access LineDisplayPowerStatus;
 
    type LineDisplayScrollDirection is (
       Up_e,
@@ -928,7 +928,7 @@ package WinRt.Windows.Devices.PointOfService is
       Left_e => 2,
       Right_e => 3
    );
-   type LineDisplayScrollDirection_Ptr is access all LineDisplayScrollDirection;
+   type LineDisplayScrollDirection_Ptr is access LineDisplayScrollDirection;
 
    type LineDisplayTextAttribute is (
       Normal_e,
@@ -942,7 +942,7 @@ package WinRt.Windows.Devices.PointOfService is
       Reverse_e => 2,
       ReverseBlink_e => 3
    );
-   type LineDisplayTextAttribute_Ptr is access all LineDisplayTextAttribute;
+   type LineDisplayTextAttribute_Ptr is access LineDisplayTextAttribute;
 
    type LineDisplayTextAttributeGranularity is (
       NotSupported_e,
@@ -954,7 +954,7 @@ package WinRt.Windows.Devices.PointOfService is
       EntireDisplay_e => 1,
       PerCharacter_e => 2
    );
-   type LineDisplayTextAttributeGranularity_Ptr is access all LineDisplayTextAttributeGranularity;
+   type LineDisplayTextAttributeGranularity_Ptr is access LineDisplayTextAttributeGranularity;
 
    type LineDisplayVerticalAlignment is (
       Top_e,
@@ -966,7 +966,7 @@ package WinRt.Windows.Devices.PointOfService is
       Center_e => 1,
       Bottom_e => 2
    );
-   type LineDisplayVerticalAlignment_Ptr is access all LineDisplayVerticalAlignment;
+   type LineDisplayVerticalAlignment_Ptr is access LineDisplayVerticalAlignment;
 
    type MagneticStripeReaderAuthenticationLevel is (
       NotSupported_e,
@@ -978,7 +978,7 @@ package WinRt.Windows.Devices.PointOfService is
       Optional_e => 1,
       Required_e => 2
    );
-   type MagneticStripeReaderAuthenticationLevel_Ptr is access all MagneticStripeReaderAuthenticationLevel;
+   type MagneticStripeReaderAuthenticationLevel_Ptr is access MagneticStripeReaderAuthenticationLevel;
 
    type MagneticStripeReaderAuthenticationProtocol is (
       None_e,
@@ -988,7 +988,7 @@ package WinRt.Windows.Devices.PointOfService is
       None_e => 0,
       ChallengeResponse_e => 1
    );
-   type MagneticStripeReaderAuthenticationProtocol_Ptr is access all MagneticStripeReaderAuthenticationProtocol;
+   type MagneticStripeReaderAuthenticationProtocol_Ptr is access MagneticStripeReaderAuthenticationProtocol;
 
    type MagneticStripeReaderErrorReportingType is (
       CardLevel_e,
@@ -998,7 +998,7 @@ package WinRt.Windows.Devices.PointOfService is
       CardLevel_e => 0,
       TrackLevel_e => 1
    );
-   type MagneticStripeReaderErrorReportingType_Ptr is access all MagneticStripeReaderErrorReportingType;
+   type MagneticStripeReaderErrorReportingType_Ptr is access MagneticStripeReaderErrorReportingType;
 
    type MagneticStripeReaderStatus is (
       Unauthenticated_e,
@@ -1010,7 +1010,7 @@ package WinRt.Windows.Devices.PointOfService is
       Authenticated_e => 1,
       Extended_e => 2
    );
-   type MagneticStripeReaderStatus_Ptr is access all MagneticStripeReaderStatus;
+   type MagneticStripeReaderStatus_Ptr is access MagneticStripeReaderStatus;
 
    type MagneticStripeReaderTrackErrorType is (
       Unknown_e,
@@ -1028,7 +1028,7 @@ package WinRt.Windows.Devices.PointOfService is
       ParityError_e => 3,
       LrcError_e => 4
    );
-   type MagneticStripeReaderTrackErrorType_Ptr is access all MagneticStripeReaderTrackErrorType;
+   type MagneticStripeReaderTrackErrorType_Ptr is access MagneticStripeReaderTrackErrorType;
 
    type MagneticStripeReaderTrackIds is (
       None_e,
@@ -1044,7 +1044,7 @@ package WinRt.Windows.Devices.PointOfService is
       Track3_e => 4,
       Track4_e => 8
    );
-   type MagneticStripeReaderTrackIds_Ptr is access all MagneticStripeReaderTrackIds;
+   type MagneticStripeReaderTrackIds_Ptr is access MagneticStripeReaderTrackIds;
 
    type PosConnectionTypes is (
       Local_e,
@@ -1058,7 +1058,7 @@ package WinRt.Windows.Devices.PointOfService is
       Bluetooth_e => 4,
       All_e => 4294967295
    );
-   type PosConnectionTypes_Ptr is access all PosConnectionTypes;
+   type PosConnectionTypes_Ptr is access PosConnectionTypes;
 
    type PosPrinterAlignment is (
       Left_e,
@@ -1070,7 +1070,7 @@ package WinRt.Windows.Devices.PointOfService is
       Center_e => 1,
       Right_e => 2
    );
-   type PosPrinterAlignment_Ptr is access all PosPrinterAlignment;
+   type PosPrinterAlignment_Ptr is access PosPrinterAlignment;
 
    type PosPrinterBarcodeTextPosition is (
       None_e,
@@ -1082,7 +1082,7 @@ package WinRt.Windows.Devices.PointOfService is
       Above_e => 1,
       Below_e => 2
    );
-   type PosPrinterBarcodeTextPosition_Ptr is access all PosPrinterBarcodeTextPosition;
+   type PosPrinterBarcodeTextPosition_Ptr is access PosPrinterBarcodeTextPosition;
 
    type PosPrinterCartridgeSensors is (
       None_e,
@@ -1098,7 +1098,7 @@ package WinRt.Windows.Devices.PointOfService is
       HeadCleaning_e => 4,
       NearEnd_e => 8
    );
-   type PosPrinterCartridgeSensors_Ptr is access all PosPrinterCartridgeSensors;
+   type PosPrinterCartridgeSensors_Ptr is access PosPrinterCartridgeSensors;
 
    type PosPrinterColorCapabilities is (
       None_e,
@@ -1128,7 +1128,7 @@ package WinRt.Windows.Devices.PointOfService is
       Yellow_e => 512,
       Full_e => 1024
    );
-   type PosPrinterColorCapabilities_Ptr is access all PosPrinterColorCapabilities;
+   type PosPrinterColorCapabilities_Ptr is access PosPrinterColorCapabilities;
 
    type PosPrinterColorCartridge is (
       Unknown_e,
@@ -1156,7 +1156,7 @@ package WinRt.Windows.Devices.PointOfService is
       Magenta_e => 9,
       Yellow_e => 10
    );
-   type PosPrinterColorCartridge_Ptr is access all PosPrinterColorCartridge;
+   type PosPrinterColorCartridge_Ptr is access PosPrinterColorCartridge;
 
    type PosPrinterLineDirection is (
       Horizontal_e,
@@ -1166,7 +1166,7 @@ package WinRt.Windows.Devices.PointOfService is
       Horizontal_e => 0,
       Vertical_e => 1
    );
-   type PosPrinterLineDirection_Ptr is access all PosPrinterLineDirection;
+   type PosPrinterLineDirection_Ptr is access PosPrinterLineDirection;
 
    type PosPrinterLineStyle is (
       SingleSolid_e,
@@ -1180,7 +1180,7 @@ package WinRt.Windows.Devices.PointOfService is
       Broken_e => 2,
       Chain_e => 3
    );
-   type PosPrinterLineStyle_Ptr is access all PosPrinterLineStyle;
+   type PosPrinterLineStyle_Ptr is access PosPrinterLineStyle;
 
    type PosPrinterMapMode is (
       Dots_e,
@@ -1194,7 +1194,7 @@ package WinRt.Windows.Devices.PointOfService is
       English_e => 2,
       Metric_e => 3
    );
-   type PosPrinterMapMode_Ptr is access all PosPrinterMapMode;
+   type PosPrinterMapMode_Ptr is access PosPrinterMapMode;
 
    type PosPrinterMarkFeedCapabilities is (
       None_e,
@@ -1210,7 +1210,7 @@ package WinRt.Windows.Devices.PointOfService is
       ToCurrentTopOfForm_e => 4,
       ToNextTopOfForm_e => 8
    );
-   type PosPrinterMarkFeedCapabilities_Ptr is access all PosPrinterMarkFeedCapabilities;
+   type PosPrinterMarkFeedCapabilities_Ptr is access PosPrinterMarkFeedCapabilities;
 
    type PosPrinterMarkFeedKind is (
       ToTakeUp_e,
@@ -1224,7 +1224,7 @@ package WinRt.Windows.Devices.PointOfService is
       ToCurrentTopOfForm_e => 2,
       ToNextTopOfForm_e => 3
    );
-   type PosPrinterMarkFeedKind_Ptr is access all PosPrinterMarkFeedKind;
+   type PosPrinterMarkFeedKind_Ptr is access PosPrinterMarkFeedKind;
 
    type PosPrinterPrintSide is (
       Unknown_e,
@@ -1236,7 +1236,7 @@ package WinRt.Windows.Devices.PointOfService is
       Side1_e => 1,
       Side2_e => 2
    );
-   type PosPrinterPrintSide_Ptr is access all PosPrinterPrintSide;
+   type PosPrinterPrintSide_Ptr is access PosPrinterPrintSide;
 
    type PosPrinterRotation is (
       Normal_e,
@@ -1250,7 +1250,7 @@ package WinRt.Windows.Devices.PointOfService is
       Left90_e => 2,
       Rotate180_e => 3
    );
-   type PosPrinterRotation_Ptr is access all PosPrinterRotation;
+   type PosPrinterRotation_Ptr is access PosPrinterRotation;
 
    type PosPrinterRuledLineCapabilities is (
       None_e,
@@ -1262,7 +1262,7 @@ package WinRt.Windows.Devices.PointOfService is
       Horizontal_e => 1,
       Vertical_e => 2
    );
-   type PosPrinterRuledLineCapabilities_Ptr is access all PosPrinterRuledLineCapabilities;
+   type PosPrinterRuledLineCapabilities_Ptr is access PosPrinterRuledLineCapabilities;
 
    type PosPrinterStatusKind is (
       Online_e,
@@ -1278,7 +1278,7 @@ package WinRt.Windows.Devices.PointOfService is
       OffOrOffline_e => 3,
       Extended_e => 4
    );
-   type PosPrinterStatusKind_Ptr is access all PosPrinterStatusKind;
+   type PosPrinterStatusKind_Ptr is access PosPrinterStatusKind;
 
    type UnifiedPosErrorReason is (
       UnknownErrorReason_e,
@@ -1306,7 +1306,7 @@ package WinRt.Windows.Devices.PointOfService is
       Busy_e => 9,
       Extended_e => 10
    );
-   type UnifiedPosErrorReason_Ptr is access all UnifiedPosErrorReason;
+   type UnifiedPosErrorReason_Ptr is access UnifiedPosErrorReason;
 
    type UnifiedPosErrorSeverity is (
       UnknownErrorSeverity_e,
@@ -1324,7 +1324,7 @@ package WinRt.Windows.Devices.PointOfService is
       AssistanceRequired_e => 4,
       Fatal_e => 5
    );
-   type UnifiedPosErrorSeverity_Ptr is access all UnifiedPosErrorSeverity;
+   type UnifiedPosErrorSeverity_Ptr is access UnifiedPosErrorSeverity;
 
    type UnifiedPosHealthCheckLevel is (
       UnknownHealthCheckLevel_e,
@@ -1338,7 +1338,7 @@ package WinRt.Windows.Devices.PointOfService is
       External_e => 2,
       Interactive_e => 3
    );
-   type UnifiedPosHealthCheckLevel_Ptr is access all UnifiedPosHealthCheckLevel;
+   type UnifiedPosHealthCheckLevel_Ptr is access UnifiedPosHealthCheckLevel;
 
    type UnifiedPosPowerReportingType is (
       UnknownPowerReportingType_e,
@@ -1350,7 +1350,7 @@ package WinRt.Windows.Devices.PointOfService is
       Standard_e => 1,
       Advanced_e => 2
    );
-   type UnifiedPosPowerReportingType_Ptr is access all UnifiedPosPowerReportingType;
+   type UnifiedPosPowerReportingType_Ptr is access UnifiedPosPowerReportingType;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1360,7 +1360,7 @@ package WinRt.Windows.Devices.PointOfService is
       Width : WinRt.UInt32;
       Height : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type SizeUInt32_Ptr is access all SizeUInt32;
+   type SizeUInt32_Ptr is access SizeUInt32;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

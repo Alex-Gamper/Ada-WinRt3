@@ -532,7 +532,7 @@ package WinRt.Windows.System.RemoteSystems is
       DeniedByUser_e => 2,
       DeniedBySystem_e => 3
    );
-   type RemoteSystemAccessStatus_Ptr is access all RemoteSystemAccessStatus;
+   type RemoteSystemAccessStatus_Ptr is access RemoteSystemAccessStatus;
 
    type RemoteSystemAuthorizationKind is (
       SameUser_e,
@@ -542,7 +542,7 @@ package WinRt.Windows.System.RemoteSystems is
       SameUser_e => 0,
       Anonymous_e => 1
    );
-   type RemoteSystemAuthorizationKind_Ptr is access all RemoteSystemAuthorizationKind;
+   type RemoteSystemAuthorizationKind_Ptr is access RemoteSystemAuthorizationKind;
 
    type RemoteSystemDiscoveryType is (
       Any_e,
@@ -556,7 +556,7 @@ package WinRt.Windows.System.RemoteSystems is
       Cloud_e => 2,
       SpatiallyProximal_e => 3
    );
-   type RemoteSystemDiscoveryType_Ptr is access all RemoteSystemDiscoveryType;
+   type RemoteSystemDiscoveryType_Ptr is access RemoteSystemDiscoveryType;
 
    type RemoteSystemPlatform is (
       Unknown_e,
@@ -572,7 +572,7 @@ package WinRt.Windows.System.RemoteSystems is
       Ios_e => 3,
       Linux_e => 4
    );
-   type RemoteSystemPlatform_Ptr is access all RemoteSystemPlatform;
+   type RemoteSystemPlatform_Ptr is access RemoteSystemPlatform;
 
    type RemoteSystemSessionCreationStatus is (
       Success_e,
@@ -584,7 +584,7 @@ package WinRt.Windows.System.RemoteSystems is
       SessionLimitsExceeded_e => 1,
       OperationAborted_e => 2
    );
-   type RemoteSystemSessionCreationStatus_Ptr is access all RemoteSystemSessionCreationStatus;
+   type RemoteSystemSessionCreationStatus_Ptr is access RemoteSystemSessionCreationStatus;
 
    type RemoteSystemSessionDisconnectedReason is (
       SessionUnavailable_e,
@@ -596,7 +596,7 @@ package WinRt.Windows.System.RemoteSystems is
       RemovedByController_e => 1,
       SessionClosed_e => 2
    );
-   type RemoteSystemSessionDisconnectedReason_Ptr is access all RemoteSystemSessionDisconnectedReason;
+   type RemoteSystemSessionDisconnectedReason_Ptr is access RemoteSystemSessionDisconnectedReason;
 
    type RemoteSystemSessionJoinStatus is (
       Success_e,
@@ -612,7 +612,7 @@ package WinRt.Windows.System.RemoteSystems is
       SessionUnavailable_e => 3,
       RejectedByController_e => 4
    );
-   type RemoteSystemSessionJoinStatus_Ptr is access all RemoteSystemSessionJoinStatus;
+   type RemoteSystemSessionJoinStatus_Ptr is access RemoteSystemSessionJoinStatus;
 
    type RemoteSystemSessionMessageChannelReliability is (
       Reliable_e,
@@ -622,7 +622,7 @@ package WinRt.Windows.System.RemoteSystems is
       Reliable_e => 0,
       Unreliable_e => 1
    );
-   type RemoteSystemSessionMessageChannelReliability_Ptr is access all RemoteSystemSessionMessageChannelReliability;
+   type RemoteSystemSessionMessageChannelReliability_Ptr is access RemoteSystemSessionMessageChannelReliability;
 
    type RemoteSystemSessionParticipantWatcherStatus is (
       Created_e,
@@ -640,7 +640,7 @@ package WinRt.Windows.System.RemoteSystems is
       Stopped_e => 4,
       Aborted_e => 5
    );
-   type RemoteSystemSessionParticipantWatcherStatus_Ptr is access all RemoteSystemSessionParticipantWatcherStatus;
+   type RemoteSystemSessionParticipantWatcherStatus_Ptr is access RemoteSystemSessionParticipantWatcherStatus;
 
    type RemoteSystemSessionWatcherStatus is (
       Created_e,
@@ -658,7 +658,7 @@ package WinRt.Windows.System.RemoteSystems is
       Stopped_e => 4,
       Aborted_e => 5
    );
-   type RemoteSystemSessionWatcherStatus_Ptr is access all RemoteSystemSessionWatcherStatus;
+   type RemoteSystemSessionWatcherStatus_Ptr is access RemoteSystemSessionWatcherStatus;
 
    type RemoteSystemStatus is (
       Unavailable_e,
@@ -672,7 +672,7 @@ package WinRt.Windows.System.RemoteSystems is
       Available_e => 2,
       Unknown_e => 3
    );
-   type RemoteSystemStatus_Ptr is access all RemoteSystemStatus;
+   type RemoteSystemStatus_Ptr is access RemoteSystemStatus;
 
    type RemoteSystemStatusType is (
       Any_e,
@@ -682,7 +682,7 @@ package WinRt.Windows.System.RemoteSystems is
       Any_e => 0,
       Available_e => 1
    );
-   type RemoteSystemStatusType_Ptr is access all RemoteSystemStatusType;
+   type RemoteSystemStatusType_Ptr is access RemoteSystemStatusType;
 
    type RemoteSystemWatcherError is (
       Unknown_e,
@@ -694,7 +694,7 @@ package WinRt.Windows.System.RemoteSystems is
       InternetNotAvailable_e => 1,
       AuthenticationError_e => 2
    );
-   type RemoteSystemWatcherError_Ptr is access all RemoteSystemWatcherError;
+   type RemoteSystemWatcherError_Ptr is access RemoteSystemWatcherError;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

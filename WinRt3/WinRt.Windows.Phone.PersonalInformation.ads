@@ -146,7 +146,7 @@ package WinRt.Windows.Phone.PersonalInformation is
       Modified_e => 1,
       Deleted_e => 2
    );
-   type ContactChangeType_Ptr is access all ContactChangeType;
+   type ContactChangeType_Ptr is access ContactChangeType;
 
    type ContactQueryResultOrdering is (
       SystemDefault_e,
@@ -158,7 +158,7 @@ package WinRt.Windows.Phone.PersonalInformation is
       GivenNameFamilyName_e => 1,
       FamilyNameGivenName_e => 2
    );
-   type ContactQueryResultOrdering_Ptr is access all ContactQueryResultOrdering;
+   type ContactQueryResultOrdering_Ptr is access ContactQueryResultOrdering;
 
    type ContactStoreApplicationAccessMode is (
       LimitedReadOnly_e,
@@ -168,7 +168,7 @@ package WinRt.Windows.Phone.PersonalInformation is
       LimitedReadOnly_e => 0,
       ReadOnly_e => 1
    );
-   type ContactStoreApplicationAccessMode_Ptr is access all ContactStoreApplicationAccessMode;
+   type ContactStoreApplicationAccessMode_Ptr is access ContactStoreApplicationAccessMode;
 
    type ContactStoreSystemAccessMode is (
       ReadOnly_e,
@@ -178,7 +178,7 @@ package WinRt.Windows.Phone.PersonalInformation is
       ReadOnly_e => 0,
       ReadWrite_e => 1
    );
-   type ContactStoreSystemAccessMode_Ptr is access all ContactStoreSystemAccessMode;
+   type ContactStoreSystemAccessMode_Ptr is access ContactStoreSystemAccessMode;
 
    type VCardFormat is (
       Version2_1_e,
@@ -188,7 +188,7 @@ package WinRt.Windows.Phone.PersonalInformation is
       Version2_1_e => 0,
       Version3_e => 1
    );
-   type VCardFormat_Ptr is access all VCardFormat;
+   type VCardFormat_Ptr is access VCardFormat;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

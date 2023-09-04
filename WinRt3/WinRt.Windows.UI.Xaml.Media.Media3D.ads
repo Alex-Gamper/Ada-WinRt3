@@ -115,7 +115,7 @@ package WinRt.Windows.UI.Xaml.Media.Media3D is
       OffsetZ : WinRt.Double;
       M44 : WinRt.Double;
    end record with Convention => C_Pass_By_Copy;
-   type Matrix3D_Ptr is access all Matrix3D;
+   type Matrix3D_Ptr is access Matrix3D;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

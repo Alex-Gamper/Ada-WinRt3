@@ -159,7 +159,7 @@ package WinRt.Windows.ApplicationModel.AppService is
       ResourceLimitsExceeded_e => 2,
       Unknown_e => 3
    );
-   type AppServiceClosedStatus_Ptr is access all AppServiceClosedStatus;
+   type AppServiceClosedStatus_Ptr is access AppServiceClosedStatus;
 
    type AppServiceConnectionStatus is (
       Success_e,
@@ -189,7 +189,7 @@ package WinRt.Windows.ApplicationModel.AppService is
       DisabledByPolicy_e => 10,
       WebServiceUnavailable_e => 11
    );
-   type AppServiceConnectionStatus_Ptr is access all AppServiceConnectionStatus;
+   type AppServiceConnectionStatus_Ptr is access AppServiceConnectionStatus;
 
    type AppServiceResponseStatus is (
       Success_e,
@@ -217,7 +217,7 @@ package WinRt.Windows.ApplicationModel.AppService is
       DisabledByPolicy_e => 9,
       WebServiceUnavailable_e => 10
    );
-   type AppServiceResponseStatus_Ptr is access all AppServiceResponseStatus;
+   type AppServiceResponseStatus_Ptr is access AppServiceResponseStatus;
 
    type StatelessAppServiceResponseStatus is (
       Success_e,
@@ -253,7 +253,7 @@ package WinRt.Windows.ApplicationModel.AppService is
       DisabledByPolicy_e => 13,
       WebServiceUnavailable_e => 14
    );
-   type StatelessAppServiceResponseStatus_Ptr is access all StatelessAppServiceResponseStatus;
+   type StatelessAppServiceResponseStatus_Ptr is access StatelessAppServiceResponseStatus;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

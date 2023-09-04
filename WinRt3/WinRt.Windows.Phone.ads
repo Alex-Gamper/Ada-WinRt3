@@ -40,6 +40,6 @@ package WinRt.Windows.Phone is
    type PhoneContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type PhoneContract_Ptr is access all PhoneContract;
+   type PhoneContract_Ptr is access PhoneContract;
 
 end;

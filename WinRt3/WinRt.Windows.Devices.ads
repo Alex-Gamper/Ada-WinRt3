@@ -79,7 +79,7 @@ package WinRt.Windows.Devices is
    type DevicesLowLevelContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type DevicesLowLevelContract_Ptr is access all DevicesLowLevelContract;
+   type DevicesLowLevelContract_Ptr is access DevicesLowLevelContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

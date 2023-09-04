@@ -85,7 +85,7 @@ package WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       UserPromptRequired_e => 3,
       Allowed_e => 4
    );
-   type AppCapabilityAccessStatus_Ptr is access all AppCapabilityAccessStatus;
+   type AppCapabilityAccessStatus_Ptr is access AppCapabilityAccessStatus;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

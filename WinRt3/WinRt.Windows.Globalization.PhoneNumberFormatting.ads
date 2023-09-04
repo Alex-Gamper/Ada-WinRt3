@@ -87,7 +87,7 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
       National_e => 2,
       Rfc3966_e => 3
    );
-   type PhoneNumberFormat_Ptr is access all PhoneNumberFormat;
+   type PhoneNumberFormat_Ptr is access PhoneNumberFormat;
 
    type PhoneNumberMatchResult is (
       NoMatch_e,
@@ -101,7 +101,7 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
       NationalSignificantNumberMatch_e => 2,
       ExactMatch_e => 3
    );
-   type PhoneNumberMatchResult_Ptr is access all PhoneNumberMatchResult;
+   type PhoneNumberMatchResult_Ptr is access PhoneNumberMatchResult;
 
    type PhoneNumberParseResult is (
       Valid_e,
@@ -117,7 +117,7 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
       TooShort_e => 3,
       TooLong_e => 4
    );
-   type PhoneNumberParseResult_Ptr is access all PhoneNumberParseResult;
+   type PhoneNumberParseResult_Ptr is access PhoneNumberParseResult;
 
    type PredictedPhoneNumberKind is (
       FixedLine_e,
@@ -147,7 +147,7 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
       Voicemail_e => 10,
       Unknown_e => 11
    );
-   type PredictedPhoneNumberKind_Ptr is access all PredictedPhoneNumberKind;
+   type PredictedPhoneNumberKind_Ptr is access PredictedPhoneNumberKind;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

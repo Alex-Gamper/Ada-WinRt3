@@ -45,16 +45,16 @@ package WinRt.Windows.Media.Devices is
    -----------------------------------------------------------------------------
 
    type CallControlEventHandler_Delegate;
-   type CallControlEventHandler is access all CallControlEventHandler_Delegate;
+   type CallControlEventHandler is access CallControlEventHandler_Delegate;
 
    type DialRequestedEventHandler_Delegate;
-   type DialRequestedEventHandler is access all DialRequestedEventHandler_Delegate;
+   type DialRequestedEventHandler is access DialRequestedEventHandler_Delegate;
 
    type KeypadPressedEventHandler_Delegate;
-   type KeypadPressedEventHandler is access all KeypadPressedEventHandler_Delegate;
+   type KeypadPressedEventHandler is access KeypadPressedEventHandler_Delegate;
 
    type RedialRequestedEventHandler_Delegate;
-   type RedialRequestedEventHandler is access all RedialRequestedEventHandler_Delegate;
+   type RedialRequestedEventHandler is access RedialRequestedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -517,7 +517,7 @@ package WinRt.Windows.Media.Devices is
       Hdr_e => 2,
       LowLight_e => 3
    );
-   type AdvancedPhotoMode_Ptr is access all AdvancedPhotoMode;
+   type AdvancedPhotoMode_Ptr is access AdvancedPhotoMode;
 
    type AudioDeviceRole is (
       Default_e,
@@ -527,7 +527,7 @@ package WinRt.Windows.Media.Devices is
       Default_e => 0,
       Communications_e => 1
    );
-   type AudioDeviceRole_Ptr is access all AudioDeviceRole;
+   type AudioDeviceRole_Ptr is access AudioDeviceRole;
 
    type AutoFocusRange is (
       FullRange_e,
@@ -539,7 +539,7 @@ package WinRt.Windows.Media.Devices is
       Macro_e => 1,
       Normal_e => 2
    );
-   type AutoFocusRange_Ptr is access all AutoFocusRange;
+   type AutoFocusRange_Ptr is access AutoFocusRange;
 
    type CameraStreamState is (
       NotStreaming_e,
@@ -553,7 +553,7 @@ package WinRt.Windows.Media.Devices is
       BlockedForPrivacy_e => 2,
       Shutdown_e => 3
    );
-   type CameraStreamState_Ptr is access all CameraStreamState;
+   type CameraStreamState_Ptr is access CameraStreamState;
 
    type CaptureSceneMode is (
       Auto_e,
@@ -585,7 +585,7 @@ package WinRt.Windows.Media.Devices is
       NightPortrait_e => 11,
       Backlit_e => 12
    );
-   type CaptureSceneMode_Ptr is access all CaptureSceneMode;
+   type CaptureSceneMode_Ptr is access CaptureSceneMode;
 
    type CaptureUse is (
       None_e,
@@ -597,7 +597,7 @@ package WinRt.Windows.Media.Devices is
       Photo_e => 1,
       Video_e => 2
    );
-   type CaptureUse_Ptr is access all CaptureUse;
+   type CaptureUse_Ptr is access CaptureUse;
 
    type ColorTemperaturePreset is (
       Auto_e,
@@ -619,7 +619,7 @@ package WinRt.Windows.Media.Devices is
       Tungsten_e => 6,
       Candlelight_e => 7
    );
-   type ColorTemperaturePreset_Ptr is access all ColorTemperaturePreset;
+   type ColorTemperaturePreset_Ptr is access ColorTemperaturePreset;
 
    type FocusMode is (
       Auto_e,
@@ -633,7 +633,7 @@ package WinRt.Windows.Media.Devices is
       Continuous_e => 2,
       Manual_e => 3
    );
-   type FocusMode_Ptr is access all FocusMode;
+   type FocusMode_Ptr is access FocusMode;
 
    type FocusPreset is (
       Auto_e,
@@ -651,7 +651,7 @@ package WinRt.Windows.Media.Devices is
       AutoInfinity_e => 4,
       AutoHyperfocal_e => 5
    );
-   type FocusPreset_Ptr is access all FocusPreset;
+   type FocusPreset_Ptr is access FocusPreset;
 
    type HdrVideoMode is (
       Off_e,
@@ -663,7 +663,7 @@ package WinRt.Windows.Media.Devices is
       On_e => 1,
       Auto_e => 2
    );
-   type HdrVideoMode_Ptr is access all HdrVideoMode;
+   type HdrVideoMode_Ptr is access HdrVideoMode;
 
    type InfraredTorchMode is (
       Off_e,
@@ -675,7 +675,7 @@ package WinRt.Windows.Media.Devices is
       On_e => 1,
       AlternatingFrameIllumination_e => 2
    );
-   type InfraredTorchMode_Ptr is access all InfraredTorchMode;
+   type InfraredTorchMode_Ptr is access InfraredTorchMode;
 
    type IsoSpeedPreset is (
       Auto_e,
@@ -705,7 +705,7 @@ package WinRt.Windows.Media.Devices is
       Iso12800_e => 10,
       Iso25600_e => 11
    );
-   type IsoSpeedPreset_Ptr is access all IsoSpeedPreset;
+   type IsoSpeedPreset_Ptr is access IsoSpeedPreset;
 
    type ManualFocusDistance is (
       Infinity_e,
@@ -717,7 +717,7 @@ package WinRt.Windows.Media.Devices is
       Hyperfocal_e => 1,
       Nearest_e => 2
    );
-   type ManualFocusDistance_Ptr is access all ManualFocusDistance;
+   type ManualFocusDistance_Ptr is access ManualFocusDistance;
 
    type MediaCaptureFocusState is (
       Uninitialized_e,
@@ -733,7 +733,7 @@ package WinRt.Windows.Media.Devices is
       Focused_e => 3,
       Failed_e => 4
    );
-   type MediaCaptureFocusState_Ptr is access all MediaCaptureFocusState;
+   type MediaCaptureFocusState_Ptr is access MediaCaptureFocusState;
 
    type MediaCaptureOptimization is (
       Default_e,
@@ -753,7 +753,7 @@ package WinRt.Windows.Media.Devices is
       LatencyThenPower_e => 5,
       PowerAndQuality_e => 6
    );
-   type MediaCaptureOptimization_Ptr is access all MediaCaptureOptimization;
+   type MediaCaptureOptimization_Ptr is access MediaCaptureOptimization;
 
    type MediaCapturePauseBehavior is (
       RetainHardwareResources_e,
@@ -763,7 +763,7 @@ package WinRt.Windows.Media.Devices is
       RetainHardwareResources_e => 0,
       ReleaseHardwareResources_e => 1
    );
-   type MediaCapturePauseBehavior_Ptr is access all MediaCapturePauseBehavior;
+   type MediaCapturePauseBehavior_Ptr is access MediaCapturePauseBehavior;
 
    type OpticalImageStabilizationMode is (
       Off_e,
@@ -775,7 +775,7 @@ package WinRt.Windows.Media.Devices is
       On_e => 1,
       Auto_e => 2
    );
-   type OpticalImageStabilizationMode_Ptr is access all OpticalImageStabilizationMode;
+   type OpticalImageStabilizationMode_Ptr is access OpticalImageStabilizationMode;
 
    type RegionOfInterestType is (
       Unknown_e,
@@ -785,7 +785,7 @@ package WinRt.Windows.Media.Devices is
       Unknown_e => 0,
       Face_e => 1
    );
-   type RegionOfInterestType_Ptr is access all RegionOfInterestType;
+   type RegionOfInterestType_Ptr is access RegionOfInterestType;
 
    type SendCommandStatus is (
       Success_e,
@@ -795,7 +795,7 @@ package WinRt.Windows.Media.Devices is
       Success_e => 0,
       DeviceNotAvailable_e => 1
    );
-   type SendCommandStatus_Ptr is access all SendCommandStatus;
+   type SendCommandStatus_Ptr is access SendCommandStatus;
 
    type TelephonyKey is (
       D0_e,
@@ -833,7 +833,7 @@ package WinRt.Windows.Media.Devices is
       C_e => 14,
       D_e => 15
    );
-   type TelephonyKey_Ptr is access all TelephonyKey;
+   type TelephonyKey_Ptr is access TelephonyKey;
 
    type VideoDeviceControllerGetDevicePropertyStatus is (
       Success_e,
@@ -853,7 +853,7 @@ package WinRt.Windows.Media.Devices is
       MaxPropertyValueSizeTooSmall_e => 5,
       MaxPropertyValueSizeRequired_e => 6
    );
-   type VideoDeviceControllerGetDevicePropertyStatus_Ptr is access all VideoDeviceControllerGetDevicePropertyStatus;
+   type VideoDeviceControllerGetDevicePropertyStatus_Ptr is access VideoDeviceControllerGetDevicePropertyStatus;
 
    type VideoDeviceControllerSetDevicePropertyStatus is (
       Success_e,
@@ -871,7 +871,7 @@ package WinRt.Windows.Media.Devices is
       DeviceNotAvailable_e => 4,
       NotInControl_e => 5
    );
-   type VideoDeviceControllerSetDevicePropertyStatus_Ptr is access all VideoDeviceControllerSetDevicePropertyStatus;
+   type VideoDeviceControllerSetDevicePropertyStatus_Ptr is access VideoDeviceControllerSetDevicePropertyStatus;
 
    type VideoTemporalDenoisingMode is (
       Off_e,
@@ -883,7 +883,7 @@ package WinRt.Windows.Media.Devices is
       On_e => 1,
       Auto_e => 2
    );
-   type VideoTemporalDenoisingMode_Ptr is access all VideoTemporalDenoisingMode;
+   type VideoTemporalDenoisingMode_Ptr is access VideoTemporalDenoisingMode;
 
    type ZoomTransitionMode is (
       Auto_e,
@@ -895,7 +895,7 @@ package WinRt.Windows.Media.Devices is
       Direct_e => 1,
       Smooth_e => 2
    );
-   type ZoomTransitionMode_Ptr is access all ZoomTransitionMode;
+   type ZoomTransitionMode_Ptr is access ZoomTransitionMode;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -904,7 +904,7 @@ package WinRt.Windows.Media.Devices is
    type CallControlContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type CallControlContract_Ptr is access all CallControlContract;
+   type CallControlContract_Ptr is access CallControlContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

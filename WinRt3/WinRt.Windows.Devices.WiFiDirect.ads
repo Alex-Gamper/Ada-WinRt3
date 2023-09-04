@@ -179,7 +179,7 @@ package WinRt.Windows.Devices.WiFiDirect is
       Normal_e => 1,
       Intensive_e => 2
    );
-   type WiFiDirectAdvertisementListenStateDiscoverability_Ptr is access all WiFiDirectAdvertisementListenStateDiscoverability;
+   type WiFiDirectAdvertisementListenStateDiscoverability_Ptr is access WiFiDirectAdvertisementListenStateDiscoverability;
 
    type WiFiDirectAdvertisementPublisherStatus is (
       Created_e,
@@ -193,7 +193,7 @@ package WinRt.Windows.Devices.WiFiDirect is
       Stopped_e => 2,
       Aborted_e => 3
    );
-   type WiFiDirectAdvertisementPublisherStatus_Ptr is access all WiFiDirectAdvertisementPublisherStatus;
+   type WiFiDirectAdvertisementPublisherStatus_Ptr is access WiFiDirectAdvertisementPublisherStatus;
 
    type WiFiDirectConfigurationMethod is (
       ProvidePin_e,
@@ -205,7 +205,7 @@ package WinRt.Windows.Devices.WiFiDirect is
       DisplayPin_e => 1,
       PushButton_e => 2
    );
-   type WiFiDirectConfigurationMethod_Ptr is access all WiFiDirectConfigurationMethod;
+   type WiFiDirectConfigurationMethod_Ptr is access WiFiDirectConfigurationMethod;
 
    type WiFiDirectConnectionStatus is (
       Disconnected_e,
@@ -215,7 +215,7 @@ package WinRt.Windows.Devices.WiFiDirect is
       Disconnected_e => 0,
       Connected_e => 1
    );
-   type WiFiDirectConnectionStatus_Ptr is access all WiFiDirectConnectionStatus;
+   type WiFiDirectConnectionStatus_Ptr is access WiFiDirectConnectionStatus;
 
    type WiFiDirectDeviceSelectorType is (
       DeviceInterface_e,
@@ -225,7 +225,7 @@ package WinRt.Windows.Devices.WiFiDirect is
       DeviceInterface_e => 0,
       AssociationEndpoint_e => 1
    );
-   type WiFiDirectDeviceSelectorType_Ptr is access all WiFiDirectDeviceSelectorType;
+   type WiFiDirectDeviceSelectorType_Ptr is access WiFiDirectDeviceSelectorType;
 
    type WiFiDirectError is (
       Success_e,
@@ -237,7 +237,7 @@ package WinRt.Windows.Devices.WiFiDirect is
       RadioNotAvailable_e => 1,
       ResourceInUse_e => 2
    );
-   type WiFiDirectError_Ptr is access all WiFiDirectError;
+   type WiFiDirectError_Ptr is access WiFiDirectError;
 
    type WiFiDirectPairingProcedure is (
       GroupOwnerNegotiation_e,
@@ -247,7 +247,7 @@ package WinRt.Windows.Devices.WiFiDirect is
       GroupOwnerNegotiation_e => 0,
       Invitation_e => 1
    );
-   type WiFiDirectPairingProcedure_Ptr is access all WiFiDirectPairingProcedure;
+   type WiFiDirectPairingProcedure_Ptr is access WiFiDirectPairingProcedure;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

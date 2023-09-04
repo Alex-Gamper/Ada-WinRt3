@@ -75,7 +75,7 @@ package WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
       Loss_e => 2,
       Tie_e => 3
    );
-   type GameServiceGameOutcome_Ptr is access all GameServiceGameOutcome;
+   type GameServiceGameOutcome_Ptr is access GameServiceGameOutcome;
 
    type GameServiceScoreKind is (
       Number_e,
@@ -85,7 +85,7 @@ package WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
       Number_e => 0,
       Time_e => 1
    );
-   type GameServiceScoreKind_Ptr is access all GameServiceScoreKind;
+   type GameServiceScoreKind_Ptr is access GameServiceScoreKind;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

@@ -52,7 +52,7 @@ package WinRt.Windows.Phone.ApplicationModel is
       Default_e => 0,
       Alternate_e => 1
    );
-   type ApplicationProfileModes_Ptr is access all ApplicationProfileModes;
+   type ApplicationProfileModes_Ptr is access ApplicationProfileModes;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

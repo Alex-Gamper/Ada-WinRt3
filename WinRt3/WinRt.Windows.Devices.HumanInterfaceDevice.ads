@@ -175,7 +175,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       UsageModifier_e => 6,
       Other_e => 7
    );
-   type HidCollectionType_Ptr is access all HidCollectionType;
+   type HidCollectionType_Ptr is access HidCollectionType;
 
    type HidReportType is (
       Input_e,
@@ -187,7 +187,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       Output_e => 1,
       Feature_e => 2
    );
-   type HidReportType_Ptr is access all HidReportType;
+   type HidReportType_Ptr is access HidReportType;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

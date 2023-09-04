@@ -159,7 +159,7 @@ package WinRt.Windows.Devices.Lights.Effects is
       ClearState_e => 0,
       KeepState_e => 1
    );
-   type LampArrayEffectCompletionBehavior_Ptr is access all LampArrayEffectCompletionBehavior;
+   type LampArrayEffectCompletionBehavior_Ptr is access LampArrayEffectCompletionBehavior;
 
    type LampArrayEffectStartMode is (
       Sequential_e,
@@ -169,7 +169,7 @@ package WinRt.Windows.Devices.Lights.Effects is
       Sequential_e => 0,
       Simultaneous_e => 1
    );
-   type LampArrayEffectStartMode_Ptr is access all LampArrayEffectStartMode;
+   type LampArrayEffectStartMode_Ptr is access LampArrayEffectStartMode;
 
    type LampArrayRepetitionMode is (
       Occurrences_e,
@@ -179,7 +179,7 @@ package WinRt.Windows.Devices.Lights.Effects is
       Occurrences_e => 0,
       Forever_e => 1
    );
-   type LampArrayRepetitionMode_Ptr is access all LampArrayRepetitionMode;
+   type LampArrayRepetitionMode_Ptr is access LampArrayRepetitionMode;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

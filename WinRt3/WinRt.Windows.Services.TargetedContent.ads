@@ -200,7 +200,7 @@ package WinRt.Windows.Services.TargetedContent is
       NotInstalled_e => 1,
       Installed_e => 2
    );
-   type TargetedContentAppInstallationState_Ptr is access all TargetedContentAppInstallationState;
+   type TargetedContentAppInstallationState_Ptr is access TargetedContentAppInstallationState;
 
    type TargetedContentAvailability is (
       None_e,
@@ -212,7 +212,7 @@ package WinRt.Windows.Services.TargetedContent is
       Partial_e => 1,
       All_e => 2
    );
-   type TargetedContentAvailability_Ptr is access all TargetedContentAvailability;
+   type TargetedContentAvailability_Ptr is access TargetedContentAvailability;
 
    type TargetedContentInteraction is (
       Impression_e,
@@ -244,7 +244,7 @@ package WinRt.Windows.Services.TargetedContent is
       Conversion_e => 11,
       Opportunity_e => 12
    );
-   type TargetedContentInteraction_Ptr is access all TargetedContentInteraction;
+   type TargetedContentInteraction_Ptr is access TargetedContentInteraction;
 
    type TargetedContentObjectKind is (
       Collection_e,
@@ -256,7 +256,7 @@ package WinRt.Windows.Services.TargetedContent is
       Item_e => 1,
       Value_e => 2
    );
-   type TargetedContentObjectKind_Ptr is access all TargetedContentObjectKind;
+   type TargetedContentObjectKind_Ptr is access TargetedContentObjectKind;
 
    type TargetedContentValueKind is (
       String_e,
@@ -290,7 +290,7 @@ package WinRt.Windows.Services.TargetedContent is
       ImageFiles_e => 12,
       Actions_e => 13
    );
-   type TargetedContentValueKind_Ptr is access all TargetedContentValueKind;
+   type TargetedContentValueKind_Ptr is access TargetedContentValueKind;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -299,7 +299,7 @@ package WinRt.Windows.Services.TargetedContent is
    type TargetedContentContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type TargetedContentContract_Ptr is access all TargetedContentContract;
+   type TargetedContentContract_Ptr is access TargetedContentContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

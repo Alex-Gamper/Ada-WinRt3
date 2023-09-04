@@ -158,7 +158,7 @@ package WinRt.Windows.Networking.XboxLive is
       None_e => 0,
       ReevaluatePath_e => 1
    );
-   type XboxLiveEndpointPairCreationBehaviors_Ptr is access all XboxLiveEndpointPairCreationBehaviors;
+   type XboxLiveEndpointPairCreationBehaviors_Ptr is access XboxLiveEndpointPairCreationBehaviors;
 
    type XboxLiveEndpointPairCreationStatus is (
       Succeeded_e,
@@ -182,7 +182,7 @@ package WinRt.Windows.Networking.XboxLive is
       RefusedDueToConfiguration_e => 7,
       UnexpectedInternalError_e => 8
    );
-   type XboxLiveEndpointPairCreationStatus_Ptr is access all XboxLiveEndpointPairCreationStatus;
+   type XboxLiveEndpointPairCreationStatus_Ptr is access XboxLiveEndpointPairCreationStatus;
 
    type XboxLiveEndpointPairState is (
       Invalid_e,
@@ -202,7 +202,7 @@ package WinRt.Windows.Networking.XboxLive is
       RemoteEndpointTerminating_e => 5,
       Deleted_e => 6
    );
-   type XboxLiveEndpointPairState_Ptr is access all XboxLiveEndpointPairState;
+   type XboxLiveEndpointPairState_Ptr is access XboxLiveEndpointPairState;
 
    type XboxLiveNetworkAccessKind is (
       Open_e,
@@ -214,7 +214,7 @@ package WinRt.Windows.Networking.XboxLive is
       Moderate_e => 1,
       Strict_e => 2
    );
-   type XboxLiveNetworkAccessKind_Ptr is access all XboxLiveNetworkAccessKind;
+   type XboxLiveNetworkAccessKind_Ptr is access XboxLiveNetworkAccessKind;
 
    type XboxLiveQualityOfServiceMeasurementStatus is (
       NotStarted_e,
@@ -244,7 +244,7 @@ package WinRt.Windows.Networking.XboxLive is
       RefusedDueToConfiguration_e => 10,
       UnexpectedInternalError_e => 11
    );
-   type XboxLiveQualityOfServiceMeasurementStatus_Ptr is access all XboxLiveQualityOfServiceMeasurementStatus;
+   type XboxLiveQualityOfServiceMeasurementStatus_Ptr is access XboxLiveQualityOfServiceMeasurementStatus;
 
    type XboxLiveQualityOfServiceMetric is (
       AverageLatencyInMilliseconds_e,
@@ -268,7 +268,7 @@ package WinRt.Windows.Networking.XboxLive is
       MinInboundBitsPerSecond_e => 7,
       MaxInboundBitsPerSecond_e => 8
    );
-   type XboxLiveQualityOfServiceMetric_Ptr is access all XboxLiveQualityOfServiceMetric;
+   type XboxLiveQualityOfServiceMetric_Ptr is access XboxLiveQualityOfServiceMetric;
 
    type XboxLiveSocketKind is (
       None_e,
@@ -280,7 +280,7 @@ package WinRt.Windows.Networking.XboxLive is
       Datagram_e => 1,
       Stream_e => 2
    );
-   type XboxLiveSocketKind_Ptr is access all XboxLiveSocketKind;
+   type XboxLiveSocketKind_Ptr is access XboxLiveSocketKind;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -289,7 +289,7 @@ package WinRt.Windows.Networking.XboxLive is
    type XboxLiveSecureSocketsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type XboxLiveSecureSocketsContract_Ptr is access all XboxLiveSecureSocketsContract;
+   type XboxLiveSecureSocketsContract_Ptr is access XboxLiveSecureSocketsContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

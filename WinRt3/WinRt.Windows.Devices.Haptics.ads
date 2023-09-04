@@ -95,7 +95,7 @@ package WinRt.Windows.Devices.Haptics is
       DeniedBySystem_e => 2,
       DeniedByEnergySaver_e => 3
    );
-   type VibrationAccessStatus_Ptr is access all VibrationAccessStatus;
+   type VibrationAccessStatus_Ptr is access VibrationAccessStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

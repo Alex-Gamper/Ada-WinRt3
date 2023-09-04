@@ -172,7 +172,7 @@ package WinRt.Windows.Management.Deployment is
       RequiredContentGroupOnly_e => 256,
       LimitToExistingPackages_e => 512
    );
-   type AddPackageByAppInstallerOptions_Ptr is access all AddPackageByAppInstallerOptions;
+   type AddPackageByAppInstallerOptions_Ptr is access AddPackageByAppInstallerOptions;
 
    type DeploymentOptions is (
       None_e,
@@ -196,7 +196,7 @@ package WinRt.Windows.Management.Deployment is
       RetainFilesOnFailure_e => 2097152,
       StageInPlace_e => 4194304
    );
-   type DeploymentOptions_Ptr is access all DeploymentOptions;
+   type DeploymentOptions_Ptr is access DeploymentOptions;
 
    type DeploymentProgressState is (
       Queued_e,
@@ -206,7 +206,7 @@ package WinRt.Windows.Management.Deployment is
       Queued_e => 0,
       Processing_e => 1
    );
-   type DeploymentProgressState_Ptr is access all DeploymentProgressState;
+   type DeploymentProgressState_Ptr is access DeploymentProgressState;
 
    type PackageInstallState is (
       NotInstalled_e,
@@ -220,7 +220,7 @@ package WinRt.Windows.Management.Deployment is
       Installed_e => 2,
       Paused_e => 6
    );
-   type PackageInstallState_Ptr is access all PackageInstallState;
+   type PackageInstallState_Ptr is access PackageInstallState;
 
    type PackageState is (
       Normal_e,
@@ -234,7 +234,7 @@ package WinRt.Windows.Management.Deployment is
       Modified_e => 2,
       Tampered_e => 3
    );
-   type PackageState_Ptr is access all PackageState;
+   type PackageState_Ptr is access PackageState;
 
    type PackageStatus is (
       OK_e,
@@ -250,7 +250,7 @@ package WinRt.Windows.Management.Deployment is
       Tampered_e => 4,
       Disabled_e => 8
    );
-   type PackageStatus_Ptr is access all PackageStatus;
+   type PackageStatus_Ptr is access PackageStatus;
 
    type PackageStubPreference is (
       Full_e,
@@ -260,7 +260,7 @@ package WinRt.Windows.Management.Deployment is
       Full_e => 0,
       Stub_e => 1
    );
-   type PackageStubPreference_Ptr is access all PackageStubPreference;
+   type PackageStubPreference_Ptr is access PackageStubPreference;
 
    type PackageTypes is (
       None_e,
@@ -282,7 +282,7 @@ package WinRt.Windows.Management.Deployment is
       Optional_e => 32,
       All_e => 4294967295
    );
-   type PackageTypes_Ptr is access all PackageTypes;
+   type PackageTypes_Ptr is access PackageTypes;
 
    type RemovalOptions is (
       None_e,
@@ -296,7 +296,7 @@ package WinRt.Windows.Management.Deployment is
       PreserveApplicationData_e => 4096,
       RemoveForAllUsers_e => 524288
    );
-   type RemovalOptions_Ptr is access all RemovalOptions;
+   type RemovalOptions_Ptr is access RemovalOptions;
 
    type StubPackageOption is (
       Default_e,
@@ -310,7 +310,7 @@ package WinRt.Windows.Management.Deployment is
       InstallStub_e => 2,
       UsePreference_e => 3
    );
-   type StubPackageOption_Ptr is access all StubPackageOption;
+   type StubPackageOption_Ptr is access StubPackageOption;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -320,7 +320,7 @@ package WinRt.Windows.Management.Deployment is
       state : Windows.Management.Deployment.DeploymentProgressState;
       percentage : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type DeploymentProgress_Ptr is access all DeploymentProgress;
+   type DeploymentProgress_Ptr is access DeploymentProgress;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

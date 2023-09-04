@@ -211,7 +211,7 @@ package WinRt.Windows.Web.Syndication is
       UnexpectedContent_e => 4,
       UnsupportedFormat_e => 5
    );
-   type SyndicationErrorStatus_Ptr is access all SyndicationErrorStatus;
+   type SyndicationErrorStatus_Ptr is access SyndicationErrorStatus;
 
    type SyndicationFormat is (
       Atom10_e,
@@ -229,7 +229,7 @@ package WinRt.Windows.Web.Syndication is
       Rss091_e => 4,
       Atom03_e => 5
    );
-   type SyndicationFormat_Ptr is access all SyndicationFormat;
+   type SyndicationFormat_Ptr is access SyndicationFormat;
 
    type SyndicationTextType is (
       Text_e,
@@ -241,7 +241,7 @@ package WinRt.Windows.Web.Syndication is
       Html_e => 1,
       Xhtml_e => 2
    );
-   type SyndicationTextType_Ptr is access all SyndicationTextType;
+   type SyndicationTextType_Ptr is access SyndicationTextType;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -251,7 +251,7 @@ package WinRt.Windows.Web.Syndication is
       BytesRetrieved : WinRt.UInt32;
       TotalBytesToRetrieve : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type RetrievalProgress_Ptr is access all RetrievalProgress;
+   type RetrievalProgress_Ptr is access RetrievalProgress;
 
    type TransferProgress is record
       BytesSent : WinRt.UInt32;
@@ -259,7 +259,7 @@ package WinRt.Windows.Web.Syndication is
       BytesRetrieved : WinRt.UInt32;
       TotalBytesToRetrieve : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type TransferProgress_Ptr is access all TransferProgress;
+   type TransferProgress_Ptr is access TransferProgress;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

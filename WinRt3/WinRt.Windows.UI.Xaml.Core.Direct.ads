@@ -344,7 +344,7 @@ package WinRt.Windows.UI.Xaml.Core.Direct is
       DatePicker_SelectedDateChanged_e => 322,
       TimePicker_SelectedTimeChanged_e => 323
    );
-   type XamlEventIndex_Ptr is access all XamlEventIndex;
+   type XamlEventIndex_Ptr is access XamlEventIndex;
 
    type XamlPropertyIndex is (
       AutomationProperties_AcceleratorKey_e,
@@ -3574,7 +3574,7 @@ package WinRt.Windows.UI.Xaml.Core.Direct is
       CommandBarTemplateSettings_OverflowContentHiddenYTranslation_e => 2385,
       CommandBarTemplateSettings_OverflowContentMinimalYTranslation_e => 2386
    );
-   type XamlPropertyIndex_Ptr is access all XamlPropertyIndex;
+   type XamlPropertyIndex_Ptr is access XamlPropertyIndex;
 
    type XamlTypeIndex is (
       AutoSuggestBoxSuggestionChosenEventArgs_e,
@@ -4080,7 +4080,7 @@ package WinRt.Windows.UI.Xaml.Core.Direct is
       ThemeShadow_e => 964,
       XamlUICommand_e => 969
    );
-   type XamlTypeIndex_Ptr is access all XamlTypeIndex;
+   type XamlTypeIndex_Ptr is access XamlTypeIndex;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -4089,7 +4089,7 @@ package WinRt.Windows.UI.Xaml.Core.Direct is
    type XamlDirectContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type XamlDirectContract_Ptr is access all XamlDirectContract;
+   type XamlDirectContract_Ptr is access XamlDirectContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

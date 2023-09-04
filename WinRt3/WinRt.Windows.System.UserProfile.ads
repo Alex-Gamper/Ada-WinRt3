@@ -156,7 +156,7 @@ package WinRt.Windows.System.UserProfile is
       LargeImage_e => 1,
       Video_e => 2
    );
-   type AccountPictureKind_Ptr is access all AccountPictureKind;
+   type AccountPictureKind_Ptr is access AccountPictureKind;
 
    type SetAccountPictureResult is (
       Success_e,
@@ -174,7 +174,7 @@ package WinRt.Windows.System.UserProfile is
       FileSizeError_e => 4,
       Failure_e => 5
    );
-   type SetAccountPictureResult_Ptr is access all SetAccountPictureResult;
+   type SetAccountPictureResult_Ptr is access SetAccountPictureResult;
 
    type SetImageFeedResult is (
       Success_e,
@@ -186,7 +186,7 @@ package WinRt.Windows.System.UserProfile is
       ChangeDisabled_e => 1,
       UserCanceled_e => 2
    );
-   type SetImageFeedResult_Ptr is access all SetImageFeedResult;
+   type SetImageFeedResult_Ptr is access SetImageFeedResult;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -195,12 +195,12 @@ package WinRt.Windows.System.UserProfile is
    type UserProfileContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type UserProfileContract_Ptr is access all UserProfileContract;
+   type UserProfileContract_Ptr is access UserProfileContract;
 
    type UserProfileLockScreenContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type UserProfileLockScreenContract_Ptr is access all UserProfileLockScreenContract;
+   type UserProfileLockScreenContract_Ptr is access UserProfileLockScreenContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -231,7 +231,7 @@ package WinRt.Windows.Media.MediaProperties is
       Medium_e => 2,
       Low_e => 3
    );
-   type AudioEncodingQuality_Ptr is access all AudioEncodingQuality;
+   type AudioEncodingQuality_Ptr is access AudioEncodingQuality;
 
    type MediaMirroringOptions is (
       None_e,
@@ -243,7 +243,7 @@ package WinRt.Windows.Media.MediaProperties is
       Horizontal_e => 1,
       Vertical_e => 2
    );
-   type MediaMirroringOptions_Ptr is access all MediaMirroringOptions;
+   type MediaMirroringOptions_Ptr is access MediaMirroringOptions;
 
    type MediaPixelFormat is (
       Nv12_e,
@@ -255,7 +255,7 @@ package WinRt.Windows.Media.MediaProperties is
       Bgra8_e => 1,
       P010_e => 2
    );
-   type MediaPixelFormat_Ptr is access all MediaPixelFormat;
+   type MediaPixelFormat_Ptr is access MediaPixelFormat;
 
    type MediaRotation is (
       None_e,
@@ -269,7 +269,7 @@ package WinRt.Windows.Media.MediaProperties is
       Clockwise180Degrees_e => 2,
       Clockwise270Degrees_e => 3
    );
-   type MediaRotation_Ptr is access all MediaRotation;
+   type MediaRotation_Ptr is access MediaRotation;
 
    type MediaThumbnailFormat is (
       Bmp_e,
@@ -279,7 +279,7 @@ package WinRt.Windows.Media.MediaProperties is
       Bmp_e => 0,
       Bgra8_e => 1
    );
-   type MediaThumbnailFormat_Ptr is access all MediaThumbnailFormat;
+   type MediaThumbnailFormat_Ptr is access MediaThumbnailFormat;
 
    type SphericalVideoFrameFormat is (
       None_e,
@@ -291,7 +291,7 @@ package WinRt.Windows.Media.MediaProperties is
       Unsupported_e => 1,
       Equirectangular_e => 2
    );
-   type SphericalVideoFrameFormat_Ptr is access all SphericalVideoFrameFormat;
+   type SphericalVideoFrameFormat_Ptr is access SphericalVideoFrameFormat;
 
    type StereoscopicVideoPackingMode is (
       None_e,
@@ -303,7 +303,7 @@ package WinRt.Windows.Media.MediaProperties is
       SideBySide_e => 1,
       TopBottom_e => 2
    );
-   type StereoscopicVideoPackingMode_Ptr is access all StereoscopicVideoPackingMode;
+   type StereoscopicVideoPackingMode_Ptr is access StereoscopicVideoPackingMode;
 
    type VideoEncodingQuality is (
       Auto_e,
@@ -329,7 +329,7 @@ package WinRt.Windows.Media.MediaProperties is
       Uhd2160p_e => 8,
       Uhd4320p_e => 9
    );
-   type VideoEncodingQuality_Ptr is access all VideoEncodingQuality;
+   type VideoEncodingQuality_Ptr is access VideoEncodingQuality;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

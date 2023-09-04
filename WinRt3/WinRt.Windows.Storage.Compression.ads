@@ -89,7 +89,7 @@ package WinRt.Windows.Storage.Compression is
       XpressHuff_e => 4,
       Lzms_e => 5
    );
-   type CompressAlgorithm_Ptr is access all CompressAlgorithm;
+   type CompressAlgorithm_Ptr is access CompressAlgorithm;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

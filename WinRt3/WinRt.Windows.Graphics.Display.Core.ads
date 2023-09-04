@@ -85,7 +85,7 @@ package WinRt.Windows.Graphics.Display.Core is
       BT2020_e => 2,
       BT709_e => 3
    );
-   type HdmiDisplayColorSpace_Ptr is access all HdmiDisplayColorSpace;
+   type HdmiDisplayColorSpace_Ptr is access HdmiDisplayColorSpace;
 
    type HdmiDisplayHdrOption is (
       None_e,
@@ -99,7 +99,7 @@ package WinRt.Windows.Graphics.Display.Core is
       Eotf2084_e => 2,
       DolbyVisionLowLatency_e => 3
    );
-   type HdmiDisplayHdrOption_Ptr is access all HdmiDisplayHdrOption;
+   type HdmiDisplayHdrOption_Ptr is access HdmiDisplayHdrOption;
 
    type HdmiDisplayPixelEncoding is (
       Rgb444_e,
@@ -113,7 +113,7 @@ package WinRt.Windows.Graphics.Display.Core is
       Ycc422_e => 2,
       Ycc420_e => 3
    );
-   type HdmiDisplayPixelEncoding_Ptr is access all HdmiDisplayPixelEncoding;
+   type HdmiDisplayPixelEncoding_Ptr is access HdmiDisplayPixelEncoding;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -133,7 +133,7 @@ package WinRt.Windows.Graphics.Display.Core is
       MaxContentLightLevel : WinRt.UInt16;
       MaxFrameAverageLightLevel : WinRt.UInt16;
    end record with Convention => C_Pass_By_Copy;
-   type HdmiDisplayHdr2086Metadata_Ptr is access all HdmiDisplayHdr2086Metadata;
+   type HdmiDisplayHdr2086Metadata_Ptr is access HdmiDisplayHdr2086Metadata;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -215,7 +215,7 @@ package WinRt.Windows.Devices.Input is
       Pen_e => 1,
       Mouse_e => 2
    );
-   type PointerDeviceType_Ptr is access all PointerDeviceType;
+   type PointerDeviceType_Ptr is access PointerDeviceType;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -225,7 +225,7 @@ package WinRt.Windows.Devices.Input is
       X : WinRt.Int32;
       Y : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type MouseDelta_Ptr is access all MouseDelta;
+   type MouseDelta_Ptr is access MouseDelta;
 
    type PointerDeviceUsage is record
       UsagePage : WinRt.UInt32;
@@ -237,7 +237,7 @@ package WinRt.Windows.Devices.Input is
       Unit : WinRt.UInt32;
       PhysicalMultiplier : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type PointerDeviceUsage_Ptr is access all PointerDeviceUsage;
+   type PointerDeviceUsage_Ptr is access PointerDeviceUsage;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -116,7 +116,7 @@ package WinRt.Windows.Web.UI.Interop is
       Tunneling_e => 0,
       Bubbling_e => 1
    );
-   type WebViewControlAcceleratorKeyRoutingStage_Ptr is access all WebViewControlAcceleratorKeyRoutingStage;
+   type WebViewControlAcceleratorKeyRoutingStage_Ptr is access WebViewControlAcceleratorKeyRoutingStage;
 
    type WebViewControlMoveFocusReason is (
       Programmatic_e,
@@ -128,7 +128,7 @@ package WinRt.Windows.Web.UI.Interop is
       Next_e => 1,
       Previous_e => 2
    );
-   type WebViewControlMoveFocusReason_Ptr is access all WebViewControlMoveFocusReason;
+   type WebViewControlMoveFocusReason_Ptr is access WebViewControlMoveFocusReason;
 
    type WebViewControlProcessCapabilityState is (
       Default_e,
@@ -140,7 +140,7 @@ package WinRt.Windows.Web.UI.Interop is
       Disabled_e => 1,
       Enabled_e => 2
    );
-   type WebViewControlProcessCapabilityState_Ptr is access all WebViewControlProcessCapabilityState;
+   type WebViewControlProcessCapabilityState_Ptr is access WebViewControlProcessCapabilityState;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -90,7 +90,7 @@ package WinRt.Windows.UI.Composition.Diagnostics is
       SwapChains_e => 64,
       All_e => 4294967295
    );
-   type CompositionDebugOverdrawContentKinds_Ptr is access all CompositionDebugOverdrawContentKinds;
+   type CompositionDebugOverdrawContentKinds_Ptr is access CompositionDebugOverdrawContentKinds;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

@@ -195,7 +195,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       New_e => 0,
       Published_e => 1
    );
-   type UserActivityState_Ptr is access all UserActivityState;
+   type UserActivityState_Ptr is access UserActivityState;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

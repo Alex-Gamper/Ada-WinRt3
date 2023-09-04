@@ -43,10 +43,10 @@ package WinRt.Windows.Devices.Perception.Provider is
    -----------------------------------------------------------------------------
 
    type PerceptionStartFaceAuthenticationHandler_Delegate;
-   type PerceptionStartFaceAuthenticationHandler is access all PerceptionStartFaceAuthenticationHandler_Delegate;
+   type PerceptionStartFaceAuthenticationHandler is access PerceptionStartFaceAuthenticationHandler_Delegate;
 
    type PerceptionStopFaceAuthenticationHandler_Delegate;
-   type PerceptionStopFaceAuthenticationHandler is access all PerceptionStopFaceAuthenticationHandler_Delegate;
+   type PerceptionStopFaceAuthenticationHandler is access PerceptionStopFaceAuthenticationHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations

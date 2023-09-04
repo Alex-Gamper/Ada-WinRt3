@@ -222,7 +222,7 @@ package WinRt.Windows.System.Diagnostics is
       Resolving_e => 4,
       VerifyingResolution_e => 5
    );
-   type DiagnosticActionState_Ptr is access all DiagnosticActionState;
+   type DiagnosticActionState_Ptr is access DiagnosticActionState;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -86,7 +86,7 @@ package WinRt.Windows.Devices.Custom is
       Write_e => 1,
       ReadWrite_e => 2
    );
-   type DeviceAccessMode_Ptr is access all DeviceAccessMode;
+   type DeviceAccessMode_Ptr is access DeviceAccessMode;
 
    type DeviceSharingMode is (
       Shared_e,
@@ -96,7 +96,7 @@ package WinRt.Windows.Devices.Custom is
       Shared_e => 0,
       Exclusive_e => 1
    );
-   type DeviceSharingMode_Ptr is access all DeviceSharingMode;
+   type DeviceSharingMode_Ptr is access DeviceSharingMode;
 
    type IOControlAccessMode is (
       Any_e,
@@ -110,7 +110,7 @@ package WinRt.Windows.Devices.Custom is
       Write_e => 2,
       ReadWrite_e => 3
    );
-   type IOControlAccessMode_Ptr is access all IOControlAccessMode;
+   type IOControlAccessMode_Ptr is access IOControlAccessMode;
 
    type IOControlBufferingMethod is (
       Buffered_e,
@@ -124,7 +124,7 @@ package WinRt.Windows.Devices.Custom is
       DirectOutput_e => 2,
       Neither_e => 3
    );
-   type IOControlBufferingMethod_Ptr is access all IOControlBufferingMethod;
+   type IOControlBufferingMethod_Ptr is access IOControlBufferingMethod;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -133,7 +133,7 @@ package WinRt.Windows.Devices.Custom is
    type CustomDeviceContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type CustomDeviceContract_Ptr is access all CustomDeviceContract;
+   type CustomDeviceContract_Ptr is access CustomDeviceContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

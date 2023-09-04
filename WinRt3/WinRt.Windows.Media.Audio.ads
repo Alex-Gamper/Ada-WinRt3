@@ -528,7 +528,7 @@ package WinRt.Windows.Media.Audio is
       UnknownFailure_e => 3,
       AccessDenied_e => 4
    );
-   type AudioDeviceNodeCreationStatus_Ptr is access all AudioDeviceNodeCreationStatus;
+   type AudioDeviceNodeCreationStatus_Ptr is access AudioDeviceNodeCreationStatus;
 
    type AudioFileNodeCreationStatus is (
       Success_e,
@@ -544,7 +544,7 @@ package WinRt.Windows.Media.Audio is
       FormatNotSupported_e => 3,
       UnknownFailure_e => 4
    );
-   type AudioFileNodeCreationStatus_Ptr is access all AudioFileNodeCreationStatus;
+   type AudioFileNodeCreationStatus_Ptr is access AudioFileNodeCreationStatus;
 
    type AudioGraphCreationStatus is (
       Success_e,
@@ -558,7 +558,7 @@ package WinRt.Windows.Media.Audio is
       FormatNotSupported_e => 2,
       UnknownFailure_e => 3
    );
-   type AudioGraphCreationStatus_Ptr is access all AudioGraphCreationStatus;
+   type AudioGraphCreationStatus_Ptr is access AudioGraphCreationStatus;
 
    type AudioGraphUnrecoverableError is (
       None_e,
@@ -572,7 +572,7 @@ package WinRt.Windows.Media.Audio is
       AudioSessionDisconnected_e => 2,
       UnknownFailure_e => 3
    );
-   type AudioGraphUnrecoverableError_Ptr is access all AudioGraphUnrecoverableError;
+   type AudioGraphUnrecoverableError_Ptr is access AudioGraphUnrecoverableError;
 
    type AudioNodeEmitterDecayKind is (
       Natural_e,
@@ -582,7 +582,7 @@ package WinRt.Windows.Media.Audio is
       Natural_e => 0,
       Custom_e => 1
    );
-   type AudioNodeEmitterDecayKind_Ptr is access all AudioNodeEmitterDecayKind;
+   type AudioNodeEmitterDecayKind_Ptr is access AudioNodeEmitterDecayKind;
 
    type AudioNodeEmitterSettings is (
       None_e,
@@ -592,7 +592,7 @@ package WinRt.Windows.Media.Audio is
       None_e => 0,
       DisableDoppler_e => 1
    );
-   type AudioNodeEmitterSettings_Ptr is access all AudioNodeEmitterSettings;
+   type AudioNodeEmitterSettings_Ptr is access AudioNodeEmitterSettings;
 
    type AudioNodeEmitterShapeKind is (
       Omnidirectional_e,
@@ -602,7 +602,7 @@ package WinRt.Windows.Media.Audio is
       Omnidirectional_e => 0,
       Cone_e => 1
    );
-   type AudioNodeEmitterShapeKind_Ptr is access all AudioNodeEmitterShapeKind;
+   type AudioNodeEmitterShapeKind_Ptr is access AudioNodeEmitterShapeKind;
 
    type AudioPlaybackConnectionOpenResultStatus is (
       Success_e,
@@ -616,7 +616,7 @@ package WinRt.Windows.Media.Audio is
       DeniedBySystem_e => 2,
       UnknownFailure_e => 3
    );
-   type AudioPlaybackConnectionOpenResultStatus_Ptr is access all AudioPlaybackConnectionOpenResultStatus;
+   type AudioPlaybackConnectionOpenResultStatus_Ptr is access AudioPlaybackConnectionOpenResultStatus;
 
    type AudioPlaybackConnectionState is (
       Closed_e,
@@ -626,7 +626,7 @@ package WinRt.Windows.Media.Audio is
       Closed_e => 0,
       Opened_e => 1
    );
-   type AudioPlaybackConnectionState_Ptr is access all AudioPlaybackConnectionState;
+   type AudioPlaybackConnectionState_Ptr is access AudioPlaybackConnectionState;
 
    type MediaSourceAudioInputNodeCreationStatus is (
       Success_e,
@@ -640,7 +640,7 @@ package WinRt.Windows.Media.Audio is
       NetworkError_e => 2,
       UnknownFailure_e => 3
    );
-   type MediaSourceAudioInputNodeCreationStatus_Ptr is access all MediaSourceAudioInputNodeCreationStatus;
+   type MediaSourceAudioInputNodeCreationStatus_Ptr is access MediaSourceAudioInputNodeCreationStatus;
 
    type MixedRealitySpatialAudioFormatPolicy is (
       UseMixedRealityDefaultSpatialAudioFormat_e,
@@ -650,7 +650,7 @@ package WinRt.Windows.Media.Audio is
       UseMixedRealityDefaultSpatialAudioFormat_e => 0,
       UseDeviceConfigurationDefaultSpatialAudioFormat_e => 1
    );
-   type MixedRealitySpatialAudioFormatPolicy_Ptr is access all MixedRealitySpatialAudioFormatPolicy;
+   type MixedRealitySpatialAudioFormatPolicy_Ptr is access MixedRealitySpatialAudioFormatPolicy;
 
    type QuantumSizeSelectionMode is (
       SystemDefault_e,
@@ -662,7 +662,7 @@ package WinRt.Windows.Media.Audio is
       LowestLatency_e => 1,
       ClosestToDesired_e => 2
    );
-   type QuantumSizeSelectionMode_Ptr is access all QuantumSizeSelectionMode;
+   type QuantumSizeSelectionMode_Ptr is access QuantumSizeSelectionMode;
 
    type SetDefaultSpatialAudioFormatStatus is (
       Succeeded_e,
@@ -680,7 +680,7 @@ package WinRt.Windows.Media.Audio is
       NotSupportedOnAudioEndpoint_e => 4,
       UnknownError_e => 5
    );
-   type SetDefaultSpatialAudioFormatStatus_Ptr is access all SetDefaultSpatialAudioFormatStatus;
+   type SetDefaultSpatialAudioFormatStatus_Ptr is access SetDefaultSpatialAudioFormatStatus;
 
    type SpatialAudioModel is (
       ObjectBased_e,
@@ -690,7 +690,7 @@ package WinRt.Windows.Media.Audio is
       ObjectBased_e => 0,
       FoldDown_e => 1
    );
-   type SpatialAudioModel_Ptr is access all SpatialAudioModel;
+   type SpatialAudioModel_Ptr is access SpatialAudioModel;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

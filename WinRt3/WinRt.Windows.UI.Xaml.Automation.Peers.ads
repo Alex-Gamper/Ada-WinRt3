@@ -1272,7 +1272,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       Control_e => 1,
       Content_e => 2
    );
-   type AccessibilityView_Ptr is access all AccessibilityView;
+   type AccessibilityView_Ptr is access AccessibilityView;
 
    type AutomationControlType is (
       Button_e,
@@ -1360,7 +1360,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       SemanticZoom_e => 39,
       AppBar_e => 40
    );
-   type AutomationControlType_Ptr is access all AutomationControlType;
+   type AutomationControlType_Ptr is access AutomationControlType;
 
    type AutomationEvents is (
       ToolTipOpened_e,
@@ -1426,7 +1426,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       TextEditTextChanged_e => 28,
       LayoutInvalidated_e => 29
    );
-   type AutomationEvents_Ptr is access all AutomationEvents;
+   type AutomationEvents_Ptr is access AutomationEvents;
 
    type AutomationHeadingLevel is (
       None_e,
@@ -1452,7 +1452,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       Level8_e => 8,
       Level9_e => 9
    );
-   type AutomationHeadingLevel_Ptr is access all AutomationHeadingLevel;
+   type AutomationHeadingLevel_Ptr is access AutomationHeadingLevel;
 
    type AutomationLandmarkType is (
       None_e,
@@ -1470,7 +1470,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       Navigation_e => 4,
       Search_e => 5
    );
-   type AutomationLandmarkType_Ptr is access all AutomationLandmarkType;
+   type AutomationLandmarkType_Ptr is access AutomationLandmarkType;
 
    type AutomationLiveSetting is (
       Off_e,
@@ -1482,7 +1482,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       Polite_e => 1,
       Assertive_e => 2
    );
-   type AutomationLiveSetting_Ptr is access all AutomationLiveSetting;
+   type AutomationLiveSetting_Ptr is access AutomationLiveSetting;
 
    type AutomationNavigationDirection is (
       Parent_e,
@@ -1498,7 +1498,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       FirstChild_e => 3,
       LastChild_e => 4
    );
-   type AutomationNavigationDirection_Ptr is access all AutomationNavigationDirection;
+   type AutomationNavigationDirection_Ptr is access AutomationNavigationDirection;
 
    type AutomationNotificationKind is (
       ItemAdded_e,
@@ -1514,7 +1514,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       ActionAborted_e => 3,
       Other_e => 4
    );
-   type AutomationNotificationKind_Ptr is access all AutomationNotificationKind;
+   type AutomationNotificationKind_Ptr is access AutomationNotificationKind;
 
    type AutomationNotificationProcessing is (
       ImportantAll_e,
@@ -1530,7 +1530,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       MostRecent_e => 3,
       CurrentThenMostRecent_e => 4
    );
-   type AutomationNotificationProcessing_Ptr is access all AutomationNotificationProcessing;
+   type AutomationNotificationProcessing_Ptr is access AutomationNotificationProcessing;
 
    type AutomationOrientation is (
       None_e,
@@ -1542,7 +1542,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       Horizontal_e => 1,
       Vertical_e => 2
    );
-   type AutomationOrientation_Ptr is access all AutomationOrientation;
+   type AutomationOrientation_Ptr is access AutomationOrientation;
 
    type AutomationStructureChangeType is (
       ChildAdded_e,
@@ -1560,7 +1560,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       ChildrenBulkRemoved_e => 4,
       ChildrenReordered_e => 5
    );
-   type AutomationStructureChangeType_Ptr is access all AutomationStructureChangeType;
+   type AutomationStructureChangeType_Ptr is access AutomationStructureChangeType;
 
    type PatternInterface is (
       Invoke_e,
@@ -1634,7 +1634,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       TextEdit_e => 32,
       CustomNavigation_e => 33
    );
-   type PatternInterface_Ptr is access all PatternInterface;
+   type PatternInterface_Ptr is access PatternInterface;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1644,7 +1644,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       Part1 : WinRt.UInt32;
       Part2 : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type RawElementProviderRuntimeId_Ptr is access all RawElementProviderRuntimeId;
+   type RawElementProviderRuntimeId_Ptr is access RawElementProviderRuntimeId;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

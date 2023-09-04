@@ -263,7 +263,7 @@ package WinRt.Windows.Web.Http is
       ResponseContentRead_e => 0,
       ResponseHeadersRead_e => 1
    );
-   type HttpCompletionOption_Ptr is access all HttpCompletionOption;
+   type HttpCompletionOption_Ptr is access HttpCompletionOption;
 
    type HttpProgressStage is (
       None_e,
@@ -289,7 +289,7 @@ package WinRt.Windows.Web.Http is
       ReceivingHeaders_e => 80,
       ReceivingContent_e => 90
    );
-   type HttpProgressStage_Ptr is access all HttpProgressStage;
+   type HttpProgressStage_Ptr is access HttpProgressStage;
 
    type HttpResponseMessageSource is (
       None_e,
@@ -301,7 +301,7 @@ package WinRt.Windows.Web.Http is
       Cache_e => 1,
       Network_e => 2
    );
-   type HttpResponseMessageSource_Ptr is access all HttpResponseMessageSource;
+   type HttpResponseMessageSource_Ptr is access HttpResponseMessageSource;
 
    type HttpStatusCode is (
       None_e,
@@ -423,7 +423,7 @@ package WinRt.Windows.Web.Http is
       NotExtended_e => 510,
       NetworkAuthenticationRequired_e => 511
    );
-   type HttpStatusCode_Ptr is access all HttpStatusCode;
+   type HttpStatusCode_Ptr is access HttpStatusCode;
 
    type HttpVersion is (
       None_e,
@@ -437,7 +437,7 @@ package WinRt.Windows.Web.Http is
       Http11_e => 2,
       Http20_e => 3
    );
-   type HttpVersion_Ptr is access all HttpVersion;
+   type HttpVersion_Ptr is access HttpVersion;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -451,7 +451,7 @@ package WinRt.Windows.Web.Http is
       TotalBytesToReceive : WinRt.IInspectable_Ptr;
       Retries : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type HttpProgress_Ptr is access all HttpProgress;
+   type HttpProgress_Ptr is access HttpProgress;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

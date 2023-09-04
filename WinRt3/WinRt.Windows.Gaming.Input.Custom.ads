@@ -121,7 +121,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       UpToDate_e => 1,
       Failed_e => 2
    );
-   type GipFirmwareUpdateStatus_Ptr is access all GipFirmwareUpdateStatus;
+   type GipFirmwareUpdateStatus_Ptr is access GipFirmwareUpdateStatus;
 
    type GipMessageClass is (
       Command_e,
@@ -133,7 +133,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       LowLatency_e => 1,
       StandardLatency_e => 2
    );
-   type GipMessageClass_Ptr is access all GipMessageClass;
+   type GipMessageClass_Ptr is access GipMessageClass;
 
    type XusbDeviceSubtype is (
       Unknown_e,
@@ -161,7 +161,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       DrumKit_e => 9,
       DancePad_e => 10
    );
-   type XusbDeviceSubtype_Ptr is access all XusbDeviceSubtype;
+   type XusbDeviceSubtype_Ptr is access XusbDeviceSubtype;
 
    type XusbDeviceType is (
       Unknown_e,
@@ -171,7 +171,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       Unknown_e => 0,
       Gamepad_e => 1
    );
-   type XusbDeviceType_Ptr is access all XusbDeviceType;
+   type XusbDeviceType_Ptr is access XusbDeviceType;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -183,13 +183,13 @@ package WinRt.Windows.Gaming.Input.Custom is
       Build : WinRt.UInt16;
       Revision : WinRt.UInt16;
    end record with Convention => C_Pass_By_Copy;
-   type GameControllerVersionInfo_Ptr is access all GameControllerVersionInfo;
+   type GameControllerVersionInfo_Ptr is access GameControllerVersionInfo;
 
    type GipFirmwareUpdateProgress is record
       PercentCompleted : WinRt.Double;
       CurrentComponentId : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type GipFirmwareUpdateProgress_Ptr is access all GipFirmwareUpdateProgress;
+   type GipFirmwareUpdateProgress_Ptr is access GipFirmwareUpdateProgress;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

@@ -41,19 +41,19 @@ package WinRt.Windows.UI.Xaml.Navigation is
    -----------------------------------------------------------------------------
 
    type LoadCompletedEventHandler_Delegate;
-   type LoadCompletedEventHandler is access all LoadCompletedEventHandler_Delegate;
+   type LoadCompletedEventHandler is access LoadCompletedEventHandler_Delegate;
 
    type NavigatedEventHandler_Delegate;
-   type NavigatedEventHandler is access all NavigatedEventHandler_Delegate;
+   type NavigatedEventHandler is access NavigatedEventHandler_Delegate;
 
    type NavigatingCancelEventHandler_Delegate;
-   type NavigatingCancelEventHandler is access all NavigatingCancelEventHandler_Delegate;
+   type NavigatingCancelEventHandler is access NavigatingCancelEventHandler_Delegate;
 
    type NavigationFailedEventHandler_Delegate;
-   type NavigationFailedEventHandler is access all NavigationFailedEventHandler_Delegate;
+   type NavigationFailedEventHandler is access NavigationFailedEventHandler_Delegate;
 
    type NavigationStoppedEventHandler_Delegate;
-   type NavigationStoppedEventHandler is access all NavigationStoppedEventHandler_Delegate;
+   type NavigationStoppedEventHandler is access NavigationStoppedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -142,7 +142,7 @@ package WinRt.Windows.UI.Xaml.Navigation is
       Required_e => 1,
       Enabled_e => 2
    );
-   type NavigationCacheMode_Ptr is access all NavigationCacheMode;
+   type NavigationCacheMode_Ptr is access NavigationCacheMode;
 
    type NavigationMode is (
       New_e,
@@ -156,7 +156,7 @@ package WinRt.Windows.UI.Xaml.Navigation is
       Forward_e => 2,
       Refresh_e => 3
    );
-   type NavigationMode_Ptr is access all NavigationMode;
+   type NavigationMode_Ptr is access NavigationMode;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

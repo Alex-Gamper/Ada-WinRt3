@@ -39,13 +39,13 @@ package WinRt.Windows.System.Threading is
    -----------------------------------------------------------------------------
 
    type TimerDestroyedHandler_Delegate;
-   type TimerDestroyedHandler is access all TimerDestroyedHandler_Delegate;
+   type TimerDestroyedHandler is access TimerDestroyedHandler_Delegate;
 
    type TimerElapsedHandler_Delegate;
-   type TimerElapsedHandler is access all TimerElapsedHandler_Delegate;
+   type TimerElapsedHandler is access TimerElapsedHandler_Delegate;
 
    type WorkItemHandler_Delegate;
-   type WorkItemHandler is access all WorkItemHandler_Delegate;
+   type WorkItemHandler is access WorkItemHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -83,7 +83,7 @@ package WinRt.Windows.System.Threading is
       None_e => 0,
       TimeSliced_e => 1
    );
-   type WorkItemOptions_Ptr is access all WorkItemOptions;
+   type WorkItemOptions_Ptr is access WorkItemOptions;
 
    type WorkItemPriority is (
       Low_e,
@@ -95,7 +95,7 @@ package WinRt.Windows.System.Threading is
       Normal_e => 0,
       High_e => 1
    );
-   type WorkItemPriority_Ptr is access all WorkItemPriority;
+   type WorkItemPriority_Ptr is access WorkItemPriority;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

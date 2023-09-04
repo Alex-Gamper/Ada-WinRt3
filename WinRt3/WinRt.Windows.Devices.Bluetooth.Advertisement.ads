@@ -194,7 +194,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       DualModeControllerCapable_e => 8,
       DualModeHostCapable_e => 16
    );
-   type BluetoothLEAdvertisementFlags_Ptr is access all BluetoothLEAdvertisementFlags;
+   type BluetoothLEAdvertisementFlags_Ptr is access BluetoothLEAdvertisementFlags;
 
    type BluetoothLEAdvertisementPublisherStatus is (
       Created_e,
@@ -212,7 +212,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       Stopped_e => 4,
       Aborted_e => 5
    );
-   type BluetoothLEAdvertisementPublisherStatus_Ptr is access all BluetoothLEAdvertisementPublisherStatus;
+   type BluetoothLEAdvertisementPublisherStatus_Ptr is access BluetoothLEAdvertisementPublisherStatus;
 
    type BluetoothLEAdvertisementType is (
       ConnectableUndirected_e,
@@ -230,7 +230,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       ScanResponse_e => 4,
       Extended_e => 5
    );
-   type BluetoothLEAdvertisementType_Ptr is access all BluetoothLEAdvertisementType;
+   type BluetoothLEAdvertisementType_Ptr is access BluetoothLEAdvertisementType;
 
    type BluetoothLEAdvertisementWatcherStatus is (
       Created_e,
@@ -246,7 +246,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       Stopped_e => 3,
       Aborted_e => 4
    );
-   type BluetoothLEAdvertisementWatcherStatus_Ptr is access all BluetoothLEAdvertisementWatcherStatus;
+   type BluetoothLEAdvertisementWatcherStatus_Ptr is access BluetoothLEAdvertisementWatcherStatus;
 
    type BluetoothLEScanningMode is (
       Passive_e,
@@ -258,7 +258,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       Active_e => 1,
       None_e => 2
    );
-   type BluetoothLEScanningMode_Ptr is access all BluetoothLEScanningMode;
+   type BluetoothLEScanningMode_Ptr is access BluetoothLEScanningMode;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -78,7 +78,7 @@ package WinRt.Windows.System.Diagnostics.Telemetry is
       SettingsOutOfRange_e => 1,
       UnknownFailure_e => 2
    );
-   type PlatformTelemetryRegistrationStatus_Ptr is access all PlatformTelemetryRegistrationStatus;
+   type PlatformTelemetryRegistrationStatus_Ptr is access PlatformTelemetryRegistrationStatus;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

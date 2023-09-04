@@ -104,7 +104,7 @@ package WinRt.Windows.Data.Pdf is
       Rotate180_e => 2,
       Rotate270_e => 3
    );
-   type PdfPageRotation_Ptr is access all PdfPageRotation;
+   type PdfPageRotation_Ptr is access PdfPageRotation;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

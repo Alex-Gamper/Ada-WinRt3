@@ -858,7 +858,7 @@ package WinRt.Windows.Media.Core is
       DownmixTo6Channels_e => 2,
       DownmixTo8Channels_e => 3
    );
-   type AudioDecoderDegradation_Ptr is access all AudioDecoderDegradation;
+   type AudioDecoderDegradation_Ptr is access AudioDecoderDegradation;
 
    type AudioDecoderDegradationReason is (
       None_e,
@@ -870,7 +870,7 @@ package WinRt.Windows.Media.Core is
       LicensingRequirement_e => 1,
       SpatialAudioNotSupported_e => 2
    );
-   type AudioDecoderDegradationReason_Ptr is access all AudioDecoderDegradationReason;
+   type AudioDecoderDegradationReason_Ptr is access AudioDecoderDegradationReason;
 
    type CodecCategory is (
       Encoder_e,
@@ -880,7 +880,7 @@ package WinRt.Windows.Media.Core is
       Encoder_e => 0,
       Decoder_e => 1
    );
-   type CodecCategory_Ptr is access all CodecCategory;
+   type CodecCategory_Ptr is access CodecCategory;
 
    type CodecKind is (
       Audio_e,
@@ -890,7 +890,7 @@ package WinRt.Windows.Media.Core is
       Audio_e => 0,
       Video_e => 1
    );
-   type CodecKind_Ptr is access all CodecKind;
+   type CodecKind_Ptr is access CodecKind;
 
    type FaceDetectionMode is (
       HighPerformance_e,
@@ -902,7 +902,7 @@ package WinRt.Windows.Media.Core is
       Balanced_e => 1,
       HighQuality_e => 2
    );
-   type FaceDetectionMode_Ptr is access all FaceDetectionMode;
+   type FaceDetectionMode_Ptr is access FaceDetectionMode;
 
    type MediaDecoderStatus is (
       FullySupported_e,
@@ -916,7 +916,7 @@ package WinRt.Windows.Media.Core is
       UnsupportedEncoderProperties_e => 2,
       Degraded_e => 3
    );
-   type MediaDecoderStatus_Ptr is access all MediaDecoderStatus;
+   type MediaDecoderStatus_Ptr is access MediaDecoderStatus;
 
    type MediaSourceState is (
       Initial_e,
@@ -932,7 +932,7 @@ package WinRt.Windows.Media.Core is
       Failed_e => 3,
       Closed_e => 4
    );
-   type MediaSourceState_Ptr is access all MediaSourceState;
+   type MediaSourceState_Ptr is access MediaSourceState;
 
    type MediaSourceStatus is (
       FullySupported_e,
@@ -942,7 +942,7 @@ package WinRt.Windows.Media.Core is
       FullySupported_e => 0,
       Unknown_e => 1
    );
-   type MediaSourceStatus_Ptr is access all MediaSourceStatus;
+   type MediaSourceStatus_Ptr is access MediaSourceStatus;
 
    type MediaStreamSourceClosedReason is (
       Done_e,
@@ -962,7 +962,7 @@ package WinRt.Windows.Media.Core is
       UnsupportedEncodingFormat_e => 5,
       MissingSampleRequestedEventHandler_e => 6
    );
-   type MediaStreamSourceClosedReason_Ptr is access all MediaStreamSourceClosedReason;
+   type MediaStreamSourceClosedReason_Ptr is access MediaStreamSourceClosedReason;
 
    type MediaStreamSourceErrorStatus is (
       Other_e,
@@ -984,7 +984,7 @@ package WinRt.Windows.Media.Core is
       DecodeError_e => 6,
       UnsupportedMediaFormat_e => 7
    );
-   type MediaStreamSourceErrorStatus_Ptr is access all MediaStreamSourceErrorStatus;
+   type MediaStreamSourceErrorStatus_Ptr is access MediaStreamSourceErrorStatus;
 
    type MediaTrackKind is (
       Audio_e,
@@ -996,7 +996,7 @@ package WinRt.Windows.Media.Core is
       Video_e => 1,
       TimedMetadata_e => 2
    );
-   type MediaTrackKind_Ptr is access all MediaTrackKind;
+   type MediaTrackKind_Ptr is access MediaTrackKind;
 
    type MseAppendMode is (
       Segments_e,
@@ -1006,7 +1006,7 @@ package WinRt.Windows.Media.Core is
       Segments_e => 0,
       Sequence_e => 1
    );
-   type MseAppendMode_Ptr is access all MseAppendMode;
+   type MseAppendMode_Ptr is access MseAppendMode;
 
    type MseEndOfStreamStatus is (
       Success_e,
@@ -1020,7 +1020,7 @@ package WinRt.Windows.Media.Core is
       DecodeError_e => 2,
       UnknownError_e => 3
    );
-   type MseEndOfStreamStatus_Ptr is access all MseEndOfStreamStatus;
+   type MseEndOfStreamStatus_Ptr is access MseEndOfStreamStatus;
 
    type MseReadyState is (
       Closed_e,
@@ -1032,7 +1032,7 @@ package WinRt.Windows.Media.Core is
       Open_e => 1,
       Ended_e => 2
    );
-   type MseReadyState_Ptr is access all MseReadyState;
+   type MseReadyState_Ptr is access MseReadyState;
 
    type SceneAnalysisRecommendation is (
       Standard_e,
@@ -1044,7 +1044,7 @@ package WinRt.Windows.Media.Core is
       Hdr_e => 1,
       LowLight_e => 2
    );
-   type SceneAnalysisRecommendation_Ptr is access all SceneAnalysisRecommendation;
+   type SceneAnalysisRecommendation_Ptr is access SceneAnalysisRecommendation;
 
    type TimedMetadataKind is (
       Caption_e,
@@ -1066,7 +1066,7 @@ package WinRt.Windows.Media.Core is
       ImageSubtitle_e => 6,
       Speech_e => 7
    );
-   type TimedMetadataKind_Ptr is access all TimedMetadataKind;
+   type TimedMetadataKind_Ptr is access TimedMetadataKind;
 
    type TimedMetadataTrackErrorCode is (
       None_e,
@@ -1080,7 +1080,7 @@ package WinRt.Windows.Media.Core is
       NetworkError_e => 2,
       InternalError_e => 3
    );
-   type TimedMetadataTrackErrorCode_Ptr is access all TimedMetadataTrackErrorCode;
+   type TimedMetadataTrackErrorCode_Ptr is access TimedMetadataTrackErrorCode;
 
    type TimedTextDisplayAlignment is (
       Before_e,
@@ -1092,7 +1092,7 @@ package WinRt.Windows.Media.Core is
       After_e => 1,
       Center_e => 2
    );
-   type TimedTextDisplayAlignment_Ptr is access all TimedTextDisplayAlignment;
+   type TimedTextDisplayAlignment_Ptr is access TimedTextDisplayAlignment;
 
    type TimedTextFlowDirection is (
       LeftToRight_e,
@@ -1102,7 +1102,7 @@ package WinRt.Windows.Media.Core is
       LeftToRight_e => 0,
       RightToLeft_e => 1
    );
-   type TimedTextFlowDirection_Ptr is access all TimedTextFlowDirection;
+   type TimedTextFlowDirection_Ptr is access TimedTextFlowDirection;
 
    type TimedTextFontStyle is (
       Normal_e,
@@ -1114,7 +1114,7 @@ package WinRt.Windows.Media.Core is
       Oblique_e => 1,
       Italic_e => 2
    );
-   type TimedTextFontStyle_Ptr is access all TimedTextFontStyle;
+   type TimedTextFontStyle_Ptr is access TimedTextFontStyle;
 
    type TimedTextLineAlignment is (
       Start_e,
@@ -1126,7 +1126,7 @@ package WinRt.Windows.Media.Core is
       End_e => 1,
       Center_e => 2
    );
-   type TimedTextLineAlignment_Ptr is access all TimedTextLineAlignment;
+   type TimedTextLineAlignment_Ptr is access TimedTextLineAlignment;
 
    type TimedTextScrollMode is (
       Popon_e,
@@ -1136,7 +1136,7 @@ package WinRt.Windows.Media.Core is
       Popon_e => 0,
       Rollup_e => 1
    );
-   type TimedTextScrollMode_Ptr is access all TimedTextScrollMode;
+   type TimedTextScrollMode_Ptr is access TimedTextScrollMode;
 
    type TimedTextUnit is (
       Pixels_e,
@@ -1146,7 +1146,7 @@ package WinRt.Windows.Media.Core is
       Pixels_e => 0,
       Percentage_e => 1
    );
-   type TimedTextUnit_Ptr is access all TimedTextUnit;
+   type TimedTextUnit_Ptr is access TimedTextUnit;
 
    type TimedTextWeight is (
       Normal_e,
@@ -1156,7 +1156,7 @@ package WinRt.Windows.Media.Core is
       Normal_e => 400,
       Bold_e => 700
    );
-   type TimedTextWeight_Ptr is access all TimedTextWeight;
+   type TimedTextWeight_Ptr is access TimedTextWeight;
 
    type TimedTextWrapping is (
       NoWrap_e,
@@ -1166,7 +1166,7 @@ package WinRt.Windows.Media.Core is
       NoWrap_e => 0,
       Wrap_e => 1
    );
-   type TimedTextWrapping_Ptr is access all TimedTextWrapping;
+   type TimedTextWrapping_Ptr is access TimedTextWrapping;
 
    type TimedTextWritingMode is (
       LeftRightTopBottom_e,
@@ -1186,7 +1186,7 @@ package WinRt.Windows.Media.Core is
       RightLeft_e => 5,
       TopBottom_e => 6
    );
-   type TimedTextWritingMode_Ptr is access all TimedTextWritingMode;
+   type TimedTextWritingMode_Ptr is access TimedTextWritingMode;
 
    type VideoStabilizationEffectEnabledChangedReason is (
       Programmatic_e,
@@ -1198,7 +1198,7 @@ package WinRt.Windows.Media.Core is
       PixelRateTooHigh_e => 1,
       RunningSlowly_e => 2
    );
-   type VideoStabilizationEffectEnabledChangedReason_Ptr is access all VideoStabilizationEffectEnabledChangedReason;
+   type VideoStabilizationEffectEnabledChangedReason_Ptr is access VideoStabilizationEffectEnabledChangedReason;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1208,13 +1208,13 @@ package WinRt.Windows.Media.Core is
       Start : WinRt.Windows.Foundation.TimeSpan;
       End_x : WinRt.Windows.Foundation.TimeSpan;
    end record with Convention => C_Pass_By_Copy;
-   type MseTimeRange_Ptr is access all MseTimeRange;
+   type MseTimeRange_Ptr is access MseTimeRange;
 
    type TimedTextDouble is record
       Value : WinRt.Double;
       Unit : Windows.Media.Core.TimedTextUnit;
    end record with Convention => C_Pass_By_Copy;
-   type TimedTextDouble_Ptr is access all TimedTextDouble;
+   type TimedTextDouble_Ptr is access TimedTextDouble;
 
    type TimedTextPadding is record
       Before : WinRt.Double;
@@ -1223,21 +1223,21 @@ package WinRt.Windows.Media.Core is
       End_x : WinRt.Double;
       Unit : Windows.Media.Core.TimedTextUnit;
    end record with Convention => C_Pass_By_Copy;
-   type TimedTextPadding_Ptr is access all TimedTextPadding;
+   type TimedTextPadding_Ptr is access TimedTextPadding;
 
    type TimedTextPoint is record
       X : WinRt.Double;
       Y : WinRt.Double;
       Unit : Windows.Media.Core.TimedTextUnit;
    end record with Convention => C_Pass_By_Copy;
-   type TimedTextPoint_Ptr is access all TimedTextPoint;
+   type TimedTextPoint_Ptr is access TimedTextPoint;
 
    type TimedTextSize is record
       Height : WinRt.Double;
       Width : WinRt.Double;
       Unit : Windows.Media.Core.TimedTextUnit;
    end record with Convention => C_Pass_By_Copy;
-   type TimedTextSize_Ptr is access all TimedTextSize;
+   type TimedTextSize_Ptr is access TimedTextSize;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

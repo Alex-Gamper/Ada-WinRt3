@@ -84,7 +84,7 @@ package WinRt.Windows.Devices.Pwm is
       ActiveHigh_e => 0,
       ActiveLow_e => 1
    );
-   type PwmPulsePolarity_Ptr is access all PwmPulsePolarity;
+   type PwmPulsePolarity_Ptr is access PwmPulsePolarity;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

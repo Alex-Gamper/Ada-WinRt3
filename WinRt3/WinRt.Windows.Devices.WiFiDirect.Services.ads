@@ -159,7 +159,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       Stopped_e => 2,
       Aborted_e => 3
    );
-   type WiFiDirectServiceAdvertisementStatus_Ptr is access all WiFiDirectServiceAdvertisementStatus;
+   type WiFiDirectServiceAdvertisementStatus_Ptr is access WiFiDirectServiceAdvertisementStatus;
 
    type WiFiDirectServiceConfigurationMethod is (
       Default_e,
@@ -171,7 +171,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       PinDisplay_e => 1,
       PinEntry_e => 2
    );
-   type WiFiDirectServiceConfigurationMethod_Ptr is access all WiFiDirectServiceConfigurationMethod;
+   type WiFiDirectServiceConfigurationMethod_Ptr is access WiFiDirectServiceConfigurationMethod;
 
    type WiFiDirectServiceError is (
       Success_e,
@@ -187,7 +187,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       UnsupportedHardware_e => 3,
       NoHardware_e => 4
    );
-   type WiFiDirectServiceError_Ptr is access all WiFiDirectServiceError;
+   type WiFiDirectServiceError_Ptr is access WiFiDirectServiceError;
 
    type WiFiDirectServiceIPProtocol is (
       Tcp_e,
@@ -197,7 +197,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       Tcp_e => 6,
       Udp_e => 17
    );
-   type WiFiDirectServiceIPProtocol_Ptr is access all WiFiDirectServiceIPProtocol;
+   type WiFiDirectServiceIPProtocol_Ptr is access WiFiDirectServiceIPProtocol;
 
    type WiFiDirectServiceSessionErrorStatus is (
       Ok_e,
@@ -215,7 +215,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       SystemFailure_e => 4,
       NoResponseFromRemote_e => 5
    );
-   type WiFiDirectServiceSessionErrorStatus_Ptr is access all WiFiDirectServiceSessionErrorStatus;
+   type WiFiDirectServiceSessionErrorStatus_Ptr is access WiFiDirectServiceSessionErrorStatus;
 
    type WiFiDirectServiceSessionStatus is (
       Closed_e,
@@ -229,7 +229,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       Requested_e => 2,
       Open_e => 3
    );
-   type WiFiDirectServiceSessionStatus_Ptr is access all WiFiDirectServiceSessionStatus;
+   type WiFiDirectServiceSessionStatus_Ptr is access WiFiDirectServiceSessionStatus;
 
    type WiFiDirectServiceStatus is (
       Available_e,
@@ -241,7 +241,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       Busy_e => 1,
       Custom_e => 2
    );
-   type WiFiDirectServiceStatus_Ptr is access all WiFiDirectServiceStatus;
+   type WiFiDirectServiceStatus_Ptr is access WiFiDirectServiceStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

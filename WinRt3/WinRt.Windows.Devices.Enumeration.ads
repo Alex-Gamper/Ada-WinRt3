@@ -306,7 +306,7 @@ package WinRt.Windows.Devices.Enumeration is
       DeniedByUser_e => 2,
       DeniedBySystem_e => 3
    );
-   type DeviceAccessStatus_Ptr is access all DeviceAccessStatus;
+   type DeviceAccessStatus_Ptr is access DeviceAccessStatus;
 
    type DeviceClass is (
       All_e,
@@ -326,7 +326,7 @@ package WinRt.Windows.Devices.Enumeration is
       ImageScanner_e => 5,
       Location_e => 6
    );
-   type DeviceClass_Ptr is access all DeviceClass;
+   type DeviceClass_Ptr is access DeviceClass;
 
    type DeviceInformationKind is (
       Unknown_e,
@@ -350,7 +350,7 @@ package WinRt.Windows.Devices.Enumeration is
       AssociationEndpointService_e => 7,
       DevicePanel_e => 8
    );
-   type DeviceInformationKind_Ptr is access all DeviceInformationKind;
+   type DeviceInformationKind_Ptr is access DeviceInformationKind;
 
    type DevicePairingKinds is (
       None_e,
@@ -368,7 +368,7 @@ package WinRt.Windows.Devices.Enumeration is
       ConfirmPinMatch_e => 8,
       ProvidePasswordCredential_e => 16
    );
-   type DevicePairingKinds_Ptr is access all DevicePairingKinds;
+   type DevicePairingKinds_Ptr is access DevicePairingKinds;
 
    type DevicePairingProtectionLevel is (
       Default_e,
@@ -382,7 +382,7 @@ package WinRt.Windows.Devices.Enumeration is
       Encryption_e => 2,
       EncryptionAndAuthentication_e => 3
    );
-   type DevicePairingProtectionLevel_Ptr is access all DevicePairingProtectionLevel;
+   type DevicePairingProtectionLevel_Ptr is access DevicePairingProtectionLevel;
 
    type DevicePairingResultStatus is (
       Paired_e,
@@ -428,7 +428,7 @@ package WinRt.Windows.Devices.Enumeration is
       RemoteDeviceHasAssociation_e => 18,
       Failed_e => 19
    );
-   type DevicePairingResultStatus_Ptr is access all DevicePairingResultStatus;
+   type DevicePairingResultStatus_Ptr is access DevicePairingResultStatus;
 
    type DevicePickerDisplayStatusOptions is (
       None_e,
@@ -442,7 +442,7 @@ package WinRt.Windows.Devices.Enumeration is
       ShowDisconnectButton_e => 2,
       ShowRetryButton_e => 4
    );
-   type DevicePickerDisplayStatusOptions_Ptr is access all DevicePickerDisplayStatusOptions;
+   type DevicePickerDisplayStatusOptions_Ptr is access DevicePickerDisplayStatusOptions;
 
    type DeviceUnpairingResultStatus is (
       Unpaired_e,
@@ -458,7 +458,7 @@ package WinRt.Windows.Devices.Enumeration is
       AccessDenied_e => 3,
       Failed_e => 4
    );
-   type DeviceUnpairingResultStatus_Ptr is access all DeviceUnpairingResultStatus;
+   type DeviceUnpairingResultStatus_Ptr is access DeviceUnpairingResultStatus;
 
    type DeviceWatcherEventKind is (
       Add_e,
@@ -470,7 +470,7 @@ package WinRt.Windows.Devices.Enumeration is
       Update_e => 1,
       Remove_e => 2
    );
-   type DeviceWatcherEventKind_Ptr is access all DeviceWatcherEventKind;
+   type DeviceWatcherEventKind_Ptr is access DeviceWatcherEventKind;
 
    type DeviceWatcherStatus is (
       Created_e,
@@ -488,7 +488,7 @@ package WinRt.Windows.Devices.Enumeration is
       Stopped_e => 4,
       Aborted_e => 5
    );
-   type DeviceWatcherStatus_Ptr is access all DeviceWatcherStatus;
+   type DeviceWatcherStatus_Ptr is access DeviceWatcherStatus;
 
    type Panel is (
       Unknown_e,
@@ -508,7 +508,7 @@ package WinRt.Windows.Devices.Enumeration is
       Left_e => 5,
       Right_e => 6
    );
-   type Panel_Ptr is access all Panel;
+   type Panel_Ptr is access Panel;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

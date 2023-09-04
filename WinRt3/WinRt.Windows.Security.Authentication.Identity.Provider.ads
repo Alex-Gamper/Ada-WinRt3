@@ -191,7 +191,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       RecognitionFailed_e => 27,
       DeviceUnavailable_e => 28
    );
-   type SecondaryAuthenticationFactorAuthenticationMessage_Ptr is access all SecondaryAuthenticationFactorAuthenticationMessage;
+   type SecondaryAuthenticationFactorAuthenticationMessage_Ptr is access SecondaryAuthenticationFactorAuthenticationMessage;
 
    type SecondaryAuthenticationFactorAuthenticationScenario is (
       SignIn_e,
@@ -201,7 +201,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       SignIn_e => 0,
       CredentialPrompt_e => 1
    );
-   type SecondaryAuthenticationFactorAuthenticationScenario_Ptr is access all SecondaryAuthenticationFactorAuthenticationScenario;
+   type SecondaryAuthenticationFactorAuthenticationScenario_Ptr is access SecondaryAuthenticationFactorAuthenticationScenario;
 
    type SecondaryAuthenticationFactorAuthenticationStage is (
       NotStarted_e,
@@ -225,7 +225,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       ReadyForLock_e => 7,
       CheckingDevicePresence_e => 8
    );
-   type SecondaryAuthenticationFactorAuthenticationStage_Ptr is access all SecondaryAuthenticationFactorAuthenticationStage;
+   type SecondaryAuthenticationFactorAuthenticationStage_Ptr is access SecondaryAuthenticationFactorAuthenticationStage;
 
    type SecondaryAuthenticationFactorAuthenticationStatus is (
       Failed_e,
@@ -241,7 +241,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       DisabledByPolicy_e => 3,
       InvalidAuthenticationStage_e => 4
    );
-   type SecondaryAuthenticationFactorAuthenticationStatus_Ptr is access all SecondaryAuthenticationFactorAuthenticationStatus;
+   type SecondaryAuthenticationFactorAuthenticationStatus_Ptr is access SecondaryAuthenticationFactorAuthenticationStatus;
 
    type SecondaryAuthenticationFactorDeviceCapabilities is (
       None_e,
@@ -263,7 +263,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       HMacSha256_e => 32,
       CloseRangeDataTransmission_e => 64
    );
-   type SecondaryAuthenticationFactorDeviceCapabilities_Ptr is access all SecondaryAuthenticationFactorDeviceCapabilities;
+   type SecondaryAuthenticationFactorDeviceCapabilities_Ptr is access SecondaryAuthenticationFactorDeviceCapabilities;
 
    type SecondaryAuthenticationFactorDeviceFindScope is (
       User_e,
@@ -273,7 +273,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       User_e => 0,
       AllUsers_e => 1
    );
-   type SecondaryAuthenticationFactorDeviceFindScope_Ptr is access all SecondaryAuthenticationFactorDeviceFindScope;
+   type SecondaryAuthenticationFactorDeviceFindScope_Ptr is access SecondaryAuthenticationFactorDeviceFindScope;
 
    type SecondaryAuthenticationFactorDevicePresence is (
       Absent_e,
@@ -283,7 +283,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       Absent_e => 0,
       Present_e => 1
    );
-   type SecondaryAuthenticationFactorDevicePresence_Ptr is access all SecondaryAuthenticationFactorDevicePresence;
+   type SecondaryAuthenticationFactorDevicePresence_Ptr is access SecondaryAuthenticationFactorDevicePresence;
 
    type SecondaryAuthenticationFactorDevicePresenceMonitoringMode is (
       Unsupported_e,
@@ -295,7 +295,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       AppManaged_e => 1,
       SystemManaged_e => 2
    );
-   type SecondaryAuthenticationFactorDevicePresenceMonitoringMode_Ptr is access all SecondaryAuthenticationFactorDevicePresenceMonitoringMode;
+   type SecondaryAuthenticationFactorDevicePresenceMonitoringMode_Ptr is access SecondaryAuthenticationFactorDevicePresenceMonitoringMode;
 
    type SecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatus is (
       Unsupported_e,
@@ -307,7 +307,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       Succeeded_e => 1,
       DisabledByPolicy_e => 2
    );
-   type SecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatus_Ptr is access all SecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatus;
+   type SecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatus_Ptr is access SecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatus;
 
    type SecondaryAuthenticationFactorFinishAuthenticationStatus is (
       Failed_e,
@@ -319,7 +319,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       Completed_e => 1,
       NonceExpired_e => 2
    );
-   type SecondaryAuthenticationFactorFinishAuthenticationStatus_Ptr is access all SecondaryAuthenticationFactorFinishAuthenticationStatus;
+   type SecondaryAuthenticationFactorFinishAuthenticationStatus_Ptr is access SecondaryAuthenticationFactorFinishAuthenticationStatus;
 
    type SecondaryAuthenticationFactorRegistrationStatus is (
       Failed_e,
@@ -335,7 +335,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       PinSetupRequired_e => 3,
       DisabledByPolicy_e => 4
    );
-   type SecondaryAuthenticationFactorRegistrationStatus_Ptr is access all SecondaryAuthenticationFactorRegistrationStatus;
+   type SecondaryAuthenticationFactorRegistrationStatus_Ptr is access SecondaryAuthenticationFactorRegistrationStatus;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

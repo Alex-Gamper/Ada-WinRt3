@@ -461,7 +461,7 @@ package WinRt.Windows.UI.Notifications is
    for AdaptiveNotificationContentKind use (
       Text_e => 0
    );
-   type AdaptiveNotificationContentKind_Ptr is access all AdaptiveNotificationContentKind;
+   type AdaptiveNotificationContentKind_Ptr is access AdaptiveNotificationContentKind;
 
    type BadgeTemplateType is (
       BadgeGlyph_e,
@@ -471,7 +471,7 @@ package WinRt.Windows.UI.Notifications is
       BadgeGlyph_e => 0,
       BadgeNumber_e => 1
    );
-   type BadgeTemplateType_Ptr is access all BadgeTemplateType;
+   type BadgeTemplateType_Ptr is access BadgeTemplateType;
 
    type NotificationKinds is (
       Unknown_e,
@@ -481,7 +481,7 @@ package WinRt.Windows.UI.Notifications is
       Unknown_e => 0,
       Toast_e => 1
    );
-   type NotificationKinds_Ptr is access all NotificationKinds;
+   type NotificationKinds_Ptr is access NotificationKinds;
 
    type NotificationMirroring is (
       Allowed_e,
@@ -491,7 +491,7 @@ package WinRt.Windows.UI.Notifications is
       Allowed_e => 0,
       Disabled_e => 1
    );
-   type NotificationMirroring_Ptr is access all NotificationMirroring;
+   type NotificationMirroring_Ptr is access NotificationMirroring;
 
    type NotificationSetting is (
       Enabled_e,
@@ -507,7 +507,7 @@ package WinRt.Windows.UI.Notifications is
       DisabledByGroupPolicy_e => 3,
       DisabledByManifest_e => 4
    );
-   type NotificationSetting_Ptr is access all NotificationSetting;
+   type NotificationSetting_Ptr is access NotificationSetting;
 
    type NotificationUpdateResult is (
       Succeeded_e,
@@ -519,7 +519,7 @@ package WinRt.Windows.UI.Notifications is
       Failed_e => 1,
       NotificationNotFound_e => 2
    );
-   type NotificationUpdateResult_Ptr is access all NotificationUpdateResult;
+   type NotificationUpdateResult_Ptr is access NotificationUpdateResult;
 
    type PeriodicUpdateRecurrence is (
       HalfHour_e,
@@ -535,7 +535,7 @@ package WinRt.Windows.UI.Notifications is
       TwelveHours_e => 3,
       Daily_e => 4
    );
-   type PeriodicUpdateRecurrence_Ptr is access all PeriodicUpdateRecurrence;
+   type PeriodicUpdateRecurrence_Ptr is access PeriodicUpdateRecurrence;
 
    type TileFlyoutTemplateType is (
       TileFlyoutTemplate01_e
@@ -543,7 +543,7 @@ package WinRt.Windows.UI.Notifications is
    for TileFlyoutTemplateType use (
       TileFlyoutTemplate01_e => 0
    );
-   type TileFlyoutTemplateType_Ptr is access all TileFlyoutTemplateType;
+   type TileFlyoutTemplateType_Ptr is access TileFlyoutTemplateType;
 
    type TileTemplateType is (
       TileSquareImage_e,
@@ -709,7 +709,7 @@ package WinRt.Windows.UI.Notifications is
       TileSquare71x71Image_e => 78,
       TileTall150x310Image_e => 79
    );
-   type TileTemplateType_Ptr is access all TileTemplateType;
+   type TileTemplateType_Ptr is access TileTemplateType;
 
    type ToastDismissalReason is (
       UserCanceled_e,
@@ -721,7 +721,7 @@ package WinRt.Windows.UI.Notifications is
       ApplicationHidden_e => 1,
       TimedOut_e => 2
    );
-   type ToastDismissalReason_Ptr is access all ToastDismissalReason;
+   type ToastDismissalReason_Ptr is access ToastDismissalReason;
 
    type ToastHistoryChangedType is (
       Cleared_e,
@@ -735,7 +735,7 @@ package WinRt.Windows.UI.Notifications is
       Expired_e => 2,
       Added_e => 3
    );
-   type ToastHistoryChangedType_Ptr is access all ToastHistoryChangedType;
+   type ToastHistoryChangedType_Ptr is access ToastHistoryChangedType;
 
    type ToastNotificationPriority is (
       Default_e,
@@ -745,7 +745,7 @@ package WinRt.Windows.UI.Notifications is
       Default_e => 0,
       High_e => 1
    );
-   type ToastNotificationPriority_Ptr is access all ToastNotificationPriority;
+   type ToastNotificationPriority_Ptr is access ToastNotificationPriority;
 
    type ToastTemplateType is (
       ToastImageAndText01_e,
@@ -767,7 +767,7 @@ package WinRt.Windows.UI.Notifications is
       ToastText03_e => 6,
       ToastText04_e => 7
    );
-   type ToastTemplateType_Ptr is access all ToastTemplateType;
+   type ToastTemplateType_Ptr is access ToastTemplateType;
 
    type UserNotificationChangedKind is (
       Added_e,
@@ -777,7 +777,7 @@ package WinRt.Windows.UI.Notifications is
       Added_e => 0,
       Removed_e => 1
    );
-   type UserNotificationChangedKind_Ptr is access all UserNotificationChangedKind;
+   type UserNotificationChangedKind_Ptr is access UserNotificationChangedKind;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

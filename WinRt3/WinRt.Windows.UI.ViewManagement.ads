@@ -325,7 +325,7 @@ package WinRt.Windows.UI.ViewManagement is
       UseVisible_e => 0,
       UseCoreWindow_e => 1
    );
-   type ApplicationViewBoundsMode_Ptr is access all ApplicationViewBoundsMode;
+   type ApplicationViewBoundsMode_Ptr is access ApplicationViewBoundsMode;
 
    type ApplicationViewMode is (
       Default_e,
@@ -335,7 +335,7 @@ package WinRt.Windows.UI.ViewManagement is
       Default_e => 0,
       CompactOverlay_e => 1
    );
-   type ApplicationViewMode_Ptr is access all ApplicationViewMode;
+   type ApplicationViewMode_Ptr is access ApplicationViewMode;
 
    type ApplicationViewOrientation is (
       Landscape_e,
@@ -345,7 +345,7 @@ package WinRt.Windows.UI.ViewManagement is
       Landscape_e => 0,
       Portrait_e => 1
    );
-   type ApplicationViewOrientation_Ptr is access all ApplicationViewOrientation;
+   type ApplicationViewOrientation_Ptr is access ApplicationViewOrientation;
 
    type ApplicationViewState is (
       FullScreenLandscape_e,
@@ -359,7 +359,7 @@ package WinRt.Windows.UI.ViewManagement is
       Snapped_e => 2,
       FullScreenPortrait_e => 3
    );
-   type ApplicationViewState_Ptr is access all ApplicationViewState;
+   type ApplicationViewState_Ptr is access ApplicationViewState;
 
    type ApplicationViewSwitchingOptions is (
       Default_e,
@@ -371,7 +371,7 @@ package WinRt.Windows.UI.ViewManagement is
       SkipAnimation_e => 1,
       ConsolidateViews_e => 2
    );
-   type ApplicationViewSwitchingOptions_Ptr is access all ApplicationViewSwitchingOptions;
+   type ApplicationViewSwitchingOptions_Ptr is access ApplicationViewSwitchingOptions;
 
    type ApplicationViewWindowingMode is (
       Auto_e,
@@ -387,7 +387,7 @@ package WinRt.Windows.UI.ViewManagement is
       CompactOverlay_e => 3,
       Maximized_e => 4
    );
-   type ApplicationViewWindowingMode_Ptr is access all ApplicationViewWindowingMode;
+   type ApplicationViewWindowingMode_Ptr is access ApplicationViewWindowingMode;
 
    type FullScreenSystemOverlayMode is (
       Standard_e,
@@ -397,7 +397,7 @@ package WinRt.Windows.UI.ViewManagement is
       Standard_e => 0,
       Minimal_e => 1
    );
-   type FullScreenSystemOverlayMode_Ptr is access all FullScreenSystemOverlayMode;
+   type FullScreenSystemOverlayMode_Ptr is access FullScreenSystemOverlayMode;
 
    type HandPreference is (
       LeftHanded_e,
@@ -407,7 +407,7 @@ package WinRt.Windows.UI.ViewManagement is
       LeftHanded_e => 0,
       RightHanded_e => 1
    );
-   type HandPreference_Ptr is access all HandPreference;
+   type HandPreference_Ptr is access HandPreference;
 
    type UIColorType is (
       Background_e,
@@ -433,7 +433,7 @@ package WinRt.Windows.UI.ViewManagement is
       AccentLight3_e => 8,
       Complement_e => 9
    );
-   type UIColorType_Ptr is access all UIColorType;
+   type UIColorType_Ptr is access UIColorType;
 
    type UIElementType is (
       ActiveCaption_e,
@@ -491,7 +491,7 @@ package WinRt.Windows.UI.ViewManagement is
       PopupBackground_e => 1011,
       OverlayOutsidePopup_e => 1012
    );
-   type UIElementType_Ptr is access all UIElementType;
+   type UIElementType_Ptr is access UIElementType;
 
    type UserInteractionMode is (
       Mouse_e,
@@ -501,7 +501,7 @@ package WinRt.Windows.UI.ViewManagement is
       Mouse_e => 0,
       Touch_e => 1
    );
-   type UserInteractionMode_Ptr is access all UserInteractionMode;
+   type UserInteractionMode_Ptr is access UserInteractionMode;
 
    type ViewSizePreference is (
       Default_e,
@@ -521,7 +521,7 @@ package WinRt.Windows.UI.ViewManagement is
       UseNone_e => 5,
       Custom_e => 6
    );
-   type ViewSizePreference_Ptr is access all ViewSizePreference;
+   type ViewSizePreference_Ptr is access ViewSizePreference;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -530,7 +530,7 @@ package WinRt.Windows.UI.ViewManagement is
    type ViewManagementViewScalingContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type ViewManagementViewScalingContract_Ptr is access all ViewManagementViewScalingContract;
+   type ViewManagementViewScalingContract_Ptr is access ViewManagementViewScalingContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

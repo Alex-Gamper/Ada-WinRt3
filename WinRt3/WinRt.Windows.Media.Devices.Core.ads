@@ -222,7 +222,7 @@ package WinRt.Windows.Media.Devices.Core is
       Enable_e => 1,
       Global_e => 2
    );
-   type FrameFlashMode_Ptr is access all FrameFlashMode;
+   type FrameFlashMode_Ptr is access FrameFlashMode;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

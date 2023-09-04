@@ -121,7 +121,7 @@ package WinRt.Windows.Devices.Scanners is
       SingleRegion_e => 1,
       MultipleRegion_e => 2
    );
-   type ImageScannerAutoCroppingMode_Ptr is access all ImageScannerAutoCroppingMode;
+   type ImageScannerAutoCroppingMode_Ptr is access ImageScannerAutoCroppingMode;
 
    type ImageScannerColorMode is (
       Color_e,
@@ -135,7 +135,7 @@ package WinRt.Windows.Devices.Scanners is
       Monochrome_e => 2,
       AutoColor_e => 3
    );
-   type ImageScannerColorMode_Ptr is access all ImageScannerColorMode;
+   type ImageScannerColorMode_Ptr is access ImageScannerColorMode;
 
    type ImageScannerFormat is (
       Jpeg_e,
@@ -155,7 +155,7 @@ package WinRt.Windows.Devices.Scanners is
       OpenXps_e => 5,
       Pdf_e => 6
    );
-   type ImageScannerFormat_Ptr is access all ImageScannerFormat;
+   type ImageScannerFormat_Ptr is access ImageScannerFormat;
 
    type ImageScannerScanSource is (
       Default_e,
@@ -169,7 +169,7 @@ package WinRt.Windows.Devices.Scanners is
       Feeder_e => 2,
       AutoConfigured_e => 3
    );
-   type ImageScannerScanSource_Ptr is access all ImageScannerScanSource;
+   type ImageScannerScanSource_Ptr is access ImageScannerScanSource;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -179,12 +179,12 @@ package WinRt.Windows.Devices.Scanners is
       DpiX : WinRt.Single;
       DpiY : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type ImageScannerResolution_Ptr is access all ImageScannerResolution;
+   type ImageScannerResolution_Ptr is access ImageScannerResolution;
 
    type ScannerDeviceContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type ScannerDeviceContract_Ptr is access all ScannerDeviceContract;
+   type ScannerDeviceContract_Ptr is access ScannerDeviceContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

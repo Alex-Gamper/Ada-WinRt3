@@ -40,6 +40,6 @@ package WinRt.Windows.Gaming.XboxLive is
    type StorageApiContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type StorageApiContract_Ptr is access all StorageApiContract;
+   type StorageApiContract_Ptr is access StorageApiContract;
 
 end;

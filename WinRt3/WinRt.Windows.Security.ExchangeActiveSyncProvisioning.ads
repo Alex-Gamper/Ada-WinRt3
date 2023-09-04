@@ -94,7 +94,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       CanBeCompliant_e => 2,
       RequestedPolicyIsStricter_e => 3
    );
-   type EasDisallowConvenienceLogonResult_Ptr is access all EasDisallowConvenienceLogonResult;
+   type EasDisallowConvenienceLogonResult_Ptr is access EasDisallowConvenienceLogonResult;
 
    type EasEncryptionProviderType is (
       NotEvaluated_e,
@@ -106,7 +106,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       WindowsEncryption_e => 1,
       OtherEncryption_e => 2
    );
-   type EasEncryptionProviderType_Ptr is access all EasEncryptionProviderType;
+   type EasEncryptionProviderType_Ptr is access EasEncryptionProviderType;
 
    type EasMaxInactivityTimeLockResult is (
       NotEvaluated_e,
@@ -122,7 +122,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       RequestedPolicyIsStricter_e => 3,
       InvalidParameter_e => 4
    );
-   type EasMaxInactivityTimeLockResult_Ptr is access all EasMaxInactivityTimeLockResult;
+   type EasMaxInactivityTimeLockResult_Ptr is access EasMaxInactivityTimeLockResult;
 
    type EasMaxPasswordFailedAttemptsResult is (
       NotEvaluated_e,
@@ -138,7 +138,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       RequestedPolicyIsStricter_e => 3,
       InvalidParameter_e => 4
    );
-   type EasMaxPasswordFailedAttemptsResult_Ptr is access all EasMaxPasswordFailedAttemptsResult;
+   type EasMaxPasswordFailedAttemptsResult_Ptr is access EasMaxPasswordFailedAttemptsResult;
 
    type EasMinPasswordComplexCharactersResult is (
       NotEvaluated_e,
@@ -174,7 +174,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       ChangeConnectedAdminsPassword_e => 13,
       ChangeConnectedUserPassword_e => 14
    );
-   type EasMinPasswordComplexCharactersResult_Ptr is access all EasMinPasswordComplexCharactersResult;
+   type EasMinPasswordComplexCharactersResult_Ptr is access EasMinPasswordComplexCharactersResult;
 
    type EasMinPasswordLengthResult is (
       NotEvaluated_e,
@@ -210,7 +210,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       ChangeConnectedAdminsPassword_e => 13,
       ChangeConnectedUserPassword_e => 14
    );
-   type EasMinPasswordLengthResult_Ptr is access all EasMinPasswordLengthResult;
+   type EasMinPasswordLengthResult_Ptr is access EasMinPasswordLengthResult;
 
    type EasPasswordExpirationResult is (
       NotEvaluated_e,
@@ -234,7 +234,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       AdminsCannotChangePassword_e => 7,
       LocalControlledUsersCannotChangePassword_e => 8
    );
-   type EasPasswordExpirationResult_Ptr is access all EasPasswordExpirationResult;
+   type EasPasswordExpirationResult_Ptr is access EasPasswordExpirationResult;
 
    type EasPasswordHistoryResult is (
       NotEvaluated_e,
@@ -250,7 +250,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       RequestedPolicyIsStricter_e => 3,
       InvalidParameter_e => 4
    );
-   type EasPasswordHistoryResult_Ptr is access all EasPasswordHistoryResult;
+   type EasPasswordHistoryResult_Ptr is access EasPasswordHistoryResult;
 
    type EasRequireEncryptionResult is (
       NotEvaluated_e,
@@ -282,7 +282,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       OsNotProtected_e => 11,
       UnexpectedFailure_e => 12
    );
-   type EasRequireEncryptionResult_Ptr is access all EasRequireEncryptionResult;
+   type EasRequireEncryptionResult_Ptr is access EasRequireEncryptionResult;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -291,7 +291,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
    type EasContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type EasContract_Ptr is access all EasContract;
+   type EasContract_Ptr is access EasContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

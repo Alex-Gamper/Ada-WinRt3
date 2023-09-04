@@ -40,13 +40,13 @@ package WinRt.Windows.UI.Xaml.Printing is
    -----------------------------------------------------------------------------
 
    type AddPagesEventHandler_Delegate;
-   type AddPagesEventHandler is access all AddPagesEventHandler_Delegate;
+   type AddPagesEventHandler is access AddPagesEventHandler_Delegate;
 
    type GetPreviewPageEventHandler_Delegate;
-   type GetPreviewPageEventHandler is access all GetPreviewPageEventHandler_Delegate;
+   type GetPreviewPageEventHandler is access GetPreviewPageEventHandler_Delegate;
 
    type PaginateEventHandler_Delegate;
-   type PaginateEventHandler is access all PaginateEventHandler_Delegate;
+   type PaginateEventHandler is access PaginateEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -114,7 +114,7 @@ package WinRt.Windows.UI.Xaml.Printing is
       Final_e => 0,
       Intermediate_e => 1
    );
-   type PreviewPageCountType_Ptr is access all PreviewPageCountType;
+   type PreviewPageCountType_Ptr is access PreviewPageCountType;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

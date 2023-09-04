@@ -96,7 +96,7 @@ package WinRt.Windows.System.Preview is
       Convex_e => 4,
       Full_e => 5
    );
-   type HingeState_Ptr is access all HingeState;
+   type HingeState_Ptr is access HingeState;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

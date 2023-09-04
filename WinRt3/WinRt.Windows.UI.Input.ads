@@ -540,7 +540,7 @@ package WinRt.Windows.UI.Input is
       Rearranging_e => 5,
       Completed_e => 6
    );
-   type CrossSlidingState_Ptr is access all CrossSlidingState;
+   type CrossSlidingState_Ptr is access CrossSlidingState;
 
    type DraggingState is (
       Started_e,
@@ -552,7 +552,7 @@ package WinRt.Windows.UI.Input is
       Continuing_e => 1,
       Completed_e => 2
    );
-   type DraggingState_Ptr is access all DraggingState;
+   type DraggingState_Ptr is access DraggingState;
 
    type EdgeGestureKind is (
       Touch_e,
@@ -564,7 +564,7 @@ package WinRt.Windows.UI.Input is
       Keyboard_e => 1,
       Mouse_e => 2
    );
-   type EdgeGestureKind_Ptr is access all EdgeGestureKind;
+   type EdgeGestureKind_Ptr is access EdgeGestureKind;
 
    type GazeInputAccessStatus is (
       Unspecified_e,
@@ -578,7 +578,7 @@ package WinRt.Windows.UI.Input is
       DeniedByUser_e => 2,
       DeniedBySystem_e => 3
    );
-   type GazeInputAccessStatus_Ptr is access all GazeInputAccessStatus;
+   type GazeInputAccessStatus_Ptr is access GazeInputAccessStatus;
 
    type GestureSettings is (
       None_e,
@@ -620,7 +620,7 @@ package WinRt.Windows.UI.Input is
       CrossSlide_e => 32768,
       ManipulationMultipleFingerPanning_e => 65536
    );
-   type GestureSettings_Ptr is access all GestureSettings;
+   type GestureSettings_Ptr is access GestureSettings;
 
    type HoldingState is (
       Started_e,
@@ -632,7 +632,7 @@ package WinRt.Windows.UI.Input is
       Completed_e => 1,
       Canceled_e => 2
    );
-   type HoldingState_Ptr is access all HoldingState;
+   type HoldingState_Ptr is access HoldingState;
 
    type InputActivationState is (
       None_e,
@@ -646,7 +646,7 @@ package WinRt.Windows.UI.Input is
       ActivatedNotForeground_e => 2,
       ActivatedInForeground_e => 3
    );
-   type InputActivationState_Ptr is access all InputActivationState;
+   type InputActivationState_Ptr is access InputActivationState;
 
    type PointerUpdateKind is (
       Other_e,
@@ -674,7 +674,7 @@ package WinRt.Windows.UI.Input is
       XButton2Pressed_e => 9,
       XButton2Released_e => 10
    );
-   type PointerUpdateKind_Ptr is access all PointerUpdateKind;
+   type PointerUpdateKind_Ptr is access PointerUpdateKind;
 
    type RadialControllerMenuKnownIcon is (
       Scroll_e,
@@ -698,7 +698,7 @@ package WinRt.Windows.UI.Input is
       InkThickness_e => 7,
       PenType_e => 8
    );
-   type RadialControllerMenuKnownIcon_Ptr is access all RadialControllerMenuKnownIcon;
+   type RadialControllerMenuKnownIcon_Ptr is access RadialControllerMenuKnownIcon;
 
    type RadialControllerSystemMenuItemKind is (
       Scroll_e,
@@ -714,7 +714,7 @@ package WinRt.Windows.UI.Input is
       Volume_e => 3,
       NextPreviousTrack_e => 4
    );
-   type RadialControllerSystemMenuItemKind_Ptr is access all RadialControllerSystemMenuItemKind;
+   type RadialControllerSystemMenuItemKind_Ptr is access RadialControllerSystemMenuItemKind;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -726,7 +726,7 @@ package WinRt.Windows.UI.Input is
       SpeedBumpEnd : WinRt.Single;
       RearrangeStart : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type CrossSlideThresholds_Ptr is access all CrossSlideThresholds;
+   type CrossSlideThresholds_Ptr is access CrossSlideThresholds;
 
    type ManipulationDelta is record
       Translation : WinRt.Windows.Foundation.Point;
@@ -734,14 +734,14 @@ package WinRt.Windows.UI.Input is
       Rotation : WinRt.Single;
       Expansion : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type ManipulationDelta_Ptr is access all ManipulationDelta;
+   type ManipulationDelta_Ptr is access ManipulationDelta;
 
    type ManipulationVelocities is record
       Linear : WinRt.Windows.Foundation.Point;
       Angular : WinRt.Single;
       Expansion : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type ManipulationVelocities_Ptr is access all ManipulationVelocities;
+   type ManipulationVelocities_Ptr is access ManipulationVelocities;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

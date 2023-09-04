@@ -556,7 +556,7 @@ package WinRt.Windows.Media.Playback is
       Music_e => 2,
       Video_e => 3
    );
-   type AutoLoadedDisplayPropertyKind_Ptr is access all AutoLoadedDisplayPropertyKind;
+   type AutoLoadedDisplayPropertyKind_Ptr is access AutoLoadedDisplayPropertyKind;
 
    type FailedMediaStreamKind is (
       Unknown_e,
@@ -568,7 +568,7 @@ package WinRt.Windows.Media.Playback is
       Audio_e => 1,
       Video_e => 2
    );
-   type FailedMediaStreamKind_Ptr is access all FailedMediaStreamKind;
+   type FailedMediaStreamKind_Ptr is access FailedMediaStreamKind;
 
    type MediaBreakInsertionMethod is (
       Interrupt_e,
@@ -578,7 +578,7 @@ package WinRt.Windows.Media.Playback is
       Interrupt_e => 0,
       Replace_e => 1
    );
-   type MediaBreakInsertionMethod_Ptr is access all MediaBreakInsertionMethod;
+   type MediaBreakInsertionMethod_Ptr is access MediaBreakInsertionMethod;
 
    type MediaCommandEnablingRule is (
       Auto_e,
@@ -590,7 +590,7 @@ package WinRt.Windows.Media.Playback is
       Always_e => 1,
       Never_e => 2
    );
-   type MediaCommandEnablingRule_Ptr is access all MediaCommandEnablingRule;
+   type MediaCommandEnablingRule_Ptr is access MediaCommandEnablingRule;
 
    type MediaPlaybackItemChangedReason is (
       InitialItem_e,
@@ -604,7 +604,7 @@ package WinRt.Windows.Media.Playback is
       Error_e => 2,
       AppRequested_e => 3
    );
-   type MediaPlaybackItemChangedReason_Ptr is access all MediaPlaybackItemChangedReason;
+   type MediaPlaybackItemChangedReason_Ptr is access MediaPlaybackItemChangedReason;
 
    type MediaPlaybackItemErrorCode is (
       None_e,
@@ -622,7 +622,7 @@ package WinRt.Windows.Media.Playback is
       SourceNotSupportedError_e => 4,
       EncryptionError_e => 5
    );
-   type MediaPlaybackItemErrorCode_Ptr is access all MediaPlaybackItemErrorCode;
+   type MediaPlaybackItemErrorCode_Ptr is access MediaPlaybackItemErrorCode;
 
    type MediaPlaybackSessionVideoConstrictionReason is (
       None_e,
@@ -642,7 +642,7 @@ package WinRt.Windows.Media.Playback is
       OutputProtectionFailed_e => 5,
       Unknown_e => 6
    );
-   type MediaPlaybackSessionVideoConstrictionReason_Ptr is access all MediaPlaybackSessionVideoConstrictionReason;
+   type MediaPlaybackSessionVideoConstrictionReason_Ptr is access MediaPlaybackSessionVideoConstrictionReason;
 
    type MediaPlaybackState is (
       None_e,
@@ -658,7 +658,7 @@ package WinRt.Windows.Media.Playback is
       Playing_e => 3,
       Paused_e => 4
    );
-   type MediaPlaybackState_Ptr is access all MediaPlaybackState;
+   type MediaPlaybackState_Ptr is access MediaPlaybackState;
 
    type MediaPlayerAudioCategory is (
       Other_e,
@@ -684,7 +684,7 @@ package WinRt.Windows.Media.Playback is
       Movie_e => 10,
       Media_e => 11
    );
-   type MediaPlayerAudioCategory_Ptr is access all MediaPlayerAudioCategory;
+   type MediaPlayerAudioCategory_Ptr is access MediaPlayerAudioCategory;
 
    type MediaPlayerAudioDeviceType is (
       Console_e,
@@ -696,7 +696,7 @@ package WinRt.Windows.Media.Playback is
       Multimedia_e => 1,
       Communications_e => 2
    );
-   type MediaPlayerAudioDeviceType_Ptr is access all MediaPlayerAudioDeviceType;
+   type MediaPlayerAudioDeviceType_Ptr is access MediaPlayerAudioDeviceType;
 
    type MediaPlayerError is (
       Unknown_e,
@@ -712,7 +712,7 @@ package WinRt.Windows.Media.Playback is
       DecodingError_e => 3,
       SourceNotSupported_e => 4
    );
-   type MediaPlayerError_Ptr is access all MediaPlayerError;
+   type MediaPlayerError_Ptr is access MediaPlayerError;
 
    type MediaPlayerState is (
       Closed_e,
@@ -730,7 +730,7 @@ package WinRt.Windows.Media.Playback is
       Paused_e => 4,
       Stopped_e => 5
    );
-   type MediaPlayerState_Ptr is access all MediaPlayerState;
+   type MediaPlayerState_Ptr is access MediaPlayerState;
 
    type SphericalVideoProjectionMode is (
       Spherical_e,
@@ -740,7 +740,7 @@ package WinRt.Windows.Media.Playback is
       Spherical_e => 0,
       Flat_e => 1
    );
-   type SphericalVideoProjectionMode_Ptr is access all SphericalVideoProjectionMode;
+   type SphericalVideoProjectionMode_Ptr is access SphericalVideoProjectionMode;
 
    type StereoscopicVideoRenderMode is (
       Mono_e,
@@ -750,7 +750,7 @@ package WinRt.Windows.Media.Playback is
       Mono_e => 0,
       Stereo_e => 1
    );
-   type StereoscopicVideoRenderMode_Ptr is access all StereoscopicVideoRenderMode;
+   type StereoscopicVideoRenderMode_Ptr is access StereoscopicVideoRenderMode;
 
    type TimedMetadataTrackPresentationMode is (
       Disabled_e,
@@ -764,7 +764,7 @@ package WinRt.Windows.Media.Playback is
       ApplicationPresented_e => 2,
       PlatformPresented_e => 3
    );
-   type TimedMetadataTrackPresentationMode_Ptr is access all TimedMetadataTrackPresentationMode;
+   type TimedMetadataTrackPresentationMode_Ptr is access TimedMetadataTrackPresentationMode;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

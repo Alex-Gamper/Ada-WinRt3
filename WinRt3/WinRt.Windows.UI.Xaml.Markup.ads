@@ -146,13 +146,13 @@ package WinRt.Windows.UI.Xaml.Markup is
       LineNumber : WinRt.UInt32;
       LinePosition : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type XamlBinaryWriterErrorInformation_Ptr is access all XamlBinaryWriterErrorInformation;
+   type XamlBinaryWriterErrorInformation_Ptr is access XamlBinaryWriterErrorInformation;
 
    type XmlnsDefinition is record
       XmlNamespace : WinRt.HString;
       Namespace : WinRt.HString;
    end record with Convention => C_Pass_By_Copy;
-   type XmlnsDefinition_Ptr is access all XmlnsDefinition;
+   type XmlnsDefinition_Ptr is access XmlnsDefinition;
    type XmlnsDefinition_Array is array (Natural range <>) of aliased XmlnsDefinition;
 
    -----------------------------------------------------------------------------

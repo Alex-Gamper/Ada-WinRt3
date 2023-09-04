@@ -603,7 +603,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Work_e => 1,
       Other_e => 2
    );
-   type ContactAddressKind_Ptr is access all ContactAddressKind;
+   type ContactAddressKind_Ptr is access ContactAddressKind;
 
    type ContactAnnotationOperations is (
       None_e,
@@ -623,7 +623,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       SocialFeeds_e => 16,
       Share_e => 32
    );
-   type ContactAnnotationOperations_Ptr is access all ContactAnnotationOperations;
+   type ContactAnnotationOperations_Ptr is access ContactAnnotationOperations;
 
    type ContactAnnotationStoreAccessType is (
       AppAnnotationsReadWrite_e,
@@ -633,7 +633,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       AppAnnotationsReadWrite_e => 0,
       AllAnnotationsReadWrite_e => 1
    );
-   type ContactAnnotationStoreAccessType_Ptr is access all ContactAnnotationStoreAccessType;
+   type ContactAnnotationStoreAccessType_Ptr is access ContactAnnotationStoreAccessType;
 
    type ContactBatchStatus is (
       Success_e,
@@ -645,7 +645,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       ServerSearchSyncManagerError_e => 1,
       ServerSearchUnknownError_e => 2
    );
-   type ContactBatchStatus_Ptr is access all ContactBatchStatus;
+   type ContactBatchStatus_Ptr is access ContactBatchStatus;
 
    type ContactCardHeaderKind is (
       Default_e,
@@ -657,7 +657,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Basic_e => 1,
       Enterprise_e => 2
    );
-   type ContactCardHeaderKind_Ptr is access all ContactCardHeaderKind;
+   type ContactCardHeaderKind_Ptr is access ContactCardHeaderKind;
 
    type ContactCardTabKind is (
       Default_e,
@@ -675,7 +675,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Video_e => 4,
       OrganizationalHierarchy_e => 5
    );
-   type ContactCardTabKind_Ptr is access all ContactCardTabKind;
+   type ContactCardTabKind_Ptr is access ContactCardTabKind;
 
    type ContactChangeType is (
       Created_e,
@@ -689,7 +689,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Deleted_e => 2,
       ChangeTrackingLost_e => 3
    );
-   type ContactChangeType_Ptr is access all ContactChangeType;
+   type ContactChangeType_Ptr is access ContactChangeType;
 
    type ContactDateKind is (
       Birthday_e,
@@ -701,7 +701,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Anniversary_e => 1,
       Other_e => 2
    );
-   type ContactDateKind_Ptr is access all ContactDateKind;
+   type ContactDateKind_Ptr is access ContactDateKind;
 
    type ContactEmailKind is (
       Personal_e,
@@ -713,7 +713,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Work_e => 1,
       Other_e => 2
    );
-   type ContactEmailKind_Ptr is access all ContactEmailKind;
+   type ContactEmailKind_Ptr is access ContactEmailKind;
 
    type ContactFieldCategory is (
       None_e,
@@ -729,7 +729,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Mobile_e => 3,
       Other_e => 4
    );
-   type ContactFieldCategory_Ptr is access all ContactFieldCategory;
+   type ContactFieldCategory_Ptr is access ContactFieldCategory;
 
    type ContactFieldType is (
       Email_e,
@@ -759,7 +759,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Website_e => 10,
       JobInfo_e => 11
    );
-   type ContactFieldType_Ptr is access all ContactFieldType;
+   type ContactFieldType_Ptr is access ContactFieldType;
 
    type ContactListOtherAppReadAccess is (
       SystemOnly_e,
@@ -773,7 +773,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Full_e => 2,
       None_e => 3
    );
-   type ContactListOtherAppReadAccess_Ptr is access all ContactListOtherAppReadAccess;
+   type ContactListOtherAppReadAccess_Ptr is access ContactListOtherAppReadAccess;
 
    type ContactListOtherAppWriteAccess is (
       None_e,
@@ -785,7 +785,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       SystemOnly_e => 1,
       Limited_e => 2
    );
-   type ContactListOtherAppWriteAccess_Ptr is access all ContactListOtherAppWriteAccess;
+   type ContactListOtherAppWriteAccess_Ptr is access ContactListOtherAppWriteAccess;
 
    type ContactListSyncStatus is (
       Idle_e,
@@ -805,7 +805,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       UnknownError_e => 5,
       ManualAccountRemovalRequired_e => 6
    );
-   type ContactListSyncStatus_Ptr is access all ContactListSyncStatus;
+   type ContactListSyncStatus_Ptr is access ContactListSyncStatus;
 
    type ContactMatchReasonKind is (
       Name_e,
@@ -823,7 +823,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       YomiName_e => 4,
       Other_e => 5
    );
-   type ContactMatchReasonKind_Ptr is access all ContactMatchReasonKind;
+   type ContactMatchReasonKind_Ptr is access ContactMatchReasonKind;
 
    type ContactNameOrder is (
       FirstNameLastName_e,
@@ -833,7 +833,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       FirstNameLastName_e => 0,
       LastNameFirstName_e => 1
    );
-   type ContactNameOrder_Ptr is access all ContactNameOrder;
+   type ContactNameOrder_Ptr is access ContactNameOrder;
 
    type ContactPhoneKind is (
       Home_e,
@@ -859,7 +859,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Assistant_e => 8,
       Radio_e => 9
    );
-   type ContactPhoneKind_Ptr is access all ContactPhoneKind;
+   type ContactPhoneKind_Ptr is access ContactPhoneKind;
 
    type ContactQueryDesiredFields is (
       None_e,
@@ -873,7 +873,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       EmailAddress_e => 2,
       PostalAddress_e => 4
    );
-   type ContactQueryDesiredFields_Ptr is access all ContactQueryDesiredFields;
+   type ContactQueryDesiredFields_Ptr is access ContactQueryDesiredFields;
 
    type ContactQuerySearchFields is (
       None_e,
@@ -889,7 +889,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Phone_e => 4,
       All_e => 4294967295
    );
-   type ContactQuerySearchFields_Ptr is access all ContactQuerySearchFields;
+   type ContactQuerySearchFields_Ptr is access ContactQuerySearchFields;
 
    type ContactQuerySearchScope is (
       Local_e,
@@ -899,7 +899,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Local_e => 0,
       Server_e => 1
    );
-   type ContactQuerySearchScope_Ptr is access all ContactQuerySearchScope;
+   type ContactQuerySearchScope_Ptr is access ContactQuerySearchScope;
 
    type ContactRelationship is (
       Other_e,
@@ -917,7 +917,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Parent_e => 4,
       Child_e => 5
    );
-   type ContactRelationship_Ptr is access all ContactRelationship;
+   type ContactRelationship_Ptr is access ContactRelationship;
 
    type ContactSelectionMode is (
       Contacts_e,
@@ -927,7 +927,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Contacts_e => 0,
       Fields_e => 1
    );
-   type ContactSelectionMode_Ptr is access all ContactSelectionMode;
+   type ContactSelectionMode_Ptr is access ContactSelectionMode;
 
    type ContactStoreAccessType is (
       AppContactsReadWrite_e,
@@ -939,7 +939,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       AllContactsReadOnly_e => 1,
       AllContactsReadWrite_e => 2
    );
-   type ContactStoreAccessType_Ptr is access all ContactStoreAccessType;
+   type ContactStoreAccessType_Ptr is access ContactStoreAccessType;
 
    type PinnedContactSurface is (
       StartMenu_e,
@@ -949,7 +949,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       StartMenu_e => 0,
       Taskbar_e => 1
    );
-   type PinnedContactSurface_Ptr is access all PinnedContactSurface;
+   type PinnedContactSurface_Ptr is access PinnedContactSurface;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

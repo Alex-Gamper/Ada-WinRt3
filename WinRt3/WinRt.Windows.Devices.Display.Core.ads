@@ -308,7 +308,7 @@ package WinRt.Windows.Devices.Display.Core is
       Bpc14_e => 16,
       Bpc16_e => 32
    );
-   type DisplayBitsPerChannel_Ptr is access all DisplayBitsPerChannel;
+   type DisplayBitsPerChannel_Ptr is access DisplayBitsPerChannel;
 
    type DisplayDeviceCapability is (
       FlipOverride_e
@@ -316,7 +316,7 @@ package WinRt.Windows.Devices.Display.Core is
    for DisplayDeviceCapability use (
       FlipOverride_e => 0
    );
-   type DisplayDeviceCapability_Ptr is access all DisplayDeviceCapability;
+   type DisplayDeviceCapability_Ptr is access DisplayDeviceCapability;
 
    type DisplayManagerOptions is (
       None_e,
@@ -326,7 +326,7 @@ package WinRt.Windows.Devices.Display.Core is
       None_e => 0,
       EnforceSourceOwnership_e => 1
    );
-   type DisplayManagerOptions_Ptr is access all DisplayManagerOptions;
+   type DisplayManagerOptions_Ptr is access DisplayManagerOptions;
 
    type DisplayManagerResult is (
       Success_e,
@@ -342,7 +342,7 @@ package WinRt.Windows.Devices.Display.Core is
       TargetStale_e => 3,
       RemoteSessionNotSupported_e => 4
    );
-   type DisplayManagerResult_Ptr is access all DisplayManagerResult;
+   type DisplayManagerResult_Ptr is access DisplayManagerResult;
 
    type DisplayModeQueryOptions is (
       None_e,
@@ -352,7 +352,7 @@ package WinRt.Windows.Devices.Display.Core is
       None_e => 0,
       OnlyPreferredResolution_e => 1
    );
-   type DisplayModeQueryOptions_Ptr is access all DisplayModeQueryOptions;
+   type DisplayModeQueryOptions_Ptr is access DisplayModeQueryOptions;
 
    type DisplayPathScaling is (
       Identity_e,
@@ -370,7 +370,7 @@ package WinRt.Windows.Devices.Display.Core is
       Custom_e => 4,
       DriverPreferred_e => 5
    );
-   type DisplayPathScaling_Ptr is access all DisplayPathScaling;
+   type DisplayPathScaling_Ptr is access DisplayPathScaling;
 
    type DisplayPathStatus is (
       Unknown_e,
@@ -388,7 +388,7 @@ package WinRt.Windows.Devices.Display.Core is
       FailedAsync_e => 4,
       InvalidatedAsync_e => 5
    );
-   type DisplayPathStatus_Ptr is access all DisplayPathStatus;
+   type DisplayPathStatus_Ptr is access DisplayPathStatus;
 
    type DisplayRotation is (
       None_e,
@@ -402,7 +402,7 @@ package WinRt.Windows.Devices.Display.Core is
       Clockwise180Degrees_e => 2,
       Clockwise270Degrees_e => 3
    );
-   type DisplayRotation_Ptr is access all DisplayRotation;
+   type DisplayRotation_Ptr is access DisplayRotation;
 
    type DisplayStateApplyOptions is (
       None_e,
@@ -416,7 +416,7 @@ package WinRt.Windows.Devices.Display.Core is
       ForceReapply_e => 2,
       ForceModeEnumeration_e => 4
    );
-   type DisplayStateApplyOptions_Ptr is access all DisplayStateApplyOptions;
+   type DisplayStateApplyOptions_Ptr is access DisplayStateApplyOptions;
 
    type DisplayStateFunctionalizeOptions is (
       None_e,
@@ -428,7 +428,7 @@ package WinRt.Windows.Devices.Display.Core is
       FailIfStateChanged_e => 1,
       ValidateTopologyOnly_e => 2
    );
-   type DisplayStateFunctionalizeOptions_Ptr is access all DisplayStateFunctionalizeOptions;
+   type DisplayStateFunctionalizeOptions_Ptr is access DisplayStateFunctionalizeOptions;
 
    type DisplayStateOperationStatus is (
       Success_e,
@@ -450,7 +450,7 @@ package WinRt.Windows.Devices.Display.Core is
       ModesNotSupported_e => 6,
       RemoteSessionNotSupported_e => 7
    );
-   type DisplayStateOperationStatus_Ptr is access all DisplayStateOperationStatus;
+   type DisplayStateOperationStatus_Ptr is access DisplayStateOperationStatus;
 
    type DisplayTargetPersistence is (
       None_e,
@@ -464,7 +464,7 @@ package WinRt.Windows.Devices.Display.Core is
       TemporaryPersisted_e => 2,
       PathPersisted_e => 3
    );
-   type DisplayTargetPersistence_Ptr is access all DisplayTargetPersistence;
+   type DisplayTargetPersistence_Ptr is access DisplayTargetPersistence;
 
    type DisplayTaskSignalKind is (
       OnPresentFlipAway_e
@@ -472,7 +472,7 @@ package WinRt.Windows.Devices.Display.Core is
    for DisplayTaskSignalKind use (
       OnPresentFlipAway_e => 0
    );
-   type DisplayTaskSignalKind_Ptr is access all DisplayTaskSignalKind;
+   type DisplayTaskSignalKind_Ptr is access DisplayTaskSignalKind;
 
    type DisplayWireFormatColorSpace is (
       BT709_e,
@@ -484,7 +484,7 @@ package WinRt.Windows.Devices.Display.Core is
       BT2020_e => 1,
       ProfileDefinedWideColorGamut_e => 2
    );
-   type DisplayWireFormatColorSpace_Ptr is access all DisplayWireFormatColorSpace;
+   type DisplayWireFormatColorSpace_Ptr is access DisplayWireFormatColorSpace;
 
    type DisplayWireFormatEotf is (
       Sdr_e,
@@ -494,7 +494,7 @@ package WinRt.Windows.Devices.Display.Core is
       Sdr_e => 0,
       HdrSmpte2084_e => 1
    );
-   type DisplayWireFormatEotf_Ptr is access all DisplayWireFormatEotf;
+   type DisplayWireFormatEotf_Ptr is access DisplayWireFormatEotf;
 
    type DisplayWireFormatHdrMetadata is (
       None_e,
@@ -508,7 +508,7 @@ package WinRt.Windows.Devices.Display.Core is
       Hdr10Plus_e => 2,
       DolbyVisionLowLatency_e => 3
    );
-   type DisplayWireFormatHdrMetadata_Ptr is access all DisplayWireFormatHdrMetadata;
+   type DisplayWireFormatHdrMetadata_Ptr is access DisplayWireFormatHdrMetadata;
 
    type DisplayWireFormatPixelEncoding is (
       Rgb444_e,
@@ -524,7 +524,7 @@ package WinRt.Windows.Devices.Display.Core is
       Ycc420_e => 3,
       Intensity_e => 4
    );
-   type DisplayWireFormatPixelEncoding_Ptr is access all DisplayWireFormatPixelEncoding;
+   type DisplayWireFormatPixelEncoding_Ptr is access DisplayWireFormatPixelEncoding;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -534,7 +534,7 @@ package WinRt.Windows.Devices.Display.Core is
       VerticalSyncRate : WinRt.Windows.Foundation.Numerics.Rational;
       VerticalSyncsPerPresentation : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type DisplayPresentationRate_Ptr is access all DisplayPresentationRate;
+   type DisplayPresentationRate_Ptr is access DisplayPresentationRate;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

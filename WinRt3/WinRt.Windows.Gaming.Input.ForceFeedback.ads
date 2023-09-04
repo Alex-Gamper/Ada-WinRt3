@@ -115,7 +115,7 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       Inertia_e => 2,
       Friction_e => 3
    );
-   type ConditionForceEffectKind_Ptr is access all ConditionForceEffectKind;
+   type ConditionForceEffectKind_Ptr is access ConditionForceEffectKind;
 
    type ForceFeedbackEffectAxes is (
       None_e,
@@ -129,7 +129,7 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       Y_e => 2,
       Z_e => 4
    );
-   type ForceFeedbackEffectAxes_Ptr is access all ForceFeedbackEffectAxes;
+   type ForceFeedbackEffectAxes_Ptr is access ForceFeedbackEffectAxes;
 
    type ForceFeedbackEffectState is (
       Stopped_e,
@@ -143,7 +143,7 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       Paused_e => 2,
       Faulted_e => 3
    );
-   type ForceFeedbackEffectState_Ptr is access all ForceFeedbackEffectState;
+   type ForceFeedbackEffectState_Ptr is access ForceFeedbackEffectState;
 
    type ForceFeedbackLoadEffectResult is (
       Succeeded_e,
@@ -155,7 +155,7 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       EffectStorageFull_e => 1,
       EffectNotSupported_e => 2
    );
-   type ForceFeedbackLoadEffectResult_Ptr is access all ForceFeedbackLoadEffectResult;
+   type ForceFeedbackLoadEffectResult_Ptr is access ForceFeedbackLoadEffectResult;
 
    type PeriodicForceEffectKind is (
       SquareWave_e,
@@ -171,7 +171,7 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       SawtoothWaveUp_e => 3,
       SawtoothWaveDown_e => 4
    );
-   type PeriodicForceEffectKind_Ptr is access all PeriodicForceEffectKind;
+   type PeriodicForceEffectKind_Ptr is access PeriodicForceEffectKind;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

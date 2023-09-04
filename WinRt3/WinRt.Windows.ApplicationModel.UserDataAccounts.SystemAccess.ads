@@ -77,7 +77,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       OAuth_e => 1,
       SingleSignOn_e => 2
    );
-   type DeviceAccountAuthenticationType_Ptr is access all DeviceAccountAuthenticationType;
+   type DeviceAccountAuthenticationType_Ptr is access DeviceAccountAuthenticationType;
 
    type DeviceAccountIconId is (
       Exchange_e,
@@ -91,7 +91,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       Outlook_e => 2,
       Generic_e => 3
    );
-   type DeviceAccountIconId_Ptr is access all DeviceAccountIconId;
+   type DeviceAccountIconId_Ptr is access DeviceAccountIconId;
 
    type DeviceAccountMailAgeFilter is (
       All_e,
@@ -111,7 +111,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       Last30Days_e => 5,
       Last90Days_e => 6
    );
-   type DeviceAccountMailAgeFilter_Ptr is access all DeviceAccountMailAgeFilter;
+   type DeviceAccountMailAgeFilter_Ptr is access DeviceAccountMailAgeFilter;
 
    type DeviceAccountServerType is (
       Exchange_e,
@@ -123,7 +123,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       Pop_e => 1,
       Imap_e => 2
    );
-   type DeviceAccountServerType_Ptr is access all DeviceAccountServerType;
+   type DeviceAccountServerType_Ptr is access DeviceAccountServerType;
 
    type DeviceAccountSyncScheduleKind is (
       Manual_e,
@@ -143,7 +143,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       Daily_e => 5,
       AsItemsArrive_e => 6
    );
-   type DeviceAccountSyncScheduleKind_Ptr is access all DeviceAccountSyncScheduleKind;
+   type DeviceAccountSyncScheduleKind_Ptr is access DeviceAccountSyncScheduleKind;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

@@ -63,7 +63,7 @@ package WinRt.Windows.Embedded.DeviceLockdown is
    type DeviceLockdownContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type DeviceLockdownContract_Ptr is access all DeviceLockdownContract;
+   type DeviceLockdownContract_Ptr is access DeviceLockdownContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

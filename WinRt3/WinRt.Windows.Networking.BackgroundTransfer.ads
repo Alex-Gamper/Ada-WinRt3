@@ -252,7 +252,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       Parallel_e => 0,
       Serialized_e => 1
    );
-   type BackgroundTransferBehavior_Ptr is access all BackgroundTransferBehavior;
+   type BackgroundTransferBehavior_Ptr is access BackgroundTransferBehavior;
 
    type BackgroundTransferCostPolicy is (
       Default_e,
@@ -264,7 +264,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       UnrestrictedOnly_e => 1,
       Always_e => 2
    );
-   type BackgroundTransferCostPolicy_Ptr is access all BackgroundTransferCostPolicy;
+   type BackgroundTransferCostPolicy_Ptr is access BackgroundTransferCostPolicy;
 
    type BackgroundTransferPriority is (
       Default_e,
@@ -276,7 +276,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       High_e => 1,
       Low_e => 2
    );
-   type BackgroundTransferPriority_Ptr is access all BackgroundTransferPriority;
+   type BackgroundTransferPriority_Ptr is access BackgroundTransferPriority;
 
    type BackgroundTransferStatus is (
       Idle_e,
@@ -302,7 +302,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       PausedRecoverableWebErrorStatus_e => 8,
       PausedSystemPolicy_e => 32
    );
-   type BackgroundTransferStatus_Ptr is access all BackgroundTransferStatus;
+   type BackgroundTransferStatus_Ptr is access BackgroundTransferStatus;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -315,13 +315,13 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       HasResponseChanged : WinRt.Boolean;
       HasRestarted : WinRt.Boolean;
    end record with Convention => C_Pass_By_Copy;
-   type BackgroundDownloadProgress_Ptr is access all BackgroundDownloadProgress;
+   type BackgroundDownloadProgress_Ptr is access BackgroundDownloadProgress;
 
    type BackgroundTransferFileRange is record
       Offset : WinRt.UInt64;
       Length : WinRt.UInt64;
    end record with Convention => C_Pass_By_Copy;
-   type BackgroundTransferFileRange_Ptr is access all BackgroundTransferFileRange;
+   type BackgroundTransferFileRange_Ptr is access BackgroundTransferFileRange;
 
    type BackgroundUploadProgress is record
       BytesReceived : WinRt.UInt64;
@@ -332,7 +332,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       HasResponseChanged : WinRt.Boolean;
       HasRestarted : WinRt.Boolean;
    end record with Convention => C_Pass_By_Copy;
-   type BackgroundUploadProgress_Ptr is access all BackgroundUploadProgress;
+   type BackgroundUploadProgress_Ptr is access BackgroundUploadProgress;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -45,37 +45,37 @@ package WinRt.Windows.UI.Xaml.Input is
    -----------------------------------------------------------------------------
 
    type DoubleTappedEventHandler_Delegate;
-   type DoubleTappedEventHandler is access all DoubleTappedEventHandler_Delegate;
+   type DoubleTappedEventHandler is access DoubleTappedEventHandler_Delegate;
 
    type HoldingEventHandler_Delegate;
-   type HoldingEventHandler is access all HoldingEventHandler_Delegate;
+   type HoldingEventHandler is access HoldingEventHandler_Delegate;
 
    type KeyEventHandler_Delegate;
-   type KeyEventHandler is access all KeyEventHandler_Delegate;
+   type KeyEventHandler is access KeyEventHandler_Delegate;
 
    type ManipulationCompletedEventHandler_Delegate;
-   type ManipulationCompletedEventHandler is access all ManipulationCompletedEventHandler_Delegate;
+   type ManipulationCompletedEventHandler is access ManipulationCompletedEventHandler_Delegate;
 
    type ManipulationDeltaEventHandler_Delegate;
-   type ManipulationDeltaEventHandler is access all ManipulationDeltaEventHandler_Delegate;
+   type ManipulationDeltaEventHandler is access ManipulationDeltaEventHandler_Delegate;
 
    type ManipulationInertiaStartingEventHandler_Delegate;
-   type ManipulationInertiaStartingEventHandler is access all ManipulationInertiaStartingEventHandler_Delegate;
+   type ManipulationInertiaStartingEventHandler is access ManipulationInertiaStartingEventHandler_Delegate;
 
    type ManipulationStartedEventHandler_Delegate;
-   type ManipulationStartedEventHandler is access all ManipulationStartedEventHandler_Delegate;
+   type ManipulationStartedEventHandler is access ManipulationStartedEventHandler_Delegate;
 
    type ManipulationStartingEventHandler_Delegate;
-   type ManipulationStartingEventHandler is access all ManipulationStartingEventHandler_Delegate;
+   type ManipulationStartingEventHandler is access ManipulationStartingEventHandler_Delegate;
 
    type PointerEventHandler_Delegate;
-   type PointerEventHandler is access all PointerEventHandler_Delegate;
+   type PointerEventHandler is access PointerEventHandler_Delegate;
 
    type RightTappedEventHandler_Delegate;
-   type RightTappedEventHandler is access all RightTappedEventHandler_Delegate;
+   type RightTappedEventHandler is access RightTappedEventHandler_Delegate;
 
    type TappedEventHandler_Delegate;
-   type TappedEventHandler is access all TappedEventHandler_Delegate;
+   type TappedEventHandler is access TappedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -579,7 +579,7 @@ package WinRt.Windows.UI.Xaml.Input is
       Keyboard_e => 4,
       GameController_e => 5
    );
-   type FocusInputDeviceKind_Ptr is access all FocusInputDeviceKind;
+   type FocusInputDeviceKind_Ptr is access FocusInputDeviceKind;
 
    type FocusNavigationDirection is (
       Next_e,
@@ -599,7 +599,7 @@ package WinRt.Windows.UI.Xaml.Input is
       Right_e => 5,
       None_e => 6
    );
-   type FocusNavigationDirection_Ptr is access all FocusNavigationDirection;
+   type FocusNavigationDirection_Ptr is access FocusNavigationDirection;
 
    type InputScopeNameValue is (
       Default_e,
@@ -691,7 +691,7 @@ package WinRt.Windows.UI.Xaml.Input is
       FormulaNumber_e => 67,
       ChatWithoutEmoji_e => 68
    );
-   type InputScopeNameValue_Ptr is access all InputScopeNameValue;
+   type InputScopeNameValue_Ptr is access InputScopeNameValue;
 
    type KeyTipPlacementMode is (
       Auto_e,
@@ -711,7 +711,7 @@ package WinRt.Windows.UI.Xaml.Input is
       Center_e => 5,
       Hidden_e => 6
    );
-   type KeyTipPlacementMode_Ptr is access all KeyTipPlacementMode;
+   type KeyTipPlacementMode_Ptr is access KeyTipPlacementMode;
 
    type KeyboardAcceleratorPlacementMode is (
       Auto_e,
@@ -721,7 +721,7 @@ package WinRt.Windows.UI.Xaml.Input is
       Auto_e => 0,
       Hidden_e => 1
    );
-   type KeyboardAcceleratorPlacementMode_Ptr is access all KeyboardAcceleratorPlacementMode;
+   type KeyboardAcceleratorPlacementMode_Ptr is access KeyboardAcceleratorPlacementMode;
 
    type KeyboardNavigationMode is (
       Local_e,
@@ -733,7 +733,7 @@ package WinRt.Windows.UI.Xaml.Input is
       Cycle_e => 1,
       Once_e => 2
    );
-   type KeyboardNavigationMode_Ptr is access all KeyboardNavigationMode;
+   type KeyboardNavigationMode_Ptr is access KeyboardNavigationMode;
 
    type ManipulationModes is (
       None_e,
@@ -763,7 +763,7 @@ package WinRt.Windows.UI.Xaml.Input is
       All_e => 65535,
       System_e => 65536
    );
-   type ManipulationModes_Ptr is access all ManipulationModes;
+   type ManipulationModes_Ptr is access ManipulationModes;
 
    type StandardUICommandKind is (
       None_e,
@@ -803,7 +803,7 @@ package WinRt.Windows.UI.Xaml.Input is
       Undo_e => 15,
       Redo_e => 16
    );
-   type StandardUICommandKind_Ptr is access all StandardUICommandKind;
+   type StandardUICommandKind_Ptr is access StandardUICommandKind;
 
    type XYFocusKeyboardNavigationMode is (
       Auto_e,
@@ -815,7 +815,7 @@ package WinRt.Windows.UI.Xaml.Input is
       Enabled_e => 1,
       Disabled_e => 2
    );
-   type XYFocusKeyboardNavigationMode_Ptr is access all XYFocusKeyboardNavigationMode;
+   type XYFocusKeyboardNavigationMode_Ptr is access XYFocusKeyboardNavigationMode;
 
    type XYFocusNavigationStrategy is (
       Auto_e,
@@ -829,7 +829,7 @@ package WinRt.Windows.UI.Xaml.Input is
       NavigationDirectionDistance_e => 2,
       RectilinearDistance_e => 3
    );
-   type XYFocusNavigationStrategy_Ptr is access all XYFocusNavigationStrategy;
+   type XYFocusNavigationStrategy_Ptr is access XYFocusNavigationStrategy;
 
    type XYFocusNavigationStrategyOverride is (
       None_e,
@@ -845,7 +845,7 @@ package WinRt.Windows.UI.Xaml.Input is
       NavigationDirectionDistance_e => 3,
       RectilinearDistance_e => 4
    );
-   type XYFocusNavigationStrategyOverride_Ptr is access all XYFocusNavigationStrategyOverride;
+   type XYFocusNavigationStrategyOverride_Ptr is access XYFocusNavigationStrategyOverride;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

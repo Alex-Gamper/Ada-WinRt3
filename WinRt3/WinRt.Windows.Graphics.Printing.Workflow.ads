@@ -222,7 +222,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       Aborted_e => 2,
       Closed_e => 3
    );
-   type PrintWorkflowSessionStatus_Ptr is access all PrintWorkflowSessionStatus;
+   type PrintWorkflowSessionStatus_Ptr is access PrintWorkflowSessionStatus;
 
    type PrintWorkflowSubmittedStatus is (
       Succeeded_e,
@@ -234,7 +234,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       Canceled_e => 1,
       Failed_e => 2
    );
-   type PrintWorkflowSubmittedStatus_Ptr is access all PrintWorkflowSubmittedStatus;
+   type PrintWorkflowSubmittedStatus_Ptr is access PrintWorkflowSubmittedStatus;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

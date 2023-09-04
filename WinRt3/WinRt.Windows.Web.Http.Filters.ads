@@ -111,7 +111,7 @@ package WinRt.Windows.Web.Http.Filters is
       OnlyFromCache_e => 2,
       NoCache_e => 3
    );
-   type HttpCacheReadBehavior_Ptr is access all HttpCacheReadBehavior;
+   type HttpCacheReadBehavior_Ptr is access HttpCacheReadBehavior;
 
    type HttpCacheWriteBehavior is (
       Default_e,
@@ -121,7 +121,7 @@ package WinRt.Windows.Web.Http.Filters is
       Default_e => 0,
       NoCache_e => 1
    );
-   type HttpCacheWriteBehavior_Ptr is access all HttpCacheWriteBehavior;
+   type HttpCacheWriteBehavior_Ptr is access HttpCacheWriteBehavior;
 
    type HttpCookieUsageBehavior is (
       Default_e,
@@ -131,7 +131,7 @@ package WinRt.Windows.Web.Http.Filters is
       Default_e => 0,
       NoCookies_e => 1
    );
-   type HttpCookieUsageBehavior_Ptr is access all HttpCookieUsageBehavior;
+   type HttpCookieUsageBehavior_Ptr is access HttpCookieUsageBehavior;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

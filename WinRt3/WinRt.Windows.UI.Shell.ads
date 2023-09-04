@@ -86,7 +86,7 @@ package WinRt.Windows.UI.Shell is
    for SecurityAppKind use (
       WebProtection_e => 0
    );
-   type SecurityAppKind_Ptr is access all SecurityAppKind;
+   type SecurityAppKind_Ptr is access SecurityAppKind;
 
    type SecurityAppState is (
       Disabled_e,
@@ -96,7 +96,7 @@ package WinRt.Windows.UI.Shell is
       Disabled_e => 0,
       Enabled_e => 1
    );
-   type SecurityAppState_Ptr is access all SecurityAppState;
+   type SecurityAppState_Ptr is access SecurityAppState;
 
    type SecurityAppSubstatus is (
       Undetermined_e,
@@ -110,7 +110,7 @@ package WinRt.Windows.UI.Shell is
       ActionRecommended_e => 2,
       ActionNeeded_e => 3
    );
-   type SecurityAppSubstatus_Ptr is access all SecurityAppSubstatus;
+   type SecurityAppSubstatus_Ptr is access SecurityAppSubstatus;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -119,7 +119,7 @@ package WinRt.Windows.UI.Shell is
    type SecurityAppManagerContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type SecurityAppManagerContract_Ptr is access all SecurityAppManagerContract;
+   type SecurityAppManagerContract_Ptr is access SecurityAppManagerContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

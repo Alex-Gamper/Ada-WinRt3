@@ -55,10 +55,10 @@ package WinRt.Windows.Media.Capture is
    -----------------------------------------------------------------------------
 
    type MediaCaptureFailedEventHandler_Delegate;
-   type MediaCaptureFailedEventHandler is access all MediaCaptureFailedEventHandler_Delegate;
+   type MediaCaptureFailedEventHandler is access MediaCaptureFailedEventHandler_Delegate;
 
    type RecordLimitationExceededEventHandler_Delegate;
-   type RecordLimitationExceededEventHandler is access all RecordLimitationExceededEventHandler_Delegate;
+   type RecordLimitationExceededEventHandler is access RecordLimitationExceededEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -915,7 +915,7 @@ package WinRt.Windows.Media.Capture is
       Started_e => 1,
       Failed_e => 2
    );
-   type AppBroadcastCameraCaptureState_Ptr is access all AppBroadcastCameraCaptureState;
+   type AppBroadcastCameraCaptureState_Ptr is access AppBroadcastCameraCaptureState;
 
    type AppBroadcastCameraOverlayLocation is (
       TopLeft_e,
@@ -939,7 +939,7 @@ package WinRt.Windows.Media.Capture is
       BottomCenter_e => 7,
       BottomRight_e => 8
    );
-   type AppBroadcastCameraOverlayLocation_Ptr is access all AppBroadcastCameraOverlayLocation;
+   type AppBroadcastCameraOverlayLocation_Ptr is access AppBroadcastCameraOverlayLocation;
 
    type AppBroadcastCameraOverlaySize is (
       Small_e,
@@ -951,7 +951,7 @@ package WinRt.Windows.Media.Capture is
       Medium_e => 1,
       Large_e => 2
    );
-   type AppBroadcastCameraOverlaySize_Ptr is access all AppBroadcastCameraOverlaySize;
+   type AppBroadcastCameraOverlaySize_Ptr is access AppBroadcastCameraOverlaySize;
 
    type AppBroadcastCaptureTargetType is (
       AppView_e,
@@ -961,7 +961,7 @@ package WinRt.Windows.Media.Capture is
       AppView_e => 0,
       EntireDisplay_e => 1
    );
-   type AppBroadcastCaptureTargetType_Ptr is access all AppBroadcastCaptureTargetType;
+   type AppBroadcastCaptureTargetType_Ptr is access AppBroadcastCaptureTargetType;
 
    type AppBroadcastExitBroadcastModeReason is (
       NormalExit_e,
@@ -975,7 +975,7 @@ package WinRt.Windows.Media.Capture is
       AuthorizationFail_e => 2,
       ForegroundAppActivated_e => 3
    );
-   type AppBroadcastExitBroadcastModeReason_Ptr is access all AppBroadcastExitBroadcastModeReason;
+   type AppBroadcastExitBroadcastModeReason_Ptr is access AppBroadcastExitBroadcastModeReason;
 
    type AppBroadcastMicrophoneCaptureState is (
       Stopped_e,
@@ -987,7 +987,7 @@ package WinRt.Windows.Media.Capture is
       Started_e => 1,
       Failed_e => 2
    );
-   type AppBroadcastMicrophoneCaptureState_Ptr is access all AppBroadcastMicrophoneCaptureState;
+   type AppBroadcastMicrophoneCaptureState_Ptr is access AppBroadcastMicrophoneCaptureState;
 
    type AppBroadcastPlugInState is (
       Unknown_e,
@@ -1007,7 +1007,7 @@ package WinRt.Windows.Media.Capture is
       InBandwidthTest_e => 5,
       ReadyToBroadcast_e => 6
    );
-   type AppBroadcastPlugInState_Ptr is access all AppBroadcastPlugInState;
+   type AppBroadcastPlugInState_Ptr is access AppBroadcastPlugInState;
 
    type AppBroadcastPreviewState is (
       Started_e,
@@ -1019,7 +1019,7 @@ package WinRt.Windows.Media.Capture is
       Stopped_e => 1,
       Failed_e => 2
    );
-   type AppBroadcastPreviewState_Ptr is access all AppBroadcastPreviewState;
+   type AppBroadcastPreviewState_Ptr is access AppBroadcastPreviewState;
 
    type AppBroadcastSignInResult is (
       Success_e,
@@ -1035,7 +1035,7 @@ package WinRt.Windows.Media.Capture is
       ServiceUnavailable_e => 3,
       Unknown_e => 4
    );
-   type AppBroadcastSignInResult_Ptr is access all AppBroadcastSignInResult;
+   type AppBroadcastSignInResult_Ptr is access AppBroadcastSignInResult;
 
    type AppBroadcastSignInState is (
       NotSignedIn_e,
@@ -1051,7 +1051,7 @@ package WinRt.Windows.Media.Capture is
       OAuthSignInInProgress_e => 3,
       OAuthSignInComplete_e => 4
    );
-   type AppBroadcastSignInState_Ptr is access all AppBroadcastSignInState;
+   type AppBroadcastSignInState_Ptr is access AppBroadcastSignInState;
 
    type AppBroadcastStreamState is (
       Initializing_e,
@@ -1067,7 +1067,7 @@ package WinRt.Windows.Media.Capture is
       Paused_e => 3,
       Terminated_e => 4
    );
-   type AppBroadcastStreamState_Ptr is access all AppBroadcastStreamState;
+   type AppBroadcastStreamState_Ptr is access AppBroadcastStreamState;
 
    type AppBroadcastTerminationReason is (
       NormalTermination_e,
@@ -1093,7 +1093,7 @@ package WinRt.Windows.Media.Capture is
       BackgroundTaskTerminated_e => 8,
       BackgroundTaskUnresponsive_e => 9
    );
-   type AppBroadcastTerminationReason_Ptr is access all AppBroadcastTerminationReason;
+   type AppBroadcastTerminationReason_Ptr is access AppBroadcastTerminationReason;
 
    type AppBroadcastVideoEncodingBitrateMode is (
       Custom_e,
@@ -1103,7 +1103,7 @@ package WinRt.Windows.Media.Capture is
       Custom_e => 0,
       Auto_e => 1
    );
-   type AppBroadcastVideoEncodingBitrateMode_Ptr is access all AppBroadcastVideoEncodingBitrateMode;
+   type AppBroadcastVideoEncodingBitrateMode_Ptr is access AppBroadcastVideoEncodingBitrateMode;
 
    type AppBroadcastVideoEncodingResolutionMode is (
       Custom_e,
@@ -1113,7 +1113,7 @@ package WinRt.Windows.Media.Capture is
       Custom_e => 0,
       Auto_e => 1
    );
-   type AppBroadcastVideoEncodingResolutionMode_Ptr is access all AppBroadcastVideoEncodingResolutionMode;
+   type AppBroadcastVideoEncodingResolutionMode_Ptr is access AppBroadcastVideoEncodingResolutionMode;
 
    type AppCaptureHistoricalBufferLengthUnit is (
       Megabytes_e,
@@ -1123,7 +1123,7 @@ package WinRt.Windows.Media.Capture is
       Megabytes_e => 0,
       Seconds_e => 1
    );
-   type AppCaptureHistoricalBufferLengthUnit_Ptr is access all AppCaptureHistoricalBufferLengthUnit;
+   type AppCaptureHistoricalBufferLengthUnit_Ptr is access AppCaptureHistoricalBufferLengthUnit;
 
    type AppCaptureMetadataPriority is (
       Informational_e,
@@ -1133,7 +1133,7 @@ package WinRt.Windows.Media.Capture is
       Informational_e => 0,
       Important_e => 1
    );
-   type AppCaptureMetadataPriority_Ptr is access all AppCaptureMetadataPriority;
+   type AppCaptureMetadataPriority_Ptr is access AppCaptureMetadataPriority;
 
    type AppCaptureMicrophoneCaptureState is (
       Stopped_e,
@@ -1145,7 +1145,7 @@ package WinRt.Windows.Media.Capture is
       Started_e => 1,
       Failed_e => 2
    );
-   type AppCaptureMicrophoneCaptureState_Ptr is access all AppCaptureMicrophoneCaptureState;
+   type AppCaptureMicrophoneCaptureState_Ptr is access AppCaptureMicrophoneCaptureState;
 
    type AppCaptureRecordingState is (
       InProgress_e,
@@ -1157,7 +1157,7 @@ package WinRt.Windows.Media.Capture is
       Completed_e => 1,
       Failed_e => 2
    );
-   type AppCaptureRecordingState_Ptr is access all AppCaptureRecordingState;
+   type AppCaptureRecordingState_Ptr is access AppCaptureRecordingState;
 
    type AppCaptureVideoEncodingBitrateMode is (
       Custom_e,
@@ -1169,7 +1169,7 @@ package WinRt.Windows.Media.Capture is
       High_e => 1,
       Standard_e => 2
    );
-   type AppCaptureVideoEncodingBitrateMode_Ptr is access all AppCaptureVideoEncodingBitrateMode;
+   type AppCaptureVideoEncodingBitrateMode_Ptr is access AppCaptureVideoEncodingBitrateMode;
 
    type AppCaptureVideoEncodingFrameRateMode is (
       Standard_e,
@@ -1179,7 +1179,7 @@ package WinRt.Windows.Media.Capture is
       Standard_e => 0,
       High_e => 1
    );
-   type AppCaptureVideoEncodingFrameRateMode_Ptr is access all AppCaptureVideoEncodingFrameRateMode;
+   type AppCaptureVideoEncodingFrameRateMode_Ptr is access AppCaptureVideoEncodingFrameRateMode;
 
    type AppCaptureVideoEncodingResolutionMode is (
       Custom_e,
@@ -1191,7 +1191,7 @@ package WinRt.Windows.Media.Capture is
       High_e => 1,
       Standard_e => 2
    );
-   type AppCaptureVideoEncodingResolutionMode_Ptr is access all AppCaptureVideoEncodingResolutionMode;
+   type AppCaptureVideoEncodingResolutionMode_Ptr is access AppCaptureVideoEncodingResolutionMode;
 
    type CameraCaptureUIMaxPhotoResolution is (
       HighestAvailable_e,
@@ -1209,7 +1209,7 @@ package WinRt.Windows.Media.Capture is
       Large3M_e => 4,
       VeryLarge5M_e => 5
    );
-   type CameraCaptureUIMaxPhotoResolution_Ptr is access all CameraCaptureUIMaxPhotoResolution;
+   type CameraCaptureUIMaxPhotoResolution_Ptr is access CameraCaptureUIMaxPhotoResolution;
 
    type CameraCaptureUIMaxVideoResolution is (
       HighestAvailable_e,
@@ -1223,7 +1223,7 @@ package WinRt.Windows.Media.Capture is
       StandardDefinition_e => 2,
       HighDefinition_e => 3
    );
-   type CameraCaptureUIMaxVideoResolution_Ptr is access all CameraCaptureUIMaxVideoResolution;
+   type CameraCaptureUIMaxVideoResolution_Ptr is access CameraCaptureUIMaxVideoResolution;
 
    type CameraCaptureUIMode is (
       PhotoOrVideo_e,
@@ -1235,7 +1235,7 @@ package WinRt.Windows.Media.Capture is
       Photo_e => 1,
       Video_e => 2
    );
-   type CameraCaptureUIMode_Ptr is access all CameraCaptureUIMode;
+   type CameraCaptureUIMode_Ptr is access CameraCaptureUIMode;
 
    type CameraCaptureUIPhotoFormat is (
       Jpeg_e,
@@ -1247,7 +1247,7 @@ package WinRt.Windows.Media.Capture is
       Png_e => 1,
       JpegXR_e => 2
    );
-   type CameraCaptureUIPhotoFormat_Ptr is access all CameraCaptureUIPhotoFormat;
+   type CameraCaptureUIPhotoFormat_Ptr is access CameraCaptureUIPhotoFormat;
 
    type CameraCaptureUIVideoFormat is (
       Mp4_e,
@@ -1257,7 +1257,7 @@ package WinRt.Windows.Media.Capture is
       Mp4_e => 0,
       Wmv_e => 1
    );
-   type CameraCaptureUIVideoFormat_Ptr is access all CameraCaptureUIVideoFormat;
+   type CameraCaptureUIVideoFormat_Ptr is access CameraCaptureUIVideoFormat;
 
    type ForegroundActivationArgument is (
       SignInRequired_e,
@@ -1267,7 +1267,7 @@ package WinRt.Windows.Media.Capture is
       SignInRequired_e => 0,
       MoreSettings_e => 1
    );
-   type ForegroundActivationArgument_Ptr is access all ForegroundActivationArgument;
+   type ForegroundActivationArgument_Ptr is access ForegroundActivationArgument;
 
    type GameBarCommand is (
       OpenGameBar_e,
@@ -1301,7 +1301,7 @@ package WinRt.Windows.Media.Capture is
       ToggleCameraCapture_e => 12,
       ToggleRecordingIndicator_e => 13
    );
-   type GameBarCommand_Ptr is access all GameBarCommand;
+   type GameBarCommand_Ptr is access GameBarCommand;
 
    type GameBarCommandOrigin is (
       ShortcutKey_e,
@@ -1313,7 +1313,7 @@ package WinRt.Windows.Media.Capture is
       Cortana_e => 1,
       AppCommand_e => 2
    );
-   type GameBarCommandOrigin_Ptr is access all GameBarCommandOrigin;
+   type GameBarCommandOrigin_Ptr is access GameBarCommandOrigin;
 
    type GameBarServicesDisplayMode is (
       Windowed_e,
@@ -1323,7 +1323,7 @@ package WinRt.Windows.Media.Capture is
       Windowed_e => 0,
       FullScreenExclusive_e => 1
    );
-   type GameBarServicesDisplayMode_Ptr is access all GameBarServicesDisplayMode;
+   type GameBarServicesDisplayMode_Ptr is access GameBarServicesDisplayMode;
 
    type GameBarTargetCapturePolicy is (
       EnabledBySystem_e,
@@ -1339,7 +1339,7 @@ package WinRt.Windows.Media.Capture is
       ProhibitedBySystem_e => 3,
       ProhibitedByPublisher_e => 4
    );
-   type GameBarTargetCapturePolicy_Ptr is access all GameBarTargetCapturePolicy;
+   type GameBarTargetCapturePolicy_Ptr is access GameBarTargetCapturePolicy;
 
    type KnownVideoProfile is (
       VideoRecording_e,
@@ -1365,7 +1365,7 @@ package WinRt.Windows.Media.Capture is
       HdrWithWcgPhoto_e => 8,
       VideoHdr8_e => 9
    );
-   type KnownVideoProfile_Ptr is access all KnownVideoProfile;
+   type KnownVideoProfile_Ptr is access KnownVideoProfile;
 
    type MediaCaptureDeviceExclusiveControlStatus is (
       ExclusiveControlAvailable_e,
@@ -1375,7 +1375,7 @@ package WinRt.Windows.Media.Capture is
       ExclusiveControlAvailable_e => 0,
       SharedReadOnlyAvailable_e => 1
    );
-   type MediaCaptureDeviceExclusiveControlStatus_Ptr is access all MediaCaptureDeviceExclusiveControlStatus;
+   type MediaCaptureDeviceExclusiveControlStatus_Ptr is access MediaCaptureDeviceExclusiveControlStatus;
 
    type MediaCaptureMemoryPreference is (
       Auto_e,
@@ -1385,7 +1385,7 @@ package WinRt.Windows.Media.Capture is
       Auto_e => 0,
       Cpu_e => 1
    );
-   type MediaCaptureMemoryPreference_Ptr is access all MediaCaptureMemoryPreference;
+   type MediaCaptureMemoryPreference_Ptr is access MediaCaptureMemoryPreference;
 
    type MediaCaptureSharingMode is (
       ExclusiveControl_e,
@@ -1395,7 +1395,7 @@ package WinRt.Windows.Media.Capture is
       ExclusiveControl_e => 0,
       SharedReadOnly_e => 1
    );
-   type MediaCaptureSharingMode_Ptr is access all MediaCaptureSharingMode;
+   type MediaCaptureSharingMode_Ptr is access MediaCaptureSharingMode;
 
    type MediaCaptureThermalStatus is (
       Normal_e,
@@ -1405,7 +1405,7 @@ package WinRt.Windows.Media.Capture is
       Normal_e => 0,
       Overheated_e => 1
    );
-   type MediaCaptureThermalStatus_Ptr is access all MediaCaptureThermalStatus;
+   type MediaCaptureThermalStatus_Ptr is access MediaCaptureThermalStatus;
 
    type MediaCategory is (
       Other_e,
@@ -1421,7 +1421,7 @@ package WinRt.Windows.Media.Capture is
       GameChat_e => 3,
       Speech_e => 4
    );
-   type MediaCategory_Ptr is access all MediaCategory;
+   type MediaCategory_Ptr is access MediaCategory;
 
    type MediaStreamType is (
       VideoPreview_e,
@@ -1435,7 +1435,7 @@ package WinRt.Windows.Media.Capture is
       Audio_e => 2,
       Photo_e => 3
    );
-   type MediaStreamType_Ptr is access all MediaStreamType;
+   type MediaStreamType_Ptr is access MediaStreamType;
 
    type PhotoCaptureSource is (
       Auto_e,
@@ -1447,7 +1447,7 @@ package WinRt.Windows.Media.Capture is
       VideoPreview_e => 1,
       Photo_e => 2
    );
-   type PhotoCaptureSource_Ptr is access all PhotoCaptureSource;
+   type PhotoCaptureSource_Ptr is access PhotoCaptureSource;
 
    type PowerlineFrequency is (
       Disabled_e,
@@ -1461,7 +1461,7 @@ package WinRt.Windows.Media.Capture is
       SixtyHertz_e => 2,
       Auto_e => 3
    );
-   type PowerlineFrequency_Ptr is access all PowerlineFrequency;
+   type PowerlineFrequency_Ptr is access PowerlineFrequency;
 
    type StreamingCaptureMode is (
       AudioAndVideo_e,
@@ -1473,7 +1473,7 @@ package WinRt.Windows.Media.Capture is
       Audio_e => 1,
       Video_e => 2
    );
-   type StreamingCaptureMode_Ptr is access all StreamingCaptureMode;
+   type StreamingCaptureMode_Ptr is access StreamingCaptureMode;
 
    type VideoDeviceCharacteristic is (
       AllStreamsIndependent_e,
@@ -1489,7 +1489,7 @@ package WinRt.Windows.Media.Capture is
       RecordPhotoStreamsIdentical_e => 3,
       AllStreamsIdentical_e => 4
    );
-   type VideoDeviceCharacteristic_Ptr is access all VideoDeviceCharacteristic;
+   type VideoDeviceCharacteristic_Ptr is access VideoDeviceCharacteristic;
 
    type VideoRotation is (
       None_e,
@@ -1503,7 +1503,7 @@ package WinRt.Windows.Media.Capture is
       Clockwise180Degrees_e => 2,
       Clockwise270Degrees_e => 3
    );
-   type VideoRotation_Ptr is access all VideoRotation;
+   type VideoRotation_Ptr is access VideoRotation;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1512,34 +1512,34 @@ package WinRt.Windows.Media.Capture is
    type AppBroadcastContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type AppBroadcastContract_Ptr is access all AppBroadcastContract;
+   type AppBroadcastContract_Ptr is access AppBroadcastContract;
 
    type AppCaptureContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type AppCaptureContract_Ptr is access all AppCaptureContract;
+   type AppCaptureContract_Ptr is access AppCaptureContract;
 
    type AppCaptureMetadataContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type AppCaptureMetadataContract_Ptr is access all AppCaptureMetadataContract;
+   type AppCaptureMetadataContract_Ptr is access AppCaptureMetadataContract;
 
    type CameraCaptureUIContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type CameraCaptureUIContract_Ptr is access all CameraCaptureUIContract;
+   type CameraCaptureUIContract_Ptr is access CameraCaptureUIContract;
 
    type GameBarContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type GameBarContract_Ptr is access all GameBarContract;
+   type GameBarContract_Ptr is access GameBarContract;
 
    type WhiteBalanceGain is record
       R : WinRt.Double;
       G : WinRt.Double;
       B : WinRt.Double;
    end record with Convention => C_Pass_By_Copy;
-   type WhiteBalanceGain_Ptr is access all WhiteBalanceGain;
+   type WhiteBalanceGain_Ptr is access WhiteBalanceGain;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

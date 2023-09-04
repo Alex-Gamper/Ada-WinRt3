@@ -141,7 +141,7 @@ package WinRt.Windows.Web.Http.Diagnostics is
       Fetch_e => 11,
       Beacon_e => 12
    );
-   type HttpDiagnosticRequestInitiator_Ptr is access all HttpDiagnosticRequestInitiator;
+   type HttpDiagnosticRequestInitiator_Ptr is access HttpDiagnosticRequestInitiator;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -150,7 +150,7 @@ package WinRt.Windows.Web.Http.Diagnostics is
    type HttpDiagnosticsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type HttpDiagnosticsContract_Ptr is access all HttpDiagnosticsContract;
+   type HttpDiagnosticsContract_Ptr is access HttpDiagnosticsContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

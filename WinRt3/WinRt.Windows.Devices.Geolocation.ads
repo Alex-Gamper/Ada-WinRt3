@@ -266,7 +266,7 @@ package WinRt.Windows.Devices.Geolocation is
       Geoid_e => 3,
       Surface_e => 4
    );
-   type AltitudeReferenceSystem_Ptr is access all AltitudeReferenceSystem;
+   type AltitudeReferenceSystem_Ptr is access AltitudeReferenceSystem;
 
    type GeolocationAccessStatus is (
       Unspecified_e,
@@ -278,7 +278,7 @@ package WinRt.Windows.Devices.Geolocation is
       Allowed_e => 1,
       Denied_e => 2
    );
-   type GeolocationAccessStatus_Ptr is access all GeolocationAccessStatus;
+   type GeolocationAccessStatus_Ptr is access GeolocationAccessStatus;
 
    type GeoshapeType is (
       Geopoint_e,
@@ -292,7 +292,7 @@ package WinRt.Windows.Devices.Geolocation is
       Geopath_e => 2,
       GeoboundingBox_e => 3
    );
-   type GeoshapeType_Ptr is access all GeoshapeType;
+   type GeoshapeType_Ptr is access GeoshapeType;
 
    type PositionAccuracy is (
       Default_e,
@@ -302,7 +302,7 @@ package WinRt.Windows.Devices.Geolocation is
       Default_e => 0,
       High_e => 1
    );
-   type PositionAccuracy_Ptr is access all PositionAccuracy;
+   type PositionAccuracy_Ptr is access PositionAccuracy;
 
    type PositionSource is (
       Cellular_e,
@@ -322,7 +322,7 @@ package WinRt.Windows.Devices.Geolocation is
       Default_e => 5,
       Obfuscated_e => 6
    );
-   type PositionSource_Ptr is access all PositionSource;
+   type PositionSource_Ptr is access PositionSource;
 
    type PositionStatus is (
       Ready_e,
@@ -340,7 +340,7 @@ package WinRt.Windows.Devices.Geolocation is
       NotInitialized_e => 4,
       NotAvailable_e => 5
    );
-   type PositionStatus_Ptr is access all PositionStatus;
+   type PositionStatus_Ptr is access PositionStatus;
 
    type VisitMonitoringScope is (
       Venue_e,
@@ -350,7 +350,7 @@ package WinRt.Windows.Devices.Geolocation is
       Venue_e => 0,
       City_e => 1
    );
-   type VisitMonitoringScope_Ptr is access all VisitMonitoringScope;
+   type VisitMonitoringScope_Ptr is access VisitMonitoringScope;
 
    type VisitStateChange is (
       TrackingLost_e,
@@ -364,7 +364,7 @@ package WinRt.Windows.Devices.Geolocation is
       Departed_e => 2,
       OtherMovement_e => 3
    );
-   type VisitStateChange_Ptr is access all VisitStateChange;
+   type VisitStateChange_Ptr is access VisitStateChange;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -375,7 +375,7 @@ package WinRt.Windows.Devices.Geolocation is
       Longitude : WinRt.Double;
       Altitude : WinRt.Double;
    end record with Convention => C_Pass_By_Copy;
-   type BasicGeoposition_Ptr is access all BasicGeoposition;
+   type BasicGeoposition_Ptr is access BasicGeoposition;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

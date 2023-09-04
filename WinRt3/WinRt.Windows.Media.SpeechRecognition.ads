@@ -267,7 +267,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       Default_e => 0,
       PauseOnRecognition_e => 1
    );
-   type SpeechContinuousRecognitionMode_Ptr is access all SpeechContinuousRecognitionMode;
+   type SpeechContinuousRecognitionMode_Ptr is access SpeechContinuousRecognitionMode;
 
    type SpeechRecognitionAudioProblem is (
       None_e,
@@ -287,7 +287,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       TooFast_e => 5,
       TooSlow_e => 6
    );
-   type SpeechRecognitionAudioProblem_Ptr is access all SpeechRecognitionAudioProblem;
+   type SpeechRecognitionAudioProblem_Ptr is access SpeechRecognitionAudioProblem;
 
    type SpeechRecognitionConfidence is (
       High_e,
@@ -301,7 +301,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       Low_e => 2,
       Rejected_e => 3
    );
-   type SpeechRecognitionConfidence_Ptr is access all SpeechRecognitionConfidence;
+   type SpeechRecognitionConfidence_Ptr is access SpeechRecognitionConfidence;
 
    type SpeechRecognitionConstraintProbability is (
       Default_e,
@@ -313,7 +313,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       Min_e => 1,
       Max_e => 2
    );
-   type SpeechRecognitionConstraintProbability_Ptr is access all SpeechRecognitionConstraintProbability;
+   type SpeechRecognitionConstraintProbability_Ptr is access SpeechRecognitionConstraintProbability;
 
    type SpeechRecognitionConstraintType is (
       Topic_e,
@@ -327,7 +327,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       Grammar_e => 2,
       VoiceCommandDefinition_e => 3
    );
-   type SpeechRecognitionConstraintType_Ptr is access all SpeechRecognitionConstraintType;
+   type SpeechRecognitionConstraintType_Ptr is access SpeechRecognitionConstraintType;
 
    type SpeechRecognitionResultStatus is (
       Success_e,
@@ -355,7 +355,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       NetworkFailure_e => 9,
       MicrophoneUnavailable_e => 10
    );
-   type SpeechRecognitionResultStatus_Ptr is access all SpeechRecognitionResultStatus;
+   type SpeechRecognitionResultStatus_Ptr is access SpeechRecognitionResultStatus;
 
    type SpeechRecognitionScenario is (
       WebSearch_e,
@@ -367,7 +367,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       Dictation_e => 1,
       FormFilling_e => 2
    );
-   type SpeechRecognitionScenario_Ptr is access all SpeechRecognitionScenario;
+   type SpeechRecognitionScenario_Ptr is access SpeechRecognitionScenario;
 
    type SpeechRecognizerState is (
       Idle_e,
@@ -387,7 +387,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       SpeechDetected_e => 5,
       Paused_e => 6
    );
-   type SpeechRecognizerState_Ptr is access all SpeechRecognizerState;
+   type SpeechRecognizerState_Ptr is access SpeechRecognizerState;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

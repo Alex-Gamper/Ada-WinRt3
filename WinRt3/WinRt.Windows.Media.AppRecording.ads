@@ -119,7 +119,7 @@ package WinRt.Windows.Media.AppRecording is
       None_e => 0,
       HdrContentVisible_e => 1
    );
-   type AppRecordingSaveScreenshotOption_Ptr is access all AppRecordingSaveScreenshotOption;
+   type AppRecordingSaveScreenshotOption_Ptr is access AppRecordingSaveScreenshotOption;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -128,7 +128,7 @@ package WinRt.Windows.Media.AppRecording is
    type AppRecordingContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type AppRecordingContract_Ptr is access all AppRecordingContract;
+   type AppRecordingContract_Ptr is access AppRecordingContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

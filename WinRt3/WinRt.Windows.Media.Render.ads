@@ -65,6 +65,6 @@ package WinRt.Windows.Media.Render is
       Movie_e => 10,
       Media_e => 11
    );
-   type AudioRenderCategory_Ptr is access all AudioRenderCategory;
+   type AudioRenderCategory_Ptr is access AudioRenderCategory;
 
 end;

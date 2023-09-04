@@ -41,7 +41,7 @@ package WinRt.Windows.Networking.Connectivity is
    -----------------------------------------------------------------------------
 
    type NetworkStatusChangedEventHandler_Delegate;
-   type NetworkStatusChangedEventHandler is access all NetworkStatusChangedEventHandler_Delegate;
+   type NetworkStatusChangedEventHandler is access NetworkStatusChangedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
@@ -339,7 +339,7 @@ package WinRt.Windows.Networking.Connectivity is
       Chap_e => 2,
       Mschapv2_e => 3
    );
-   type CellularApnAuthenticationType_Ptr is access all CellularApnAuthenticationType;
+   type CellularApnAuthenticationType_Ptr is access CellularApnAuthenticationType;
 
    type ConnectionProfileDeleteStatus is (
       Success_e,
@@ -353,7 +353,7 @@ package WinRt.Windows.Networking.Connectivity is
       DeniedBySystem_e => 2,
       UnknownError_e => 3
    );
-   type ConnectionProfileDeleteStatus_Ptr is access all ConnectionProfileDeleteStatus;
+   type ConnectionProfileDeleteStatus_Ptr is access ConnectionProfileDeleteStatus;
 
    type DataUsageGranularity is (
       PerMinute_e,
@@ -367,7 +367,7 @@ package WinRt.Windows.Networking.Connectivity is
       PerDay_e => 2,
       Total_e => 3
    );
-   type DataUsageGranularity_Ptr is access all DataUsageGranularity;
+   type DataUsageGranularity_Ptr is access DataUsageGranularity;
 
    type DomainConnectivityLevel is (
       None_e,
@@ -379,7 +379,7 @@ package WinRt.Windows.Networking.Connectivity is
       Unauthenticated_e => 1,
       Authenticated_e => 2
    );
-   type DomainConnectivityLevel_Ptr is access all DomainConnectivityLevel;
+   type DomainConnectivityLevel_Ptr is access DomainConnectivityLevel;
 
    type NetworkAuthenticationType is (
       None_e,
@@ -411,7 +411,7 @@ package WinRt.Windows.Networking.Connectivity is
       Wpa3Sae_e => 11,
       Owe_e => 12
    );
-   type NetworkAuthenticationType_Ptr is access all NetworkAuthenticationType;
+   type NetworkAuthenticationType_Ptr is access NetworkAuthenticationType;
 
    type NetworkConnectivityLevel is (
       None_e,
@@ -425,7 +425,7 @@ package WinRt.Windows.Networking.Connectivity is
       ConstrainedInternetAccess_e => 2,
       InternetAccess_e => 3
    );
-   type NetworkConnectivityLevel_Ptr is access all NetworkConnectivityLevel;
+   type NetworkConnectivityLevel_Ptr is access NetworkConnectivityLevel;
 
    type NetworkCostType is (
       Unknown_e,
@@ -439,7 +439,7 @@ package WinRt.Windows.Networking.Connectivity is
       Fixed_e => 2,
       Variable_e => 3
    );
-   type NetworkCostType_Ptr is access all NetworkCostType;
+   type NetworkCostType_Ptr is access NetworkCostType;
 
    type NetworkEncryptionType is (
       None_e,
@@ -465,7 +465,7 @@ package WinRt.Windows.Networking.Connectivity is
       RsnUseGroup_e => 8,
       Ihv_e => 9
    );
-   type NetworkEncryptionType_Ptr is access all NetworkEncryptionType;
+   type NetworkEncryptionType_Ptr is access NetworkEncryptionType;
 
    type NetworkTypes is (
       None_e,
@@ -477,7 +477,7 @@ package WinRt.Windows.Networking.Connectivity is
       Internet_e => 1,
       PrivateNetwork_e => 2
    );
-   type NetworkTypes_Ptr is access all NetworkTypes;
+   type NetworkTypes_Ptr is access NetworkTypes;
 
    type RoamingStates is (
       None_e,
@@ -489,7 +489,7 @@ package WinRt.Windows.Networking.Connectivity is
       NotRoaming_e => 1,
       Roaming_e => 2
    );
-   type RoamingStates_Ptr is access all RoamingStates;
+   type RoamingStates_Ptr is access RoamingStates;
 
    type TriStates is (
       DoNotCare_e,
@@ -501,7 +501,7 @@ package WinRt.Windows.Networking.Connectivity is
       No_e => 1,
       Yes_e => 2
    );
-   type TriStates_Ptr is access all TriStates;
+   type TriStates_Ptr is access TriStates;
 
    type WwanDataClass is (
       None_e,
@@ -537,7 +537,7 @@ package WinRt.Windows.Networking.Connectivity is
       CdmaUmb_e => 4194304,
       Custom_e => 2147483648
    );
-   type WwanDataClass_Ptr is access all WwanDataClass;
+   type WwanDataClass_Ptr is access WwanDataClass;
 
    type WwanNetworkIPKind is (
       None_e,
@@ -553,7 +553,7 @@ package WinRt.Windows.Networking.Connectivity is
       Ipv4v6_e => 3,
       Ipv4v6v4Xlat_e => 4
    );
-   type WwanNetworkIPKind_Ptr is access all WwanNetworkIPKind;
+   type WwanNetworkIPKind_Ptr is access WwanNetworkIPKind;
 
    type WwanNetworkRegistrationState is (
       None_e,
@@ -573,7 +573,7 @@ package WinRt.Windows.Networking.Connectivity is
       Partner_e => 5,
       Denied_e => 6
    );
-   type WwanNetworkRegistrationState_Ptr is access all WwanNetworkRegistrationState;
+   type WwanNetworkRegistrationState_Ptr is access WwanNetworkRegistrationState;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -583,12 +583,12 @@ package WinRt.Windows.Networking.Connectivity is
       Roaming : Windows.Networking.Connectivity.TriStates;
       Shared : Windows.Networking.Connectivity.TriStates;
    end record with Convention => C_Pass_By_Copy;
-   type NetworkUsageStates_Ptr is access all NetworkUsageStates;
+   type NetworkUsageStates_Ptr is access NetworkUsageStates;
 
    type WwanContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type WwanContract_Ptr is access all WwanContract;
+   type WwanContract_Ptr is access WwanContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

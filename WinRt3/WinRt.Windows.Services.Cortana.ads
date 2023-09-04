@@ -125,7 +125,7 @@ package WinRt.Windows.Services.Cortana is
       Personalization_e => 9,
       PhoneCall_e => 10
    );
-   type CortanaPermission_Ptr is access all CortanaPermission;
+   type CortanaPermission_Ptr is access CortanaPermission;
 
    type CortanaPermissionsChangeResult is (
       Success_e,
@@ -137,7 +137,7 @@ package WinRt.Windows.Services.Cortana is
       Unavailable_e => 1,
       DisabledByPolicy_e => 2
    );
-   type CortanaPermissionsChangeResult_Ptr is access all CortanaPermissionsChangeResult;
+   type CortanaPermissionsChangeResult_Ptr is access CortanaPermissionsChangeResult;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

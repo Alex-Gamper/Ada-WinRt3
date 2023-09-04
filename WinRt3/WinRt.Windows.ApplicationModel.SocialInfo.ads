@@ -117,7 +117,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       Default_e => 0,
       Photo_e => 1
    );
-   type SocialFeedItemStyle_Ptr is access all SocialFeedItemStyle;
+   type SocialFeedItemStyle_Ptr is access SocialFeedItemStyle;
 
    type SocialFeedKind is (
       HomeFeed_e,
@@ -129,7 +129,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       ContactFeed_e => 1,
       Dashboard_e => 2
    );
-   type SocialFeedKind_Ptr is access all SocialFeedKind;
+   type SocialFeedKind_Ptr is access SocialFeedKind;
 
    type SocialFeedUpdateMode is (
       Append_e,
@@ -139,7 +139,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       Append_e => 0,
       Replace_e => 1
    );
-   type SocialFeedUpdateMode_Ptr is access all SocialFeedUpdateMode;
+   type SocialFeedUpdateMode_Ptr is access SocialFeedUpdateMode;
 
    type SocialItemBadgeStyle is (
       Hidden_e,
@@ -151,7 +151,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       Visible_e => 1,
       VisibleWithCount_e => 2
    );
-   type SocialItemBadgeStyle_Ptr is access all SocialItemBadgeStyle;
+   type SocialItemBadgeStyle_Ptr is access SocialItemBadgeStyle;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -160,7 +160,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    type SocialInfoContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type SocialInfoContract_Ptr is access all SocialInfoContract;
+   type SocialInfoContract_Ptr is access SocialInfoContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

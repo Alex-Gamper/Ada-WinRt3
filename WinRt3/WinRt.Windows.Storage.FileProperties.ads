@@ -146,7 +146,7 @@ package WinRt.Windows.Storage.FileProperties is
       Transverse_e => 7,
       Rotate90_e => 8
    );
-   type PhotoOrientation_Ptr is access all PhotoOrientation;
+   type PhotoOrientation_Ptr is access PhotoOrientation;
 
    type PropertyPrefetchOptions is (
       None_e,
@@ -164,7 +164,7 @@ package WinRt.Windows.Storage.FileProperties is
       DocumentProperties_e => 8,
       BasicProperties_e => 16
    );
-   type PropertyPrefetchOptions_Ptr is access all PropertyPrefetchOptions;
+   type PropertyPrefetchOptions_Ptr is access PropertyPrefetchOptions;
 
    type ThumbnailMode is (
       PicturesView_e,
@@ -182,7 +182,7 @@ package WinRt.Windows.Storage.FileProperties is
       ListView_e => 4,
       SingleItem_e => 5
    );
-   type ThumbnailMode_Ptr is access all ThumbnailMode;
+   type ThumbnailMode_Ptr is access ThumbnailMode;
 
    type ThumbnailOptions is (
       None_e,
@@ -196,7 +196,7 @@ package WinRt.Windows.Storage.FileProperties is
       ResizeThumbnail_e => 2,
       UseCurrentScale_e => 4
    );
-   type ThumbnailOptions_Ptr is access all ThumbnailOptions;
+   type ThumbnailOptions_Ptr is access ThumbnailOptions;
 
    type ThumbnailType is (
       Image_e,
@@ -206,7 +206,7 @@ package WinRt.Windows.Storage.FileProperties is
       Image_e => 0,
       Icon_e => 1
    );
-   type ThumbnailType_Ptr is access all ThumbnailType;
+   type ThumbnailType_Ptr is access ThumbnailType;
 
    type VideoOrientation is (
       Normal_e,
@@ -220,7 +220,7 @@ package WinRt.Windows.Storage.FileProperties is
       Rotate180_e => 180,
       Rotate270_e => 270
    );
-   type VideoOrientation_Ptr is access all VideoOrientation;
+   type VideoOrientation_Ptr is access VideoOrientation;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

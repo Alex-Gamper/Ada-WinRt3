@@ -149,7 +149,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
       NotAllowed_e => 2,
       Unavailable_e => 3
    );
-   type AddFileResult_Ptr is access all AddFileResult;
+   type AddFileResult_Ptr is access AddFileResult;
 
    type FileSelectionMode is (
       Single_e,
@@ -159,7 +159,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
       Single_e => 0,
       Multiple_e => 1
    );
-   type FileSelectionMode_Ptr is access all FileSelectionMode;
+   type FileSelectionMode_Ptr is access FileSelectionMode;
 
    type SetFileNameResult is (
       Succeeded_e,
@@ -171,7 +171,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
       NotAllowed_e => 1,
       Unavailable_e => 2
    );
-   type SetFileNameResult_Ptr is access all SetFileNameResult;
+   type SetFileNameResult_Ptr is access SetFileNameResult;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

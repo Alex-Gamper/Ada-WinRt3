@@ -108,7 +108,7 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
       User_e => 0,
       Device_e => 1
    );
-   type MicrosoftAccountMultiFactorAuthenticationType_Ptr is access all MicrosoftAccountMultiFactorAuthenticationType;
+   type MicrosoftAccountMultiFactorAuthenticationType_Ptr is access MicrosoftAccountMultiFactorAuthenticationType;
 
    type MicrosoftAccountMultiFactorServiceResponse is (
       Success_e,
@@ -158,7 +158,7 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
       UIRequired_e => 20,
       DeviceIdChanged_e => 21
    );
-   type MicrosoftAccountMultiFactorServiceResponse_Ptr is access all MicrosoftAccountMultiFactorServiceResponse;
+   type MicrosoftAccountMultiFactorServiceResponse_Ptr is access MicrosoftAccountMultiFactorServiceResponse;
 
    type MicrosoftAccountMultiFactorSessionApprovalStatus is (
       Pending_e,
@@ -170,7 +170,7 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
       Approved_e => 1,
       Denied_e => 2
    );
-   type MicrosoftAccountMultiFactorSessionApprovalStatus_Ptr is access all MicrosoftAccountMultiFactorSessionApprovalStatus;
+   type MicrosoftAccountMultiFactorSessionApprovalStatus_Ptr is access MicrosoftAccountMultiFactorSessionApprovalStatus;
 
    type MicrosoftAccountMultiFactorSessionAuthenticationStatus is (
       Authenticated_e,
@@ -180,7 +180,7 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
       Authenticated_e => 0,
       Unauthenticated_e => 1
    );
-   type MicrosoftAccountMultiFactorSessionAuthenticationStatus_Ptr is access all MicrosoftAccountMultiFactorSessionAuthenticationStatus;
+   type MicrosoftAccountMultiFactorSessionAuthenticationStatus_Ptr is access MicrosoftAccountMultiFactorSessionAuthenticationStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

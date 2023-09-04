@@ -121,7 +121,7 @@ package WinRt.Windows.Services.Maps.LocalSearch is
       NetworkFailure_e => 6,
       NotSupported_e => 7
    );
-   type LocalLocationFinderStatus_Ptr is access all LocalLocationFinderStatus;
+   type LocalLocationFinderStatus_Ptr is access LocalLocationFinderStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations
