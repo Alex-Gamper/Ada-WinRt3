@@ -42,19 +42,19 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    -----------------------------------------------------------------------------
 
    type IDnssdRegistrationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IDnssdRegistrationResult is access IDnssdRegistrationResult_Interface'Class;
+   type IDnssdRegistrationResult is access all IDnssdRegistrationResult_Interface'Class;
    type IDnssdRegistrationResult_Ptr is access all IDnssdRegistrationResult;
 
    type IDnssdServiceInstance_Interface is interface and WinRt.IInspectable_Interface;
-   type IDnssdServiceInstance is access IDnssdServiceInstance_Interface'Class;
+   type IDnssdServiceInstance is access all IDnssdServiceInstance_Interface'Class;
    type IDnssdServiceInstance_Ptr is access all IDnssdServiceInstance;
    type IDnssdServiceInstance_Array is array (Natural range <>) of IDnssdServiceInstance;
 
    type IDnssdServiceInstanceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDnssdServiceInstanceFactory is access IDnssdServiceInstanceFactory_Interface'Class;
+   type IDnssdServiceInstanceFactory is access all IDnssdServiceInstanceFactory_Interface'Class;
 
    type IDnssdServiceWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IDnssdServiceWatcher is access IDnssdServiceWatcher_Interface'Class;
+   type IDnssdServiceWatcher is access all IDnssdServiceWatcher_Interface'Class;
    type IDnssdServiceWatcher_Ptr is access all IDnssdServiceWatcher;
 
    -----------------------------------------------------------------------------
@@ -101,7 +101,7 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       ServerError_e => 2,
       SecurityError_e => 3
    );
-   type DnssdRegistrationStatus_Ptr is access DnssdRegistrationStatus;
+   type DnssdRegistrationStatus_Ptr is access all DnssdRegistrationStatus;
 
    type DnssdServiceWatcherStatus is (
       Created_e,
@@ -119,7 +119,7 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       Stopped_e => 4,
       Aborted_e => 5
    );
-   type DnssdServiceWatcherStatus_Ptr is access DnssdServiceWatcherStatus;
+   type DnssdServiceWatcherStatus_Ptr is access all DnssdServiceWatcherStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

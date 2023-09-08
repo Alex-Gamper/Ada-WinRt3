@@ -43,87 +43,87 @@ package WinRt.Windows.UI.Xaml.Hosting is
    -----------------------------------------------------------------------------
 
    type IDesignerAppExitedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDesignerAppExitedEventArgs is access IDesignerAppExitedEventArgs_Interface'Class;
+   type IDesignerAppExitedEventArgs is access all IDesignerAppExitedEventArgs_Interface'Class;
    type IDesignerAppExitedEventArgs_Ptr is access all IDesignerAppExitedEventArgs;
 
    type IDesignerAppManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IDesignerAppManager is access IDesignerAppManager_Interface'Class;
+   type IDesignerAppManager is access all IDesignerAppManager_Interface'Class;
    type IDesignerAppManager_Ptr is access all IDesignerAppManager;
 
    type IDesignerAppManagerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDesignerAppManagerFactory is access IDesignerAppManagerFactory_Interface'Class;
+   type IDesignerAppManagerFactory is access all IDesignerAppManagerFactory_Interface'Class;
 
    type IDesignerAppView_Interface is interface and WinRt.IInspectable_Interface;
-   type IDesignerAppView is access IDesignerAppView_Interface'Class;
+   type IDesignerAppView is access all IDesignerAppView_Interface'Class;
    type IDesignerAppView_Ptr is access all IDesignerAppView;
 
    type IDesktopWindowXamlSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IDesktopWindowXamlSource is access IDesktopWindowXamlSource_Interface'Class;
+   type IDesktopWindowXamlSource is access all IDesktopWindowXamlSource_Interface'Class;
    type IDesktopWindowXamlSource_Ptr is access all IDesktopWindowXamlSource;
 
    type IDesktopWindowXamlSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDesktopWindowXamlSourceFactory is access IDesktopWindowXamlSourceFactory_Interface'Class;
+   type IDesktopWindowXamlSourceFactory is access all IDesktopWindowXamlSourceFactory_Interface'Class;
 
    type IDesktopWindowXamlSourceGotFocusEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDesktopWindowXamlSourceGotFocusEventArgs is access IDesktopWindowXamlSourceGotFocusEventArgs_Interface'Class;
+   type IDesktopWindowXamlSourceGotFocusEventArgs is access all IDesktopWindowXamlSourceGotFocusEventArgs_Interface'Class;
    type IDesktopWindowXamlSourceGotFocusEventArgs_Ptr is access all IDesktopWindowXamlSourceGotFocusEventArgs;
 
    type IDesktopWindowXamlSourceTakeFocusRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDesktopWindowXamlSourceTakeFocusRequestedEventArgs is access IDesktopWindowXamlSourceTakeFocusRequestedEventArgs_Interface'Class;
+   type IDesktopWindowXamlSourceTakeFocusRequestedEventArgs is access all IDesktopWindowXamlSourceTakeFocusRequestedEventArgs_Interface'Class;
    type IDesktopWindowXamlSourceTakeFocusRequestedEventArgs_Ptr is access all IDesktopWindowXamlSourceTakeFocusRequestedEventArgs;
 
    type IElementCompositionPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type IElementCompositionPreview is access IElementCompositionPreview_Interface'Class;
+   type IElementCompositionPreview is access all IElementCompositionPreview_Interface'Class;
    type IElementCompositionPreview_Ptr is access all IElementCompositionPreview;
 
    type IElementCompositionPreviewStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IElementCompositionPreviewStatics is access IElementCompositionPreviewStatics_Interface'Class;
+   type IElementCompositionPreviewStatics is access all IElementCompositionPreviewStatics_Interface'Class;
 
    type IElementCompositionPreviewStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IElementCompositionPreviewStatics2 is access IElementCompositionPreviewStatics2_Interface'Class;
+   type IElementCompositionPreviewStatics2 is access all IElementCompositionPreviewStatics2_Interface'Class;
 
    type IElementCompositionPreviewStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IElementCompositionPreviewStatics3 is access IElementCompositionPreviewStatics3_Interface'Class;
+   type IElementCompositionPreviewStatics3 is access all IElementCompositionPreviewStatics3_Interface'Class;
 
    type IWindowsXamlManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IWindowsXamlManager is access IWindowsXamlManager_Interface'Class;
+   type IWindowsXamlManager is access all IWindowsXamlManager_Interface'Class;
    type IWindowsXamlManager_Ptr is access all IWindowsXamlManager;
 
    type IWindowsXamlManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWindowsXamlManagerStatics is access IWindowsXamlManagerStatics_Interface'Class;
+   type IWindowsXamlManagerStatics is access all IWindowsXamlManagerStatics_Interface'Class;
 
    type IXamlSourceFocusNavigationRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlSourceFocusNavigationRequest is access IXamlSourceFocusNavigationRequest_Interface'Class;
+   type IXamlSourceFocusNavigationRequest is access all IXamlSourceFocusNavigationRequest_Interface'Class;
    type IXamlSourceFocusNavigationRequest_Ptr is access all IXamlSourceFocusNavigationRequest;
 
    type IXamlSourceFocusNavigationRequestFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlSourceFocusNavigationRequestFactory is access IXamlSourceFocusNavigationRequestFactory_Interface'Class;
+   type IXamlSourceFocusNavigationRequestFactory is access all IXamlSourceFocusNavigationRequestFactory_Interface'Class;
 
    type IXamlSourceFocusNavigationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlSourceFocusNavigationResult is access IXamlSourceFocusNavigationResult_Interface'Class;
+   type IXamlSourceFocusNavigationResult is access all IXamlSourceFocusNavigationResult_Interface'Class;
    type IXamlSourceFocusNavigationResult_Ptr is access all IXamlSourceFocusNavigationResult;
 
    type IXamlSourceFocusNavigationResultFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlSourceFocusNavigationResultFactory is access IXamlSourceFocusNavigationResultFactory_Interface'Class;
+   type IXamlSourceFocusNavigationResultFactory is access all IXamlSourceFocusNavigationResultFactory_Interface'Class;
 
    type IXamlUIPresenter_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlUIPresenter is access IXamlUIPresenter_Interface'Class;
+   type IXamlUIPresenter is access all IXamlUIPresenter_Interface'Class;
    type IXamlUIPresenter_Ptr is access all IXamlUIPresenter;
 
    type IXamlUIPresenterHost_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlUIPresenterHost is access IXamlUIPresenterHost_Interface'Class;
+   type IXamlUIPresenterHost is access all IXamlUIPresenterHost_Interface'Class;
 
    type IXamlUIPresenterHost2_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlUIPresenterHost2 is access IXamlUIPresenterHost2_Interface'Class;
+   type IXamlUIPresenterHost2 is access all IXamlUIPresenterHost2_Interface'Class;
 
    type IXamlUIPresenterHost3_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlUIPresenterHost3 is access IXamlUIPresenterHost3_Interface'Class;
+   type IXamlUIPresenterHost3 is access all IXamlUIPresenterHost3_Interface'Class;
 
    type IXamlUIPresenterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlUIPresenterStatics is access IXamlUIPresenterStatics_Interface'Class;
+   type IXamlUIPresenterStatics is access all IXamlUIPresenterStatics_Interface'Class;
 
    type IXamlUIPresenterStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlUIPresenterStatics2 is access IXamlUIPresenterStatics2_Interface'Class;
+   type IXamlUIPresenterStatics2 is access all IXamlUIPresenterStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -207,7 +207,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
       Visible_e => 0,
       Hidden_e => 1
    );
-   type DesignerAppViewState_Ptr is access DesignerAppViewState;
+   type DesignerAppViewState_Ptr is access all DesignerAppViewState;
 
    type XamlSourceFocusNavigationReason is (
       Programmatic_e,
@@ -229,7 +229,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
       Right_e => 9,
       Down_e => 10
    );
-   type XamlSourceFocusNavigationReason_Ptr is access XamlSourceFocusNavigationReason;
+   type XamlSourceFocusNavigationReason_Ptr is access all XamlSourceFocusNavigationReason;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -238,7 +238,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
    type HostingContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type HostingContract_Ptr is access HostingContract;
+   type HostingContract_Ptr is access all HostingContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

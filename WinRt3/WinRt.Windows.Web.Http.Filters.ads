@@ -44,33 +44,33 @@ package WinRt.Windows.Web.Http.Filters is
    -----------------------------------------------------------------------------
 
    type IHttpBaseProtocolFilter_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpBaseProtocolFilter is access IHttpBaseProtocolFilter_Interface'Class;
+   type IHttpBaseProtocolFilter is access all IHttpBaseProtocolFilter_Interface'Class;
    type IHttpBaseProtocolFilter_Ptr is access all IHttpBaseProtocolFilter;
 
    type IHttpBaseProtocolFilter2_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpBaseProtocolFilter2 is access IHttpBaseProtocolFilter2_Interface'Class;
+   type IHttpBaseProtocolFilter2 is access all IHttpBaseProtocolFilter2_Interface'Class;
 
    type IHttpBaseProtocolFilter3_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpBaseProtocolFilter3 is access IHttpBaseProtocolFilter3_Interface'Class;
+   type IHttpBaseProtocolFilter3 is access all IHttpBaseProtocolFilter3_Interface'Class;
 
    type IHttpBaseProtocolFilter4_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpBaseProtocolFilter4 is access IHttpBaseProtocolFilter4_Interface'Class;
+   type IHttpBaseProtocolFilter4 is access all IHttpBaseProtocolFilter4_Interface'Class;
 
    type IHttpBaseProtocolFilter5_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpBaseProtocolFilter5 is access IHttpBaseProtocolFilter5_Interface'Class;
+   type IHttpBaseProtocolFilter5 is access all IHttpBaseProtocolFilter5_Interface'Class;
 
    type IHttpBaseProtocolFilterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpBaseProtocolFilterStatics is access IHttpBaseProtocolFilterStatics_Interface'Class;
+   type IHttpBaseProtocolFilterStatics is access all IHttpBaseProtocolFilterStatics_Interface'Class;
 
    type IHttpCacheControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpCacheControl is access IHttpCacheControl_Interface'Class;
+   type IHttpCacheControl is access all IHttpCacheControl_Interface'Class;
    type IHttpCacheControl_Ptr is access all IHttpCacheControl;
 
    type IHttpFilter_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpFilter is access IHttpFilter_Interface'Class;
+   type IHttpFilter is access all IHttpFilter_Interface'Class;
 
    type IHttpServerCustomValidationRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpServerCustomValidationRequestedEventArgs is access IHttpServerCustomValidationRequestedEventArgs_Interface'Class;
+   type IHttpServerCustomValidationRequestedEventArgs is access all IHttpServerCustomValidationRequestedEventArgs_Interface'Class;
    type IHttpServerCustomValidationRequestedEventArgs_Ptr is access all IHttpServerCustomValidationRequestedEventArgs;
 
    -----------------------------------------------------------------------------
@@ -111,7 +111,7 @@ package WinRt.Windows.Web.Http.Filters is
       OnlyFromCache_e => 2,
       NoCache_e => 3
    );
-   type HttpCacheReadBehavior_Ptr is access HttpCacheReadBehavior;
+   type HttpCacheReadBehavior_Ptr is access all HttpCacheReadBehavior;
 
    type HttpCacheWriteBehavior is (
       Default_e,
@@ -121,7 +121,7 @@ package WinRt.Windows.Web.Http.Filters is
       Default_e => 0,
       NoCache_e => 1
    );
-   type HttpCacheWriteBehavior_Ptr is access HttpCacheWriteBehavior;
+   type HttpCacheWriteBehavior_Ptr is access all HttpCacheWriteBehavior;
 
    type HttpCookieUsageBehavior is (
       Default_e,
@@ -131,7 +131,7 @@ package WinRt.Windows.Web.Http.Filters is
       Default_e => 0,
       NoCookies_e => 1
    );
-   type HttpCookieUsageBehavior_Ptr is access HttpCookieUsageBehavior;
+   type HttpCookieUsageBehavior_Ptr is access all HttpCookieUsageBehavior;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

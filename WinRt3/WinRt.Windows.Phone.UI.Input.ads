@@ -39,18 +39,18 @@ package WinRt.Windows.Phone.UI.Input is
    -----------------------------------------------------------------------------
 
    type IBackPressedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackPressedEventArgs is access IBackPressedEventArgs_Interface'Class;
+   type IBackPressedEventArgs is access all IBackPressedEventArgs_Interface'Class;
    type IBackPressedEventArgs_Ptr is access all IBackPressedEventArgs;
 
    type ICameraEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICameraEventArgs is access ICameraEventArgs_Interface'Class;
+   type ICameraEventArgs is access all ICameraEventArgs_Interface'Class;
    type ICameraEventArgs_Ptr is access all ICameraEventArgs;
 
    type IHardwareButtonsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHardwareButtonsStatics is access IHardwareButtonsStatics_Interface'Class;
+   type IHardwareButtonsStatics is access all IHardwareButtonsStatics_Interface'Class;
 
    type IHardwareButtonsStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IHardwareButtonsStatics2 is access IHardwareButtonsStatics2_Interface'Class;
+   type IHardwareButtonsStatics2 is access all IHardwareButtonsStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

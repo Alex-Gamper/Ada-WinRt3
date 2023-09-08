@@ -39,20 +39,20 @@ package WinRt.Windows.Devices.Spi.Provider is
    -----------------------------------------------------------------------------
 
    type IProviderSpiConnectionSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IProviderSpiConnectionSettings is access IProviderSpiConnectionSettings_Interface'Class;
+   type IProviderSpiConnectionSettings is access all IProviderSpiConnectionSettings_Interface'Class;
    type IProviderSpiConnectionSettings_Ptr is access all IProviderSpiConnectionSettings;
 
    type IProviderSpiConnectionSettingsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IProviderSpiConnectionSettingsFactory is access IProviderSpiConnectionSettingsFactory_Interface'Class;
+   type IProviderSpiConnectionSettingsFactory is access all IProviderSpiConnectionSettingsFactory_Interface'Class;
 
    type ISpiControllerProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpiControllerProvider is access ISpiControllerProvider_Interface'Class;
+   type ISpiControllerProvider is access all ISpiControllerProvider_Interface'Class;
 
    type ISpiDeviceProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpiDeviceProvider is access ISpiDeviceProvider_Interface'Class;
+   type ISpiDeviceProvider is access all ISpiDeviceProvider_Interface'Class;
 
    type ISpiProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpiProvider is access ISpiProvider_Interface'Class;
+   type ISpiProvider is access all ISpiProvider_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -80,7 +80,7 @@ package WinRt.Windows.Devices.Spi.Provider is
       Mode2_e => 2,
       Mode3_e => 3
    );
-   type ProviderSpiMode_Ptr is access ProviderSpiMode;
+   type ProviderSpiMode_Ptr is access all ProviderSpiMode;
 
    type ProviderSpiSharingMode is (
       Exclusive_e,
@@ -90,7 +90,7 @@ package WinRt.Windows.Devices.Spi.Provider is
       Exclusive_e => 0,
       Shared_e => 1
    );
-   type ProviderSpiSharingMode_Ptr is access ProviderSpiSharingMode;
+   type ProviderSpiSharingMode_Ptr is access all ProviderSpiSharingMode;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

@@ -39,21 +39,21 @@ package WinRt.Windows.System.Profile.SystemManufacturers is
    -----------------------------------------------------------------------------
 
    type IOemSupportInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IOemSupportInfo is access IOemSupportInfo_Interface'Class;
+   type IOemSupportInfo is access all IOemSupportInfo_Interface'Class;
    type IOemSupportInfo_Ptr is access all IOemSupportInfo;
 
    type ISmbiosInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmbiosInformationStatics is access ISmbiosInformationStatics_Interface'Class;
+   type ISmbiosInformationStatics is access all ISmbiosInformationStatics_Interface'Class;
 
    type ISystemSupportDeviceInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemSupportDeviceInfo is access ISystemSupportDeviceInfo_Interface'Class;
+   type ISystemSupportDeviceInfo is access all ISystemSupportDeviceInfo_Interface'Class;
    type ISystemSupportDeviceInfo_Ptr is access all ISystemSupportDeviceInfo;
 
    type ISystemSupportInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemSupportInfoStatics is access ISystemSupportInfoStatics_Interface'Class;
+   type ISystemSupportInfoStatics is access all ISystemSupportInfoStatics_Interface'Class;
 
    type ISystemSupportInfoStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemSupportInfoStatics2 is access ISystemSupportInfoStatics2_Interface'Class;
+   type ISystemSupportInfoStatics2 is access all ISystemSupportInfoStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -78,7 +78,7 @@ package WinRt.Windows.System.Profile.SystemManufacturers is
    type SystemManufacturersContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type SystemManufacturersContract_Ptr is access SystemManufacturersContract;
+   type SystemManufacturersContract_Ptr is access all SystemManufacturersContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

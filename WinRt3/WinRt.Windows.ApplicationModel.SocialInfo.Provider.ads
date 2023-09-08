@@ -40,15 +40,15 @@ package WinRt.Windows.ApplicationModel.SocialInfo.Provider is
    -----------------------------------------------------------------------------
 
    type ISocialDashboardItemUpdater_Interface is interface and WinRt.IInspectable_Interface;
-   type ISocialDashboardItemUpdater is access ISocialDashboardItemUpdater_Interface'Class;
+   type ISocialDashboardItemUpdater is access all ISocialDashboardItemUpdater_Interface'Class;
    type ISocialDashboardItemUpdater_Ptr is access all ISocialDashboardItemUpdater;
 
    type ISocialFeedUpdater_Interface is interface and WinRt.IInspectable_Interface;
-   type ISocialFeedUpdater is access ISocialFeedUpdater_Interface'Class;
+   type ISocialFeedUpdater is access all ISocialFeedUpdater_Interface'Class;
    type ISocialFeedUpdater_Ptr is access all ISocialFeedUpdater;
 
    type ISocialInfoProviderManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISocialInfoProviderManagerStatics is access ISocialInfoProviderManagerStatics_Interface'Class;
+   type ISocialInfoProviderManagerStatics is access all ISocialInfoProviderManagerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

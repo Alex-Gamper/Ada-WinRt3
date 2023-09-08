@@ -39,10 +39,10 @@ package WinRt.Windows.Phone.System.Power is
    -----------------------------------------------------------------------------
 
    type IPowerManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPowerManagerStatics is access IPowerManagerStatics_Interface'Class;
+   type IPowerManagerStatics is access all IPowerManagerStatics_Interface'Class;
 
    type IPowerManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPowerManagerStatics2 is access IPowerManagerStatics2_Interface'Class;
+   type IPowerManagerStatics2 is access all IPowerManagerStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -56,7 +56,7 @@ package WinRt.Windows.Phone.System.Power is
       Off_e => 0,
       On_e => 1
    );
-   type PowerSavingMode_Ptr is access PowerSavingMode;
+   type PowerSavingMode_Ptr is access all PowerSavingMode;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

@@ -39,14 +39,14 @@ package WinRt.Windows.Perception.Spatial.Preview is
    -----------------------------------------------------------------------------
 
    type ISpatialGraphInteropFrameOfReferencePreview_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialGraphInteropFrameOfReferencePreview is access ISpatialGraphInteropFrameOfReferencePreview_Interface'Class;
+   type ISpatialGraphInteropFrameOfReferencePreview is access all ISpatialGraphInteropFrameOfReferencePreview_Interface'Class;
    type ISpatialGraphInteropFrameOfReferencePreview_Ptr is access all ISpatialGraphInteropFrameOfReferencePreview;
 
    type ISpatialGraphInteropPreviewStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialGraphInteropPreviewStatics is access ISpatialGraphInteropPreviewStatics_Interface'Class;
+   type ISpatialGraphInteropPreviewStatics is access all ISpatialGraphInteropPreviewStatics_Interface'Class;
 
    type ISpatialGraphInteropPreviewStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialGraphInteropPreviewStatics2 is access ISpatialGraphInteropPreviewStatics2_Interface'Class;
+   type ISpatialGraphInteropPreviewStatics2 is access all ISpatialGraphInteropPreviewStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

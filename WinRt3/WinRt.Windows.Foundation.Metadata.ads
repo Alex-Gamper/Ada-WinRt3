@@ -38,7 +38,7 @@ package WinRt.Windows.Foundation.Metadata is
    -----------------------------------------------------------------------------
 
    type IApiInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IApiInformationStatics is access IApiInformationStatics_Interface'Class;
+   type IApiInformationStatics is access all IApiInformationStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -74,7 +74,7 @@ package WinRt.Windows.Foundation.Metadata is
       ApiContract_e => 8192,
       All_e => 4294967295
    );
-   type AttributeTargets_Ptr is access AttributeTargets;
+   type AttributeTargets_Ptr is access all AttributeTargets;
 
    type CompositionType is (
       Protected_e,
@@ -84,7 +84,7 @@ package WinRt.Windows.Foundation.Metadata is
       Protected_e => 1,
       Public_e => 2
    );
-   type CompositionType_Ptr is access CompositionType;
+   type CompositionType_Ptr is access all CompositionType;
 
    type DeprecationType is (
       Deprecate_e,
@@ -94,7 +94,7 @@ package WinRt.Windows.Foundation.Metadata is
       Deprecate_e => 0,
       Remove_e => 1
    );
-   type DeprecationType_Ptr is access DeprecationType;
+   type DeprecationType_Ptr is access all DeprecationType;
 
    type FeatureStage is (
       AlwaysDisabled_e,
@@ -108,7 +108,7 @@ package WinRt.Windows.Foundation.Metadata is
       EnabledByDefault_e => 2,
       AlwaysEnabled_e => 3
    );
-   type FeatureStage_Ptr is access FeatureStage;
+   type FeatureStage_Ptr is access all FeatureStage;
 
    type GCPressureAmount is (
       Low_e,
@@ -120,7 +120,7 @@ package WinRt.Windows.Foundation.Metadata is
       Medium_e => 1,
       High_e => 2
    );
-   type GCPressureAmount_Ptr is access GCPressureAmount;
+   type GCPressureAmount_Ptr is access all GCPressureAmount;
 
    type MarshalingType is (
       InvalidMarshaling_e,
@@ -134,7 +134,7 @@ package WinRt.Windows.Foundation.Metadata is
       Agile_e => 2,
       Standard_e => 3
    );
-   type MarshalingType_Ptr is access MarshalingType;
+   type MarshalingType_Ptr is access all MarshalingType;
 
    type Platform is (
       Windows_e,
@@ -144,7 +144,7 @@ package WinRt.Windows.Foundation.Metadata is
       Windows_e => 0,
       WindowsPhone_e => 1
    );
-   type Platform_Ptr is access Platform;
+   type Platform_Ptr is access all Platform;
 
    type ThreadingModel is (
       InvalidThreading_e,
@@ -158,7 +158,7 @@ package WinRt.Windows.Foundation.Metadata is
       MTA_e => 2,
       Both_e => 3
    );
-   type ThreadingModel_Ptr is access ThreadingModel;
+   type ThreadingModel_Ptr is access all ThreadingModel;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

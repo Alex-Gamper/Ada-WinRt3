@@ -39,15 +39,15 @@ package WinRt.Windows.Security.Authentication.Identity is
    -----------------------------------------------------------------------------
 
    type IEnterpriseKeyCredentialRegistrationInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IEnterpriseKeyCredentialRegistrationInfo is access IEnterpriseKeyCredentialRegistrationInfo_Interface'Class;
+   type IEnterpriseKeyCredentialRegistrationInfo is access all IEnterpriseKeyCredentialRegistrationInfo_Interface'Class;
    type IEnterpriseKeyCredentialRegistrationInfo_Ptr is access all IEnterpriseKeyCredentialRegistrationInfo;
 
    type IEnterpriseKeyCredentialRegistrationManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IEnterpriseKeyCredentialRegistrationManager is access IEnterpriseKeyCredentialRegistrationManager_Interface'Class;
+   type IEnterpriseKeyCredentialRegistrationManager is access all IEnterpriseKeyCredentialRegistrationManager_Interface'Class;
    type IEnterpriseKeyCredentialRegistrationManager_Ptr is access all IEnterpriseKeyCredentialRegistrationManager;
 
    type IEnterpriseKeyCredentialRegistrationManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IEnterpriseKeyCredentialRegistrationManagerStatics is access IEnterpriseKeyCredentialRegistrationManagerStatics_Interface'Class;
+   type IEnterpriseKeyCredentialRegistrationManagerStatics is access all IEnterpriseKeyCredentialRegistrationManagerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

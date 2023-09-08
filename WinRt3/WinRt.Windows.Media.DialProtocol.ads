@@ -43,48 +43,48 @@ package WinRt.Windows.Media.DialProtocol is
    -----------------------------------------------------------------------------
 
    type IDialApp_Interface is interface and WinRt.IInspectable_Interface;
-   type IDialApp is access IDialApp_Interface'Class;
+   type IDialApp is access all IDialApp_Interface'Class;
    type IDialApp_Ptr is access all IDialApp;
 
    type IDialAppStateDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IDialAppStateDetails is access IDialAppStateDetails_Interface'Class;
+   type IDialAppStateDetails is access all IDialAppStateDetails_Interface'Class;
    type IDialAppStateDetails_Ptr is access all IDialAppStateDetails;
 
    type IDialDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IDialDevice is access IDialDevice_Interface'Class;
+   type IDialDevice is access all IDialDevice_Interface'Class;
    type IDialDevice_Ptr is access all IDialDevice;
 
    type IDialDevice2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDialDevice2 is access IDialDevice2_Interface'Class;
+   type IDialDevice2 is access all IDialDevice2_Interface'Class;
 
    type IDialDevicePicker_Interface is interface and WinRt.IInspectable_Interface;
-   type IDialDevicePicker is access IDialDevicePicker_Interface'Class;
+   type IDialDevicePicker is access all IDialDevicePicker_Interface'Class;
    type IDialDevicePicker_Ptr is access all IDialDevicePicker;
 
    type IDialDevicePickerFilter_Interface is interface and WinRt.IInspectable_Interface;
-   type IDialDevicePickerFilter is access IDialDevicePickerFilter_Interface'Class;
+   type IDialDevicePickerFilter is access all IDialDevicePickerFilter_Interface'Class;
    type IDialDevicePickerFilter_Ptr is access all IDialDevicePickerFilter;
 
    type IDialDeviceSelectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDialDeviceSelectedEventArgs is access IDialDeviceSelectedEventArgs_Interface'Class;
+   type IDialDeviceSelectedEventArgs is access all IDialDeviceSelectedEventArgs_Interface'Class;
    type IDialDeviceSelectedEventArgs_Ptr is access all IDialDeviceSelectedEventArgs;
 
    type IDialDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDialDeviceStatics is access IDialDeviceStatics_Interface'Class;
+   type IDialDeviceStatics is access all IDialDeviceStatics_Interface'Class;
 
    type IDialDisconnectButtonClickedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDialDisconnectButtonClickedEventArgs is access IDialDisconnectButtonClickedEventArgs_Interface'Class;
+   type IDialDisconnectButtonClickedEventArgs is access all IDialDisconnectButtonClickedEventArgs_Interface'Class;
    type IDialDisconnectButtonClickedEventArgs_Ptr is access all IDialDisconnectButtonClickedEventArgs;
 
    type IDialReceiverApp_Interface is interface and WinRt.IInspectable_Interface;
-   type IDialReceiverApp is access IDialReceiverApp_Interface'Class;
+   type IDialReceiverApp is access all IDialReceiverApp_Interface'Class;
    type IDialReceiverApp_Ptr is access all IDialReceiverApp;
 
    type IDialReceiverApp2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDialReceiverApp2 is access IDialReceiverApp2_Interface'Class;
+   type IDialReceiverApp2 is access all IDialReceiverApp2_Interface'Class;
 
    type IDialReceiverAppStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDialReceiverAppStatics is access IDialReceiverAppStatics_Interface'Class;
+   type IDialReceiverAppStatics is access all IDialReceiverAppStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -154,7 +154,7 @@ package WinRt.Windows.Media.DialProtocol is
       NotFound_e => 2,
       NetworkFailure_e => 3
    );
-   type DialAppLaunchResult_Ptr is access DialAppLaunchResult;
+   type DialAppLaunchResult_Ptr is access all DialAppLaunchResult;
 
    type DialAppState is (
       Unknown_e,
@@ -168,7 +168,7 @@ package WinRt.Windows.Media.DialProtocol is
       Running_e => 2,
       NetworkFailure_e => 3
    );
-   type DialAppState_Ptr is access DialAppState;
+   type DialAppState_Ptr is access all DialAppState;
 
    type DialAppStopResult is (
       Stopped_e,
@@ -182,7 +182,7 @@ package WinRt.Windows.Media.DialProtocol is
       OperationNotSupported_e => 2,
       NetworkFailure_e => 3
    );
-   type DialAppStopResult_Ptr is access DialAppStopResult;
+   type DialAppStopResult_Ptr is access all DialAppStopResult;
 
    type DialDeviceDisplayStatus is (
       None_e,
@@ -200,7 +200,7 @@ package WinRt.Windows.Media.DialProtocol is
       Disconnected_e => 4,
       Error_e => 5
    );
-   type DialDeviceDisplayStatus_Ptr is access DialDeviceDisplayStatus;
+   type DialDeviceDisplayStatus_Ptr is access all DialDeviceDisplayStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

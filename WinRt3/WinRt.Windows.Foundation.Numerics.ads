@@ -45,7 +45,7 @@ package WinRt.Windows.Foundation.Numerics is
       M31 : WinRt.Single;
       M32 : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type Matrix3x2_Ptr is access Matrix3x2;
+   type Matrix3x2_Ptr is access all Matrix3x2;
 
    type Matrix4x4 is record
       M11 : WinRt.Single;
@@ -65,21 +65,21 @@ package WinRt.Windows.Foundation.Numerics is
       M43 : WinRt.Single;
       M44 : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type Matrix4x4_Ptr is access Matrix4x4;
+   type Matrix4x4_Ptr is access all Matrix4x4;
 
    type Vector3 is record
       X : WinRt.Single;
       Y : WinRt.Single;
       Z : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type Vector3_Ptr is access Vector3;
+   type Vector3_Ptr is access all Vector3;
    type Vector3_Array is array (Natural range <>) of aliased Vector3;
 
    type Plane is record
       Normal : Windows.Foundation.Numerics.Vector3;
       D : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type Plane_Ptr is access Plane;
+   type Plane_Ptr is access all Plane;
 
    type Quaternion is record
       X : WinRt.Single;
@@ -87,19 +87,19 @@ package WinRt.Windows.Foundation.Numerics is
       Z : WinRt.Single;
       W : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type Quaternion_Ptr is access Quaternion;
+   type Quaternion_Ptr is access all Quaternion;
 
    type Rational is record
       Numerator : WinRt.UInt32;
       Denominator : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type Rational_Ptr is access Rational;
+   type Rational_Ptr is access all Rational;
 
    type Vector2 is record
       X : WinRt.Single;
       Y : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type Vector2_Ptr is access Vector2;
+   type Vector2_Ptr is access all Vector2;
    type Vector2_Array is array (Natural range <>) of aliased Vector2;
 
    type Vector4 is record
@@ -108,6 +108,6 @@ package WinRt.Windows.Foundation.Numerics is
       Z : WinRt.Single;
       W : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type Vector4_Ptr is access Vector4;
+   type Vector4_Ptr is access all Vector4;
 
 end;

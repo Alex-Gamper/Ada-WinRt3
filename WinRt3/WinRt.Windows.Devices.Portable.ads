@@ -39,10 +39,10 @@ package WinRt.Windows.Devices.Portable is
    -----------------------------------------------------------------------------
 
    type IServiceDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IServiceDeviceStatics is access IServiceDeviceStatics_Interface'Class;
+   type IServiceDeviceStatics is access all IServiceDeviceStatics_Interface'Class;
 
    type IStorageDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageDeviceStatics is access IStorageDeviceStatics_Interface'Class;
+   type IStorageDeviceStatics is access all IStorageDeviceStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -66,7 +66,7 @@ package WinRt.Windows.Devices.Portable is
       SmsService_e => 5,
       TasksService_e => 6
    );
-   type ServiceDeviceType_Ptr is access ServiceDeviceType;
+   type ServiceDeviceType_Ptr is access all ServiceDeviceType;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -75,7 +75,7 @@ package WinRt.Windows.Devices.Portable is
    type PortableDeviceContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type PortableDeviceContract_Ptr is access PortableDeviceContract;
+   type PortableDeviceContract_Ptr is access all PortableDeviceContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

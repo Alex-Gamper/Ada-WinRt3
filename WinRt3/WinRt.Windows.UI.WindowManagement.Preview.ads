@@ -39,11 +39,11 @@ package WinRt.Windows.UI.WindowManagement.Preview is
    -----------------------------------------------------------------------------
 
    type IWindowManagementPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type IWindowManagementPreview is access IWindowManagementPreview_Interface'Class;
+   type IWindowManagementPreview is access all IWindowManagementPreview_Interface'Class;
    type IWindowManagementPreview_Ptr is access all IWindowManagementPreview;
 
    type IWindowManagementPreviewStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWindowManagementPreviewStatics is access IWindowManagementPreviewStatics_Interface'Class;
+   type IWindowManagementPreviewStatics is access all IWindowManagementPreviewStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

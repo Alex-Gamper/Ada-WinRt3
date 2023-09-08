@@ -40,43 +40,43 @@ package WinRt.Windows.Gaming.Input.Custom is
    -----------------------------------------------------------------------------
 
    type ICustomGameControllerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICustomGameControllerFactory is access ICustomGameControllerFactory_Interface'Class;
+   type ICustomGameControllerFactory is access all ICustomGameControllerFactory_Interface'Class;
 
    type IGameControllerFactoryManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameControllerFactoryManagerStatics is access IGameControllerFactoryManagerStatics_Interface'Class;
+   type IGameControllerFactoryManagerStatics is access all IGameControllerFactoryManagerStatics_Interface'Class;
 
    type IGameControllerFactoryManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameControllerFactoryManagerStatics2 is access IGameControllerFactoryManagerStatics2_Interface'Class;
+   type IGameControllerFactoryManagerStatics2 is access all IGameControllerFactoryManagerStatics2_Interface'Class;
 
    type IGameControllerInputSink_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameControllerInputSink is access IGameControllerInputSink_Interface'Class;
+   type IGameControllerInputSink is access all IGameControllerInputSink_Interface'Class;
 
    type IGameControllerProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameControllerProvider is access IGameControllerProvider_Interface'Class;
+   type IGameControllerProvider is access all IGameControllerProvider_Interface'Class;
 
    type IGipFirmwareUpdateResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGipFirmwareUpdateResult is access IGipFirmwareUpdateResult_Interface'Class;
+   type IGipFirmwareUpdateResult is access all IGipFirmwareUpdateResult_Interface'Class;
    type IGipFirmwareUpdateResult_Ptr is access all IGipFirmwareUpdateResult;
 
    type IGipGameControllerInputSink_Interface is interface and WinRt.IInspectable_Interface;
-   type IGipGameControllerInputSink is access IGipGameControllerInputSink_Interface'Class;
+   type IGipGameControllerInputSink is access all IGipGameControllerInputSink_Interface'Class;
 
    type IGipGameControllerProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IGipGameControllerProvider is access IGipGameControllerProvider_Interface'Class;
+   type IGipGameControllerProvider is access all IGipGameControllerProvider_Interface'Class;
    type IGipGameControllerProvider_Ptr is access all IGipGameControllerProvider;
 
    type IHidGameControllerInputSink_Interface is interface and WinRt.IInspectable_Interface;
-   type IHidGameControllerInputSink is access IHidGameControllerInputSink_Interface'Class;
+   type IHidGameControllerInputSink is access all IHidGameControllerInputSink_Interface'Class;
 
    type IHidGameControllerProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IHidGameControllerProvider is access IHidGameControllerProvider_Interface'Class;
+   type IHidGameControllerProvider is access all IHidGameControllerProvider_Interface'Class;
    type IHidGameControllerProvider_Ptr is access all IHidGameControllerProvider;
 
    type IXusbGameControllerInputSink_Interface is interface and WinRt.IInspectable_Interface;
-   type IXusbGameControllerInputSink is access IXusbGameControllerInputSink_Interface'Class;
+   type IXusbGameControllerInputSink is access all IXusbGameControllerInputSink_Interface'Class;
 
    type IXusbGameControllerProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IXusbGameControllerProvider is access IXusbGameControllerProvider_Interface'Class;
+   type IXusbGameControllerProvider is access all IXusbGameControllerProvider_Interface'Class;
    type IXusbGameControllerProvider_Ptr is access all IXusbGameControllerProvider;
 
    -----------------------------------------------------------------------------
@@ -121,7 +121,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       UpToDate_e => 1,
       Failed_e => 2
    );
-   type GipFirmwareUpdateStatus_Ptr is access GipFirmwareUpdateStatus;
+   type GipFirmwareUpdateStatus_Ptr is access all GipFirmwareUpdateStatus;
 
    type GipMessageClass is (
       Command_e,
@@ -133,7 +133,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       LowLatency_e => 1,
       StandardLatency_e => 2
    );
-   type GipMessageClass_Ptr is access GipMessageClass;
+   type GipMessageClass_Ptr is access all GipMessageClass;
 
    type XusbDeviceSubtype is (
       Unknown_e,
@@ -161,7 +161,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       DrumKit_e => 9,
       DancePad_e => 10
    );
-   type XusbDeviceSubtype_Ptr is access XusbDeviceSubtype;
+   type XusbDeviceSubtype_Ptr is access all XusbDeviceSubtype;
 
    type XusbDeviceType is (
       Unknown_e,
@@ -171,7 +171,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       Unknown_e => 0,
       Gamepad_e => 1
    );
-   type XusbDeviceType_Ptr is access XusbDeviceType;
+   type XusbDeviceType_Ptr is access all XusbDeviceType;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -183,13 +183,13 @@ package WinRt.Windows.Gaming.Input.Custom is
       Build : WinRt.UInt16;
       Revision : WinRt.UInt16;
    end record with Convention => C_Pass_By_Copy;
-   type GameControllerVersionInfo_Ptr is access GameControllerVersionInfo;
+   type GameControllerVersionInfo_Ptr is access all GameControllerVersionInfo;
 
    type GipFirmwareUpdateProgress is record
       PercentCompleted : WinRt.Double;
       CurrentComponentId : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type GipFirmwareUpdateProgress_Ptr is access GipFirmwareUpdateProgress;
+   type GipFirmwareUpdateProgress_Ptr is access all GipFirmwareUpdateProgress;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

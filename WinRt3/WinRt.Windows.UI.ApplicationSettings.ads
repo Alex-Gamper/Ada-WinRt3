@@ -43,87 +43,87 @@ package WinRt.Windows.UI.ApplicationSettings is
    -----------------------------------------------------------------------------
 
    type CredentialCommandCredentialDeletedHandler_Delegate;
-   type CredentialCommandCredentialDeletedHandler is access CredentialCommandCredentialDeletedHandler_Delegate;
+   type CredentialCommandCredentialDeletedHandler is access all CredentialCommandCredentialDeletedHandler_Delegate;
 
    type WebAccountCommandInvokedHandler_Delegate;
-   type WebAccountCommandInvokedHandler is access WebAccountCommandInvokedHandler_Delegate;
+   type WebAccountCommandInvokedHandler is access all WebAccountCommandInvokedHandler_Delegate;
 
    type WebAccountProviderCommandInvokedHandler_Delegate;
-   type WebAccountProviderCommandInvokedHandler is access WebAccountProviderCommandInvokedHandler_Delegate;
+   type WebAccountProviderCommandInvokedHandler is access all WebAccountProviderCommandInvokedHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IAccountsSettingsPane_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccountsSettingsPane is access IAccountsSettingsPane_Interface'Class;
+   type IAccountsSettingsPane is access all IAccountsSettingsPane_Interface'Class;
    type IAccountsSettingsPane_Ptr is access all IAccountsSettingsPane;
 
    type IAccountsSettingsPaneCommandsRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccountsSettingsPaneCommandsRequestedEventArgs is access IAccountsSettingsPaneCommandsRequestedEventArgs_Interface'Class;
+   type IAccountsSettingsPaneCommandsRequestedEventArgs is access all IAccountsSettingsPaneCommandsRequestedEventArgs_Interface'Class;
    type IAccountsSettingsPaneCommandsRequestedEventArgs_Ptr is access all IAccountsSettingsPaneCommandsRequestedEventArgs;
 
    type IAccountsSettingsPaneCommandsRequestedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccountsSettingsPaneCommandsRequestedEventArgs2 is access IAccountsSettingsPaneCommandsRequestedEventArgs2_Interface'Class;
+   type IAccountsSettingsPaneCommandsRequestedEventArgs2 is access all IAccountsSettingsPaneCommandsRequestedEventArgs2_Interface'Class;
 
    type IAccountsSettingsPaneEventDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccountsSettingsPaneEventDeferral is access IAccountsSettingsPaneEventDeferral_Interface'Class;
+   type IAccountsSettingsPaneEventDeferral is access all IAccountsSettingsPaneEventDeferral_Interface'Class;
    type IAccountsSettingsPaneEventDeferral_Ptr is access all IAccountsSettingsPaneEventDeferral;
 
    type IAccountsSettingsPaneStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccountsSettingsPaneStatics is access IAccountsSettingsPaneStatics_Interface'Class;
+   type IAccountsSettingsPaneStatics is access all IAccountsSettingsPaneStatics_Interface'Class;
 
    type IAccountsSettingsPaneStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccountsSettingsPaneStatics2 is access IAccountsSettingsPaneStatics2_Interface'Class;
+   type IAccountsSettingsPaneStatics2 is access all IAccountsSettingsPaneStatics2_Interface'Class;
 
    type IAccountsSettingsPaneStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccountsSettingsPaneStatics3 is access IAccountsSettingsPaneStatics3_Interface'Class;
+   type IAccountsSettingsPaneStatics3 is access all IAccountsSettingsPaneStatics3_Interface'Class;
 
    type ICredentialCommand_Interface is interface and WinRt.IInspectable_Interface;
-   type ICredentialCommand is access ICredentialCommand_Interface'Class;
+   type ICredentialCommand is access all ICredentialCommand_Interface'Class;
    type ICredentialCommand_Ptr is access all ICredentialCommand;
 
    type ICredentialCommandFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICredentialCommandFactory is access ICredentialCommandFactory_Interface'Class;
+   type ICredentialCommandFactory is access all ICredentialCommandFactory_Interface'Class;
 
    type ISettingsCommandFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISettingsCommandFactory is access ISettingsCommandFactory_Interface'Class;
+   type ISettingsCommandFactory is access all ISettingsCommandFactory_Interface'Class;
 
    type ISettingsCommandStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISettingsCommandStatics is access ISettingsCommandStatics_Interface'Class;
+   type ISettingsCommandStatics is access all ISettingsCommandStatics_Interface'Class;
 
    type ISettingsPane_Interface is interface and WinRt.IInspectable_Interface;
-   type ISettingsPane is access ISettingsPane_Interface'Class;
+   type ISettingsPane is access all ISettingsPane_Interface'Class;
    type ISettingsPane_Ptr is access all ISettingsPane;
 
    type ISettingsPaneCommandsRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type ISettingsPaneCommandsRequest is access ISettingsPaneCommandsRequest_Interface'Class;
+   type ISettingsPaneCommandsRequest is access all ISettingsPaneCommandsRequest_Interface'Class;
    type ISettingsPaneCommandsRequest_Ptr is access all ISettingsPaneCommandsRequest;
 
    type ISettingsPaneCommandsRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISettingsPaneCommandsRequestedEventArgs is access ISettingsPaneCommandsRequestedEventArgs_Interface'Class;
+   type ISettingsPaneCommandsRequestedEventArgs is access all ISettingsPaneCommandsRequestedEventArgs_Interface'Class;
    type ISettingsPaneCommandsRequestedEventArgs_Ptr is access all ISettingsPaneCommandsRequestedEventArgs;
 
    type ISettingsPaneStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISettingsPaneStatics is access ISettingsPaneStatics_Interface'Class;
+   type ISettingsPaneStatics is access all ISettingsPaneStatics_Interface'Class;
 
    type IWebAccountCommand_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountCommand is access IWebAccountCommand_Interface'Class;
+   type IWebAccountCommand is access all IWebAccountCommand_Interface'Class;
    type IWebAccountCommand_Ptr is access all IWebAccountCommand;
 
    type IWebAccountCommandFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountCommandFactory is access IWebAccountCommandFactory_Interface'Class;
+   type IWebAccountCommandFactory is access all IWebAccountCommandFactory_Interface'Class;
 
    type IWebAccountInvokedArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountInvokedArgs is access IWebAccountInvokedArgs_Interface'Class;
+   type IWebAccountInvokedArgs is access all IWebAccountInvokedArgs_Interface'Class;
    type IWebAccountInvokedArgs_Ptr is access all IWebAccountInvokedArgs;
 
    type IWebAccountProviderCommand_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProviderCommand is access IWebAccountProviderCommand_Interface'Class;
+   type IWebAccountProviderCommand is access all IWebAccountProviderCommand_Interface'Class;
    type IWebAccountProviderCommand_Ptr is access all IWebAccountProviderCommand;
 
    type IWebAccountProviderCommandFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProviderCommandFactory is access IWebAccountProviderCommandFactory_Interface'Class;
+   type IWebAccountProviderCommandFactory is access all IWebAccountProviderCommandFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -207,7 +207,7 @@ package WinRt.Windows.UI.ApplicationSettings is
       Right_e => 0,
       Left_e => 1
    );
-   type SettingsEdgeLocation_Ptr is access SettingsEdgeLocation;
+   type SettingsEdgeLocation_Ptr is access all SettingsEdgeLocation;
 
    type SupportedWebAccountActions is (
       None_e,
@@ -225,7 +225,7 @@ package WinRt.Windows.UI.ApplicationSettings is
       Manage_e => 8,
       More_e => 16
    );
-   type SupportedWebAccountActions_Ptr is access SupportedWebAccountActions;
+   type SupportedWebAccountActions_Ptr is access all SupportedWebAccountActions;
 
    type WebAccountAction is (
       Reconnect_e,
@@ -241,7 +241,7 @@ package WinRt.Windows.UI.ApplicationSettings is
       Manage_e => 3,
       More_e => 4
    );
-   type WebAccountAction_Ptr is access WebAccountAction;
+   type WebAccountAction_Ptr is access all WebAccountAction;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -250,7 +250,7 @@ package WinRt.Windows.UI.ApplicationSettings is
    type ApplicationsSettingsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type ApplicationsSettingsContract_Ptr is access ApplicationsSettingsContract;
+   type ApplicationsSettingsContract_Ptr is access all ApplicationsSettingsContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

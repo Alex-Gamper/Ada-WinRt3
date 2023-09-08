@@ -45,222 +45,222 @@ package WinRt.Windows.Media.Devices is
    -----------------------------------------------------------------------------
 
    type CallControlEventHandler_Delegate;
-   type CallControlEventHandler is access CallControlEventHandler_Delegate;
+   type CallControlEventHandler is access all CallControlEventHandler_Delegate;
 
    type DialRequestedEventHandler_Delegate;
-   type DialRequestedEventHandler is access DialRequestedEventHandler_Delegate;
+   type DialRequestedEventHandler is access all DialRequestedEventHandler_Delegate;
 
    type KeypadPressedEventHandler_Delegate;
-   type KeypadPressedEventHandler is access KeypadPressedEventHandler_Delegate;
+   type KeypadPressedEventHandler is access all KeypadPressedEventHandler_Delegate;
 
    type RedialRequestedEventHandler_Delegate;
-   type RedialRequestedEventHandler is access RedialRequestedEventHandler_Delegate;
+   type RedialRequestedEventHandler is access all RedialRequestedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IAdvancedPhotoCaptureSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvancedPhotoCaptureSettings is access IAdvancedPhotoCaptureSettings_Interface'Class;
+   type IAdvancedPhotoCaptureSettings is access all IAdvancedPhotoCaptureSettings_Interface'Class;
    type IAdvancedPhotoCaptureSettings_Ptr is access all IAdvancedPhotoCaptureSettings;
 
    type IAdvancedPhotoControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvancedPhotoControl is access IAdvancedPhotoControl_Interface'Class;
+   type IAdvancedPhotoControl is access all IAdvancedPhotoControl_Interface'Class;
    type IAdvancedPhotoControl_Ptr is access all IAdvancedPhotoControl;
 
    type IAdvancedVideoCaptureDeviceController_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvancedVideoCaptureDeviceController is access IAdvancedVideoCaptureDeviceController_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController is access all IAdvancedVideoCaptureDeviceController_Interface'Class;
 
    type IAdvancedVideoCaptureDeviceController2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvancedVideoCaptureDeviceController2 is access IAdvancedVideoCaptureDeviceController2_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController2 is access all IAdvancedVideoCaptureDeviceController2_Interface'Class;
 
    type IAdvancedVideoCaptureDeviceController3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvancedVideoCaptureDeviceController3 is access IAdvancedVideoCaptureDeviceController3_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController3 is access all IAdvancedVideoCaptureDeviceController3_Interface'Class;
 
    type IAdvancedVideoCaptureDeviceController4_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvancedVideoCaptureDeviceController4 is access IAdvancedVideoCaptureDeviceController4_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController4 is access all IAdvancedVideoCaptureDeviceController4_Interface'Class;
 
    type IAdvancedVideoCaptureDeviceController5_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvancedVideoCaptureDeviceController5 is access IAdvancedVideoCaptureDeviceController5_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController5 is access all IAdvancedVideoCaptureDeviceController5_Interface'Class;
 
    type IAdvancedVideoCaptureDeviceController6_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvancedVideoCaptureDeviceController6 is access IAdvancedVideoCaptureDeviceController6_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController6 is access all IAdvancedVideoCaptureDeviceController6_Interface'Class;
 
    type IAdvancedVideoCaptureDeviceController7_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvancedVideoCaptureDeviceController7 is access IAdvancedVideoCaptureDeviceController7_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController7 is access all IAdvancedVideoCaptureDeviceController7_Interface'Class;
 
    type IAdvancedVideoCaptureDeviceController8_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvancedVideoCaptureDeviceController8 is access IAdvancedVideoCaptureDeviceController8_Interface'Class;
+   type IAdvancedVideoCaptureDeviceController8 is access all IAdvancedVideoCaptureDeviceController8_Interface'Class;
 
    type IAudioDeviceController_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioDeviceController is access IAudioDeviceController_Interface'Class;
+   type IAudioDeviceController is access all IAudioDeviceController_Interface'Class;
    type IAudioDeviceController_Ptr is access all IAudioDeviceController;
 
    type IAudioDeviceModule_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioDeviceModule is access IAudioDeviceModule_Interface'Class;
+   type IAudioDeviceModule is access all IAudioDeviceModule_Interface'Class;
    type IAudioDeviceModule_Ptr is access all IAudioDeviceModule;
 
    type IAudioDeviceModuleNotificationEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioDeviceModuleNotificationEventArgs is access IAudioDeviceModuleNotificationEventArgs_Interface'Class;
+   type IAudioDeviceModuleNotificationEventArgs is access all IAudioDeviceModuleNotificationEventArgs_Interface'Class;
    type IAudioDeviceModuleNotificationEventArgs_Ptr is access all IAudioDeviceModuleNotificationEventArgs;
 
    type IAudioDeviceModulesManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioDeviceModulesManager is access IAudioDeviceModulesManager_Interface'Class;
+   type IAudioDeviceModulesManager is access all IAudioDeviceModulesManager_Interface'Class;
    type IAudioDeviceModulesManager_Ptr is access all IAudioDeviceModulesManager;
 
    type IAudioDeviceModulesManagerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioDeviceModulesManagerFactory is access IAudioDeviceModulesManagerFactory_Interface'Class;
+   type IAudioDeviceModulesManagerFactory is access all IAudioDeviceModulesManagerFactory_Interface'Class;
 
    type ICallControl_Interface is interface and WinRt.IInspectable_Interface;
-   type ICallControl is access ICallControl_Interface'Class;
+   type ICallControl is access all ICallControl_Interface'Class;
    type ICallControl_Ptr is access all ICallControl;
 
    type ICallControlStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICallControlStatics is access ICallControlStatics_Interface'Class;
+   type ICallControlStatics is access all ICallControlStatics_Interface'Class;
 
    type IDefaultAudioDeviceChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDefaultAudioDeviceChangedEventArgs is access IDefaultAudioDeviceChangedEventArgs_Interface'Class;
+   type IDefaultAudioDeviceChangedEventArgs is access all IDefaultAudioDeviceChangedEventArgs_Interface'Class;
    type IDefaultAudioDeviceChangedEventArgs_Ptr is access all IDefaultAudioDeviceChangedEventArgs;
 
    type IDialRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDialRequestedEventArgs is access IDialRequestedEventArgs_Interface'Class;
+   type IDialRequestedEventArgs is access all IDialRequestedEventArgs_Interface'Class;
    type IDialRequestedEventArgs_Ptr is access all IDialRequestedEventArgs;
 
    type IExposureCompensationControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IExposureCompensationControl is access IExposureCompensationControl_Interface'Class;
+   type IExposureCompensationControl is access all IExposureCompensationControl_Interface'Class;
    type IExposureCompensationControl_Ptr is access all IExposureCompensationControl;
 
    type IExposureControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IExposureControl is access IExposureControl_Interface'Class;
+   type IExposureControl is access all IExposureControl_Interface'Class;
    type IExposureControl_Ptr is access all IExposureControl;
 
    type IExposurePriorityVideoControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IExposurePriorityVideoControl is access IExposurePriorityVideoControl_Interface'Class;
+   type IExposurePriorityVideoControl is access all IExposurePriorityVideoControl_Interface'Class;
    type IExposurePriorityVideoControl_Ptr is access all IExposurePriorityVideoControl;
 
    type IFlashControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlashControl is access IFlashControl_Interface'Class;
+   type IFlashControl is access all IFlashControl_Interface'Class;
    type IFlashControl_Ptr is access all IFlashControl;
 
    type IFlashControl2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlashControl2 is access IFlashControl2_Interface'Class;
+   type IFlashControl2 is access all IFlashControl2_Interface'Class;
 
    type IFocusControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IFocusControl is access IFocusControl_Interface'Class;
+   type IFocusControl is access all IFocusControl_Interface'Class;
    type IFocusControl_Ptr is access all IFocusControl;
 
    type IFocusControl2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFocusControl2 is access IFocusControl2_Interface'Class;
+   type IFocusControl2 is access all IFocusControl2_Interface'Class;
 
    type IFocusSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IFocusSettings is access IFocusSettings_Interface'Class;
+   type IFocusSettings is access all IFocusSettings_Interface'Class;
    type IFocusSettings_Ptr is access all IFocusSettings;
 
    type IHdrVideoControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IHdrVideoControl is access IHdrVideoControl_Interface'Class;
+   type IHdrVideoControl is access all IHdrVideoControl_Interface'Class;
    type IHdrVideoControl_Ptr is access all IHdrVideoControl;
 
    type IInfraredTorchControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IInfraredTorchControl is access IInfraredTorchControl_Interface'Class;
+   type IInfraredTorchControl is access all IInfraredTorchControl_Interface'Class;
    type IInfraredTorchControl_Ptr is access all IInfraredTorchControl;
 
    type IIsoSpeedControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsoSpeedControl is access IIsoSpeedControl_Interface'Class;
+   type IIsoSpeedControl is access all IIsoSpeedControl_Interface'Class;
    type IIsoSpeedControl_Ptr is access all IIsoSpeedControl;
 
    type IIsoSpeedControl2_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsoSpeedControl2 is access IIsoSpeedControl2_Interface'Class;
+   type IIsoSpeedControl2 is access all IIsoSpeedControl2_Interface'Class;
 
    type IKeypadPressedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeypadPressedEventArgs is access IKeypadPressedEventArgs_Interface'Class;
+   type IKeypadPressedEventArgs is access all IKeypadPressedEventArgs_Interface'Class;
    type IKeypadPressedEventArgs_Ptr is access all IKeypadPressedEventArgs;
 
    type ILowLagPhotoControl_Interface is interface and WinRt.IInspectable_Interface;
-   type ILowLagPhotoControl is access ILowLagPhotoControl_Interface'Class;
+   type ILowLagPhotoControl is access all ILowLagPhotoControl_Interface'Class;
    type ILowLagPhotoControl_Ptr is access all ILowLagPhotoControl;
 
    type ILowLagPhotoSequenceControl_Interface is interface and WinRt.IInspectable_Interface;
-   type ILowLagPhotoSequenceControl is access ILowLagPhotoSequenceControl_Interface'Class;
+   type ILowLagPhotoSequenceControl is access all ILowLagPhotoSequenceControl_Interface'Class;
    type ILowLagPhotoSequenceControl_Ptr is access all ILowLagPhotoSequenceControl;
 
    type IMediaDeviceControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaDeviceControl is access IMediaDeviceControl_Interface'Class;
+   type IMediaDeviceControl is access all IMediaDeviceControl_Interface'Class;
    type IMediaDeviceControl_Ptr is access all IMediaDeviceControl;
 
    type IMediaDeviceControlCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaDeviceControlCapabilities is access IMediaDeviceControlCapabilities_Interface'Class;
+   type IMediaDeviceControlCapabilities is access all IMediaDeviceControlCapabilities_Interface'Class;
    type IMediaDeviceControlCapabilities_Ptr is access all IMediaDeviceControlCapabilities;
 
    type IMediaDeviceController_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaDeviceController is access IMediaDeviceController_Interface'Class;
+   type IMediaDeviceController is access all IMediaDeviceController_Interface'Class;
 
    type IMediaDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaDeviceStatics is access IMediaDeviceStatics_Interface'Class;
+   type IMediaDeviceStatics is access all IMediaDeviceStatics_Interface'Class;
 
    type IModuleCommandResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IModuleCommandResult is access IModuleCommandResult_Interface'Class;
+   type IModuleCommandResult is access all IModuleCommandResult_Interface'Class;
    type IModuleCommandResult_Ptr is access all IModuleCommandResult;
 
    type IOpticalImageStabilizationControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IOpticalImageStabilizationControl is access IOpticalImageStabilizationControl_Interface'Class;
+   type IOpticalImageStabilizationControl is access all IOpticalImageStabilizationControl_Interface'Class;
    type IOpticalImageStabilizationControl_Ptr is access all IOpticalImageStabilizationControl;
 
    type IPanelBasedOptimizationControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IPanelBasedOptimizationControl is access IPanelBasedOptimizationControl_Interface'Class;
+   type IPanelBasedOptimizationControl is access all IPanelBasedOptimizationControl_Interface'Class;
    type IPanelBasedOptimizationControl_Ptr is access all IPanelBasedOptimizationControl;
 
    type IPhotoConfirmationControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhotoConfirmationControl is access IPhotoConfirmationControl_Interface'Class;
+   type IPhotoConfirmationControl is access all IPhotoConfirmationControl_Interface'Class;
    type IPhotoConfirmationControl_Ptr is access all IPhotoConfirmationControl;
 
    type IRedialRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRedialRequestedEventArgs is access IRedialRequestedEventArgs_Interface'Class;
+   type IRedialRequestedEventArgs is access all IRedialRequestedEventArgs_Interface'Class;
    type IRedialRequestedEventArgs_Ptr is access all IRedialRequestedEventArgs;
 
    type IRegionOfInterest_Interface is interface and WinRt.IInspectable_Interface;
-   type IRegionOfInterest is access IRegionOfInterest_Interface'Class;
+   type IRegionOfInterest is access all IRegionOfInterest_Interface'Class;
    type IRegionOfInterest_Ptr is access all IRegionOfInterest;
 
    type IRegionOfInterest2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRegionOfInterest2 is access IRegionOfInterest2_Interface'Class;
+   type IRegionOfInterest2 is access all IRegionOfInterest2_Interface'Class;
 
    type IRegionsOfInterestControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IRegionsOfInterestControl is access IRegionsOfInterestControl_Interface'Class;
+   type IRegionsOfInterestControl is access all IRegionsOfInterestControl_Interface'Class;
    type IRegionsOfInterestControl_Ptr is access all IRegionsOfInterestControl;
 
    type ISceneModeControl_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneModeControl is access ISceneModeControl_Interface'Class;
+   type ISceneModeControl is access all ISceneModeControl_Interface'Class;
    type ISceneModeControl_Ptr is access all ISceneModeControl;
 
    type ITorchControl_Interface is interface and WinRt.IInspectable_Interface;
-   type ITorchControl is access ITorchControl_Interface'Class;
+   type ITorchControl is access all ITorchControl_Interface'Class;
    type ITorchControl_Ptr is access all ITorchControl;
 
    type IVideoDeviceController_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoDeviceController is access IVideoDeviceController_Interface'Class;
+   type IVideoDeviceController is access all IVideoDeviceController_Interface'Class;
    type IVideoDeviceController_Ptr is access all IVideoDeviceController;
 
    type IVideoDeviceControllerGetDevicePropertyResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoDeviceControllerGetDevicePropertyResult is access IVideoDeviceControllerGetDevicePropertyResult_Interface'Class;
+   type IVideoDeviceControllerGetDevicePropertyResult is access all IVideoDeviceControllerGetDevicePropertyResult_Interface'Class;
    type IVideoDeviceControllerGetDevicePropertyResult_Ptr is access all IVideoDeviceControllerGetDevicePropertyResult;
 
    type IVideoTemporalDenoisingControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoTemporalDenoisingControl is access IVideoTemporalDenoisingControl_Interface'Class;
+   type IVideoTemporalDenoisingControl is access all IVideoTemporalDenoisingControl_Interface'Class;
    type IVideoTemporalDenoisingControl_Ptr is access all IVideoTemporalDenoisingControl;
 
    type IWhiteBalanceControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IWhiteBalanceControl is access IWhiteBalanceControl_Interface'Class;
+   type IWhiteBalanceControl is access all IWhiteBalanceControl_Interface'Class;
    type IWhiteBalanceControl_Ptr is access all IWhiteBalanceControl;
 
    type IZoomControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IZoomControl is access IZoomControl_Interface'Class;
+   type IZoomControl is access all IZoomControl_Interface'Class;
    type IZoomControl_Ptr is access all IZoomControl;
 
    type IZoomControl2_Interface is interface and WinRt.IInspectable_Interface;
-   type IZoomControl2 is access IZoomControl2_Interface'Class;
+   type IZoomControl2 is access all IZoomControl2_Interface'Class;
 
    type IZoomSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IZoomSettings is access IZoomSettings_Interface'Class;
+   type IZoomSettings is access all IZoomSettings_Interface'Class;
    type IZoomSettings_Ptr is access all IZoomSettings;
 
    -----------------------------------------------------------------------------
@@ -517,7 +517,7 @@ package WinRt.Windows.Media.Devices is
       Hdr_e => 2,
       LowLight_e => 3
    );
-   type AdvancedPhotoMode_Ptr is access AdvancedPhotoMode;
+   type AdvancedPhotoMode_Ptr is access all AdvancedPhotoMode;
 
    type AudioDeviceRole is (
       Default_e,
@@ -527,7 +527,7 @@ package WinRt.Windows.Media.Devices is
       Default_e => 0,
       Communications_e => 1
    );
-   type AudioDeviceRole_Ptr is access AudioDeviceRole;
+   type AudioDeviceRole_Ptr is access all AudioDeviceRole;
 
    type AutoFocusRange is (
       FullRange_e,
@@ -539,7 +539,7 @@ package WinRt.Windows.Media.Devices is
       Macro_e => 1,
       Normal_e => 2
    );
-   type AutoFocusRange_Ptr is access AutoFocusRange;
+   type AutoFocusRange_Ptr is access all AutoFocusRange;
 
    type CameraStreamState is (
       NotStreaming_e,
@@ -553,7 +553,7 @@ package WinRt.Windows.Media.Devices is
       BlockedForPrivacy_e => 2,
       Shutdown_e => 3
    );
-   type CameraStreamState_Ptr is access CameraStreamState;
+   type CameraStreamState_Ptr is access all CameraStreamState;
 
    type CaptureSceneMode is (
       Auto_e,
@@ -585,7 +585,7 @@ package WinRt.Windows.Media.Devices is
       NightPortrait_e => 11,
       Backlit_e => 12
    );
-   type CaptureSceneMode_Ptr is access CaptureSceneMode;
+   type CaptureSceneMode_Ptr is access all CaptureSceneMode;
 
    type CaptureUse is (
       None_e,
@@ -597,7 +597,7 @@ package WinRt.Windows.Media.Devices is
       Photo_e => 1,
       Video_e => 2
    );
-   type CaptureUse_Ptr is access CaptureUse;
+   type CaptureUse_Ptr is access all CaptureUse;
 
    type ColorTemperaturePreset is (
       Auto_e,
@@ -619,7 +619,7 @@ package WinRt.Windows.Media.Devices is
       Tungsten_e => 6,
       Candlelight_e => 7
    );
-   type ColorTemperaturePreset_Ptr is access ColorTemperaturePreset;
+   type ColorTemperaturePreset_Ptr is access all ColorTemperaturePreset;
 
    type FocusMode is (
       Auto_e,
@@ -633,7 +633,7 @@ package WinRt.Windows.Media.Devices is
       Continuous_e => 2,
       Manual_e => 3
    );
-   type FocusMode_Ptr is access FocusMode;
+   type FocusMode_Ptr is access all FocusMode;
 
    type FocusPreset is (
       Auto_e,
@@ -651,7 +651,7 @@ package WinRt.Windows.Media.Devices is
       AutoInfinity_e => 4,
       AutoHyperfocal_e => 5
    );
-   type FocusPreset_Ptr is access FocusPreset;
+   type FocusPreset_Ptr is access all FocusPreset;
 
    type HdrVideoMode is (
       Off_e,
@@ -663,7 +663,7 @@ package WinRt.Windows.Media.Devices is
       On_e => 1,
       Auto_e => 2
    );
-   type HdrVideoMode_Ptr is access HdrVideoMode;
+   type HdrVideoMode_Ptr is access all HdrVideoMode;
 
    type InfraredTorchMode is (
       Off_e,
@@ -675,7 +675,7 @@ package WinRt.Windows.Media.Devices is
       On_e => 1,
       AlternatingFrameIllumination_e => 2
    );
-   type InfraredTorchMode_Ptr is access InfraredTorchMode;
+   type InfraredTorchMode_Ptr is access all InfraredTorchMode;
 
    type IsoSpeedPreset is (
       Auto_e,
@@ -705,7 +705,7 @@ package WinRt.Windows.Media.Devices is
       Iso12800_e => 10,
       Iso25600_e => 11
    );
-   type IsoSpeedPreset_Ptr is access IsoSpeedPreset;
+   type IsoSpeedPreset_Ptr is access all IsoSpeedPreset;
 
    type ManualFocusDistance is (
       Infinity_e,
@@ -717,7 +717,7 @@ package WinRt.Windows.Media.Devices is
       Hyperfocal_e => 1,
       Nearest_e => 2
    );
-   type ManualFocusDistance_Ptr is access ManualFocusDistance;
+   type ManualFocusDistance_Ptr is access all ManualFocusDistance;
 
    type MediaCaptureFocusState is (
       Uninitialized_e,
@@ -733,7 +733,7 @@ package WinRt.Windows.Media.Devices is
       Focused_e => 3,
       Failed_e => 4
    );
-   type MediaCaptureFocusState_Ptr is access MediaCaptureFocusState;
+   type MediaCaptureFocusState_Ptr is access all MediaCaptureFocusState;
 
    type MediaCaptureOptimization is (
       Default_e,
@@ -753,7 +753,7 @@ package WinRt.Windows.Media.Devices is
       LatencyThenPower_e => 5,
       PowerAndQuality_e => 6
    );
-   type MediaCaptureOptimization_Ptr is access MediaCaptureOptimization;
+   type MediaCaptureOptimization_Ptr is access all MediaCaptureOptimization;
 
    type MediaCapturePauseBehavior is (
       RetainHardwareResources_e,
@@ -763,7 +763,7 @@ package WinRt.Windows.Media.Devices is
       RetainHardwareResources_e => 0,
       ReleaseHardwareResources_e => 1
    );
-   type MediaCapturePauseBehavior_Ptr is access MediaCapturePauseBehavior;
+   type MediaCapturePauseBehavior_Ptr is access all MediaCapturePauseBehavior;
 
    type OpticalImageStabilizationMode is (
       Off_e,
@@ -775,7 +775,7 @@ package WinRt.Windows.Media.Devices is
       On_e => 1,
       Auto_e => 2
    );
-   type OpticalImageStabilizationMode_Ptr is access OpticalImageStabilizationMode;
+   type OpticalImageStabilizationMode_Ptr is access all OpticalImageStabilizationMode;
 
    type RegionOfInterestType is (
       Unknown_e,
@@ -785,7 +785,7 @@ package WinRt.Windows.Media.Devices is
       Unknown_e => 0,
       Face_e => 1
    );
-   type RegionOfInterestType_Ptr is access RegionOfInterestType;
+   type RegionOfInterestType_Ptr is access all RegionOfInterestType;
 
    type SendCommandStatus is (
       Success_e,
@@ -795,7 +795,7 @@ package WinRt.Windows.Media.Devices is
       Success_e => 0,
       DeviceNotAvailable_e => 1
    );
-   type SendCommandStatus_Ptr is access SendCommandStatus;
+   type SendCommandStatus_Ptr is access all SendCommandStatus;
 
    type TelephonyKey is (
       D0_e,
@@ -833,7 +833,7 @@ package WinRt.Windows.Media.Devices is
       C_e => 14,
       D_e => 15
    );
-   type TelephonyKey_Ptr is access TelephonyKey;
+   type TelephonyKey_Ptr is access all TelephonyKey;
 
    type VideoDeviceControllerGetDevicePropertyStatus is (
       Success_e,
@@ -853,7 +853,7 @@ package WinRt.Windows.Media.Devices is
       MaxPropertyValueSizeTooSmall_e => 5,
       MaxPropertyValueSizeRequired_e => 6
    );
-   type VideoDeviceControllerGetDevicePropertyStatus_Ptr is access VideoDeviceControllerGetDevicePropertyStatus;
+   type VideoDeviceControllerGetDevicePropertyStatus_Ptr is access all VideoDeviceControllerGetDevicePropertyStatus;
 
    type VideoDeviceControllerSetDevicePropertyStatus is (
       Success_e,
@@ -871,7 +871,7 @@ package WinRt.Windows.Media.Devices is
       DeviceNotAvailable_e => 4,
       NotInControl_e => 5
    );
-   type VideoDeviceControllerSetDevicePropertyStatus_Ptr is access VideoDeviceControllerSetDevicePropertyStatus;
+   type VideoDeviceControllerSetDevicePropertyStatus_Ptr is access all VideoDeviceControllerSetDevicePropertyStatus;
 
    type VideoTemporalDenoisingMode is (
       Off_e,
@@ -883,7 +883,7 @@ package WinRt.Windows.Media.Devices is
       On_e => 1,
       Auto_e => 2
    );
-   type VideoTemporalDenoisingMode_Ptr is access VideoTemporalDenoisingMode;
+   type VideoTemporalDenoisingMode_Ptr is access all VideoTemporalDenoisingMode;
 
    type ZoomTransitionMode is (
       Auto_e,
@@ -895,7 +895,7 @@ package WinRt.Windows.Media.Devices is
       Direct_e => 1,
       Smooth_e => 2
    );
-   type ZoomTransitionMode_Ptr is access ZoomTransitionMode;
+   type ZoomTransitionMode_Ptr is access all ZoomTransitionMode;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -904,7 +904,7 @@ package WinRt.Windows.Media.Devices is
    type CallControlContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type CallControlContract_Ptr is access CallControlContract;
+   type CallControlContract_Ptr is access all CallControlContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

@@ -39,23 +39,23 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
    -----------------------------------------------------------------------------
 
    type IPhoneCallBlockedTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallBlockedTriggerDetails is access IPhoneCallBlockedTriggerDetails_Interface'Class;
+   type IPhoneCallBlockedTriggerDetails is access all IPhoneCallBlockedTriggerDetails_Interface'Class;
    type IPhoneCallBlockedTriggerDetails_Ptr is access all IPhoneCallBlockedTriggerDetails;
 
    type IPhoneCallOriginDataRequestTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallOriginDataRequestTriggerDetails is access IPhoneCallOriginDataRequestTriggerDetails_Interface'Class;
+   type IPhoneCallOriginDataRequestTriggerDetails is access all IPhoneCallOriginDataRequestTriggerDetails_Interface'Class;
    type IPhoneCallOriginDataRequestTriggerDetails_Ptr is access all IPhoneCallOriginDataRequestTriggerDetails;
 
    type IPhoneIncomingCallDismissedTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneIncomingCallDismissedTriggerDetails is access IPhoneIncomingCallDismissedTriggerDetails_Interface'Class;
+   type IPhoneIncomingCallDismissedTriggerDetails is access all IPhoneIncomingCallDismissedTriggerDetails_Interface'Class;
    type IPhoneIncomingCallDismissedTriggerDetails_Ptr is access all IPhoneIncomingCallDismissedTriggerDetails;
 
    type IPhoneLineChangedTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneLineChangedTriggerDetails is access IPhoneLineChangedTriggerDetails_Interface'Class;
+   type IPhoneLineChangedTriggerDetails is access all IPhoneLineChangedTriggerDetails_Interface'Class;
    type IPhoneLineChangedTriggerDetails_Ptr is access all IPhoneLineChangedTriggerDetails;
 
    type IPhoneNewVoicemailMessageTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneNewVoicemailMessageTriggerDetails is access IPhoneNewVoicemailMessageTriggerDetails_Interface'Class;
+   type IPhoneNewVoicemailMessageTriggerDetails is access all IPhoneNewVoicemailMessageTriggerDetails_Interface'Class;
    type IPhoneNewVoicemailMessageTriggerDetails_Ptr is access all IPhoneNewVoicemailMessageTriggerDetails;
 
    -----------------------------------------------------------------------------
@@ -106,7 +106,7 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       PrivateNumber_e => 1,
       UnknownNumber_e => 2
    );
-   type PhoneCallBlockedReason_Ptr is access PhoneCallBlockedReason;
+   type PhoneCallBlockedReason_Ptr is access all PhoneCallBlockedReason;
 
    type PhoneIncomingCallDismissedReason is (
       Unknown_e,
@@ -120,7 +120,7 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       TextReply_e => 2,
       ConnectionLost_e => 3
    );
-   type PhoneIncomingCallDismissedReason_Ptr is access PhoneIncomingCallDismissedReason;
+   type PhoneIncomingCallDismissedReason_Ptr is access all PhoneIncomingCallDismissedReason;
 
    type PhoneLineChangeKind is (
       Added_e,
@@ -132,7 +132,7 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       Removed_e => 1,
       PropertiesChanged_e => 2
    );
-   type PhoneLineChangeKind_Ptr is access PhoneLineChangeKind;
+   type PhoneLineChangeKind_Ptr is access all PhoneLineChangeKind;
 
    type PhoneLineProperties is (
       None_e,
@@ -158,7 +158,7 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       Transport_e => 128,
       Voicemail_e => 256
    );
-   type PhoneLineProperties_Ptr is access PhoneLineProperties;
+   type PhoneLineProperties_Ptr is access all PhoneLineProperties;
 
    type PhoneTriggerType is (
       NewVoicemailMessage_e,
@@ -178,7 +178,7 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       CallBlocked_e => 5,
       IncomingCallDismissed_e => 6
    );
-   type PhoneTriggerType_Ptr is access PhoneTriggerType;
+   type PhoneTriggerType_Ptr is access all PhoneTriggerType;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -187,7 +187,7 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
    type CallsBackgroundContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type CallsBackgroundContract_Ptr is access CallsBackgroundContract;
+   type CallsBackgroundContract_Ptr is access all CallsBackgroundContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

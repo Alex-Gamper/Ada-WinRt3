@@ -44,46 +44,46 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
    -----------------------------------------------------------------------------
 
    type IWiFiDirectService_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectService is access IWiFiDirectService_Interface'Class;
+   type IWiFiDirectService is access all IWiFiDirectService_Interface'Class;
    type IWiFiDirectService_Ptr is access all IWiFiDirectService;
 
    type IWiFiDirectServiceAdvertiser_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectServiceAdvertiser is access IWiFiDirectServiceAdvertiser_Interface'Class;
+   type IWiFiDirectServiceAdvertiser is access all IWiFiDirectServiceAdvertiser_Interface'Class;
    type IWiFiDirectServiceAdvertiser_Ptr is access all IWiFiDirectServiceAdvertiser;
 
    type IWiFiDirectServiceAdvertiserFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectServiceAdvertiserFactory is access IWiFiDirectServiceAdvertiserFactory_Interface'Class;
+   type IWiFiDirectServiceAdvertiserFactory is access all IWiFiDirectServiceAdvertiserFactory_Interface'Class;
 
    type IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs is access IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs_Interface'Class;
+   type IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs is access all IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs_Interface'Class;
    type IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs_Ptr is access all IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs;
 
    type IWiFiDirectServiceProvisioningInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectServiceProvisioningInfo is access IWiFiDirectServiceProvisioningInfo_Interface'Class;
+   type IWiFiDirectServiceProvisioningInfo is access all IWiFiDirectServiceProvisioningInfo_Interface'Class;
    type IWiFiDirectServiceProvisioningInfo_Ptr is access all IWiFiDirectServiceProvisioningInfo;
 
    type IWiFiDirectServiceRemotePortAddedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectServiceRemotePortAddedEventArgs is access IWiFiDirectServiceRemotePortAddedEventArgs_Interface'Class;
+   type IWiFiDirectServiceRemotePortAddedEventArgs is access all IWiFiDirectServiceRemotePortAddedEventArgs_Interface'Class;
    type IWiFiDirectServiceRemotePortAddedEventArgs_Ptr is access all IWiFiDirectServiceRemotePortAddedEventArgs;
 
    type IWiFiDirectServiceSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectServiceSession is access IWiFiDirectServiceSession_Interface'Class;
+   type IWiFiDirectServiceSession is access all IWiFiDirectServiceSession_Interface'Class;
    type IWiFiDirectServiceSession_Ptr is access all IWiFiDirectServiceSession;
 
    type IWiFiDirectServiceSessionDeferredEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectServiceSessionDeferredEventArgs is access IWiFiDirectServiceSessionDeferredEventArgs_Interface'Class;
+   type IWiFiDirectServiceSessionDeferredEventArgs is access all IWiFiDirectServiceSessionDeferredEventArgs_Interface'Class;
    type IWiFiDirectServiceSessionDeferredEventArgs_Ptr is access all IWiFiDirectServiceSessionDeferredEventArgs;
 
    type IWiFiDirectServiceSessionRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectServiceSessionRequest is access IWiFiDirectServiceSessionRequest_Interface'Class;
+   type IWiFiDirectServiceSessionRequest is access all IWiFiDirectServiceSessionRequest_Interface'Class;
    type IWiFiDirectServiceSessionRequest_Ptr is access all IWiFiDirectServiceSessionRequest;
 
    type IWiFiDirectServiceSessionRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectServiceSessionRequestedEventArgs is access IWiFiDirectServiceSessionRequestedEventArgs_Interface'Class;
+   type IWiFiDirectServiceSessionRequestedEventArgs is access all IWiFiDirectServiceSessionRequestedEventArgs_Interface'Class;
    type IWiFiDirectServiceSessionRequestedEventArgs_Ptr is access all IWiFiDirectServiceSessionRequestedEventArgs;
 
    type IWiFiDirectServiceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWiFiDirectServiceStatics is access IWiFiDirectServiceStatics_Interface'Class;
+   type IWiFiDirectServiceStatics is access all IWiFiDirectServiceStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -159,7 +159,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       Stopped_e => 2,
       Aborted_e => 3
    );
-   type WiFiDirectServiceAdvertisementStatus_Ptr is access WiFiDirectServiceAdvertisementStatus;
+   type WiFiDirectServiceAdvertisementStatus_Ptr is access all WiFiDirectServiceAdvertisementStatus;
 
    type WiFiDirectServiceConfigurationMethod is (
       Default_e,
@@ -171,7 +171,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       PinDisplay_e => 1,
       PinEntry_e => 2
    );
-   type WiFiDirectServiceConfigurationMethod_Ptr is access WiFiDirectServiceConfigurationMethod;
+   type WiFiDirectServiceConfigurationMethod_Ptr is access all WiFiDirectServiceConfigurationMethod;
 
    type WiFiDirectServiceError is (
       Success_e,
@@ -187,7 +187,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       UnsupportedHardware_e => 3,
       NoHardware_e => 4
    );
-   type WiFiDirectServiceError_Ptr is access WiFiDirectServiceError;
+   type WiFiDirectServiceError_Ptr is access all WiFiDirectServiceError;
 
    type WiFiDirectServiceIPProtocol is (
       Tcp_e,
@@ -197,7 +197,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       Tcp_e => 6,
       Udp_e => 17
    );
-   type WiFiDirectServiceIPProtocol_Ptr is access WiFiDirectServiceIPProtocol;
+   type WiFiDirectServiceIPProtocol_Ptr is access all WiFiDirectServiceIPProtocol;
 
    type WiFiDirectServiceSessionErrorStatus is (
       Ok_e,
@@ -215,7 +215,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       SystemFailure_e => 4,
       NoResponseFromRemote_e => 5
    );
-   type WiFiDirectServiceSessionErrorStatus_Ptr is access WiFiDirectServiceSessionErrorStatus;
+   type WiFiDirectServiceSessionErrorStatus_Ptr is access all WiFiDirectServiceSessionErrorStatus;
 
    type WiFiDirectServiceSessionStatus is (
       Closed_e,
@@ -229,7 +229,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       Requested_e => 2,
       Open_e => 3
    );
-   type WiFiDirectServiceSessionStatus_Ptr is access WiFiDirectServiceSessionStatus;
+   type WiFiDirectServiceSessionStatus_Ptr is access all WiFiDirectServiceSessionStatus;
 
    type WiFiDirectServiceStatus is (
       Available_e,
@@ -241,7 +241,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       Busy_e => 1,
       Custom_e => 2
    );
-   type WiFiDirectServiceStatus_Ptr is access WiFiDirectServiceStatus;
+   type WiFiDirectServiceStatus_Ptr is access all WiFiDirectServiceStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

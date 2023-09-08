@@ -43,191 +43,191 @@ package WinRt.Windows.ApplicationModel.Chat is
    -----------------------------------------------------------------------------
 
    type IChatCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatCapabilities is access IChatCapabilities_Interface'Class;
+   type IChatCapabilities is access all IChatCapabilities_Interface'Class;
    type IChatCapabilities_Ptr is access all IChatCapabilities;
 
    type IChatCapabilitiesManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatCapabilitiesManagerStatics is access IChatCapabilitiesManagerStatics_Interface'Class;
+   type IChatCapabilitiesManagerStatics is access all IChatCapabilitiesManagerStatics_Interface'Class;
 
    type IChatCapabilitiesManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatCapabilitiesManagerStatics2 is access IChatCapabilitiesManagerStatics2_Interface'Class;
+   type IChatCapabilitiesManagerStatics2 is access all IChatCapabilitiesManagerStatics2_Interface'Class;
 
    type IChatConversation_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatConversation is access IChatConversation_Interface'Class;
+   type IChatConversation is access all IChatConversation_Interface'Class;
    type IChatConversation_Ptr is access all IChatConversation;
 
    type IChatConversation2_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatConversation2 is access IChatConversation2_Interface'Class;
+   type IChatConversation2 is access all IChatConversation2_Interface'Class;
 
    type IChatConversationReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatConversationReader is access IChatConversationReader_Interface'Class;
+   type IChatConversationReader is access all IChatConversationReader_Interface'Class;
    type IChatConversationReader_Ptr is access all IChatConversationReader;
 
    type IChatConversationThreadingInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatConversationThreadingInfo is access IChatConversationThreadingInfo_Interface'Class;
+   type IChatConversationThreadingInfo is access all IChatConversationThreadingInfo_Interface'Class;
    type IChatConversationThreadingInfo_Ptr is access all IChatConversationThreadingInfo;
 
    type IChatItem_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatItem is access IChatItem_Interface'Class;
+   type IChatItem is access all IChatItem_Interface'Class;
 
    type IChatMessage_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessage is access IChatMessage_Interface'Class;
+   type IChatMessage is access all IChatMessage_Interface'Class;
    type IChatMessage_Ptr is access all IChatMessage;
 
    type IChatMessage2_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessage2 is access IChatMessage2_Interface'Class;
+   type IChatMessage2 is access all IChatMessage2_Interface'Class;
 
    type IChatMessage3_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessage3 is access IChatMessage3_Interface'Class;
+   type IChatMessage3 is access all IChatMessage3_Interface'Class;
 
    type IChatMessage4_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessage4 is access IChatMessage4_Interface'Class;
+   type IChatMessage4 is access all IChatMessage4_Interface'Class;
 
    type IChatMessageAttachment_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageAttachment is access IChatMessageAttachment_Interface'Class;
+   type IChatMessageAttachment is access all IChatMessageAttachment_Interface'Class;
    type IChatMessageAttachment_Ptr is access all IChatMessageAttachment;
 
    type IChatMessageAttachment2_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageAttachment2 is access IChatMessageAttachment2_Interface'Class;
+   type IChatMessageAttachment2 is access all IChatMessageAttachment2_Interface'Class;
 
    type IChatMessageAttachmentFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageAttachmentFactory is access IChatMessageAttachmentFactory_Interface'Class;
+   type IChatMessageAttachmentFactory is access all IChatMessageAttachmentFactory_Interface'Class;
 
    type IChatMessageBlockingStatic_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageBlockingStatic is access IChatMessageBlockingStatic_Interface'Class;
+   type IChatMessageBlockingStatic is access all IChatMessageBlockingStatic_Interface'Class;
 
    type IChatMessageChange_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageChange is access IChatMessageChange_Interface'Class;
+   type IChatMessageChange is access all IChatMessageChange_Interface'Class;
    type IChatMessageChange_Ptr is access all IChatMessageChange;
 
    type IChatMessageChangeReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageChangeReader is access IChatMessageChangeReader_Interface'Class;
+   type IChatMessageChangeReader is access all IChatMessageChangeReader_Interface'Class;
    type IChatMessageChangeReader_Ptr is access all IChatMessageChangeReader;
 
    type IChatMessageChangeTracker_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageChangeTracker is access IChatMessageChangeTracker_Interface'Class;
+   type IChatMessageChangeTracker is access all IChatMessageChangeTracker_Interface'Class;
    type IChatMessageChangeTracker_Ptr is access all IChatMessageChangeTracker;
 
    type IChatMessageChangedDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageChangedDeferral is access IChatMessageChangedDeferral_Interface'Class;
+   type IChatMessageChangedDeferral is access all IChatMessageChangedDeferral_Interface'Class;
    type IChatMessageChangedDeferral_Ptr is access all IChatMessageChangedDeferral;
 
    type IChatMessageChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageChangedEventArgs is access IChatMessageChangedEventArgs_Interface'Class;
+   type IChatMessageChangedEventArgs is access all IChatMessageChangedEventArgs_Interface'Class;
    type IChatMessageChangedEventArgs_Ptr is access all IChatMessageChangedEventArgs;
 
    type IChatMessageManager2Statics_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageManager2Statics is access IChatMessageManager2Statics_Interface'Class;
+   type IChatMessageManager2Statics is access all IChatMessageManager2Statics_Interface'Class;
 
    type IChatMessageManagerStatic_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageManagerStatic is access IChatMessageManagerStatic_Interface'Class;
+   type IChatMessageManagerStatic is access all IChatMessageManagerStatic_Interface'Class;
 
    type IChatMessageManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageManagerStatics3 is access IChatMessageManagerStatics3_Interface'Class;
+   type IChatMessageManagerStatics3 is access all IChatMessageManagerStatics3_Interface'Class;
 
    type IChatMessageNotificationTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageNotificationTriggerDetails is access IChatMessageNotificationTriggerDetails_Interface'Class;
+   type IChatMessageNotificationTriggerDetails is access all IChatMessageNotificationTriggerDetails_Interface'Class;
    type IChatMessageNotificationTriggerDetails_Ptr is access all IChatMessageNotificationTriggerDetails;
 
    type IChatMessageNotificationTriggerDetails2_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageNotificationTriggerDetails2 is access IChatMessageNotificationTriggerDetails2_Interface'Class;
+   type IChatMessageNotificationTriggerDetails2 is access all IChatMessageNotificationTriggerDetails2_Interface'Class;
 
    type IChatMessageReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageReader is access IChatMessageReader_Interface'Class;
+   type IChatMessageReader is access all IChatMessageReader_Interface'Class;
    type IChatMessageReader_Ptr is access all IChatMessageReader;
 
    type IChatMessageReader2_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageReader2 is access IChatMessageReader2_Interface'Class;
+   type IChatMessageReader2 is access all IChatMessageReader2_Interface'Class;
 
    type IChatMessageStore_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageStore is access IChatMessageStore_Interface'Class;
+   type IChatMessageStore is access all IChatMessageStore_Interface'Class;
    type IChatMessageStore_Ptr is access all IChatMessageStore;
 
    type IChatMessageStore2_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageStore2 is access IChatMessageStore2_Interface'Class;
+   type IChatMessageStore2 is access all IChatMessageStore2_Interface'Class;
 
    type IChatMessageStore3_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageStore3 is access IChatMessageStore3_Interface'Class;
+   type IChatMessageStore3 is access all IChatMessageStore3_Interface'Class;
 
    type IChatMessageStoreChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageStoreChangedEventArgs is access IChatMessageStoreChangedEventArgs_Interface'Class;
+   type IChatMessageStoreChangedEventArgs is access all IChatMessageStoreChangedEventArgs_Interface'Class;
    type IChatMessageStoreChangedEventArgs_Ptr is access all IChatMessageStoreChangedEventArgs;
 
    type IChatMessageTransport_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageTransport is access IChatMessageTransport_Interface'Class;
+   type IChatMessageTransport is access all IChatMessageTransport_Interface'Class;
    type IChatMessageTransport_Ptr is access all IChatMessageTransport;
 
    type IChatMessageTransport2_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageTransport2 is access IChatMessageTransport2_Interface'Class;
+   type IChatMessageTransport2 is access all IChatMessageTransport2_Interface'Class;
 
    type IChatMessageTransportConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageTransportConfiguration is access IChatMessageTransportConfiguration_Interface'Class;
+   type IChatMessageTransportConfiguration is access all IChatMessageTransportConfiguration_Interface'Class;
    type IChatMessageTransportConfiguration_Ptr is access all IChatMessageTransportConfiguration;
 
    type IChatMessageValidationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageValidationResult is access IChatMessageValidationResult_Interface'Class;
+   type IChatMessageValidationResult is access all IChatMessageValidationResult_Interface'Class;
    type IChatMessageValidationResult_Ptr is access all IChatMessageValidationResult;
 
    type IChatQueryOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatQueryOptions is access IChatQueryOptions_Interface'Class;
+   type IChatQueryOptions is access all IChatQueryOptions_Interface'Class;
    type IChatQueryOptions_Ptr is access all IChatQueryOptions;
 
    type IChatRecipientDeliveryInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatRecipientDeliveryInfo is access IChatRecipientDeliveryInfo_Interface'Class;
+   type IChatRecipientDeliveryInfo is access all IChatRecipientDeliveryInfo_Interface'Class;
    type IChatRecipientDeliveryInfo_Ptr is access all IChatRecipientDeliveryInfo;
 
    type IChatSearchReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatSearchReader is access IChatSearchReader_Interface'Class;
+   type IChatSearchReader is access all IChatSearchReader_Interface'Class;
    type IChatSearchReader_Ptr is access all IChatSearchReader;
 
    type IChatSyncConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatSyncConfiguration is access IChatSyncConfiguration_Interface'Class;
+   type IChatSyncConfiguration is access all IChatSyncConfiguration_Interface'Class;
    type IChatSyncConfiguration_Ptr is access all IChatSyncConfiguration;
 
    type IChatSyncManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatSyncManager is access IChatSyncManager_Interface'Class;
+   type IChatSyncManager is access all IChatSyncManager_Interface'Class;
    type IChatSyncManager_Ptr is access all IChatSyncManager;
 
    type IRcsEndUserMessage_Interface is interface and WinRt.IInspectable_Interface;
-   type IRcsEndUserMessage is access IRcsEndUserMessage_Interface'Class;
+   type IRcsEndUserMessage is access all IRcsEndUserMessage_Interface'Class;
    type IRcsEndUserMessage_Ptr is access all IRcsEndUserMessage;
 
    type IRcsEndUserMessageAction_Interface is interface and WinRt.IInspectable_Interface;
-   type IRcsEndUserMessageAction is access IRcsEndUserMessageAction_Interface'Class;
+   type IRcsEndUserMessageAction is access all IRcsEndUserMessageAction_Interface'Class;
    type IRcsEndUserMessageAction_Ptr is access all IRcsEndUserMessageAction;
 
    type IRcsEndUserMessageAvailableEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRcsEndUserMessageAvailableEventArgs is access IRcsEndUserMessageAvailableEventArgs_Interface'Class;
+   type IRcsEndUserMessageAvailableEventArgs is access all IRcsEndUserMessageAvailableEventArgs_Interface'Class;
    type IRcsEndUserMessageAvailableEventArgs_Ptr is access all IRcsEndUserMessageAvailableEventArgs;
 
    type IRcsEndUserMessageAvailableTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IRcsEndUserMessageAvailableTriggerDetails is access IRcsEndUserMessageAvailableTriggerDetails_Interface'Class;
+   type IRcsEndUserMessageAvailableTriggerDetails is access all IRcsEndUserMessageAvailableTriggerDetails_Interface'Class;
    type IRcsEndUserMessageAvailableTriggerDetails_Ptr is access all IRcsEndUserMessageAvailableTriggerDetails;
 
    type IRcsEndUserMessageManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IRcsEndUserMessageManager is access IRcsEndUserMessageManager_Interface'Class;
+   type IRcsEndUserMessageManager is access all IRcsEndUserMessageManager_Interface'Class;
    type IRcsEndUserMessageManager_Ptr is access all IRcsEndUserMessageManager;
 
    type IRcsManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRcsManagerStatics is access IRcsManagerStatics_Interface'Class;
+   type IRcsManagerStatics is access all IRcsManagerStatics_Interface'Class;
 
    type IRcsManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRcsManagerStatics2 is access IRcsManagerStatics2_Interface'Class;
+   type IRcsManagerStatics2 is access all IRcsManagerStatics2_Interface'Class;
 
    type IRcsServiceKindSupportedChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRcsServiceKindSupportedChangedEventArgs is access IRcsServiceKindSupportedChangedEventArgs_Interface'Class;
+   type IRcsServiceKindSupportedChangedEventArgs is access all IRcsServiceKindSupportedChangedEventArgs_Interface'Class;
    type IRcsServiceKindSupportedChangedEventArgs_Ptr is access all IRcsServiceKindSupportedChangedEventArgs;
 
    type IRcsTransport_Interface is interface and WinRt.IInspectable_Interface;
-   type IRcsTransport is access IRcsTransport_Interface'Class;
+   type IRcsTransport is access all IRcsTransport_Interface'Class;
    type IRcsTransport_Ptr is access all IRcsTransport;
 
    type IRcsTransportConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IRcsTransportConfiguration is access IRcsTransportConfiguration_Interface'Class;
+   type IRcsTransportConfiguration is access all IRcsTransportConfiguration_Interface'Class;
    type IRcsTransportConfiguration_Ptr is access all IRcsTransportConfiguration;
 
    type IRemoteParticipantComposingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteParticipantComposingChangedEventArgs is access IRemoteParticipantComposingChangedEventArgs_Interface'Class;
+   type IRemoteParticipantComposingChangedEventArgs is access all IRemoteParticipantComposingChangedEventArgs_Interface'Class;
    type IRemoteParticipantComposingChangedEventArgs_Ptr is access all IRemoteParticipantComposingChangedEventArgs;
 
    -----------------------------------------------------------------------------
@@ -442,7 +442,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       ConversationId_e => 2,
       Custom_e => 3
    );
-   type ChatConversationThreadingKind_Ptr is access ChatConversationThreadingKind;
+   type ChatConversationThreadingKind_Ptr is access all ChatConversationThreadingKind;
 
    type ChatItemKind is (
       Message_e,
@@ -452,7 +452,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       Message_e => 0,
       Conversation_e => 1
    );
-   type ChatItemKind_Ptr is access ChatItemKind;
+   type ChatItemKind_Ptr is access all ChatItemKind;
 
    type ChatMessageChangeType is (
       MessageCreated_e,
@@ -466,7 +466,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       MessageDeleted_e => 2,
       ChangeTrackingLost_e => 3
    );
-   type ChatMessageChangeType_Ptr is access ChatMessageChangeType;
+   type ChatMessageChangeType_Ptr is access all ChatMessageChangeType;
 
    type ChatMessageKind is (
       Standard_e,
@@ -486,7 +486,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       OtherParticipantJoinedConversation_e => 5,
       OtherParticipantLeftConversation_e => 6
    );
-   type ChatMessageKind_Ptr is access ChatMessageKind;
+   type ChatMessageKind_Ptr is access all ChatMessageKind;
 
    type ChatMessageOperatorKind is (
       Unspecified_e,
@@ -500,7 +500,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       Mms_e => 2,
       Rcs_e => 3
    );
-   type ChatMessageOperatorKind_Ptr is access ChatMessageOperatorKind;
+   type ChatMessageOperatorKind_Ptr is access all ChatMessageOperatorKind;
 
    type ChatMessageStatus is (
       Draft_e,
@@ -534,7 +534,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       Recalled_e => 12,
       ReceiveRetryNeeded_e => 13
    );
-   type ChatMessageStatus_Ptr is access ChatMessageStatus;
+   type ChatMessageStatus_Ptr is access all ChatMessageStatus;
 
    type ChatMessageTransportKind is (
       Text_e,
@@ -548,7 +548,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       Blocked_e => 2,
       Custom_e => 3
    );
-   type ChatMessageTransportKind_Ptr is access ChatMessageTransportKind;
+   type ChatMessageTransportKind_Ptr is access all ChatMessageTransportKind;
 
    type ChatMessageValidationStatus is (
       Valid_e,
@@ -582,7 +582,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       VoiceRoamingRestriction_e => 12,
       DataRoamingRestriction_e => 13
    );
-   type ChatMessageValidationStatus_Ptr is access ChatMessageValidationStatus;
+   type ChatMessageValidationStatus_Ptr is access all ChatMessageValidationStatus;
 
    type ChatRestoreHistorySpan is (
       LastMonth_e,
@@ -594,7 +594,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       LastYear_e => 1,
       AnyTime_e => 2
    );
-   type ChatRestoreHistorySpan_Ptr is access ChatRestoreHistorySpan;
+   type ChatRestoreHistorySpan_Ptr is access all ChatRestoreHistorySpan;
 
    type ChatStoreChangedEventKind is (
       NotificationsMissed_e,
@@ -616,7 +616,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       ConversationDeleted_e => 6,
       ConversationTransportDeleted_e => 7
    );
-   type ChatStoreChangedEventKind_Ptr is access ChatStoreChangedEventKind;
+   type ChatStoreChangedEventKind_Ptr is access all ChatStoreChangedEventKind;
 
    type ChatTransportErrorCodeCategory is (
       None_e,
@@ -630,7 +630,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       Network_e => 2,
       MmsServer_e => 3
    );
-   type ChatTransportErrorCodeCategory_Ptr is access ChatTransportErrorCodeCategory;
+   type ChatTransportErrorCodeCategory_Ptr is access all ChatTransportErrorCodeCategory;
 
    type ChatTransportInterpretedErrorCode is (
       None_e,
@@ -648,7 +648,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       ServiceDenied_e => 4,
       Timeout_e => 5
    );
-   type ChatTransportInterpretedErrorCode_Ptr is access ChatTransportInterpretedErrorCode;
+   type ChatTransportInterpretedErrorCode_Ptr is access all ChatTransportInterpretedErrorCode;
 
    type RcsServiceKind is (
       Chat_e,
@@ -662,7 +662,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       FileTransfer_e => 2,
       Capability_e => 3
    );
-   type RcsServiceKind_Ptr is access RcsServiceKind;
+   type RcsServiceKind_Ptr is access all RcsServiceKind;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

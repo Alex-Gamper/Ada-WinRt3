@@ -42,105 +42,105 @@ package WinRt.Windows.Media.SpeechRecognition is
    -----------------------------------------------------------------------------
 
    type ISpeechContinuousRecognitionCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechContinuousRecognitionCompletedEventArgs is access ISpeechContinuousRecognitionCompletedEventArgs_Interface'Class;
+   type ISpeechContinuousRecognitionCompletedEventArgs is access all ISpeechContinuousRecognitionCompletedEventArgs_Interface'Class;
    type ISpeechContinuousRecognitionCompletedEventArgs_Ptr is access all ISpeechContinuousRecognitionCompletedEventArgs;
 
    type ISpeechContinuousRecognitionResultGeneratedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechContinuousRecognitionResultGeneratedEventArgs is access ISpeechContinuousRecognitionResultGeneratedEventArgs_Interface'Class;
+   type ISpeechContinuousRecognitionResultGeneratedEventArgs is access all ISpeechContinuousRecognitionResultGeneratedEventArgs_Interface'Class;
    type ISpeechContinuousRecognitionResultGeneratedEventArgs_Ptr is access all ISpeechContinuousRecognitionResultGeneratedEventArgs;
 
    type ISpeechContinuousRecognitionSession_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechContinuousRecognitionSession is access ISpeechContinuousRecognitionSession_Interface'Class;
+   type ISpeechContinuousRecognitionSession is access all ISpeechContinuousRecognitionSession_Interface'Class;
    type ISpeechContinuousRecognitionSession_Ptr is access all ISpeechContinuousRecognitionSession;
 
    type ISpeechRecognitionCompilationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognitionCompilationResult is access ISpeechRecognitionCompilationResult_Interface'Class;
+   type ISpeechRecognitionCompilationResult is access all ISpeechRecognitionCompilationResult_Interface'Class;
    type ISpeechRecognitionCompilationResult_Ptr is access all ISpeechRecognitionCompilationResult;
 
    type ISpeechRecognitionConstraint_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognitionConstraint is access ISpeechRecognitionConstraint_Interface'Class;
+   type ISpeechRecognitionConstraint is access all ISpeechRecognitionConstraint_Interface'Class;
 
    type ISpeechRecognitionGrammarFileConstraint_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognitionGrammarFileConstraint is access ISpeechRecognitionGrammarFileConstraint_Interface'Class;
+   type ISpeechRecognitionGrammarFileConstraint is access all ISpeechRecognitionGrammarFileConstraint_Interface'Class;
    type ISpeechRecognitionGrammarFileConstraint_Ptr is access all ISpeechRecognitionGrammarFileConstraint;
 
    type ISpeechRecognitionGrammarFileConstraintFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognitionGrammarFileConstraintFactory is access ISpeechRecognitionGrammarFileConstraintFactory_Interface'Class;
+   type ISpeechRecognitionGrammarFileConstraintFactory is access all ISpeechRecognitionGrammarFileConstraintFactory_Interface'Class;
 
    type ISpeechRecognitionHypothesis_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognitionHypothesis is access ISpeechRecognitionHypothesis_Interface'Class;
+   type ISpeechRecognitionHypothesis is access all ISpeechRecognitionHypothesis_Interface'Class;
    type ISpeechRecognitionHypothesis_Ptr is access all ISpeechRecognitionHypothesis;
 
    type ISpeechRecognitionHypothesisGeneratedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognitionHypothesisGeneratedEventArgs is access ISpeechRecognitionHypothesisGeneratedEventArgs_Interface'Class;
+   type ISpeechRecognitionHypothesisGeneratedEventArgs is access all ISpeechRecognitionHypothesisGeneratedEventArgs_Interface'Class;
    type ISpeechRecognitionHypothesisGeneratedEventArgs_Ptr is access all ISpeechRecognitionHypothesisGeneratedEventArgs;
 
    type ISpeechRecognitionListConstraint_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognitionListConstraint is access ISpeechRecognitionListConstraint_Interface'Class;
+   type ISpeechRecognitionListConstraint is access all ISpeechRecognitionListConstraint_Interface'Class;
    type ISpeechRecognitionListConstraint_Ptr is access all ISpeechRecognitionListConstraint;
 
    type ISpeechRecognitionListConstraintFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognitionListConstraintFactory is access ISpeechRecognitionListConstraintFactory_Interface'Class;
+   type ISpeechRecognitionListConstraintFactory is access all ISpeechRecognitionListConstraintFactory_Interface'Class;
 
    type ISpeechRecognitionQualityDegradingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognitionQualityDegradingEventArgs is access ISpeechRecognitionQualityDegradingEventArgs_Interface'Class;
+   type ISpeechRecognitionQualityDegradingEventArgs is access all ISpeechRecognitionQualityDegradingEventArgs_Interface'Class;
    type ISpeechRecognitionQualityDegradingEventArgs_Ptr is access all ISpeechRecognitionQualityDegradingEventArgs;
 
    type ISpeechRecognitionResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognitionResult is access ISpeechRecognitionResult_Interface'Class;
+   type ISpeechRecognitionResult is access all ISpeechRecognitionResult_Interface'Class;
    type ISpeechRecognitionResult_Ptr is access all ISpeechRecognitionResult;
 
    type ISpeechRecognitionResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognitionResult2 is access ISpeechRecognitionResult2_Interface'Class;
+   type ISpeechRecognitionResult2 is access all ISpeechRecognitionResult2_Interface'Class;
 
    type ISpeechRecognitionSemanticInterpretation_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognitionSemanticInterpretation is access ISpeechRecognitionSemanticInterpretation_Interface'Class;
+   type ISpeechRecognitionSemanticInterpretation is access all ISpeechRecognitionSemanticInterpretation_Interface'Class;
    type ISpeechRecognitionSemanticInterpretation_Ptr is access all ISpeechRecognitionSemanticInterpretation;
 
    type ISpeechRecognitionTopicConstraint_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognitionTopicConstraint is access ISpeechRecognitionTopicConstraint_Interface'Class;
+   type ISpeechRecognitionTopicConstraint is access all ISpeechRecognitionTopicConstraint_Interface'Class;
    type ISpeechRecognitionTopicConstraint_Ptr is access all ISpeechRecognitionTopicConstraint;
 
    type ISpeechRecognitionTopicConstraintFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognitionTopicConstraintFactory is access ISpeechRecognitionTopicConstraintFactory_Interface'Class;
+   type ISpeechRecognitionTopicConstraintFactory is access all ISpeechRecognitionTopicConstraintFactory_Interface'Class;
 
    type ISpeechRecognitionVoiceCommandDefinitionConstraint_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognitionVoiceCommandDefinitionConstraint is access ISpeechRecognitionVoiceCommandDefinitionConstraint_Interface'Class;
+   type ISpeechRecognitionVoiceCommandDefinitionConstraint is access all ISpeechRecognitionVoiceCommandDefinitionConstraint_Interface'Class;
    type ISpeechRecognitionVoiceCommandDefinitionConstraint_Ptr is access all ISpeechRecognitionVoiceCommandDefinitionConstraint;
 
    type ISpeechRecognizer_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognizer is access ISpeechRecognizer_Interface'Class;
+   type ISpeechRecognizer is access all ISpeechRecognizer_Interface'Class;
    type ISpeechRecognizer_Ptr is access all ISpeechRecognizer;
 
    type ISpeechRecognizer2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognizer2 is access ISpeechRecognizer2_Interface'Class;
+   type ISpeechRecognizer2 is access all ISpeechRecognizer2_Interface'Class;
 
    type ISpeechRecognizerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognizerFactory is access ISpeechRecognizerFactory_Interface'Class;
+   type ISpeechRecognizerFactory is access all ISpeechRecognizerFactory_Interface'Class;
 
    type ISpeechRecognizerStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognizerStateChangedEventArgs is access ISpeechRecognizerStateChangedEventArgs_Interface'Class;
+   type ISpeechRecognizerStateChangedEventArgs is access all ISpeechRecognizerStateChangedEventArgs_Interface'Class;
    type ISpeechRecognizerStateChangedEventArgs_Ptr is access all ISpeechRecognizerStateChangedEventArgs;
 
    type ISpeechRecognizerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognizerStatics is access ISpeechRecognizerStatics_Interface'Class;
+   type ISpeechRecognizerStatics is access all ISpeechRecognizerStatics_Interface'Class;
 
    type ISpeechRecognizerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognizerStatics2 is access ISpeechRecognizerStatics2_Interface'Class;
+   type ISpeechRecognizerStatics2 is access all ISpeechRecognizerStatics2_Interface'Class;
 
    type ISpeechRecognizerTimeouts_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognizerTimeouts is access ISpeechRecognizerTimeouts_Interface'Class;
+   type ISpeechRecognizerTimeouts is access all ISpeechRecognizerTimeouts_Interface'Class;
    type ISpeechRecognizerTimeouts_Ptr is access all ISpeechRecognizerTimeouts;
 
    type ISpeechRecognizerUIOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechRecognizerUIOptions is access ISpeechRecognizerUIOptions_Interface'Class;
+   type ISpeechRecognizerUIOptions is access all ISpeechRecognizerUIOptions_Interface'Class;
    type ISpeechRecognizerUIOptions_Ptr is access all ISpeechRecognizerUIOptions;
 
    type IVoiceCommandManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceCommandManager is access IVoiceCommandManager_Interface'Class;
+   type IVoiceCommandManager is access all IVoiceCommandManager_Interface'Class;
 
    type IVoiceCommandSet_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceCommandSet is access IVoiceCommandSet_Interface'Class;
+   type IVoiceCommandSet is access all IVoiceCommandSet_Interface'Class;
    type IVoiceCommandSet_Ptr is access all IVoiceCommandSet;
 
    -----------------------------------------------------------------------------
@@ -267,7 +267,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       Default_e => 0,
       PauseOnRecognition_e => 1
    );
-   type SpeechContinuousRecognitionMode_Ptr is access SpeechContinuousRecognitionMode;
+   type SpeechContinuousRecognitionMode_Ptr is access all SpeechContinuousRecognitionMode;
 
    type SpeechRecognitionAudioProblem is (
       None_e,
@@ -287,7 +287,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       TooFast_e => 5,
       TooSlow_e => 6
    );
-   type SpeechRecognitionAudioProblem_Ptr is access SpeechRecognitionAudioProblem;
+   type SpeechRecognitionAudioProblem_Ptr is access all SpeechRecognitionAudioProblem;
 
    type SpeechRecognitionConfidence is (
       High_e,
@@ -301,7 +301,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       Low_e => 2,
       Rejected_e => 3
    );
-   type SpeechRecognitionConfidence_Ptr is access SpeechRecognitionConfidence;
+   type SpeechRecognitionConfidence_Ptr is access all SpeechRecognitionConfidence;
 
    type SpeechRecognitionConstraintProbability is (
       Default_e,
@@ -313,7 +313,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       Min_e => 1,
       Max_e => 2
    );
-   type SpeechRecognitionConstraintProbability_Ptr is access SpeechRecognitionConstraintProbability;
+   type SpeechRecognitionConstraintProbability_Ptr is access all SpeechRecognitionConstraintProbability;
 
    type SpeechRecognitionConstraintType is (
       Topic_e,
@@ -327,7 +327,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       Grammar_e => 2,
       VoiceCommandDefinition_e => 3
    );
-   type SpeechRecognitionConstraintType_Ptr is access SpeechRecognitionConstraintType;
+   type SpeechRecognitionConstraintType_Ptr is access all SpeechRecognitionConstraintType;
 
    type SpeechRecognitionResultStatus is (
       Success_e,
@@ -355,7 +355,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       NetworkFailure_e => 9,
       MicrophoneUnavailable_e => 10
    );
-   type SpeechRecognitionResultStatus_Ptr is access SpeechRecognitionResultStatus;
+   type SpeechRecognitionResultStatus_Ptr is access all SpeechRecognitionResultStatus;
 
    type SpeechRecognitionScenario is (
       WebSearch_e,
@@ -367,7 +367,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       Dictation_e => 1,
       FormFilling_e => 2
    );
-   type SpeechRecognitionScenario_Ptr is access SpeechRecognitionScenario;
+   type SpeechRecognitionScenario_Ptr is access all SpeechRecognitionScenario;
 
    type SpeechRecognizerState is (
       Idle_e,
@@ -387,7 +387,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       SpeechDetected_e => 5,
       Paused_e => 6
    );
-   type SpeechRecognizerState_Ptr is access SpeechRecognizerState;
+   type SpeechRecognizerState_Ptr is access all SpeechRecognizerState;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

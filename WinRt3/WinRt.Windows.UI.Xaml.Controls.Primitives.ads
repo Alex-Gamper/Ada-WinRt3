@@ -46,462 +46,462 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    -----------------------------------------------------------------------------
 
    type DragCompletedEventHandler_Delegate;
-   type DragCompletedEventHandler is access DragCompletedEventHandler_Delegate;
+   type DragCompletedEventHandler is access all DragCompletedEventHandler_Delegate;
 
    type DragDeltaEventHandler_Delegate;
-   type DragDeltaEventHandler is access DragDeltaEventHandler_Delegate;
+   type DragDeltaEventHandler is access all DragDeltaEventHandler_Delegate;
 
    type DragStartedEventHandler_Delegate;
-   type DragStartedEventHandler is access DragStartedEventHandler_Delegate;
+   type DragStartedEventHandler is access all DragStartedEventHandler_Delegate;
 
    type ItemsChangedEventHandler_Delegate;
-   type ItemsChangedEventHandler is access ItemsChangedEventHandler_Delegate;
+   type ItemsChangedEventHandler is access all ItemsChangedEventHandler_Delegate;
 
    type RangeBaseValueChangedEventHandler_Delegate;
-   type RangeBaseValueChangedEventHandler is access RangeBaseValueChangedEventHandler_Delegate;
+   type RangeBaseValueChangedEventHandler is access all RangeBaseValueChangedEventHandler_Delegate;
 
    type ScrollEventHandler_Delegate;
-   type ScrollEventHandler is access ScrollEventHandler_Delegate;
+   type ScrollEventHandler is access all ScrollEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IAppBarButtonTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBarButtonTemplateSettings is access IAppBarButtonTemplateSettings_Interface'Class;
+   type IAppBarButtonTemplateSettings is access all IAppBarButtonTemplateSettings_Interface'Class;
    type IAppBarButtonTemplateSettings_Ptr is access all IAppBarButtonTemplateSettings;
 
    type IAppBarTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBarTemplateSettings is access IAppBarTemplateSettings_Interface'Class;
+   type IAppBarTemplateSettings is access all IAppBarTemplateSettings_Interface'Class;
    type IAppBarTemplateSettings_Ptr is access all IAppBarTemplateSettings;
 
    type IAppBarTemplateSettings2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBarTemplateSettings2 is access IAppBarTemplateSettings2_Interface'Class;
+   type IAppBarTemplateSettings2 is access all IAppBarTemplateSettings2_Interface'Class;
 
    type IAppBarToggleButtonTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBarToggleButtonTemplateSettings is access IAppBarToggleButtonTemplateSettings_Interface'Class;
+   type IAppBarToggleButtonTemplateSettings is access all IAppBarToggleButtonTemplateSettings_Interface'Class;
    type IAppBarToggleButtonTemplateSettings_Ptr is access all IAppBarToggleButtonTemplateSettings;
 
    type IButtonBase_Interface is interface and WinRt.IInspectable_Interface;
-   type IButtonBase is access IButtonBase_Interface'Class;
+   type IButtonBase is access all IButtonBase_Interface'Class;
    type IButtonBase_Ptr is access all IButtonBase;
 
    type IButtonBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IButtonBaseFactory is access IButtonBaseFactory_Interface'Class;
+   type IButtonBaseFactory is access all IButtonBaseFactory_Interface'Class;
 
    type IButtonBaseStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IButtonBaseStatics is access IButtonBaseStatics_Interface'Class;
+   type IButtonBaseStatics is access all IButtonBaseStatics_Interface'Class;
 
    type ICalendarPanel_Interface is interface and WinRt.IInspectable_Interface;
-   type ICalendarPanel is access ICalendarPanel_Interface'Class;
+   type ICalendarPanel is access all ICalendarPanel_Interface'Class;
    type ICalendarPanel_Ptr is access all ICalendarPanel;
 
    type ICalendarViewTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type ICalendarViewTemplateSettings is access ICalendarViewTemplateSettings_Interface'Class;
+   type ICalendarViewTemplateSettings is access all ICalendarViewTemplateSettings_Interface'Class;
    type ICalendarViewTemplateSettings_Ptr is access all ICalendarViewTemplateSettings;
 
    type ICarouselPanel_Interface is interface and WinRt.IInspectable_Interface;
-   type ICarouselPanel is access ICarouselPanel_Interface'Class;
+   type ICarouselPanel is access all ICarouselPanel_Interface'Class;
    type ICarouselPanel_Ptr is access all ICarouselPanel;
 
    type ICarouselPanelFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICarouselPanelFactory is access ICarouselPanelFactory_Interface'Class;
+   type ICarouselPanelFactory is access all ICarouselPanelFactory_Interface'Class;
 
    type IColorPickerSlider_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorPickerSlider is access IColorPickerSlider_Interface'Class;
+   type IColorPickerSlider is access all IColorPickerSlider_Interface'Class;
    type IColorPickerSlider_Ptr is access all IColorPickerSlider;
 
    type IColorPickerSliderFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorPickerSliderFactory is access IColorPickerSliderFactory_Interface'Class;
+   type IColorPickerSliderFactory is access all IColorPickerSliderFactory_Interface'Class;
 
    type IColorPickerSliderStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorPickerSliderStatics is access IColorPickerSliderStatics_Interface'Class;
+   type IColorPickerSliderStatics is access all IColorPickerSliderStatics_Interface'Class;
 
    type IColorSpectrum_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorSpectrum is access IColorSpectrum_Interface'Class;
+   type IColorSpectrum is access all IColorSpectrum_Interface'Class;
    type IColorSpectrum_Ptr is access all IColorSpectrum;
 
    type IColorSpectrumFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorSpectrumFactory is access IColorSpectrumFactory_Interface'Class;
+   type IColorSpectrumFactory is access all IColorSpectrumFactory_Interface'Class;
 
    type IColorSpectrumStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorSpectrumStatics is access IColorSpectrumStatics_Interface'Class;
+   type IColorSpectrumStatics is access all IColorSpectrumStatics_Interface'Class;
 
    type IComboBoxTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IComboBoxTemplateSettings is access IComboBoxTemplateSettings_Interface'Class;
+   type IComboBoxTemplateSettings is access all IComboBoxTemplateSettings_Interface'Class;
    type IComboBoxTemplateSettings_Ptr is access all IComboBoxTemplateSettings;
 
    type IComboBoxTemplateSettings2_Interface is interface and WinRt.IInspectable_Interface;
-   type IComboBoxTemplateSettings2 is access IComboBoxTemplateSettings2_Interface'Class;
+   type IComboBoxTemplateSettings2 is access all IComboBoxTemplateSettings2_Interface'Class;
 
    type ICommandBarFlyoutCommandBar_Interface is interface and WinRt.IInspectable_Interface;
-   type ICommandBarFlyoutCommandBar is access ICommandBarFlyoutCommandBar_Interface'Class;
+   type ICommandBarFlyoutCommandBar is access all ICommandBarFlyoutCommandBar_Interface'Class;
    type ICommandBarFlyoutCommandBar_Ptr is access all ICommandBarFlyoutCommandBar;
 
    type ICommandBarFlyoutCommandBarFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICommandBarFlyoutCommandBarFactory is access ICommandBarFlyoutCommandBarFactory_Interface'Class;
+   type ICommandBarFlyoutCommandBarFactory is access all ICommandBarFlyoutCommandBarFactory_Interface'Class;
 
    type ICommandBarFlyoutCommandBarTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type ICommandBarFlyoutCommandBarTemplateSettings is access ICommandBarFlyoutCommandBarTemplateSettings_Interface'Class;
+   type ICommandBarFlyoutCommandBarTemplateSettings is access all ICommandBarFlyoutCommandBarTemplateSettings_Interface'Class;
    type ICommandBarFlyoutCommandBarTemplateSettings_Ptr is access all ICommandBarFlyoutCommandBarTemplateSettings;
 
    type ICommandBarTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type ICommandBarTemplateSettings is access ICommandBarTemplateSettings_Interface'Class;
+   type ICommandBarTemplateSettings is access all ICommandBarTemplateSettings_Interface'Class;
    type ICommandBarTemplateSettings_Ptr is access all ICommandBarTemplateSettings;
 
    type ICommandBarTemplateSettings2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICommandBarTemplateSettings2 is access ICommandBarTemplateSettings2_Interface'Class;
+   type ICommandBarTemplateSettings2 is access all ICommandBarTemplateSettings2_Interface'Class;
 
    type ICommandBarTemplateSettings3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICommandBarTemplateSettings3 is access ICommandBarTemplateSettings3_Interface'Class;
+   type ICommandBarTemplateSettings3 is access all ICommandBarTemplateSettings3_Interface'Class;
 
    type ICommandBarTemplateSettings4_Interface is interface and WinRt.IInspectable_Interface;
-   type ICommandBarTemplateSettings4 is access ICommandBarTemplateSettings4_Interface'Class;
+   type ICommandBarTemplateSettings4 is access all ICommandBarTemplateSettings4_Interface'Class;
 
    type IDragCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDragCompletedEventArgs is access IDragCompletedEventArgs_Interface'Class;
+   type IDragCompletedEventArgs is access all IDragCompletedEventArgs_Interface'Class;
    type IDragCompletedEventArgs_Ptr is access all IDragCompletedEventArgs;
 
    type IDragCompletedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDragCompletedEventArgsFactory is access IDragCompletedEventArgsFactory_Interface'Class;
+   type IDragCompletedEventArgsFactory is access all IDragCompletedEventArgsFactory_Interface'Class;
 
    type IDragDeltaEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDragDeltaEventArgs is access IDragDeltaEventArgs_Interface'Class;
+   type IDragDeltaEventArgs is access all IDragDeltaEventArgs_Interface'Class;
    type IDragDeltaEventArgs_Ptr is access all IDragDeltaEventArgs;
 
    type IDragDeltaEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDragDeltaEventArgsFactory is access IDragDeltaEventArgsFactory_Interface'Class;
+   type IDragDeltaEventArgsFactory is access all IDragDeltaEventArgsFactory_Interface'Class;
 
    type IDragStartedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDragStartedEventArgs is access IDragStartedEventArgs_Interface'Class;
+   type IDragStartedEventArgs is access all IDragStartedEventArgs_Interface'Class;
    type IDragStartedEventArgs_Ptr is access all IDragStartedEventArgs;
 
    type IDragStartedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDragStartedEventArgsFactory is access IDragStartedEventArgsFactory_Interface'Class;
+   type IDragStartedEventArgsFactory is access all IDragStartedEventArgsFactory_Interface'Class;
 
    type IFlyoutBase_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutBase is access IFlyoutBase_Interface'Class;
+   type IFlyoutBase is access all IFlyoutBase_Interface'Class;
    type IFlyoutBase_Ptr is access all IFlyoutBase;
 
    type IFlyoutBase2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutBase2 is access IFlyoutBase2_Interface'Class;
+   type IFlyoutBase2 is access all IFlyoutBase2_Interface'Class;
 
    type IFlyoutBase3_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutBase3 is access IFlyoutBase3_Interface'Class;
+   type IFlyoutBase3 is access all IFlyoutBase3_Interface'Class;
 
    type IFlyoutBase4_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutBase4 is access IFlyoutBase4_Interface'Class;
+   type IFlyoutBase4 is access all IFlyoutBase4_Interface'Class;
 
    type IFlyoutBase5_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutBase5 is access IFlyoutBase5_Interface'Class;
+   type IFlyoutBase5 is access all IFlyoutBase5_Interface'Class;
 
    type IFlyoutBase6_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutBase6 is access IFlyoutBase6_Interface'Class;
+   type IFlyoutBase6 is access all IFlyoutBase6_Interface'Class;
 
    type IFlyoutBaseClosingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutBaseClosingEventArgs is access IFlyoutBaseClosingEventArgs_Interface'Class;
+   type IFlyoutBaseClosingEventArgs is access all IFlyoutBaseClosingEventArgs_Interface'Class;
    type IFlyoutBaseClosingEventArgs_Ptr is access all IFlyoutBaseClosingEventArgs;
 
    type IFlyoutBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutBaseFactory is access IFlyoutBaseFactory_Interface'Class;
+   type IFlyoutBaseFactory is access all IFlyoutBaseFactory_Interface'Class;
 
    type IFlyoutBaseOverrides_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutBaseOverrides is access IFlyoutBaseOverrides_Interface'Class;
+   type IFlyoutBaseOverrides is access all IFlyoutBaseOverrides_Interface'Class;
 
    type IFlyoutBaseOverrides4_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutBaseOverrides4 is access IFlyoutBaseOverrides4_Interface'Class;
+   type IFlyoutBaseOverrides4 is access all IFlyoutBaseOverrides4_Interface'Class;
 
    type IFlyoutBaseStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutBaseStatics is access IFlyoutBaseStatics_Interface'Class;
+   type IFlyoutBaseStatics is access all IFlyoutBaseStatics_Interface'Class;
 
    type IFlyoutBaseStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutBaseStatics2 is access IFlyoutBaseStatics2_Interface'Class;
+   type IFlyoutBaseStatics2 is access all IFlyoutBaseStatics2_Interface'Class;
 
    type IFlyoutBaseStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutBaseStatics3 is access IFlyoutBaseStatics3_Interface'Class;
+   type IFlyoutBaseStatics3 is access all IFlyoutBaseStatics3_Interface'Class;
 
    type IFlyoutBaseStatics5_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutBaseStatics5 is access IFlyoutBaseStatics5_Interface'Class;
+   type IFlyoutBaseStatics5 is access all IFlyoutBaseStatics5_Interface'Class;
 
    type IFlyoutBaseStatics6_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutBaseStatics6 is access IFlyoutBaseStatics6_Interface'Class;
+   type IFlyoutBaseStatics6 is access all IFlyoutBaseStatics6_Interface'Class;
 
    type IFlyoutShowOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutShowOptions is access IFlyoutShowOptions_Interface'Class;
+   type IFlyoutShowOptions is access all IFlyoutShowOptions_Interface'Class;
    type IFlyoutShowOptions_Ptr is access all IFlyoutShowOptions;
 
    type IFlyoutShowOptionsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutShowOptionsFactory is access IFlyoutShowOptionsFactory_Interface'Class;
+   type IFlyoutShowOptionsFactory is access all IFlyoutShowOptionsFactory_Interface'Class;
 
    type IGeneratorPositionHelper_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeneratorPositionHelper is access IGeneratorPositionHelper_Interface'Class;
+   type IGeneratorPositionHelper is access all IGeneratorPositionHelper_Interface'Class;
    type IGeneratorPositionHelper_Ptr is access all IGeneratorPositionHelper;
 
    type IGeneratorPositionHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeneratorPositionHelperStatics is access IGeneratorPositionHelperStatics_Interface'Class;
+   type IGeneratorPositionHelperStatics is access all IGeneratorPositionHelperStatics_Interface'Class;
 
    type IGridViewItemPresenter_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridViewItemPresenter is access IGridViewItemPresenter_Interface'Class;
+   type IGridViewItemPresenter is access all IGridViewItemPresenter_Interface'Class;
    type IGridViewItemPresenter_Ptr is access all IGridViewItemPresenter;
 
    type IGridViewItemPresenterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridViewItemPresenterFactory is access IGridViewItemPresenterFactory_Interface'Class;
+   type IGridViewItemPresenterFactory is access all IGridViewItemPresenterFactory_Interface'Class;
 
    type IGridViewItemPresenterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridViewItemPresenterStatics is access IGridViewItemPresenterStatics_Interface'Class;
+   type IGridViewItemPresenterStatics is access all IGridViewItemPresenterStatics_Interface'Class;
 
    type IGridViewItemTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridViewItemTemplateSettings is access IGridViewItemTemplateSettings_Interface'Class;
+   type IGridViewItemTemplateSettings is access all IGridViewItemTemplateSettings_Interface'Class;
    type IGridViewItemTemplateSettings_Ptr is access all IGridViewItemTemplateSettings;
 
    type IItemsChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IItemsChangedEventArgs is access IItemsChangedEventArgs_Interface'Class;
+   type IItemsChangedEventArgs is access all IItemsChangedEventArgs_Interface'Class;
    type IItemsChangedEventArgs_Ptr is access all IItemsChangedEventArgs;
 
    type IJumpListItemBackgroundConverter_Interface is interface and WinRt.IInspectable_Interface;
-   type IJumpListItemBackgroundConverter is access IJumpListItemBackgroundConverter_Interface'Class;
+   type IJumpListItemBackgroundConverter is access all IJumpListItemBackgroundConverter_Interface'Class;
    type IJumpListItemBackgroundConverter_Ptr is access all IJumpListItemBackgroundConverter;
 
    type IJumpListItemBackgroundConverterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IJumpListItemBackgroundConverterStatics is access IJumpListItemBackgroundConverterStatics_Interface'Class;
+   type IJumpListItemBackgroundConverterStatics is access all IJumpListItemBackgroundConverterStatics_Interface'Class;
 
    type IJumpListItemForegroundConverter_Interface is interface and WinRt.IInspectable_Interface;
-   type IJumpListItemForegroundConverter is access IJumpListItemForegroundConverter_Interface'Class;
+   type IJumpListItemForegroundConverter is access all IJumpListItemForegroundConverter_Interface'Class;
    type IJumpListItemForegroundConverter_Ptr is access all IJumpListItemForegroundConverter;
 
    type IJumpListItemForegroundConverterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IJumpListItemForegroundConverterStatics is access IJumpListItemForegroundConverterStatics_Interface'Class;
+   type IJumpListItemForegroundConverterStatics is access all IJumpListItemForegroundConverterStatics_Interface'Class;
 
    type ILayoutInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type ILayoutInformation is access ILayoutInformation_Interface'Class;
+   type ILayoutInformation is access all ILayoutInformation_Interface'Class;
    type ILayoutInformation_Ptr is access all ILayoutInformation;
 
    type ILayoutInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILayoutInformationStatics is access ILayoutInformationStatics_Interface'Class;
+   type ILayoutInformationStatics is access all ILayoutInformationStatics_Interface'Class;
 
    type ILayoutInformationStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ILayoutInformationStatics2 is access ILayoutInformationStatics2_Interface'Class;
+   type ILayoutInformationStatics2 is access all ILayoutInformationStatics2_Interface'Class;
 
    type IListViewItemPresenter_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewItemPresenter is access IListViewItemPresenter_Interface'Class;
+   type IListViewItemPresenter is access all IListViewItemPresenter_Interface'Class;
    type IListViewItemPresenter_Ptr is access all IListViewItemPresenter;
 
    type IListViewItemPresenter2_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewItemPresenter2 is access IListViewItemPresenter2_Interface'Class;
+   type IListViewItemPresenter2 is access all IListViewItemPresenter2_Interface'Class;
 
    type IListViewItemPresenter3_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewItemPresenter3 is access IListViewItemPresenter3_Interface'Class;
+   type IListViewItemPresenter3 is access all IListViewItemPresenter3_Interface'Class;
 
    type IListViewItemPresenterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewItemPresenterFactory is access IListViewItemPresenterFactory_Interface'Class;
+   type IListViewItemPresenterFactory is access all IListViewItemPresenterFactory_Interface'Class;
 
    type IListViewItemPresenterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewItemPresenterStatics is access IListViewItemPresenterStatics_Interface'Class;
+   type IListViewItemPresenterStatics is access all IListViewItemPresenterStatics_Interface'Class;
 
    type IListViewItemPresenterStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewItemPresenterStatics2 is access IListViewItemPresenterStatics2_Interface'Class;
+   type IListViewItemPresenterStatics2 is access all IListViewItemPresenterStatics2_Interface'Class;
 
    type IListViewItemPresenterStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewItemPresenterStatics3 is access IListViewItemPresenterStatics3_Interface'Class;
+   type IListViewItemPresenterStatics3 is access all IListViewItemPresenterStatics3_Interface'Class;
 
    type IListViewItemTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewItemTemplateSettings is access IListViewItemTemplateSettings_Interface'Class;
+   type IListViewItemTemplateSettings is access all IListViewItemTemplateSettings_Interface'Class;
    type IListViewItemTemplateSettings_Ptr is access all IListViewItemTemplateSettings;
 
    type ILoopingSelector_Interface is interface and WinRt.IInspectable_Interface;
-   type ILoopingSelector is access ILoopingSelector_Interface'Class;
+   type ILoopingSelector is access all ILoopingSelector_Interface'Class;
    type ILoopingSelector_Ptr is access all ILoopingSelector;
 
    type ILoopingSelectorItem_Interface is interface and WinRt.IInspectable_Interface;
-   type ILoopingSelectorItem is access ILoopingSelectorItem_Interface'Class;
+   type ILoopingSelectorItem is access all ILoopingSelectorItem_Interface'Class;
    type ILoopingSelectorItem_Ptr is access all ILoopingSelectorItem;
 
    type ILoopingSelectorPanel_Interface is interface and WinRt.IInspectable_Interface;
-   type ILoopingSelectorPanel is access ILoopingSelectorPanel_Interface'Class;
+   type ILoopingSelectorPanel is access all ILoopingSelectorPanel_Interface'Class;
    type ILoopingSelectorPanel_Ptr is access all ILoopingSelectorPanel;
 
    type ILoopingSelectorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILoopingSelectorStatics is access ILoopingSelectorStatics_Interface'Class;
+   type ILoopingSelectorStatics is access all ILoopingSelectorStatics_Interface'Class;
 
    type IMenuFlyoutItemTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IMenuFlyoutItemTemplateSettings is access IMenuFlyoutItemTemplateSettings_Interface'Class;
+   type IMenuFlyoutItemTemplateSettings is access all IMenuFlyoutItemTemplateSettings_Interface'Class;
    type IMenuFlyoutItemTemplateSettings_Ptr is access all IMenuFlyoutItemTemplateSettings;
 
    type IMenuFlyoutPresenterTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IMenuFlyoutPresenterTemplateSettings is access IMenuFlyoutPresenterTemplateSettings_Interface'Class;
+   type IMenuFlyoutPresenterTemplateSettings is access all IMenuFlyoutPresenterTemplateSettings_Interface'Class;
    type IMenuFlyoutPresenterTemplateSettings_Ptr is access all IMenuFlyoutPresenterTemplateSettings;
 
    type INavigationViewItemPresenter_Interface is interface and WinRt.IInspectable_Interface;
-   type INavigationViewItemPresenter is access INavigationViewItemPresenter_Interface'Class;
+   type INavigationViewItemPresenter is access all INavigationViewItemPresenter_Interface'Class;
    type INavigationViewItemPresenter_Ptr is access all INavigationViewItemPresenter;
 
    type INavigationViewItemPresenterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type INavigationViewItemPresenterFactory is access INavigationViewItemPresenterFactory_Interface'Class;
+   type INavigationViewItemPresenterFactory is access all INavigationViewItemPresenterFactory_Interface'Class;
 
    type INavigationViewItemPresenterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type INavigationViewItemPresenterStatics is access INavigationViewItemPresenterStatics_Interface'Class;
+   type INavigationViewItemPresenterStatics is access all INavigationViewItemPresenterStatics_Interface'Class;
 
    type IOrientedVirtualizingPanel_Interface is interface and WinRt.IInspectable_Interface;
-   type IOrientedVirtualizingPanel is access IOrientedVirtualizingPanel_Interface'Class;
+   type IOrientedVirtualizingPanel is access all IOrientedVirtualizingPanel_Interface'Class;
    type IOrientedVirtualizingPanel_Ptr is access all IOrientedVirtualizingPanel;
 
    type IOrientedVirtualizingPanelFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IOrientedVirtualizingPanelFactory is access IOrientedVirtualizingPanelFactory_Interface'Class;
+   type IOrientedVirtualizingPanelFactory is access all IOrientedVirtualizingPanelFactory_Interface'Class;
 
    type IPickerFlyoutBase_Interface is interface and WinRt.IInspectable_Interface;
-   type IPickerFlyoutBase is access IPickerFlyoutBase_Interface'Class;
+   type IPickerFlyoutBase is access all IPickerFlyoutBase_Interface'Class;
    type IPickerFlyoutBase_Ptr is access all IPickerFlyoutBase;
 
    type IPickerFlyoutBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPickerFlyoutBaseFactory is access IPickerFlyoutBaseFactory_Interface'Class;
+   type IPickerFlyoutBaseFactory is access all IPickerFlyoutBaseFactory_Interface'Class;
 
    type IPickerFlyoutBaseOverrides_Interface is interface and WinRt.IInspectable_Interface;
-   type IPickerFlyoutBaseOverrides is access IPickerFlyoutBaseOverrides_Interface'Class;
+   type IPickerFlyoutBaseOverrides is access all IPickerFlyoutBaseOverrides_Interface'Class;
 
    type IPickerFlyoutBaseStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPickerFlyoutBaseStatics is access IPickerFlyoutBaseStatics_Interface'Class;
+   type IPickerFlyoutBaseStatics is access all IPickerFlyoutBaseStatics_Interface'Class;
 
    type IPivotHeaderItem_Interface is interface and WinRt.IInspectable_Interface;
-   type IPivotHeaderItem is access IPivotHeaderItem_Interface'Class;
+   type IPivotHeaderItem is access all IPivotHeaderItem_Interface'Class;
    type IPivotHeaderItem_Ptr is access all IPivotHeaderItem;
 
    type IPivotHeaderItemFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPivotHeaderItemFactory is access IPivotHeaderItemFactory_Interface'Class;
+   type IPivotHeaderItemFactory is access all IPivotHeaderItemFactory_Interface'Class;
 
    type IPivotHeaderPanel_Interface is interface and WinRt.IInspectable_Interface;
-   type IPivotHeaderPanel is access IPivotHeaderPanel_Interface'Class;
+   type IPivotHeaderPanel is access all IPivotHeaderPanel_Interface'Class;
    type IPivotHeaderPanel_Ptr is access all IPivotHeaderPanel;
 
    type IPivotPanel_Interface is interface and WinRt.IInspectable_Interface;
-   type IPivotPanel is access IPivotPanel_Interface'Class;
+   type IPivotPanel is access all IPivotPanel_Interface'Class;
    type IPivotPanel_Ptr is access all IPivotPanel;
 
    type IPopup_Interface is interface and WinRt.IInspectable_Interface;
-   type IPopup is access IPopup_Interface'Class;
+   type IPopup is access all IPopup_Interface'Class;
    type IPopup_Ptr is access all IPopup;
 
    type IPopup2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPopup2 is access IPopup2_Interface'Class;
+   type IPopup2 is access all IPopup2_Interface'Class;
 
    type IPopup3_Interface is interface and WinRt.IInspectable_Interface;
-   type IPopup3 is access IPopup3_Interface'Class;
+   type IPopup3 is access all IPopup3_Interface'Class;
 
    type IPopupStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPopupStatics is access IPopupStatics_Interface'Class;
+   type IPopupStatics is access all IPopupStatics_Interface'Class;
 
    type IPopupStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPopupStatics2 is access IPopupStatics2_Interface'Class;
+   type IPopupStatics2 is access all IPopupStatics2_Interface'Class;
 
    type IPopupStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IPopupStatics3 is access IPopupStatics3_Interface'Class;
+   type IPopupStatics3 is access all IPopupStatics3_Interface'Class;
 
    type IProgressBarTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IProgressBarTemplateSettings is access IProgressBarTemplateSettings_Interface'Class;
+   type IProgressBarTemplateSettings is access all IProgressBarTemplateSettings_Interface'Class;
    type IProgressBarTemplateSettings_Ptr is access all IProgressBarTemplateSettings;
 
    type IProgressRingTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IProgressRingTemplateSettings is access IProgressRingTemplateSettings_Interface'Class;
+   type IProgressRingTemplateSettings is access all IProgressRingTemplateSettings_Interface'Class;
    type IProgressRingTemplateSettings_Ptr is access all IProgressRingTemplateSettings;
 
    type IRangeBase_Interface is interface and WinRt.IInspectable_Interface;
-   type IRangeBase is access IRangeBase_Interface'Class;
+   type IRangeBase is access all IRangeBase_Interface'Class;
    type IRangeBase_Ptr is access all IRangeBase;
 
    type IRangeBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRangeBaseFactory is access IRangeBaseFactory_Interface'Class;
+   type IRangeBaseFactory is access all IRangeBaseFactory_Interface'Class;
 
    type IRangeBaseOverrides_Interface is interface and WinRt.IInspectable_Interface;
-   type IRangeBaseOverrides is access IRangeBaseOverrides_Interface'Class;
+   type IRangeBaseOverrides is access all IRangeBaseOverrides_Interface'Class;
 
    type IRangeBaseStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRangeBaseStatics is access IRangeBaseStatics_Interface'Class;
+   type IRangeBaseStatics is access all IRangeBaseStatics_Interface'Class;
 
    type IRangeBaseValueChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRangeBaseValueChangedEventArgs is access IRangeBaseValueChangedEventArgs_Interface'Class;
+   type IRangeBaseValueChangedEventArgs is access all IRangeBaseValueChangedEventArgs_Interface'Class;
    type IRangeBaseValueChangedEventArgs_Ptr is access all IRangeBaseValueChangedEventArgs;
 
    type IRepeatButton_Interface is interface and WinRt.IInspectable_Interface;
-   type IRepeatButton is access IRepeatButton_Interface'Class;
+   type IRepeatButton is access all IRepeatButton_Interface'Class;
    type IRepeatButton_Ptr is access all IRepeatButton;
 
    type IRepeatButtonStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRepeatButtonStatics is access IRepeatButtonStatics_Interface'Class;
+   type IRepeatButtonStatics is access all IRepeatButtonStatics_Interface'Class;
 
    type IScrollBar_Interface is interface and WinRt.IInspectable_Interface;
-   type IScrollBar is access IScrollBar_Interface'Class;
+   type IScrollBar is access all IScrollBar_Interface'Class;
    type IScrollBar_Ptr is access all IScrollBar;
 
    type IScrollBarStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IScrollBarStatics is access IScrollBarStatics_Interface'Class;
+   type IScrollBarStatics is access all IScrollBarStatics_Interface'Class;
 
    type IScrollEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IScrollEventArgs is access IScrollEventArgs_Interface'Class;
+   type IScrollEventArgs is access all IScrollEventArgs_Interface'Class;
    type IScrollEventArgs_Ptr is access all IScrollEventArgs;
 
    type IScrollSnapPointsInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IScrollSnapPointsInfo is access IScrollSnapPointsInfo_Interface'Class;
+   type IScrollSnapPointsInfo is access all IScrollSnapPointsInfo_Interface'Class;
 
    type ISelector_Interface is interface and WinRt.IInspectable_Interface;
-   type ISelector is access ISelector_Interface'Class;
+   type ISelector is access all ISelector_Interface'Class;
    type ISelector_Ptr is access all ISelector;
 
    type ISelectorFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISelectorFactory is access ISelectorFactory_Interface'Class;
+   type ISelectorFactory is access all ISelectorFactory_Interface'Class;
 
    type ISelectorItem_Interface is interface and WinRt.IInspectable_Interface;
-   type ISelectorItem is access ISelectorItem_Interface'Class;
+   type ISelectorItem is access all ISelectorItem_Interface'Class;
    type ISelectorItem_Ptr is access all ISelectorItem;
 
    type ISelectorItemFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISelectorItemFactory is access ISelectorItemFactory_Interface'Class;
+   type ISelectorItemFactory is access all ISelectorItemFactory_Interface'Class;
 
    type ISelectorItemStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISelectorItemStatics is access ISelectorItemStatics_Interface'Class;
+   type ISelectorItemStatics is access all ISelectorItemStatics_Interface'Class;
 
    type ISelectorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISelectorStatics is access ISelectorStatics_Interface'Class;
+   type ISelectorStatics is access all ISelectorStatics_Interface'Class;
 
    type ISettingsFlyoutTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type ISettingsFlyoutTemplateSettings is access ISettingsFlyoutTemplateSettings_Interface'Class;
+   type ISettingsFlyoutTemplateSettings is access all ISettingsFlyoutTemplateSettings_Interface'Class;
    type ISettingsFlyoutTemplateSettings_Ptr is access all ISettingsFlyoutTemplateSettings;
 
    type ISplitViewTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type ISplitViewTemplateSettings is access ISplitViewTemplateSettings_Interface'Class;
+   type ISplitViewTemplateSettings is access all ISplitViewTemplateSettings_Interface'Class;
    type ISplitViewTemplateSettings_Ptr is access all ISplitViewTemplateSettings;
 
    type IThumb_Interface is interface and WinRt.IInspectable_Interface;
-   type IThumb is access IThumb_Interface'Class;
+   type IThumb is access all IThumb_Interface'Class;
    type IThumb_Ptr is access all IThumb;
 
    type IThumbStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IThumbStatics is access IThumbStatics_Interface'Class;
+   type IThumbStatics is access all IThumbStatics_Interface'Class;
 
    type ITickBar_Interface is interface and WinRt.IInspectable_Interface;
-   type ITickBar is access ITickBar_Interface'Class;
+   type ITickBar is access all ITickBar_Interface'Class;
    type ITickBar_Ptr is access all ITickBar;
 
    type ITickBarStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITickBarStatics is access ITickBarStatics_Interface'Class;
+   type ITickBarStatics is access all ITickBarStatics_Interface'Class;
 
    type IToggleButton_Interface is interface and WinRt.IInspectable_Interface;
-   type IToggleButton is access IToggleButton_Interface'Class;
+   type IToggleButton is access all IToggleButton_Interface'Class;
    type IToggleButton_Ptr is access all IToggleButton;
 
    type IToggleButtonFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IToggleButtonFactory is access IToggleButtonFactory_Interface'Class;
+   type IToggleButtonFactory is access all IToggleButtonFactory_Interface'Class;
 
    type IToggleButtonOverrides_Interface is interface and WinRt.IInspectable_Interface;
-   type IToggleButtonOverrides is access IToggleButtonOverrides_Interface'Class;
+   type IToggleButtonOverrides is access all IToggleButtonOverrides_Interface'Class;
 
    type IToggleButtonStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IToggleButtonStatics is access IToggleButtonStatics_Interface'Class;
+   type IToggleButtonStatics is access all IToggleButtonStatics_Interface'Class;
 
    type IToggleSwitchTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IToggleSwitchTemplateSettings is access IToggleSwitchTemplateSettings_Interface'Class;
+   type IToggleSwitchTemplateSettings is access all IToggleSwitchTemplateSettings_Interface'Class;
    type IToggleSwitchTemplateSettings_Ptr is access all IToggleSwitchTemplateSettings;
 
    type IToolTipTemplateSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IToolTipTemplateSettings is access IToolTipTemplateSettings_Interface'Class;
+   type IToolTipTemplateSettings is access all IToolTipTemplateSettings_Interface'Class;
    type IToolTipTemplateSettings_Ptr is access all IToolTipTemplateSettings;
 
    -----------------------------------------------------------------------------
@@ -860,7 +860,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Right_e => 2,
       Bottom_e => 3
    );
-   type AnimationDirection_Ptr is access AnimationDirection;
+   type AnimationDirection_Ptr is access all AnimationDirection;
 
    type ComponentResourceLocation is (
       Application_e,
@@ -870,7 +870,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Application_e => 0,
       Nested_e => 1
    );
-   type ComponentResourceLocation_Ptr is access ComponentResourceLocation;
+   type ComponentResourceLocation_Ptr is access all ComponentResourceLocation;
 
    type EdgeTransitionLocation is (
       Left_e,
@@ -884,7 +884,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Right_e => 2,
       Bottom_e => 3
    );
-   type EdgeTransitionLocation_Ptr is access EdgeTransitionLocation;
+   type EdgeTransitionLocation_Ptr is access all EdgeTransitionLocation;
 
    type FlyoutPlacementMode is (
       Top_e,
@@ -918,7 +918,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       RightEdgeAlignedBottom_e => 12,
       Auto_e => 13
    );
-   type FlyoutPlacementMode_Ptr is access FlyoutPlacementMode;
+   type FlyoutPlacementMode_Ptr is access all FlyoutPlacementMode;
 
    type FlyoutShowMode is (
       Auto_e,
@@ -932,7 +932,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Transient_e => 2,
       TransientWithDismissOnPointerMoveAway_e => 3
    );
-   type FlyoutShowMode_Ptr is access FlyoutShowMode;
+   type FlyoutShowMode_Ptr is access all FlyoutShowMode;
 
    type GeneratorDirection is (
       Forward_e,
@@ -942,7 +942,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Forward_e => 0,
       Backward_e => 1
    );
-   type GeneratorDirection_Ptr is access GeneratorDirection;
+   type GeneratorDirection_Ptr is access all GeneratorDirection;
 
    type GroupHeaderPlacement is (
       Top_e,
@@ -952,7 +952,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Top_e => 0,
       Left_e => 1
    );
-   type GroupHeaderPlacement_Ptr is access GroupHeaderPlacement;
+   type GroupHeaderPlacement_Ptr is access all GroupHeaderPlacement;
 
    type ListViewItemPresenterCheckMode is (
       Inline_e,
@@ -962,7 +962,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Inline_e => 0,
       Overlay_e => 1
    );
-   type ListViewItemPresenterCheckMode_Ptr is access ListViewItemPresenterCheckMode;
+   type ListViewItemPresenterCheckMode_Ptr is access all ListViewItemPresenterCheckMode;
 
    type PlacementMode is (
       Bottom_e,
@@ -978,7 +978,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Left_e => 9,
       Top_e => 10
    );
-   type PlacementMode_Ptr is access PlacementMode;
+   type PlacementMode_Ptr is access all PlacementMode;
 
    type ScrollEventType is (
       SmallDecrement_e,
@@ -1002,7 +1002,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Last_e => 7,
       EndScroll_e => 8
    );
-   type ScrollEventType_Ptr is access ScrollEventType;
+   type ScrollEventType_Ptr is access all ScrollEventType;
 
    type ScrollingIndicatorMode is (
       None_e,
@@ -1014,7 +1014,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       TouchIndicator_e => 1,
       MouseIndicator_e => 2
    );
-   type ScrollingIndicatorMode_Ptr is access ScrollingIndicatorMode;
+   type ScrollingIndicatorMode_Ptr is access all ScrollingIndicatorMode;
 
    type SliderSnapsTo is (
       StepValues_e,
@@ -1024,7 +1024,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       StepValues_e => 0,
       Ticks_e => 1
    );
-   type SliderSnapsTo_Ptr is access SliderSnapsTo;
+   type SliderSnapsTo_Ptr is access all SliderSnapsTo;
 
    type SnapPointsAlignment is (
       Near_e,
@@ -1036,7 +1036,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Center_e => 1,
       Far_e => 2
    );
-   type SnapPointsAlignment_Ptr is access SnapPointsAlignment;
+   type SnapPointsAlignment_Ptr is access all SnapPointsAlignment;
 
    type TickPlacement is (
       None_e,
@@ -1052,7 +1052,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Outside_e => 3,
       Inline_e => 4
    );
-   type TickPlacement_Ptr is access TickPlacement;
+   type TickPlacement_Ptr is access all TickPlacement;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1062,7 +1062,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       Index : WinRt.Int32;
       Offset : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type GeneratorPosition_Ptr is access GeneratorPosition;
+   type GeneratorPosition_Ptr is access all GeneratorPosition;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

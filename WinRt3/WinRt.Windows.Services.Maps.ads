@@ -42,118 +42,118 @@ package WinRt.Windows.Services.Maps is
    -----------------------------------------------------------------------------
 
    type IEnhancedWaypoint_Interface is interface and WinRt.IInspectable_Interface;
-   type IEnhancedWaypoint is access IEnhancedWaypoint_Interface'Class;
+   type IEnhancedWaypoint is access all IEnhancedWaypoint_Interface'Class;
    type IEnhancedWaypoint_Ptr is access all IEnhancedWaypoint;
 
    type IEnhancedWaypointFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IEnhancedWaypointFactory is access IEnhancedWaypointFactory_Interface'Class;
+   type IEnhancedWaypointFactory is access all IEnhancedWaypointFactory_Interface'Class;
 
    type IManeuverWarning_Interface is interface and WinRt.IInspectable_Interface;
-   type IManeuverWarning is access IManeuverWarning_Interface'Class;
+   type IManeuverWarning is access all IManeuverWarning_Interface'Class;
    type IManeuverWarning_Ptr is access all IManeuverWarning;
 
    type IMapAddress_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapAddress is access IMapAddress_Interface'Class;
+   type IMapAddress is access all IMapAddress_Interface'Class;
    type IMapAddress_Ptr is access all IMapAddress;
 
    type IMapAddress2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapAddress2 is access IMapAddress2_Interface'Class;
+   type IMapAddress2 is access all IMapAddress2_Interface'Class;
 
    type IMapLocation_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapLocation is access IMapLocation_Interface'Class;
+   type IMapLocation is access all IMapLocation_Interface'Class;
    type IMapLocation_Ptr is access all IMapLocation;
 
    type IMapLocationFinderResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapLocationFinderResult is access IMapLocationFinderResult_Interface'Class;
+   type IMapLocationFinderResult is access all IMapLocationFinderResult_Interface'Class;
    type IMapLocationFinderResult_Ptr is access all IMapLocationFinderResult;
 
    type IMapLocationFinderStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapLocationFinderStatics is access IMapLocationFinderStatics_Interface'Class;
+   type IMapLocationFinderStatics is access all IMapLocationFinderStatics_Interface'Class;
 
    type IMapLocationFinderStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapLocationFinderStatics2 is access IMapLocationFinderStatics2_Interface'Class;
+   type IMapLocationFinderStatics2 is access all IMapLocationFinderStatics2_Interface'Class;
 
    type IMapManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapManagerStatics is access IMapManagerStatics_Interface'Class;
+   type IMapManagerStatics is access all IMapManagerStatics_Interface'Class;
 
    type IMapRoute_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRoute is access IMapRoute_Interface'Class;
+   type IMapRoute is access all IMapRoute_Interface'Class;
    type IMapRoute_Ptr is access all IMapRoute;
 
    type IMapRoute2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRoute2 is access IMapRoute2_Interface'Class;
+   type IMapRoute2 is access all IMapRoute2_Interface'Class;
 
    type IMapRoute3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRoute3 is access IMapRoute3_Interface'Class;
+   type IMapRoute3 is access all IMapRoute3_Interface'Class;
 
    type IMapRoute4_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRoute4 is access IMapRoute4_Interface'Class;
+   type IMapRoute4 is access all IMapRoute4_Interface'Class;
 
    type IMapRouteDrivingOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRouteDrivingOptions is access IMapRouteDrivingOptions_Interface'Class;
+   type IMapRouteDrivingOptions is access all IMapRouteDrivingOptions_Interface'Class;
    type IMapRouteDrivingOptions_Ptr is access all IMapRouteDrivingOptions;
 
    type IMapRouteDrivingOptions2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRouteDrivingOptions2 is access IMapRouteDrivingOptions2_Interface'Class;
+   type IMapRouteDrivingOptions2 is access all IMapRouteDrivingOptions2_Interface'Class;
 
    type IMapRouteFinderResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRouteFinderResult is access IMapRouteFinderResult_Interface'Class;
+   type IMapRouteFinderResult is access all IMapRouteFinderResult_Interface'Class;
    type IMapRouteFinderResult_Ptr is access all IMapRouteFinderResult;
 
    type IMapRouteFinderResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRouteFinderResult2 is access IMapRouteFinderResult2_Interface'Class;
+   type IMapRouteFinderResult2 is access all IMapRouteFinderResult2_Interface'Class;
 
    type IMapRouteFinderStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRouteFinderStatics is access IMapRouteFinderStatics_Interface'Class;
+   type IMapRouteFinderStatics is access all IMapRouteFinderStatics_Interface'Class;
 
    type IMapRouteFinderStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRouteFinderStatics2 is access IMapRouteFinderStatics2_Interface'Class;
+   type IMapRouteFinderStatics2 is access all IMapRouteFinderStatics2_Interface'Class;
 
    type IMapRouteFinderStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRouteFinderStatics3 is access IMapRouteFinderStatics3_Interface'Class;
+   type IMapRouteFinderStatics3 is access all IMapRouteFinderStatics3_Interface'Class;
 
    type IMapRouteLeg_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRouteLeg is access IMapRouteLeg_Interface'Class;
+   type IMapRouteLeg is access all IMapRouteLeg_Interface'Class;
    type IMapRouteLeg_Ptr is access all IMapRouteLeg;
 
    type IMapRouteLeg2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRouteLeg2 is access IMapRouteLeg2_Interface'Class;
+   type IMapRouteLeg2 is access all IMapRouteLeg2_Interface'Class;
 
    type IMapRouteManeuver_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRouteManeuver is access IMapRouteManeuver_Interface'Class;
+   type IMapRouteManeuver is access all IMapRouteManeuver_Interface'Class;
    type IMapRouteManeuver_Ptr is access all IMapRouteManeuver;
 
    type IMapRouteManeuver2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRouteManeuver2 is access IMapRouteManeuver2_Interface'Class;
+   type IMapRouteManeuver2 is access all IMapRouteManeuver2_Interface'Class;
 
    type IMapRouteManeuver3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapRouteManeuver3 is access IMapRouteManeuver3_Interface'Class;
+   type IMapRouteManeuver3 is access all IMapRouteManeuver3_Interface'Class;
 
    type IMapServiceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapServiceStatics is access IMapServiceStatics_Interface'Class;
+   type IMapServiceStatics is access all IMapServiceStatics_Interface'Class;
 
    type IMapServiceStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapServiceStatics2 is access IMapServiceStatics2_Interface'Class;
+   type IMapServiceStatics2 is access all IMapServiceStatics2_Interface'Class;
 
    type IMapServiceStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapServiceStatics3 is access IMapServiceStatics3_Interface'Class;
+   type IMapServiceStatics3 is access all IMapServiceStatics3_Interface'Class;
 
    type IMapServiceStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapServiceStatics4 is access IMapServiceStatics4_Interface'Class;
+   type IMapServiceStatics4 is access all IMapServiceStatics4_Interface'Class;
 
    type IPlaceInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlaceInfo is access IPlaceInfo_Interface'Class;
+   type IPlaceInfo is access all IPlaceInfo_Interface'Class;
    type IPlaceInfo_Ptr is access all IPlaceInfo;
 
    type IPlaceInfoCreateOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlaceInfoCreateOptions is access IPlaceInfoCreateOptions_Interface'Class;
+   type IPlaceInfoCreateOptions is access all IPlaceInfoCreateOptions_Interface'Class;
    type IPlaceInfoCreateOptions_Ptr is access all IPlaceInfoCreateOptions;
 
    type IPlaceInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlaceInfoStatics is access IPlaceInfoStatics_Interface'Class;
+   type IPlaceInfoStatics is access all IPlaceInfoStatics_Interface'Class;
 
    type IPlaceInfoStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlaceInfoStatics2 is access IPlaceInfoStatics2_Interface'Class;
+   type IPlaceInfoStatics2 is access all IPlaceInfoStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -311,7 +311,7 @@ package WinRt.Windows.Services.Maps is
       UnscheduledConstruction_e => 34,
       Weather_e => 35
    );
-   type ManeuverWarningKind_Ptr is access ManeuverWarningKind;
+   type ManeuverWarningKind_Ptr is access all ManeuverWarningKind;
 
    type ManeuverWarningSeverity is (
       None_e,
@@ -327,7 +327,7 @@ package WinRt.Windows.Services.Maps is
       Moderate_e => 3,
       Serious_e => 4
    );
-   type ManeuverWarningSeverity_Ptr is access ManeuverWarningSeverity;
+   type ManeuverWarningSeverity_Ptr is access all ManeuverWarningSeverity;
 
    type MapLocationDesiredAccuracy is (
       High_e,
@@ -337,7 +337,7 @@ package WinRt.Windows.Services.Maps is
       High_e => 0,
       Low_e => 1
    );
-   type MapLocationDesiredAccuracy_Ptr is access MapLocationDesiredAccuracy;
+   type MapLocationDesiredAccuracy_Ptr is access all MapLocationDesiredAccuracy;
 
    type MapLocationFinderStatus is (
       Success_e,
@@ -357,7 +357,7 @@ package WinRt.Windows.Services.Maps is
       NetworkFailure_e => 5,
       NotSupported_e => 6
    );
-   type MapLocationFinderStatus_Ptr is access MapLocationFinderStatus;
+   type MapLocationFinderStatus_Ptr is access all MapLocationFinderStatus;
 
    type MapManeuverNotices is (
       None_e,
@@ -369,7 +369,7 @@ package WinRt.Windows.Services.Maps is
       Toll_e => 1,
       Unpaved_e => 2
    );
-   type MapManeuverNotices_Ptr is access MapManeuverNotices;
+   type MapManeuverNotices_Ptr is access all MapManeuverNotices;
 
    type MapRouteFinderStatus is (
       Success_e,
@@ -395,7 +395,7 @@ package WinRt.Windows.Services.Maps is
       NetworkFailure_e => 8,
       NotSupported_e => 9
    );
-   type MapRouteFinderStatus_Ptr is access MapRouteFinderStatus;
+   type MapRouteFinderStatus_Ptr is access all MapRouteFinderStatus;
 
    type MapRouteManeuverKind is (
       None_e,
@@ -451,7 +451,7 @@ package WinRt.Windows.Services.Maps is
       TrafficCircleRight_e => 23,
       TakeFerry_e => 24
    );
-   type MapRouteManeuverKind_Ptr is access MapRouteManeuverKind;
+   type MapRouteManeuverKind_Ptr is access all MapRouteManeuverKind;
 
    type MapRouteOptimization is (
       Time_e,
@@ -465,7 +465,7 @@ package WinRt.Windows.Services.Maps is
       TimeWithTraffic_e => 2,
       Scenic_e => 3
    );
-   type MapRouteOptimization_Ptr is access MapRouteOptimization;
+   type MapRouteOptimization_Ptr is access all MapRouteOptimization;
 
    type MapRouteRestrictions is (
       None_e,
@@ -485,7 +485,7 @@ package WinRt.Windows.Services.Maps is
       DirtRoads_e => 16,
       Motorail_e => 32
    );
-   type MapRouteRestrictions_Ptr is access MapRouteRestrictions;
+   type MapRouteRestrictions_Ptr is access all MapRouteRestrictions;
 
    type MapServiceDataUsagePreference is (
       Default_e,
@@ -495,7 +495,7 @@ package WinRt.Windows.Services.Maps is
       Default_e => 0,
       OfflineMapDataOnly_e => 1
    );
-   type MapServiceDataUsagePreference_Ptr is access MapServiceDataUsagePreference;
+   type MapServiceDataUsagePreference_Ptr is access all MapServiceDataUsagePreference;
 
    type TrafficCongestion is (
       Unknown_e,
@@ -511,7 +511,7 @@ package WinRt.Windows.Services.Maps is
       Medium_e => 3,
       Heavy_e => 4
    );
-   type TrafficCongestion_Ptr is access TrafficCongestion;
+   type TrafficCongestion_Ptr is access all TrafficCongestion;
 
    type WaypointKind is (
       Stop_e,
@@ -521,7 +521,7 @@ package WinRt.Windows.Services.Maps is
       Stop_e => 0,
       Via_e => 1
    );
-   type WaypointKind_Ptr is access WaypointKind;
+   type WaypointKind_Ptr is access all WaypointKind;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -530,12 +530,12 @@ package WinRt.Windows.Services.Maps is
    type GuidanceContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type GuidanceContract_Ptr is access GuidanceContract;
+   type GuidanceContract_Ptr is access all GuidanceContract;
 
    type LocalSearchContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type LocalSearchContract_Ptr is access LocalSearchContract;
+   type LocalSearchContract_Ptr is access all LocalSearchContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

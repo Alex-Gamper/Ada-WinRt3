@@ -45,44 +45,44 @@ package WinRt.Windows.Devices.Bluetooth.Background is
    -----------------------------------------------------------------------------
 
    type IBluetoothLEAdvertisementPublisherTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementPublisherTriggerDetails is access IBluetoothLEAdvertisementPublisherTriggerDetails_Interface'Class;
+   type IBluetoothLEAdvertisementPublisherTriggerDetails is access all IBluetoothLEAdvertisementPublisherTriggerDetails_Interface'Class;
    type IBluetoothLEAdvertisementPublisherTriggerDetails_Ptr is access all IBluetoothLEAdvertisementPublisherTriggerDetails;
 
    type IBluetoothLEAdvertisementPublisherTriggerDetails2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementPublisherTriggerDetails2 is access IBluetoothLEAdvertisementPublisherTriggerDetails2_Interface'Class;
+   type IBluetoothLEAdvertisementPublisherTriggerDetails2 is access all IBluetoothLEAdvertisementPublisherTriggerDetails2_Interface'Class;
 
    type IBluetoothLEAdvertisementWatcherTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementWatcherTriggerDetails is access IBluetoothLEAdvertisementWatcherTriggerDetails_Interface'Class;
+   type IBluetoothLEAdvertisementWatcherTriggerDetails is access all IBluetoothLEAdvertisementWatcherTriggerDetails_Interface'Class;
    type IBluetoothLEAdvertisementWatcherTriggerDetails_Ptr is access all IBluetoothLEAdvertisementWatcherTriggerDetails;
 
    type IGattCharacteristicNotificationTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattCharacteristicNotificationTriggerDetails is access IGattCharacteristicNotificationTriggerDetails_Interface'Class;
+   type IGattCharacteristicNotificationTriggerDetails is access all IGattCharacteristicNotificationTriggerDetails_Interface'Class;
    type IGattCharacteristicNotificationTriggerDetails_Ptr is access all IGattCharacteristicNotificationTriggerDetails;
 
    type IGattCharacteristicNotificationTriggerDetails2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattCharacteristicNotificationTriggerDetails2 is access IGattCharacteristicNotificationTriggerDetails2_Interface'Class;
+   type IGattCharacteristicNotificationTriggerDetails2 is access all IGattCharacteristicNotificationTriggerDetails2_Interface'Class;
 
    type IGattServiceProviderConnection_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattServiceProviderConnection is access IGattServiceProviderConnection_Interface'Class;
+   type IGattServiceProviderConnection is access all IGattServiceProviderConnection_Interface'Class;
    type IGattServiceProviderConnection_Ptr is access all IGattServiceProviderConnection;
 
    type IGattServiceProviderConnectionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattServiceProviderConnectionStatics is access IGattServiceProviderConnectionStatics_Interface'Class;
+   type IGattServiceProviderConnectionStatics is access all IGattServiceProviderConnectionStatics_Interface'Class;
 
    type IGattServiceProviderTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattServiceProviderTriggerDetails is access IGattServiceProviderTriggerDetails_Interface'Class;
+   type IGattServiceProviderTriggerDetails is access all IGattServiceProviderTriggerDetails_Interface'Class;
    type IGattServiceProviderTriggerDetails_Ptr is access all IGattServiceProviderTriggerDetails;
 
    type IRfcommConnectionTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IRfcommConnectionTriggerDetails is access IRfcommConnectionTriggerDetails_Interface'Class;
+   type IRfcommConnectionTriggerDetails is access all IRfcommConnectionTriggerDetails_Interface'Class;
    type IRfcommConnectionTriggerDetails_Ptr is access all IRfcommConnectionTriggerDetails;
 
    type IRfcommInboundConnectionInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IRfcommInboundConnectionInformation is access IRfcommInboundConnectionInformation_Interface'Class;
+   type IRfcommInboundConnectionInformation is access all IRfcommInboundConnectionInformation_Interface'Class;
    type IRfcommInboundConnectionInformation_Ptr is access all IRfcommInboundConnectionInformation;
 
    type IRfcommOutboundConnectionInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IRfcommOutboundConnectionInformation is access IRfcommOutboundConnectionInformation_Interface'Class;
+   type IRfcommOutboundConnectionInformation is access all IRfcommOutboundConnectionInformation_Interface'Class;
    type IRfcommOutboundConnectionInformation_Ptr is access all IRfcommOutboundConnectionInformation;
 
    -----------------------------------------------------------------------------
@@ -151,7 +151,7 @@ package WinRt.Windows.Devices.Bluetooth.Background is
       Batch_e => 1,
       KeepLatest_e => 2
    );
-   type BluetoothEventTriggeringMode_Ptr is access BluetoothEventTriggeringMode;
+   type BluetoothEventTriggeringMode_Ptr is access all BluetoothEventTriggeringMode;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

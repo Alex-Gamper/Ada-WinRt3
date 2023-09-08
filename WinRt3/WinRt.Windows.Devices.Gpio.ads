@@ -41,35 +41,35 @@ package WinRt.Windows.Devices.Gpio is
    -----------------------------------------------------------------------------
 
    type IGpioChangeCounter_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioChangeCounter is access IGpioChangeCounter_Interface'Class;
+   type IGpioChangeCounter is access all IGpioChangeCounter_Interface'Class;
    type IGpioChangeCounter_Ptr is access all IGpioChangeCounter;
 
    type IGpioChangeCounterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioChangeCounterFactory is access IGpioChangeCounterFactory_Interface'Class;
+   type IGpioChangeCounterFactory is access all IGpioChangeCounterFactory_Interface'Class;
 
    type IGpioChangeReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioChangeReader is access IGpioChangeReader_Interface'Class;
+   type IGpioChangeReader is access all IGpioChangeReader_Interface'Class;
    type IGpioChangeReader_Ptr is access all IGpioChangeReader;
 
    type IGpioChangeReaderFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioChangeReaderFactory is access IGpioChangeReaderFactory_Interface'Class;
+   type IGpioChangeReaderFactory is access all IGpioChangeReaderFactory_Interface'Class;
 
    type IGpioController_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioController is access IGpioController_Interface'Class;
+   type IGpioController is access all IGpioController_Interface'Class;
    type IGpioController_Ptr is access all IGpioController;
 
    type IGpioControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioControllerStatics is access IGpioControllerStatics_Interface'Class;
+   type IGpioControllerStatics is access all IGpioControllerStatics_Interface'Class;
 
    type IGpioControllerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioControllerStatics2 is access IGpioControllerStatics2_Interface'Class;
+   type IGpioControllerStatics2 is access all IGpioControllerStatics2_Interface'Class;
 
    type IGpioPin_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioPin is access IGpioPin_Interface'Class;
+   type IGpioPin is access all IGpioPin_Interface'Class;
    type IGpioPin_Ptr is access all IGpioPin;
 
    type IGpioPinValueChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioPinValueChangedEventArgs is access IGpioPinValueChangedEventArgs_Interface'Class;
+   type IGpioPinValueChangedEventArgs is access all IGpioPinValueChangedEventArgs_Interface'Class;
    type IGpioPinValueChangedEventArgs_Ptr is access all IGpioPinValueChangedEventArgs;
 
    -----------------------------------------------------------------------------
@@ -120,7 +120,7 @@ package WinRt.Windows.Devices.Gpio is
       Rising_e => 1,
       Both_e => 2
    );
-   type GpioChangePolarity_Ptr is access GpioChangePolarity;
+   type GpioChangePolarity_Ptr is access all GpioChangePolarity;
 
    type GpioOpenStatus is (
       PinOpened_e,
@@ -136,7 +136,7 @@ package WinRt.Windows.Devices.Gpio is
       MuxingConflict_e => 3,
       UnknownError_e => 4
    );
-   type GpioOpenStatus_Ptr is access GpioOpenStatus;
+   type GpioOpenStatus_Ptr is access all GpioOpenStatus;
 
    type GpioPinDriveMode is (
       Input_e,
@@ -158,7 +158,7 @@ package WinRt.Windows.Devices.Gpio is
       OutputOpenSource_e => 6,
       OutputOpenSourcePullDown_e => 7
    );
-   type GpioPinDriveMode_Ptr is access GpioPinDriveMode;
+   type GpioPinDriveMode_Ptr is access all GpioPinDriveMode;
 
    type GpioPinEdge is (
       FallingEdge_e,
@@ -168,7 +168,7 @@ package WinRt.Windows.Devices.Gpio is
       FallingEdge_e => 0,
       RisingEdge_e => 1
    );
-   type GpioPinEdge_Ptr is access GpioPinEdge;
+   type GpioPinEdge_Ptr is access all GpioPinEdge;
 
    type GpioPinValue is (
       Low_e,
@@ -178,7 +178,7 @@ package WinRt.Windows.Devices.Gpio is
       Low_e => 0,
       High_e => 1
    );
-   type GpioPinValue_Ptr is access GpioPinValue;
+   type GpioPinValue_Ptr is access all GpioPinValue;
 
    type GpioSharingMode is (
       Exclusive_e,
@@ -188,7 +188,7 @@ package WinRt.Windows.Devices.Gpio is
       Exclusive_e => 0,
       SharedReadOnly_e => 1
    );
-   type GpioSharingMode_Ptr is access GpioSharingMode;
+   type GpioSharingMode_Ptr is access all GpioSharingMode;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -198,13 +198,13 @@ package WinRt.Windows.Devices.Gpio is
       Count : WinRt.UInt64;
       RelativeTime : WinRt.Windows.Foundation.TimeSpan;
    end record with Convention => C_Pass_By_Copy;
-   type GpioChangeCount_Ptr is access GpioChangeCount;
+   type GpioChangeCount_Ptr is access all GpioChangeCount;
 
    type GpioChangeRecord is record
       RelativeTime : WinRt.Windows.Foundation.TimeSpan;
       Edge : Windows.Devices.Gpio.GpioPinEdge;
    end record with Convention => C_Pass_By_Copy;
-   type GpioChangeRecord_Ptr is access GpioChangeRecord;
+   type GpioChangeRecord_Ptr is access all GpioChangeRecord;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

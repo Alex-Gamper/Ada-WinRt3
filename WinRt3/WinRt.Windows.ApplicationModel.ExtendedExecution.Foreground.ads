@@ -39,11 +39,11 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
    -----------------------------------------------------------------------------
 
    type IExtendedExecutionForegroundRevokedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IExtendedExecutionForegroundRevokedEventArgs is access IExtendedExecutionForegroundRevokedEventArgs_Interface'Class;
+   type IExtendedExecutionForegroundRevokedEventArgs is access all IExtendedExecutionForegroundRevokedEventArgs_Interface'Class;
    type IExtendedExecutionForegroundRevokedEventArgs_Ptr is access all IExtendedExecutionForegroundRevokedEventArgs;
 
    type IExtendedExecutionForegroundSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IExtendedExecutionForegroundSession is access IExtendedExecutionForegroundSession_Interface'Class;
+   type IExtendedExecutionForegroundSession is access all IExtendedExecutionForegroundSession_Interface'Class;
    type IExtendedExecutionForegroundSession_Ptr is access all IExtendedExecutionForegroundSession;
 
    -----------------------------------------------------------------------------
@@ -78,7 +78,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
       BackgroundAudio_e => 2,
       Unconstrained_e => 3
    );
-   type ExtendedExecutionForegroundReason_Ptr is access ExtendedExecutionForegroundReason;
+   type ExtendedExecutionForegroundReason_Ptr is access all ExtendedExecutionForegroundReason;
 
    type ExtendedExecutionForegroundResult is (
       Allowed_e,
@@ -88,7 +88,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
       Allowed_e => 0,
       Denied_e => 1
    );
-   type ExtendedExecutionForegroundResult_Ptr is access ExtendedExecutionForegroundResult;
+   type ExtendedExecutionForegroundResult_Ptr is access all ExtendedExecutionForegroundResult;
 
    type ExtendedExecutionForegroundRevokedReason is (
       Resumed_e,
@@ -98,7 +98,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
       Resumed_e => 0,
       SystemPolicy_e => 1
    );
-   type ExtendedExecutionForegroundRevokedReason_Ptr is access ExtendedExecutionForegroundRevokedReason;
+   type ExtendedExecutionForegroundRevokedReason_Ptr is access all ExtendedExecutionForegroundRevokedReason;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

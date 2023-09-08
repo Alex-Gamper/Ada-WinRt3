@@ -38,10 +38,10 @@ package WinRt.Windows.Management.Deployment.Preview is
    -----------------------------------------------------------------------------
 
    type IClassicAppManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IClassicAppManagerStatics is access IClassicAppManagerStatics_Interface'Class;
+   type IClassicAppManagerStatics is access all IClassicAppManagerStatics_Interface'Class;
 
    type IInstalledClassicAppInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IInstalledClassicAppInfo is access IInstalledClassicAppInfo_Interface'Class;
+   type IInstalledClassicAppInfo is access all IInstalledClassicAppInfo_Interface'Class;
    type IInstalledClassicAppInfo_Ptr is access all IInstalledClassicAppInfo;
 
    -----------------------------------------------------------------------------
@@ -61,7 +61,7 @@ package WinRt.Windows.Management.Deployment.Preview is
    type DeploymentPreviewContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type DeploymentPreviewContract_Ptr is access DeploymentPreviewContract;
+   type DeploymentPreviewContract_Ptr is access all DeploymentPreviewContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

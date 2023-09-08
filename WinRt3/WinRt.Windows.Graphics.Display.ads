@@ -41,73 +41,73 @@ package WinRt.Windows.Graphics.Display is
    -----------------------------------------------------------------------------
 
    type DisplayPropertiesEventHandler_Delegate;
-   type DisplayPropertiesEventHandler is access DisplayPropertiesEventHandler_Delegate;
+   type DisplayPropertiesEventHandler is access all DisplayPropertiesEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IAdvancedColorInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdvancedColorInfo is access IAdvancedColorInfo_Interface'Class;
+   type IAdvancedColorInfo is access all IAdvancedColorInfo_Interface'Class;
    type IAdvancedColorInfo_Ptr is access all IAdvancedColorInfo;
 
    type IBrightnessOverride_Interface is interface and WinRt.IInspectable_Interface;
-   type IBrightnessOverride is access IBrightnessOverride_Interface'Class;
+   type IBrightnessOverride is access all IBrightnessOverride_Interface'Class;
    type IBrightnessOverride_Ptr is access all IBrightnessOverride;
 
    type IBrightnessOverrideSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IBrightnessOverrideSettings is access IBrightnessOverrideSettings_Interface'Class;
+   type IBrightnessOverrideSettings is access all IBrightnessOverrideSettings_Interface'Class;
    type IBrightnessOverrideSettings_Ptr is access all IBrightnessOverrideSettings;
 
    type IBrightnessOverrideSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBrightnessOverrideSettingsStatics is access IBrightnessOverrideSettingsStatics_Interface'Class;
+   type IBrightnessOverrideSettingsStatics is access all IBrightnessOverrideSettingsStatics_Interface'Class;
 
    type IBrightnessOverrideStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBrightnessOverrideStatics is access IBrightnessOverrideStatics_Interface'Class;
+   type IBrightnessOverrideStatics is access all IBrightnessOverrideStatics_Interface'Class;
 
    type IColorOverrideSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorOverrideSettings is access IColorOverrideSettings_Interface'Class;
+   type IColorOverrideSettings is access all IColorOverrideSettings_Interface'Class;
    type IColorOverrideSettings_Ptr is access all IColorOverrideSettings;
 
    type IColorOverrideSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorOverrideSettingsStatics is access IColorOverrideSettingsStatics_Interface'Class;
+   type IColorOverrideSettingsStatics is access all IColorOverrideSettingsStatics_Interface'Class;
 
    type IDisplayEnhancementOverride_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayEnhancementOverride is access IDisplayEnhancementOverride_Interface'Class;
+   type IDisplayEnhancementOverride is access all IDisplayEnhancementOverride_Interface'Class;
    type IDisplayEnhancementOverride_Ptr is access all IDisplayEnhancementOverride;
 
    type IDisplayEnhancementOverrideCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayEnhancementOverrideCapabilities is access IDisplayEnhancementOverrideCapabilities_Interface'Class;
+   type IDisplayEnhancementOverrideCapabilities is access all IDisplayEnhancementOverrideCapabilities_Interface'Class;
    type IDisplayEnhancementOverrideCapabilities_Ptr is access all IDisplayEnhancementOverrideCapabilities;
 
    type IDisplayEnhancementOverrideCapabilitiesChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayEnhancementOverrideCapabilitiesChangedEventArgs is access IDisplayEnhancementOverrideCapabilitiesChangedEventArgs_Interface'Class;
+   type IDisplayEnhancementOverrideCapabilitiesChangedEventArgs is access all IDisplayEnhancementOverrideCapabilitiesChangedEventArgs_Interface'Class;
    type IDisplayEnhancementOverrideCapabilitiesChangedEventArgs_Ptr is access all IDisplayEnhancementOverrideCapabilitiesChangedEventArgs;
 
    type IDisplayEnhancementOverrideStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayEnhancementOverrideStatics is access IDisplayEnhancementOverrideStatics_Interface'Class;
+   type IDisplayEnhancementOverrideStatics is access all IDisplayEnhancementOverrideStatics_Interface'Class;
 
    type IDisplayInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayInformation is access IDisplayInformation_Interface'Class;
+   type IDisplayInformation is access all IDisplayInformation_Interface'Class;
    type IDisplayInformation_Ptr is access all IDisplayInformation;
 
    type IDisplayInformation2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayInformation2 is access IDisplayInformation2_Interface'Class;
+   type IDisplayInformation2 is access all IDisplayInformation2_Interface'Class;
 
    type IDisplayInformation3_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayInformation3 is access IDisplayInformation3_Interface'Class;
+   type IDisplayInformation3 is access all IDisplayInformation3_Interface'Class;
 
    type IDisplayInformation4_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayInformation4 is access IDisplayInformation4_Interface'Class;
+   type IDisplayInformation4 is access all IDisplayInformation4_Interface'Class;
 
    type IDisplayInformation5_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayInformation5 is access IDisplayInformation5_Interface'Class;
+   type IDisplayInformation5 is access all IDisplayInformation5_Interface'Class;
 
    type IDisplayInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayInformationStatics is access IDisplayInformationStatics_Interface'Class;
+   type IDisplayInformationStatics is access all IDisplayInformationStatics_Interface'Class;
 
    type IDisplayPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayPropertiesStatics is access IDisplayPropertiesStatics_Interface'Class;
+   type IDisplayPropertiesStatics is access all IDisplayPropertiesStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -175,7 +175,7 @@ package WinRt.Windows.Graphics.Display is
       WideColorGamut_e => 1,
       HighDynamicRange_e => 2
    );
-   type AdvancedColorKind_Ptr is access AdvancedColorKind;
+   type AdvancedColorKind_Ptr is access all AdvancedColorKind;
 
    type DisplayBrightnessOverrideOptions is (
       None_e,
@@ -185,7 +185,7 @@ package WinRt.Windows.Graphics.Display is
       None_e => 0,
       UseDimmedPolicyWhenBatteryIsLow_e => 1
    );
-   type DisplayBrightnessOverrideOptions_Ptr is access DisplayBrightnessOverrideOptions;
+   type DisplayBrightnessOverrideOptions_Ptr is access all DisplayBrightnessOverrideOptions;
 
    type DisplayBrightnessOverrideScenario is (
       IdleBrightness_e,
@@ -197,7 +197,7 @@ package WinRt.Windows.Graphics.Display is
       BarcodeReadingBrightness_e => 1,
       FullBrightness_e => 2
    );
-   type DisplayBrightnessOverrideScenario_Ptr is access DisplayBrightnessOverrideScenario;
+   type DisplayBrightnessOverrideScenario_Ptr is access all DisplayBrightnessOverrideScenario;
 
    type DisplayBrightnessScenario is (
       DefaultBrightness_e,
@@ -211,7 +211,7 @@ package WinRt.Windows.Graphics.Display is
       BarcodeReadingBrightness_e => 2,
       FullBrightness_e => 3
    );
-   type DisplayBrightnessScenario_Ptr is access DisplayBrightnessScenario;
+   type DisplayBrightnessScenario_Ptr is access all DisplayBrightnessScenario;
 
    type DisplayColorOverrideScenario is (
       Accurate_e
@@ -219,7 +219,7 @@ package WinRt.Windows.Graphics.Display is
    for DisplayColorOverrideScenario use (
       Accurate_e => 0
    );
-   type DisplayColorOverrideScenario_Ptr is access DisplayColorOverrideScenario;
+   type DisplayColorOverrideScenario_Ptr is access all DisplayColorOverrideScenario;
 
    type DisplayOrientations is (
       None_e,
@@ -235,7 +235,7 @@ package WinRt.Windows.Graphics.Display is
       LandscapeFlipped_e => 4,
       PortraitFlipped_e => 8
    );
-   type DisplayOrientations_Ptr is access DisplayOrientations;
+   type DisplayOrientations_Ptr is access all DisplayOrientations;
 
    type HdrMetadataFormat is (
       Hdr10_e,
@@ -245,7 +245,7 @@ package WinRt.Windows.Graphics.Display is
       Hdr10_e => 0,
       Hdr10Plus_e => 1
    );
-   type HdrMetadataFormat_Ptr is access HdrMetadataFormat;
+   type HdrMetadataFormat_Ptr is access all HdrMetadataFormat;
 
    type ResolutionScale is (
       Invalid_e,
@@ -285,7 +285,7 @@ package WinRt.Windows.Graphics.Display is
       Scale450Percent_e => 450,
       Scale500Percent_e => 500
    );
-   type ResolutionScale_Ptr is access ResolutionScale;
+   type ResolutionScale_Ptr is access all ResolutionScale;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -296,7 +296,7 @@ package WinRt.Windows.Graphics.Display is
       MaxNits : WinRt.Single;
       StepSizeNits : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type NitRange_Ptr is access NitRange;
+   type NitRange_Ptr is access all NitRange;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

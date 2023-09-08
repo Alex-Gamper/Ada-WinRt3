@@ -41,52 +41,52 @@ package WinRt.Windows.Storage.Pickers is
    -----------------------------------------------------------------------------
 
    type IFileOpenPicker_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileOpenPicker is access IFileOpenPicker_Interface'Class;
+   type IFileOpenPicker is access all IFileOpenPicker_Interface'Class;
    type IFileOpenPicker_Ptr is access all IFileOpenPicker;
 
    type IFileOpenPicker2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileOpenPicker2 is access IFileOpenPicker2_Interface'Class;
+   type IFileOpenPicker2 is access all IFileOpenPicker2_Interface'Class;
 
    type IFileOpenPicker3_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileOpenPicker3 is access IFileOpenPicker3_Interface'Class;
+   type IFileOpenPicker3 is access all IFileOpenPicker3_Interface'Class;
 
    type IFileOpenPickerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileOpenPickerStatics is access IFileOpenPickerStatics_Interface'Class;
+   type IFileOpenPickerStatics is access all IFileOpenPickerStatics_Interface'Class;
 
    type IFileOpenPickerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileOpenPickerStatics2 is access IFileOpenPickerStatics2_Interface'Class;
+   type IFileOpenPickerStatics2 is access all IFileOpenPickerStatics2_Interface'Class;
 
    type IFileOpenPickerWithOperationId_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileOpenPickerWithOperationId is access IFileOpenPickerWithOperationId_Interface'Class;
+   type IFileOpenPickerWithOperationId is access all IFileOpenPickerWithOperationId_Interface'Class;
 
    type IFileSavePicker_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileSavePicker is access IFileSavePicker_Interface'Class;
+   type IFileSavePicker is access all IFileSavePicker_Interface'Class;
    type IFileSavePicker_Ptr is access all IFileSavePicker;
 
    type IFileSavePicker2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileSavePicker2 is access IFileSavePicker2_Interface'Class;
+   type IFileSavePicker2 is access all IFileSavePicker2_Interface'Class;
 
    type IFileSavePicker3_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileSavePicker3 is access IFileSavePicker3_Interface'Class;
+   type IFileSavePicker3 is access all IFileSavePicker3_Interface'Class;
 
    type IFileSavePicker4_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileSavePicker4 is access IFileSavePicker4_Interface'Class;
+   type IFileSavePicker4 is access all IFileSavePicker4_Interface'Class;
 
    type IFileSavePickerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileSavePickerStatics is access IFileSavePickerStatics_Interface'Class;
+   type IFileSavePickerStatics is access all IFileSavePickerStatics_Interface'Class;
 
    type IFolderPicker_Interface is interface and WinRt.IInspectable_Interface;
-   type IFolderPicker is access IFolderPicker_Interface'Class;
+   type IFolderPicker is access all IFolderPicker_Interface'Class;
    type IFolderPicker_Ptr is access all IFolderPicker;
 
    type IFolderPicker2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFolderPicker2 is access IFolderPicker2_Interface'Class;
+   type IFolderPicker2 is access all IFolderPicker2_Interface'Class;
 
    type IFolderPicker3_Interface is interface and WinRt.IInspectable_Interface;
-   type IFolderPicker3 is access IFolderPicker3_Interface'Class;
+   type IFolderPicker3 is access all IFolderPicker3_Interface'Class;
 
    type IFolderPickerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFolderPickerStatics is access IFolderPickerStatics_Interface'Class;
+   type IFolderPickerStatics is access all IFolderPickerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -156,7 +156,7 @@ package WinRt.Windows.Storage.Pickers is
       Objects3D_e => 8,
       Unspecified_e => 9
    );
-   type PickerLocationId_Ptr is access PickerLocationId;
+   type PickerLocationId_Ptr is access all PickerLocationId;
 
    type PickerViewMode is (
       List_e,
@@ -166,7 +166,7 @@ package WinRt.Windows.Storage.Pickers is
       List_e => 0,
       Thumbnail_e => 1
    );
-   type PickerViewMode_Ptr is access PickerViewMode;
+   type PickerViewMode_Ptr is access all PickerViewMode;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -39,11 +39,11 @@ package WinRt.Windows.Phone.Media.Devices is
    -----------------------------------------------------------------------------
 
    type IAudioRoutingManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioRoutingManager is access IAudioRoutingManager_Interface'Class;
+   type IAudioRoutingManager is access all IAudioRoutingManager_Interface'Class;
    type IAudioRoutingManager_Ptr is access all IAudioRoutingManager;
 
    type IAudioRoutingManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioRoutingManagerStatics is access IAudioRoutingManagerStatics_Interface'Class;
+   type IAudioRoutingManagerStatics is access all IAudioRoutingManagerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -79,7 +79,7 @@ package WinRt.Windows.Phone.Media.Devices is
       BluetoothWithNoiseAndEchoCancellation_e => 6,
       BluetoothPreferred_e => 7
    );
-   type AudioRoutingEndpoint_Ptr is access AudioRoutingEndpoint;
+   type AudioRoutingEndpoint_Ptr is access all AudioRoutingEndpoint;
 
    type AvailableAudioRoutingEndpoints is (
       None_e,
@@ -93,7 +93,7 @@ package WinRt.Windows.Phone.Media.Devices is
       Speakerphone_e => 2,
       Bluetooth_e => 4
    );
-   type AvailableAudioRoutingEndpoints_Ptr is access AvailableAudioRoutingEndpoints;
+   type AvailableAudioRoutingEndpoints_Ptr is access all AvailableAudioRoutingEndpoints;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

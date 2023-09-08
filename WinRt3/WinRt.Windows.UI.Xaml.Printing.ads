@@ -40,39 +40,39 @@ package WinRt.Windows.UI.Xaml.Printing is
    -----------------------------------------------------------------------------
 
    type AddPagesEventHandler_Delegate;
-   type AddPagesEventHandler is access AddPagesEventHandler_Delegate;
+   type AddPagesEventHandler is access all AddPagesEventHandler_Delegate;
 
    type GetPreviewPageEventHandler_Delegate;
-   type GetPreviewPageEventHandler is access GetPreviewPageEventHandler_Delegate;
+   type GetPreviewPageEventHandler is access all GetPreviewPageEventHandler_Delegate;
 
    type PaginateEventHandler_Delegate;
-   type PaginateEventHandler is access PaginateEventHandler_Delegate;
+   type PaginateEventHandler is access all PaginateEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IAddPagesEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAddPagesEventArgs is access IAddPagesEventArgs_Interface'Class;
+   type IAddPagesEventArgs is access all IAddPagesEventArgs_Interface'Class;
    type IAddPagesEventArgs_Ptr is access all IAddPagesEventArgs;
 
    type IGetPreviewPageEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGetPreviewPageEventArgs is access IGetPreviewPageEventArgs_Interface'Class;
+   type IGetPreviewPageEventArgs is access all IGetPreviewPageEventArgs_Interface'Class;
    type IGetPreviewPageEventArgs_Ptr is access all IGetPreviewPageEventArgs;
 
    type IPaginateEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaginateEventArgs is access IPaginateEventArgs_Interface'Class;
+   type IPaginateEventArgs is access all IPaginateEventArgs_Interface'Class;
    type IPaginateEventArgs_Ptr is access all IPaginateEventArgs;
 
    type IPrintDocument_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintDocument is access IPrintDocument_Interface'Class;
+   type IPrintDocument is access all IPrintDocument_Interface'Class;
    type IPrintDocument_Ptr is access all IPrintDocument;
 
    type IPrintDocumentFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintDocumentFactory is access IPrintDocumentFactory_Interface'Class;
+   type IPrintDocumentFactory is access all IPrintDocumentFactory_Interface'Class;
 
    type IPrintDocumentStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintDocumentStatics is access IPrintDocumentStatics_Interface'Class;
+   type IPrintDocumentStatics is access all IPrintDocumentStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -114,7 +114,7 @@ package WinRt.Windows.UI.Xaml.Printing is
       Final_e => 0,
       Intermediate_e => 1
    );
-   type PreviewPageCountType_Ptr is access PreviewPageCountType;
+   type PreviewPageCountType_Ptr is access all PreviewPageCountType;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

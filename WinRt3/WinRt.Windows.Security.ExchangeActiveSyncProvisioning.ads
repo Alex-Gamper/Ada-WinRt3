@@ -39,22 +39,22 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
    -----------------------------------------------------------------------------
 
    type IEasClientDeviceInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasClientDeviceInformation is access IEasClientDeviceInformation_Interface'Class;
+   type IEasClientDeviceInformation is access all IEasClientDeviceInformation_Interface'Class;
    type IEasClientDeviceInformation_Ptr is access all IEasClientDeviceInformation;
 
    type IEasClientDeviceInformation2_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasClientDeviceInformation2 is access IEasClientDeviceInformation2_Interface'Class;
+   type IEasClientDeviceInformation2 is access all IEasClientDeviceInformation2_Interface'Class;
 
    type IEasClientSecurityPolicy_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasClientSecurityPolicy is access IEasClientSecurityPolicy_Interface'Class;
+   type IEasClientSecurityPolicy is access all IEasClientSecurityPolicy_Interface'Class;
    type IEasClientSecurityPolicy_Ptr is access all IEasClientSecurityPolicy;
 
    type IEasComplianceResults_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasComplianceResults is access IEasComplianceResults_Interface'Class;
+   type IEasComplianceResults is access all IEasComplianceResults_Interface'Class;
    type IEasComplianceResults_Ptr is access all IEasComplianceResults;
 
    type IEasComplianceResults2_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasComplianceResults2 is access IEasComplianceResults2_Interface'Class;
+   type IEasComplianceResults2 is access all IEasComplianceResults2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -94,7 +94,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       CanBeCompliant_e => 2,
       RequestedPolicyIsStricter_e => 3
    );
-   type EasDisallowConvenienceLogonResult_Ptr is access EasDisallowConvenienceLogonResult;
+   type EasDisallowConvenienceLogonResult_Ptr is access all EasDisallowConvenienceLogonResult;
 
    type EasEncryptionProviderType is (
       NotEvaluated_e,
@@ -106,7 +106,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       WindowsEncryption_e => 1,
       OtherEncryption_e => 2
    );
-   type EasEncryptionProviderType_Ptr is access EasEncryptionProviderType;
+   type EasEncryptionProviderType_Ptr is access all EasEncryptionProviderType;
 
    type EasMaxInactivityTimeLockResult is (
       NotEvaluated_e,
@@ -122,7 +122,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       RequestedPolicyIsStricter_e => 3,
       InvalidParameter_e => 4
    );
-   type EasMaxInactivityTimeLockResult_Ptr is access EasMaxInactivityTimeLockResult;
+   type EasMaxInactivityTimeLockResult_Ptr is access all EasMaxInactivityTimeLockResult;
 
    type EasMaxPasswordFailedAttemptsResult is (
       NotEvaluated_e,
@@ -138,7 +138,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       RequestedPolicyIsStricter_e => 3,
       InvalidParameter_e => 4
    );
-   type EasMaxPasswordFailedAttemptsResult_Ptr is access EasMaxPasswordFailedAttemptsResult;
+   type EasMaxPasswordFailedAttemptsResult_Ptr is access all EasMaxPasswordFailedAttemptsResult;
 
    type EasMinPasswordComplexCharactersResult is (
       NotEvaluated_e,
@@ -174,7 +174,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       ChangeConnectedAdminsPassword_e => 13,
       ChangeConnectedUserPassword_e => 14
    );
-   type EasMinPasswordComplexCharactersResult_Ptr is access EasMinPasswordComplexCharactersResult;
+   type EasMinPasswordComplexCharactersResult_Ptr is access all EasMinPasswordComplexCharactersResult;
 
    type EasMinPasswordLengthResult is (
       NotEvaluated_e,
@@ -210,7 +210,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       ChangeConnectedAdminsPassword_e => 13,
       ChangeConnectedUserPassword_e => 14
    );
-   type EasMinPasswordLengthResult_Ptr is access EasMinPasswordLengthResult;
+   type EasMinPasswordLengthResult_Ptr is access all EasMinPasswordLengthResult;
 
    type EasPasswordExpirationResult is (
       NotEvaluated_e,
@@ -234,7 +234,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       AdminsCannotChangePassword_e => 7,
       LocalControlledUsersCannotChangePassword_e => 8
    );
-   type EasPasswordExpirationResult_Ptr is access EasPasswordExpirationResult;
+   type EasPasswordExpirationResult_Ptr is access all EasPasswordExpirationResult;
 
    type EasPasswordHistoryResult is (
       NotEvaluated_e,
@@ -250,7 +250,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       RequestedPolicyIsStricter_e => 3,
       InvalidParameter_e => 4
    );
-   type EasPasswordHistoryResult_Ptr is access EasPasswordHistoryResult;
+   type EasPasswordHistoryResult_Ptr is access all EasPasswordHistoryResult;
 
    type EasRequireEncryptionResult is (
       NotEvaluated_e,
@@ -282,7 +282,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       OsNotProtected_e => 11,
       UnexpectedFailure_e => 12
    );
-   type EasRequireEncryptionResult_Ptr is access EasRequireEncryptionResult;
+   type EasRequireEncryptionResult_Ptr is access all EasRequireEncryptionResult;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -291,7 +291,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
    type EasContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type EasContract_Ptr is access EasContract;
+   type EasContract_Ptr is access all EasContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

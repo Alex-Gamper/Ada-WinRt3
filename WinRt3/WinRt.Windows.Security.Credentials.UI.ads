@@ -40,18 +40,18 @@ package WinRt.Windows.Security.Credentials.UI is
    -----------------------------------------------------------------------------
 
    type ICredentialPickerOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type ICredentialPickerOptions is access ICredentialPickerOptions_Interface'Class;
+   type ICredentialPickerOptions is access all ICredentialPickerOptions_Interface'Class;
    type ICredentialPickerOptions_Ptr is access all ICredentialPickerOptions;
 
    type ICredentialPickerResults_Interface is interface and WinRt.IInspectable_Interface;
-   type ICredentialPickerResults is access ICredentialPickerResults_Interface'Class;
+   type ICredentialPickerResults is access all ICredentialPickerResults_Interface'Class;
    type ICredentialPickerResults_Ptr is access all ICredentialPickerResults;
 
    type ICredentialPickerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICredentialPickerStatics is access ICredentialPickerStatics_Interface'Class;
+   type ICredentialPickerStatics is access all ICredentialPickerStatics_Interface'Class;
 
    type IUserConsentVerifierStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserConsentVerifierStatics is access IUserConsentVerifierStatics_Interface'Class;
+   type IUserConsentVerifierStatics is access all IUserConsentVerifierStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -91,7 +91,7 @@ package WinRt.Windows.Security.Credentials.UI is
       CredSsp_e => 5,
       Custom_e => 6
    );
-   type AuthenticationProtocol_Ptr is access AuthenticationProtocol;
+   type AuthenticationProtocol_Ptr is access all AuthenticationProtocol;
 
    type CredentialSaveOption is (
       Unselected_e,
@@ -103,7 +103,7 @@ package WinRt.Windows.Security.Credentials.UI is
       Selected_e => 1,
       Hidden_e => 2
    );
-   type CredentialSaveOption_Ptr is access CredentialSaveOption;
+   type CredentialSaveOption_Ptr is access all CredentialSaveOption;
 
    type UserConsentVerificationResult is (
       Verified_e,
@@ -123,7 +123,7 @@ package WinRt.Windows.Security.Credentials.UI is
       RetriesExhausted_e => 5,
       Canceled_e => 6
    );
-   type UserConsentVerificationResult_Ptr is access UserConsentVerificationResult;
+   type UserConsentVerificationResult_Ptr is access all UserConsentVerificationResult;
 
    type UserConsentVerifierAvailability is (
       Available_e,
@@ -139,7 +139,7 @@ package WinRt.Windows.Security.Credentials.UI is
       DisabledByPolicy_e => 3,
       DeviceBusy_e => 4
    );
-   type UserConsentVerifierAvailability_Ptr is access UserConsentVerifierAvailability;
+   type UserConsentVerifierAvailability_Ptr is access all UserConsentVerifierAvailability;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

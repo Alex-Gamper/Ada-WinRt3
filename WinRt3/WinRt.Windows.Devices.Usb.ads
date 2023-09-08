@@ -41,110 +41,110 @@ package WinRt.Windows.Devices.Usb is
    -----------------------------------------------------------------------------
 
    type IUsbBulkInEndpointDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbBulkInEndpointDescriptor is access IUsbBulkInEndpointDescriptor_Interface'Class;
+   type IUsbBulkInEndpointDescriptor is access all IUsbBulkInEndpointDescriptor_Interface'Class;
    type IUsbBulkInEndpointDescriptor_Ptr is access all IUsbBulkInEndpointDescriptor;
 
    type IUsbBulkInPipe_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbBulkInPipe is access IUsbBulkInPipe_Interface'Class;
+   type IUsbBulkInPipe is access all IUsbBulkInPipe_Interface'Class;
    type IUsbBulkInPipe_Ptr is access all IUsbBulkInPipe;
 
    type IUsbBulkOutEndpointDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbBulkOutEndpointDescriptor is access IUsbBulkOutEndpointDescriptor_Interface'Class;
+   type IUsbBulkOutEndpointDescriptor is access all IUsbBulkOutEndpointDescriptor_Interface'Class;
    type IUsbBulkOutEndpointDescriptor_Ptr is access all IUsbBulkOutEndpointDescriptor;
 
    type IUsbBulkOutPipe_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbBulkOutPipe is access IUsbBulkOutPipe_Interface'Class;
+   type IUsbBulkOutPipe is access all IUsbBulkOutPipe_Interface'Class;
    type IUsbBulkOutPipe_Ptr is access all IUsbBulkOutPipe;
 
    type IUsbConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbConfiguration is access IUsbConfiguration_Interface'Class;
+   type IUsbConfiguration is access all IUsbConfiguration_Interface'Class;
    type IUsbConfiguration_Ptr is access all IUsbConfiguration;
 
    type IUsbConfigurationDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbConfigurationDescriptor is access IUsbConfigurationDescriptor_Interface'Class;
+   type IUsbConfigurationDescriptor is access all IUsbConfigurationDescriptor_Interface'Class;
    type IUsbConfigurationDescriptor_Ptr is access all IUsbConfigurationDescriptor;
 
    type IUsbConfigurationDescriptorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbConfigurationDescriptorStatics is access IUsbConfigurationDescriptorStatics_Interface'Class;
+   type IUsbConfigurationDescriptorStatics is access all IUsbConfigurationDescriptorStatics_Interface'Class;
 
    type IUsbControlRequestType_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbControlRequestType is access IUsbControlRequestType_Interface'Class;
+   type IUsbControlRequestType is access all IUsbControlRequestType_Interface'Class;
    type IUsbControlRequestType_Ptr is access all IUsbControlRequestType;
 
    type IUsbDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbDescriptor is access IUsbDescriptor_Interface'Class;
+   type IUsbDescriptor is access all IUsbDescriptor_Interface'Class;
    type IUsbDescriptor_Ptr is access all IUsbDescriptor;
 
    type IUsbDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbDevice is access IUsbDevice_Interface'Class;
+   type IUsbDevice is access all IUsbDevice_Interface'Class;
    type IUsbDevice_Ptr is access all IUsbDevice;
 
    type IUsbDeviceClass_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbDeviceClass is access IUsbDeviceClass_Interface'Class;
+   type IUsbDeviceClass is access all IUsbDeviceClass_Interface'Class;
    type IUsbDeviceClass_Ptr is access all IUsbDeviceClass;
 
    type IUsbDeviceClasses_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbDeviceClasses is access IUsbDeviceClasses_Interface'Class;
+   type IUsbDeviceClasses is access all IUsbDeviceClasses_Interface'Class;
    type IUsbDeviceClasses_Ptr is access all IUsbDeviceClasses;
 
    type IUsbDeviceClassesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbDeviceClassesStatics is access IUsbDeviceClassesStatics_Interface'Class;
+   type IUsbDeviceClassesStatics is access all IUsbDeviceClassesStatics_Interface'Class;
 
    type IUsbDeviceDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbDeviceDescriptor is access IUsbDeviceDescriptor_Interface'Class;
+   type IUsbDeviceDescriptor is access all IUsbDeviceDescriptor_Interface'Class;
    type IUsbDeviceDescriptor_Ptr is access all IUsbDeviceDescriptor;
 
    type IUsbDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbDeviceStatics is access IUsbDeviceStatics_Interface'Class;
+   type IUsbDeviceStatics is access all IUsbDeviceStatics_Interface'Class;
 
    type IUsbEndpointDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbEndpointDescriptor is access IUsbEndpointDescriptor_Interface'Class;
+   type IUsbEndpointDescriptor is access all IUsbEndpointDescriptor_Interface'Class;
    type IUsbEndpointDescriptor_Ptr is access all IUsbEndpointDescriptor;
 
    type IUsbEndpointDescriptorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbEndpointDescriptorStatics is access IUsbEndpointDescriptorStatics_Interface'Class;
+   type IUsbEndpointDescriptorStatics is access all IUsbEndpointDescriptorStatics_Interface'Class;
 
    type IUsbInterface_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbInterface is access IUsbInterface_Interface'Class;
+   type IUsbInterface is access all IUsbInterface_Interface'Class;
    type IUsbInterface_Ptr is access all IUsbInterface;
 
    type IUsbInterfaceDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbInterfaceDescriptor is access IUsbInterfaceDescriptor_Interface'Class;
+   type IUsbInterfaceDescriptor is access all IUsbInterfaceDescriptor_Interface'Class;
    type IUsbInterfaceDescriptor_Ptr is access all IUsbInterfaceDescriptor;
 
    type IUsbInterfaceDescriptorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbInterfaceDescriptorStatics is access IUsbInterfaceDescriptorStatics_Interface'Class;
+   type IUsbInterfaceDescriptorStatics is access all IUsbInterfaceDescriptorStatics_Interface'Class;
 
    type IUsbInterfaceSetting_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbInterfaceSetting is access IUsbInterfaceSetting_Interface'Class;
+   type IUsbInterfaceSetting is access all IUsbInterfaceSetting_Interface'Class;
    type IUsbInterfaceSetting_Ptr is access all IUsbInterfaceSetting;
 
    type IUsbInterruptInEndpointDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbInterruptInEndpointDescriptor is access IUsbInterruptInEndpointDescriptor_Interface'Class;
+   type IUsbInterruptInEndpointDescriptor is access all IUsbInterruptInEndpointDescriptor_Interface'Class;
    type IUsbInterruptInEndpointDescriptor_Ptr is access all IUsbInterruptInEndpointDescriptor;
 
    type IUsbInterruptInEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbInterruptInEventArgs is access IUsbInterruptInEventArgs_Interface'Class;
+   type IUsbInterruptInEventArgs is access all IUsbInterruptInEventArgs_Interface'Class;
    type IUsbInterruptInEventArgs_Ptr is access all IUsbInterruptInEventArgs;
 
    type IUsbInterruptInPipe_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbInterruptInPipe is access IUsbInterruptInPipe_Interface'Class;
+   type IUsbInterruptInPipe is access all IUsbInterruptInPipe_Interface'Class;
    type IUsbInterruptInPipe_Ptr is access all IUsbInterruptInPipe;
 
    type IUsbInterruptOutEndpointDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbInterruptOutEndpointDescriptor is access IUsbInterruptOutEndpointDescriptor_Interface'Class;
+   type IUsbInterruptOutEndpointDescriptor is access all IUsbInterruptOutEndpointDescriptor_Interface'Class;
    type IUsbInterruptOutEndpointDescriptor_Ptr is access all IUsbInterruptOutEndpointDescriptor;
 
    type IUsbInterruptOutPipe_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbInterruptOutPipe is access IUsbInterruptOutPipe_Interface'Class;
+   type IUsbInterruptOutPipe is access all IUsbInterruptOutPipe_Interface'Class;
    type IUsbInterruptOutPipe_Ptr is access all IUsbInterruptOutPipe;
 
    type IUsbSetupPacket_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbSetupPacket is access IUsbSetupPacket_Interface'Class;
+   type IUsbSetupPacket is access all IUsbSetupPacket_Interface'Class;
    type IUsbSetupPacket_Ptr is access all IUsbSetupPacket;
 
    type IUsbSetupPacketFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IUsbSetupPacketFactory is access IUsbSetupPacketFactory_Interface'Class;
+   type IUsbSetupPacketFactory is access all IUsbSetupPacketFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -300,7 +300,7 @@ package WinRt.Windows.Devices.Usb is
       Other_e => 3,
       DefaultInterface_e => 4
    );
-   type UsbControlRecipient_Ptr is access UsbControlRecipient;
+   type UsbControlRecipient_Ptr is access all UsbControlRecipient;
 
    type UsbControlTransferType is (
       Standard_e,
@@ -312,7 +312,7 @@ package WinRt.Windows.Devices.Usb is
       Class_e => 1,
       Vendor_e => 2
    );
-   type UsbControlTransferType_Ptr is access UsbControlTransferType;
+   type UsbControlTransferType_Ptr is access all UsbControlTransferType;
 
    type UsbEndpointType is (
       Control_e,
@@ -326,7 +326,7 @@ package WinRt.Windows.Devices.Usb is
       Bulk_e => 2,
       Interrupt_e => 3
    );
-   type UsbEndpointType_Ptr is access UsbEndpointType;
+   type UsbEndpointType_Ptr is access all UsbEndpointType;
 
    type UsbReadOptions is (
       None_e,
@@ -342,7 +342,7 @@ package WinRt.Windows.Devices.Usb is
       IgnoreShortPacket_e => 4,
       AllowPartialReads_e => 8
    );
-   type UsbReadOptions_Ptr is access UsbReadOptions;
+   type UsbReadOptions_Ptr is access all UsbReadOptions;
 
    type UsbTransferDirection is (
       Out_e,
@@ -352,7 +352,7 @@ package WinRt.Windows.Devices.Usb is
       Out_e => 0,
       In_e => 1
    );
-   type UsbTransferDirection_Ptr is access UsbTransferDirection;
+   type UsbTransferDirection_Ptr is access all UsbTransferDirection;
 
    type UsbWriteOptions is (
       None_e,
@@ -364,7 +364,7 @@ package WinRt.Windows.Devices.Usb is
       AutoClearStall_e => 1,
       ShortPacketTerminate_e => 2
    );
-   type UsbWriteOptions_Ptr is access UsbWriteOptions;
+   type UsbWriteOptions_Ptr is access all UsbWriteOptions;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -38,7 +38,7 @@ package WinRt.Windows.Phone.ApplicationModel is
    -----------------------------------------------------------------------------
 
    type IApplicationProfileStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationProfileStatics is access IApplicationProfileStatics_Interface'Class;
+   type IApplicationProfileStatics is access all IApplicationProfileStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -52,7 +52,7 @@ package WinRt.Windows.Phone.ApplicationModel is
       Default_e => 0,
       Alternate_e => 1
    );
-   type ApplicationProfileModes_Ptr is access ApplicationProfileModes;
+   type ApplicationProfileModes_Ptr is access all ApplicationProfileModes;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

@@ -42,53 +42,53 @@ package WinRt.Windows.ApplicationModel.AppService is
    -----------------------------------------------------------------------------
 
    type IAppServiceCatalogStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppServiceCatalogStatics is access IAppServiceCatalogStatics_Interface'Class;
+   type IAppServiceCatalogStatics is access all IAppServiceCatalogStatics_Interface'Class;
 
    type IAppServiceClosedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppServiceClosedEventArgs is access IAppServiceClosedEventArgs_Interface'Class;
+   type IAppServiceClosedEventArgs is access all IAppServiceClosedEventArgs_Interface'Class;
    type IAppServiceClosedEventArgs_Ptr is access all IAppServiceClosedEventArgs;
 
    type IAppServiceConnection_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppServiceConnection is access IAppServiceConnection_Interface'Class;
+   type IAppServiceConnection is access all IAppServiceConnection_Interface'Class;
    type IAppServiceConnection_Ptr is access all IAppServiceConnection;
 
    type IAppServiceConnection2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppServiceConnection2 is access IAppServiceConnection2_Interface'Class;
+   type IAppServiceConnection2 is access all IAppServiceConnection2_Interface'Class;
 
    type IAppServiceConnectionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppServiceConnectionStatics is access IAppServiceConnectionStatics_Interface'Class;
+   type IAppServiceConnectionStatics is access all IAppServiceConnectionStatics_Interface'Class;
 
    type IAppServiceDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppServiceDeferral is access IAppServiceDeferral_Interface'Class;
+   type IAppServiceDeferral is access all IAppServiceDeferral_Interface'Class;
    type IAppServiceDeferral_Ptr is access all IAppServiceDeferral;
 
    type IAppServiceRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppServiceRequest is access IAppServiceRequest_Interface'Class;
+   type IAppServiceRequest is access all IAppServiceRequest_Interface'Class;
    type IAppServiceRequest_Ptr is access all IAppServiceRequest;
 
    type IAppServiceRequestReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppServiceRequestReceivedEventArgs is access IAppServiceRequestReceivedEventArgs_Interface'Class;
+   type IAppServiceRequestReceivedEventArgs is access all IAppServiceRequestReceivedEventArgs_Interface'Class;
    type IAppServiceRequestReceivedEventArgs_Ptr is access all IAppServiceRequestReceivedEventArgs;
 
    type IAppServiceResponse_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppServiceResponse is access IAppServiceResponse_Interface'Class;
+   type IAppServiceResponse is access all IAppServiceResponse_Interface'Class;
    type IAppServiceResponse_Ptr is access all IAppServiceResponse;
 
    type IAppServiceTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppServiceTriggerDetails is access IAppServiceTriggerDetails_Interface'Class;
+   type IAppServiceTriggerDetails is access all IAppServiceTriggerDetails_Interface'Class;
    type IAppServiceTriggerDetails_Ptr is access all IAppServiceTriggerDetails;
 
    type IAppServiceTriggerDetails2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppServiceTriggerDetails2 is access IAppServiceTriggerDetails2_Interface'Class;
+   type IAppServiceTriggerDetails2 is access all IAppServiceTriggerDetails2_Interface'Class;
 
    type IAppServiceTriggerDetails3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppServiceTriggerDetails3 is access IAppServiceTriggerDetails3_Interface'Class;
+   type IAppServiceTriggerDetails3 is access all IAppServiceTriggerDetails3_Interface'Class;
 
    type IAppServiceTriggerDetails4_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppServiceTriggerDetails4 is access IAppServiceTriggerDetails4_Interface'Class;
+   type IAppServiceTriggerDetails4 is access all IAppServiceTriggerDetails4_Interface'Class;
 
    type IStatelessAppServiceResponse_Interface is interface and WinRt.IInspectable_Interface;
-   type IStatelessAppServiceResponse is access IStatelessAppServiceResponse_Interface'Class;
+   type IStatelessAppServiceResponse is access all IStatelessAppServiceResponse_Interface'Class;
    type IStatelessAppServiceResponse_Ptr is access all IStatelessAppServiceResponse;
 
    -----------------------------------------------------------------------------
@@ -159,7 +159,7 @@ package WinRt.Windows.ApplicationModel.AppService is
       ResourceLimitsExceeded_e => 2,
       Unknown_e => 3
    );
-   type AppServiceClosedStatus_Ptr is access AppServiceClosedStatus;
+   type AppServiceClosedStatus_Ptr is access all AppServiceClosedStatus;
 
    type AppServiceConnectionStatus is (
       Success_e,
@@ -189,7 +189,7 @@ package WinRt.Windows.ApplicationModel.AppService is
       DisabledByPolicy_e => 10,
       WebServiceUnavailable_e => 11
    );
-   type AppServiceConnectionStatus_Ptr is access AppServiceConnectionStatus;
+   type AppServiceConnectionStatus_Ptr is access all AppServiceConnectionStatus;
 
    type AppServiceResponseStatus is (
       Success_e,
@@ -217,7 +217,7 @@ package WinRt.Windows.ApplicationModel.AppService is
       DisabledByPolicy_e => 9,
       WebServiceUnavailable_e => 10
    );
-   type AppServiceResponseStatus_Ptr is access AppServiceResponseStatus;
+   type AppServiceResponseStatus_Ptr is access all AppServiceResponseStatus;
 
    type StatelessAppServiceResponseStatus is (
       Success_e,
@@ -253,7 +253,7 @@ package WinRt.Windows.ApplicationModel.AppService is
       DisabledByPolicy_e => 13,
       WebServiceUnavailable_e => 14
    );
-   type StatelessAppServiceResponseStatus_Ptr is access StatelessAppServiceResponseStatus;
+   type StatelessAppServiceResponseStatus_Ptr is access all StatelessAppServiceResponseStatus;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

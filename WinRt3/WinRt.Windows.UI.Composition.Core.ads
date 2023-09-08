@@ -39,7 +39,7 @@ package WinRt.Windows.UI.Composition.Core is
    -----------------------------------------------------------------------------
 
    type ICompositorController_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositorController is access ICompositorController_Interface'Class;
+   type ICompositorController is access all ICompositorController_Interface'Class;
    type ICompositorController_Ptr is access all ICompositorController;
 
    -----------------------------------------------------------------------------

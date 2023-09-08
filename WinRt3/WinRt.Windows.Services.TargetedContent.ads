@@ -41,61 +41,61 @@ package WinRt.Windows.Services.TargetedContent is
    -----------------------------------------------------------------------------
 
    type ITargetedContentAction_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetedContentAction is access ITargetedContentAction_Interface'Class;
+   type ITargetedContentAction is access all ITargetedContentAction_Interface'Class;
    type ITargetedContentAction_Ptr is access all ITargetedContentAction;
 
    type ITargetedContentAvailabilityChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetedContentAvailabilityChangedEventArgs is access ITargetedContentAvailabilityChangedEventArgs_Interface'Class;
+   type ITargetedContentAvailabilityChangedEventArgs is access all ITargetedContentAvailabilityChangedEventArgs_Interface'Class;
    type ITargetedContentAvailabilityChangedEventArgs_Ptr is access all ITargetedContentAvailabilityChangedEventArgs;
 
    type ITargetedContentChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetedContentChangedEventArgs is access ITargetedContentChangedEventArgs_Interface'Class;
+   type ITargetedContentChangedEventArgs is access all ITargetedContentChangedEventArgs_Interface'Class;
    type ITargetedContentChangedEventArgs_Ptr is access all ITargetedContentChangedEventArgs;
 
    type ITargetedContentCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetedContentCollection is access ITargetedContentCollection_Interface'Class;
+   type ITargetedContentCollection is access all ITargetedContentCollection_Interface'Class;
    type ITargetedContentCollection_Ptr is access all ITargetedContentCollection;
 
    type ITargetedContentContainer_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetedContentContainer is access ITargetedContentContainer_Interface'Class;
+   type ITargetedContentContainer is access all ITargetedContentContainer_Interface'Class;
    type ITargetedContentContainer_Ptr is access all ITargetedContentContainer;
 
    type ITargetedContentContainerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetedContentContainerStatics is access ITargetedContentContainerStatics_Interface'Class;
+   type ITargetedContentContainerStatics is access all ITargetedContentContainerStatics_Interface'Class;
 
    type ITargetedContentImage_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetedContentImage is access ITargetedContentImage_Interface'Class;
+   type ITargetedContentImage is access all ITargetedContentImage_Interface'Class;
    type ITargetedContentImage_Ptr is access all ITargetedContentImage;
 
    type ITargetedContentItem_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetedContentItem is access ITargetedContentItem_Interface'Class;
+   type ITargetedContentItem is access all ITargetedContentItem_Interface'Class;
    type ITargetedContentItem_Ptr is access all ITargetedContentItem;
 
    type ITargetedContentItemState_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetedContentItemState is access ITargetedContentItemState_Interface'Class;
+   type ITargetedContentItemState is access all ITargetedContentItemState_Interface'Class;
    type ITargetedContentItemState_Ptr is access all ITargetedContentItemState;
 
    type ITargetedContentObject_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetedContentObject is access ITargetedContentObject_Interface'Class;
+   type ITargetedContentObject is access all ITargetedContentObject_Interface'Class;
    type ITargetedContentObject_Ptr is access all ITargetedContentObject;
 
    type ITargetedContentStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetedContentStateChangedEventArgs is access ITargetedContentStateChangedEventArgs_Interface'Class;
+   type ITargetedContentStateChangedEventArgs is access all ITargetedContentStateChangedEventArgs_Interface'Class;
    type ITargetedContentStateChangedEventArgs_Ptr is access all ITargetedContentStateChangedEventArgs;
 
    type ITargetedContentSubscription_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetedContentSubscription is access ITargetedContentSubscription_Interface'Class;
+   type ITargetedContentSubscription is access all ITargetedContentSubscription_Interface'Class;
    type ITargetedContentSubscription_Ptr is access all ITargetedContentSubscription;
 
    type ITargetedContentSubscriptionOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetedContentSubscriptionOptions is access ITargetedContentSubscriptionOptions_Interface'Class;
+   type ITargetedContentSubscriptionOptions is access all ITargetedContentSubscriptionOptions_Interface'Class;
    type ITargetedContentSubscriptionOptions_Ptr is access all ITargetedContentSubscriptionOptions;
 
    type ITargetedContentSubscriptionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetedContentSubscriptionStatics is access ITargetedContentSubscriptionStatics_Interface'Class;
+   type ITargetedContentSubscriptionStatics is access all ITargetedContentSubscriptionStatics_Interface'Class;
 
    type ITargetedContentValue_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetedContentValue is access ITargetedContentValue_Interface'Class;
+   type ITargetedContentValue is access all ITargetedContentValue_Interface'Class;
    type ITargetedContentValue_Ptr is access all ITargetedContentValue;
 
    -----------------------------------------------------------------------------
@@ -200,7 +200,7 @@ package WinRt.Windows.Services.TargetedContent is
       NotInstalled_e => 1,
       Installed_e => 2
    );
-   type TargetedContentAppInstallationState_Ptr is access TargetedContentAppInstallationState;
+   type TargetedContentAppInstallationState_Ptr is access all TargetedContentAppInstallationState;
 
    type TargetedContentAvailability is (
       None_e,
@@ -212,7 +212,7 @@ package WinRt.Windows.Services.TargetedContent is
       Partial_e => 1,
       All_e => 2
    );
-   type TargetedContentAvailability_Ptr is access TargetedContentAvailability;
+   type TargetedContentAvailability_Ptr is access all TargetedContentAvailability;
 
    type TargetedContentInteraction is (
       Impression_e,
@@ -244,7 +244,7 @@ package WinRt.Windows.Services.TargetedContent is
       Conversion_e => 11,
       Opportunity_e => 12
    );
-   type TargetedContentInteraction_Ptr is access TargetedContentInteraction;
+   type TargetedContentInteraction_Ptr is access all TargetedContentInteraction;
 
    type TargetedContentObjectKind is (
       Collection_e,
@@ -256,7 +256,7 @@ package WinRt.Windows.Services.TargetedContent is
       Item_e => 1,
       Value_e => 2
    );
-   type TargetedContentObjectKind_Ptr is access TargetedContentObjectKind;
+   type TargetedContentObjectKind_Ptr is access all TargetedContentObjectKind;
 
    type TargetedContentValueKind is (
       String_e,
@@ -290,7 +290,7 @@ package WinRt.Windows.Services.TargetedContent is
       ImageFiles_e => 12,
       Actions_e => 13
    );
-   type TargetedContentValueKind_Ptr is access TargetedContentValueKind;
+   type TargetedContentValueKind_Ptr is access all TargetedContentValueKind;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -299,7 +299,7 @@ package WinRt.Windows.Services.TargetedContent is
    type TargetedContentContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type TargetedContentContract_Ptr is access TargetedContentContract;
+   type TargetedContentContract_Ptr is access all TargetedContentContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

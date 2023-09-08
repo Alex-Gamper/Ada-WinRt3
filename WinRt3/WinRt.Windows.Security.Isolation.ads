@@ -40,84 +40,84 @@ package WinRt.Windows.Security.Isolation is
    -----------------------------------------------------------------------------
 
    type HostMessageReceivedCallback_Delegate;
-   type HostMessageReceivedCallback is access HostMessageReceivedCallback_Delegate;
+   type HostMessageReceivedCallback is access all HostMessageReceivedCallback_Delegate;
 
    type MessageReceivedCallback_Delegate;
-   type MessageReceivedCallback is access MessageReceivedCallback_Delegate;
+   type MessageReceivedCallback is access all MessageReceivedCallback_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IIsolatedWindowsEnvironment_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironment is access IIsolatedWindowsEnvironment_Interface'Class;
+   type IIsolatedWindowsEnvironment is access all IIsolatedWindowsEnvironment_Interface'Class;
    type IIsolatedWindowsEnvironment_Ptr is access all IIsolatedWindowsEnvironment;
 
    type IIsolatedWindowsEnvironment2_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironment2 is access IIsolatedWindowsEnvironment2_Interface'Class;
+   type IIsolatedWindowsEnvironment2 is access all IIsolatedWindowsEnvironment2_Interface'Class;
 
    type IIsolatedWindowsEnvironmentCreateResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentCreateResult is access IIsolatedWindowsEnvironmentCreateResult_Interface'Class;
+   type IIsolatedWindowsEnvironmentCreateResult is access all IIsolatedWindowsEnvironmentCreateResult_Interface'Class;
    type IIsolatedWindowsEnvironmentCreateResult_Ptr is access all IIsolatedWindowsEnvironmentCreateResult;
 
    type IIsolatedWindowsEnvironmentFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentFactory is access IIsolatedWindowsEnvironmentFactory_Interface'Class;
+   type IIsolatedWindowsEnvironmentFactory is access all IIsolatedWindowsEnvironmentFactory_Interface'Class;
 
    type IIsolatedWindowsEnvironmentFile_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentFile is access IIsolatedWindowsEnvironmentFile_Interface'Class;
+   type IIsolatedWindowsEnvironmentFile is access all IIsolatedWindowsEnvironmentFile_Interface'Class;
    type IIsolatedWindowsEnvironmentFile_Ptr is access all IIsolatedWindowsEnvironmentFile;
 
    type IIsolatedWindowsEnvironmentHostStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentHostStatics is access IIsolatedWindowsEnvironmentHostStatics_Interface'Class;
+   type IIsolatedWindowsEnvironmentHostStatics is access all IIsolatedWindowsEnvironmentHostStatics_Interface'Class;
 
    type IIsolatedWindowsEnvironmentLaunchFileResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentLaunchFileResult is access IIsolatedWindowsEnvironmentLaunchFileResult_Interface'Class;
+   type IIsolatedWindowsEnvironmentLaunchFileResult is access all IIsolatedWindowsEnvironmentLaunchFileResult_Interface'Class;
    type IIsolatedWindowsEnvironmentLaunchFileResult_Ptr is access all IIsolatedWindowsEnvironmentLaunchFileResult;
 
    type IIsolatedWindowsEnvironmentOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentOptions is access IIsolatedWindowsEnvironmentOptions_Interface'Class;
+   type IIsolatedWindowsEnvironmentOptions is access all IIsolatedWindowsEnvironmentOptions_Interface'Class;
    type IIsolatedWindowsEnvironmentOptions_Ptr is access all IIsolatedWindowsEnvironmentOptions;
 
    type IIsolatedWindowsEnvironmentOwnerRegistrationData_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentOwnerRegistrationData is access IIsolatedWindowsEnvironmentOwnerRegistrationData_Interface'Class;
+   type IIsolatedWindowsEnvironmentOwnerRegistrationData is access all IIsolatedWindowsEnvironmentOwnerRegistrationData_Interface'Class;
    type IIsolatedWindowsEnvironmentOwnerRegistrationData_Ptr is access all IIsolatedWindowsEnvironmentOwnerRegistrationData;
 
    type IIsolatedWindowsEnvironmentOwnerRegistrationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentOwnerRegistrationResult is access IIsolatedWindowsEnvironmentOwnerRegistrationResult_Interface'Class;
+   type IIsolatedWindowsEnvironmentOwnerRegistrationResult is access all IIsolatedWindowsEnvironmentOwnerRegistrationResult_Interface'Class;
    type IIsolatedWindowsEnvironmentOwnerRegistrationResult_Ptr is access all IIsolatedWindowsEnvironmentOwnerRegistrationResult;
 
    type IIsolatedWindowsEnvironmentOwnerRegistrationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentOwnerRegistrationStatics is access IIsolatedWindowsEnvironmentOwnerRegistrationStatics_Interface'Class;
+   type IIsolatedWindowsEnvironmentOwnerRegistrationStatics is access all IIsolatedWindowsEnvironmentOwnerRegistrationStatics_Interface'Class;
 
    type IIsolatedWindowsEnvironmentPostMessageResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentPostMessageResult is access IIsolatedWindowsEnvironmentPostMessageResult_Interface'Class;
+   type IIsolatedWindowsEnvironmentPostMessageResult is access all IIsolatedWindowsEnvironmentPostMessageResult_Interface'Class;
    type IIsolatedWindowsEnvironmentPostMessageResult_Ptr is access all IIsolatedWindowsEnvironmentPostMessageResult;
 
    type IIsolatedWindowsEnvironmentProcess_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentProcess is access IIsolatedWindowsEnvironmentProcess_Interface'Class;
+   type IIsolatedWindowsEnvironmentProcess is access all IIsolatedWindowsEnvironmentProcess_Interface'Class;
    type IIsolatedWindowsEnvironmentProcess_Ptr is access all IIsolatedWindowsEnvironmentProcess;
 
    type IIsolatedWindowsEnvironmentShareFolderRequestOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentShareFolderRequestOptions is access IIsolatedWindowsEnvironmentShareFolderRequestOptions_Interface'Class;
+   type IIsolatedWindowsEnvironmentShareFolderRequestOptions is access all IIsolatedWindowsEnvironmentShareFolderRequestOptions_Interface'Class;
    type IIsolatedWindowsEnvironmentShareFolderRequestOptions_Ptr is access all IIsolatedWindowsEnvironmentShareFolderRequestOptions;
 
    type IIsolatedWindowsEnvironmentShareFolderResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentShareFolderResult is access IIsolatedWindowsEnvironmentShareFolderResult_Interface'Class;
+   type IIsolatedWindowsEnvironmentShareFolderResult is access all IIsolatedWindowsEnvironmentShareFolderResult_Interface'Class;
    type IIsolatedWindowsEnvironmentShareFolderResult_Ptr is access all IIsolatedWindowsEnvironmentShareFolderResult;
 
    type IIsolatedWindowsEnvironmentStartProcessResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentStartProcessResult is access IIsolatedWindowsEnvironmentStartProcessResult_Interface'Class;
+   type IIsolatedWindowsEnvironmentStartProcessResult is access all IIsolatedWindowsEnvironmentStartProcessResult_Interface'Class;
    type IIsolatedWindowsEnvironmentStartProcessResult_Ptr is access all IIsolatedWindowsEnvironmentStartProcessResult;
 
    type IIsolatedWindowsEnvironmentTelemetryParameters_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsEnvironmentTelemetryParameters is access IIsolatedWindowsEnvironmentTelemetryParameters_Interface'Class;
+   type IIsolatedWindowsEnvironmentTelemetryParameters is access all IIsolatedWindowsEnvironmentTelemetryParameters_Interface'Class;
    type IIsolatedWindowsEnvironmentTelemetryParameters_Ptr is access all IIsolatedWindowsEnvironmentTelemetryParameters;
 
    type IIsolatedWindowsHostMessengerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsHostMessengerStatics is access IIsolatedWindowsHostMessengerStatics_Interface'Class;
+   type IIsolatedWindowsHostMessengerStatics is access all IIsolatedWindowsHostMessengerStatics_Interface'Class;
 
    type IIsolatedWindowsHostMessengerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IIsolatedWindowsHostMessengerStatics2 is access IIsolatedWindowsHostMessengerStatics2_Interface'Class;
+   type IIsolatedWindowsHostMessengerStatics2 is access all IIsolatedWindowsHostMessengerStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -213,7 +213,7 @@ package WinRt.Windows.Security.Isolation is
       System_e => 0,
       User_e => 1
    );
-   type IsolatedWindowsEnvironmentActivator_Ptr is access IsolatedWindowsEnvironmentActivator;
+   type IsolatedWindowsEnvironmentActivator_Ptr is access all IsolatedWindowsEnvironmentActivator;
 
    type IsolatedWindowsEnvironmentAllowedClipboardFormats is (
       None_e,
@@ -225,7 +225,7 @@ package WinRt.Windows.Security.Isolation is
       Text_e => 1,
       Image_e => 2
    );
-   type IsolatedWindowsEnvironmentAllowedClipboardFormats_Ptr is access IsolatedWindowsEnvironmentAllowedClipboardFormats;
+   type IsolatedWindowsEnvironmentAllowedClipboardFormats_Ptr is access all IsolatedWindowsEnvironmentAllowedClipboardFormats;
 
    type IsolatedWindowsEnvironmentAvailablePrinters is (
       None_e,
@@ -241,7 +241,7 @@ package WinRt.Windows.Security.Isolation is
       SystemPrintToPdf_e => 4,
       SystemPrintToXps_e => 8
    );
-   type IsolatedWindowsEnvironmentAvailablePrinters_Ptr is access IsolatedWindowsEnvironmentAvailablePrinters;
+   type IsolatedWindowsEnvironmentAvailablePrinters_Ptr is access all IsolatedWindowsEnvironmentAvailablePrinters;
 
    type IsolatedWindowsEnvironmentClipboardCopyPasteDirections is (
       None_e,
@@ -253,7 +253,7 @@ package WinRt.Windows.Security.Isolation is
       HostToIsolatedWindowsEnvironment_e => 1,
       IsolatedWindowsEnvironmentToHost_e => 2
    );
-   type IsolatedWindowsEnvironmentClipboardCopyPasteDirections_Ptr is access IsolatedWindowsEnvironmentClipboardCopyPasteDirections;
+   type IsolatedWindowsEnvironmentClipboardCopyPasteDirections_Ptr is access all IsolatedWindowsEnvironmentClipboardCopyPasteDirections;
 
    type IsolatedWindowsEnvironmentCreateStatus is (
       Success_e,
@@ -265,7 +265,7 @@ package WinRt.Windows.Security.Isolation is
       FailureByPolicy_e => 1,
       UnknownFailure_e => 2
    );
-   type IsolatedWindowsEnvironmentCreateStatus_Ptr is access IsolatedWindowsEnvironmentCreateStatus;
+   type IsolatedWindowsEnvironmentCreateStatus_Ptr is access all IsolatedWindowsEnvironmentCreateStatus;
 
    type IsolatedWindowsEnvironmentHostError is (
       AdminPolicyIsDisabledOrNotPresent_e,
@@ -281,7 +281,7 @@ package WinRt.Windows.Security.Isolation is
       RebootRequired_e => 3,
       UnknownError_e => 4
    );
-   type IsolatedWindowsEnvironmentHostError_Ptr is access IsolatedWindowsEnvironmentHostError;
+   type IsolatedWindowsEnvironmentHostError_Ptr is access all IsolatedWindowsEnvironmentHostError;
 
    type IsolatedWindowsEnvironmentLaunchFileStatus is (
       Success_e,
@@ -297,7 +297,7 @@ package WinRt.Windows.Security.Isolation is
       FileNotFound_e => 3,
       TimedOut_e => 4
    );
-   type IsolatedWindowsEnvironmentLaunchFileStatus_Ptr is access IsolatedWindowsEnvironmentLaunchFileStatus;
+   type IsolatedWindowsEnvironmentLaunchFileStatus_Ptr is access all IsolatedWindowsEnvironmentLaunchFileStatus;
 
    type IsolatedWindowsEnvironmentOwnerRegistrationStatus is (
       Success_e,
@@ -313,7 +313,7 @@ package WinRt.Windows.Security.Isolation is
       InsufficientMemory_e => 3,
       UnknownFailure_e => 4
    );
-   type IsolatedWindowsEnvironmentOwnerRegistrationStatus_Ptr is access IsolatedWindowsEnvironmentOwnerRegistrationStatus;
+   type IsolatedWindowsEnvironmentOwnerRegistrationStatus_Ptr is access all IsolatedWindowsEnvironmentOwnerRegistrationStatus;
 
    type IsolatedWindowsEnvironmentPostMessageStatus is (
       Success_e,
@@ -325,7 +325,7 @@ package WinRt.Windows.Security.Isolation is
       UnknownFailure_e => 1,
       EnvironmentUnavailable_e => 2
    );
-   type IsolatedWindowsEnvironmentPostMessageStatus_Ptr is access IsolatedWindowsEnvironmentPostMessageStatus;
+   type IsolatedWindowsEnvironmentPostMessageStatus_Ptr is access all IsolatedWindowsEnvironmentPostMessageStatus;
 
    type IsolatedWindowsEnvironmentProcessState is (
       Running_e,
@@ -337,7 +337,7 @@ package WinRt.Windows.Security.Isolation is
       Aborted_e => 2,
       Completed_e => 3
    );
-   type IsolatedWindowsEnvironmentProcessState_Ptr is access IsolatedWindowsEnvironmentProcessState;
+   type IsolatedWindowsEnvironmentProcessState_Ptr is access all IsolatedWindowsEnvironmentProcessState;
 
    type IsolatedWindowsEnvironmentProgressState is (
       Queued_e,
@@ -349,7 +349,7 @@ package WinRt.Windows.Security.Isolation is
       Processing_e => 1,
       Completed_e => 2
    );
-   type IsolatedWindowsEnvironmentProgressState_Ptr is access IsolatedWindowsEnvironmentProgressState;
+   type IsolatedWindowsEnvironmentProgressState_Ptr is access all IsolatedWindowsEnvironmentProgressState;
 
    type IsolatedWindowsEnvironmentShareFolderStatus is (
       Success_e,
@@ -365,7 +365,7 @@ package WinRt.Windows.Security.Isolation is
       FolderNotFound_e => 3,
       AccessDenied_e => 4
    );
-   type IsolatedWindowsEnvironmentShareFolderStatus_Ptr is access IsolatedWindowsEnvironmentShareFolderStatus;
+   type IsolatedWindowsEnvironmentShareFolderStatus_Ptr is access all IsolatedWindowsEnvironmentShareFolderStatus;
 
    type IsolatedWindowsEnvironmentStartProcessStatus is (
       Success_e,
@@ -381,7 +381,7 @@ package WinRt.Windows.Security.Isolation is
       FileNotFound_e => 3,
       AppNotRegistered_e => 4
    );
-   type IsolatedWindowsEnvironmentStartProcessStatus_Ptr is access IsolatedWindowsEnvironmentStartProcessStatus;
+   type IsolatedWindowsEnvironmentStartProcessStatus_Ptr is access all IsolatedWindowsEnvironmentStartProcessStatus;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -390,13 +390,13 @@ package WinRt.Windows.Security.Isolation is
    type IsolatedWindowsEnvironmentContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type IsolatedWindowsEnvironmentContract_Ptr is access IsolatedWindowsEnvironmentContract;
+   type IsolatedWindowsEnvironmentContract_Ptr is access all IsolatedWindowsEnvironmentContract;
 
    type IsolatedWindowsEnvironmentCreateProgress is record
       State : Windows.Security.Isolation.IsolatedWindowsEnvironmentProgressState;
       PercentComplete : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type IsolatedWindowsEnvironmentCreateProgress_Ptr is access IsolatedWindowsEnvironmentCreateProgress;
+   type IsolatedWindowsEnvironmentCreateProgress_Ptr is access all IsolatedWindowsEnvironmentCreateProgress;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

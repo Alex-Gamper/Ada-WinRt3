@@ -41,50 +41,50 @@ package WinRt.Windows.Phone.PersonalInformation is
    -----------------------------------------------------------------------------
 
    type IContactAddress_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactAddress is access IContactAddress_Interface'Class;
+   type IContactAddress is access all IContactAddress_Interface'Class;
    type IContactAddress_Ptr is access all IContactAddress;
 
    type IContactChangeRecord_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactChangeRecord is access IContactChangeRecord_Interface'Class;
+   type IContactChangeRecord is access all IContactChangeRecord_Interface'Class;
    type IContactChangeRecord_Ptr is access all IContactChangeRecord;
 
    type IContactInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactInformation is access IContactInformation_Interface'Class;
+   type IContactInformation is access all IContactInformation_Interface'Class;
    type IContactInformation_Ptr is access all IContactInformation;
 
    type IContactInformation2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactInformation2 is access IContactInformation2_Interface'Class;
+   type IContactInformation2 is access all IContactInformation2_Interface'Class;
 
    type IContactInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactInformationStatics is access IContactInformationStatics_Interface'Class;
+   type IContactInformationStatics is access all IContactInformationStatics_Interface'Class;
 
    type IContactQueryOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactQueryOptions is access IContactQueryOptions_Interface'Class;
+   type IContactQueryOptions is access all IContactQueryOptions_Interface'Class;
    type IContactQueryOptions_Ptr is access all IContactQueryOptions;
 
    type IContactQueryResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactQueryResult is access IContactQueryResult_Interface'Class;
+   type IContactQueryResult is access all IContactQueryResult_Interface'Class;
    type IContactQueryResult_Ptr is access all IContactQueryResult;
 
    type IContactStore_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactStore is access IContactStore_Interface'Class;
+   type IContactStore is access all IContactStore_Interface'Class;
    type IContactStore_Ptr is access all IContactStore;
 
    type IContactStore2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactStore2 is access IContactStore2_Interface'Class;
+   type IContactStore2 is access all IContactStore2_Interface'Class;
 
    type IContactStoreStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactStoreStatics is access IContactStoreStatics_Interface'Class;
+   type IContactStoreStatics is access all IContactStoreStatics_Interface'Class;
 
    type IKnownContactPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownContactPropertiesStatics is access IKnownContactPropertiesStatics_Interface'Class;
+   type IKnownContactPropertiesStatics is access all IKnownContactPropertiesStatics_Interface'Class;
 
    type IStoredContact_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoredContact is access IStoredContact_Interface'Class;
+   type IStoredContact is access all IStoredContact_Interface'Class;
    type IStoredContact_Ptr is access all IStoredContact;
 
    type IStoredContactFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoredContactFactory is access IStoredContactFactory_Interface'Class;
+   type IStoredContactFactory is access all IStoredContactFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -146,7 +146,7 @@ package WinRt.Windows.Phone.PersonalInformation is
       Modified_e => 1,
       Deleted_e => 2
    );
-   type ContactChangeType_Ptr is access ContactChangeType;
+   type ContactChangeType_Ptr is access all ContactChangeType;
 
    type ContactQueryResultOrdering is (
       SystemDefault_e,
@@ -158,7 +158,7 @@ package WinRt.Windows.Phone.PersonalInformation is
       GivenNameFamilyName_e => 1,
       FamilyNameGivenName_e => 2
    );
-   type ContactQueryResultOrdering_Ptr is access ContactQueryResultOrdering;
+   type ContactQueryResultOrdering_Ptr is access all ContactQueryResultOrdering;
 
    type ContactStoreApplicationAccessMode is (
       LimitedReadOnly_e,
@@ -168,7 +168,7 @@ package WinRt.Windows.Phone.PersonalInformation is
       LimitedReadOnly_e => 0,
       ReadOnly_e => 1
    );
-   type ContactStoreApplicationAccessMode_Ptr is access ContactStoreApplicationAccessMode;
+   type ContactStoreApplicationAccessMode_Ptr is access all ContactStoreApplicationAccessMode;
 
    type ContactStoreSystemAccessMode is (
       ReadOnly_e,
@@ -178,7 +178,7 @@ package WinRt.Windows.Phone.PersonalInformation is
       ReadOnly_e => 0,
       ReadWrite_e => 1
    );
-   type ContactStoreSystemAccessMode_Ptr is access ContactStoreSystemAccessMode;
+   type ContactStoreSystemAccessMode_Ptr is access all ContactStoreSystemAccessMode;
 
    type VCardFormat is (
       Version2_1_e,
@@ -188,7 +188,7 @@ package WinRt.Windows.Phone.PersonalInformation is
       Version2_1_e => 0,
       Version3_e => 1
    );
-   type VCardFormat_Ptr is access VCardFormat;
+   type VCardFormat_Ptr is access all VCardFormat;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -40,19 +40,19 @@ package WinRt.Windows.System.Preview is
    -----------------------------------------------------------------------------
 
    type ITwoPanelHingedDevicePosturePreview_Interface is interface and WinRt.IInspectable_Interface;
-   type ITwoPanelHingedDevicePosturePreview is access ITwoPanelHingedDevicePosturePreview_Interface'Class;
+   type ITwoPanelHingedDevicePosturePreview is access all ITwoPanelHingedDevicePosturePreview_Interface'Class;
    type ITwoPanelHingedDevicePosturePreview_Ptr is access all ITwoPanelHingedDevicePosturePreview;
 
    type ITwoPanelHingedDevicePosturePreviewReading_Interface is interface and WinRt.IInspectable_Interface;
-   type ITwoPanelHingedDevicePosturePreviewReading is access ITwoPanelHingedDevicePosturePreviewReading_Interface'Class;
+   type ITwoPanelHingedDevicePosturePreviewReading is access all ITwoPanelHingedDevicePosturePreviewReading_Interface'Class;
    type ITwoPanelHingedDevicePosturePreviewReading_Ptr is access all ITwoPanelHingedDevicePosturePreviewReading;
 
    type ITwoPanelHingedDevicePosturePreviewReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ITwoPanelHingedDevicePosturePreviewReadingChangedEventArgs is access ITwoPanelHingedDevicePosturePreviewReadingChangedEventArgs_Interface'Class;
+   type ITwoPanelHingedDevicePosturePreviewReadingChangedEventArgs is access all ITwoPanelHingedDevicePosturePreviewReadingChangedEventArgs_Interface'Class;
    type ITwoPanelHingedDevicePosturePreviewReadingChangedEventArgs_Ptr is access all ITwoPanelHingedDevicePosturePreviewReadingChangedEventArgs;
 
    type ITwoPanelHingedDevicePosturePreviewStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITwoPanelHingedDevicePosturePreviewStatics is access ITwoPanelHingedDevicePosturePreviewStatics_Interface'Class;
+   type ITwoPanelHingedDevicePosturePreviewStatics is access all ITwoPanelHingedDevicePosturePreviewStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -96,7 +96,7 @@ package WinRt.Windows.System.Preview is
       Convex_e => 4,
       Full_e => 5
    );
-   type HingeState_Ptr is access HingeState;
+   type HingeState_Ptr is access all HingeState;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

@@ -41,25 +41,25 @@ package WinRt.Windows.Gaming.UI is
    -----------------------------------------------------------------------------
 
    type IGameBarStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameBarStatics is access IGameBarStatics_Interface'Class;
+   type IGameBarStatics is access all IGameBarStatics_Interface'Class;
 
    type IGameChatMessageReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameChatMessageReceivedEventArgs is access IGameChatMessageReceivedEventArgs_Interface'Class;
+   type IGameChatMessageReceivedEventArgs is access all IGameChatMessageReceivedEventArgs_Interface'Class;
    type IGameChatMessageReceivedEventArgs_Ptr is access all IGameChatMessageReceivedEventArgs;
 
    type IGameChatOverlay_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameChatOverlay is access IGameChatOverlay_Interface'Class;
+   type IGameChatOverlay is access all IGameChatOverlay_Interface'Class;
    type IGameChatOverlay_Ptr is access all IGameChatOverlay;
 
    type IGameChatOverlayMessageSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameChatOverlayMessageSource is access IGameChatOverlayMessageSource_Interface'Class;
+   type IGameChatOverlayMessageSource is access all IGameChatOverlayMessageSource_Interface'Class;
    type IGameChatOverlayMessageSource_Ptr is access all IGameChatOverlayMessageSource;
 
    type IGameChatOverlayStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameChatOverlayStatics is access IGameChatOverlayStatics_Interface'Class;
+   type IGameChatOverlayStatics is access all IGameChatOverlayStatics_Interface'Class;
 
    type IGameUIProviderActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameUIProviderActivatedEventArgs is access IGameUIProviderActivatedEventArgs_Interface'Class;
+   type IGameUIProviderActivatedEventArgs is access all IGameUIProviderActivatedEventArgs_Interface'Class;
    type IGameUIProviderActivatedEventArgs_Ptr is access all IGameUIProviderActivatedEventArgs;
 
    -----------------------------------------------------------------------------
@@ -102,7 +102,7 @@ package WinRt.Windows.Gaming.UI is
       Voice_e => 0,
       Text_e => 1
    );
-   type GameChatMessageOrigin_Ptr is access GameChatMessageOrigin;
+   type GameChatMessageOrigin_Ptr is access all GameChatMessageOrigin;
 
    type GameChatOverlayPosition is (
       BottomCenter_e,
@@ -124,7 +124,7 @@ package WinRt.Windows.Gaming.UI is
       TopLeft_e => 6,
       TopRight_e => 7
    );
-   type GameChatOverlayPosition_Ptr is access GameChatOverlayPosition;
+   type GameChatOverlayPosition_Ptr is access all GameChatOverlayPosition;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -133,12 +133,12 @@ package WinRt.Windows.Gaming.UI is
    type GameChatOverlayContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type GameChatOverlayContract_Ptr is access GameChatOverlayContract;
+   type GameChatOverlayContract_Ptr is access all GameChatOverlayContract;
 
    type GamingUIProviderContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type GamingUIProviderContract_Ptr is access GamingUIProviderContract;
+   type GamingUIProviderContract_Ptr is access all GamingUIProviderContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

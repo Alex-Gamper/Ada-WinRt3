@@ -42,89 +42,89 @@ package WinRt.Windows.Data.Xml.Dom is
    -----------------------------------------------------------------------------
 
    type IDtdEntity_Interface is interface and WinRt.IInspectable_Interface;
-   type IDtdEntity is access IDtdEntity_Interface'Class;
+   type IDtdEntity is access all IDtdEntity_Interface'Class;
    type IDtdEntity_Ptr is access all IDtdEntity;
 
    type IDtdNotation_Interface is interface and WinRt.IInspectable_Interface;
-   type IDtdNotation is access IDtdNotation_Interface'Class;
+   type IDtdNotation is access all IDtdNotation_Interface'Class;
    type IDtdNotation_Ptr is access all IDtdNotation;
 
    type IXmlAttribute_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlAttribute is access IXmlAttribute_Interface'Class;
+   type IXmlAttribute is access all IXmlAttribute_Interface'Class;
    type IXmlAttribute_Ptr is access all IXmlAttribute;
 
    type IXmlCDataSection_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlCDataSection is access IXmlCDataSection_Interface'Class;
+   type IXmlCDataSection is access all IXmlCDataSection_Interface'Class;
    type IXmlCDataSection_Ptr is access all IXmlCDataSection;
 
    type IXmlCharacterData_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlCharacterData is access IXmlCharacterData_Interface'Class;
+   type IXmlCharacterData is access all IXmlCharacterData_Interface'Class;
 
    type IXmlComment_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlComment is access IXmlComment_Interface'Class;
+   type IXmlComment is access all IXmlComment_Interface'Class;
    type IXmlComment_Ptr is access all IXmlComment;
 
    type IXmlDocument_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlDocument is access IXmlDocument_Interface'Class;
+   type IXmlDocument is access all IXmlDocument_Interface'Class;
    type IXmlDocument_Ptr is access all IXmlDocument;
 
    type IXmlDocumentFragment_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlDocumentFragment is access IXmlDocumentFragment_Interface'Class;
+   type IXmlDocumentFragment is access all IXmlDocumentFragment_Interface'Class;
    type IXmlDocumentFragment_Ptr is access all IXmlDocumentFragment;
 
    type IXmlDocumentIO_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlDocumentIO is access IXmlDocumentIO_Interface'Class;
+   type IXmlDocumentIO is access all IXmlDocumentIO_Interface'Class;
 
    type IXmlDocumentIO2_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlDocumentIO2 is access IXmlDocumentIO2_Interface'Class;
+   type IXmlDocumentIO2 is access all IXmlDocumentIO2_Interface'Class;
 
    type IXmlDocumentStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlDocumentStatics is access IXmlDocumentStatics_Interface'Class;
+   type IXmlDocumentStatics is access all IXmlDocumentStatics_Interface'Class;
 
    type IXmlDocumentType_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlDocumentType is access IXmlDocumentType_Interface'Class;
+   type IXmlDocumentType is access all IXmlDocumentType_Interface'Class;
    type IXmlDocumentType_Ptr is access all IXmlDocumentType;
 
    type IXmlDomImplementation_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlDomImplementation is access IXmlDomImplementation_Interface'Class;
+   type IXmlDomImplementation is access all IXmlDomImplementation_Interface'Class;
    type IXmlDomImplementation_Ptr is access all IXmlDomImplementation;
 
    type IXmlElement_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlElement is access IXmlElement_Interface'Class;
+   type IXmlElement is access all IXmlElement_Interface'Class;
    type IXmlElement_Ptr is access all IXmlElement;
 
    type IXmlEntityReference_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlEntityReference is access IXmlEntityReference_Interface'Class;
+   type IXmlEntityReference is access all IXmlEntityReference_Interface'Class;
    type IXmlEntityReference_Ptr is access all IXmlEntityReference;
 
    type IXmlLoadSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlLoadSettings is access IXmlLoadSettings_Interface'Class;
+   type IXmlLoadSettings is access all IXmlLoadSettings_Interface'Class;
    type IXmlLoadSettings_Ptr is access all IXmlLoadSettings;
 
    type IXmlNamedNodeMap_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlNamedNodeMap is access IXmlNamedNodeMap_Interface'Class;
+   type IXmlNamedNodeMap is access all IXmlNamedNodeMap_Interface'Class;
    type IXmlNamedNodeMap_Ptr is access all IXmlNamedNodeMap;
 
    type IXmlNode_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlNode is access IXmlNode_Interface'Class;
+   type IXmlNode is access all IXmlNode_Interface'Class;
    type IXmlNode_Array is array (Natural range <>) of IXmlNode;
 
    type IXmlNodeList_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlNodeList is access IXmlNodeList_Interface'Class;
+   type IXmlNodeList is access all IXmlNodeList_Interface'Class;
    type IXmlNodeList_Ptr is access all IXmlNodeList;
 
    type IXmlNodeSelector_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlNodeSelector is access IXmlNodeSelector_Interface'Class;
+   type IXmlNodeSelector is access all IXmlNodeSelector_Interface'Class;
 
    type IXmlNodeSerializer_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlNodeSerializer is access IXmlNodeSerializer_Interface'Class;
+   type IXmlNodeSerializer is access all IXmlNodeSerializer_Interface'Class;
 
    type IXmlProcessingInstruction_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlProcessingInstruction is access IXmlProcessingInstruction_Interface'Class;
+   type IXmlProcessingInstruction is access all IXmlProcessingInstruction_Interface'Class;
    type IXmlProcessingInstruction_Ptr is access all IXmlProcessingInstruction;
 
    type IXmlText_Interface is interface and WinRt.IInspectable_Interface;
-   type IXmlText is access IXmlText_Interface'Class;
+   type IXmlText is access all IXmlText_Interface'Class;
    type IXmlText_Ptr is access all IXmlText;
 
    -----------------------------------------------------------------------------
@@ -261,7 +261,7 @@ package WinRt.Windows.Data.Xml.Dom is
       DocumentFragmentNode_e => 11,
       NotationNode_e => 12
    );
-   type NodeType_Ptr is access NodeType;
+   type NodeType_Ptr is access all NodeType;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

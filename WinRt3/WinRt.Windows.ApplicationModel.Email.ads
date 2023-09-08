@@ -44,203 +44,203 @@ package WinRt.Windows.ApplicationModel.Email is
    -----------------------------------------------------------------------------
 
    type IEmailAttachment_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailAttachment is access IEmailAttachment_Interface'Class;
+   type IEmailAttachment is access all IEmailAttachment_Interface'Class;
    type IEmailAttachment_Ptr is access all IEmailAttachment;
 
    type IEmailAttachment2_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailAttachment2 is access IEmailAttachment2_Interface'Class;
+   type IEmailAttachment2 is access all IEmailAttachment2_Interface'Class;
 
    type IEmailAttachmentFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailAttachmentFactory is access IEmailAttachmentFactory_Interface'Class;
+   type IEmailAttachmentFactory is access all IEmailAttachmentFactory_Interface'Class;
 
    type IEmailAttachmentFactory2_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailAttachmentFactory2 is access IEmailAttachmentFactory2_Interface'Class;
+   type IEmailAttachmentFactory2 is access all IEmailAttachmentFactory2_Interface'Class;
 
    type IEmailConversation_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailConversation is access IEmailConversation_Interface'Class;
+   type IEmailConversation is access all IEmailConversation_Interface'Class;
    type IEmailConversation_Ptr is access all IEmailConversation;
 
    type IEmailConversationBatch_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailConversationBatch is access IEmailConversationBatch_Interface'Class;
+   type IEmailConversationBatch is access all IEmailConversationBatch_Interface'Class;
    type IEmailConversationBatch_Ptr is access all IEmailConversationBatch;
 
    type IEmailConversationReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailConversationReader is access IEmailConversationReader_Interface'Class;
+   type IEmailConversationReader is access all IEmailConversationReader_Interface'Class;
    type IEmailConversationReader_Ptr is access all IEmailConversationReader;
 
    type IEmailFolder_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailFolder is access IEmailFolder_Interface'Class;
+   type IEmailFolder is access all IEmailFolder_Interface'Class;
    type IEmailFolder_Ptr is access all IEmailFolder;
 
    type IEmailIrmInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailIrmInfo is access IEmailIrmInfo_Interface'Class;
+   type IEmailIrmInfo is access all IEmailIrmInfo_Interface'Class;
    type IEmailIrmInfo_Ptr is access all IEmailIrmInfo;
 
    type IEmailIrmInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailIrmInfoFactory is access IEmailIrmInfoFactory_Interface'Class;
+   type IEmailIrmInfoFactory is access all IEmailIrmInfoFactory_Interface'Class;
 
    type IEmailIrmTemplate_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailIrmTemplate is access IEmailIrmTemplate_Interface'Class;
+   type IEmailIrmTemplate is access all IEmailIrmTemplate_Interface'Class;
    type IEmailIrmTemplate_Ptr is access all IEmailIrmTemplate;
 
    type IEmailIrmTemplateFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailIrmTemplateFactory is access IEmailIrmTemplateFactory_Interface'Class;
+   type IEmailIrmTemplateFactory is access all IEmailIrmTemplateFactory_Interface'Class;
 
    type IEmailItemCounts_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailItemCounts is access IEmailItemCounts_Interface'Class;
+   type IEmailItemCounts is access all IEmailItemCounts_Interface'Class;
    type IEmailItemCounts_Ptr is access all IEmailItemCounts;
 
    type IEmailMailbox_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailbox is access IEmailMailbox_Interface'Class;
+   type IEmailMailbox is access all IEmailMailbox_Interface'Class;
    type IEmailMailbox_Ptr is access all IEmailMailbox;
 
    type IEmailMailbox2_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailbox2 is access IEmailMailbox2_Interface'Class;
+   type IEmailMailbox2 is access all IEmailMailbox2_Interface'Class;
 
    type IEmailMailbox3_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailbox3 is access IEmailMailbox3_Interface'Class;
+   type IEmailMailbox3 is access all IEmailMailbox3_Interface'Class;
 
    type IEmailMailbox4_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailbox4 is access IEmailMailbox4_Interface'Class;
+   type IEmailMailbox4 is access all IEmailMailbox4_Interface'Class;
 
    type IEmailMailbox5_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailbox5 is access IEmailMailbox5_Interface'Class;
+   type IEmailMailbox5 is access all IEmailMailbox5_Interface'Class;
 
    type IEmailMailboxAction_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxAction is access IEmailMailboxAction_Interface'Class;
+   type IEmailMailboxAction is access all IEmailMailboxAction_Interface'Class;
    type IEmailMailboxAction_Ptr is access all IEmailMailboxAction;
 
    type IEmailMailboxAutoReply_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxAutoReply is access IEmailMailboxAutoReply_Interface'Class;
+   type IEmailMailboxAutoReply is access all IEmailMailboxAutoReply_Interface'Class;
    type IEmailMailboxAutoReply_Ptr is access all IEmailMailboxAutoReply;
 
    type IEmailMailboxAutoReplySettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxAutoReplySettings is access IEmailMailboxAutoReplySettings_Interface'Class;
+   type IEmailMailboxAutoReplySettings is access all IEmailMailboxAutoReplySettings_Interface'Class;
    type IEmailMailboxAutoReplySettings_Ptr is access all IEmailMailboxAutoReplySettings;
 
    type IEmailMailboxCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxCapabilities is access IEmailMailboxCapabilities_Interface'Class;
+   type IEmailMailboxCapabilities is access all IEmailMailboxCapabilities_Interface'Class;
    type IEmailMailboxCapabilities_Ptr is access all IEmailMailboxCapabilities;
 
    type IEmailMailboxCapabilities2_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxCapabilities2 is access IEmailMailboxCapabilities2_Interface'Class;
+   type IEmailMailboxCapabilities2 is access all IEmailMailboxCapabilities2_Interface'Class;
 
    type IEmailMailboxCapabilities3_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxCapabilities3 is access IEmailMailboxCapabilities3_Interface'Class;
+   type IEmailMailboxCapabilities3 is access all IEmailMailboxCapabilities3_Interface'Class;
 
    type IEmailMailboxChange_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxChange is access IEmailMailboxChange_Interface'Class;
+   type IEmailMailboxChange is access all IEmailMailboxChange_Interface'Class;
    type IEmailMailboxChange_Ptr is access all IEmailMailboxChange;
 
    type IEmailMailboxChangeReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxChangeReader is access IEmailMailboxChangeReader_Interface'Class;
+   type IEmailMailboxChangeReader is access all IEmailMailboxChangeReader_Interface'Class;
    type IEmailMailboxChangeReader_Ptr is access all IEmailMailboxChangeReader;
 
    type IEmailMailboxChangeTracker_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxChangeTracker is access IEmailMailboxChangeTracker_Interface'Class;
+   type IEmailMailboxChangeTracker is access all IEmailMailboxChangeTracker_Interface'Class;
    type IEmailMailboxChangeTracker_Ptr is access all IEmailMailboxChangeTracker;
 
    type IEmailMailboxChangedDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxChangedDeferral is access IEmailMailboxChangedDeferral_Interface'Class;
+   type IEmailMailboxChangedDeferral is access all IEmailMailboxChangedDeferral_Interface'Class;
    type IEmailMailboxChangedDeferral_Ptr is access all IEmailMailboxChangedDeferral;
 
    type IEmailMailboxChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxChangedEventArgs is access IEmailMailboxChangedEventArgs_Interface'Class;
+   type IEmailMailboxChangedEventArgs is access all IEmailMailboxChangedEventArgs_Interface'Class;
    type IEmailMailboxChangedEventArgs_Ptr is access all IEmailMailboxChangedEventArgs;
 
    type IEmailMailboxCreateFolderResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxCreateFolderResult is access IEmailMailboxCreateFolderResult_Interface'Class;
+   type IEmailMailboxCreateFolderResult is access all IEmailMailboxCreateFolderResult_Interface'Class;
    type IEmailMailboxCreateFolderResult_Ptr is access all IEmailMailboxCreateFolderResult;
 
    type IEmailMailboxPolicies_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxPolicies is access IEmailMailboxPolicies_Interface'Class;
+   type IEmailMailboxPolicies is access all IEmailMailboxPolicies_Interface'Class;
    type IEmailMailboxPolicies_Ptr is access all IEmailMailboxPolicies;
 
    type IEmailMailboxPolicies2_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxPolicies2 is access IEmailMailboxPolicies2_Interface'Class;
+   type IEmailMailboxPolicies2 is access all IEmailMailboxPolicies2_Interface'Class;
 
    type IEmailMailboxPolicies3_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxPolicies3 is access IEmailMailboxPolicies3_Interface'Class;
+   type IEmailMailboxPolicies3 is access all IEmailMailboxPolicies3_Interface'Class;
 
    type IEmailMailboxSyncManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxSyncManager is access IEmailMailboxSyncManager_Interface'Class;
+   type IEmailMailboxSyncManager is access all IEmailMailboxSyncManager_Interface'Class;
    type IEmailMailboxSyncManager_Ptr is access all IEmailMailboxSyncManager;
 
    type IEmailMailboxSyncManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMailboxSyncManager2 is access IEmailMailboxSyncManager2_Interface'Class;
+   type IEmailMailboxSyncManager2 is access all IEmailMailboxSyncManager2_Interface'Class;
 
    type IEmailManagerForUser_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailManagerForUser is access IEmailManagerForUser_Interface'Class;
+   type IEmailManagerForUser is access all IEmailManagerForUser_Interface'Class;
    type IEmailManagerForUser_Ptr is access all IEmailManagerForUser;
 
    type IEmailManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailManagerStatics is access IEmailManagerStatics_Interface'Class;
+   type IEmailManagerStatics is access all IEmailManagerStatics_Interface'Class;
 
    type IEmailManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailManagerStatics2 is access IEmailManagerStatics2_Interface'Class;
+   type IEmailManagerStatics2 is access all IEmailManagerStatics2_Interface'Class;
 
    type IEmailManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailManagerStatics3 is access IEmailManagerStatics3_Interface'Class;
+   type IEmailManagerStatics3 is access all IEmailManagerStatics3_Interface'Class;
 
    type IEmailMeetingInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMeetingInfo is access IEmailMeetingInfo_Interface'Class;
+   type IEmailMeetingInfo is access all IEmailMeetingInfo_Interface'Class;
    type IEmailMeetingInfo_Ptr is access all IEmailMeetingInfo;
 
    type IEmailMeetingInfo2_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMeetingInfo2 is access IEmailMeetingInfo2_Interface'Class;
+   type IEmailMeetingInfo2 is access all IEmailMeetingInfo2_Interface'Class;
 
    type IEmailMessage_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMessage is access IEmailMessage_Interface'Class;
+   type IEmailMessage is access all IEmailMessage_Interface'Class;
    type IEmailMessage_Ptr is access all IEmailMessage;
 
    type IEmailMessage2_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMessage2 is access IEmailMessage2_Interface'Class;
+   type IEmailMessage2 is access all IEmailMessage2_Interface'Class;
 
    type IEmailMessage3_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMessage3 is access IEmailMessage3_Interface'Class;
+   type IEmailMessage3 is access all IEmailMessage3_Interface'Class;
 
    type IEmailMessage4_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMessage4 is access IEmailMessage4_Interface'Class;
+   type IEmailMessage4 is access all IEmailMessage4_Interface'Class;
 
    type IEmailMessageBatch_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMessageBatch is access IEmailMessageBatch_Interface'Class;
+   type IEmailMessageBatch is access all IEmailMessageBatch_Interface'Class;
    type IEmailMessageBatch_Ptr is access all IEmailMessageBatch;
 
    type IEmailMessageReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailMessageReader is access IEmailMessageReader_Interface'Class;
+   type IEmailMessageReader is access all IEmailMessageReader_Interface'Class;
    type IEmailMessageReader_Ptr is access all IEmailMessageReader;
 
    type IEmailQueryOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailQueryOptions is access IEmailQueryOptions_Interface'Class;
+   type IEmailQueryOptions is access all IEmailQueryOptions_Interface'Class;
    type IEmailQueryOptions_Ptr is access all IEmailQueryOptions;
 
    type IEmailQueryOptionsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailQueryOptionsFactory is access IEmailQueryOptionsFactory_Interface'Class;
+   type IEmailQueryOptionsFactory is access all IEmailQueryOptionsFactory_Interface'Class;
 
    type IEmailQueryTextSearch_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailQueryTextSearch is access IEmailQueryTextSearch_Interface'Class;
+   type IEmailQueryTextSearch is access all IEmailQueryTextSearch_Interface'Class;
    type IEmailQueryTextSearch_Ptr is access all IEmailQueryTextSearch;
 
    type IEmailRecipient_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailRecipient is access IEmailRecipient_Interface'Class;
+   type IEmailRecipient is access all IEmailRecipient_Interface'Class;
    type IEmailRecipient_Ptr is access all IEmailRecipient;
 
    type IEmailRecipientFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailRecipientFactory is access IEmailRecipientFactory_Interface'Class;
+   type IEmailRecipientFactory is access all IEmailRecipientFactory_Interface'Class;
 
    type IEmailRecipientResolutionResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailRecipientResolutionResult is access IEmailRecipientResolutionResult_Interface'Class;
+   type IEmailRecipientResolutionResult is access all IEmailRecipientResolutionResult_Interface'Class;
    type IEmailRecipientResolutionResult_Ptr is access all IEmailRecipientResolutionResult;
 
    type IEmailRecipientResolutionResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailRecipientResolutionResult2 is access IEmailRecipientResolutionResult2_Interface'Class;
+   type IEmailRecipientResolutionResult2 is access all IEmailRecipientResolutionResult2_Interface'Class;
 
    type IEmailStore_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailStore is access IEmailStore_Interface'Class;
+   type IEmailStore is access all IEmailStore_Interface'Class;
    type IEmailStore_Ptr is access all IEmailStore;
 
    type IEmailStoreNotificationTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailStoreNotificationTriggerDetails is access IEmailStoreNotificationTriggerDetails_Interface'Class;
+   type IEmailStoreNotificationTriggerDetails is access all IEmailStoreNotificationTriggerDetails_Interface'Class;
    type IEmailStoreNotificationTriggerDetails_Ptr is access all IEmailStoreNotificationTriggerDetails;
 
    -----------------------------------------------------------------------------
@@ -455,7 +455,7 @@ package WinRt.Windows.ApplicationModel.Email is
       Downloaded_e => 2,
       Failed_e => 3
    );
-   type EmailAttachmentDownloadState_Ptr is access EmailAttachmentDownloadState;
+   type EmailAttachmentDownloadState_Ptr is access all EmailAttachmentDownloadState;
 
    type EmailBatchStatus is (
       Success_e,
@@ -467,7 +467,7 @@ package WinRt.Windows.ApplicationModel.Email is
       ServerSearchSyncManagerError_e => 1,
       ServerSearchUnknownError_e => 2
    );
-   type EmailBatchStatus_Ptr is access EmailBatchStatus;
+   type EmailBatchStatus_Ptr is access all EmailBatchStatus;
 
    type EmailCertificateValidationStatus is (
       Success_e,
@@ -495,7 +495,7 @@ package WinRt.Windows.ApplicationModel.Email is
       ServerError_e => 9,
       UnknownFailure_e => 10
    );
-   type EmailCertificateValidationStatus_Ptr is access EmailCertificateValidationStatus;
+   type EmailCertificateValidationStatus_Ptr is access all EmailCertificateValidationStatus;
 
    type EmailFlagState is (
       Unflagged_e,
@@ -509,7 +509,7 @@ package WinRt.Windows.ApplicationModel.Email is
       Completed_e => 2,
       Cleared_e => 3
    );
-   type EmailFlagState_Ptr is access EmailFlagState;
+   type EmailFlagState_Ptr is access all EmailFlagState;
 
    type EmailImportance is (
       Normal_e,
@@ -521,7 +521,7 @@ package WinRt.Windows.ApplicationModel.Email is
       High_e => 1,
       Low_e => 2
    );
-   type EmailImportance_Ptr is access EmailImportance;
+   type EmailImportance_Ptr is access all EmailImportance;
 
    type EmailMailboxActionKind is (
       MarkMessageAsSeen_e,
@@ -549,7 +549,7 @@ package WinRt.Windows.ApplicationModel.Email is
       MoveFolder_e => 9,
       MarkFolderForSyncEnabled_e => 10
    );
-   type EmailMailboxActionKind_Ptr is access EmailMailboxActionKind;
+   type EmailMailboxActionKind_Ptr is access all EmailMailboxActionKind;
 
    type EmailMailboxAllowedSmimeEncryptionAlgorithmNegotiation is (
       None_e,
@@ -561,7 +561,7 @@ package WinRt.Windows.ApplicationModel.Email is
       StrongAlgorithm_e => 1,
       AnyAlgorithm_e => 2
    );
-   type EmailMailboxAllowedSmimeEncryptionAlgorithmNegotiation_Ptr is access EmailMailboxAllowedSmimeEncryptionAlgorithmNegotiation;
+   type EmailMailboxAllowedSmimeEncryptionAlgorithmNegotiation_Ptr is access all EmailMailboxAllowedSmimeEncryptionAlgorithmNegotiation;
 
    type EmailMailboxAutoReplyMessageResponseKind is (
       Html_e,
@@ -571,7 +571,7 @@ package WinRt.Windows.ApplicationModel.Email is
       Html_e => 0,
       PlainText_e => 1
    );
-   type EmailMailboxAutoReplyMessageResponseKind_Ptr is access EmailMailboxAutoReplyMessageResponseKind;
+   type EmailMailboxAutoReplyMessageResponseKind_Ptr is access all EmailMailboxAutoReplyMessageResponseKind;
 
    type EmailMailboxChangeType is (
       MessageCreated_e,
@@ -591,7 +591,7 @@ package WinRt.Windows.ApplicationModel.Email is
       FolderDeleted_e => 5,
       ChangeTrackingLost_e => 6
    );
-   type EmailMailboxChangeType_Ptr is access EmailMailboxChangeType;
+   type EmailMailboxChangeType_Ptr is access all EmailMailboxChangeType;
 
    type EmailMailboxCreateFolderStatus is (
       Success_e,
@@ -611,7 +611,7 @@ package WinRt.Windows.ApplicationModel.Email is
       NameCollision_e => 5,
       ServerRejected_e => 6
    );
-   type EmailMailboxCreateFolderStatus_Ptr is access EmailMailboxCreateFolderStatus;
+   type EmailMailboxCreateFolderStatus_Ptr is access all EmailMailboxCreateFolderStatus;
 
    type EmailMailboxDeleteFolderStatus is (
       Success_e,
@@ -629,7 +629,7 @@ package WinRt.Windows.ApplicationModel.Email is
       UnknownFailure_e => 4,
       CouldNotDeleteEverything_e => 5
    );
-   type EmailMailboxDeleteFolderStatus_Ptr is access EmailMailboxDeleteFolderStatus;
+   type EmailMailboxDeleteFolderStatus_Ptr is access all EmailMailboxDeleteFolderStatus;
 
    type EmailMailboxEmptyFolderStatus is (
       Success_e,
@@ -647,7 +647,7 @@ package WinRt.Windows.ApplicationModel.Email is
       UnknownFailure_e => 4,
       CouldNotDeleteEverything_e => 5
    );
-   type EmailMailboxEmptyFolderStatus_Ptr is access EmailMailboxEmptyFolderStatus;
+   type EmailMailboxEmptyFolderStatus_Ptr is access all EmailMailboxEmptyFolderStatus;
 
    type EmailMailboxOtherAppReadAccess is (
       SystemOnly_e,
@@ -659,7 +659,7 @@ package WinRt.Windows.ApplicationModel.Email is
       Full_e => 1,
       None_e => 2
    );
-   type EmailMailboxOtherAppReadAccess_Ptr is access EmailMailboxOtherAppReadAccess;
+   type EmailMailboxOtherAppReadAccess_Ptr is access all EmailMailboxOtherAppReadAccess;
 
    type EmailMailboxOtherAppWriteAccess is (
       None_e,
@@ -669,7 +669,7 @@ package WinRt.Windows.ApplicationModel.Email is
       None_e => 0,
       Limited_e => 1
    );
-   type EmailMailboxOtherAppWriteAccess_Ptr is access EmailMailboxOtherAppWriteAccess;
+   type EmailMailboxOtherAppWriteAccess_Ptr is access all EmailMailboxOtherAppWriteAccess;
 
    type EmailMailboxSmimeEncryptionAlgorithm is (
       Any_e,
@@ -687,7 +687,7 @@ package WinRt.Windows.ApplicationModel.Email is
       RC264Bit_e => 4,
       RC240Bit_e => 5
    );
-   type EmailMailboxSmimeEncryptionAlgorithm_Ptr is access EmailMailboxSmimeEncryptionAlgorithm;
+   type EmailMailboxSmimeEncryptionAlgorithm_Ptr is access all EmailMailboxSmimeEncryptionAlgorithm;
 
    type EmailMailboxSmimeSigningAlgorithm is (
       Any_e,
@@ -699,7 +699,7 @@ package WinRt.Windows.ApplicationModel.Email is
       Sha1_e => 1,
       MD5_e => 2
    );
-   type EmailMailboxSmimeSigningAlgorithm_Ptr is access EmailMailboxSmimeSigningAlgorithm;
+   type EmailMailboxSmimeSigningAlgorithm_Ptr is access all EmailMailboxSmimeSigningAlgorithm;
 
    type EmailMailboxSyncStatus is (
       Idle_e,
@@ -719,7 +719,7 @@ package WinRt.Windows.ApplicationModel.Email is
       UnknownError_e => 5,
       ManualAccountRemovalRequired_e => 6
    );
-   type EmailMailboxSyncStatus_Ptr is access EmailMailboxSyncStatus;
+   type EmailMailboxSyncStatus_Ptr is access all EmailMailboxSyncStatus;
 
    type EmailMeetingResponseType is (
       Accept_e,
@@ -731,7 +731,7 @@ package WinRt.Windows.ApplicationModel.Email is
       Decline_e => 1,
       Tentative_e => 2
    );
-   type EmailMeetingResponseType_Ptr is access EmailMeetingResponseType;
+   type EmailMeetingResponseType_Ptr is access all EmailMeetingResponseType;
 
    type EmailMessageBodyKind is (
       Html_e,
@@ -741,7 +741,7 @@ package WinRt.Windows.ApplicationModel.Email is
       Html_e => 0,
       PlainText_e => 1
    );
-   type EmailMessageBodyKind_Ptr is access EmailMessageBodyKind;
+   type EmailMessageBodyKind_Ptr is access all EmailMessageBodyKind;
 
    type EmailMessageDownloadState is (
       PartiallyDownloaded_e,
@@ -755,7 +755,7 @@ package WinRt.Windows.ApplicationModel.Email is
       Downloaded_e => 2,
       Failed_e => 3
    );
-   type EmailMessageDownloadState_Ptr is access EmailMessageDownloadState;
+   type EmailMessageDownloadState_Ptr is access all EmailMessageDownloadState;
 
    type EmailMessageResponseKind is (
       None_e,
@@ -769,7 +769,7 @@ package WinRt.Windows.ApplicationModel.Email is
       ReplyAll_e => 2,
       Forward_e => 3
    );
-   type EmailMessageResponseKind_Ptr is access EmailMessageResponseKind;
+   type EmailMessageResponseKind_Ptr is access all EmailMessageResponseKind;
 
    type EmailMessageSmimeKind is (
       None_e,
@@ -783,7 +783,7 @@ package WinRt.Windows.ApplicationModel.Email is
       OpaqueSigned_e => 2,
       Encrypted_e => 3
    );
-   type EmailMessageSmimeKind_Ptr is access EmailMessageSmimeKind;
+   type EmailMessageSmimeKind_Ptr is access all EmailMessageSmimeKind;
 
    type EmailQueryKind is (
       All_e,
@@ -801,7 +801,7 @@ package WinRt.Windows.ApplicationModel.Email is
       Read_e => 4,
       Unseen_e => 5
    );
-   type EmailQueryKind_Ptr is access EmailQueryKind;
+   type EmailQueryKind_Ptr is access all EmailQueryKind;
 
    type EmailQuerySearchFields is (
       None_e,
@@ -819,7 +819,7 @@ package WinRt.Windows.ApplicationModel.Email is
       Recipients_e => 8,
       All_e => 4294967295
    );
-   type EmailQuerySearchFields_Ptr is access EmailQuerySearchFields;
+   type EmailQuerySearchFields_Ptr is access all EmailQuerySearchFields;
 
    type EmailQuerySearchScope is (
       Local_e,
@@ -829,7 +829,7 @@ package WinRt.Windows.ApplicationModel.Email is
       Local_e => 0,
       Server_e => 1
    );
-   type EmailQuerySearchScope_Ptr is access EmailQuerySearchScope;
+   type EmailQuerySearchScope_Ptr is access all EmailQuerySearchScope;
 
    type EmailQuerySortDirection is (
       Descending_e,
@@ -839,7 +839,7 @@ package WinRt.Windows.ApplicationModel.Email is
       Descending_e => 0,
       Ascending_e => 1
    );
-   type EmailQuerySortDirection_Ptr is access EmailQuerySortDirection;
+   type EmailQuerySortDirection_Ptr is access all EmailQuerySortDirection;
 
    type EmailQuerySortProperty is (
       Date_e
@@ -847,7 +847,7 @@ package WinRt.Windows.ApplicationModel.Email is
    for EmailQuerySortProperty use (
       Date_e => 0
    );
-   type EmailQuerySortProperty_Ptr is access EmailQuerySortProperty;
+   type EmailQuerySortProperty_Ptr is access all EmailQuerySortProperty;
 
    type EmailRecipientResolutionStatus is (
       Success_e,
@@ -869,7 +869,7 @@ package WinRt.Windows.ApplicationModel.Email is
       ServerError_e => 6,
       UnknownFailure_e => 7
    );
-   type EmailRecipientResolutionStatus_Ptr is access EmailRecipientResolutionStatus;
+   type EmailRecipientResolutionStatus_Ptr is access all EmailRecipientResolutionStatus;
 
    type EmailSpecialFolderKind is (
       None_e,
@@ -889,7 +889,7 @@ package WinRt.Windows.ApplicationModel.Email is
       DeletedItems_e => 5,
       Sent_e => 6
    );
-   type EmailSpecialFolderKind_Ptr is access EmailSpecialFolderKind;
+   type EmailSpecialFolderKind_Ptr is access all EmailSpecialFolderKind;
 
    type EmailStoreAccessType is (
       AppMailboxesReadWrite_e,
@@ -899,7 +899,7 @@ package WinRt.Windows.ApplicationModel.Email is
       AppMailboxesReadWrite_e => 0,
       AllMailboxesLimitedReadWrite_e => 1
    );
-   type EmailStoreAccessType_Ptr is access EmailStoreAccessType;
+   type EmailStoreAccessType_Ptr is access all EmailStoreAccessType;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

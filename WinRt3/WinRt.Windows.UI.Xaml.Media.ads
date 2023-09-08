@@ -45,472 +45,472 @@ package WinRt.Windows.UI.Xaml.Media is
    -----------------------------------------------------------------------------
 
    type RateChangedRoutedEventHandler_Delegate;
-   type RateChangedRoutedEventHandler is access RateChangedRoutedEventHandler_Delegate;
+   type RateChangedRoutedEventHandler is access all RateChangedRoutedEventHandler_Delegate;
 
    type TimelineMarkerRoutedEventHandler_Delegate;
-   type TimelineMarkerRoutedEventHandler is access TimelineMarkerRoutedEventHandler_Delegate;
+   type TimelineMarkerRoutedEventHandler is access all TimelineMarkerRoutedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IAcrylicBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type IAcrylicBrush is access IAcrylicBrush_Interface'Class;
+   type IAcrylicBrush is access all IAcrylicBrush_Interface'Class;
    type IAcrylicBrush_Ptr is access all IAcrylicBrush;
 
    type IAcrylicBrush2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAcrylicBrush2 is access IAcrylicBrush2_Interface'Class;
+   type IAcrylicBrush2 is access all IAcrylicBrush2_Interface'Class;
 
    type IAcrylicBrushFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAcrylicBrushFactory is access IAcrylicBrushFactory_Interface'Class;
+   type IAcrylicBrushFactory is access all IAcrylicBrushFactory_Interface'Class;
 
    type IAcrylicBrushStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAcrylicBrushStatics is access IAcrylicBrushStatics_Interface'Class;
+   type IAcrylicBrushStatics is access all IAcrylicBrushStatics_Interface'Class;
 
    type IAcrylicBrushStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAcrylicBrushStatics2 is access IAcrylicBrushStatics2_Interface'Class;
+   type IAcrylicBrushStatics2 is access all IAcrylicBrushStatics2_Interface'Class;
 
    type IArcSegment_Interface is interface and WinRt.IInspectable_Interface;
-   type IArcSegment is access IArcSegment_Interface'Class;
+   type IArcSegment is access all IArcSegment_Interface'Class;
    type IArcSegment_Ptr is access all IArcSegment;
 
    type IArcSegmentStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IArcSegmentStatics is access IArcSegmentStatics_Interface'Class;
+   type IArcSegmentStatics is access all IArcSegmentStatics_Interface'Class;
 
    type IBezierSegment_Interface is interface and WinRt.IInspectable_Interface;
-   type IBezierSegment is access IBezierSegment_Interface'Class;
+   type IBezierSegment is access all IBezierSegment_Interface'Class;
    type IBezierSegment_Ptr is access all IBezierSegment;
 
    type IBezierSegmentStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBezierSegmentStatics is access IBezierSegmentStatics_Interface'Class;
+   type IBezierSegmentStatics is access all IBezierSegmentStatics_Interface'Class;
 
    type IBitmapCache_Interface is interface and WinRt.IInspectable_Interface;
-   type IBitmapCache is access IBitmapCache_Interface'Class;
+   type IBitmapCache is access all IBitmapCache_Interface'Class;
    type IBitmapCache_Ptr is access all IBitmapCache;
 
    type IBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type IBrush is access IBrush_Interface'Class;
+   type IBrush is access all IBrush_Interface'Class;
    type IBrush_Ptr is access all IBrush;
    type IBrush_Array is array (Natural range <>) of IBrush;
 
    type IBrushFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IBrushFactory is access IBrushFactory_Interface'Class;
+   type IBrushFactory is access all IBrushFactory_Interface'Class;
 
    type IBrushOverrides2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBrushOverrides2 is access IBrushOverrides2_Interface'Class;
+   type IBrushOverrides2 is access all IBrushOverrides2_Interface'Class;
 
    type IBrushStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBrushStatics is access IBrushStatics_Interface'Class;
+   type IBrushStatics is access all IBrushStatics_Interface'Class;
 
    type ICacheMode_Interface is interface and WinRt.IInspectable_Interface;
-   type ICacheMode is access ICacheMode_Interface'Class;
+   type ICacheMode is access all ICacheMode_Interface'Class;
    type ICacheMode_Ptr is access all ICacheMode;
 
    type ICacheModeFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICacheModeFactory is access ICacheModeFactory_Interface'Class;
+   type ICacheModeFactory is access all ICacheModeFactory_Interface'Class;
 
    type ICompositeTransform_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositeTransform is access ICompositeTransform_Interface'Class;
+   type ICompositeTransform is access all ICompositeTransform_Interface'Class;
    type ICompositeTransform_Ptr is access all ICompositeTransform;
 
    type ICompositeTransformStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositeTransformStatics is access ICompositeTransformStatics_Interface'Class;
+   type ICompositeTransformStatics is access all ICompositeTransformStatics_Interface'Class;
 
    type ICompositionTarget_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionTarget is access ICompositionTarget_Interface'Class;
+   type ICompositionTarget is access all ICompositionTarget_Interface'Class;
    type ICompositionTarget_Ptr is access all ICompositionTarget;
 
    type ICompositionTargetStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionTargetStatics is access ICompositionTargetStatics_Interface'Class;
+   type ICompositionTargetStatics is access all ICompositionTargetStatics_Interface'Class;
 
    type ICompositionTargetStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionTargetStatics3 is access ICompositionTargetStatics3_Interface'Class;
+   type ICompositionTargetStatics3 is access all ICompositionTargetStatics3_Interface'Class;
 
    type IEllipseGeometry_Interface is interface and WinRt.IInspectable_Interface;
-   type IEllipseGeometry is access IEllipseGeometry_Interface'Class;
+   type IEllipseGeometry is access all IEllipseGeometry_Interface'Class;
    type IEllipseGeometry_Ptr is access all IEllipseGeometry;
 
    type IEllipseGeometryStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IEllipseGeometryStatics is access IEllipseGeometryStatics_Interface'Class;
+   type IEllipseGeometryStatics is access all IEllipseGeometryStatics_Interface'Class;
 
    type IFontFamily_Interface is interface and WinRt.IInspectable_Interface;
-   type IFontFamily is access IFontFamily_Interface'Class;
+   type IFontFamily is access all IFontFamily_Interface'Class;
    type IFontFamily_Ptr is access all IFontFamily;
 
    type IFontFamilyFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IFontFamilyFactory is access IFontFamilyFactory_Interface'Class;
+   type IFontFamilyFactory is access all IFontFamilyFactory_Interface'Class;
 
    type IFontFamilyStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFontFamilyStatics2 is access IFontFamilyStatics2_Interface'Class;
+   type IFontFamilyStatics2 is access all IFontFamilyStatics2_Interface'Class;
 
    type IGeneralTransform_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeneralTransform is access IGeneralTransform_Interface'Class;
+   type IGeneralTransform is access all IGeneralTransform_Interface'Class;
    type IGeneralTransform_Ptr is access all IGeneralTransform;
 
    type IGeneralTransformFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeneralTransformFactory is access IGeneralTransformFactory_Interface'Class;
+   type IGeneralTransformFactory is access all IGeneralTransformFactory_Interface'Class;
 
    type IGeneralTransformOverrides_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeneralTransformOverrides is access IGeneralTransformOverrides_Interface'Class;
+   type IGeneralTransformOverrides is access all IGeneralTransformOverrides_Interface'Class;
 
    type IGeometry_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeometry is access IGeometry_Interface'Class;
+   type IGeometry is access all IGeometry_Interface'Class;
    type IGeometry_Ptr is access all IGeometry;
    type IGeometry_Array is array (Natural range <>) of IGeometry;
 
    type IGeometryFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeometryFactory is access IGeometryFactory_Interface'Class;
+   type IGeometryFactory is access all IGeometryFactory_Interface'Class;
 
    type IGeometryGroup_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeometryGroup is access IGeometryGroup_Interface'Class;
+   type IGeometryGroup is access all IGeometryGroup_Interface'Class;
    type IGeometryGroup_Ptr is access all IGeometryGroup;
 
    type IGeometryGroupStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeometryGroupStatics is access IGeometryGroupStatics_Interface'Class;
+   type IGeometryGroupStatics is access all IGeometryGroupStatics_Interface'Class;
 
    type IGeometryStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeometryStatics is access IGeometryStatics_Interface'Class;
+   type IGeometryStatics is access all IGeometryStatics_Interface'Class;
 
    type IGradientBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type IGradientBrush is access IGradientBrush_Interface'Class;
+   type IGradientBrush is access all IGradientBrush_Interface'Class;
    type IGradientBrush_Ptr is access all IGradientBrush;
 
    type IGradientBrushFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGradientBrushFactory is access IGradientBrushFactory_Interface'Class;
+   type IGradientBrushFactory is access all IGradientBrushFactory_Interface'Class;
 
    type IGradientBrushStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGradientBrushStatics is access IGradientBrushStatics_Interface'Class;
+   type IGradientBrushStatics is access all IGradientBrushStatics_Interface'Class;
 
    type IGradientStop_Interface is interface and WinRt.IInspectable_Interface;
-   type IGradientStop is access IGradientStop_Interface'Class;
+   type IGradientStop is access all IGradientStop_Interface'Class;
    type IGradientStop_Ptr is access all IGradientStop;
    type IGradientStop_Array is array (Natural range <>) of IGradientStop;
 
    type IGradientStopStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGradientStopStatics is access IGradientStopStatics_Interface'Class;
+   type IGradientStopStatics is access all IGradientStopStatics_Interface'Class;
 
    type IImageBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageBrush is access IImageBrush_Interface'Class;
+   type IImageBrush is access all IImageBrush_Interface'Class;
    type IImageBrush_Ptr is access all IImageBrush;
 
    type IImageBrushStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageBrushStatics is access IImageBrushStatics_Interface'Class;
+   type IImageBrushStatics is access all IImageBrushStatics_Interface'Class;
 
    type IImageSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageSource is access IImageSource_Interface'Class;
+   type IImageSource is access all IImageSource_Interface'Class;
    type IImageSource_Ptr is access all IImageSource;
 
    type IImageSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageSourceFactory is access IImageSourceFactory_Interface'Class;
+   type IImageSourceFactory is access all IImageSourceFactory_Interface'Class;
 
    type ILineGeometry_Interface is interface and WinRt.IInspectable_Interface;
-   type ILineGeometry is access ILineGeometry_Interface'Class;
+   type ILineGeometry is access all ILineGeometry_Interface'Class;
    type ILineGeometry_Ptr is access all ILineGeometry;
 
    type ILineGeometryStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILineGeometryStatics is access ILineGeometryStatics_Interface'Class;
+   type ILineGeometryStatics is access all ILineGeometryStatics_Interface'Class;
 
    type ILineSegment_Interface is interface and WinRt.IInspectable_Interface;
-   type ILineSegment is access ILineSegment_Interface'Class;
+   type ILineSegment is access all ILineSegment_Interface'Class;
    type ILineSegment_Ptr is access all ILineSegment;
 
    type ILineSegmentStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILineSegmentStatics is access ILineSegmentStatics_Interface'Class;
+   type ILineSegmentStatics is access all ILineSegmentStatics_Interface'Class;
 
    type ILinearGradientBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type ILinearGradientBrush is access ILinearGradientBrush_Interface'Class;
+   type ILinearGradientBrush is access all ILinearGradientBrush_Interface'Class;
    type ILinearGradientBrush_Ptr is access all ILinearGradientBrush;
 
    type ILinearGradientBrushFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ILinearGradientBrushFactory is access ILinearGradientBrushFactory_Interface'Class;
+   type ILinearGradientBrushFactory is access all ILinearGradientBrushFactory_Interface'Class;
 
    type ILinearGradientBrushStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILinearGradientBrushStatics is access ILinearGradientBrushStatics_Interface'Class;
+   type ILinearGradientBrushStatics is access all ILinearGradientBrushStatics_Interface'Class;
 
    type ILoadedImageSourceLoadCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ILoadedImageSourceLoadCompletedEventArgs is access ILoadedImageSourceLoadCompletedEventArgs_Interface'Class;
+   type ILoadedImageSourceLoadCompletedEventArgs is access all ILoadedImageSourceLoadCompletedEventArgs_Interface'Class;
    type ILoadedImageSourceLoadCompletedEventArgs_Ptr is access all ILoadedImageSourceLoadCompletedEventArgs;
 
    type ILoadedImageSurface_Interface is interface and WinRt.IInspectable_Interface;
-   type ILoadedImageSurface is access ILoadedImageSurface_Interface'Class;
+   type ILoadedImageSurface is access all ILoadedImageSurface_Interface'Class;
    type ILoadedImageSurface_Ptr is access all ILoadedImageSurface;
 
    type ILoadedImageSurfaceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILoadedImageSurfaceStatics is access ILoadedImageSurfaceStatics_Interface'Class;
+   type ILoadedImageSurfaceStatics is access all ILoadedImageSurfaceStatics_Interface'Class;
 
    type IMatrix3DProjection_Interface is interface and WinRt.IInspectable_Interface;
-   type IMatrix3DProjection is access IMatrix3DProjection_Interface'Class;
+   type IMatrix3DProjection is access all IMatrix3DProjection_Interface'Class;
    type IMatrix3DProjection_Ptr is access all IMatrix3DProjection;
 
    type IMatrix3DProjectionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMatrix3DProjectionStatics is access IMatrix3DProjectionStatics_Interface'Class;
+   type IMatrix3DProjectionStatics is access all IMatrix3DProjectionStatics_Interface'Class;
 
    type IMatrixHelper_Interface is interface and WinRt.IInspectable_Interface;
-   type IMatrixHelper is access IMatrixHelper_Interface'Class;
+   type IMatrixHelper is access all IMatrixHelper_Interface'Class;
    type IMatrixHelper_Ptr is access all IMatrixHelper;
 
    type IMatrixHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMatrixHelperStatics is access IMatrixHelperStatics_Interface'Class;
+   type IMatrixHelperStatics is access all IMatrixHelperStatics_Interface'Class;
 
    type IMatrixTransform_Interface is interface and WinRt.IInspectable_Interface;
-   type IMatrixTransform is access IMatrixTransform_Interface'Class;
+   type IMatrixTransform is access all IMatrixTransform_Interface'Class;
    type IMatrixTransform_Ptr is access all IMatrixTransform;
 
    type IMatrixTransformStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMatrixTransformStatics is access IMatrixTransformStatics_Interface'Class;
+   type IMatrixTransformStatics is access all IMatrixTransformStatics_Interface'Class;
 
    type IMediaTransportControlsThumbnailRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaTransportControlsThumbnailRequestedEventArgs is access IMediaTransportControlsThumbnailRequestedEventArgs_Interface'Class;
+   type IMediaTransportControlsThumbnailRequestedEventArgs is access all IMediaTransportControlsThumbnailRequestedEventArgs_Interface'Class;
    type IMediaTransportControlsThumbnailRequestedEventArgs_Ptr is access all IMediaTransportControlsThumbnailRequestedEventArgs;
 
    type IPartialMediaFailureDetectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPartialMediaFailureDetectedEventArgs is access IPartialMediaFailureDetectedEventArgs_Interface'Class;
+   type IPartialMediaFailureDetectedEventArgs is access all IPartialMediaFailureDetectedEventArgs_Interface'Class;
    type IPartialMediaFailureDetectedEventArgs_Ptr is access all IPartialMediaFailureDetectedEventArgs;
 
    type IPartialMediaFailureDetectedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPartialMediaFailureDetectedEventArgs2 is access IPartialMediaFailureDetectedEventArgs2_Interface'Class;
+   type IPartialMediaFailureDetectedEventArgs2 is access all IPartialMediaFailureDetectedEventArgs2_Interface'Class;
 
    type IPathFigure_Interface is interface and WinRt.IInspectable_Interface;
-   type IPathFigure is access IPathFigure_Interface'Class;
+   type IPathFigure is access all IPathFigure_Interface'Class;
    type IPathFigure_Ptr is access all IPathFigure;
    type IPathFigure_Array is array (Natural range <>) of IPathFigure;
 
    type IPathFigureStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPathFigureStatics is access IPathFigureStatics_Interface'Class;
+   type IPathFigureStatics is access all IPathFigureStatics_Interface'Class;
 
    type IPathGeometry_Interface is interface and WinRt.IInspectable_Interface;
-   type IPathGeometry is access IPathGeometry_Interface'Class;
+   type IPathGeometry is access all IPathGeometry_Interface'Class;
    type IPathGeometry_Ptr is access all IPathGeometry;
 
    type IPathGeometryStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPathGeometryStatics is access IPathGeometryStatics_Interface'Class;
+   type IPathGeometryStatics is access all IPathGeometryStatics_Interface'Class;
 
    type IPathSegment_Interface is interface and WinRt.IInspectable_Interface;
-   type IPathSegment is access IPathSegment_Interface'Class;
+   type IPathSegment is access all IPathSegment_Interface'Class;
    type IPathSegment_Ptr is access all IPathSegment;
    type IPathSegment_Array is array (Natural range <>) of IPathSegment;
 
    type IPathSegmentFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPathSegmentFactory is access IPathSegmentFactory_Interface'Class;
+   type IPathSegmentFactory is access all IPathSegmentFactory_Interface'Class;
 
    type IPlaneProjection_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlaneProjection is access IPlaneProjection_Interface'Class;
+   type IPlaneProjection is access all IPlaneProjection_Interface'Class;
    type IPlaneProjection_Ptr is access all IPlaneProjection;
 
    type IPlaneProjectionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlaneProjectionStatics is access IPlaneProjectionStatics_Interface'Class;
+   type IPlaneProjectionStatics is access all IPlaneProjectionStatics_Interface'Class;
 
    type IPolyBezierSegment_Interface is interface and WinRt.IInspectable_Interface;
-   type IPolyBezierSegment is access IPolyBezierSegment_Interface'Class;
+   type IPolyBezierSegment is access all IPolyBezierSegment_Interface'Class;
    type IPolyBezierSegment_Ptr is access all IPolyBezierSegment;
 
    type IPolyBezierSegmentStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPolyBezierSegmentStatics is access IPolyBezierSegmentStatics_Interface'Class;
+   type IPolyBezierSegmentStatics is access all IPolyBezierSegmentStatics_Interface'Class;
 
    type IPolyLineSegment_Interface is interface and WinRt.IInspectable_Interface;
-   type IPolyLineSegment is access IPolyLineSegment_Interface'Class;
+   type IPolyLineSegment is access all IPolyLineSegment_Interface'Class;
    type IPolyLineSegment_Ptr is access all IPolyLineSegment;
 
    type IPolyLineSegmentStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPolyLineSegmentStatics is access IPolyLineSegmentStatics_Interface'Class;
+   type IPolyLineSegmentStatics is access all IPolyLineSegmentStatics_Interface'Class;
 
    type IPolyQuadraticBezierSegment_Interface is interface and WinRt.IInspectable_Interface;
-   type IPolyQuadraticBezierSegment is access IPolyQuadraticBezierSegment_Interface'Class;
+   type IPolyQuadraticBezierSegment is access all IPolyQuadraticBezierSegment_Interface'Class;
    type IPolyQuadraticBezierSegment_Ptr is access all IPolyQuadraticBezierSegment;
 
    type IPolyQuadraticBezierSegmentStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPolyQuadraticBezierSegmentStatics is access IPolyQuadraticBezierSegmentStatics_Interface'Class;
+   type IPolyQuadraticBezierSegmentStatics is access all IPolyQuadraticBezierSegmentStatics_Interface'Class;
 
    type IProjection_Interface is interface and WinRt.IInspectable_Interface;
-   type IProjection is access IProjection_Interface'Class;
+   type IProjection is access all IProjection_Interface'Class;
    type IProjection_Ptr is access all IProjection;
 
    type IProjectionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IProjectionFactory is access IProjectionFactory_Interface'Class;
+   type IProjectionFactory is access all IProjectionFactory_Interface'Class;
 
    type IQuadraticBezierSegment_Interface is interface and WinRt.IInspectable_Interface;
-   type IQuadraticBezierSegment is access IQuadraticBezierSegment_Interface'Class;
+   type IQuadraticBezierSegment is access all IQuadraticBezierSegment_Interface'Class;
    type IQuadraticBezierSegment_Ptr is access all IQuadraticBezierSegment;
 
    type IQuadraticBezierSegmentStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IQuadraticBezierSegmentStatics is access IQuadraticBezierSegmentStatics_Interface'Class;
+   type IQuadraticBezierSegmentStatics is access all IQuadraticBezierSegmentStatics_Interface'Class;
 
    type IRateChangedRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRateChangedRoutedEventArgs is access IRateChangedRoutedEventArgs_Interface'Class;
+   type IRateChangedRoutedEventArgs is access all IRateChangedRoutedEventArgs_Interface'Class;
    type IRateChangedRoutedEventArgs_Ptr is access all IRateChangedRoutedEventArgs;
 
    type IRectangleGeometry_Interface is interface and WinRt.IInspectable_Interface;
-   type IRectangleGeometry is access IRectangleGeometry_Interface'Class;
+   type IRectangleGeometry is access all IRectangleGeometry_Interface'Class;
    type IRectangleGeometry_Ptr is access all IRectangleGeometry;
 
    type IRectangleGeometryStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRectangleGeometryStatics is access IRectangleGeometryStatics_Interface'Class;
+   type IRectangleGeometryStatics is access all IRectangleGeometryStatics_Interface'Class;
 
    type IRenderedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRenderedEventArgs is access IRenderedEventArgs_Interface'Class;
+   type IRenderedEventArgs is access all IRenderedEventArgs_Interface'Class;
    type IRenderedEventArgs_Ptr is access all IRenderedEventArgs;
 
    type IRenderingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRenderingEventArgs is access IRenderingEventArgs_Interface'Class;
+   type IRenderingEventArgs is access all IRenderingEventArgs_Interface'Class;
    type IRenderingEventArgs_Ptr is access all IRenderingEventArgs;
 
    type IRevealBackgroundBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type IRevealBackgroundBrush is access IRevealBackgroundBrush_Interface'Class;
+   type IRevealBackgroundBrush is access all IRevealBackgroundBrush_Interface'Class;
    type IRevealBackgroundBrush_Ptr is access all IRevealBackgroundBrush;
 
    type IRevealBackgroundBrushFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRevealBackgroundBrushFactory is access IRevealBackgroundBrushFactory_Interface'Class;
+   type IRevealBackgroundBrushFactory is access all IRevealBackgroundBrushFactory_Interface'Class;
 
    type IRevealBorderBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type IRevealBorderBrush is access IRevealBorderBrush_Interface'Class;
+   type IRevealBorderBrush is access all IRevealBorderBrush_Interface'Class;
    type IRevealBorderBrush_Ptr is access all IRevealBorderBrush;
 
    type IRevealBorderBrushFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRevealBorderBrushFactory is access IRevealBorderBrushFactory_Interface'Class;
+   type IRevealBorderBrushFactory is access all IRevealBorderBrushFactory_Interface'Class;
 
    type IRevealBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type IRevealBrush is access IRevealBrush_Interface'Class;
+   type IRevealBrush is access all IRevealBrush_Interface'Class;
    type IRevealBrush_Ptr is access all IRevealBrush;
 
    type IRevealBrushFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRevealBrushFactory is access IRevealBrushFactory_Interface'Class;
+   type IRevealBrushFactory is access all IRevealBrushFactory_Interface'Class;
 
    type IRevealBrushStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRevealBrushStatics is access IRevealBrushStatics_Interface'Class;
+   type IRevealBrushStatics is access all IRevealBrushStatics_Interface'Class;
 
    type IRotateTransform_Interface is interface and WinRt.IInspectable_Interface;
-   type IRotateTransform is access IRotateTransform_Interface'Class;
+   type IRotateTransform is access all IRotateTransform_Interface'Class;
    type IRotateTransform_Ptr is access all IRotateTransform;
 
    type IRotateTransformStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRotateTransformStatics is access IRotateTransformStatics_Interface'Class;
+   type IRotateTransformStatics is access all IRotateTransformStatics_Interface'Class;
 
    type IScaleTransform_Interface is interface and WinRt.IInspectable_Interface;
-   type IScaleTransform is access IScaleTransform_Interface'Class;
+   type IScaleTransform is access all IScaleTransform_Interface'Class;
    type IScaleTransform_Ptr is access all IScaleTransform;
 
    type IScaleTransformStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IScaleTransformStatics is access IScaleTransformStatics_Interface'Class;
+   type IScaleTransformStatics is access all IScaleTransformStatics_Interface'Class;
 
    type IShadow_Interface is interface and WinRt.IInspectable_Interface;
-   type IShadow is access IShadow_Interface'Class;
+   type IShadow is access all IShadow_Interface'Class;
    type IShadow_Ptr is access all IShadow;
 
    type IShadowFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IShadowFactory is access IShadowFactory_Interface'Class;
+   type IShadowFactory is access all IShadowFactory_Interface'Class;
 
    type ISkewTransform_Interface is interface and WinRt.IInspectable_Interface;
-   type ISkewTransform is access ISkewTransform_Interface'Class;
+   type ISkewTransform is access all ISkewTransform_Interface'Class;
    type ISkewTransform_Ptr is access all ISkewTransform;
 
    type ISkewTransformStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISkewTransformStatics is access ISkewTransformStatics_Interface'Class;
+   type ISkewTransformStatics is access all ISkewTransformStatics_Interface'Class;
 
    type ISolidColorBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type ISolidColorBrush is access ISolidColorBrush_Interface'Class;
+   type ISolidColorBrush is access all ISolidColorBrush_Interface'Class;
    type ISolidColorBrush_Ptr is access all ISolidColorBrush;
 
    type ISolidColorBrushFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISolidColorBrushFactory is access ISolidColorBrushFactory_Interface'Class;
+   type ISolidColorBrushFactory is access all ISolidColorBrushFactory_Interface'Class;
 
    type ISolidColorBrushStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISolidColorBrushStatics is access ISolidColorBrushStatics_Interface'Class;
+   type ISolidColorBrushStatics is access all ISolidColorBrushStatics_Interface'Class;
 
    type IThemeShadow_Interface is interface and WinRt.IInspectable_Interface;
-   type IThemeShadow is access IThemeShadow_Interface'Class;
+   type IThemeShadow is access all IThemeShadow_Interface'Class;
    type IThemeShadow_Ptr is access all IThemeShadow;
 
    type IThemeShadowFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IThemeShadowFactory is access IThemeShadowFactory_Interface'Class;
+   type IThemeShadowFactory is access all IThemeShadowFactory_Interface'Class;
 
    type ITileBrush_Interface is interface and WinRt.IInspectable_Interface;
-   type ITileBrush is access ITileBrush_Interface'Class;
+   type ITileBrush is access all ITileBrush_Interface'Class;
    type ITileBrush_Ptr is access all ITileBrush;
 
    type ITileBrushFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ITileBrushFactory is access ITileBrushFactory_Interface'Class;
+   type ITileBrushFactory is access all ITileBrushFactory_Interface'Class;
 
    type ITileBrushStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITileBrushStatics is access ITileBrushStatics_Interface'Class;
+   type ITileBrushStatics is access all ITileBrushStatics_Interface'Class;
 
    type ITimelineMarker_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimelineMarker is access ITimelineMarker_Interface'Class;
+   type ITimelineMarker is access all ITimelineMarker_Interface'Class;
    type ITimelineMarker_Ptr is access all ITimelineMarker;
    type ITimelineMarker_Array is array (Natural range <>) of ITimelineMarker;
 
    type ITimelineMarkerRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimelineMarkerRoutedEventArgs is access ITimelineMarkerRoutedEventArgs_Interface'Class;
+   type ITimelineMarkerRoutedEventArgs is access all ITimelineMarkerRoutedEventArgs_Interface'Class;
    type ITimelineMarkerRoutedEventArgs_Ptr is access all ITimelineMarkerRoutedEventArgs;
 
    type ITimelineMarkerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimelineMarkerStatics is access ITimelineMarkerStatics_Interface'Class;
+   type ITimelineMarkerStatics is access all ITimelineMarkerStatics_Interface'Class;
 
    type ITransform_Interface is interface and WinRt.IInspectable_Interface;
-   type ITransform is access ITransform_Interface'Class;
+   type ITransform is access all ITransform_Interface'Class;
    type ITransform_Ptr is access all ITransform;
    type ITransform_Array is array (Natural range <>) of ITransform;
 
    type ITransformFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ITransformFactory is access ITransformFactory_Interface'Class;
+   type ITransformFactory is access all ITransformFactory_Interface'Class;
 
    type ITransformGroup_Interface is interface and WinRt.IInspectable_Interface;
-   type ITransformGroup is access ITransformGroup_Interface'Class;
+   type ITransformGroup is access all ITransformGroup_Interface'Class;
    type ITransformGroup_Ptr is access all ITransformGroup;
 
    type ITransformGroupStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITransformGroupStatics is access ITransformGroupStatics_Interface'Class;
+   type ITransformGroupStatics is access all ITransformGroupStatics_Interface'Class;
 
    type ITranslateTransform_Interface is interface and WinRt.IInspectable_Interface;
-   type ITranslateTransform is access ITranslateTransform_Interface'Class;
+   type ITranslateTransform is access all ITranslateTransform_Interface'Class;
    type ITranslateTransform_Ptr is access all ITranslateTransform;
 
    type ITranslateTransformStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITranslateTransformStatics is access ITranslateTransformStatics_Interface'Class;
+   type ITranslateTransformStatics is access all ITranslateTransformStatics_Interface'Class;
 
    type IVisualTreeHelper_Interface is interface and WinRt.IInspectable_Interface;
-   type IVisualTreeHelper is access IVisualTreeHelper_Interface'Class;
+   type IVisualTreeHelper is access all IVisualTreeHelper_Interface'Class;
    type IVisualTreeHelper_Ptr is access all IVisualTreeHelper;
 
    type IVisualTreeHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IVisualTreeHelperStatics is access IVisualTreeHelperStatics_Interface'Class;
+   type IVisualTreeHelperStatics is access all IVisualTreeHelperStatics_Interface'Class;
 
    type IVisualTreeHelperStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVisualTreeHelperStatics2 is access IVisualTreeHelperStatics2_Interface'Class;
+   type IVisualTreeHelperStatics2 is access all IVisualTreeHelperStatics2_Interface'Class;
 
    type IVisualTreeHelperStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IVisualTreeHelperStatics3 is access IVisualTreeHelperStatics3_Interface'Class;
+   type IVisualTreeHelperStatics3 is access all IVisualTreeHelperStatics3_Interface'Class;
 
    type IXamlCompositionBrushBase_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlCompositionBrushBase is access IXamlCompositionBrushBase_Interface'Class;
+   type IXamlCompositionBrushBase is access all IXamlCompositionBrushBase_Interface'Class;
    type IXamlCompositionBrushBase_Ptr is access all IXamlCompositionBrushBase;
 
    type IXamlCompositionBrushBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlCompositionBrushBaseFactory is access IXamlCompositionBrushBaseFactory_Interface'Class;
+   type IXamlCompositionBrushBaseFactory is access all IXamlCompositionBrushBaseFactory_Interface'Class;
 
    type IXamlCompositionBrushBaseOverrides_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlCompositionBrushBaseOverrides is access IXamlCompositionBrushBaseOverrides_Interface'Class;
+   type IXamlCompositionBrushBaseOverrides is access all IXamlCompositionBrushBaseOverrides_Interface'Class;
 
    type IXamlCompositionBrushBaseProtected_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlCompositionBrushBaseProtected is access IXamlCompositionBrushBaseProtected_Interface'Class;
+   type IXamlCompositionBrushBaseProtected is access all IXamlCompositionBrushBaseProtected_Interface'Class;
 
    type IXamlCompositionBrushBaseStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlCompositionBrushBaseStatics is access IXamlCompositionBrushBaseStatics_Interface'Class;
+   type IXamlCompositionBrushBaseStatics is access all IXamlCompositionBrushBaseStatics_Interface'Class;
 
    type IXamlLight_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlLight is access IXamlLight_Interface'Class;
+   type IXamlLight is access all IXamlLight_Interface'Class;
    type IXamlLight_Ptr is access all IXamlLight;
 
    type IXamlLightFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlLightFactory is access IXamlLightFactory_Interface'Class;
+   type IXamlLightFactory is access all IXamlLightFactory_Interface'Class;
 
    type IXamlLightOverrides_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlLightOverrides is access IXamlLightOverrides_Interface'Class;
+   type IXamlLightOverrides is access all IXamlLightOverrides_Interface'Class;
 
    type IXamlLightProtected_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlLightProtected is access IXamlLightProtected_Interface'Class;
+   type IXamlLightProtected is access all IXamlLightProtected_Interface'Class;
 
    type IXamlLightStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlLightStatics is access IXamlLightStatics_Interface'Class;
+   type IXamlLightStatics is access all IXamlLightStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -930,7 +930,7 @@ package WinRt.Windows.UI.Xaml.Media is
       HostBackdrop_e => 0,
       Backdrop_e => 1
    );
-   type AcrylicBackgroundSource_Ptr is access AcrylicBackgroundSource;
+   type AcrylicBackgroundSource_Ptr is access all AcrylicBackgroundSource;
 
    type AlignmentX is (
       Left_e,
@@ -942,7 +942,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Center_e => 1,
       Right_e => 2
    );
-   type AlignmentX_Ptr is access AlignmentX;
+   type AlignmentX_Ptr is access all AlignmentX;
 
    type AlignmentY is (
       Top_e,
@@ -954,7 +954,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Center_e => 1,
       Bottom_e => 2
    );
-   type AlignmentY_Ptr is access AlignmentY;
+   type AlignmentY_Ptr is access all AlignmentY;
 
    type AudioCategory is (
       Other_e,
@@ -984,7 +984,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Movie_e => 10,
       Media_e => 11
    );
-   type AudioCategory_Ptr is access AudioCategory;
+   type AudioCategory_Ptr is access all AudioCategory;
 
    type AudioDeviceType is (
       Console_e,
@@ -996,7 +996,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Multimedia_e => 1,
       Communications_e => 2
    );
-   type AudioDeviceType_Ptr is access AudioDeviceType;
+   type AudioDeviceType_Ptr is access all AudioDeviceType;
 
    type BrushMappingMode is (
       Absolute_e,
@@ -1006,7 +1006,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Absolute_e => 0,
       RelativeToBoundingBox_e => 1
    );
-   type BrushMappingMode_Ptr is access BrushMappingMode;
+   type BrushMappingMode_Ptr is access all BrushMappingMode;
 
    type ColorInterpolationMode is (
       ScRgbLinearInterpolation_e,
@@ -1016,7 +1016,7 @@ package WinRt.Windows.UI.Xaml.Media is
       ScRgbLinearInterpolation_e => 0,
       SRgbLinearInterpolation_e => 1
    );
-   type ColorInterpolationMode_Ptr is access ColorInterpolationMode;
+   type ColorInterpolationMode_Ptr is access all ColorInterpolationMode;
 
    type ElementCompositeMode is (
       Inherit_e,
@@ -1028,7 +1028,7 @@ package WinRt.Windows.UI.Xaml.Media is
       SourceOver_e => 1,
       MinBlend_e => 2
    );
-   type ElementCompositeMode_Ptr is access ElementCompositeMode;
+   type ElementCompositeMode_Ptr is access all ElementCompositeMode;
 
    type FastPlayFallbackBehaviour is (
       Skip_e,
@@ -1040,7 +1040,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Hide_e => 1,
       Disable_e => 2
    );
-   type FastPlayFallbackBehaviour_Ptr is access FastPlayFallbackBehaviour;
+   type FastPlayFallbackBehaviour_Ptr is access all FastPlayFallbackBehaviour;
 
    type FillRule is (
       EvenOdd_e,
@@ -1050,7 +1050,7 @@ package WinRt.Windows.UI.Xaml.Media is
       EvenOdd_e => 0,
       Nonzero_e => 1
    );
-   type FillRule_Ptr is access FillRule;
+   type FillRule_Ptr is access all FillRule;
 
    type GradientSpreadMethod is (
       Pad_e,
@@ -1062,7 +1062,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Reflect_e => 1,
       Repeat_e => 2
    );
-   type GradientSpreadMethod_Ptr is access GradientSpreadMethod;
+   type GradientSpreadMethod_Ptr is access all GradientSpreadMethod;
 
    type LoadedImageSourceLoadStatus is (
       Success_e,
@@ -1076,7 +1076,7 @@ package WinRt.Windows.UI.Xaml.Media is
       InvalidFormat_e => 2,
       Other_e => 3
    );
-   type LoadedImageSourceLoadStatus_Ptr is access LoadedImageSourceLoadStatus;
+   type LoadedImageSourceLoadStatus_Ptr is access all LoadedImageSourceLoadStatus;
 
    type MediaCanPlayResponse is (
       NotSupported_e,
@@ -1088,7 +1088,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Maybe_e => 1,
       Probably_e => 2
    );
-   type MediaCanPlayResponse_Ptr is access MediaCanPlayResponse;
+   type MediaCanPlayResponse_Ptr is access all MediaCanPlayResponse;
 
    type MediaElementState is (
       Closed_e,
@@ -1106,7 +1106,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Paused_e => 4,
       Stopped_e => 5
    );
-   type MediaElementState_Ptr is access MediaElementState;
+   type MediaElementState_Ptr is access all MediaElementState;
 
    type PenLineCap is (
       Flat_e,
@@ -1120,7 +1120,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Round_e => 2,
       Triangle_e => 3
    );
-   type PenLineCap_Ptr is access PenLineCap;
+   type PenLineCap_Ptr is access all PenLineCap;
 
    type PenLineJoin is (
       Miter_e,
@@ -1132,7 +1132,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Bevel_e => 1,
       Round_e => 2
    );
-   type PenLineJoin_Ptr is access PenLineJoin;
+   type PenLineJoin_Ptr is access all PenLineJoin;
 
    type RevealBrushState is (
       Normal_e,
@@ -1144,7 +1144,7 @@ package WinRt.Windows.UI.Xaml.Media is
       PointerOver_e => 1,
       Pressed_e => 2
    );
-   type RevealBrushState_Ptr is access RevealBrushState;
+   type RevealBrushState_Ptr is access all RevealBrushState;
 
    type Stereo3DVideoPackingMode is (
       None_e,
@@ -1156,7 +1156,7 @@ package WinRt.Windows.UI.Xaml.Media is
       SideBySide_e => 1,
       TopBottom_e => 2
    );
-   type Stereo3DVideoPackingMode_Ptr is access Stereo3DVideoPackingMode;
+   type Stereo3DVideoPackingMode_Ptr is access all Stereo3DVideoPackingMode;
 
    type Stereo3DVideoRenderMode is (
       Mono_e,
@@ -1166,7 +1166,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Mono_e => 0,
       Stereo_e => 1
    );
-   type Stereo3DVideoRenderMode_Ptr is access Stereo3DVideoRenderMode;
+   type Stereo3DVideoRenderMode_Ptr is access all Stereo3DVideoRenderMode;
 
    type Stretch is (
       None_e,
@@ -1180,7 +1180,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Uniform_e => 2,
       UniformToFill_e => 3
    );
-   type Stretch_Ptr is access Stretch;
+   type Stretch_Ptr is access all Stretch;
 
    type StyleSimulations is (
       None_e,
@@ -1194,7 +1194,7 @@ package WinRt.Windows.UI.Xaml.Media is
       ItalicSimulation_e => 2,
       BoldItalicSimulation_e => 3
    );
-   type StyleSimulations_Ptr is access StyleSimulations;
+   type StyleSimulations_Ptr is access all StyleSimulations;
 
    type SweepDirection is (
       Counterclockwise_e,
@@ -1204,7 +1204,7 @@ package WinRt.Windows.UI.Xaml.Media is
       Counterclockwise_e => 0,
       Clockwise_e => 1
    );
-   type SweepDirection_Ptr is access SweepDirection;
+   type SweepDirection_Ptr is access all SweepDirection;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1218,7 +1218,7 @@ package WinRt.Windows.UI.Xaml.Media is
       OffsetX : WinRt.Double;
       OffsetY : WinRt.Double;
    end record with Convention => C_Pass_By_Copy;
-   type Matrix_Ptr is access Matrix;
+   type Matrix_Ptr is access all Matrix;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

@@ -43,18 +43,18 @@ package WinRt.Windows.Devices is
    -----------------------------------------------------------------------------
 
    type ILowLevelDevicesAggregateProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ILowLevelDevicesAggregateProvider is access ILowLevelDevicesAggregateProvider_Interface'Class;
+   type ILowLevelDevicesAggregateProvider is access all ILowLevelDevicesAggregateProvider_Interface'Class;
    type ILowLevelDevicesAggregateProvider_Ptr is access all ILowLevelDevicesAggregateProvider;
 
    type ILowLevelDevicesAggregateProviderFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ILowLevelDevicesAggregateProviderFactory is access ILowLevelDevicesAggregateProviderFactory_Interface'Class;
+   type ILowLevelDevicesAggregateProviderFactory is access all ILowLevelDevicesAggregateProviderFactory_Interface'Class;
 
    type ILowLevelDevicesController_Interface is interface and WinRt.IInspectable_Interface;
-   type ILowLevelDevicesController is access ILowLevelDevicesController_Interface'Class;
+   type ILowLevelDevicesController is access all ILowLevelDevicesController_Interface'Class;
    type ILowLevelDevicesController_Ptr is access all ILowLevelDevicesController;
 
    type ILowLevelDevicesControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILowLevelDevicesControllerStatics is access ILowLevelDevicesControllerStatics_Interface'Class;
+   type ILowLevelDevicesControllerStatics is access all ILowLevelDevicesControllerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -79,7 +79,7 @@ package WinRt.Windows.Devices is
    type DevicesLowLevelContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type DevicesLowLevelContract_Ptr is access DevicesLowLevelContract;
+   type DevicesLowLevelContract_Ptr is access all DevicesLowLevelContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

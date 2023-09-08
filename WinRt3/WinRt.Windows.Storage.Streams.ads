@@ -40,65 +40,65 @@ package WinRt.Windows.Storage.Streams is
    -----------------------------------------------------------------------------
 
    type IBuffer_Interface is interface and WinRt.IInspectable_Interface;
-   type IBuffer is access IBuffer_Interface'Class;
+   type IBuffer is access all IBuffer_Interface'Class;
    type IBuffer_Ptr is access all IBuffer;
 
    type IBufferFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IBufferFactory is access IBufferFactory_Interface'Class;
+   type IBufferFactory is access all IBufferFactory_Interface'Class;
 
    type IBufferStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBufferStatics is access IBufferStatics_Interface'Class;
+   type IBufferStatics is access all IBufferStatics_Interface'Class;
 
    type IContentTypeProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IContentTypeProvider is access IContentTypeProvider_Interface'Class;
+   type IContentTypeProvider is access all IContentTypeProvider_Interface'Class;
 
    type IDataReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataReader is access IDataReader_Interface'Class;
+   type IDataReader is access all IDataReader_Interface'Class;
    type IDataReader_Ptr is access all IDataReader;
 
    type IDataReaderFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataReaderFactory is access IDataReaderFactory_Interface'Class;
+   type IDataReaderFactory is access all IDataReaderFactory_Interface'Class;
 
    type IDataReaderStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataReaderStatics is access IDataReaderStatics_Interface'Class;
+   type IDataReaderStatics is access all IDataReaderStatics_Interface'Class;
 
    type IDataWriter_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataWriter is access IDataWriter_Interface'Class;
+   type IDataWriter is access all IDataWriter_Interface'Class;
    type IDataWriter_Ptr is access all IDataWriter;
 
    type IDataWriterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataWriterFactory is access IDataWriterFactory_Interface'Class;
+   type IDataWriterFactory is access all IDataWriterFactory_Interface'Class;
 
    type IFileRandomAccessStreamStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileRandomAccessStreamStatics is access IFileRandomAccessStreamStatics_Interface'Class;
+   type IFileRandomAccessStreamStatics is access all IFileRandomAccessStreamStatics_Interface'Class;
 
    type IInputStream_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputStream is access IInputStream_Interface'Class;
+   type IInputStream is access all IInputStream_Interface'Class;
    type IInputStream_Ptr is access all IInputStream;
 
    type IInputStreamReference_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputStreamReference is access IInputStreamReference_Interface'Class;
+   type IInputStreamReference is access all IInputStreamReference_Interface'Class;
 
    type IOutputStream_Interface is interface and WinRt.IInspectable_Interface;
-   type IOutputStream is access IOutputStream_Interface'Class;
+   type IOutputStream is access all IOutputStream_Interface'Class;
    type IOutputStream_Ptr is access all IOutputStream;
 
    type IRandomAccessStream_Interface is interface and WinRt.IInspectable_Interface;
-   type IRandomAccessStream is access IRandomAccessStream_Interface'Class;
+   type IRandomAccessStream is access all IRandomAccessStream_Interface'Class;
    type IRandomAccessStream_Ptr is access all IRandomAccessStream;
 
    type IRandomAccessStreamReference_Interface is interface and WinRt.IInspectable_Interface;
-   type IRandomAccessStreamReference is access IRandomAccessStreamReference_Interface'Class;
+   type IRandomAccessStreamReference is access all IRandomAccessStreamReference_Interface'Class;
    type IRandomAccessStreamReference_Ptr is access all IRandomAccessStreamReference;
 
    type IRandomAccessStreamReferenceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRandomAccessStreamReferenceStatics is access IRandomAccessStreamReferenceStatics_Interface'Class;
+   type IRandomAccessStreamReferenceStatics is access all IRandomAccessStreamReferenceStatics_Interface'Class;
 
    type IRandomAccessStreamStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRandomAccessStreamStatics is access IRandomAccessStreamStatics_Interface'Class;
+   type IRandomAccessStreamStatics is access all IRandomAccessStreamStatics_Interface'Class;
 
    type IRandomAccessStreamWithContentType_Interface is interface and WinRt.IInspectable_Interface;
-   type IRandomAccessStreamWithContentType is access IRandomAccessStreamWithContentType_Interface'Class;
+   type IRandomAccessStreamWithContentType is access all IRandomAccessStreamWithContentType_Interface'Class;
    type IRandomAccessStreamWithContentType_Ptr is access all IRandomAccessStreamWithContentType;
 
    -----------------------------------------------------------------------------
@@ -195,7 +195,7 @@ package WinRt.Windows.Storage.Streams is
       LittleEndian_e => 0,
       BigEndian_e => 1
    );
-   type ByteOrder_Ptr is access ByteOrder;
+   type ByteOrder_Ptr is access all ByteOrder;
 
    type FileOpenDisposition is (
       OpenExisting_e,
@@ -211,7 +211,7 @@ package WinRt.Windows.Storage.Streams is
       CreateAlways_e => 3,
       TruncateExisting_e => 4
    );
-   type FileOpenDisposition_Ptr is access FileOpenDisposition;
+   type FileOpenDisposition_Ptr is access all FileOpenDisposition;
 
    type InputStreamOptions is (
       None_e,
@@ -223,7 +223,7 @@ package WinRt.Windows.Storage.Streams is
       Partial_e => 1,
       ReadAhead_e => 2
    );
-   type InputStreamOptions_Ptr is access InputStreamOptions;
+   type InputStreamOptions_Ptr is access all InputStreamOptions;
 
    type UnicodeEncoding is (
       Utf8_e,
@@ -235,7 +235,7 @@ package WinRt.Windows.Storage.Streams is
       Utf16LE_e => 1,
       Utf16BE_e => 2
    );
-   type UnicodeEncoding_Ptr is access UnicodeEncoding;
+   type UnicodeEncoding_Ptr is access all UnicodeEncoding;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

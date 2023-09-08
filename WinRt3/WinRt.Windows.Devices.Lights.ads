@@ -43,26 +43,26 @@ package WinRt.Windows.Devices.Lights is
    -----------------------------------------------------------------------------
 
    type ILamp_Interface is interface and WinRt.IInspectable_Interface;
-   type ILamp is access ILamp_Interface'Class;
+   type ILamp is access all ILamp_Interface'Class;
    type ILamp_Ptr is access all ILamp;
 
    type ILampArray_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampArray is access ILampArray_Interface'Class;
+   type ILampArray is access all ILampArray_Interface'Class;
    type ILampArray_Ptr is access all ILampArray;
 
    type ILampArrayStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampArrayStatics is access ILampArrayStatics_Interface'Class;
+   type ILampArrayStatics is access all ILampArrayStatics_Interface'Class;
 
    type ILampAvailabilityChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampAvailabilityChangedEventArgs is access ILampAvailabilityChangedEventArgs_Interface'Class;
+   type ILampAvailabilityChangedEventArgs is access all ILampAvailabilityChangedEventArgs_Interface'Class;
    type ILampAvailabilityChangedEventArgs_Ptr is access all ILampAvailabilityChangedEventArgs;
 
    type ILampInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampInfo is access ILampInfo_Interface'Class;
+   type ILampInfo is access all ILampInfo_Interface'Class;
    type ILampInfo_Ptr is access all ILampInfo;
 
    type ILampStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampStatics is access ILampStatics_Interface'Class;
+   type ILampStatics is access all ILampStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -122,7 +122,7 @@ package WinRt.Windows.Devices.Lights is
       Furniture_e => 9,
       Art_e => 10
    );
-   type LampArrayKind_Ptr is access LampArrayKind;
+   type LampArrayKind_Ptr is access all LampArrayKind;
 
    type LampPurposes is (
       Undefined_e,
@@ -142,7 +142,7 @@ package WinRt.Windows.Devices.Lights is
       Illumination_e => 16,
       Presentation_e => 32
    );
-   type LampPurposes_Ptr is access LampPurposes;
+   type LampPurposes_Ptr is access all LampPurposes;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

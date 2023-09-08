@@ -46,95 +46,95 @@ package WinRt.Windows.Devices.Bluetooth is
    -----------------------------------------------------------------------------
 
    type IBluetoothAdapter_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothAdapter is access IBluetoothAdapter_Interface'Class;
+   type IBluetoothAdapter is access all IBluetoothAdapter_Interface'Class;
    type IBluetoothAdapter_Ptr is access all IBluetoothAdapter;
 
    type IBluetoothAdapter2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothAdapter2 is access IBluetoothAdapter2_Interface'Class;
+   type IBluetoothAdapter2 is access all IBluetoothAdapter2_Interface'Class;
 
    type IBluetoothAdapter3_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothAdapter3 is access IBluetoothAdapter3_Interface'Class;
+   type IBluetoothAdapter3 is access all IBluetoothAdapter3_Interface'Class;
 
    type IBluetoothAdapterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothAdapterStatics is access IBluetoothAdapterStatics_Interface'Class;
+   type IBluetoothAdapterStatics is access all IBluetoothAdapterStatics_Interface'Class;
 
    type IBluetoothClassOfDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothClassOfDevice is access IBluetoothClassOfDevice_Interface'Class;
+   type IBluetoothClassOfDevice is access all IBluetoothClassOfDevice_Interface'Class;
    type IBluetoothClassOfDevice_Ptr is access all IBluetoothClassOfDevice;
 
    type IBluetoothClassOfDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothClassOfDeviceStatics is access IBluetoothClassOfDeviceStatics_Interface'Class;
+   type IBluetoothClassOfDeviceStatics is access all IBluetoothClassOfDeviceStatics_Interface'Class;
 
    type IBluetoothDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothDevice is access IBluetoothDevice_Interface'Class;
+   type IBluetoothDevice is access all IBluetoothDevice_Interface'Class;
    type IBluetoothDevice_Ptr is access all IBluetoothDevice;
 
    type IBluetoothDevice2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothDevice2 is access IBluetoothDevice2_Interface'Class;
+   type IBluetoothDevice2 is access all IBluetoothDevice2_Interface'Class;
 
    type IBluetoothDevice3_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothDevice3 is access IBluetoothDevice3_Interface'Class;
+   type IBluetoothDevice3 is access all IBluetoothDevice3_Interface'Class;
 
    type IBluetoothDevice4_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothDevice4 is access IBluetoothDevice4_Interface'Class;
+   type IBluetoothDevice4 is access all IBluetoothDevice4_Interface'Class;
 
    type IBluetoothDevice5_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothDevice5 is access IBluetoothDevice5_Interface'Class;
+   type IBluetoothDevice5 is access all IBluetoothDevice5_Interface'Class;
 
    type IBluetoothDeviceId_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothDeviceId is access IBluetoothDeviceId_Interface'Class;
+   type IBluetoothDeviceId is access all IBluetoothDeviceId_Interface'Class;
    type IBluetoothDeviceId_Ptr is access all IBluetoothDeviceId;
 
    type IBluetoothDeviceIdStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothDeviceIdStatics is access IBluetoothDeviceIdStatics_Interface'Class;
+   type IBluetoothDeviceIdStatics is access all IBluetoothDeviceIdStatics_Interface'Class;
 
    type IBluetoothDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothDeviceStatics is access IBluetoothDeviceStatics_Interface'Class;
+   type IBluetoothDeviceStatics is access all IBluetoothDeviceStatics_Interface'Class;
 
    type IBluetoothDeviceStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothDeviceStatics2 is access IBluetoothDeviceStatics2_Interface'Class;
+   type IBluetoothDeviceStatics2 is access all IBluetoothDeviceStatics2_Interface'Class;
 
    type IBluetoothLEAppearance_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAppearance is access IBluetoothLEAppearance_Interface'Class;
+   type IBluetoothLEAppearance is access all IBluetoothLEAppearance_Interface'Class;
    type IBluetoothLEAppearance_Ptr is access all IBluetoothLEAppearance;
 
    type IBluetoothLEAppearanceCategoriesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAppearanceCategoriesStatics is access IBluetoothLEAppearanceCategoriesStatics_Interface'Class;
+   type IBluetoothLEAppearanceCategoriesStatics is access all IBluetoothLEAppearanceCategoriesStatics_Interface'Class;
 
    type IBluetoothLEAppearanceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAppearanceStatics is access IBluetoothLEAppearanceStatics_Interface'Class;
+   type IBluetoothLEAppearanceStatics is access all IBluetoothLEAppearanceStatics_Interface'Class;
 
    type IBluetoothLEAppearanceSubcategoriesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAppearanceSubcategoriesStatics is access IBluetoothLEAppearanceSubcategoriesStatics_Interface'Class;
+   type IBluetoothLEAppearanceSubcategoriesStatics is access all IBluetoothLEAppearanceSubcategoriesStatics_Interface'Class;
 
    type IBluetoothLEDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEDevice is access IBluetoothLEDevice_Interface'Class;
+   type IBluetoothLEDevice is access all IBluetoothLEDevice_Interface'Class;
    type IBluetoothLEDevice_Ptr is access all IBluetoothLEDevice;
 
    type IBluetoothLEDevice2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEDevice2 is access IBluetoothLEDevice2_Interface'Class;
+   type IBluetoothLEDevice2 is access all IBluetoothLEDevice2_Interface'Class;
 
    type IBluetoothLEDevice3_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEDevice3 is access IBluetoothLEDevice3_Interface'Class;
+   type IBluetoothLEDevice3 is access all IBluetoothLEDevice3_Interface'Class;
 
    type IBluetoothLEDevice4_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEDevice4 is access IBluetoothLEDevice4_Interface'Class;
+   type IBluetoothLEDevice4 is access all IBluetoothLEDevice4_Interface'Class;
 
    type IBluetoothLEDevice5_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEDevice5 is access IBluetoothLEDevice5_Interface'Class;
+   type IBluetoothLEDevice5 is access all IBluetoothLEDevice5_Interface'Class;
 
    type IBluetoothLEDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEDeviceStatics is access IBluetoothLEDeviceStatics_Interface'Class;
+   type IBluetoothLEDeviceStatics is access all IBluetoothLEDeviceStatics_Interface'Class;
 
    type IBluetoothLEDeviceStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEDeviceStatics2 is access IBluetoothLEDeviceStatics2_Interface'Class;
+   type IBluetoothLEDeviceStatics2 is access all IBluetoothLEDeviceStatics2_Interface'Class;
 
    type IBluetoothSignalStrengthFilter_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothSignalStrengthFilter is access IBluetoothSignalStrengthFilter_Interface'Class;
+   type IBluetoothSignalStrengthFilter is access all IBluetoothSignalStrengthFilter_Interface'Class;
    type IBluetoothSignalStrengthFilter_Ptr is access all IBluetoothSignalStrengthFilter;
 
    type IBluetoothUuidHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothUuidHelperStatics is access IBluetoothUuidHelperStatics_Interface'Class;
+   type IBluetoothUuidHelperStatics is access all IBluetoothUuidHelperStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -196,7 +196,7 @@ package WinRt.Windows.Devices.Bluetooth is
       Random_e => 1,
       Unspecified_e => 2
    );
-   type BluetoothAddressType_Ptr is access BluetoothAddressType;
+   type BluetoothAddressType_Ptr is access all BluetoothAddressType;
 
    type BluetoothCacheMode is (
       Cached_e,
@@ -206,7 +206,7 @@ package WinRt.Windows.Devices.Bluetooth is
       Cached_e => 0,
       Uncached_e => 1
    );
-   type BluetoothCacheMode_Ptr is access BluetoothCacheMode;
+   type BluetoothCacheMode_Ptr is access all BluetoothCacheMode;
 
    type BluetoothConnectionStatus is (
       Disconnected_e,
@@ -216,7 +216,7 @@ package WinRt.Windows.Devices.Bluetooth is
       Disconnected_e => 0,
       Connected_e => 1
    );
-   type BluetoothConnectionStatus_Ptr is access BluetoothConnectionStatus;
+   type BluetoothConnectionStatus_Ptr is access all BluetoothConnectionStatus;
 
    type BluetoothError is (
       Success_e,
@@ -242,7 +242,7 @@ package WinRt.Windows.Devices.Bluetooth is
       ConsentRequired_e => 8,
       TransportNotSupported_e => 9
    );
-   type BluetoothError_Ptr is access BluetoothError;
+   type BluetoothError_Ptr is access all BluetoothError;
 
    type BluetoothMajorClass is (
       Miscellaneous_e,
@@ -268,7 +268,7 @@ package WinRt.Windows.Devices.Bluetooth is
       Toy_e => 8,
       Health_e => 9
    );
-   type BluetoothMajorClass_Ptr is access BluetoothMajorClass;
+   type BluetoothMajorClass_Ptr is access all BluetoothMajorClass;
 
    type BluetoothMinorClass is (
       Uncategorized_e,
@@ -320,7 +320,7 @@ package WinRt.Windows.Devices.Bluetooth is
       NetworkUsed83To99Percent_e => 48,
       NetworkNoServiceAvailable_e => 56
    );
-   type BluetoothMinorClass_Ptr is access BluetoothMinorClass;
+   type BluetoothMinorClass_Ptr is access all BluetoothMinorClass;
 
    type BluetoothServiceCapabilities is (
       None_e,
@@ -346,7 +346,7 @@ package WinRt.Windows.Devices.Bluetooth is
       TelephoneService_e => 512,
       InformationService_e => 1024
    );
-   type BluetoothServiceCapabilities_Ptr is access BluetoothServiceCapabilities;
+   type BluetoothServiceCapabilities_Ptr is access all BluetoothServiceCapabilities;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

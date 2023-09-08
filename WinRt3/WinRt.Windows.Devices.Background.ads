@@ -39,11 +39,11 @@ package WinRt.Windows.Devices.Background is
    -----------------------------------------------------------------------------
 
    type IDeviceServicingDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceServicingDetails is access IDeviceServicingDetails_Interface'Class;
+   type IDeviceServicingDetails is access all IDeviceServicingDetails_Interface'Class;
    type IDeviceServicingDetails_Ptr is access all IDeviceServicingDetails;
 
    type IDeviceUseDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceUseDetails is access IDeviceUseDetails_Interface'Class;
+   type IDeviceUseDetails is access all IDeviceUseDetails_Interface'Class;
    type IDeviceUseDetails_Ptr is access all IDeviceUseDetails;
 
    -----------------------------------------------------------------------------

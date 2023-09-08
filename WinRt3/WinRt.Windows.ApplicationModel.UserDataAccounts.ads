@@ -42,40 +42,40 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
    -----------------------------------------------------------------------------
 
    type IUserDataAccount_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccount is access IUserDataAccount_Interface'Class;
+   type IUserDataAccount is access all IUserDataAccount_Interface'Class;
    type IUserDataAccount_Ptr is access all IUserDataAccount;
 
    type IUserDataAccount2_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccount2 is access IUserDataAccount2_Interface'Class;
+   type IUserDataAccount2 is access all IUserDataAccount2_Interface'Class;
 
    type IUserDataAccount3_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccount3 is access IUserDataAccount3_Interface'Class;
+   type IUserDataAccount3 is access all IUserDataAccount3_Interface'Class;
 
    type IUserDataAccount4_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccount4 is access IUserDataAccount4_Interface'Class;
+   type IUserDataAccount4 is access all IUserDataAccount4_Interface'Class;
 
    type IUserDataAccountManagerForUser_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccountManagerForUser is access IUserDataAccountManagerForUser_Interface'Class;
+   type IUserDataAccountManagerForUser is access all IUserDataAccountManagerForUser_Interface'Class;
    type IUserDataAccountManagerForUser_Ptr is access all IUserDataAccountManagerForUser;
 
    type IUserDataAccountManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccountManagerStatics is access IUserDataAccountManagerStatics_Interface'Class;
+   type IUserDataAccountManagerStatics is access all IUserDataAccountManagerStatics_Interface'Class;
 
    type IUserDataAccountManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccountManagerStatics2 is access IUserDataAccountManagerStatics2_Interface'Class;
+   type IUserDataAccountManagerStatics2 is access all IUserDataAccountManagerStatics2_Interface'Class;
 
    type IUserDataAccountStore_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccountStore is access IUserDataAccountStore_Interface'Class;
+   type IUserDataAccountStore is access all IUserDataAccountStore_Interface'Class;
    type IUserDataAccountStore_Ptr is access all IUserDataAccountStore;
 
    type IUserDataAccountStore2_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccountStore2 is access IUserDataAccountStore2_Interface'Class;
+   type IUserDataAccountStore2 is access all IUserDataAccountStore2_Interface'Class;
 
    type IUserDataAccountStore3_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccountStore3 is access IUserDataAccountStore3_Interface'Class;
+   type IUserDataAccountStore3 is access all IUserDataAccountStore3_Interface'Class;
 
    type IUserDataAccountStoreChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccountStoreChangedEventArgs is access IUserDataAccountStoreChangedEventArgs_Interface'Class;
+   type IUserDataAccountStoreChangedEventArgs is access all IUserDataAccountStoreChangedEventArgs_Interface'Class;
    type IUserDataAccountStoreChangedEventArgs_Ptr is access all IUserDataAccountStoreChangedEventArgs;
 
    -----------------------------------------------------------------------------
@@ -120,7 +120,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       Contact_e => 2,
       Appointment_e => 4
    );
-   type UserDataAccountContentKinds_Ptr is access UserDataAccountContentKinds;
+   type UserDataAccountContentKinds_Ptr is access all UserDataAccountContentKinds;
 
    type UserDataAccountOtherAppReadAccess is (
       SystemOnly_e,
@@ -132,7 +132,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       Full_e => 1,
       None_e => 2
    );
-   type UserDataAccountOtherAppReadAccess_Ptr is access UserDataAccountOtherAppReadAccess;
+   type UserDataAccountOtherAppReadAccess_Ptr is access all UserDataAccountOtherAppReadAccess;
 
    type UserDataAccountStoreAccessType is (
       AllAccountsReadOnly_e,
@@ -142,7 +142,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       AllAccountsReadOnly_e => 0,
       AppAccountsReadWrite_e => 1
    );
-   type UserDataAccountStoreAccessType_Ptr is access UserDataAccountStoreAccessType;
+   type UserDataAccountStoreAccessType_Ptr is access all UserDataAccountStoreAccessType;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

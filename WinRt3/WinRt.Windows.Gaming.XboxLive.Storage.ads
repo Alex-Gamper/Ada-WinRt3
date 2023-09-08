@@ -42,51 +42,51 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
    -----------------------------------------------------------------------------
 
    type IGameSaveBlobGetResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameSaveBlobGetResult is access IGameSaveBlobGetResult_Interface'Class;
+   type IGameSaveBlobGetResult is access all IGameSaveBlobGetResult_Interface'Class;
    type IGameSaveBlobGetResult_Ptr is access all IGameSaveBlobGetResult;
 
    type IGameSaveBlobInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameSaveBlobInfo is access IGameSaveBlobInfo_Interface'Class;
+   type IGameSaveBlobInfo is access all IGameSaveBlobInfo_Interface'Class;
    type IGameSaveBlobInfo_Ptr is access all IGameSaveBlobInfo;
 
    type IGameSaveBlobInfoGetResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameSaveBlobInfoGetResult is access IGameSaveBlobInfoGetResult_Interface'Class;
+   type IGameSaveBlobInfoGetResult is access all IGameSaveBlobInfoGetResult_Interface'Class;
    type IGameSaveBlobInfoGetResult_Ptr is access all IGameSaveBlobInfoGetResult;
 
    type IGameSaveBlobInfoQuery_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameSaveBlobInfoQuery is access IGameSaveBlobInfoQuery_Interface'Class;
+   type IGameSaveBlobInfoQuery is access all IGameSaveBlobInfoQuery_Interface'Class;
    type IGameSaveBlobInfoQuery_Ptr is access all IGameSaveBlobInfoQuery;
 
    type IGameSaveContainer_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameSaveContainer is access IGameSaveContainer_Interface'Class;
+   type IGameSaveContainer is access all IGameSaveContainer_Interface'Class;
    type IGameSaveContainer_Ptr is access all IGameSaveContainer;
 
    type IGameSaveContainerInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameSaveContainerInfo is access IGameSaveContainerInfo_Interface'Class;
+   type IGameSaveContainerInfo is access all IGameSaveContainerInfo_Interface'Class;
    type IGameSaveContainerInfo_Ptr is access all IGameSaveContainerInfo;
 
    type IGameSaveContainerInfoGetResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameSaveContainerInfoGetResult is access IGameSaveContainerInfoGetResult_Interface'Class;
+   type IGameSaveContainerInfoGetResult is access all IGameSaveContainerInfoGetResult_Interface'Class;
    type IGameSaveContainerInfoGetResult_Ptr is access all IGameSaveContainerInfoGetResult;
 
    type IGameSaveContainerInfoQuery_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameSaveContainerInfoQuery is access IGameSaveContainerInfoQuery_Interface'Class;
+   type IGameSaveContainerInfoQuery is access all IGameSaveContainerInfoQuery_Interface'Class;
    type IGameSaveContainerInfoQuery_Ptr is access all IGameSaveContainerInfoQuery;
 
    type IGameSaveOperationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameSaveOperationResult is access IGameSaveOperationResult_Interface'Class;
+   type IGameSaveOperationResult is access all IGameSaveOperationResult_Interface'Class;
    type IGameSaveOperationResult_Ptr is access all IGameSaveOperationResult;
 
    type IGameSaveProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameSaveProvider is access IGameSaveProvider_Interface'Class;
+   type IGameSaveProvider is access all IGameSaveProvider_Interface'Class;
    type IGameSaveProvider_Ptr is access all IGameSaveProvider;
 
    type IGameSaveProviderGetResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameSaveProviderGetResult is access IGameSaveProviderGetResult_Interface'Class;
+   type IGameSaveProviderGetResult is access all IGameSaveProviderGetResult_Interface'Class;
    type IGameSaveProviderGetResult_Ptr is access all IGameSaveProviderGetResult;
 
    type IGameSaveProviderStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameSaveProviderStatics is access IGameSaveProviderStatics_Interface'Class;
+   type IGameSaveProviderStatics is access all IGameSaveProviderStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -196,7 +196,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
       ObjectExpired_e => -2138898419,
       Ok_e => 0
    );
-   type GameSaveErrorStatus_Ptr is access GameSaveErrorStatus;
+   type GameSaveErrorStatus_Ptr is access all GameSaveErrorStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

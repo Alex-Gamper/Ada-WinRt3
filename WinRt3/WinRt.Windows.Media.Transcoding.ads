@@ -44,14 +44,14 @@ package WinRt.Windows.Media.Transcoding is
    -----------------------------------------------------------------------------
 
    type IMediaTranscoder_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaTranscoder is access IMediaTranscoder_Interface'Class;
+   type IMediaTranscoder is access all IMediaTranscoder_Interface'Class;
    type IMediaTranscoder_Ptr is access all IMediaTranscoder;
 
    type IMediaTranscoder2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaTranscoder2 is access IMediaTranscoder2_Interface'Class;
+   type IMediaTranscoder2 is access all IMediaTranscoder2_Interface'Class;
 
    type IPrepareTranscodeResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrepareTranscodeResult is access IPrepareTranscodeResult_Interface'Class;
+   type IPrepareTranscodeResult is access all IPrepareTranscodeResult_Interface'Class;
    type IPrepareTranscodeResult_Ptr is access all IPrepareTranscodeResult;
 
    -----------------------------------------------------------------------------
@@ -82,7 +82,7 @@ package WinRt.Windows.Media.Transcoding is
       Default_e => 0,
       MrfCrf444_e => 1
    );
-   type MediaVideoProcessingAlgorithm_Ptr is access MediaVideoProcessingAlgorithm;
+   type MediaVideoProcessingAlgorithm_Ptr is access all MediaVideoProcessingAlgorithm;
 
    type TranscodeFailureReason is (
       None_e,
@@ -96,7 +96,7 @@ package WinRt.Windows.Media.Transcoding is
       InvalidProfile_e => 2,
       CodecNotFound_e => 3
    );
-   type TranscodeFailureReason_Ptr is access TranscodeFailureReason;
+   type TranscodeFailureReason_Ptr is access all TranscodeFailureReason;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

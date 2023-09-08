@@ -41,80 +41,80 @@ package WinRt.Windows.Storage.Provider is
    -----------------------------------------------------------------------------
 
    type ICachedFileUpdaterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICachedFileUpdaterStatics is access ICachedFileUpdaterStatics_Interface'Class;
+   type ICachedFileUpdaterStatics is access all ICachedFileUpdaterStatics_Interface'Class;
 
    type ICachedFileUpdaterUI_Interface is interface and WinRt.IInspectable_Interface;
-   type ICachedFileUpdaterUI is access ICachedFileUpdaterUI_Interface'Class;
+   type ICachedFileUpdaterUI is access all ICachedFileUpdaterUI_Interface'Class;
    type ICachedFileUpdaterUI_Ptr is access all ICachedFileUpdaterUI;
 
    type ICachedFileUpdaterUI2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICachedFileUpdaterUI2 is access ICachedFileUpdaterUI2_Interface'Class;
+   type ICachedFileUpdaterUI2 is access all ICachedFileUpdaterUI2_Interface'Class;
 
    type IFileUpdateRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileUpdateRequest is access IFileUpdateRequest_Interface'Class;
+   type IFileUpdateRequest is access all IFileUpdateRequest_Interface'Class;
    type IFileUpdateRequest_Ptr is access all IFileUpdateRequest;
 
    type IFileUpdateRequest2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileUpdateRequest2 is access IFileUpdateRequest2_Interface'Class;
+   type IFileUpdateRequest2 is access all IFileUpdateRequest2_Interface'Class;
 
    type IFileUpdateRequestDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileUpdateRequestDeferral is access IFileUpdateRequestDeferral_Interface'Class;
+   type IFileUpdateRequestDeferral is access all IFileUpdateRequestDeferral_Interface'Class;
    type IFileUpdateRequestDeferral_Ptr is access all IFileUpdateRequestDeferral;
 
    type IFileUpdateRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileUpdateRequestedEventArgs is access IFileUpdateRequestedEventArgs_Interface'Class;
+   type IFileUpdateRequestedEventArgs is access all IFileUpdateRequestedEventArgs_Interface'Class;
    type IFileUpdateRequestedEventArgs_Ptr is access all IFileUpdateRequestedEventArgs;
 
    type IStorageProviderFileTypeInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderFileTypeInfo is access IStorageProviderFileTypeInfo_Interface'Class;
+   type IStorageProviderFileTypeInfo is access all IStorageProviderFileTypeInfo_Interface'Class;
    type IStorageProviderFileTypeInfo_Ptr is access all IStorageProviderFileTypeInfo;
 
    type IStorageProviderFileTypeInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderFileTypeInfoFactory is access IStorageProviderFileTypeInfoFactory_Interface'Class;
+   type IStorageProviderFileTypeInfoFactory is access all IStorageProviderFileTypeInfoFactory_Interface'Class;
 
    type IStorageProviderGetContentInfoForPathResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderGetContentInfoForPathResult is access IStorageProviderGetContentInfoForPathResult_Interface'Class;
+   type IStorageProviderGetContentInfoForPathResult is access all IStorageProviderGetContentInfoForPathResult_Interface'Class;
    type IStorageProviderGetContentInfoForPathResult_Ptr is access all IStorageProviderGetContentInfoForPathResult;
 
    type IStorageProviderGetPathForContentUriResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderGetPathForContentUriResult is access IStorageProviderGetPathForContentUriResult_Interface'Class;
+   type IStorageProviderGetPathForContentUriResult is access all IStorageProviderGetPathForContentUriResult_Interface'Class;
    type IStorageProviderGetPathForContentUriResult_Ptr is access all IStorageProviderGetPathForContentUriResult;
 
    type IStorageProviderItemPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderItemPropertiesStatics is access IStorageProviderItemPropertiesStatics_Interface'Class;
+   type IStorageProviderItemPropertiesStatics is access all IStorageProviderItemPropertiesStatics_Interface'Class;
 
    type IStorageProviderItemProperty_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderItemProperty is access IStorageProviderItemProperty_Interface'Class;
+   type IStorageProviderItemProperty is access all IStorageProviderItemProperty_Interface'Class;
    type IStorageProviderItemProperty_Ptr is access all IStorageProviderItemProperty;
 
    type IStorageProviderItemPropertyDefinition_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderItemPropertyDefinition is access IStorageProviderItemPropertyDefinition_Interface'Class;
+   type IStorageProviderItemPropertyDefinition is access all IStorageProviderItemPropertyDefinition_Interface'Class;
    type IStorageProviderItemPropertyDefinition_Ptr is access all IStorageProviderItemPropertyDefinition;
 
    type IStorageProviderItemPropertySource_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderItemPropertySource is access IStorageProviderItemPropertySource_Interface'Class;
+   type IStorageProviderItemPropertySource is access all IStorageProviderItemPropertySource_Interface'Class;
 
    type IStorageProviderPropertyCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderPropertyCapabilities is access IStorageProviderPropertyCapabilities_Interface'Class;
+   type IStorageProviderPropertyCapabilities is access all IStorageProviderPropertyCapabilities_Interface'Class;
 
    type IStorageProviderSyncRootInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderSyncRootInfo is access IStorageProviderSyncRootInfo_Interface'Class;
+   type IStorageProviderSyncRootInfo is access all IStorageProviderSyncRootInfo_Interface'Class;
    type IStorageProviderSyncRootInfo_Ptr is access all IStorageProviderSyncRootInfo;
 
    type IStorageProviderSyncRootInfo2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderSyncRootInfo2 is access IStorageProviderSyncRootInfo2_Interface'Class;
+   type IStorageProviderSyncRootInfo2 is access all IStorageProviderSyncRootInfo2_Interface'Class;
 
    type IStorageProviderSyncRootInfo3_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderSyncRootInfo3 is access IStorageProviderSyncRootInfo3_Interface'Class;
+   type IStorageProviderSyncRootInfo3 is access all IStorageProviderSyncRootInfo3_Interface'Class;
 
    type IStorageProviderSyncRootManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderSyncRootManagerStatics is access IStorageProviderSyncRootManagerStatics_Interface'Class;
+   type IStorageProviderSyncRootManagerStatics is access all IStorageProviderSyncRootManagerStatics_Interface'Class;
 
    type IStorageProviderSyncRootManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderSyncRootManagerStatics2 is access IStorageProviderSyncRootManagerStatics2_Interface'Class;
+   type IStorageProviderSyncRootManagerStatics2 is access all IStorageProviderSyncRootManagerStatics2_Interface'Class;
 
    type IStorageProviderUriSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProviderUriSource is access IStorageProviderUriSource_Interface'Class;
+   type IStorageProviderUriSource is access all IStorageProviderUriSource_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -196,7 +196,7 @@ package WinRt.Windows.Storage.Provider is
       UseCachedFileWhenOffline_e => 2,
       DenyAccessWhenOffline_e => 4
    );
-   type CachedFileOptions_Ptr is access CachedFileOptions;
+   type CachedFileOptions_Ptr is access all CachedFileOptions;
 
    type CachedFileTarget is (
       Local_e,
@@ -206,7 +206,7 @@ package WinRt.Windows.Storage.Provider is
       Local_e => 0,
       Remote_e => 1
    );
-   type CachedFileTarget_Ptr is access CachedFileTarget;
+   type CachedFileTarget_Ptr is access all CachedFileTarget;
 
    type FileUpdateStatus is (
       Incomplete_e,
@@ -224,7 +224,7 @@ package WinRt.Windows.Storage.Provider is
       Failed_e => 4,
       CompleteAndRenamed_e => 5
    );
-   type FileUpdateStatus_Ptr is access FileUpdateStatus;
+   type FileUpdateStatus_Ptr is access all FileUpdateStatus;
 
    type ReadActivationMode is (
       NotNeeded_e,
@@ -234,7 +234,7 @@ package WinRt.Windows.Storage.Provider is
       NotNeeded_e => 0,
       BeforeAccess_e => 1
    );
-   type ReadActivationMode_Ptr is access ReadActivationMode;
+   type ReadActivationMode_Ptr is access all ReadActivationMode;
 
    type StorageProviderHardlinkPolicy is (
       None_e,
@@ -244,7 +244,7 @@ package WinRt.Windows.Storage.Provider is
       None_e => 0,
       Allowed_e => 1
    );
-   type StorageProviderHardlinkPolicy_Ptr is access StorageProviderHardlinkPolicy;
+   type StorageProviderHardlinkPolicy_Ptr is access all StorageProviderHardlinkPolicy;
 
    type StorageProviderHydrationPolicy is (
       Partial_e,
@@ -258,7 +258,7 @@ package WinRt.Windows.Storage.Provider is
       Full_e => 2,
       AlwaysFull_e => 3
    );
-   type StorageProviderHydrationPolicy_Ptr is access StorageProviderHydrationPolicy;
+   type StorageProviderHydrationPolicy_Ptr is access all StorageProviderHydrationPolicy;
 
    type StorageProviderHydrationPolicyModifier is (
       None_e,
@@ -272,7 +272,7 @@ package WinRt.Windows.Storage.Provider is
       StreamingAllowed_e => 2,
       AutoDehydrationAllowed_e => 4
    );
-   type StorageProviderHydrationPolicyModifier_Ptr is access StorageProviderHydrationPolicyModifier;
+   type StorageProviderHydrationPolicyModifier_Ptr is access all StorageProviderHydrationPolicyModifier;
 
    type StorageProviderInSyncPolicy is (
       Default_e,
@@ -302,7 +302,7 @@ package WinRt.Windows.Storage.Provider is
       DirectoryLastWriteTime_e => 512,
       PreserveInsyncForSyncEngine_e => 2147483648
    );
-   type StorageProviderInSyncPolicy_Ptr is access StorageProviderInSyncPolicy;
+   type StorageProviderInSyncPolicy_Ptr is access all StorageProviderInSyncPolicy;
 
    type StorageProviderPopulationPolicy is (
       Full_e,
@@ -312,7 +312,7 @@ package WinRt.Windows.Storage.Provider is
       Full_e => 1,
       AlwaysFull_e => 2
    );
-   type StorageProviderPopulationPolicy_Ptr is access StorageProviderPopulationPolicy;
+   type StorageProviderPopulationPolicy_Ptr is access all StorageProviderPopulationPolicy;
 
    type StorageProviderProtectionMode is (
       Unknown_e,
@@ -322,7 +322,7 @@ package WinRt.Windows.Storage.Provider is
       Unknown_e => 0,
       Personal_e => 1
    );
-   type StorageProviderProtectionMode_Ptr is access StorageProviderProtectionMode;
+   type StorageProviderProtectionMode_Ptr is access all StorageProviderProtectionMode;
 
    type StorageProviderUriSourceStatus is (
       Success_e,
@@ -334,7 +334,7 @@ package WinRt.Windows.Storage.Provider is
       NoSyncRoot_e => 1,
       FileNotFound_e => 2
    );
-   type StorageProviderUriSourceStatus_Ptr is access StorageProviderUriSourceStatus;
+   type StorageProviderUriSourceStatus_Ptr is access all StorageProviderUriSourceStatus;
 
    type UIStatus is (
       Unavailable_e,
@@ -348,7 +348,7 @@ package WinRt.Windows.Storage.Provider is
       Visible_e => 2,
       Complete_e => 3
    );
-   type UIStatus_Ptr is access UIStatus;
+   type UIStatus_Ptr is access all UIStatus;
 
    type WriteActivationMode is (
       ReadOnly_e,
@@ -360,7 +360,7 @@ package WinRt.Windows.Storage.Provider is
       NotNeeded_e => 1,
       AfterWrite_e => 2
    );
-   type WriteActivationMode_Ptr is access WriteActivationMode;
+   type WriteActivationMode_Ptr is access all WriteActivationMode;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -369,7 +369,7 @@ package WinRt.Windows.Storage.Provider is
    type CloudFilesContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type CloudFilesContract_Ptr is access CloudFilesContract;
+   type CloudFilesContract_Ptr is access all CloudFilesContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -40,60 +40,60 @@ package WinRt.Windows.UI.WebUI.Core is
    -----------------------------------------------------------------------------
 
    type MenuClosedEventHandler_Delegate;
-   type MenuClosedEventHandler is access MenuClosedEventHandler_Delegate;
+   type MenuClosedEventHandler is access all MenuClosedEventHandler_Delegate;
 
    type MenuOpenedEventHandler_Delegate;
-   type MenuOpenedEventHandler is access MenuOpenedEventHandler_Delegate;
+   type MenuOpenedEventHandler is access all MenuOpenedEventHandler_Delegate;
 
    type SizeChangedEventHandler_Delegate;
-   type SizeChangedEventHandler is access SizeChangedEventHandler_Delegate;
+   type SizeChangedEventHandler is access all SizeChangedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IWebUICommandBar_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUICommandBar is access IWebUICommandBar_Interface'Class;
+   type IWebUICommandBar is access all IWebUICommandBar_Interface'Class;
    type IWebUICommandBar_Ptr is access all IWebUICommandBar;
 
    type IWebUICommandBarBitmapIcon_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUICommandBarBitmapIcon is access IWebUICommandBarBitmapIcon_Interface'Class;
+   type IWebUICommandBarBitmapIcon is access all IWebUICommandBarBitmapIcon_Interface'Class;
    type IWebUICommandBarBitmapIcon_Ptr is access all IWebUICommandBarBitmapIcon;
 
    type IWebUICommandBarBitmapIconFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUICommandBarBitmapIconFactory is access IWebUICommandBarBitmapIconFactory_Interface'Class;
+   type IWebUICommandBarBitmapIconFactory is access all IWebUICommandBarBitmapIconFactory_Interface'Class;
 
    type IWebUICommandBarConfirmationButton_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUICommandBarConfirmationButton is access IWebUICommandBarConfirmationButton_Interface'Class;
+   type IWebUICommandBarConfirmationButton is access all IWebUICommandBarConfirmationButton_Interface'Class;
    type IWebUICommandBarConfirmationButton_Ptr is access all IWebUICommandBarConfirmationButton;
 
    type IWebUICommandBarElement_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUICommandBarElement is access IWebUICommandBarElement_Interface'Class;
+   type IWebUICommandBarElement is access all IWebUICommandBarElement_Interface'Class;
 
    type IWebUICommandBarIcon_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUICommandBarIcon is access IWebUICommandBarIcon_Interface'Class;
+   type IWebUICommandBarIcon is access all IWebUICommandBarIcon_Interface'Class;
 
    type IWebUICommandBarIconButton_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUICommandBarIconButton is access IWebUICommandBarIconButton_Interface'Class;
+   type IWebUICommandBarIconButton is access all IWebUICommandBarIconButton_Interface'Class;
    type IWebUICommandBarIconButton_Ptr is access all IWebUICommandBarIconButton;
 
    type IWebUICommandBarItemInvokedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUICommandBarItemInvokedEventArgs is access IWebUICommandBarItemInvokedEventArgs_Interface'Class;
+   type IWebUICommandBarItemInvokedEventArgs is access all IWebUICommandBarItemInvokedEventArgs_Interface'Class;
    type IWebUICommandBarItemInvokedEventArgs_Ptr is access all IWebUICommandBarItemInvokedEventArgs;
 
    type IWebUICommandBarSizeChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUICommandBarSizeChangedEventArgs is access IWebUICommandBarSizeChangedEventArgs_Interface'Class;
+   type IWebUICommandBarSizeChangedEventArgs is access all IWebUICommandBarSizeChangedEventArgs_Interface'Class;
    type IWebUICommandBarSizeChangedEventArgs_Ptr is access all IWebUICommandBarSizeChangedEventArgs;
 
    type IWebUICommandBarStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUICommandBarStatics is access IWebUICommandBarStatics_Interface'Class;
+   type IWebUICommandBarStatics is access all IWebUICommandBarStatics_Interface'Class;
 
    type IWebUICommandBarSymbolIcon_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUICommandBarSymbolIcon is access IWebUICommandBarSymbolIcon_Interface'Class;
+   type IWebUICommandBarSymbolIcon is access all IWebUICommandBarSymbolIcon_Interface'Class;
    type IWebUICommandBarSymbolIcon_Ptr is access all IWebUICommandBarSymbolIcon;
 
    type IWebUICommandBarSymbolIconFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebUICommandBarSymbolIconFactory is access IWebUICommandBarSymbolIconFactory_Interface'Class;
+   type IWebUICommandBarSymbolIconFactory is access all IWebUICommandBarSymbolIconFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -155,7 +155,7 @@ package WinRt.Windows.UI.WebUI.Core is
       Minimal_e => 1,
       Compact_e => 2
    );
-   type WebUICommandBarClosedDisplayMode_Ptr is access WebUICommandBarClosedDisplayMode;
+   type WebUICommandBarClosedDisplayMode_Ptr is access all WebUICommandBarClosedDisplayMode;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -164,7 +164,7 @@ package WinRt.Windows.UI.WebUI.Core is
    type WebUICommandBarContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type WebUICommandBarContract_Ptr is access WebUICommandBarContract;
+   type WebUICommandBarContract_Ptr is access all WebUICommandBarContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

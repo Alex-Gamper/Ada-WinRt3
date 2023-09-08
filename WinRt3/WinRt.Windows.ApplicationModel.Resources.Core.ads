@@ -43,52 +43,52 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    -----------------------------------------------------------------------------
 
    type INamedResource_Interface is interface and WinRt.IInspectable_Interface;
-   type INamedResource is access INamedResource_Interface'Class;
+   type INamedResource is access all INamedResource_Interface'Class;
    type INamedResource_Ptr is access all INamedResource;
 
    type IResourceCandidate_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceCandidate is access IResourceCandidate_Interface'Class;
+   type IResourceCandidate is access all IResourceCandidate_Interface'Class;
    type IResourceCandidate_Ptr is access all IResourceCandidate;
    type IResourceCandidate_Array is array (Natural range <>) of IResourceCandidate;
 
    type IResourceCandidate2_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceCandidate2 is access IResourceCandidate2_Interface'Class;
+   type IResourceCandidate2 is access all IResourceCandidate2_Interface'Class;
 
    type IResourceCandidate3_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceCandidate3 is access IResourceCandidate3_Interface'Class;
+   type IResourceCandidate3 is access all IResourceCandidate3_Interface'Class;
 
    type IResourceContext_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceContext is access IResourceContext_Interface'Class;
+   type IResourceContext is access all IResourceContext_Interface'Class;
    type IResourceContext_Ptr is access all IResourceContext;
 
    type IResourceContextStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceContextStatics is access IResourceContextStatics_Interface'Class;
+   type IResourceContextStatics is access all IResourceContextStatics_Interface'Class;
 
    type IResourceContextStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceContextStatics2 is access IResourceContextStatics2_Interface'Class;
+   type IResourceContextStatics2 is access all IResourceContextStatics2_Interface'Class;
 
    type IResourceContextStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceContextStatics3 is access IResourceContextStatics3_Interface'Class;
+   type IResourceContextStatics3 is access all IResourceContextStatics3_Interface'Class;
 
    type IResourceContextStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceContextStatics4 is access IResourceContextStatics4_Interface'Class;
+   type IResourceContextStatics4 is access all IResourceContextStatics4_Interface'Class;
 
    type IResourceManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceManager is access IResourceManager_Interface'Class;
+   type IResourceManager is access all IResourceManager_Interface'Class;
    type IResourceManager_Ptr is access all IResourceManager;
 
    type IResourceManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceManager2 is access IResourceManager2_Interface'Class;
+   type IResourceManager2 is access all IResourceManager2_Interface'Class;
 
    type IResourceManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceManagerStatics is access IResourceManagerStatics_Interface'Class;
+   type IResourceManagerStatics is access all IResourceManagerStatics_Interface'Class;
 
    type IResourceMap_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceMap is access IResourceMap_Interface'Class;
+   type IResourceMap is access all IResourceMap_Interface'Class;
    type IResourceMap_Ptr is access all IResourceMap;
 
    type IResourceQualifier_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceQualifier is access IResourceQualifier_Interface'Class;
+   type IResourceQualifier is access all IResourceQualifier_Interface'Class;
    type IResourceQualifier_Ptr is access all IResourceQualifier;
    type IResourceQualifier_Array is array (Natural range <>) of IResourceQualifier;
 
@@ -194,7 +194,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       File_e => 1,
       EmbeddedData_e => 2
    );
-   type ResourceCandidateKind_Ptr is access ResourceCandidateKind;
+   type ResourceCandidateKind_Ptr is access all ResourceCandidateKind;
 
    type ResourceQualifierPersistence is (
       None_e,
@@ -204,7 +204,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       None_e => 0,
       LocalMachine_e => 1
    );
-   type ResourceQualifierPersistence_Ptr is access ResourceQualifierPersistence;
+   type ResourceQualifierPersistence_Ptr is access all ResourceQualifierPersistence;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -217,7 +217,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       NamedResourceCount : WinRt.UInt32;
       Checksum : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type ResourceLayoutInfo_Ptr is access ResourceLayoutInfo;
+   type ResourceLayoutInfo_Ptr is access all ResourceLayoutInfo;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

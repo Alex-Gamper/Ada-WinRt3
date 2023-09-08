@@ -41,34 +41,34 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
    -----------------------------------------------------------------------------
 
    type IAppExtension_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppExtension is access IAppExtension_Interface'Class;
+   type IAppExtension is access all IAppExtension_Interface'Class;
    type IAppExtension_Ptr is access all IAppExtension;
 
    type IAppExtensionCatalog_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppExtensionCatalog is access IAppExtensionCatalog_Interface'Class;
+   type IAppExtensionCatalog is access all IAppExtensionCatalog_Interface'Class;
    type IAppExtensionCatalog_Ptr is access all IAppExtensionCatalog;
 
    type IAppExtensionCatalogStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppExtensionCatalogStatics is access IAppExtensionCatalogStatics_Interface'Class;
+   type IAppExtensionCatalogStatics is access all IAppExtensionCatalogStatics_Interface'Class;
 
    type IAppExtensionPackageInstalledEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppExtensionPackageInstalledEventArgs is access IAppExtensionPackageInstalledEventArgs_Interface'Class;
+   type IAppExtensionPackageInstalledEventArgs is access all IAppExtensionPackageInstalledEventArgs_Interface'Class;
    type IAppExtensionPackageInstalledEventArgs_Ptr is access all IAppExtensionPackageInstalledEventArgs;
 
    type IAppExtensionPackageStatusChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppExtensionPackageStatusChangedEventArgs is access IAppExtensionPackageStatusChangedEventArgs_Interface'Class;
+   type IAppExtensionPackageStatusChangedEventArgs is access all IAppExtensionPackageStatusChangedEventArgs_Interface'Class;
    type IAppExtensionPackageStatusChangedEventArgs_Ptr is access all IAppExtensionPackageStatusChangedEventArgs;
 
    type IAppExtensionPackageUninstallingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppExtensionPackageUninstallingEventArgs is access IAppExtensionPackageUninstallingEventArgs_Interface'Class;
+   type IAppExtensionPackageUninstallingEventArgs is access all IAppExtensionPackageUninstallingEventArgs_Interface'Class;
    type IAppExtensionPackageUninstallingEventArgs_Ptr is access all IAppExtensionPackageUninstallingEventArgs;
 
    type IAppExtensionPackageUpdatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppExtensionPackageUpdatedEventArgs is access IAppExtensionPackageUpdatedEventArgs_Interface'Class;
+   type IAppExtensionPackageUpdatedEventArgs is access all IAppExtensionPackageUpdatedEventArgs_Interface'Class;
    type IAppExtensionPackageUpdatedEventArgs_Ptr is access all IAppExtensionPackageUpdatedEventArgs;
 
    type IAppExtensionPackageUpdatingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppExtensionPackageUpdatingEventArgs is access IAppExtensionPackageUpdatingEventArgs_Interface'Class;
+   type IAppExtensionPackageUpdatingEventArgs is access all IAppExtensionPackageUpdatingEventArgs_Interface'Class;
    type IAppExtensionPackageUpdatingEventArgs_Ptr is access all IAppExtensionPackageUpdatingEventArgs;
 
    -----------------------------------------------------------------------------

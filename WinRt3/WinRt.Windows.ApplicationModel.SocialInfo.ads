@@ -42,27 +42,27 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    -----------------------------------------------------------------------------
 
    type ISocialFeedChildItem_Interface is interface and WinRt.IInspectable_Interface;
-   type ISocialFeedChildItem is access ISocialFeedChildItem_Interface'Class;
+   type ISocialFeedChildItem is access all ISocialFeedChildItem_Interface'Class;
    type ISocialFeedChildItem_Ptr is access all ISocialFeedChildItem;
 
    type ISocialFeedContent_Interface is interface and WinRt.IInspectable_Interface;
-   type ISocialFeedContent is access ISocialFeedContent_Interface'Class;
+   type ISocialFeedContent is access all ISocialFeedContent_Interface'Class;
    type ISocialFeedContent_Ptr is access all ISocialFeedContent;
 
    type ISocialFeedItem_Interface is interface and WinRt.IInspectable_Interface;
-   type ISocialFeedItem is access ISocialFeedItem_Interface'Class;
+   type ISocialFeedItem is access all ISocialFeedItem_Interface'Class;
    type ISocialFeedItem_Ptr is access all ISocialFeedItem;
 
    type ISocialFeedSharedItem_Interface is interface and WinRt.IInspectable_Interface;
-   type ISocialFeedSharedItem is access ISocialFeedSharedItem_Interface'Class;
+   type ISocialFeedSharedItem is access all ISocialFeedSharedItem_Interface'Class;
    type ISocialFeedSharedItem_Ptr is access all ISocialFeedSharedItem;
 
    type ISocialItemThumbnail_Interface is interface and WinRt.IInspectable_Interface;
-   type ISocialItemThumbnail is access ISocialItemThumbnail_Interface'Class;
+   type ISocialItemThumbnail is access all ISocialItemThumbnail_Interface'Class;
    type ISocialItemThumbnail_Ptr is access all ISocialItemThumbnail;
 
    type ISocialUserInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ISocialUserInfo is access ISocialUserInfo_Interface'Class;
+   type ISocialUserInfo is access all ISocialUserInfo_Interface'Class;
    type ISocialUserInfo_Ptr is access all ISocialUserInfo;
 
    -----------------------------------------------------------------------------
@@ -117,7 +117,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       Default_e => 0,
       Photo_e => 1
    );
-   type SocialFeedItemStyle_Ptr is access SocialFeedItemStyle;
+   type SocialFeedItemStyle_Ptr is access all SocialFeedItemStyle;
 
    type SocialFeedKind is (
       HomeFeed_e,
@@ -129,7 +129,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       ContactFeed_e => 1,
       Dashboard_e => 2
    );
-   type SocialFeedKind_Ptr is access SocialFeedKind;
+   type SocialFeedKind_Ptr is access all SocialFeedKind;
 
    type SocialFeedUpdateMode is (
       Append_e,
@@ -139,7 +139,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       Append_e => 0,
       Replace_e => 1
    );
-   type SocialFeedUpdateMode_Ptr is access SocialFeedUpdateMode;
+   type SocialFeedUpdateMode_Ptr is access all SocialFeedUpdateMode;
 
    type SocialItemBadgeStyle is (
       Hidden_e,
@@ -151,7 +151,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       Visible_e => 1,
       VisibleWithCount_e => 2
    );
-   type SocialItemBadgeStyle_Ptr is access SocialItemBadgeStyle;
+   type SocialItemBadgeStyle_Ptr is access all SocialItemBadgeStyle;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -160,7 +160,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    type SocialInfoContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type SocialInfoContract_Ptr is access SocialInfoContract;
+   type SocialInfoContract_Ptr is access all SocialInfoContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -44,75 +44,75 @@ package WinRt.Windows.Media.Miracast is
    -----------------------------------------------------------------------------
 
    type IMiracastReceiver_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastReceiver is access IMiracastReceiver_Interface'Class;
+   type IMiracastReceiver is access all IMiracastReceiver_Interface'Class;
    type IMiracastReceiver_Ptr is access all IMiracastReceiver;
 
    type IMiracastReceiverApplySettingsResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastReceiverApplySettingsResult is access IMiracastReceiverApplySettingsResult_Interface'Class;
+   type IMiracastReceiverApplySettingsResult is access all IMiracastReceiverApplySettingsResult_Interface'Class;
    type IMiracastReceiverApplySettingsResult_Ptr is access all IMiracastReceiverApplySettingsResult;
 
    type IMiracastReceiverConnection_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastReceiverConnection is access IMiracastReceiverConnection_Interface'Class;
+   type IMiracastReceiverConnection is access all IMiracastReceiverConnection_Interface'Class;
    type IMiracastReceiverConnection_Ptr is access all IMiracastReceiverConnection;
 
    type IMiracastReceiverConnectionCreatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastReceiverConnectionCreatedEventArgs is access IMiracastReceiverConnectionCreatedEventArgs_Interface'Class;
+   type IMiracastReceiverConnectionCreatedEventArgs is access all IMiracastReceiverConnectionCreatedEventArgs_Interface'Class;
    type IMiracastReceiverConnectionCreatedEventArgs_Ptr is access all IMiracastReceiverConnectionCreatedEventArgs;
 
    type IMiracastReceiverCursorImageChannel_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastReceiverCursorImageChannel is access IMiracastReceiverCursorImageChannel_Interface'Class;
+   type IMiracastReceiverCursorImageChannel is access all IMiracastReceiverCursorImageChannel_Interface'Class;
    type IMiracastReceiverCursorImageChannel_Ptr is access all IMiracastReceiverCursorImageChannel;
 
    type IMiracastReceiverCursorImageChannelSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastReceiverCursorImageChannelSettings is access IMiracastReceiverCursorImageChannelSettings_Interface'Class;
+   type IMiracastReceiverCursorImageChannelSettings is access all IMiracastReceiverCursorImageChannelSettings_Interface'Class;
    type IMiracastReceiverCursorImageChannelSettings_Ptr is access all IMiracastReceiverCursorImageChannelSettings;
 
    type IMiracastReceiverDisconnectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastReceiverDisconnectedEventArgs is access IMiracastReceiverDisconnectedEventArgs_Interface'Class;
+   type IMiracastReceiverDisconnectedEventArgs is access all IMiracastReceiverDisconnectedEventArgs_Interface'Class;
    type IMiracastReceiverDisconnectedEventArgs_Ptr is access all IMiracastReceiverDisconnectedEventArgs;
 
    type IMiracastReceiverGameControllerDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastReceiverGameControllerDevice is access IMiracastReceiverGameControllerDevice_Interface'Class;
+   type IMiracastReceiverGameControllerDevice is access all IMiracastReceiverGameControllerDevice_Interface'Class;
    type IMiracastReceiverGameControllerDevice_Ptr is access all IMiracastReceiverGameControllerDevice;
 
    type IMiracastReceiverInputDevices_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastReceiverInputDevices is access IMiracastReceiverInputDevices_Interface'Class;
+   type IMiracastReceiverInputDevices is access all IMiracastReceiverInputDevices_Interface'Class;
    type IMiracastReceiverInputDevices_Ptr is access all IMiracastReceiverInputDevices;
 
    type IMiracastReceiverKeyboardDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastReceiverKeyboardDevice is access IMiracastReceiverKeyboardDevice_Interface'Class;
+   type IMiracastReceiverKeyboardDevice is access all IMiracastReceiverKeyboardDevice_Interface'Class;
    type IMiracastReceiverKeyboardDevice_Ptr is access all IMiracastReceiverKeyboardDevice;
 
    type IMiracastReceiverMediaSourceCreatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastReceiverMediaSourceCreatedEventArgs is access IMiracastReceiverMediaSourceCreatedEventArgs_Interface'Class;
+   type IMiracastReceiverMediaSourceCreatedEventArgs is access all IMiracastReceiverMediaSourceCreatedEventArgs_Interface'Class;
    type IMiracastReceiverMediaSourceCreatedEventArgs_Ptr is access all IMiracastReceiverMediaSourceCreatedEventArgs;
 
    type IMiracastReceiverSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastReceiverSession is access IMiracastReceiverSession_Interface'Class;
+   type IMiracastReceiverSession is access all IMiracastReceiverSession_Interface'Class;
    type IMiracastReceiverSession_Ptr is access all IMiracastReceiverSession;
 
    type IMiracastReceiverSessionStartResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastReceiverSessionStartResult is access IMiracastReceiverSessionStartResult_Interface'Class;
+   type IMiracastReceiverSessionStartResult is access all IMiracastReceiverSessionStartResult_Interface'Class;
    type IMiracastReceiverSessionStartResult_Ptr is access all IMiracastReceiverSessionStartResult;
 
    type IMiracastReceiverSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastReceiverSettings is access IMiracastReceiverSettings_Interface'Class;
+   type IMiracastReceiverSettings is access all IMiracastReceiverSettings_Interface'Class;
    type IMiracastReceiverSettings_Ptr is access all IMiracastReceiverSettings;
 
    type IMiracastReceiverStatus_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastReceiverStatus is access IMiracastReceiverStatus_Interface'Class;
+   type IMiracastReceiverStatus is access all IMiracastReceiverStatus_Interface'Class;
    type IMiracastReceiverStatus_Ptr is access all IMiracastReceiverStatus;
 
    type IMiracastReceiverStreamControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastReceiverStreamControl is access IMiracastReceiverStreamControl_Interface'Class;
+   type IMiracastReceiverStreamControl is access all IMiracastReceiverStreamControl_Interface'Class;
    type IMiracastReceiverStreamControl_Ptr is access all IMiracastReceiverStreamControl;
 
    type IMiracastReceiverVideoStreamSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastReceiverVideoStreamSettings is access IMiracastReceiverVideoStreamSettings_Interface'Class;
+   type IMiracastReceiverVideoStreamSettings is access all IMiracastReceiverVideoStreamSettings_Interface'Class;
    type IMiracastReceiverVideoStreamSettings_Ptr is access all IMiracastReceiverVideoStreamSettings;
 
    type IMiracastTransmitter_Interface is interface and WinRt.IInspectable_Interface;
-   type IMiracastTransmitter is access IMiracastTransmitter_Interface'Class;
+   type IMiracastTransmitter is access all IMiracastTransmitter_Interface'Class;
    type IMiracastTransmitter_Ptr is access all IMiracastTransmitter;
 
    -----------------------------------------------------------------------------
@@ -251,7 +251,7 @@ package WinRt.Windows.Media.Miracast is
       ModelNumberTooLong_e => 6,
       InvalidSettings_e => 7
    );
-   type MiracastReceiverApplySettingsStatus_Ptr is access MiracastReceiverApplySettingsStatus;
+   type MiracastReceiverApplySettingsStatus_Ptr is access all MiracastReceiverApplySettingsStatus;
 
    type MiracastReceiverAuthorizationMethod is (
       None_e,
@@ -265,7 +265,7 @@ package WinRt.Windows.Media.Miracast is
       PinDisplayIfRequested_e => 2,
       PinDisplayRequired_e => 3
    );
-   type MiracastReceiverAuthorizationMethod_Ptr is access MiracastReceiverAuthorizationMethod;
+   type MiracastReceiverAuthorizationMethod_Ptr is access all MiracastReceiverAuthorizationMethod;
 
    type MiracastReceiverDisconnectReason is (
       Finished_e,
@@ -287,7 +287,7 @@ package WinRt.Windows.Media.Miracast is
       MediaStreamingError_e => 6,
       MediaDecryptionError_e => 7
    );
-   type MiracastReceiverDisconnectReason_Ptr is access MiracastReceiverDisconnectReason;
+   type MiracastReceiverDisconnectReason_Ptr is access all MiracastReceiverDisconnectReason;
 
    type MiracastReceiverGameControllerDeviceUsageMode is (
       AsGameController_e,
@@ -297,7 +297,7 @@ package WinRt.Windows.Media.Miracast is
       AsGameController_e => 0,
       AsMouseAndKeyboard_e => 1
    );
-   type MiracastReceiverGameControllerDeviceUsageMode_Ptr is access MiracastReceiverGameControllerDeviceUsageMode;
+   type MiracastReceiverGameControllerDeviceUsageMode_Ptr is access all MiracastReceiverGameControllerDeviceUsageMode;
 
    type MiracastReceiverListeningStatus is (
       NotListening_e,
@@ -315,7 +315,7 @@ package WinRt.Windows.Media.Miracast is
       DisabledByPolicy_e => 4,
       TemporarilyDisabled_e => 5
    );
-   type MiracastReceiverListeningStatus_Ptr is access MiracastReceiverListeningStatus;
+   type MiracastReceiverListeningStatus_Ptr is access all MiracastReceiverListeningStatus;
 
    type MiracastReceiverSessionStartStatus is (
       Success_e,
@@ -329,7 +329,7 @@ package WinRt.Windows.Media.Miracast is
       MiracastNotSupported_e => 2,
       AccessDenied_e => 3
    );
-   type MiracastReceiverSessionStartStatus_Ptr is access MiracastReceiverSessionStartStatus;
+   type MiracastReceiverSessionStartStatus_Ptr is access all MiracastReceiverSessionStartStatus;
 
    type MiracastReceiverWiFiStatus is (
       MiracastSupportUndetermined_e,
@@ -343,7 +343,7 @@ package WinRt.Windows.Media.Miracast is
       MiracastSupportNotOptimized_e => 2,
       MiracastSupported_e => 3
    );
-   type MiracastReceiverWiFiStatus_Ptr is access MiracastReceiverWiFiStatus;
+   type MiracastReceiverWiFiStatus_Ptr is access all MiracastReceiverWiFiStatus;
 
    type MiracastTransmitterAuthorizationStatus is (
       Undecided_e,
@@ -357,7 +357,7 @@ package WinRt.Windows.Media.Miracast is
       AlwaysPrompt_e => 2,
       Blocked_e => 3
    );
-   type MiracastTransmitterAuthorizationStatus_Ptr is access MiracastTransmitterAuthorizationStatus;
+   type MiracastTransmitterAuthorizationStatus_Ptr is access all MiracastTransmitterAuthorizationStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

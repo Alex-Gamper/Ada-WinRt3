@@ -38,10 +38,10 @@ package WinRt.Windows.Graphics.DirectX.Direct3D11 is
    -----------------------------------------------------------------------------
 
    type IDirect3DDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IDirect3DDevice is access IDirect3DDevice_Interface'Class;
+   type IDirect3DDevice is access all IDirect3DDevice_Interface'Class;
 
    type IDirect3DSurface_Interface is interface and WinRt.IInspectable_Interface;
-   type IDirect3DSurface is access IDirect3DSurface_Interface'Class;
+   type IDirect3DSurface is access all IDirect3DSurface_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -71,7 +71,7 @@ package WinRt.Windows.Graphics.DirectX.Direct3D11 is
       Decoder_e => 512,
       VideoEncoder_e => 1024
    );
-   type Direct3DBindings_Ptr is access Direct3DBindings;
+   type Direct3DBindings_Ptr is access all Direct3DBindings;
 
    type Direct3DUsage is (
       Default_e,
@@ -85,7 +85,7 @@ package WinRt.Windows.Graphics.DirectX.Direct3D11 is
       Dynamic_e => 2,
       Staging_e => 3
    );
-   type Direct3DUsage_Ptr is access Direct3DUsage;
+   type Direct3DUsage_Ptr is access all Direct3DUsage;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -95,7 +95,7 @@ package WinRt.Windows.Graphics.DirectX.Direct3D11 is
       Count : WinRt.Int32;
       Quality : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type Direct3DMultisampleDescription_Ptr is access Direct3DMultisampleDescription;
+   type Direct3DMultisampleDescription_Ptr is access all Direct3DMultisampleDescription;
 
    type Direct3DSurfaceDescription is record
       Width : WinRt.Int32;
@@ -103,7 +103,7 @@ package WinRt.Windows.Graphics.DirectX.Direct3D11 is
       Format : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
       MultisampleDescription : Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription;
    end record with Convention => C_Pass_By_Copy;
-   type Direct3DSurfaceDescription_Ptr is access Direct3DSurfaceDescription;
+   type Direct3DSurfaceDescription_Ptr is access all Direct3DSurfaceDescription;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

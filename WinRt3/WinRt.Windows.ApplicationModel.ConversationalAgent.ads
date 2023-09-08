@@ -42,49 +42,49 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    -----------------------------------------------------------------------------
 
    type IActivationSignalDetectionConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IActivationSignalDetectionConfiguration is access IActivationSignalDetectionConfiguration_Interface'Class;
+   type IActivationSignalDetectionConfiguration is access all IActivationSignalDetectionConfiguration_Interface'Class;
    type IActivationSignalDetectionConfiguration_Ptr is access all IActivationSignalDetectionConfiguration;
 
    type IActivationSignalDetector_Interface is interface and WinRt.IInspectable_Interface;
-   type IActivationSignalDetector is access IActivationSignalDetector_Interface'Class;
+   type IActivationSignalDetector is access all IActivationSignalDetector_Interface'Class;
    type IActivationSignalDetector_Ptr is access all IActivationSignalDetector;
 
    type IConversationalAgentDetectorManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IConversationalAgentDetectorManager is access IConversationalAgentDetectorManager_Interface'Class;
+   type IConversationalAgentDetectorManager is access all IConversationalAgentDetectorManager_Interface'Class;
    type IConversationalAgentDetectorManager_Ptr is access all IConversationalAgentDetectorManager;
 
    type IConversationalAgentDetectorManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IConversationalAgentDetectorManagerStatics is access IConversationalAgentDetectorManagerStatics_Interface'Class;
+   type IConversationalAgentDetectorManagerStatics is access all IConversationalAgentDetectorManagerStatics_Interface'Class;
 
    type IConversationalAgentSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IConversationalAgentSession is access IConversationalAgentSession_Interface'Class;
+   type IConversationalAgentSession is access all IConversationalAgentSession_Interface'Class;
    type IConversationalAgentSession_Ptr is access all IConversationalAgentSession;
 
    type IConversationalAgentSessionInterruptedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IConversationalAgentSessionInterruptedEventArgs is access IConversationalAgentSessionInterruptedEventArgs_Interface'Class;
+   type IConversationalAgentSessionInterruptedEventArgs is access all IConversationalAgentSessionInterruptedEventArgs_Interface'Class;
    type IConversationalAgentSessionInterruptedEventArgs_Ptr is access all IConversationalAgentSessionInterruptedEventArgs;
 
    type IConversationalAgentSessionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IConversationalAgentSessionStatics is access IConversationalAgentSessionStatics_Interface'Class;
+   type IConversationalAgentSessionStatics is access all IConversationalAgentSessionStatics_Interface'Class;
 
    type IConversationalAgentSignal_Interface is interface and WinRt.IInspectable_Interface;
-   type IConversationalAgentSignal is access IConversationalAgentSignal_Interface'Class;
+   type IConversationalAgentSignal is access all IConversationalAgentSignal_Interface'Class;
    type IConversationalAgentSignal_Ptr is access all IConversationalAgentSignal;
 
    type IConversationalAgentSignalDetectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IConversationalAgentSignalDetectedEventArgs is access IConversationalAgentSignalDetectedEventArgs_Interface'Class;
+   type IConversationalAgentSignalDetectedEventArgs is access all IConversationalAgentSignalDetectedEventArgs_Interface'Class;
    type IConversationalAgentSignalDetectedEventArgs_Ptr is access all IConversationalAgentSignalDetectedEventArgs;
 
    type IConversationalAgentSystemStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IConversationalAgentSystemStateChangedEventArgs is access IConversationalAgentSystemStateChangedEventArgs_Interface'Class;
+   type IConversationalAgentSystemStateChangedEventArgs is access all IConversationalAgentSystemStateChangedEventArgs_Interface'Class;
    type IConversationalAgentSystemStateChangedEventArgs_Ptr is access all IConversationalAgentSystemStateChangedEventArgs;
 
    type IDetectionConfigurationAvailabilityChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDetectionConfigurationAvailabilityChangedEventArgs is access IDetectionConfigurationAvailabilityChangedEventArgs_Interface'Class;
+   type IDetectionConfigurationAvailabilityChangedEventArgs is access all IDetectionConfigurationAvailabilityChangedEventArgs_Interface'Class;
    type IDetectionConfigurationAvailabilityChangedEventArgs_Ptr is access all IDetectionConfigurationAvailabilityChangedEventArgs;
 
    type IDetectionConfigurationAvailabilityInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IDetectionConfigurationAvailabilityInfo is access IDetectionConfigurationAvailabilityInfo_Interface'Class;
+   type IDetectionConfigurationAvailabilityInfo is access all IDetectionConfigurationAvailabilityInfo_Interface'Class;
    type IDetectionConfigurationAvailabilityInfo_Ptr is access all IDetectionConfigurationAvailabilityInfo;
 
    -----------------------------------------------------------------------------
@@ -181,7 +181,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       AudioOEMDefined_e => 9,
       OtherOEMDefined_e => 10
    );
-   type ActivationSignalDetectionTrainingDataFormat_Ptr is access ActivationSignalDetectionTrainingDataFormat;
+   type ActivationSignalDetectionTrainingDataFormat_Ptr is access all ActivationSignalDetectionTrainingDataFormat;
 
    type ActivationSignalDetectorKind is (
       AudioPattern_e,
@@ -193,7 +193,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       AudioImpulse_e => 1,
       HardwareEvent_e => 2
    );
-   type ActivationSignalDetectorKind_Ptr is access ActivationSignalDetectorKind;
+   type ActivationSignalDetectorKind_Ptr is access all ActivationSignalDetectorKind;
 
    type ActivationSignalDetectorPowerState is (
       HighPower_e,
@@ -205,7 +205,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       ConnectedLowPower_e => 1,
       DisconnectedLowPower_e => 2
    );
-   type ActivationSignalDetectorPowerState_Ptr is access ActivationSignalDetectorPowerState;
+   type ActivationSignalDetectorPowerState_Ptr is access all ActivationSignalDetectorPowerState;
 
    type ConversationalAgentSessionUpdateResponse is (
       Success_e,
@@ -215,7 +215,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       Success_e => 0,
       Failed_e => 1
    );
-   type ConversationalAgentSessionUpdateResponse_Ptr is access ConversationalAgentSessionUpdateResponse;
+   type ConversationalAgentSessionUpdateResponse_Ptr is access all ConversationalAgentSessionUpdateResponse;
 
    type ConversationalAgentState is (
       Inactive_e,
@@ -233,7 +233,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       Speaking_e => 4,
       ListeningAndSpeaking_e => 5
    );
-   type ConversationalAgentState_Ptr is access ConversationalAgentState;
+   type ConversationalAgentState_Ptr is access all ConversationalAgentState;
 
    type ConversationalAgentSystemStateChangeType is (
       UserAuthentication_e,
@@ -247,7 +247,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       IndicatorLightAvailability_e => 2,
       VoiceActivationAvailability_e => 3
    );
-   type ConversationalAgentSystemStateChangeType_Ptr is access ConversationalAgentSystemStateChangeType;
+   type ConversationalAgentSystemStateChangeType_Ptr is access all ConversationalAgentSystemStateChangeType;
 
    type DetectionConfigurationAvailabilityChangeKind is (
       SystemResourceAccess_e,
@@ -259,7 +259,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       Permission_e => 1,
       LockScreenPermission_e => 2
    );
-   type DetectionConfigurationAvailabilityChangeKind_Ptr is access DetectionConfigurationAvailabilityChangeKind;
+   type DetectionConfigurationAvailabilityChangeKind_Ptr is access all DetectionConfigurationAvailabilityChangeKind;
 
    type DetectionConfigurationTrainingStatus is (
       Success_e,
@@ -281,7 +281,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       VoiceQualityProblem_e => 6,
       TrainingSystemInternalError_e => 7
    );
-   type DetectionConfigurationTrainingStatus_Ptr is access DetectionConfigurationTrainingStatus;
+   type DetectionConfigurationTrainingStatus_Ptr is access all DetectionConfigurationTrainingStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

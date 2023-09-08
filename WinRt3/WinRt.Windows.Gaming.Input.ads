@@ -44,74 +44,74 @@ package WinRt.Windows.Gaming.Input is
    -----------------------------------------------------------------------------
 
    type IArcadeStick_Interface is interface and WinRt.IInspectable_Interface;
-   type IArcadeStick is access IArcadeStick_Interface'Class;
+   type IArcadeStick is access all IArcadeStick_Interface'Class;
    type IArcadeStick_Ptr is access all IArcadeStick;
 
    type IArcadeStickStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IArcadeStickStatics is access IArcadeStickStatics_Interface'Class;
+   type IArcadeStickStatics is access all IArcadeStickStatics_Interface'Class;
 
    type IArcadeStickStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IArcadeStickStatics2 is access IArcadeStickStatics2_Interface'Class;
+   type IArcadeStickStatics2 is access all IArcadeStickStatics2_Interface'Class;
 
    type IFlightStick_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlightStick is access IFlightStick_Interface'Class;
+   type IFlightStick is access all IFlightStick_Interface'Class;
    type IFlightStick_Ptr is access all IFlightStick;
 
    type IFlightStickStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlightStickStatics is access IFlightStickStatics_Interface'Class;
+   type IFlightStickStatics is access all IFlightStickStatics_Interface'Class;
 
    type IGameController_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameController is access IGameController_Interface'Class;
+   type IGameController is access all IGameController_Interface'Class;
 
    type IGameControllerBatteryInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameControllerBatteryInfo is access IGameControllerBatteryInfo_Interface'Class;
+   type IGameControllerBatteryInfo is access all IGameControllerBatteryInfo_Interface'Class;
 
    type IGamepad_Interface is interface and WinRt.IInspectable_Interface;
-   type IGamepad is access IGamepad_Interface'Class;
+   type IGamepad is access all IGamepad_Interface'Class;
    type IGamepad_Ptr is access all IGamepad;
 
    type IGamepad2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGamepad2 is access IGamepad2_Interface'Class;
+   type IGamepad2 is access all IGamepad2_Interface'Class;
 
    type IGamepadStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGamepadStatics is access IGamepadStatics_Interface'Class;
+   type IGamepadStatics is access all IGamepadStatics_Interface'Class;
 
    type IGamepadStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGamepadStatics2 is access IGamepadStatics2_Interface'Class;
+   type IGamepadStatics2 is access all IGamepadStatics2_Interface'Class;
 
    type IHeadset_Interface is interface and WinRt.IInspectable_Interface;
-   type IHeadset is access IHeadset_Interface'Class;
+   type IHeadset is access all IHeadset_Interface'Class;
    type IHeadset_Ptr is access all IHeadset;
 
    type IRacingWheel_Interface is interface and WinRt.IInspectable_Interface;
-   type IRacingWheel is access IRacingWheel_Interface'Class;
+   type IRacingWheel is access all IRacingWheel_Interface'Class;
    type IRacingWheel_Ptr is access all IRacingWheel;
 
    type IRacingWheelStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRacingWheelStatics is access IRacingWheelStatics_Interface'Class;
+   type IRacingWheelStatics is access all IRacingWheelStatics_Interface'Class;
 
    type IRacingWheelStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRacingWheelStatics2 is access IRacingWheelStatics2_Interface'Class;
+   type IRacingWheelStatics2 is access all IRacingWheelStatics2_Interface'Class;
 
    type IRawGameController_Interface is interface and WinRt.IInspectable_Interface;
-   type IRawGameController is access IRawGameController_Interface'Class;
+   type IRawGameController is access all IRawGameController_Interface'Class;
    type IRawGameController_Ptr is access all IRawGameController;
 
    type IRawGameController2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRawGameController2 is access IRawGameController2_Interface'Class;
+   type IRawGameController2 is access all IRawGameController2_Interface'Class;
 
    type IRawGameControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRawGameControllerStatics is access IRawGameControllerStatics_Interface'Class;
+   type IRawGameControllerStatics is access all IRawGameControllerStatics_Interface'Class;
 
    type IUINavigationController_Interface is interface and WinRt.IInspectable_Interface;
-   type IUINavigationController is access IUINavigationController_Interface'Class;
+   type IUINavigationController is access all IUINavigationController_Interface'Class;
    type IUINavigationController_Ptr is access all IUINavigationController;
 
    type IUINavigationControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUINavigationControllerStatics is access IUINavigationControllerStatics_Interface'Class;
+   type IUINavigationControllerStatics is access all IUINavigationControllerStatics_Interface'Class;
 
    type IUINavigationControllerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IUINavigationControllerStatics2 is access IUINavigationControllerStatics2_Interface'Class;
+   type IUINavigationControllerStatics2 is access all IUINavigationControllerStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -193,7 +193,7 @@ package WinRt.Windows.Gaming.Input is
       Special1_e => 1024,
       Special2_e => 2048
    );
-   type ArcadeStickButtons_Ptr is access ArcadeStickButtons;
+   type ArcadeStickButtons_Ptr is access all ArcadeStickButtons;
 
    type FlightStickButtons is (
       None_e,
@@ -205,7 +205,7 @@ package WinRt.Windows.Gaming.Input is
       FirePrimary_e => 1,
       FireSecondary_e => 2
    );
-   type FlightStickButtons_Ptr is access FlightStickButtons;
+   type FlightStickButtons_Ptr is access all FlightStickButtons;
 
    type GameControllerButtonLabel is (
       None_e,
@@ -349,7 +349,7 @@ package WinRt.Windows.Gaming.Input is
       DialRight_e => 67,
       Suspension_e => 68
    );
-   type GameControllerButtonLabel_Ptr is access GameControllerButtonLabel;
+   type GameControllerButtonLabel_Ptr is access all GameControllerButtonLabel;
 
    type GameControllerSwitchKind is (
       TwoWay_e,
@@ -361,7 +361,7 @@ package WinRt.Windows.Gaming.Input is
       FourWay_e => 1,
       EightWay_e => 2
    );
-   type GameControllerSwitchKind_Ptr is access GameControllerSwitchKind;
+   type GameControllerSwitchKind_Ptr is access all GameControllerSwitchKind;
 
    type GameControllerSwitchPosition is (
       Center_e,
@@ -385,7 +385,7 @@ package WinRt.Windows.Gaming.Input is
       Left_e => 7,
       UpLeft_e => 8
    );
-   type GameControllerSwitchPosition_Ptr is access GameControllerSwitchPosition;
+   type GameControllerSwitchPosition_Ptr is access all GameControllerSwitchPosition;
    type GameControllerSwitchPosition_Array is array (Natural range <>) of aliased GameControllerSwitchPosition;
 
    type GamepadButtons is (
@@ -430,7 +430,7 @@ package WinRt.Windows.Gaming.Input is
       Paddle3_e => 65536,
       Paddle4_e => 131072
    );
-   type GamepadButtons_Ptr is access GamepadButtons;
+   type GamepadButtons_Ptr is access all GamepadButtons;
 
    type OptionalUINavigationButtons is (
       None_e,
@@ -462,7 +462,7 @@ package WinRt.Windows.Gaming.Input is
       ScrollLeft_e => 1024,
       ScrollRight_e => 2048
    );
-   type OptionalUINavigationButtons_Ptr is access OptionalUINavigationButtons;
+   type OptionalUINavigationButtons_Ptr is access all OptionalUINavigationButtons;
 
    type RacingWheelButtons is (
       None_e,
@@ -514,7 +514,7 @@ package WinRt.Windows.Gaming.Input is
       Button15_e => 1048576,
       Button16_e => 2097152
    );
-   type RacingWheelButtons_Ptr is access RacingWheelButtons;
+   type RacingWheelButtons_Ptr is access all RacingWheelButtons;
 
    type RequiredUINavigationButtons is (
       None_e,
@@ -538,7 +538,7 @@ package WinRt.Windows.Gaming.Input is
       Left_e => 64,
       Right_e => 128
    );
-   type RequiredUINavigationButtons_Ptr is access RequiredUINavigationButtons;
+   type RequiredUINavigationButtons_Ptr is access all RequiredUINavigationButtons;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -548,7 +548,7 @@ package WinRt.Windows.Gaming.Input is
       Timestamp : WinRt.UInt64;
       Buttons : Windows.Gaming.Input.ArcadeStickButtons;
    end record with Convention => C_Pass_By_Copy;
-   type ArcadeStickReading_Ptr is access ArcadeStickReading;
+   type ArcadeStickReading_Ptr is access all ArcadeStickReading;
 
    type FlightStickReading is record
       Timestamp : WinRt.UInt64;
@@ -559,7 +559,7 @@ package WinRt.Windows.Gaming.Input is
       Yaw : WinRt.Double;
       Throttle : WinRt.Double;
    end record with Convention => C_Pass_By_Copy;
-   type FlightStickReading_Ptr is access FlightStickReading;
+   type FlightStickReading_Ptr is access all FlightStickReading;
 
    type GamepadReading is record
       Timestamp : WinRt.UInt64;
@@ -571,7 +571,7 @@ package WinRt.Windows.Gaming.Input is
       RightThumbstickX : WinRt.Double;
       RightThumbstickY : WinRt.Double;
    end record with Convention => C_Pass_By_Copy;
-   type GamepadReading_Ptr is access GamepadReading;
+   type GamepadReading_Ptr is access all GamepadReading;
 
    type GamepadVibration is record
       LeftMotor : WinRt.Double;
@@ -579,12 +579,12 @@ package WinRt.Windows.Gaming.Input is
       LeftTrigger : WinRt.Double;
       RightTrigger : WinRt.Double;
    end record with Convention => C_Pass_By_Copy;
-   type GamepadVibration_Ptr is access GamepadVibration;
+   type GamepadVibration_Ptr is access all GamepadVibration;
 
    type GamingInputPreviewContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type GamingInputPreviewContract_Ptr is access GamingInputPreviewContract;
+   type GamingInputPreviewContract_Ptr is access all GamingInputPreviewContract;
 
    type RacingWheelReading is record
       Timestamp : WinRt.UInt64;
@@ -596,14 +596,14 @@ package WinRt.Windows.Gaming.Input is
       Clutch : WinRt.Double;
       Handbrake : WinRt.Double;
    end record with Convention => C_Pass_By_Copy;
-   type RacingWheelReading_Ptr is access RacingWheelReading;
+   type RacingWheelReading_Ptr is access all RacingWheelReading;
 
    type UINavigationReading is record
       Timestamp : WinRt.UInt64;
       RequiredButtons : Windows.Gaming.Input.RequiredUINavigationButtons;
       OptionalButtons : Windows.Gaming.Input.OptionalUINavigationButtons;
    end record with Convention => C_Pass_By_Copy;
-   type UINavigationReading_Ptr is access UINavigationReading;
+   type UINavigationReading_Ptr is access all UINavigationReading;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

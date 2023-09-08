@@ -38,15 +38,15 @@ package WinRt.Windows.UI.Composition.Diagnostics is
    -----------------------------------------------------------------------------
 
    type ICompositionDebugHeatMaps_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionDebugHeatMaps is access ICompositionDebugHeatMaps_Interface'Class;
+   type ICompositionDebugHeatMaps is access all ICompositionDebugHeatMaps_Interface'Class;
    type ICompositionDebugHeatMaps_Ptr is access all ICompositionDebugHeatMaps;
 
    type ICompositionDebugSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionDebugSettings is access ICompositionDebugSettings_Interface'Class;
+   type ICompositionDebugSettings is access all ICompositionDebugSettings_Interface'Class;
    type ICompositionDebugSettings_Ptr is access all ICompositionDebugSettings;
 
    type ICompositionDebugSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompositionDebugSettingsStatics is access ICompositionDebugSettingsStatics_Interface'Class;
+   type ICompositionDebugSettingsStatics is access all ICompositionDebugSettingsStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -90,7 +90,7 @@ package WinRt.Windows.UI.Composition.Diagnostics is
       SwapChains_e => 64,
       All_e => 4294967295
    );
-   type CompositionDebugOverdrawContentKinds_Ptr is access CompositionDebugOverdrawContentKinds;
+   type CompositionDebugOverdrawContentKinds_Ptr is access all CompositionDebugOverdrawContentKinds;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

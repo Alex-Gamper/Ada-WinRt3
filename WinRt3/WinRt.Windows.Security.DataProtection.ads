@@ -42,22 +42,22 @@ package WinRt.Windows.Security.DataProtection is
    -----------------------------------------------------------------------------
 
    type IUserDataAvailabilityStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAvailabilityStateChangedEventArgs is access IUserDataAvailabilityStateChangedEventArgs_Interface'Class;
+   type IUserDataAvailabilityStateChangedEventArgs is access all IUserDataAvailabilityStateChangedEventArgs_Interface'Class;
    type IUserDataAvailabilityStateChangedEventArgs_Ptr is access all IUserDataAvailabilityStateChangedEventArgs;
 
    type IUserDataBufferUnprotectResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataBufferUnprotectResult is access IUserDataBufferUnprotectResult_Interface'Class;
+   type IUserDataBufferUnprotectResult is access all IUserDataBufferUnprotectResult_Interface'Class;
    type IUserDataBufferUnprotectResult_Ptr is access all IUserDataBufferUnprotectResult;
 
    type IUserDataProtectionManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataProtectionManager is access IUserDataProtectionManager_Interface'Class;
+   type IUserDataProtectionManager is access all IUserDataProtectionManager_Interface'Class;
    type IUserDataProtectionManager_Ptr is access all IUserDataProtectionManager;
 
    type IUserDataProtectionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataProtectionManagerStatics is access IUserDataProtectionManagerStatics_Interface'Class;
+   type IUserDataProtectionManagerStatics is access all IUserDataProtectionManagerStatics_Interface'Class;
 
    type IUserDataStorageItemProtectionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataStorageItemProtectionInfo is access IUserDataStorageItemProtectionInfo_Interface'Class;
+   type IUserDataStorageItemProtectionInfo is access all IUserDataStorageItemProtectionInfo_Interface'Class;
    type IUserDataStorageItemProtectionInfo_Ptr is access all IUserDataStorageItemProtectionInfo;
 
    -----------------------------------------------------------------------------
@@ -102,7 +102,7 @@ package WinRt.Windows.Security.DataProtection is
       AfterFirstUnlock_e => 1,
       WhileUnlocked_e => 2
    );
-   type UserDataAvailability_Ptr is access UserDataAvailability;
+   type UserDataAvailability_Ptr is access all UserDataAvailability;
 
    type UserDataBufferUnprotectStatus is (
       Succeeded_e,
@@ -112,7 +112,7 @@ package WinRt.Windows.Security.DataProtection is
       Succeeded_e => 0,
       Unavailable_e => 1
    );
-   type UserDataBufferUnprotectStatus_Ptr is access UserDataBufferUnprotectStatus;
+   type UserDataBufferUnprotectStatus_Ptr is access all UserDataBufferUnprotectStatus;
 
    type UserDataStorageItemProtectionStatus is (
       Succeeded_e,
@@ -124,7 +124,7 @@ package WinRt.Windows.Security.DataProtection is
       NotProtectable_e => 1,
       DataUnavailable_e => 2
    );
-   type UserDataStorageItemProtectionStatus_Ptr is access UserDataStorageItemProtectionStatus;
+   type UserDataStorageItemProtectionStatus_Ptr is access all UserDataStorageItemProtectionStatus;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

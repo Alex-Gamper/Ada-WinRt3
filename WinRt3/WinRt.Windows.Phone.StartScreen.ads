@@ -40,14 +40,14 @@ package WinRt.Windows.Phone.StartScreen is
    -----------------------------------------------------------------------------
 
    type IDualSimTile_Interface is interface and WinRt.IInspectable_Interface;
-   type IDualSimTile is access IDualSimTile_Interface'Class;
+   type IDualSimTile is access all IDualSimTile_Interface'Class;
    type IDualSimTile_Ptr is access all IDualSimTile;
 
    type IDualSimTileStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDualSimTileStatics is access IDualSimTileStatics_Interface'Class;
+   type IDualSimTileStatics is access all IDualSimTileStatics_Interface'Class;
 
    type IToastNotificationManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IToastNotificationManagerStatics3 is access IToastNotificationManagerStatics3_Interface'Class;
+   type IToastNotificationManagerStatics3 is access all IToastNotificationManagerStatics3_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -66,7 +66,7 @@ package WinRt.Windows.Phone.StartScreen is
    type DualSimTileContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type DualSimTileContract_Ptr is access DualSimTileContract;
+   type DualSimTileContract_Ptr is access all DualSimTileContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

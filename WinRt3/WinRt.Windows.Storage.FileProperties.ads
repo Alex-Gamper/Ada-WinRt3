@@ -42,36 +42,36 @@ package WinRt.Windows.Storage.FileProperties is
    -----------------------------------------------------------------------------
 
    type IBasicProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IBasicProperties is access IBasicProperties_Interface'Class;
+   type IBasicProperties is access all IBasicProperties_Interface'Class;
    type IBasicProperties_Ptr is access all IBasicProperties;
 
    type IDocumentProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IDocumentProperties is access IDocumentProperties_Interface'Class;
+   type IDocumentProperties is access all IDocumentProperties_Interface'Class;
    type IDocumentProperties_Ptr is access all IDocumentProperties;
 
    type IGeotagHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeotagHelperStatics is access IGeotagHelperStatics_Interface'Class;
+   type IGeotagHelperStatics is access all IGeotagHelperStatics_Interface'Class;
 
    type IImageProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageProperties is access IImageProperties_Interface'Class;
+   type IImageProperties is access all IImageProperties_Interface'Class;
    type IImageProperties_Ptr is access all IImageProperties;
 
    type IMusicProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IMusicProperties is access IMusicProperties_Interface'Class;
+   type IMusicProperties is access all IMusicProperties_Interface'Class;
    type IMusicProperties_Ptr is access all IMusicProperties;
 
    type IStorageItemContentProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageItemContentProperties is access IStorageItemContentProperties_Interface'Class;
+   type IStorageItemContentProperties is access all IStorageItemContentProperties_Interface'Class;
    type IStorageItemContentProperties_Ptr is access all IStorageItemContentProperties;
 
    type IStorageItemExtraProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageItemExtraProperties is access IStorageItemExtraProperties_Interface'Class;
+   type IStorageItemExtraProperties is access all IStorageItemExtraProperties_Interface'Class;
 
    type IThumbnailProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IThumbnailProperties is access IThumbnailProperties_Interface'Class;
+   type IThumbnailProperties is access all IThumbnailProperties_Interface'Class;
 
    type IVideoProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoProperties is access IVideoProperties_Interface'Class;
+   type IVideoProperties is access all IVideoProperties_Interface'Class;
    type IVideoProperties_Ptr is access all IVideoProperties;
 
    -----------------------------------------------------------------------------
@@ -146,7 +146,7 @@ package WinRt.Windows.Storage.FileProperties is
       Transverse_e => 7,
       Rotate90_e => 8
    );
-   type PhotoOrientation_Ptr is access PhotoOrientation;
+   type PhotoOrientation_Ptr is access all PhotoOrientation;
 
    type PropertyPrefetchOptions is (
       None_e,
@@ -164,7 +164,7 @@ package WinRt.Windows.Storage.FileProperties is
       DocumentProperties_e => 8,
       BasicProperties_e => 16
    );
-   type PropertyPrefetchOptions_Ptr is access PropertyPrefetchOptions;
+   type PropertyPrefetchOptions_Ptr is access all PropertyPrefetchOptions;
 
    type ThumbnailMode is (
       PicturesView_e,
@@ -182,7 +182,7 @@ package WinRt.Windows.Storage.FileProperties is
       ListView_e => 4,
       SingleItem_e => 5
    );
-   type ThumbnailMode_Ptr is access ThumbnailMode;
+   type ThumbnailMode_Ptr is access all ThumbnailMode;
 
    type ThumbnailOptions is (
       None_e,
@@ -196,7 +196,7 @@ package WinRt.Windows.Storage.FileProperties is
       ResizeThumbnail_e => 2,
       UseCurrentScale_e => 4
    );
-   type ThumbnailOptions_Ptr is access ThumbnailOptions;
+   type ThumbnailOptions_Ptr is access all ThumbnailOptions;
 
    type ThumbnailType is (
       Image_e,
@@ -206,7 +206,7 @@ package WinRt.Windows.Storage.FileProperties is
       Image_e => 0,
       Icon_e => 1
    );
-   type ThumbnailType_Ptr is access ThumbnailType;
+   type ThumbnailType_Ptr is access all ThumbnailType;
 
    type VideoOrientation is (
       Normal_e,
@@ -220,7 +220,7 @@ package WinRt.Windows.Storage.FileProperties is
       Rotate180_e => 180,
       Rotate270_e => 270
    );
-   type VideoOrientation_Ptr is access VideoOrientation;
+   type VideoOrientation_Ptr is access all VideoOrientation;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

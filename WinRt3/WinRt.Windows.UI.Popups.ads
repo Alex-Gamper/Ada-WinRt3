@@ -40,29 +40,29 @@ package WinRt.Windows.UI.Popups is
    -----------------------------------------------------------------------------
 
    type UICommandInvokedHandler_Delegate;
-   type UICommandInvokedHandler is access UICommandInvokedHandler_Delegate;
+   type UICommandInvokedHandler is access all UICommandInvokedHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IMessageDialog_Interface is interface and WinRt.IInspectable_Interface;
-   type IMessageDialog is access IMessageDialog_Interface'Class;
+   type IMessageDialog is access all IMessageDialog_Interface'Class;
    type IMessageDialog_Ptr is access all IMessageDialog;
 
    type IMessageDialogFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMessageDialogFactory is access IMessageDialogFactory_Interface'Class;
+   type IMessageDialogFactory is access all IMessageDialogFactory_Interface'Class;
 
    type IPopupMenu_Interface is interface and WinRt.IInspectable_Interface;
-   type IPopupMenu is access IPopupMenu_Interface'Class;
+   type IPopupMenu is access all IPopupMenu_Interface'Class;
    type IPopupMenu_Ptr is access all IPopupMenu;
 
    type IUICommand_Interface is interface and WinRt.IInspectable_Interface;
-   type IUICommand is access IUICommand_Interface'Class;
+   type IUICommand is access all IUICommand_Interface'Class;
    type IUICommand_Ptr is access all IUICommand;
 
    type IUICommandFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IUICommandFactory is access IUICommandFactory_Interface'Class;
+   type IUICommandFactory is access all IUICommandFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -104,7 +104,7 @@ package WinRt.Windows.UI.Popups is
       None_e => 0,
       AcceptUserInputAfterDelay_e => 1
    );
-   type MessageDialogOptions_Ptr is access MessageDialogOptions;
+   type MessageDialogOptions_Ptr is access all MessageDialogOptions;
 
    type Placement is (
       Default_e,
@@ -120,7 +120,7 @@ package WinRt.Windows.UI.Popups is
       Left_e => 3,
       Right_e => 4
    );
-   type Placement_Ptr is access Placement;
+   type Placement_Ptr is access all Placement;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

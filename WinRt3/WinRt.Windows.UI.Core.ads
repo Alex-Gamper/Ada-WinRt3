@@ -43,187 +43,187 @@ package WinRt.Windows.UI.Core is
    -----------------------------------------------------------------------------
 
    type DispatchedHandler_Delegate;
-   type DispatchedHandler is access DispatchedHandler_Delegate;
+   type DispatchedHandler is access all DispatchedHandler_Delegate;
 
    type IdleDispatchedHandler_Delegate;
-   type IdleDispatchedHandler is access IdleDispatchedHandler_Delegate;
+   type IdleDispatchedHandler is access all IdleDispatchedHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IAcceleratorKeyEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAcceleratorKeyEventArgs is access IAcceleratorKeyEventArgs_Interface'Class;
+   type IAcceleratorKeyEventArgs is access all IAcceleratorKeyEventArgs_Interface'Class;
    type IAcceleratorKeyEventArgs_Ptr is access all IAcceleratorKeyEventArgs;
 
    type IAcceleratorKeyEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAcceleratorKeyEventArgs2 is access IAcceleratorKeyEventArgs2_Interface'Class;
+   type IAcceleratorKeyEventArgs2 is access all IAcceleratorKeyEventArgs2_Interface'Class;
 
    type IAutomationProviderRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationProviderRequestedEventArgs is access IAutomationProviderRequestedEventArgs_Interface'Class;
+   type IAutomationProviderRequestedEventArgs is access all IAutomationProviderRequestedEventArgs_Interface'Class;
    type IAutomationProviderRequestedEventArgs_Ptr is access all IAutomationProviderRequestedEventArgs;
 
    type IBackRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackRequestedEventArgs is access IBackRequestedEventArgs_Interface'Class;
+   type IBackRequestedEventArgs is access all IBackRequestedEventArgs_Interface'Class;
    type IBackRequestedEventArgs_Ptr is access all IBackRequestedEventArgs;
 
    type ICharacterReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICharacterReceivedEventArgs is access ICharacterReceivedEventArgs_Interface'Class;
+   type ICharacterReceivedEventArgs is access all ICharacterReceivedEventArgs_Interface'Class;
    type ICharacterReceivedEventArgs_Ptr is access all ICharacterReceivedEventArgs;
 
    type IClosestInteractiveBoundsRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IClosestInteractiveBoundsRequestedEventArgs is access IClosestInteractiveBoundsRequestedEventArgs_Interface'Class;
+   type IClosestInteractiveBoundsRequestedEventArgs is access all IClosestInteractiveBoundsRequestedEventArgs_Interface'Class;
    type IClosestInteractiveBoundsRequestedEventArgs_Ptr is access all IClosestInteractiveBoundsRequestedEventArgs;
 
    type ICoreAcceleratorKeys_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreAcceleratorKeys is access ICoreAcceleratorKeys_Interface'Class;
+   type ICoreAcceleratorKeys is access all ICoreAcceleratorKeys_Interface'Class;
    type ICoreAcceleratorKeys_Ptr is access all ICoreAcceleratorKeys;
 
    type ICoreClosestInteractiveBoundsRequested_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreClosestInteractiveBoundsRequested is access ICoreClosestInteractiveBoundsRequested_Interface'Class;
+   type ICoreClosestInteractiveBoundsRequested is access all ICoreClosestInteractiveBoundsRequested_Interface'Class;
 
    type ICoreComponentFocusable_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreComponentFocusable is access ICoreComponentFocusable_Interface'Class;
+   type ICoreComponentFocusable is access all ICoreComponentFocusable_Interface'Class;
 
    type ICoreCursor_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreCursor is access ICoreCursor_Interface'Class;
+   type ICoreCursor is access all ICoreCursor_Interface'Class;
    type ICoreCursor_Ptr is access all ICoreCursor;
 
    type ICoreCursorFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreCursorFactory is access ICoreCursorFactory_Interface'Class;
+   type ICoreCursorFactory is access all ICoreCursorFactory_Interface'Class;
 
    type ICoreDispatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreDispatcher is access ICoreDispatcher_Interface'Class;
+   type ICoreDispatcher is access all ICoreDispatcher_Interface'Class;
    type ICoreDispatcher_Ptr is access all ICoreDispatcher;
 
    type ICoreDispatcher2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreDispatcher2 is access ICoreDispatcher2_Interface'Class;
+   type ICoreDispatcher2 is access all ICoreDispatcher2_Interface'Class;
 
    type ICoreDispatcherWithTaskPriority_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreDispatcherWithTaskPriority is access ICoreDispatcherWithTaskPriority_Interface'Class;
+   type ICoreDispatcherWithTaskPriority is access all ICoreDispatcherWithTaskPriority_Interface'Class;
 
    type ICoreInputSourceBase_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreInputSourceBase is access ICoreInputSourceBase_Interface'Class;
+   type ICoreInputSourceBase is access all ICoreInputSourceBase_Interface'Class;
    type ICoreInputSourceBase_Ptr is access all ICoreInputSourceBase;
 
    type ICoreKeyboardInputSource_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreKeyboardInputSource is access ICoreKeyboardInputSource_Interface'Class;
+   type ICoreKeyboardInputSource is access all ICoreKeyboardInputSource_Interface'Class;
 
    type ICoreKeyboardInputSource2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreKeyboardInputSource2 is access ICoreKeyboardInputSource2_Interface'Class;
+   type ICoreKeyboardInputSource2 is access all ICoreKeyboardInputSource2_Interface'Class;
 
    type ICorePointerInputSource_Interface is interface and WinRt.IInspectable_Interface;
-   type ICorePointerInputSource is access ICorePointerInputSource_Interface'Class;
+   type ICorePointerInputSource is access all ICorePointerInputSource_Interface'Class;
 
    type ICorePointerInputSource2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICorePointerInputSource2 is access ICorePointerInputSource2_Interface'Class;
+   type ICorePointerInputSource2 is access all ICorePointerInputSource2_Interface'Class;
 
    type ICorePointerRedirector_Interface is interface and WinRt.IInspectable_Interface;
-   type ICorePointerRedirector is access ICorePointerRedirector_Interface'Class;
+   type ICorePointerRedirector is access all ICorePointerRedirector_Interface'Class;
 
    type ICoreTouchHitTesting_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreTouchHitTesting is access ICoreTouchHitTesting_Interface'Class;
+   type ICoreTouchHitTesting is access all ICoreTouchHitTesting_Interface'Class;
 
    type ICoreWindow_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWindow is access ICoreWindow_Interface'Class;
+   type ICoreWindow is access all ICoreWindow_Interface'Class;
    type ICoreWindow_Ptr is access all ICoreWindow;
 
    type ICoreWindow2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWindow2 is access ICoreWindow2_Interface'Class;
+   type ICoreWindow2 is access all ICoreWindow2_Interface'Class;
 
    type ICoreWindow3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWindow3 is access ICoreWindow3_Interface'Class;
+   type ICoreWindow3 is access all ICoreWindow3_Interface'Class;
 
    type ICoreWindow4_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWindow4 is access ICoreWindow4_Interface'Class;
+   type ICoreWindow4 is access all ICoreWindow4_Interface'Class;
 
    type ICoreWindow5_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWindow5 is access ICoreWindow5_Interface'Class;
+   type ICoreWindow5 is access all ICoreWindow5_Interface'Class;
 
    type ICoreWindowDialog_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWindowDialog is access ICoreWindowDialog_Interface'Class;
+   type ICoreWindowDialog is access all ICoreWindowDialog_Interface'Class;
    type ICoreWindowDialog_Ptr is access all ICoreWindowDialog;
 
    type ICoreWindowDialogFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWindowDialogFactory is access ICoreWindowDialogFactory_Interface'Class;
+   type ICoreWindowDialogFactory is access all ICoreWindowDialogFactory_Interface'Class;
 
    type ICoreWindowEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWindowEventArgs is access ICoreWindowEventArgs_Interface'Class;
+   type ICoreWindowEventArgs is access all ICoreWindowEventArgs_Interface'Class;
    type ICoreWindowEventArgs_Ptr is access all ICoreWindowEventArgs;
 
    type ICoreWindowFlyout_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWindowFlyout is access ICoreWindowFlyout_Interface'Class;
+   type ICoreWindowFlyout is access all ICoreWindowFlyout_Interface'Class;
    type ICoreWindowFlyout_Ptr is access all ICoreWindowFlyout;
 
    type ICoreWindowFlyoutFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWindowFlyoutFactory is access ICoreWindowFlyoutFactory_Interface'Class;
+   type ICoreWindowFlyoutFactory is access all ICoreWindowFlyoutFactory_Interface'Class;
 
    type ICoreWindowPopupShowingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWindowPopupShowingEventArgs is access ICoreWindowPopupShowingEventArgs_Interface'Class;
+   type ICoreWindowPopupShowingEventArgs is access all ICoreWindowPopupShowingEventArgs_Interface'Class;
    type ICoreWindowPopupShowingEventArgs_Ptr is access all ICoreWindowPopupShowingEventArgs;
 
    type ICoreWindowResizeManager_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWindowResizeManager is access ICoreWindowResizeManager_Interface'Class;
+   type ICoreWindowResizeManager is access all ICoreWindowResizeManager_Interface'Class;
    type ICoreWindowResizeManager_Ptr is access all ICoreWindowResizeManager;
 
    type ICoreWindowResizeManagerLayoutCapability_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWindowResizeManagerLayoutCapability is access ICoreWindowResizeManagerLayoutCapability_Interface'Class;
+   type ICoreWindowResizeManagerLayoutCapability is access all ICoreWindowResizeManagerLayoutCapability_Interface'Class;
 
    type ICoreWindowResizeManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWindowResizeManagerStatics is access ICoreWindowResizeManagerStatics_Interface'Class;
+   type ICoreWindowResizeManagerStatics is access all ICoreWindowResizeManagerStatics_Interface'Class;
 
    type ICoreWindowStatic_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWindowStatic is access ICoreWindowStatic_Interface'Class;
+   type ICoreWindowStatic is access all ICoreWindowStatic_Interface'Class;
 
    type ICoreWindowWithContext_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreWindowWithContext is access ICoreWindowWithContext_Interface'Class;
+   type ICoreWindowWithContext is access all ICoreWindowWithContext_Interface'Class;
 
    type IIdleDispatchedHandlerArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IIdleDispatchedHandlerArgs is access IIdleDispatchedHandlerArgs_Interface'Class;
+   type IIdleDispatchedHandlerArgs is access all IIdleDispatchedHandlerArgs_Interface'Class;
    type IIdleDispatchedHandlerArgs_Ptr is access all IIdleDispatchedHandlerArgs;
 
    type IInitializeWithCoreWindow_Interface is interface and WinRt.IInspectable_Interface;
-   type IInitializeWithCoreWindow is access IInitializeWithCoreWindow_Interface'Class;
+   type IInitializeWithCoreWindow is access all IInitializeWithCoreWindow_Interface'Class;
 
    type IInputEnabledEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputEnabledEventArgs is access IInputEnabledEventArgs_Interface'Class;
+   type IInputEnabledEventArgs is access all IInputEnabledEventArgs_Interface'Class;
    type IInputEnabledEventArgs_Ptr is access all IInputEnabledEventArgs;
 
    type IKeyEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyEventArgs is access IKeyEventArgs_Interface'Class;
+   type IKeyEventArgs is access all IKeyEventArgs_Interface'Class;
    type IKeyEventArgs_Ptr is access all IKeyEventArgs;
 
    type IKeyEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyEventArgs2 is access IKeyEventArgs2_Interface'Class;
+   type IKeyEventArgs2 is access all IKeyEventArgs2_Interface'Class;
 
    type IPointerEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointerEventArgs is access IPointerEventArgs_Interface'Class;
+   type IPointerEventArgs is access all IPointerEventArgs_Interface'Class;
    type IPointerEventArgs_Ptr is access all IPointerEventArgs;
 
    type ISystemNavigationManager_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemNavigationManager is access ISystemNavigationManager_Interface'Class;
+   type ISystemNavigationManager is access all ISystemNavigationManager_Interface'Class;
    type ISystemNavigationManager_Ptr is access all ISystemNavigationManager;
 
    type ISystemNavigationManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemNavigationManager2 is access ISystemNavigationManager2_Interface'Class;
+   type ISystemNavigationManager2 is access all ISystemNavigationManager2_Interface'Class;
 
    type ISystemNavigationManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemNavigationManagerStatics is access ISystemNavigationManagerStatics_Interface'Class;
+   type ISystemNavigationManagerStatics is access all ISystemNavigationManagerStatics_Interface'Class;
 
    type ITouchHitTestingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ITouchHitTestingEventArgs is access ITouchHitTestingEventArgs_Interface'Class;
+   type ITouchHitTestingEventArgs is access all ITouchHitTestingEventArgs_Interface'Class;
    type ITouchHitTestingEventArgs_Ptr is access all ITouchHitTestingEventArgs;
 
    type IVisibilityChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IVisibilityChangedEventArgs is access IVisibilityChangedEventArgs_Interface'Class;
+   type IVisibilityChangedEventArgs is access all IVisibilityChangedEventArgs_Interface'Class;
    type IVisibilityChangedEventArgs_Ptr is access all IVisibilityChangedEventArgs;
 
    type IWindowActivatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWindowActivatedEventArgs is access IWindowActivatedEventArgs_Interface'Class;
+   type IWindowActivatedEventArgs is access all IWindowActivatedEventArgs_Interface'Class;
    type IWindowActivatedEventArgs_Ptr is access all IWindowActivatedEventArgs;
 
    type IWindowSizeChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWindowSizeChangedEventArgs is access IWindowSizeChangedEventArgs_Interface'Class;
+   type IWindowSizeChangedEventArgs is access all IWindowSizeChangedEventArgs_Interface'Class;
    type IWindowSizeChangedEventArgs_Ptr is access all IWindowSizeChangedEventArgs;
 
    -----------------------------------------------------------------------------
@@ -394,7 +394,7 @@ package WinRt.Windows.UI.Core is
       Collapsed_e => 1,
       Disabled_e => 2
    );
-   type AppViewBackButtonVisibility_Ptr is access AppViewBackButtonVisibility;
+   type AppViewBackButtonVisibility_Ptr is access all AppViewBackButtonVisibility;
 
    type CoreAcceleratorKeyEventType is (
       KeyDown_e,
@@ -418,7 +418,7 @@ package WinRt.Windows.UI.Core is
       SystemDeadCharacter_e => 7,
       UnicodeCharacter_e => 8
    );
-   type CoreAcceleratorKeyEventType_Ptr is access CoreAcceleratorKeyEventType;
+   type CoreAcceleratorKeyEventType_Ptr is access all CoreAcceleratorKeyEventType;
 
    type CoreCursorType is (
       Arrow_e,
@@ -456,7 +456,7 @@ package WinRt.Windows.UI.Core is
       Pin_e => 14,
       Person_e => 15
    );
-   type CoreCursorType_Ptr is access CoreCursorType;
+   type CoreCursorType_Ptr is access all CoreCursorType;
 
    type CoreDispatcherPriority is (
       Idle_e,
@@ -470,7 +470,7 @@ package WinRt.Windows.UI.Core is
       Normal_e => 0,
       High_e => 1
    );
-   type CoreDispatcherPriority_Ptr is access CoreDispatcherPriority;
+   type CoreDispatcherPriority_Ptr is access all CoreDispatcherPriority;
 
    type CoreInputDeviceTypes is (
       None_e,
@@ -484,7 +484,7 @@ package WinRt.Windows.UI.Core is
       Pen_e => 2,
       Mouse_e => 4
    );
-   type CoreInputDeviceTypes_Ptr is access CoreInputDeviceTypes;
+   type CoreInputDeviceTypes_Ptr is access all CoreInputDeviceTypes;
 
    type CoreProcessEventsOption is (
       ProcessOneAndAllPending_e,
@@ -498,7 +498,7 @@ package WinRt.Windows.UI.Core is
       ProcessUntilQuit_e => 2,
       ProcessAllIfPresent_e => 3
    );
-   type CoreProcessEventsOption_Ptr is access CoreProcessEventsOption;
+   type CoreProcessEventsOption_Ptr is access all CoreProcessEventsOption;
 
    type CoreProximityEvaluationScore is (
       Closest_e,
@@ -508,7 +508,7 @@ package WinRt.Windows.UI.Core is
       Closest_e => 0,
       Farthest_e => 2147483647
    );
-   type CoreProximityEvaluationScore_Ptr is access CoreProximityEvaluationScore;
+   type CoreProximityEvaluationScore_Ptr is access all CoreProximityEvaluationScore;
 
    type CoreVirtualKeyStates is (
       None_e,
@@ -520,7 +520,7 @@ package WinRt.Windows.UI.Core is
       Down_e => 1,
       Locked_e => 2
    );
-   type CoreVirtualKeyStates_Ptr is access CoreVirtualKeyStates;
+   type CoreVirtualKeyStates_Ptr is access all CoreVirtualKeyStates;
 
    type CoreWindowActivationMode is (
       None_e,
@@ -534,7 +534,7 @@ package WinRt.Windows.UI.Core is
       ActivatedNotForeground_e => 2,
       ActivatedInForeground_e => 3
    );
-   type CoreWindowActivationMode_Ptr is access CoreWindowActivationMode;
+   type CoreWindowActivationMode_Ptr is access all CoreWindowActivationMode;
 
    type CoreWindowActivationState is (
       CodeActivated_e,
@@ -546,7 +546,7 @@ package WinRt.Windows.UI.Core is
       Deactivated_e => 1,
       PointerActivated_e => 2
    );
-   type CoreWindowActivationState_Ptr is access CoreWindowActivationState;
+   type CoreWindowActivationState_Ptr is access all CoreWindowActivationState;
 
    type CoreWindowFlowDirection is (
       LeftToRight_e,
@@ -556,7 +556,7 @@ package WinRt.Windows.UI.Core is
       LeftToRight_e => 0,
       RightToLeft_e => 1
    );
-   type CoreWindowFlowDirection_Ptr is access CoreWindowFlowDirection;
+   type CoreWindowFlowDirection_Ptr is access all CoreWindowFlowDirection;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -570,18 +570,18 @@ package WinRt.Windows.UI.Core is
       WasKeyDown : WinRt.Boolean;
       IsKeyReleased : WinRt.Boolean;
    end record with Convention => C_Pass_By_Copy;
-   type CorePhysicalKeyStatus_Ptr is access CorePhysicalKeyStatus;
+   type CorePhysicalKeyStatus_Ptr is access all CorePhysicalKeyStatus;
 
    type CoreProximityEvaluation is record
       Score : WinRt.Int32;
       AdjustedPoint : WinRt.Windows.Foundation.Point;
    end record with Convention => C_Pass_By_Copy;
-   type CoreProximityEvaluation_Ptr is access CoreProximityEvaluation;
+   type CoreProximityEvaluation_Ptr is access all CoreProximityEvaluation;
 
    type CoreWindowDialogsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type CoreWindowDialogsContract_Ptr is access CoreWindowDialogsContract;
+   type CoreWindowDialogsContract_Ptr is access all CoreWindowDialogsContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

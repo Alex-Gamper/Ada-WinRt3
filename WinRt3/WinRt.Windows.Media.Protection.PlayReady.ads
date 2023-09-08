@@ -42,189 +42,189 @@ package WinRt.Windows.Media.Protection.PlayReady is
    -----------------------------------------------------------------------------
 
    type INDClient_Interface is interface and WinRt.IInspectable_Interface;
-   type INDClient is access INDClient_Interface'Class;
+   type INDClient is access all INDClient_Interface'Class;
    type INDClient_Ptr is access all INDClient;
 
    type INDClientFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type INDClientFactory is access INDClientFactory_Interface'Class;
+   type INDClientFactory is access all INDClientFactory_Interface'Class;
 
    type INDClosedCaptionDataReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type INDClosedCaptionDataReceivedEventArgs is access INDClosedCaptionDataReceivedEventArgs_Interface'Class;
+   type INDClosedCaptionDataReceivedEventArgs is access all INDClosedCaptionDataReceivedEventArgs_Interface'Class;
 
    type INDCustomData_Interface is interface and WinRt.IInspectable_Interface;
-   type INDCustomData is access INDCustomData_Interface'Class;
+   type INDCustomData is access all INDCustomData_Interface'Class;
    type INDCustomData_Ptr is access all INDCustomData;
 
    type INDCustomDataFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type INDCustomDataFactory is access INDCustomDataFactory_Interface'Class;
+   type INDCustomDataFactory is access all INDCustomDataFactory_Interface'Class;
 
    type INDDownloadEngine_Interface is interface and WinRt.IInspectable_Interface;
-   type INDDownloadEngine is access INDDownloadEngine_Interface'Class;
+   type INDDownloadEngine is access all INDDownloadEngine_Interface'Class;
 
    type INDDownloadEngineNotifier_Interface is interface and WinRt.IInspectable_Interface;
-   type INDDownloadEngineNotifier is access INDDownloadEngineNotifier_Interface'Class;
+   type INDDownloadEngineNotifier is access all INDDownloadEngineNotifier_Interface'Class;
    type INDDownloadEngineNotifier_Ptr is access all INDDownloadEngineNotifier;
 
    type INDLicenseFetchCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type INDLicenseFetchCompletedEventArgs is access INDLicenseFetchCompletedEventArgs_Interface'Class;
+   type INDLicenseFetchCompletedEventArgs is access all INDLicenseFetchCompletedEventArgs_Interface'Class;
 
    type INDLicenseFetchDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type INDLicenseFetchDescriptor is access INDLicenseFetchDescriptor_Interface'Class;
+   type INDLicenseFetchDescriptor is access all INDLicenseFetchDescriptor_Interface'Class;
    type INDLicenseFetchDescriptor_Ptr is access all INDLicenseFetchDescriptor;
 
    type INDLicenseFetchDescriptorFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type INDLicenseFetchDescriptorFactory is access INDLicenseFetchDescriptorFactory_Interface'Class;
+   type INDLicenseFetchDescriptorFactory is access all INDLicenseFetchDescriptorFactory_Interface'Class;
 
    type INDLicenseFetchResult_Interface is interface and WinRt.IInspectable_Interface;
-   type INDLicenseFetchResult is access INDLicenseFetchResult_Interface'Class;
+   type INDLicenseFetchResult is access all INDLicenseFetchResult_Interface'Class;
 
    type INDMessenger_Interface is interface and WinRt.IInspectable_Interface;
-   type INDMessenger is access INDMessenger_Interface'Class;
+   type INDMessenger is access all INDMessenger_Interface'Class;
    type INDMessenger_Ptr is access all INDMessenger;
 
    type INDProximityDetectionCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type INDProximityDetectionCompletedEventArgs is access INDProximityDetectionCompletedEventArgs_Interface'Class;
+   type INDProximityDetectionCompletedEventArgs is access all INDProximityDetectionCompletedEventArgs_Interface'Class;
 
    type INDRegistrationCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type INDRegistrationCompletedEventArgs is access INDRegistrationCompletedEventArgs_Interface'Class;
+   type INDRegistrationCompletedEventArgs is access all INDRegistrationCompletedEventArgs_Interface'Class;
 
    type INDSendResult_Interface is interface and WinRt.IInspectable_Interface;
-   type INDSendResult is access INDSendResult_Interface'Class;
+   type INDSendResult is access all INDSendResult_Interface'Class;
 
    type INDStartResult_Interface is interface and WinRt.IInspectable_Interface;
-   type INDStartResult is access INDStartResult_Interface'Class;
+   type INDStartResult is access all INDStartResult_Interface'Class;
 
    type INDStorageFileHelper_Interface is interface and WinRt.IInspectable_Interface;
-   type INDStorageFileHelper is access INDStorageFileHelper_Interface'Class;
+   type INDStorageFileHelper is access all INDStorageFileHelper_Interface'Class;
    type INDStorageFileHelper_Ptr is access all INDStorageFileHelper;
 
    type INDStreamParser_Interface is interface and WinRt.IInspectable_Interface;
-   type INDStreamParser is access INDStreamParser_Interface'Class;
+   type INDStreamParser is access all INDStreamParser_Interface'Class;
 
    type INDStreamParserNotifier_Interface is interface and WinRt.IInspectable_Interface;
-   type INDStreamParserNotifier is access INDStreamParserNotifier_Interface'Class;
+   type INDStreamParserNotifier is access all INDStreamParserNotifier_Interface'Class;
    type INDStreamParserNotifier_Ptr is access all INDStreamParserNotifier;
 
    type INDTCPMessengerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type INDTCPMessengerFactory is access INDTCPMessengerFactory_Interface'Class;
+   type INDTCPMessengerFactory is access all INDTCPMessengerFactory_Interface'Class;
 
    type INDTransmitterProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type INDTransmitterProperties is access INDTransmitterProperties_Interface'Class;
+   type INDTransmitterProperties is access all INDTransmitterProperties_Interface'Class;
 
    type IPlayReadyContentHeader_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyContentHeader is access IPlayReadyContentHeader_Interface'Class;
+   type IPlayReadyContentHeader is access all IPlayReadyContentHeader_Interface'Class;
    type IPlayReadyContentHeader_Ptr is access all IPlayReadyContentHeader;
 
    type IPlayReadyContentHeader2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyContentHeader2 is access IPlayReadyContentHeader2_Interface'Class;
+   type IPlayReadyContentHeader2 is access all IPlayReadyContentHeader2_Interface'Class;
 
    type IPlayReadyContentHeaderFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyContentHeaderFactory is access IPlayReadyContentHeaderFactory_Interface'Class;
+   type IPlayReadyContentHeaderFactory is access all IPlayReadyContentHeaderFactory_Interface'Class;
 
    type IPlayReadyContentHeaderFactory2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyContentHeaderFactory2 is access IPlayReadyContentHeaderFactory2_Interface'Class;
+   type IPlayReadyContentHeaderFactory2 is access all IPlayReadyContentHeaderFactory2_Interface'Class;
 
    type IPlayReadyContentResolver_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyContentResolver is access IPlayReadyContentResolver_Interface'Class;
+   type IPlayReadyContentResolver is access all IPlayReadyContentResolver_Interface'Class;
 
    type IPlayReadyDomain_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyDomain is access IPlayReadyDomain_Interface'Class;
+   type IPlayReadyDomain is access all IPlayReadyDomain_Interface'Class;
    type IPlayReadyDomain_Ptr is access all IPlayReadyDomain;
    type IPlayReadyDomain_Array is array (Natural range <>) of IPlayReadyDomain;
 
    type IPlayReadyDomainIterableFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyDomainIterableFactory is access IPlayReadyDomainIterableFactory_Interface'Class;
+   type IPlayReadyDomainIterableFactory is access all IPlayReadyDomainIterableFactory_Interface'Class;
 
    type IPlayReadyDomainJoinServiceRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyDomainJoinServiceRequest is access IPlayReadyDomainJoinServiceRequest_Interface'Class;
+   type IPlayReadyDomainJoinServiceRequest is access all IPlayReadyDomainJoinServiceRequest_Interface'Class;
    type IPlayReadyDomainJoinServiceRequest_Ptr is access all IPlayReadyDomainJoinServiceRequest;
 
    type IPlayReadyDomainLeaveServiceRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyDomainLeaveServiceRequest is access IPlayReadyDomainLeaveServiceRequest_Interface'Class;
+   type IPlayReadyDomainLeaveServiceRequest is access all IPlayReadyDomainLeaveServiceRequest_Interface'Class;
    type IPlayReadyDomainLeaveServiceRequest_Ptr is access all IPlayReadyDomainLeaveServiceRequest;
 
    type IPlayReadyITADataGenerator_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyITADataGenerator is access IPlayReadyITADataGenerator_Interface'Class;
+   type IPlayReadyITADataGenerator is access all IPlayReadyITADataGenerator_Interface'Class;
    type IPlayReadyITADataGenerator_Ptr is access all IPlayReadyITADataGenerator;
 
    type IPlayReadyIndividualizationServiceRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyIndividualizationServiceRequest is access IPlayReadyIndividualizationServiceRequest_Interface'Class;
+   type IPlayReadyIndividualizationServiceRequest is access all IPlayReadyIndividualizationServiceRequest_Interface'Class;
    type IPlayReadyIndividualizationServiceRequest_Ptr is access all IPlayReadyIndividualizationServiceRequest;
 
    type IPlayReadyLicense_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyLicense is access IPlayReadyLicense_Interface'Class;
+   type IPlayReadyLicense is access all IPlayReadyLicense_Interface'Class;
    type IPlayReadyLicense_Ptr is access all IPlayReadyLicense;
    type IPlayReadyLicense_Array is array (Natural range <>) of IPlayReadyLicense;
 
    type IPlayReadyLicense2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyLicense2 is access IPlayReadyLicense2_Interface'Class;
+   type IPlayReadyLicense2 is access all IPlayReadyLicense2_Interface'Class;
 
    type IPlayReadyLicenseAcquisitionServiceRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyLicenseAcquisitionServiceRequest is access IPlayReadyLicenseAcquisitionServiceRequest_Interface'Class;
+   type IPlayReadyLicenseAcquisitionServiceRequest is access all IPlayReadyLicenseAcquisitionServiceRequest_Interface'Class;
    type IPlayReadyLicenseAcquisitionServiceRequest_Ptr is access all IPlayReadyLicenseAcquisitionServiceRequest;
 
    type IPlayReadyLicenseAcquisitionServiceRequest2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyLicenseAcquisitionServiceRequest2 is access IPlayReadyLicenseAcquisitionServiceRequest2_Interface'Class;
+   type IPlayReadyLicenseAcquisitionServiceRequest2 is access all IPlayReadyLicenseAcquisitionServiceRequest2_Interface'Class;
 
    type IPlayReadyLicenseAcquisitionServiceRequest3_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyLicenseAcquisitionServiceRequest3 is access IPlayReadyLicenseAcquisitionServiceRequest3_Interface'Class;
+   type IPlayReadyLicenseAcquisitionServiceRequest3 is access all IPlayReadyLicenseAcquisitionServiceRequest3_Interface'Class;
 
    type IPlayReadyLicenseIterableFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyLicenseIterableFactory is access IPlayReadyLicenseIterableFactory_Interface'Class;
+   type IPlayReadyLicenseIterableFactory is access all IPlayReadyLicenseIterableFactory_Interface'Class;
 
    type IPlayReadyLicenseManagement_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyLicenseManagement is access IPlayReadyLicenseManagement_Interface'Class;
+   type IPlayReadyLicenseManagement is access all IPlayReadyLicenseManagement_Interface'Class;
 
    type IPlayReadyLicenseSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyLicenseSession is access IPlayReadyLicenseSession_Interface'Class;
+   type IPlayReadyLicenseSession is access all IPlayReadyLicenseSession_Interface'Class;
    type IPlayReadyLicenseSession_Ptr is access all IPlayReadyLicenseSession;
 
    type IPlayReadyLicenseSession2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyLicenseSession2 is access IPlayReadyLicenseSession2_Interface'Class;
+   type IPlayReadyLicenseSession2 is access all IPlayReadyLicenseSession2_Interface'Class;
 
    type IPlayReadyLicenseSessionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyLicenseSessionFactory is access IPlayReadyLicenseSessionFactory_Interface'Class;
+   type IPlayReadyLicenseSessionFactory is access all IPlayReadyLicenseSessionFactory_Interface'Class;
 
    type IPlayReadyMeteringReportServiceRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyMeteringReportServiceRequest is access IPlayReadyMeteringReportServiceRequest_Interface'Class;
+   type IPlayReadyMeteringReportServiceRequest is access all IPlayReadyMeteringReportServiceRequest_Interface'Class;
    type IPlayReadyMeteringReportServiceRequest_Ptr is access all IPlayReadyMeteringReportServiceRequest;
 
    type IPlayReadyRevocationServiceRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyRevocationServiceRequest is access IPlayReadyRevocationServiceRequest_Interface'Class;
+   type IPlayReadyRevocationServiceRequest is access all IPlayReadyRevocationServiceRequest_Interface'Class;
    type IPlayReadyRevocationServiceRequest_Ptr is access all IPlayReadyRevocationServiceRequest;
 
    type IPlayReadySecureStopIterableFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadySecureStopIterableFactory is access IPlayReadySecureStopIterableFactory_Interface'Class;
+   type IPlayReadySecureStopIterableFactory is access all IPlayReadySecureStopIterableFactory_Interface'Class;
 
    type IPlayReadySecureStopServiceRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadySecureStopServiceRequest is access IPlayReadySecureStopServiceRequest_Interface'Class;
+   type IPlayReadySecureStopServiceRequest is access all IPlayReadySecureStopServiceRequest_Interface'Class;
    type IPlayReadySecureStopServiceRequest_Ptr is access all IPlayReadySecureStopServiceRequest;
    type IPlayReadySecureStopServiceRequest_Array is array (Natural range <>) of IPlayReadySecureStopServiceRequest;
 
    type IPlayReadySecureStopServiceRequestFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadySecureStopServiceRequestFactory is access IPlayReadySecureStopServiceRequestFactory_Interface'Class;
+   type IPlayReadySecureStopServiceRequestFactory is access all IPlayReadySecureStopServiceRequestFactory_Interface'Class;
 
    type IPlayReadyServiceRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyServiceRequest is access IPlayReadyServiceRequest_Interface'Class;
+   type IPlayReadyServiceRequest is access all IPlayReadyServiceRequest_Interface'Class;
 
    type IPlayReadySoapMessage_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadySoapMessage is access IPlayReadySoapMessage_Interface'Class;
+   type IPlayReadySoapMessage is access all IPlayReadySoapMessage_Interface'Class;
    type IPlayReadySoapMessage_Ptr is access all IPlayReadySoapMessage;
 
    type IPlayReadyStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyStatics is access IPlayReadyStatics_Interface'Class;
+   type IPlayReadyStatics is access all IPlayReadyStatics_Interface'Class;
 
    type IPlayReadyStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyStatics2 is access IPlayReadyStatics2_Interface'Class;
+   type IPlayReadyStatics2 is access all IPlayReadyStatics2_Interface'Class;
 
    type IPlayReadyStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyStatics3 is access IPlayReadyStatics3_Interface'Class;
+   type IPlayReadyStatics3 is access all IPlayReadyStatics3_Interface'Class;
 
    type IPlayReadyStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyStatics4 is access IPlayReadyStatics4_Interface'Class;
+   type IPlayReadyStatics4 is access all IPlayReadyStatics4_Interface'Class;
 
    type IPlayReadyStatics5_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlayReadyStatics5 is access IPlayReadyStatics5_Interface'Class;
+   type IPlayReadyStatics5 is access all IPlayReadyStatics5_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -408,7 +408,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       CRLS_e => 9,
       PlayReady3Features_e => 13
    );
-   type NDCertificateFeature_Ptr is access NDCertificateFeature;
+   type NDCertificateFeature_Ptr is access all NDCertificateFeature;
    type NDCertificateFeature_Array is array (Natural range <>) of aliased NDCertificateFeature;
 
    type NDCertificatePlatformID is (
@@ -439,7 +439,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       WindowsPhone81OnARM_e => 12,
       WindowsPhone81OnX86_e => 13
    );
-   type NDCertificatePlatformID_Ptr is access NDCertificatePlatformID;
+   type NDCertificatePlatformID_Ptr is access all NDCertificatePlatformID;
 
    type NDCertificateType is (
       Unknown_e,
@@ -471,7 +471,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       Server_e => 11,
       LicenseSigner_e => 12
    );
-   type NDCertificateType_Ptr is access NDCertificateType;
+   type NDCertificateType_Ptr is access all NDCertificateType;
 
    type NDClosedCaptionFormat is (
       ATSC_e,
@@ -483,7 +483,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       SCTE20_e => 1,
       Unknown_e => 2
    );
-   type NDClosedCaptionFormat_Ptr is access NDClosedCaptionFormat;
+   type NDClosedCaptionFormat_Ptr is access all NDClosedCaptionFormat;
 
    type NDContentIDType is (
       KeyID_e,
@@ -495,7 +495,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       PlayReadyObject_e => 2,
       Custom_e => 3
    );
-   type NDContentIDType_Ptr is access NDContentIDType;
+   type NDContentIDType_Ptr is access all NDContentIDType;
 
    type NDMediaStreamType is (
       Audio_e,
@@ -505,7 +505,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       Audio_e => 1,
       Video_e => 2
    );
-   type NDMediaStreamType_Ptr is access NDMediaStreamType;
+   type NDMediaStreamType_Ptr is access all NDMediaStreamType;
 
    type NDProximityDetectionType is (
       UDP_e,
@@ -517,7 +517,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       TCP_e => 2,
       TransportAgnostic_e => 4
    );
-   type NDProximityDetectionType_Ptr is access NDProximityDetectionType;
+   type NDProximityDetectionType_Ptr is access all NDProximityDetectionType;
 
    type NDStartAsyncOptions is (
       MutualAuthentication_e,
@@ -527,7 +527,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       MutualAuthentication_e => 1,
       WaitForLicenseDescriptor_e => 2
    );
-   type NDStartAsyncOptions_Ptr is access NDStartAsyncOptions;
+   type NDStartAsyncOptions_Ptr is access all NDStartAsyncOptions;
 
    type PlayReadyDecryptorSetup is (
       Uninitialized_e,
@@ -537,7 +537,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       Uninitialized_e => 0,
       OnDemand_e => 1
    );
-   type PlayReadyDecryptorSetup_Ptr is access PlayReadyDecryptorSetup;
+   type PlayReadyDecryptorSetup_Ptr is access all PlayReadyDecryptorSetup;
 
    type PlayReadyEncryptionAlgorithm is (
       Unprotected_e,
@@ -555,7 +555,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       Unspecified_e => 65535,
       Uninitialized_e => 2147483647
    );
-   type PlayReadyEncryptionAlgorithm_Ptr is access PlayReadyEncryptionAlgorithm;
+   type PlayReadyEncryptionAlgorithm_Ptr is access all PlayReadyEncryptionAlgorithm;
 
    type PlayReadyHardwareDRMFeatures is (
       HardwareDRM_e,
@@ -567,7 +567,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       HEVC_e => 2,
       Aes128Cbc_e => 3
    );
-   type PlayReadyHardwareDRMFeatures_Ptr is access PlayReadyHardwareDRMFeatures;
+   type PlayReadyHardwareDRMFeatures_Ptr is access all PlayReadyHardwareDRMFeatures;
 
    type PlayReadyITADataFormat is (
       SerializedProperties_e,
@@ -577,7 +577,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       SerializedProperties_e => 0,
       SerializedProperties_WithContentProtectionWrapper_e => 1
    );
-   type PlayReadyITADataFormat_Ptr is access PlayReadyITADataFormat;
+   type PlayReadyITADataFormat_Ptr is access all PlayReadyITADataFormat;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

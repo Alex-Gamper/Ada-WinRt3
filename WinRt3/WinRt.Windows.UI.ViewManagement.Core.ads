@@ -40,50 +40,50 @@ package WinRt.Windows.UI.ViewManagement.Core is
    -----------------------------------------------------------------------------
 
    type ICoreInputView_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreInputView is access ICoreInputView_Interface'Class;
+   type ICoreInputView is access all ICoreInputView_Interface'Class;
    type ICoreInputView_Ptr is access all ICoreInputView;
 
    type ICoreInputView2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreInputView2 is access ICoreInputView2_Interface'Class;
+   type ICoreInputView2 is access all ICoreInputView2_Interface'Class;
 
    type ICoreInputView3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreInputView3 is access ICoreInputView3_Interface'Class;
+   type ICoreInputView3 is access all ICoreInputView3_Interface'Class;
 
    type ICoreInputView4_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreInputView4 is access ICoreInputView4_Interface'Class;
+   type ICoreInputView4 is access all ICoreInputView4_Interface'Class;
 
    type ICoreInputViewHidingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreInputViewHidingEventArgs is access ICoreInputViewHidingEventArgs_Interface'Class;
+   type ICoreInputViewHidingEventArgs is access all ICoreInputViewHidingEventArgs_Interface'Class;
    type ICoreInputViewHidingEventArgs_Ptr is access all ICoreInputViewHidingEventArgs;
 
    type ICoreInputViewOcclusion_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreInputViewOcclusion is access ICoreInputViewOcclusion_Interface'Class;
+   type ICoreInputViewOcclusion is access all ICoreInputViewOcclusion_Interface'Class;
    type ICoreInputViewOcclusion_Ptr is access all ICoreInputViewOcclusion;
 
    type ICoreInputViewOcclusionsChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreInputViewOcclusionsChangedEventArgs is access ICoreInputViewOcclusionsChangedEventArgs_Interface'Class;
+   type ICoreInputViewOcclusionsChangedEventArgs is access all ICoreInputViewOcclusionsChangedEventArgs_Interface'Class;
    type ICoreInputViewOcclusionsChangedEventArgs_Ptr is access all ICoreInputViewOcclusionsChangedEventArgs;
 
    type ICoreInputViewShowingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreInputViewShowingEventArgs is access ICoreInputViewShowingEventArgs_Interface'Class;
+   type ICoreInputViewShowingEventArgs is access all ICoreInputViewShowingEventArgs_Interface'Class;
    type ICoreInputViewShowingEventArgs_Ptr is access all ICoreInputViewShowingEventArgs;
 
    type ICoreInputViewStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreInputViewStatics is access ICoreInputViewStatics_Interface'Class;
+   type ICoreInputViewStatics is access all ICoreInputViewStatics_Interface'Class;
 
    type ICoreInputViewStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreInputViewStatics2 is access ICoreInputViewStatics2_Interface'Class;
+   type ICoreInputViewStatics2 is access all ICoreInputViewStatics2_Interface'Class;
 
    type ICoreInputViewTransferringXYFocusEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICoreInputViewTransferringXYFocusEventArgs is access ICoreInputViewTransferringXYFocusEventArgs_Interface'Class;
+   type ICoreInputViewTransferringXYFocusEventArgs is access all ICoreInputViewTransferringXYFocusEventArgs_Interface'Class;
    type ICoreInputViewTransferringXYFocusEventArgs_Ptr is access all ICoreInputViewTransferringXYFocusEventArgs;
 
    type IUISettingsController_Interface is interface and WinRt.IInspectable_Interface;
-   type IUISettingsController is access IUISettingsController_Interface'Class;
+   type IUISettingsController is access all IUISettingsController_Interface'Class;
    type IUISettingsController_Ptr is access all IUISettingsController;
 
    type IUISettingsControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUISettingsControllerStatics is access IUISettingsControllerStatics_Interface'Class;
+   type IUISettingsControllerStatics is access all IUISettingsControllerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -149,7 +149,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
       Emoji_e => 3,
       Symbols_e => 4
    );
-   type CoreInputViewKind_Ptr is access CoreInputViewKind;
+   type CoreInputViewKind_Ptr is access all CoreInputViewKind;
 
    type CoreInputViewOcclusionKind is (
       Docked_e,
@@ -161,7 +161,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
       Floating_e => 1,
       Overlay_e => 2
    );
-   type CoreInputViewOcclusionKind_Ptr is access CoreInputViewOcclusionKind;
+   type CoreInputViewOcclusionKind_Ptr is access all CoreInputViewOcclusionKind;
 
    type CoreInputViewXYFocusTransferDirection is (
       Up_e,
@@ -175,7 +175,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
       Down_e => 2,
       Left_e => 3
    );
-   type CoreInputViewXYFocusTransferDirection_Ptr is access CoreInputViewXYFocusTransferDirection;
+   type CoreInputViewXYFocusTransferDirection_Ptr is access all CoreInputViewXYFocusTransferDirection;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

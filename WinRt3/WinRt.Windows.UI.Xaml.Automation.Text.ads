@@ -45,7 +45,7 @@ package WinRt.Windows.UI.Xaml.Automation.Text is
       Start_e => 0,
       End_e => 1
    );
-   type TextPatternRangeEndpoint_Ptr is access TextPatternRangeEndpoint;
+   type TextPatternRangeEndpoint_Ptr is access all TextPatternRangeEndpoint;
 
    type TextUnit is (
       Character_e,
@@ -65,6 +65,6 @@ package WinRt.Windows.UI.Xaml.Automation.Text is
       Page_e => 5,
       Document_e => 6
    );
-   type TextUnit_Ptr is access TextUnit;
+   type TextUnit_Ptr is access all TextUnit;
 
 end;

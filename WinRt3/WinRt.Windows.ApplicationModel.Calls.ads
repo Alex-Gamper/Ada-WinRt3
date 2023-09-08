@@ -44,152 +44,152 @@ package WinRt.Windows.ApplicationModel.Calls is
    -----------------------------------------------------------------------------
 
    type ICallAnswerEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICallAnswerEventArgs is access ICallAnswerEventArgs_Interface'Class;
+   type ICallAnswerEventArgs is access all ICallAnswerEventArgs_Interface'Class;
    type ICallAnswerEventArgs_Ptr is access all ICallAnswerEventArgs;
 
    type ICallRejectEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICallRejectEventArgs is access ICallRejectEventArgs_Interface'Class;
+   type ICallRejectEventArgs is access all ICallRejectEventArgs_Interface'Class;
    type ICallRejectEventArgs_Ptr is access all ICallRejectEventArgs;
 
    type ICallStateChangeEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICallStateChangeEventArgs is access ICallStateChangeEventArgs_Interface'Class;
+   type ICallStateChangeEventArgs is access all ICallStateChangeEventArgs_Interface'Class;
    type ICallStateChangeEventArgs_Ptr is access all ICallStateChangeEventArgs;
 
    type ILockScreenCallEndCallDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type ILockScreenCallEndCallDeferral is access ILockScreenCallEndCallDeferral_Interface'Class;
+   type ILockScreenCallEndCallDeferral is access all ILockScreenCallEndCallDeferral_Interface'Class;
    type ILockScreenCallEndCallDeferral_Ptr is access all ILockScreenCallEndCallDeferral;
 
    type ILockScreenCallEndRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ILockScreenCallEndRequestedEventArgs is access ILockScreenCallEndRequestedEventArgs_Interface'Class;
+   type ILockScreenCallEndRequestedEventArgs is access all ILockScreenCallEndRequestedEventArgs_Interface'Class;
    type ILockScreenCallEndRequestedEventArgs_Ptr is access all ILockScreenCallEndRequestedEventArgs;
 
    type ILockScreenCallUI_Interface is interface and WinRt.IInspectable_Interface;
-   type ILockScreenCallUI is access ILockScreenCallUI_Interface'Class;
+   type ILockScreenCallUI is access all ILockScreenCallUI_Interface'Class;
    type ILockScreenCallUI_Ptr is access all ILockScreenCallUI;
 
    type IMuteChangeEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMuteChangeEventArgs is access IMuteChangeEventArgs_Interface'Class;
+   type IMuteChangeEventArgs is access all IMuteChangeEventArgs_Interface'Class;
    type IMuteChangeEventArgs_Ptr is access all IMuteChangeEventArgs;
 
    type IPhoneCallBlockingStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallBlockingStatics is access IPhoneCallBlockingStatics_Interface'Class;
+   type IPhoneCallBlockingStatics is access all IPhoneCallBlockingStatics_Interface'Class;
 
    type IPhoneCallHistoryEntry_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallHistoryEntry is access IPhoneCallHistoryEntry_Interface'Class;
+   type IPhoneCallHistoryEntry is access all IPhoneCallHistoryEntry_Interface'Class;
    type IPhoneCallHistoryEntry_Ptr is access all IPhoneCallHistoryEntry;
 
    type IPhoneCallHistoryEntryAddress_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallHistoryEntryAddress is access IPhoneCallHistoryEntryAddress_Interface'Class;
+   type IPhoneCallHistoryEntryAddress is access all IPhoneCallHistoryEntryAddress_Interface'Class;
    type IPhoneCallHistoryEntryAddress_Ptr is access all IPhoneCallHistoryEntryAddress;
 
    type IPhoneCallHistoryEntryAddressFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallHistoryEntryAddressFactory is access IPhoneCallHistoryEntryAddressFactory_Interface'Class;
+   type IPhoneCallHistoryEntryAddressFactory is access all IPhoneCallHistoryEntryAddressFactory_Interface'Class;
 
    type IPhoneCallHistoryEntryQueryOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallHistoryEntryQueryOptions is access IPhoneCallHistoryEntryQueryOptions_Interface'Class;
+   type IPhoneCallHistoryEntryQueryOptions is access all IPhoneCallHistoryEntryQueryOptions_Interface'Class;
    type IPhoneCallHistoryEntryQueryOptions_Ptr is access all IPhoneCallHistoryEntryQueryOptions;
 
    type IPhoneCallHistoryEntryReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallHistoryEntryReader is access IPhoneCallHistoryEntryReader_Interface'Class;
+   type IPhoneCallHistoryEntryReader is access all IPhoneCallHistoryEntryReader_Interface'Class;
    type IPhoneCallHistoryEntryReader_Ptr is access all IPhoneCallHistoryEntryReader;
 
    type IPhoneCallHistoryManagerForUser_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallHistoryManagerForUser is access IPhoneCallHistoryManagerForUser_Interface'Class;
+   type IPhoneCallHistoryManagerForUser is access all IPhoneCallHistoryManagerForUser_Interface'Class;
    type IPhoneCallHistoryManagerForUser_Ptr is access all IPhoneCallHistoryManagerForUser;
 
    type IPhoneCallHistoryManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallHistoryManagerStatics is access IPhoneCallHistoryManagerStatics_Interface'Class;
+   type IPhoneCallHistoryManagerStatics is access all IPhoneCallHistoryManagerStatics_Interface'Class;
 
    type IPhoneCallHistoryManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallHistoryManagerStatics2 is access IPhoneCallHistoryManagerStatics2_Interface'Class;
+   type IPhoneCallHistoryManagerStatics2 is access all IPhoneCallHistoryManagerStatics2_Interface'Class;
 
    type IPhoneCallHistoryStore_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallHistoryStore is access IPhoneCallHistoryStore_Interface'Class;
+   type IPhoneCallHistoryStore is access all IPhoneCallHistoryStore_Interface'Class;
    type IPhoneCallHistoryStore_Ptr is access all IPhoneCallHistoryStore;
 
    type IPhoneCallManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallManagerStatics is access IPhoneCallManagerStatics_Interface'Class;
+   type IPhoneCallManagerStatics is access all IPhoneCallManagerStatics_Interface'Class;
 
    type IPhoneCallManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallManagerStatics2 is access IPhoneCallManagerStatics2_Interface'Class;
+   type IPhoneCallManagerStatics2 is access all IPhoneCallManagerStatics2_Interface'Class;
 
    type IPhoneCallStore_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallStore is access IPhoneCallStore_Interface'Class;
+   type IPhoneCallStore is access all IPhoneCallStore_Interface'Class;
    type IPhoneCallStore_Ptr is access all IPhoneCallStore;
 
    type IPhoneCallVideoCapabilities_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallVideoCapabilities is access IPhoneCallVideoCapabilities_Interface'Class;
+   type IPhoneCallVideoCapabilities is access all IPhoneCallVideoCapabilities_Interface'Class;
    type IPhoneCallVideoCapabilities_Ptr is access all IPhoneCallVideoCapabilities;
 
    type IPhoneCallVideoCapabilitiesManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallVideoCapabilitiesManagerStatics is access IPhoneCallVideoCapabilitiesManagerStatics_Interface'Class;
+   type IPhoneCallVideoCapabilitiesManagerStatics is access all IPhoneCallVideoCapabilitiesManagerStatics_Interface'Class;
 
    type IPhoneDialOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneDialOptions is access IPhoneDialOptions_Interface'Class;
+   type IPhoneDialOptions is access all IPhoneDialOptions_Interface'Class;
    type IPhoneDialOptions_Ptr is access all IPhoneDialOptions;
 
    type IPhoneLine_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneLine is access IPhoneLine_Interface'Class;
+   type IPhoneLine is access all IPhoneLine_Interface'Class;
    type IPhoneLine_Ptr is access all IPhoneLine;
 
    type IPhoneLine2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneLine2 is access IPhoneLine2_Interface'Class;
+   type IPhoneLine2 is access all IPhoneLine2_Interface'Class;
 
    type IPhoneLineCellularDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneLineCellularDetails is access IPhoneLineCellularDetails_Interface'Class;
+   type IPhoneLineCellularDetails is access all IPhoneLineCellularDetails_Interface'Class;
    type IPhoneLineCellularDetails_Ptr is access all IPhoneLineCellularDetails;
 
    type IPhoneLineConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneLineConfiguration is access IPhoneLineConfiguration_Interface'Class;
+   type IPhoneLineConfiguration is access all IPhoneLineConfiguration_Interface'Class;
    type IPhoneLineConfiguration_Ptr is access all IPhoneLineConfiguration;
 
    type IPhoneLineStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneLineStatics is access IPhoneLineStatics_Interface'Class;
+   type IPhoneLineStatics is access all IPhoneLineStatics_Interface'Class;
 
    type IPhoneLineTransportDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneLineTransportDevice is access IPhoneLineTransportDevice_Interface'Class;
+   type IPhoneLineTransportDevice is access all IPhoneLineTransportDevice_Interface'Class;
    type IPhoneLineTransportDevice_Ptr is access all IPhoneLineTransportDevice;
 
    type IPhoneLineTransportDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneLineTransportDeviceStatics is access IPhoneLineTransportDeviceStatics_Interface'Class;
+   type IPhoneLineTransportDeviceStatics is access all IPhoneLineTransportDeviceStatics_Interface'Class;
 
    type IPhoneLineWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneLineWatcher is access IPhoneLineWatcher_Interface'Class;
+   type IPhoneLineWatcher is access all IPhoneLineWatcher_Interface'Class;
    type IPhoneLineWatcher_Ptr is access all IPhoneLineWatcher;
 
    type IPhoneLineWatcherEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneLineWatcherEventArgs is access IPhoneLineWatcherEventArgs_Interface'Class;
+   type IPhoneLineWatcherEventArgs is access all IPhoneLineWatcherEventArgs_Interface'Class;
    type IPhoneLineWatcherEventArgs_Ptr is access all IPhoneLineWatcherEventArgs;
 
    type IPhoneVoicemail_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneVoicemail is access IPhoneVoicemail_Interface'Class;
+   type IPhoneVoicemail is access all IPhoneVoicemail_Interface'Class;
    type IPhoneVoicemail_Ptr is access all IPhoneVoicemail;
 
    type IVoipCallCoordinator_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoipCallCoordinator is access IVoipCallCoordinator_Interface'Class;
+   type IVoipCallCoordinator is access all IVoipCallCoordinator_Interface'Class;
    type IVoipCallCoordinator_Ptr is access all IVoipCallCoordinator;
 
    type IVoipCallCoordinator2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoipCallCoordinator2 is access IVoipCallCoordinator2_Interface'Class;
+   type IVoipCallCoordinator2 is access all IVoipCallCoordinator2_Interface'Class;
 
    type IVoipCallCoordinator3_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoipCallCoordinator3 is access IVoipCallCoordinator3_Interface'Class;
+   type IVoipCallCoordinator3 is access all IVoipCallCoordinator3_Interface'Class;
 
    type IVoipCallCoordinator4_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoipCallCoordinator4 is access IVoipCallCoordinator4_Interface'Class;
+   type IVoipCallCoordinator4 is access all IVoipCallCoordinator4_Interface'Class;
 
    type IVoipCallCoordinatorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoipCallCoordinatorStatics is access IVoipCallCoordinatorStatics_Interface'Class;
+   type IVoipCallCoordinatorStatics is access all IVoipCallCoordinatorStatics_Interface'Class;
 
    type IVoipPhoneCall_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoipPhoneCall is access IVoipPhoneCall_Interface'Class;
+   type IVoipPhoneCall is access all IVoipPhoneCall_Interface'Class;
    type IVoipPhoneCall_Ptr is access all IVoipPhoneCall;
 
    type IVoipPhoneCall2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoipPhoneCall2 is access IVoipPhoneCall2_Interface'Class;
+   type IVoipPhoneCall2 is access all IVoipPhoneCall2_Interface'Class;
 
    type IVoipPhoneCall3_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoipPhoneCall3 is access IVoipPhoneCall3_Interface'Class;
+   type IVoipPhoneCall3 is access all IVoipPhoneCall3_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -357,7 +357,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Continuous_e => 0,
       Burst_e => 1
    );
-   type CellularDtmfMode_Ptr is access CellularDtmfMode;
+   type CellularDtmfMode_Ptr is access all CellularDtmfMode;
 
    type PhoneAudioRoutingEndpoint is (
       Default_e,
@@ -369,7 +369,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Bluetooth_e => 1,
       Speakerphone_e => 2
    );
-   type PhoneAudioRoutingEndpoint_Ptr is access PhoneAudioRoutingEndpoint;
+   type PhoneAudioRoutingEndpoint_Ptr is access all PhoneAudioRoutingEndpoint;
 
    type PhoneCallHistoryEntryMedia is (
       Audio_e,
@@ -379,7 +379,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Audio_e => 0,
       Video_e => 1
    );
-   type PhoneCallHistoryEntryMedia_Ptr is access PhoneCallHistoryEntryMedia;
+   type PhoneCallHistoryEntryMedia_Ptr is access all PhoneCallHistoryEntryMedia;
 
    type PhoneCallHistoryEntryOtherAppReadAccess is (
       Full_e,
@@ -389,7 +389,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Full_e => 0,
       SystemOnly_e => 1
    );
-   type PhoneCallHistoryEntryOtherAppReadAccess_Ptr is access PhoneCallHistoryEntryOtherAppReadAccess;
+   type PhoneCallHistoryEntryOtherAppReadAccess_Ptr is access all PhoneCallHistoryEntryOtherAppReadAccess;
 
    type PhoneCallHistoryEntryQueryDesiredMedia is (
       None_e,
@@ -403,7 +403,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Video_e => 2,
       All_e => 4294967295
    );
-   type PhoneCallHistoryEntryQueryDesiredMedia_Ptr is access PhoneCallHistoryEntryQueryDesiredMedia;
+   type PhoneCallHistoryEntryQueryDesiredMedia_Ptr is access all PhoneCallHistoryEntryQueryDesiredMedia;
 
    type PhoneCallHistoryEntryRawAddressKind is (
       PhoneNumber_e,
@@ -413,7 +413,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       PhoneNumber_e => 0,
       Custom_e => 1
    );
-   type PhoneCallHistoryEntryRawAddressKind_Ptr is access PhoneCallHistoryEntryRawAddressKind;
+   type PhoneCallHistoryEntryRawAddressKind_Ptr is access all PhoneCallHistoryEntryRawAddressKind;
 
    type PhoneCallHistorySourceIdKind is (
       CellularPhoneLineId_e,
@@ -423,7 +423,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       CellularPhoneLineId_e => 0,
       PackageFamilyName_e => 1
    );
-   type PhoneCallHistorySourceIdKind_Ptr is access PhoneCallHistorySourceIdKind;
+   type PhoneCallHistorySourceIdKind_Ptr is access all PhoneCallHistorySourceIdKind;
 
    type PhoneCallHistoryStoreAccessType is (
       AppEntriesReadWrite_e,
@@ -435,7 +435,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       AllEntriesLimitedReadWrite_e => 1,
       AllEntriesReadWrite_e => 2
    );
-   type PhoneCallHistoryStoreAccessType_Ptr is access PhoneCallHistoryStoreAccessType;
+   type PhoneCallHistoryStoreAccessType_Ptr is access all PhoneCallHistoryStoreAccessType;
 
    type PhoneCallMedia is (
       Audio_e,
@@ -447,7 +447,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       AudioAndVideo_e => 1,
       AudioAndRealTimeText_e => 2
    );
-   type PhoneCallMedia_Ptr is access PhoneCallMedia;
+   type PhoneCallMedia_Ptr is access all PhoneCallMedia;
 
    type PhoneLineNetworkOperatorDisplayTextLocation is (
       Default_e,
@@ -461,7 +461,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Dialer_e => 2,
       InCallUI_e => 3
    );
-   type PhoneLineNetworkOperatorDisplayTextLocation_Ptr is access PhoneLineNetworkOperatorDisplayTextLocation;
+   type PhoneLineNetworkOperatorDisplayTextLocation_Ptr is access all PhoneLineNetworkOperatorDisplayTextLocation;
 
    type PhoneLineTransport is (
       Cellular_e,
@@ -473,7 +473,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       VoipApp_e => 1,
       Bluetooth_e => 2
    );
-   type PhoneLineTransport_Ptr is access PhoneLineTransport;
+   type PhoneLineTransport_Ptr is access all PhoneLineTransport;
 
    type PhoneLineWatcherStatus is (
       Created_e,
@@ -487,7 +487,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       EnumerationCompleted_e => 2,
       Stopped_e => 3
    );
-   type PhoneLineWatcherStatus_Ptr is access PhoneLineWatcherStatus;
+   type PhoneLineWatcherStatus_Ptr is access all PhoneLineWatcherStatus;
 
    type PhoneNetworkState is (
       Unknown_e,
@@ -509,7 +509,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       RoamingInternational_e => 6,
       RoamingDomestic_e => 7
    );
-   type PhoneNetworkState_Ptr is access PhoneNetworkState;
+   type PhoneNetworkState_Ptr is access all PhoneNetworkState;
 
    type PhoneSimState is (
       Unknown_e,
@@ -531,7 +531,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Invalid_e => 6,
       Disabled_e => 7
    );
-   type PhoneSimState_Ptr is access PhoneSimState;
+   type PhoneSimState_Ptr is access all PhoneSimState;
 
    type PhoneVoicemailType is (
       None_e,
@@ -543,7 +543,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Traditional_e => 1,
       Visual_e => 2
    );
-   type PhoneVoicemailType_Ptr is access PhoneVoicemailType;
+   type PhoneVoicemailType_Ptr is access all PhoneVoicemailType;
 
    type VoipPhoneCallMedia is (
       None_e,
@@ -555,7 +555,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Audio_e => 1,
       Video_e => 2
    );
-   type VoipPhoneCallMedia_Ptr is access VoipPhoneCallMedia;
+   type VoipPhoneCallMedia_Ptr is access all VoipPhoneCallMedia;
 
    type VoipPhoneCallRejectReason is (
       UserIgnored_e,
@@ -571,7 +571,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       EmergencyCallExists_e => 3,
       InvalidCallState_e => 4
    );
-   type VoipPhoneCallRejectReason_Ptr is access VoipPhoneCallRejectReason;
+   type VoipPhoneCallRejectReason_Ptr is access all VoipPhoneCallRejectReason;
 
    type VoipPhoneCallResourceReservationStatus is (
       Success_e,
@@ -581,7 +581,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Success_e => 0,
       ResourcesNotAvailable_e => 1
    );
-   type VoipPhoneCallResourceReservationStatus_Ptr is access VoipPhoneCallResourceReservationStatus;
+   type VoipPhoneCallResourceReservationStatus_Ptr is access all VoipPhoneCallResourceReservationStatus;
 
    type VoipPhoneCallState is (
       Ended_e,
@@ -597,7 +597,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       Incoming_e => 3,
       Outgoing_e => 4
    );
-   type VoipPhoneCallState_Ptr is access VoipPhoneCallState;
+   type VoipPhoneCallState_Ptr is access all VoipPhoneCallState;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -606,17 +606,17 @@ package WinRt.Windows.ApplicationModel.Calls is
    type CallsPhoneContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type CallsPhoneContract_Ptr is access CallsPhoneContract;
+   type CallsPhoneContract_Ptr is access all CallsPhoneContract;
 
    type CallsVoipContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type CallsVoipContract_Ptr is access CallsVoipContract;
+   type CallsVoipContract_Ptr is access all CallsVoipContract;
 
    type LockScreenCallContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type LockScreenCallContract_Ptr is access LockScreenCallContract;
+   type LockScreenCallContract_Ptr is access all LockScreenCallContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

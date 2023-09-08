@@ -43,50 +43,50 @@ package WinRt.Windows.ApplicationModel.Wallet is
    -----------------------------------------------------------------------------
 
    type IWalletBarcode_Interface is interface and WinRt.IInspectable_Interface;
-   type IWalletBarcode is access IWalletBarcode_Interface'Class;
+   type IWalletBarcode is access all IWalletBarcode_Interface'Class;
    type IWalletBarcode_Ptr is access all IWalletBarcode;
 
    type IWalletBarcodeFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWalletBarcodeFactory is access IWalletBarcodeFactory_Interface'Class;
+   type IWalletBarcodeFactory is access all IWalletBarcodeFactory_Interface'Class;
 
    type IWalletItem_Interface is interface and WinRt.IInspectable_Interface;
-   type IWalletItem is access IWalletItem_Interface'Class;
+   type IWalletItem is access all IWalletItem_Interface'Class;
    type IWalletItem_Ptr is access all IWalletItem;
 
    type IWalletItemCustomProperty_Interface is interface and WinRt.IInspectable_Interface;
-   type IWalletItemCustomProperty is access IWalletItemCustomProperty_Interface'Class;
+   type IWalletItemCustomProperty is access all IWalletItemCustomProperty_Interface'Class;
    type IWalletItemCustomProperty_Ptr is access all IWalletItemCustomProperty;
 
    type IWalletItemCustomPropertyFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWalletItemCustomPropertyFactory is access IWalletItemCustomPropertyFactory_Interface'Class;
+   type IWalletItemCustomPropertyFactory is access all IWalletItemCustomPropertyFactory_Interface'Class;
 
    type IWalletItemFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWalletItemFactory is access IWalletItemFactory_Interface'Class;
+   type IWalletItemFactory is access all IWalletItemFactory_Interface'Class;
 
    type IWalletItemStore_Interface is interface and WinRt.IInspectable_Interface;
-   type IWalletItemStore is access IWalletItemStore_Interface'Class;
+   type IWalletItemStore is access all IWalletItemStore_Interface'Class;
    type IWalletItemStore_Ptr is access all IWalletItemStore;
 
    type IWalletItemStore2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWalletItemStore2 is access IWalletItemStore2_Interface'Class;
+   type IWalletItemStore2 is access all IWalletItemStore2_Interface'Class;
 
    type IWalletManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWalletManagerStatics is access IWalletManagerStatics_Interface'Class;
+   type IWalletManagerStatics is access all IWalletManagerStatics_Interface'Class;
 
    type IWalletRelevantLocation_Interface is interface and WinRt.IInspectable_Interface;
-   type IWalletRelevantLocation is access IWalletRelevantLocation_Interface'Class;
+   type IWalletRelevantLocation is access all IWalletRelevantLocation_Interface'Class;
    type IWalletRelevantLocation_Ptr is access all IWalletRelevantLocation;
 
    type IWalletTransaction_Interface is interface and WinRt.IInspectable_Interface;
-   type IWalletTransaction is access IWalletTransaction_Interface'Class;
+   type IWalletTransaction is access all IWalletTransaction_Interface'Class;
    type IWalletTransaction_Ptr is access all IWalletTransaction;
 
    type IWalletVerb_Interface is interface and WinRt.IInspectable_Interface;
-   type IWalletVerb is access IWalletVerb_Interface'Class;
+   type IWalletVerb is access all IWalletVerb_Interface'Class;
    type IWalletVerb_Ptr is access all IWalletVerb;
 
    type IWalletVerbFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWalletVerbFactory is access IWalletVerbFactory_Interface'Class;
+   type IWalletVerbFactory is access all IWalletVerbFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -152,7 +152,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
       Message_e => 3,
       Verb_e => 4
    );
-   type WalletActionKind_Ptr is access WalletActionKind;
+   type WalletActionKind_Ptr is access all WalletActionKind;
 
    type WalletBarcodeSymbology is (
       Invalid_e,
@@ -182,7 +182,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
       Aztec_e => 10,
       Custom_e => 100000
    );
-   type WalletBarcodeSymbology_Ptr is access WalletBarcodeSymbology;
+   type WalletBarcodeSymbology_Ptr is access all WalletBarcodeSymbology;
 
    type WalletDetailViewPosition is (
       Hidden_e,
@@ -218,7 +218,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
       FooterField3_e => 13,
       FooterField4_e => 14
    );
-   type WalletDetailViewPosition_Ptr is access WalletDetailViewPosition;
+   type WalletDetailViewPosition_Ptr is access all WalletDetailViewPosition;
 
    type WalletItemKind is (
       Invalid_e,
@@ -238,7 +238,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
       BoardingPass_e => 5,
       MembershipCard_e => 6
    );
-   type WalletItemKind_Ptr is access WalletItemKind;
+   type WalletItemKind_Ptr is access all WalletItemKind;
 
    type WalletSummaryViewPosition is (
       Hidden_e,
@@ -250,7 +250,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
       Field1_e => 1,
       Field2_e => 2
    );
-   type WalletSummaryViewPosition_Ptr is access WalletSummaryViewPosition;
+   type WalletSummaryViewPosition_Ptr is access all WalletSummaryViewPosition;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -259,7 +259,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    type WalletContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type WalletContract_Ptr is access WalletContract;
+   type WalletContract_Ptr is access all WalletContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -43,112 +43,112 @@ package WinRt.Windows.Perception.Spatial is
    -----------------------------------------------------------------------------
 
    type ISpatialAnchor_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialAnchor is access ISpatialAnchor_Interface'Class;
+   type ISpatialAnchor is access all ISpatialAnchor_Interface'Class;
    type ISpatialAnchor_Ptr is access all ISpatialAnchor;
 
    type ISpatialAnchor2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialAnchor2 is access ISpatialAnchor2_Interface'Class;
+   type ISpatialAnchor2 is access all ISpatialAnchor2_Interface'Class;
 
    type ISpatialAnchorExportSufficiency_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialAnchorExportSufficiency is access ISpatialAnchorExportSufficiency_Interface'Class;
+   type ISpatialAnchorExportSufficiency is access all ISpatialAnchorExportSufficiency_Interface'Class;
    type ISpatialAnchorExportSufficiency_Ptr is access all ISpatialAnchorExportSufficiency;
 
    type ISpatialAnchorExporter_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialAnchorExporter is access ISpatialAnchorExporter_Interface'Class;
+   type ISpatialAnchorExporter is access all ISpatialAnchorExporter_Interface'Class;
    type ISpatialAnchorExporter_Ptr is access all ISpatialAnchorExporter;
 
    type ISpatialAnchorExporterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialAnchorExporterStatics is access ISpatialAnchorExporterStatics_Interface'Class;
+   type ISpatialAnchorExporterStatics is access all ISpatialAnchorExporterStatics_Interface'Class;
 
    type ISpatialAnchorManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialAnchorManagerStatics is access ISpatialAnchorManagerStatics_Interface'Class;
+   type ISpatialAnchorManagerStatics is access all ISpatialAnchorManagerStatics_Interface'Class;
 
    type ISpatialAnchorRawCoordinateSystemAdjustedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialAnchorRawCoordinateSystemAdjustedEventArgs is access ISpatialAnchorRawCoordinateSystemAdjustedEventArgs_Interface'Class;
+   type ISpatialAnchorRawCoordinateSystemAdjustedEventArgs is access all ISpatialAnchorRawCoordinateSystemAdjustedEventArgs_Interface'Class;
    type ISpatialAnchorRawCoordinateSystemAdjustedEventArgs_Ptr is access all ISpatialAnchorRawCoordinateSystemAdjustedEventArgs;
 
    type ISpatialAnchorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialAnchorStatics is access ISpatialAnchorStatics_Interface'Class;
+   type ISpatialAnchorStatics is access all ISpatialAnchorStatics_Interface'Class;
 
    type ISpatialAnchorStore_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialAnchorStore is access ISpatialAnchorStore_Interface'Class;
+   type ISpatialAnchorStore is access all ISpatialAnchorStore_Interface'Class;
    type ISpatialAnchorStore_Ptr is access all ISpatialAnchorStore;
 
    type ISpatialAnchorTransferManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialAnchorTransferManagerStatics is access ISpatialAnchorTransferManagerStatics_Interface'Class;
+   type ISpatialAnchorTransferManagerStatics is access all ISpatialAnchorTransferManagerStatics_Interface'Class;
 
    type ISpatialBoundingVolume_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialBoundingVolume is access ISpatialBoundingVolume_Interface'Class;
+   type ISpatialBoundingVolume is access all ISpatialBoundingVolume_Interface'Class;
    type ISpatialBoundingVolume_Ptr is access all ISpatialBoundingVolume;
 
    type ISpatialBoundingVolumeStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialBoundingVolumeStatics is access ISpatialBoundingVolumeStatics_Interface'Class;
+   type ISpatialBoundingVolumeStatics is access all ISpatialBoundingVolumeStatics_Interface'Class;
 
    type ISpatialCoordinateSystem_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialCoordinateSystem is access ISpatialCoordinateSystem_Interface'Class;
+   type ISpatialCoordinateSystem is access all ISpatialCoordinateSystem_Interface'Class;
    type ISpatialCoordinateSystem_Ptr is access all ISpatialCoordinateSystem;
 
    type ISpatialEntity_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialEntity is access ISpatialEntity_Interface'Class;
+   type ISpatialEntity is access all ISpatialEntity_Interface'Class;
    type ISpatialEntity_Ptr is access all ISpatialEntity;
 
    type ISpatialEntityAddedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialEntityAddedEventArgs is access ISpatialEntityAddedEventArgs_Interface'Class;
+   type ISpatialEntityAddedEventArgs is access all ISpatialEntityAddedEventArgs_Interface'Class;
    type ISpatialEntityAddedEventArgs_Ptr is access all ISpatialEntityAddedEventArgs;
 
    type ISpatialEntityFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialEntityFactory is access ISpatialEntityFactory_Interface'Class;
+   type ISpatialEntityFactory is access all ISpatialEntityFactory_Interface'Class;
 
    type ISpatialEntityRemovedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialEntityRemovedEventArgs is access ISpatialEntityRemovedEventArgs_Interface'Class;
+   type ISpatialEntityRemovedEventArgs is access all ISpatialEntityRemovedEventArgs_Interface'Class;
    type ISpatialEntityRemovedEventArgs_Ptr is access all ISpatialEntityRemovedEventArgs;
 
    type ISpatialEntityStore_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialEntityStore is access ISpatialEntityStore_Interface'Class;
+   type ISpatialEntityStore is access all ISpatialEntityStore_Interface'Class;
    type ISpatialEntityStore_Ptr is access all ISpatialEntityStore;
 
    type ISpatialEntityStoreStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialEntityStoreStatics is access ISpatialEntityStoreStatics_Interface'Class;
+   type ISpatialEntityStoreStatics is access all ISpatialEntityStoreStatics_Interface'Class;
 
    type ISpatialEntityUpdatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialEntityUpdatedEventArgs is access ISpatialEntityUpdatedEventArgs_Interface'Class;
+   type ISpatialEntityUpdatedEventArgs is access all ISpatialEntityUpdatedEventArgs_Interface'Class;
    type ISpatialEntityUpdatedEventArgs_Ptr is access all ISpatialEntityUpdatedEventArgs;
 
    type ISpatialEntityWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialEntityWatcher is access ISpatialEntityWatcher_Interface'Class;
+   type ISpatialEntityWatcher is access all ISpatialEntityWatcher_Interface'Class;
    type ISpatialEntityWatcher_Ptr is access all ISpatialEntityWatcher;
 
    type ISpatialLocation_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialLocation is access ISpatialLocation_Interface'Class;
+   type ISpatialLocation is access all ISpatialLocation_Interface'Class;
    type ISpatialLocation_Ptr is access all ISpatialLocation;
 
    type ISpatialLocation2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialLocation2 is access ISpatialLocation2_Interface'Class;
+   type ISpatialLocation2 is access all ISpatialLocation2_Interface'Class;
 
    type ISpatialLocator_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialLocator is access ISpatialLocator_Interface'Class;
+   type ISpatialLocator is access all ISpatialLocator_Interface'Class;
    type ISpatialLocator_Ptr is access all ISpatialLocator;
 
    type ISpatialLocatorAttachedFrameOfReference_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialLocatorAttachedFrameOfReference is access ISpatialLocatorAttachedFrameOfReference_Interface'Class;
+   type ISpatialLocatorAttachedFrameOfReference is access all ISpatialLocatorAttachedFrameOfReference_Interface'Class;
    type ISpatialLocatorAttachedFrameOfReference_Ptr is access all ISpatialLocatorAttachedFrameOfReference;
 
    type ISpatialLocatorPositionalTrackingDeactivatingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialLocatorPositionalTrackingDeactivatingEventArgs is access ISpatialLocatorPositionalTrackingDeactivatingEventArgs_Interface'Class;
+   type ISpatialLocatorPositionalTrackingDeactivatingEventArgs is access all ISpatialLocatorPositionalTrackingDeactivatingEventArgs_Interface'Class;
    type ISpatialLocatorPositionalTrackingDeactivatingEventArgs_Ptr is access all ISpatialLocatorPositionalTrackingDeactivatingEventArgs;
 
    type ISpatialLocatorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialLocatorStatics is access ISpatialLocatorStatics_Interface'Class;
+   type ISpatialLocatorStatics is access all ISpatialLocatorStatics_Interface'Class;
 
    type ISpatialStageFrameOfReference_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialStageFrameOfReference is access ISpatialStageFrameOfReference_Interface'Class;
+   type ISpatialStageFrameOfReference is access all ISpatialStageFrameOfReference_Interface'Class;
    type ISpatialStageFrameOfReference_Ptr is access all ISpatialStageFrameOfReference;
 
    type ISpatialStageFrameOfReferenceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialStageFrameOfReferenceStatics is access ISpatialStageFrameOfReferenceStatics_Interface'Class;
+   type ISpatialStageFrameOfReferenceStatics is access all ISpatialStageFrameOfReferenceStatics_Interface'Class;
 
    type ISpatialStationaryFrameOfReference_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialStationaryFrameOfReference is access ISpatialStationaryFrameOfReference_Interface'Class;
+   type ISpatialStationaryFrameOfReference is access all ISpatialStationaryFrameOfReference_Interface'Class;
    type ISpatialStationaryFrameOfReference_Ptr is access all ISpatialStationaryFrameOfReference;
 
    -----------------------------------------------------------------------------
@@ -281,7 +281,7 @@ package WinRt.Windows.Perception.Spatial is
       Relocalization_e => 0,
       Sharing_e => 1
    );
-   type SpatialAnchorExportPurpose_Ptr is access SpatialAnchorExportPurpose;
+   type SpatialAnchorExportPurpose_Ptr is access all SpatialAnchorExportPurpose;
 
    type SpatialEntityWatcherStatus is (
       Created_e,
@@ -299,7 +299,7 @@ package WinRt.Windows.Perception.Spatial is
       Stopped_e => 4,
       Aborted_e => 5
    );
-   type SpatialEntityWatcherStatus_Ptr is access SpatialEntityWatcherStatus;
+   type SpatialEntityWatcherStatus_Ptr is access all SpatialEntityWatcherStatus;
 
    type SpatialLocatability is (
       Unavailable_e,
@@ -315,7 +315,7 @@ package WinRt.Windows.Perception.Spatial is
       PositionalTrackingActive_e => 3,
       PositionalTrackingInhibited_e => 4
    );
-   type SpatialLocatability_Ptr is access SpatialLocatability;
+   type SpatialLocatability_Ptr is access all SpatialLocatability;
 
    type SpatialLookDirectionRange is (
       ForwardOnly_e,
@@ -325,7 +325,7 @@ package WinRt.Windows.Perception.Spatial is
       ForwardOnly_e => 0,
       Omnidirectional_e => 1
    );
-   type SpatialLookDirectionRange_Ptr is access SpatialLookDirectionRange;
+   type SpatialLookDirectionRange_Ptr is access all SpatialLookDirectionRange;
 
    type SpatialMovementRange is (
       NoMovement_e,
@@ -335,7 +335,7 @@ package WinRt.Windows.Perception.Spatial is
       NoMovement_e => 0,
       Bounded_e => 1
    );
-   type SpatialMovementRange_Ptr is access SpatialMovementRange;
+   type SpatialMovementRange_Ptr is access all SpatialMovementRange;
 
    type SpatialPerceptionAccessStatus is (
       Unspecified_e,
@@ -349,7 +349,7 @@ package WinRt.Windows.Perception.Spatial is
       DeniedByUser_e => 2,
       DeniedBySystem_e => 3
    );
-   type SpatialPerceptionAccessStatus_Ptr is access SpatialPerceptionAccessStatus;
+   type SpatialPerceptionAccessStatus_Ptr is access all SpatialPerceptionAccessStatus;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -359,7 +359,7 @@ package WinRt.Windows.Perception.Spatial is
       Center : WinRt.Windows.Foundation.Numerics.Vector3;
       Extents : WinRt.Windows.Foundation.Numerics.Vector3;
    end record with Convention => C_Pass_By_Copy;
-   type SpatialBoundingBox_Ptr is access SpatialBoundingBox;
+   type SpatialBoundingBox_Ptr is access all SpatialBoundingBox;
 
    type SpatialBoundingFrustum is record
       Near : WinRt.Windows.Foundation.Numerics.Plane;
@@ -369,26 +369,26 @@ package WinRt.Windows.Perception.Spatial is
       Top : WinRt.Windows.Foundation.Numerics.Plane;
       Bottom : WinRt.Windows.Foundation.Numerics.Plane;
    end record with Convention => C_Pass_By_Copy;
-   type SpatialBoundingFrustum_Ptr is access SpatialBoundingFrustum;
+   type SpatialBoundingFrustum_Ptr is access all SpatialBoundingFrustum;
 
    type SpatialBoundingOrientedBox is record
       Center : WinRt.Windows.Foundation.Numerics.Vector3;
       Extents : WinRt.Windows.Foundation.Numerics.Vector3;
       Orientation : WinRt.Windows.Foundation.Numerics.Quaternion;
    end record with Convention => C_Pass_By_Copy;
-   type SpatialBoundingOrientedBox_Ptr is access SpatialBoundingOrientedBox;
+   type SpatialBoundingOrientedBox_Ptr is access all SpatialBoundingOrientedBox;
 
    type SpatialBoundingSphere is record
       Center : WinRt.Windows.Foundation.Numerics.Vector3;
       Radius : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type SpatialBoundingSphere_Ptr is access SpatialBoundingSphere;
+   type SpatialBoundingSphere_Ptr is access all SpatialBoundingSphere;
 
    type SpatialRay is record
       Origin : WinRt.Windows.Foundation.Numerics.Vector3;
       Direction : WinRt.Windows.Foundation.Numerics.Vector3;
    end record with Convention => C_Pass_By_Copy;
-   type SpatialRay_Ptr is access SpatialRay;
+   type SpatialRay_Ptr is access all SpatialRay;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

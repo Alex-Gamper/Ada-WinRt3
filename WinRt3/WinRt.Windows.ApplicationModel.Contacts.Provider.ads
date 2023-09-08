@@ -40,14 +40,14 @@ package WinRt.Windows.ApplicationModel.Contacts.Provider is
    -----------------------------------------------------------------------------
 
    type IContactPickerUI_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactPickerUI is access IContactPickerUI_Interface'Class;
+   type IContactPickerUI is access all IContactPickerUI_Interface'Class;
    type IContactPickerUI_Ptr is access all IContactPickerUI;
 
    type IContactPickerUI2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactPickerUI2 is access IContactPickerUI2_Interface'Class;
+   type IContactPickerUI2 is access all IContactPickerUI2_Interface'Class;
 
    type IContactRemovedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactRemovedEventArgs is access IContactRemovedEventArgs_Interface'Class;
+   type IContactRemovedEventArgs is access all IContactRemovedEventArgs_Interface'Class;
    type IContactRemovedEventArgs_Ptr is access all IContactRemovedEventArgs;
 
    -----------------------------------------------------------------------------
@@ -80,7 +80,7 @@ package WinRt.Windows.ApplicationModel.Contacts.Provider is
       AlreadyAdded_e => 1,
       Unavailable_e => 2
    );
-   type AddContactResult_Ptr is access AddContactResult;
+   type AddContactResult_Ptr is access all AddContactResult;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

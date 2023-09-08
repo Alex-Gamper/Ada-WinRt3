@@ -39,7 +39,7 @@ package WinRt.Windows.Perception.Automation.Core is
    -----------------------------------------------------------------------------
 
    type ICorePerceptionAutomationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICorePerceptionAutomationStatics is access ICorePerceptionAutomationStatics_Interface'Class;
+   type ICorePerceptionAutomationStatics is access all ICorePerceptionAutomationStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -48,7 +48,7 @@ package WinRt.Windows.Perception.Automation.Core is
    type PerceptionAutomationCoreContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type PerceptionAutomationCoreContract_Ptr is access PerceptionAutomationCoreContract;
+   type PerceptionAutomationCoreContract_Ptr is access all PerceptionAutomationCoreContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

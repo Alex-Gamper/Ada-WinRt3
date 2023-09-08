@@ -42,49 +42,49 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
    -----------------------------------------------------------------------------
 
    type IHidBooleanControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IHidBooleanControl is access IHidBooleanControl_Interface'Class;
+   type IHidBooleanControl is access all IHidBooleanControl_Interface'Class;
    type IHidBooleanControl_Ptr is access all IHidBooleanControl;
 
    type IHidBooleanControlDescription_Interface is interface and WinRt.IInspectable_Interface;
-   type IHidBooleanControlDescription is access IHidBooleanControlDescription_Interface'Class;
+   type IHidBooleanControlDescription is access all IHidBooleanControlDescription_Interface'Class;
    type IHidBooleanControlDescription_Ptr is access all IHidBooleanControlDescription;
 
    type IHidBooleanControlDescription2_Interface is interface and WinRt.IInspectable_Interface;
-   type IHidBooleanControlDescription2 is access IHidBooleanControlDescription2_Interface'Class;
+   type IHidBooleanControlDescription2 is access all IHidBooleanControlDescription2_Interface'Class;
 
    type IHidCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IHidCollection is access IHidCollection_Interface'Class;
+   type IHidCollection is access all IHidCollection_Interface'Class;
    type IHidCollection_Ptr is access all IHidCollection;
 
    type IHidDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IHidDevice is access IHidDevice_Interface'Class;
+   type IHidDevice is access all IHidDevice_Interface'Class;
    type IHidDevice_Ptr is access all IHidDevice;
 
    type IHidDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHidDeviceStatics is access IHidDeviceStatics_Interface'Class;
+   type IHidDeviceStatics is access all IHidDeviceStatics_Interface'Class;
 
    type IHidFeatureReport_Interface is interface and WinRt.IInspectable_Interface;
-   type IHidFeatureReport is access IHidFeatureReport_Interface'Class;
+   type IHidFeatureReport is access all IHidFeatureReport_Interface'Class;
    type IHidFeatureReport_Ptr is access all IHidFeatureReport;
 
    type IHidInputReport_Interface is interface and WinRt.IInspectable_Interface;
-   type IHidInputReport is access IHidInputReport_Interface'Class;
+   type IHidInputReport is access all IHidInputReport_Interface'Class;
    type IHidInputReport_Ptr is access all IHidInputReport;
 
    type IHidInputReportReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IHidInputReportReceivedEventArgs is access IHidInputReportReceivedEventArgs_Interface'Class;
+   type IHidInputReportReceivedEventArgs is access all IHidInputReportReceivedEventArgs_Interface'Class;
    type IHidInputReportReceivedEventArgs_Ptr is access all IHidInputReportReceivedEventArgs;
 
    type IHidNumericControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IHidNumericControl is access IHidNumericControl_Interface'Class;
+   type IHidNumericControl is access all IHidNumericControl_Interface'Class;
    type IHidNumericControl_Ptr is access all IHidNumericControl;
 
    type IHidNumericControlDescription_Interface is interface and WinRt.IInspectable_Interface;
-   type IHidNumericControlDescription is access IHidNumericControlDescription_Interface'Class;
+   type IHidNumericControlDescription is access all IHidNumericControlDescription_Interface'Class;
    type IHidNumericControlDescription_Ptr is access all IHidNumericControlDescription;
 
    type IHidOutputReport_Interface is interface and WinRt.IInspectable_Interface;
-   type IHidOutputReport is access IHidOutputReport_Interface'Class;
+   type IHidOutputReport is access all IHidOutputReport_Interface'Class;
    type IHidOutputReport_Ptr is access all IHidOutputReport;
 
    -----------------------------------------------------------------------------
@@ -175,7 +175,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       UsageModifier_e => 6,
       Other_e => 7
    );
-   type HidCollectionType_Ptr is access HidCollectionType;
+   type HidCollectionType_Ptr is access all HidCollectionType;
 
    type HidReportType is (
       Input_e,
@@ -187,7 +187,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       Output_e => 1,
       Feature_e => 2
    );
-   type HidReportType_Ptr is access HidReportType;
+   type HidReportType_Ptr is access all HidReportType;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

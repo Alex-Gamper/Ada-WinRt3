@@ -40,25 +40,25 @@ package WinRt.Windows.Devices.I2c is
    -----------------------------------------------------------------------------
 
    type II2cConnectionSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type II2cConnectionSettings is access II2cConnectionSettings_Interface'Class;
+   type II2cConnectionSettings is access all II2cConnectionSettings_Interface'Class;
    type II2cConnectionSettings_Ptr is access all II2cConnectionSettings;
 
    type II2cConnectionSettingsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type II2cConnectionSettingsFactory is access II2cConnectionSettingsFactory_Interface'Class;
+   type II2cConnectionSettingsFactory is access all II2cConnectionSettingsFactory_Interface'Class;
 
    type II2cController_Interface is interface and WinRt.IInspectable_Interface;
-   type II2cController is access II2cController_Interface'Class;
+   type II2cController is access all II2cController_Interface'Class;
    type II2cController_Ptr is access all II2cController;
 
    type II2cControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type II2cControllerStatics is access II2cControllerStatics_Interface'Class;
+   type II2cControllerStatics is access all II2cControllerStatics_Interface'Class;
 
    type II2cDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type II2cDevice is access II2cDevice_Interface'Class;
+   type II2cDevice is access all II2cDevice_Interface'Class;
    type II2cDevice_Ptr is access all II2cDevice;
 
    type II2cDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type II2cDeviceStatics is access II2cDeviceStatics_Interface'Class;
+   type II2cDeviceStatics is access all II2cDeviceStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -94,7 +94,7 @@ package WinRt.Windows.Devices.I2c is
       StandardMode_e => 0,
       FastMode_e => 1
    );
-   type I2cBusSpeed_Ptr is access I2cBusSpeed;
+   type I2cBusSpeed_Ptr is access all I2cBusSpeed;
 
    type I2cSharingMode is (
       Exclusive_e,
@@ -104,7 +104,7 @@ package WinRt.Windows.Devices.I2c is
       Exclusive_e => 0,
       Shared_e => 1
    );
-   type I2cSharingMode_Ptr is access I2cSharingMode;
+   type I2cSharingMode_Ptr is access all I2cSharingMode;
 
    type I2cTransferStatus is (
       FullTransfer_e,
@@ -120,7 +120,7 @@ package WinRt.Windows.Devices.I2c is
       ClockStretchTimeout_e => 3,
       UnknownError_e => 4
    );
-   type I2cTransferStatus_Ptr is access I2cTransferStatus;
+   type I2cTransferStatus_Ptr is access all I2cTransferStatus;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -130,7 +130,7 @@ package WinRt.Windows.Devices.I2c is
       Status : Windows.Devices.I2c.I2cTransferStatus;
       BytesTransferred : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type I2cTransferResult_Ptr is access I2cTransferResult;
+   type I2cTransferResult_Ptr is access all I2cTransferResult;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

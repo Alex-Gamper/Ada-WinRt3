@@ -43,676 +43,676 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    -----------------------------------------------------------------------------
 
    type IAppBarAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBarAutomationPeer is access IAppBarAutomationPeer_Interface'Class;
+   type IAppBarAutomationPeer is access all IAppBarAutomationPeer_Interface'Class;
    type IAppBarAutomationPeer_Ptr is access all IAppBarAutomationPeer;
 
    type IAppBarAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBarAutomationPeerFactory is access IAppBarAutomationPeerFactory_Interface'Class;
+   type IAppBarAutomationPeerFactory is access all IAppBarAutomationPeerFactory_Interface'Class;
 
    type IAppBarButtonAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBarButtonAutomationPeer is access IAppBarButtonAutomationPeer_Interface'Class;
+   type IAppBarButtonAutomationPeer is access all IAppBarButtonAutomationPeer_Interface'Class;
    type IAppBarButtonAutomationPeer_Ptr is access all IAppBarButtonAutomationPeer;
 
    type IAppBarButtonAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBarButtonAutomationPeerFactory is access IAppBarButtonAutomationPeerFactory_Interface'Class;
+   type IAppBarButtonAutomationPeerFactory is access all IAppBarButtonAutomationPeerFactory_Interface'Class;
 
    type IAppBarToggleButtonAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBarToggleButtonAutomationPeer is access IAppBarToggleButtonAutomationPeer_Interface'Class;
+   type IAppBarToggleButtonAutomationPeer is access all IAppBarToggleButtonAutomationPeer_Interface'Class;
    type IAppBarToggleButtonAutomationPeer_Ptr is access all IAppBarToggleButtonAutomationPeer;
 
    type IAppBarToggleButtonAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBarToggleButtonAutomationPeerFactory is access IAppBarToggleButtonAutomationPeerFactory_Interface'Class;
+   type IAppBarToggleButtonAutomationPeerFactory is access all IAppBarToggleButtonAutomationPeerFactory_Interface'Class;
 
    type IAutoSuggestBoxAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutoSuggestBoxAutomationPeer is access IAutoSuggestBoxAutomationPeer_Interface'Class;
+   type IAutoSuggestBoxAutomationPeer is access all IAutoSuggestBoxAutomationPeer_Interface'Class;
    type IAutoSuggestBoxAutomationPeer_Ptr is access all IAutoSuggestBoxAutomationPeer;
 
    type IAutoSuggestBoxAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutoSuggestBoxAutomationPeerFactory is access IAutoSuggestBoxAutomationPeerFactory_Interface'Class;
+   type IAutoSuggestBoxAutomationPeerFactory is access all IAutoSuggestBoxAutomationPeerFactory_Interface'Class;
 
    type IAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeer is access IAutomationPeer_Interface'Class;
+   type IAutomationPeer is access all IAutomationPeer_Interface'Class;
    type IAutomationPeer_Ptr is access all IAutomationPeer;
 
    type IAutomationPeer2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeer2 is access IAutomationPeer2_Interface'Class;
+   type IAutomationPeer2 is access all IAutomationPeer2_Interface'Class;
 
    type IAutomationPeer3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeer3 is access IAutomationPeer3_Interface'Class;
+   type IAutomationPeer3 is access all IAutomationPeer3_Interface'Class;
 
    type IAutomationPeer4_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeer4 is access IAutomationPeer4_Interface'Class;
+   type IAutomationPeer4 is access all IAutomationPeer4_Interface'Class;
 
    type IAutomationPeer5_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeer5 is access IAutomationPeer5_Interface'Class;
+   type IAutomationPeer5 is access all IAutomationPeer5_Interface'Class;
 
    type IAutomationPeer6_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeer6 is access IAutomationPeer6_Interface'Class;
+   type IAutomationPeer6 is access all IAutomationPeer6_Interface'Class;
 
    type IAutomationPeer7_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeer7 is access IAutomationPeer7_Interface'Class;
+   type IAutomationPeer7 is access all IAutomationPeer7_Interface'Class;
 
    type IAutomationPeer8_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeer8 is access IAutomationPeer8_Interface'Class;
+   type IAutomationPeer8 is access all IAutomationPeer8_Interface'Class;
 
    type IAutomationPeer9_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeer9 is access IAutomationPeer9_Interface'Class;
+   type IAutomationPeer9 is access all IAutomationPeer9_Interface'Class;
 
    type IAutomationPeerAnnotation_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeerAnnotation is access IAutomationPeerAnnotation_Interface'Class;
+   type IAutomationPeerAnnotation is access all IAutomationPeerAnnotation_Interface'Class;
    type IAutomationPeerAnnotation_Ptr is access all IAutomationPeerAnnotation;
 
    type IAutomationPeerAnnotationFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeerAnnotationFactory is access IAutomationPeerAnnotationFactory_Interface'Class;
+   type IAutomationPeerAnnotationFactory is access all IAutomationPeerAnnotationFactory_Interface'Class;
 
    type IAutomationPeerAnnotationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeerAnnotationStatics is access IAutomationPeerAnnotationStatics_Interface'Class;
+   type IAutomationPeerAnnotationStatics is access all IAutomationPeerAnnotationStatics_Interface'Class;
 
    type IAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeerFactory is access IAutomationPeerFactory_Interface'Class;
+   type IAutomationPeerFactory is access all IAutomationPeerFactory_Interface'Class;
 
    type IAutomationPeerOverrides_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeerOverrides is access IAutomationPeerOverrides_Interface'Class;
+   type IAutomationPeerOverrides is access all IAutomationPeerOverrides_Interface'Class;
 
    type IAutomationPeerOverrides2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeerOverrides2 is access IAutomationPeerOverrides2_Interface'Class;
+   type IAutomationPeerOverrides2 is access all IAutomationPeerOverrides2_Interface'Class;
 
    type IAutomationPeerOverrides3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeerOverrides3 is access IAutomationPeerOverrides3_Interface'Class;
+   type IAutomationPeerOverrides3 is access all IAutomationPeerOverrides3_Interface'Class;
 
    type IAutomationPeerOverrides4_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeerOverrides4 is access IAutomationPeerOverrides4_Interface'Class;
+   type IAutomationPeerOverrides4 is access all IAutomationPeerOverrides4_Interface'Class;
 
    type IAutomationPeerOverrides5_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeerOverrides5 is access IAutomationPeerOverrides5_Interface'Class;
+   type IAutomationPeerOverrides5 is access all IAutomationPeerOverrides5_Interface'Class;
 
    type IAutomationPeerOverrides6_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeerOverrides6 is access IAutomationPeerOverrides6_Interface'Class;
+   type IAutomationPeerOverrides6 is access all IAutomationPeerOverrides6_Interface'Class;
 
    type IAutomationPeerOverrides8_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeerOverrides8 is access IAutomationPeerOverrides8_Interface'Class;
+   type IAutomationPeerOverrides8 is access all IAutomationPeerOverrides8_Interface'Class;
 
    type IAutomationPeerOverrides9_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeerOverrides9 is access IAutomationPeerOverrides9_Interface'Class;
+   type IAutomationPeerOverrides9 is access all IAutomationPeerOverrides9_Interface'Class;
 
    type IAutomationPeerProtected_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeerProtected is access IAutomationPeerProtected_Interface'Class;
+   type IAutomationPeerProtected is access all IAutomationPeerProtected_Interface'Class;
 
    type IAutomationPeerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeerStatics is access IAutomationPeerStatics_Interface'Class;
+   type IAutomationPeerStatics is access all IAutomationPeerStatics_Interface'Class;
 
    type IAutomationPeerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAutomationPeerStatics3 is access IAutomationPeerStatics3_Interface'Class;
+   type IAutomationPeerStatics3 is access all IAutomationPeerStatics3_Interface'Class;
 
    type IButtonAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IButtonAutomationPeer is access IButtonAutomationPeer_Interface'Class;
+   type IButtonAutomationPeer is access all IButtonAutomationPeer_Interface'Class;
    type IButtonAutomationPeer_Ptr is access all IButtonAutomationPeer;
 
    type IButtonAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IButtonAutomationPeerFactory is access IButtonAutomationPeerFactory_Interface'Class;
+   type IButtonAutomationPeerFactory is access all IButtonAutomationPeerFactory_Interface'Class;
 
    type IButtonBaseAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IButtonBaseAutomationPeer is access IButtonBaseAutomationPeer_Interface'Class;
+   type IButtonBaseAutomationPeer is access all IButtonBaseAutomationPeer_Interface'Class;
    type IButtonBaseAutomationPeer_Ptr is access all IButtonBaseAutomationPeer;
 
    type IButtonBaseAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IButtonBaseAutomationPeerFactory is access IButtonBaseAutomationPeerFactory_Interface'Class;
+   type IButtonBaseAutomationPeerFactory is access all IButtonBaseAutomationPeerFactory_Interface'Class;
 
    type ICalendarDatePickerAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ICalendarDatePickerAutomationPeer is access ICalendarDatePickerAutomationPeer_Interface'Class;
+   type ICalendarDatePickerAutomationPeer is access all ICalendarDatePickerAutomationPeer_Interface'Class;
    type ICalendarDatePickerAutomationPeer_Ptr is access all ICalendarDatePickerAutomationPeer;
 
    type ICalendarDatePickerAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICalendarDatePickerAutomationPeerFactory is access ICalendarDatePickerAutomationPeerFactory_Interface'Class;
+   type ICalendarDatePickerAutomationPeerFactory is access all ICalendarDatePickerAutomationPeerFactory_Interface'Class;
 
    type ICaptureElementAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ICaptureElementAutomationPeer is access ICaptureElementAutomationPeer_Interface'Class;
+   type ICaptureElementAutomationPeer is access all ICaptureElementAutomationPeer_Interface'Class;
    type ICaptureElementAutomationPeer_Ptr is access all ICaptureElementAutomationPeer;
 
    type ICaptureElementAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICaptureElementAutomationPeerFactory is access ICaptureElementAutomationPeerFactory_Interface'Class;
+   type ICaptureElementAutomationPeerFactory is access all ICaptureElementAutomationPeerFactory_Interface'Class;
 
    type ICheckBoxAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ICheckBoxAutomationPeer is access ICheckBoxAutomationPeer_Interface'Class;
+   type ICheckBoxAutomationPeer is access all ICheckBoxAutomationPeer_Interface'Class;
    type ICheckBoxAutomationPeer_Ptr is access all ICheckBoxAutomationPeer;
 
    type ICheckBoxAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICheckBoxAutomationPeerFactory is access ICheckBoxAutomationPeerFactory_Interface'Class;
+   type ICheckBoxAutomationPeerFactory is access all ICheckBoxAutomationPeerFactory_Interface'Class;
 
    type IColorPickerSliderAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorPickerSliderAutomationPeer is access IColorPickerSliderAutomationPeer_Interface'Class;
+   type IColorPickerSliderAutomationPeer is access all IColorPickerSliderAutomationPeer_Interface'Class;
    type IColorPickerSliderAutomationPeer_Ptr is access all IColorPickerSliderAutomationPeer;
 
    type IColorPickerSliderAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorPickerSliderAutomationPeerFactory is access IColorPickerSliderAutomationPeerFactory_Interface'Class;
+   type IColorPickerSliderAutomationPeerFactory is access all IColorPickerSliderAutomationPeerFactory_Interface'Class;
 
    type IColorSpectrumAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorSpectrumAutomationPeer is access IColorSpectrumAutomationPeer_Interface'Class;
+   type IColorSpectrumAutomationPeer is access all IColorSpectrumAutomationPeer_Interface'Class;
    type IColorSpectrumAutomationPeer_Ptr is access all IColorSpectrumAutomationPeer;
 
    type IColorSpectrumAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorSpectrumAutomationPeerFactory is access IColorSpectrumAutomationPeerFactory_Interface'Class;
+   type IColorSpectrumAutomationPeerFactory is access all IColorSpectrumAutomationPeerFactory_Interface'Class;
 
    type IComboBoxAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IComboBoxAutomationPeer is access IComboBoxAutomationPeer_Interface'Class;
+   type IComboBoxAutomationPeer is access all IComboBoxAutomationPeer_Interface'Class;
    type IComboBoxAutomationPeer_Ptr is access all IComboBoxAutomationPeer;
 
    type IComboBoxAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IComboBoxAutomationPeerFactory is access IComboBoxAutomationPeerFactory_Interface'Class;
+   type IComboBoxAutomationPeerFactory is access all IComboBoxAutomationPeerFactory_Interface'Class;
 
    type IComboBoxItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IComboBoxItemAutomationPeer is access IComboBoxItemAutomationPeer_Interface'Class;
+   type IComboBoxItemAutomationPeer is access all IComboBoxItemAutomationPeer_Interface'Class;
    type IComboBoxItemAutomationPeer_Ptr is access all IComboBoxItemAutomationPeer;
 
    type IComboBoxItemAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IComboBoxItemAutomationPeerFactory is access IComboBoxItemAutomationPeerFactory_Interface'Class;
+   type IComboBoxItemAutomationPeerFactory is access all IComboBoxItemAutomationPeerFactory_Interface'Class;
 
    type IComboBoxItemDataAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IComboBoxItemDataAutomationPeer is access IComboBoxItemDataAutomationPeer_Interface'Class;
+   type IComboBoxItemDataAutomationPeer is access all IComboBoxItemDataAutomationPeer_Interface'Class;
    type IComboBoxItemDataAutomationPeer_Ptr is access all IComboBoxItemDataAutomationPeer;
 
    type IComboBoxItemDataAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IComboBoxItemDataAutomationPeerFactory is access IComboBoxItemDataAutomationPeerFactory_Interface'Class;
+   type IComboBoxItemDataAutomationPeerFactory is access all IComboBoxItemDataAutomationPeerFactory_Interface'Class;
 
    type IDatePickerAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IDatePickerAutomationPeer is access IDatePickerAutomationPeer_Interface'Class;
+   type IDatePickerAutomationPeer is access all IDatePickerAutomationPeer_Interface'Class;
    type IDatePickerAutomationPeer_Ptr is access all IDatePickerAutomationPeer;
 
    type IDatePickerAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDatePickerAutomationPeerFactory is access IDatePickerAutomationPeerFactory_Interface'Class;
+   type IDatePickerAutomationPeerFactory is access all IDatePickerAutomationPeerFactory_Interface'Class;
 
    type IDatePickerFlyoutPresenterAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IDatePickerFlyoutPresenterAutomationPeer is access IDatePickerFlyoutPresenterAutomationPeer_Interface'Class;
+   type IDatePickerFlyoutPresenterAutomationPeer is access all IDatePickerFlyoutPresenterAutomationPeer_Interface'Class;
    type IDatePickerFlyoutPresenterAutomationPeer_Ptr is access all IDatePickerFlyoutPresenterAutomationPeer;
 
    type IFlipViewAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlipViewAutomationPeer is access IFlipViewAutomationPeer_Interface'Class;
+   type IFlipViewAutomationPeer is access all IFlipViewAutomationPeer_Interface'Class;
    type IFlipViewAutomationPeer_Ptr is access all IFlipViewAutomationPeer;
 
    type IFlipViewAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlipViewAutomationPeerFactory is access IFlipViewAutomationPeerFactory_Interface'Class;
+   type IFlipViewAutomationPeerFactory is access all IFlipViewAutomationPeerFactory_Interface'Class;
 
    type IFlipViewItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlipViewItemAutomationPeer is access IFlipViewItemAutomationPeer_Interface'Class;
+   type IFlipViewItemAutomationPeer is access all IFlipViewItemAutomationPeer_Interface'Class;
    type IFlipViewItemAutomationPeer_Ptr is access all IFlipViewItemAutomationPeer;
 
    type IFlipViewItemAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlipViewItemAutomationPeerFactory is access IFlipViewItemAutomationPeerFactory_Interface'Class;
+   type IFlipViewItemAutomationPeerFactory is access all IFlipViewItemAutomationPeerFactory_Interface'Class;
 
    type IFlipViewItemDataAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlipViewItemDataAutomationPeer is access IFlipViewItemDataAutomationPeer_Interface'Class;
+   type IFlipViewItemDataAutomationPeer is access all IFlipViewItemDataAutomationPeer_Interface'Class;
    type IFlipViewItemDataAutomationPeer_Ptr is access all IFlipViewItemDataAutomationPeer;
 
    type IFlipViewItemDataAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlipViewItemDataAutomationPeerFactory is access IFlipViewItemDataAutomationPeerFactory_Interface'Class;
+   type IFlipViewItemDataAutomationPeerFactory is access all IFlipViewItemDataAutomationPeerFactory_Interface'Class;
 
    type IFlyoutPresenterAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutPresenterAutomationPeer is access IFlyoutPresenterAutomationPeer_Interface'Class;
+   type IFlyoutPresenterAutomationPeer is access all IFlyoutPresenterAutomationPeer_Interface'Class;
    type IFlyoutPresenterAutomationPeer_Ptr is access all IFlyoutPresenterAutomationPeer;
 
    type IFlyoutPresenterAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IFlyoutPresenterAutomationPeerFactory is access IFlyoutPresenterAutomationPeerFactory_Interface'Class;
+   type IFlyoutPresenterAutomationPeerFactory is access all IFlyoutPresenterAutomationPeerFactory_Interface'Class;
 
    type IFrameworkElementAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameworkElementAutomationPeer is access IFrameworkElementAutomationPeer_Interface'Class;
+   type IFrameworkElementAutomationPeer is access all IFrameworkElementAutomationPeer_Interface'Class;
    type IFrameworkElementAutomationPeer_Ptr is access all IFrameworkElementAutomationPeer;
 
    type IFrameworkElementAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameworkElementAutomationPeerFactory is access IFrameworkElementAutomationPeerFactory_Interface'Class;
+   type IFrameworkElementAutomationPeerFactory is access all IFrameworkElementAutomationPeerFactory_Interface'Class;
 
    type IFrameworkElementAutomationPeerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameworkElementAutomationPeerStatics is access IFrameworkElementAutomationPeerStatics_Interface'Class;
+   type IFrameworkElementAutomationPeerStatics is access all IFrameworkElementAutomationPeerStatics_Interface'Class;
 
    type IGridViewAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridViewAutomationPeer is access IGridViewAutomationPeer_Interface'Class;
+   type IGridViewAutomationPeer is access all IGridViewAutomationPeer_Interface'Class;
    type IGridViewAutomationPeer_Ptr is access all IGridViewAutomationPeer;
 
    type IGridViewAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridViewAutomationPeerFactory is access IGridViewAutomationPeerFactory_Interface'Class;
+   type IGridViewAutomationPeerFactory is access all IGridViewAutomationPeerFactory_Interface'Class;
 
    type IGridViewHeaderItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridViewHeaderItemAutomationPeer is access IGridViewHeaderItemAutomationPeer_Interface'Class;
+   type IGridViewHeaderItemAutomationPeer is access all IGridViewHeaderItemAutomationPeer_Interface'Class;
    type IGridViewHeaderItemAutomationPeer_Ptr is access all IGridViewHeaderItemAutomationPeer;
 
    type IGridViewHeaderItemAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridViewHeaderItemAutomationPeerFactory is access IGridViewHeaderItemAutomationPeerFactory_Interface'Class;
+   type IGridViewHeaderItemAutomationPeerFactory is access all IGridViewHeaderItemAutomationPeerFactory_Interface'Class;
 
    type IGridViewItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridViewItemAutomationPeer is access IGridViewItemAutomationPeer_Interface'Class;
+   type IGridViewItemAutomationPeer is access all IGridViewItemAutomationPeer_Interface'Class;
    type IGridViewItemAutomationPeer_Ptr is access all IGridViewItemAutomationPeer;
 
    type IGridViewItemAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridViewItemAutomationPeerFactory is access IGridViewItemAutomationPeerFactory_Interface'Class;
+   type IGridViewItemAutomationPeerFactory is access all IGridViewItemAutomationPeerFactory_Interface'Class;
 
    type IGridViewItemDataAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridViewItemDataAutomationPeer is access IGridViewItemDataAutomationPeer_Interface'Class;
+   type IGridViewItemDataAutomationPeer is access all IGridViewItemDataAutomationPeer_Interface'Class;
    type IGridViewItemDataAutomationPeer_Ptr is access all IGridViewItemDataAutomationPeer;
 
    type IGridViewItemDataAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGridViewItemDataAutomationPeerFactory is access IGridViewItemDataAutomationPeerFactory_Interface'Class;
+   type IGridViewItemDataAutomationPeerFactory is access all IGridViewItemDataAutomationPeerFactory_Interface'Class;
 
    type IGroupItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IGroupItemAutomationPeer is access IGroupItemAutomationPeer_Interface'Class;
+   type IGroupItemAutomationPeer is access all IGroupItemAutomationPeer_Interface'Class;
    type IGroupItemAutomationPeer_Ptr is access all IGroupItemAutomationPeer;
 
    type IGroupItemAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGroupItemAutomationPeerFactory is access IGroupItemAutomationPeerFactory_Interface'Class;
+   type IGroupItemAutomationPeerFactory is access all IGroupItemAutomationPeerFactory_Interface'Class;
 
    type IHubAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IHubAutomationPeer is access IHubAutomationPeer_Interface'Class;
+   type IHubAutomationPeer is access all IHubAutomationPeer_Interface'Class;
    type IHubAutomationPeer_Ptr is access all IHubAutomationPeer;
 
    type IHubAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHubAutomationPeerFactory is access IHubAutomationPeerFactory_Interface'Class;
+   type IHubAutomationPeerFactory is access all IHubAutomationPeerFactory_Interface'Class;
 
    type IHubSectionAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IHubSectionAutomationPeer is access IHubSectionAutomationPeer_Interface'Class;
+   type IHubSectionAutomationPeer is access all IHubSectionAutomationPeer_Interface'Class;
    type IHubSectionAutomationPeer_Ptr is access all IHubSectionAutomationPeer;
 
    type IHubSectionAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHubSectionAutomationPeerFactory is access IHubSectionAutomationPeerFactory_Interface'Class;
+   type IHubSectionAutomationPeerFactory is access all IHubSectionAutomationPeerFactory_Interface'Class;
 
    type IHyperlinkButtonAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IHyperlinkButtonAutomationPeer is access IHyperlinkButtonAutomationPeer_Interface'Class;
+   type IHyperlinkButtonAutomationPeer is access all IHyperlinkButtonAutomationPeer_Interface'Class;
    type IHyperlinkButtonAutomationPeer_Ptr is access all IHyperlinkButtonAutomationPeer;
 
    type IHyperlinkButtonAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHyperlinkButtonAutomationPeerFactory is access IHyperlinkButtonAutomationPeerFactory_Interface'Class;
+   type IHyperlinkButtonAutomationPeerFactory is access all IHyperlinkButtonAutomationPeerFactory_Interface'Class;
 
    type IImageAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageAutomationPeer is access IImageAutomationPeer_Interface'Class;
+   type IImageAutomationPeer is access all IImageAutomationPeer_Interface'Class;
    type IImageAutomationPeer_Ptr is access all IImageAutomationPeer;
 
    type IImageAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageAutomationPeerFactory is access IImageAutomationPeerFactory_Interface'Class;
+   type IImageAutomationPeerFactory is access all IImageAutomationPeerFactory_Interface'Class;
 
    type IInkToolbarAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkToolbarAutomationPeer is access IInkToolbarAutomationPeer_Interface'Class;
+   type IInkToolbarAutomationPeer is access all IInkToolbarAutomationPeer_Interface'Class;
    type IInkToolbarAutomationPeer_Ptr is access all IInkToolbarAutomationPeer;
 
    type IItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IItemAutomationPeer is access IItemAutomationPeer_Interface'Class;
+   type IItemAutomationPeer is access all IItemAutomationPeer_Interface'Class;
    type IItemAutomationPeer_Ptr is access all IItemAutomationPeer;
 
    type IItemAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IItemAutomationPeerFactory is access IItemAutomationPeerFactory_Interface'Class;
+   type IItemAutomationPeerFactory is access all IItemAutomationPeerFactory_Interface'Class;
 
    type IItemsControlAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IItemsControlAutomationPeer is access IItemsControlAutomationPeer_Interface'Class;
+   type IItemsControlAutomationPeer is access all IItemsControlAutomationPeer_Interface'Class;
    type IItemsControlAutomationPeer_Ptr is access all IItemsControlAutomationPeer;
 
    type IItemsControlAutomationPeer2_Interface is interface and WinRt.IInspectable_Interface;
-   type IItemsControlAutomationPeer2 is access IItemsControlAutomationPeer2_Interface'Class;
+   type IItemsControlAutomationPeer2 is access all IItemsControlAutomationPeer2_Interface'Class;
 
    type IItemsControlAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IItemsControlAutomationPeerFactory is access IItemsControlAutomationPeerFactory_Interface'Class;
+   type IItemsControlAutomationPeerFactory is access all IItemsControlAutomationPeerFactory_Interface'Class;
 
    type IItemsControlAutomationPeerOverrides2_Interface is interface and WinRt.IInspectable_Interface;
-   type IItemsControlAutomationPeerOverrides2 is access IItemsControlAutomationPeerOverrides2_Interface'Class;
+   type IItemsControlAutomationPeerOverrides2 is access all IItemsControlAutomationPeerOverrides2_Interface'Class;
 
    type IListBoxAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IListBoxAutomationPeer is access IListBoxAutomationPeer_Interface'Class;
+   type IListBoxAutomationPeer is access all IListBoxAutomationPeer_Interface'Class;
    type IListBoxAutomationPeer_Ptr is access all IListBoxAutomationPeer;
 
    type IListBoxAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IListBoxAutomationPeerFactory is access IListBoxAutomationPeerFactory_Interface'Class;
+   type IListBoxAutomationPeerFactory is access all IListBoxAutomationPeerFactory_Interface'Class;
 
    type IListBoxItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IListBoxItemAutomationPeer is access IListBoxItemAutomationPeer_Interface'Class;
+   type IListBoxItemAutomationPeer is access all IListBoxItemAutomationPeer_Interface'Class;
    type IListBoxItemAutomationPeer_Ptr is access all IListBoxItemAutomationPeer;
 
    type IListBoxItemAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IListBoxItemAutomationPeerFactory is access IListBoxItemAutomationPeerFactory_Interface'Class;
+   type IListBoxItemAutomationPeerFactory is access all IListBoxItemAutomationPeerFactory_Interface'Class;
 
    type IListBoxItemDataAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IListBoxItemDataAutomationPeer is access IListBoxItemDataAutomationPeer_Interface'Class;
+   type IListBoxItemDataAutomationPeer is access all IListBoxItemDataAutomationPeer_Interface'Class;
    type IListBoxItemDataAutomationPeer_Ptr is access all IListBoxItemDataAutomationPeer;
 
    type IListBoxItemDataAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IListBoxItemDataAutomationPeerFactory is access IListBoxItemDataAutomationPeerFactory_Interface'Class;
+   type IListBoxItemDataAutomationPeerFactory is access all IListBoxItemDataAutomationPeerFactory_Interface'Class;
 
    type IListPickerFlyoutPresenterAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IListPickerFlyoutPresenterAutomationPeer is access IListPickerFlyoutPresenterAutomationPeer_Interface'Class;
+   type IListPickerFlyoutPresenterAutomationPeer is access all IListPickerFlyoutPresenterAutomationPeer_Interface'Class;
    type IListPickerFlyoutPresenterAutomationPeer_Ptr is access all IListPickerFlyoutPresenterAutomationPeer;
 
    type IListViewAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewAutomationPeer is access IListViewAutomationPeer_Interface'Class;
+   type IListViewAutomationPeer is access all IListViewAutomationPeer_Interface'Class;
    type IListViewAutomationPeer_Ptr is access all IListViewAutomationPeer;
 
    type IListViewAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewAutomationPeerFactory is access IListViewAutomationPeerFactory_Interface'Class;
+   type IListViewAutomationPeerFactory is access all IListViewAutomationPeerFactory_Interface'Class;
 
    type IListViewBaseAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewBaseAutomationPeer is access IListViewBaseAutomationPeer_Interface'Class;
+   type IListViewBaseAutomationPeer is access all IListViewBaseAutomationPeer_Interface'Class;
    type IListViewBaseAutomationPeer_Ptr is access all IListViewBaseAutomationPeer;
 
    type IListViewBaseAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewBaseAutomationPeerFactory is access IListViewBaseAutomationPeerFactory_Interface'Class;
+   type IListViewBaseAutomationPeerFactory is access all IListViewBaseAutomationPeerFactory_Interface'Class;
 
    type IListViewBaseHeaderItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewBaseHeaderItemAutomationPeer is access IListViewBaseHeaderItemAutomationPeer_Interface'Class;
+   type IListViewBaseHeaderItemAutomationPeer is access all IListViewBaseHeaderItemAutomationPeer_Interface'Class;
    type IListViewBaseHeaderItemAutomationPeer_Ptr is access all IListViewBaseHeaderItemAutomationPeer;
 
    type IListViewBaseHeaderItemAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewBaseHeaderItemAutomationPeerFactory is access IListViewBaseHeaderItemAutomationPeerFactory_Interface'Class;
+   type IListViewBaseHeaderItemAutomationPeerFactory is access all IListViewBaseHeaderItemAutomationPeerFactory_Interface'Class;
 
    type IListViewHeaderItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewHeaderItemAutomationPeer is access IListViewHeaderItemAutomationPeer_Interface'Class;
+   type IListViewHeaderItemAutomationPeer is access all IListViewHeaderItemAutomationPeer_Interface'Class;
    type IListViewHeaderItemAutomationPeer_Ptr is access all IListViewHeaderItemAutomationPeer;
 
    type IListViewHeaderItemAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewHeaderItemAutomationPeerFactory is access IListViewHeaderItemAutomationPeerFactory_Interface'Class;
+   type IListViewHeaderItemAutomationPeerFactory is access all IListViewHeaderItemAutomationPeerFactory_Interface'Class;
 
    type IListViewItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewItemAutomationPeer is access IListViewItemAutomationPeer_Interface'Class;
+   type IListViewItemAutomationPeer is access all IListViewItemAutomationPeer_Interface'Class;
    type IListViewItemAutomationPeer_Ptr is access all IListViewItemAutomationPeer;
 
    type IListViewItemAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewItemAutomationPeerFactory is access IListViewItemAutomationPeerFactory_Interface'Class;
+   type IListViewItemAutomationPeerFactory is access all IListViewItemAutomationPeerFactory_Interface'Class;
 
    type IListViewItemDataAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewItemDataAutomationPeer is access IListViewItemDataAutomationPeer_Interface'Class;
+   type IListViewItemDataAutomationPeer is access all IListViewItemDataAutomationPeer_Interface'Class;
    type IListViewItemDataAutomationPeer_Ptr is access all IListViewItemDataAutomationPeer;
 
    type IListViewItemDataAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IListViewItemDataAutomationPeerFactory is access IListViewItemDataAutomationPeerFactory_Interface'Class;
+   type IListViewItemDataAutomationPeerFactory is access all IListViewItemDataAutomationPeerFactory_Interface'Class;
 
    type ILoopingSelectorAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ILoopingSelectorAutomationPeer is access ILoopingSelectorAutomationPeer_Interface'Class;
+   type ILoopingSelectorAutomationPeer is access all ILoopingSelectorAutomationPeer_Interface'Class;
    type ILoopingSelectorAutomationPeer_Ptr is access all ILoopingSelectorAutomationPeer;
 
    type ILoopingSelectorItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ILoopingSelectorItemAutomationPeer is access ILoopingSelectorItemAutomationPeer_Interface'Class;
+   type ILoopingSelectorItemAutomationPeer is access all ILoopingSelectorItemAutomationPeer_Interface'Class;
    type ILoopingSelectorItemAutomationPeer_Ptr is access all ILoopingSelectorItemAutomationPeer;
 
    type ILoopingSelectorItemDataAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ILoopingSelectorItemDataAutomationPeer is access ILoopingSelectorItemDataAutomationPeer_Interface'Class;
+   type ILoopingSelectorItemDataAutomationPeer is access all ILoopingSelectorItemDataAutomationPeer_Interface'Class;
    type ILoopingSelectorItemDataAutomationPeer_Ptr is access all ILoopingSelectorItemDataAutomationPeer;
 
    type IMapControlAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IMapControlAutomationPeer is access IMapControlAutomationPeer_Interface'Class;
+   type IMapControlAutomationPeer is access all IMapControlAutomationPeer_Interface'Class;
    type IMapControlAutomationPeer_Ptr is access all IMapControlAutomationPeer;
 
    type IMediaElementAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaElementAutomationPeer is access IMediaElementAutomationPeer_Interface'Class;
+   type IMediaElementAutomationPeer is access all IMediaElementAutomationPeer_Interface'Class;
    type IMediaElementAutomationPeer_Ptr is access all IMediaElementAutomationPeer;
 
    type IMediaElementAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaElementAutomationPeerFactory is access IMediaElementAutomationPeerFactory_Interface'Class;
+   type IMediaElementAutomationPeerFactory is access all IMediaElementAutomationPeerFactory_Interface'Class;
 
    type IMediaPlayerElementAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlayerElementAutomationPeer is access IMediaPlayerElementAutomationPeer_Interface'Class;
+   type IMediaPlayerElementAutomationPeer is access all IMediaPlayerElementAutomationPeer_Interface'Class;
    type IMediaPlayerElementAutomationPeer_Ptr is access all IMediaPlayerElementAutomationPeer;
 
    type IMediaPlayerElementAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlayerElementAutomationPeerFactory is access IMediaPlayerElementAutomationPeerFactory_Interface'Class;
+   type IMediaPlayerElementAutomationPeerFactory is access all IMediaPlayerElementAutomationPeerFactory_Interface'Class;
 
    type IMediaTransportControlsAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaTransportControlsAutomationPeer is access IMediaTransportControlsAutomationPeer_Interface'Class;
+   type IMediaTransportControlsAutomationPeer is access all IMediaTransportControlsAutomationPeer_Interface'Class;
    type IMediaTransportControlsAutomationPeer_Ptr is access all IMediaTransportControlsAutomationPeer;
 
    type IMediaTransportControlsAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaTransportControlsAutomationPeerFactory is access IMediaTransportControlsAutomationPeerFactory_Interface'Class;
+   type IMediaTransportControlsAutomationPeerFactory is access all IMediaTransportControlsAutomationPeerFactory_Interface'Class;
 
    type IMenuBarAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IMenuBarAutomationPeer is access IMenuBarAutomationPeer_Interface'Class;
+   type IMenuBarAutomationPeer is access all IMenuBarAutomationPeer_Interface'Class;
    type IMenuBarAutomationPeer_Ptr is access all IMenuBarAutomationPeer;
 
    type IMenuBarAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMenuBarAutomationPeerFactory is access IMenuBarAutomationPeerFactory_Interface'Class;
+   type IMenuBarAutomationPeerFactory is access all IMenuBarAutomationPeerFactory_Interface'Class;
 
    type IMenuBarItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IMenuBarItemAutomationPeer is access IMenuBarItemAutomationPeer_Interface'Class;
+   type IMenuBarItemAutomationPeer is access all IMenuBarItemAutomationPeer_Interface'Class;
    type IMenuBarItemAutomationPeer_Ptr is access all IMenuBarItemAutomationPeer;
 
    type IMenuBarItemAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMenuBarItemAutomationPeerFactory is access IMenuBarItemAutomationPeerFactory_Interface'Class;
+   type IMenuBarItemAutomationPeerFactory is access all IMenuBarItemAutomationPeerFactory_Interface'Class;
 
    type IMenuFlyoutItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IMenuFlyoutItemAutomationPeer is access IMenuFlyoutItemAutomationPeer_Interface'Class;
+   type IMenuFlyoutItemAutomationPeer is access all IMenuFlyoutItemAutomationPeer_Interface'Class;
    type IMenuFlyoutItemAutomationPeer_Ptr is access all IMenuFlyoutItemAutomationPeer;
 
    type IMenuFlyoutItemAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMenuFlyoutItemAutomationPeerFactory is access IMenuFlyoutItemAutomationPeerFactory_Interface'Class;
+   type IMenuFlyoutItemAutomationPeerFactory is access all IMenuFlyoutItemAutomationPeerFactory_Interface'Class;
 
    type IMenuFlyoutPresenterAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IMenuFlyoutPresenterAutomationPeer is access IMenuFlyoutPresenterAutomationPeer_Interface'Class;
+   type IMenuFlyoutPresenterAutomationPeer is access all IMenuFlyoutPresenterAutomationPeer_Interface'Class;
    type IMenuFlyoutPresenterAutomationPeer_Ptr is access all IMenuFlyoutPresenterAutomationPeer;
 
    type IMenuFlyoutPresenterAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMenuFlyoutPresenterAutomationPeerFactory is access IMenuFlyoutPresenterAutomationPeerFactory_Interface'Class;
+   type IMenuFlyoutPresenterAutomationPeerFactory is access all IMenuFlyoutPresenterAutomationPeerFactory_Interface'Class;
 
    type INavigationViewItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type INavigationViewItemAutomationPeer is access INavigationViewItemAutomationPeer_Interface'Class;
+   type INavigationViewItemAutomationPeer is access all INavigationViewItemAutomationPeer_Interface'Class;
    type INavigationViewItemAutomationPeer_Ptr is access all INavigationViewItemAutomationPeer;
 
    type INavigationViewItemAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type INavigationViewItemAutomationPeerFactory is access INavigationViewItemAutomationPeerFactory_Interface'Class;
+   type INavigationViewItemAutomationPeerFactory is access all INavigationViewItemAutomationPeerFactory_Interface'Class;
 
    type IPasswordBoxAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IPasswordBoxAutomationPeer is access IPasswordBoxAutomationPeer_Interface'Class;
+   type IPasswordBoxAutomationPeer is access all IPasswordBoxAutomationPeer_Interface'Class;
    type IPasswordBoxAutomationPeer_Ptr is access all IPasswordBoxAutomationPeer;
 
    type IPasswordBoxAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPasswordBoxAutomationPeerFactory is access IPasswordBoxAutomationPeerFactory_Interface'Class;
+   type IPasswordBoxAutomationPeerFactory is access all IPasswordBoxAutomationPeerFactory_Interface'Class;
 
    type IPersonPictureAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IPersonPictureAutomationPeer is access IPersonPictureAutomationPeer_Interface'Class;
+   type IPersonPictureAutomationPeer is access all IPersonPictureAutomationPeer_Interface'Class;
    type IPersonPictureAutomationPeer_Ptr is access all IPersonPictureAutomationPeer;
 
    type IPersonPictureAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPersonPictureAutomationPeerFactory is access IPersonPictureAutomationPeerFactory_Interface'Class;
+   type IPersonPictureAutomationPeerFactory is access all IPersonPictureAutomationPeerFactory_Interface'Class;
 
    type IPickerFlyoutPresenterAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IPickerFlyoutPresenterAutomationPeer is access IPickerFlyoutPresenterAutomationPeer_Interface'Class;
+   type IPickerFlyoutPresenterAutomationPeer is access all IPickerFlyoutPresenterAutomationPeer_Interface'Class;
    type IPickerFlyoutPresenterAutomationPeer_Ptr is access all IPickerFlyoutPresenterAutomationPeer;
 
    type IPivotAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IPivotAutomationPeer is access IPivotAutomationPeer_Interface'Class;
+   type IPivotAutomationPeer is access all IPivotAutomationPeer_Interface'Class;
    type IPivotAutomationPeer_Ptr is access all IPivotAutomationPeer;
 
    type IPivotAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPivotAutomationPeerFactory is access IPivotAutomationPeerFactory_Interface'Class;
+   type IPivotAutomationPeerFactory is access all IPivotAutomationPeerFactory_Interface'Class;
 
    type IPivotItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IPivotItemAutomationPeer is access IPivotItemAutomationPeer_Interface'Class;
+   type IPivotItemAutomationPeer is access all IPivotItemAutomationPeer_Interface'Class;
    type IPivotItemAutomationPeer_Ptr is access all IPivotItemAutomationPeer;
 
    type IPivotItemAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPivotItemAutomationPeerFactory is access IPivotItemAutomationPeerFactory_Interface'Class;
+   type IPivotItemAutomationPeerFactory is access all IPivotItemAutomationPeerFactory_Interface'Class;
 
    type IPivotItemDataAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IPivotItemDataAutomationPeer is access IPivotItemDataAutomationPeer_Interface'Class;
+   type IPivotItemDataAutomationPeer is access all IPivotItemDataAutomationPeer_Interface'Class;
    type IPivotItemDataAutomationPeer_Ptr is access all IPivotItemDataAutomationPeer;
 
    type IPivotItemDataAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPivotItemDataAutomationPeerFactory is access IPivotItemDataAutomationPeerFactory_Interface'Class;
+   type IPivotItemDataAutomationPeerFactory is access all IPivotItemDataAutomationPeerFactory_Interface'Class;
 
    type IProgressBarAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IProgressBarAutomationPeer is access IProgressBarAutomationPeer_Interface'Class;
+   type IProgressBarAutomationPeer is access all IProgressBarAutomationPeer_Interface'Class;
    type IProgressBarAutomationPeer_Ptr is access all IProgressBarAutomationPeer;
 
    type IProgressBarAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IProgressBarAutomationPeerFactory is access IProgressBarAutomationPeerFactory_Interface'Class;
+   type IProgressBarAutomationPeerFactory is access all IProgressBarAutomationPeerFactory_Interface'Class;
 
    type IProgressRingAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IProgressRingAutomationPeer is access IProgressRingAutomationPeer_Interface'Class;
+   type IProgressRingAutomationPeer is access all IProgressRingAutomationPeer_Interface'Class;
    type IProgressRingAutomationPeer_Ptr is access all IProgressRingAutomationPeer;
 
    type IProgressRingAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IProgressRingAutomationPeerFactory is access IProgressRingAutomationPeerFactory_Interface'Class;
+   type IProgressRingAutomationPeerFactory is access all IProgressRingAutomationPeerFactory_Interface'Class;
 
    type IRadioButtonAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadioButtonAutomationPeer is access IRadioButtonAutomationPeer_Interface'Class;
+   type IRadioButtonAutomationPeer is access all IRadioButtonAutomationPeer_Interface'Class;
    type IRadioButtonAutomationPeer_Ptr is access all IRadioButtonAutomationPeer;
 
    type IRadioButtonAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadioButtonAutomationPeerFactory is access IRadioButtonAutomationPeerFactory_Interface'Class;
+   type IRadioButtonAutomationPeerFactory is access all IRadioButtonAutomationPeerFactory_Interface'Class;
 
    type IRangeBaseAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IRangeBaseAutomationPeer is access IRangeBaseAutomationPeer_Interface'Class;
+   type IRangeBaseAutomationPeer is access all IRangeBaseAutomationPeer_Interface'Class;
    type IRangeBaseAutomationPeer_Ptr is access all IRangeBaseAutomationPeer;
 
    type IRangeBaseAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRangeBaseAutomationPeerFactory is access IRangeBaseAutomationPeerFactory_Interface'Class;
+   type IRangeBaseAutomationPeerFactory is access all IRangeBaseAutomationPeerFactory_Interface'Class;
 
    type IRatingControlAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IRatingControlAutomationPeer is access IRatingControlAutomationPeer_Interface'Class;
+   type IRatingControlAutomationPeer is access all IRatingControlAutomationPeer_Interface'Class;
    type IRatingControlAutomationPeer_Ptr is access all IRatingControlAutomationPeer;
 
    type IRatingControlAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRatingControlAutomationPeerFactory is access IRatingControlAutomationPeerFactory_Interface'Class;
+   type IRatingControlAutomationPeerFactory is access all IRatingControlAutomationPeerFactory_Interface'Class;
 
    type IRepeatButtonAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IRepeatButtonAutomationPeer is access IRepeatButtonAutomationPeer_Interface'Class;
+   type IRepeatButtonAutomationPeer is access all IRepeatButtonAutomationPeer_Interface'Class;
    type IRepeatButtonAutomationPeer_Ptr is access all IRepeatButtonAutomationPeer;
 
    type IRepeatButtonAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRepeatButtonAutomationPeerFactory is access IRepeatButtonAutomationPeerFactory_Interface'Class;
+   type IRepeatButtonAutomationPeerFactory is access all IRepeatButtonAutomationPeerFactory_Interface'Class;
 
    type IRichEditBoxAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IRichEditBoxAutomationPeer is access IRichEditBoxAutomationPeer_Interface'Class;
+   type IRichEditBoxAutomationPeer is access all IRichEditBoxAutomationPeer_Interface'Class;
    type IRichEditBoxAutomationPeer_Ptr is access all IRichEditBoxAutomationPeer;
 
    type IRichEditBoxAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRichEditBoxAutomationPeerFactory is access IRichEditBoxAutomationPeerFactory_Interface'Class;
+   type IRichEditBoxAutomationPeerFactory is access all IRichEditBoxAutomationPeerFactory_Interface'Class;
 
    type IRichTextBlockAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IRichTextBlockAutomationPeer is access IRichTextBlockAutomationPeer_Interface'Class;
+   type IRichTextBlockAutomationPeer is access all IRichTextBlockAutomationPeer_Interface'Class;
    type IRichTextBlockAutomationPeer_Ptr is access all IRichTextBlockAutomationPeer;
 
    type IRichTextBlockAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRichTextBlockAutomationPeerFactory is access IRichTextBlockAutomationPeerFactory_Interface'Class;
+   type IRichTextBlockAutomationPeerFactory is access all IRichTextBlockAutomationPeerFactory_Interface'Class;
 
    type IRichTextBlockOverflowAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IRichTextBlockOverflowAutomationPeer is access IRichTextBlockOverflowAutomationPeer_Interface'Class;
+   type IRichTextBlockOverflowAutomationPeer is access all IRichTextBlockOverflowAutomationPeer_Interface'Class;
    type IRichTextBlockOverflowAutomationPeer_Ptr is access all IRichTextBlockOverflowAutomationPeer;
 
    type IRichTextBlockOverflowAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRichTextBlockOverflowAutomationPeerFactory is access IRichTextBlockOverflowAutomationPeerFactory_Interface'Class;
+   type IRichTextBlockOverflowAutomationPeerFactory is access all IRichTextBlockOverflowAutomationPeerFactory_Interface'Class;
 
    type IScrollBarAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IScrollBarAutomationPeer is access IScrollBarAutomationPeer_Interface'Class;
+   type IScrollBarAutomationPeer is access all IScrollBarAutomationPeer_Interface'Class;
    type IScrollBarAutomationPeer_Ptr is access all IScrollBarAutomationPeer;
 
    type IScrollBarAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IScrollBarAutomationPeerFactory is access IScrollBarAutomationPeerFactory_Interface'Class;
+   type IScrollBarAutomationPeerFactory is access all IScrollBarAutomationPeerFactory_Interface'Class;
 
    type IScrollViewerAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IScrollViewerAutomationPeer is access IScrollViewerAutomationPeer_Interface'Class;
+   type IScrollViewerAutomationPeer is access all IScrollViewerAutomationPeer_Interface'Class;
    type IScrollViewerAutomationPeer_Ptr is access all IScrollViewerAutomationPeer;
 
    type IScrollViewerAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IScrollViewerAutomationPeerFactory is access IScrollViewerAutomationPeerFactory_Interface'Class;
+   type IScrollViewerAutomationPeerFactory is access all IScrollViewerAutomationPeerFactory_Interface'Class;
 
    type ISearchBoxAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchBoxAutomationPeer is access ISearchBoxAutomationPeer_Interface'Class;
+   type ISearchBoxAutomationPeer is access all ISearchBoxAutomationPeer_Interface'Class;
    type ISearchBoxAutomationPeer_Ptr is access all ISearchBoxAutomationPeer;
 
    type ISearchBoxAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchBoxAutomationPeerFactory is access ISearchBoxAutomationPeerFactory_Interface'Class;
+   type ISearchBoxAutomationPeerFactory is access all ISearchBoxAutomationPeerFactory_Interface'Class;
 
    type ISelectorAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ISelectorAutomationPeer is access ISelectorAutomationPeer_Interface'Class;
+   type ISelectorAutomationPeer is access all ISelectorAutomationPeer_Interface'Class;
    type ISelectorAutomationPeer_Ptr is access all ISelectorAutomationPeer;
 
    type ISelectorAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISelectorAutomationPeerFactory is access ISelectorAutomationPeerFactory_Interface'Class;
+   type ISelectorAutomationPeerFactory is access all ISelectorAutomationPeerFactory_Interface'Class;
 
    type ISelectorItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ISelectorItemAutomationPeer is access ISelectorItemAutomationPeer_Interface'Class;
+   type ISelectorItemAutomationPeer is access all ISelectorItemAutomationPeer_Interface'Class;
    type ISelectorItemAutomationPeer_Ptr is access all ISelectorItemAutomationPeer;
 
    type ISelectorItemAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISelectorItemAutomationPeerFactory is access ISelectorItemAutomationPeerFactory_Interface'Class;
+   type ISelectorItemAutomationPeerFactory is access all ISelectorItemAutomationPeerFactory_Interface'Class;
 
    type ISemanticZoomAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ISemanticZoomAutomationPeer is access ISemanticZoomAutomationPeer_Interface'Class;
+   type ISemanticZoomAutomationPeer is access all ISemanticZoomAutomationPeer_Interface'Class;
    type ISemanticZoomAutomationPeer_Ptr is access all ISemanticZoomAutomationPeer;
 
    type ISemanticZoomAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISemanticZoomAutomationPeerFactory is access ISemanticZoomAutomationPeerFactory_Interface'Class;
+   type ISemanticZoomAutomationPeerFactory is access all ISemanticZoomAutomationPeerFactory_Interface'Class;
 
    type ISettingsFlyoutAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ISettingsFlyoutAutomationPeer is access ISettingsFlyoutAutomationPeer_Interface'Class;
+   type ISettingsFlyoutAutomationPeer is access all ISettingsFlyoutAutomationPeer_Interface'Class;
    type ISettingsFlyoutAutomationPeer_Ptr is access all ISettingsFlyoutAutomationPeer;
 
    type ISettingsFlyoutAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISettingsFlyoutAutomationPeerFactory is access ISettingsFlyoutAutomationPeerFactory_Interface'Class;
+   type ISettingsFlyoutAutomationPeerFactory is access all ISettingsFlyoutAutomationPeerFactory_Interface'Class;
 
    type ISliderAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ISliderAutomationPeer is access ISliderAutomationPeer_Interface'Class;
+   type ISliderAutomationPeer is access all ISliderAutomationPeer_Interface'Class;
    type ISliderAutomationPeer_Ptr is access all ISliderAutomationPeer;
 
    type ISliderAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISliderAutomationPeerFactory is access ISliderAutomationPeerFactory_Interface'Class;
+   type ISliderAutomationPeerFactory is access all ISliderAutomationPeerFactory_Interface'Class;
 
    type ITextBlockAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextBlockAutomationPeer is access ITextBlockAutomationPeer_Interface'Class;
+   type ITextBlockAutomationPeer is access all ITextBlockAutomationPeer_Interface'Class;
    type ITextBlockAutomationPeer_Ptr is access all ITextBlockAutomationPeer;
 
    type ITextBlockAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextBlockAutomationPeerFactory is access ITextBlockAutomationPeerFactory_Interface'Class;
+   type ITextBlockAutomationPeerFactory is access all ITextBlockAutomationPeerFactory_Interface'Class;
 
    type ITextBoxAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextBoxAutomationPeer is access ITextBoxAutomationPeer_Interface'Class;
+   type ITextBoxAutomationPeer is access all ITextBoxAutomationPeer_Interface'Class;
    type ITextBoxAutomationPeer_Ptr is access all ITextBoxAutomationPeer;
 
    type ITextBoxAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextBoxAutomationPeerFactory is access ITextBoxAutomationPeerFactory_Interface'Class;
+   type ITextBoxAutomationPeerFactory is access all ITextBoxAutomationPeerFactory_Interface'Class;
 
    type IThumbAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IThumbAutomationPeer is access IThumbAutomationPeer_Interface'Class;
+   type IThumbAutomationPeer is access all IThumbAutomationPeer_Interface'Class;
    type IThumbAutomationPeer_Ptr is access all IThumbAutomationPeer;
 
    type IThumbAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IThumbAutomationPeerFactory is access IThumbAutomationPeerFactory_Interface'Class;
+   type IThumbAutomationPeerFactory is access all IThumbAutomationPeerFactory_Interface'Class;
 
    type ITimePickerAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimePickerAutomationPeer is access ITimePickerAutomationPeer_Interface'Class;
+   type ITimePickerAutomationPeer is access all ITimePickerAutomationPeer_Interface'Class;
    type ITimePickerAutomationPeer_Ptr is access all ITimePickerAutomationPeer;
 
    type ITimePickerAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimePickerAutomationPeerFactory is access ITimePickerAutomationPeerFactory_Interface'Class;
+   type ITimePickerAutomationPeerFactory is access all ITimePickerAutomationPeerFactory_Interface'Class;
 
    type ITimePickerFlyoutPresenterAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimePickerFlyoutPresenterAutomationPeer is access ITimePickerFlyoutPresenterAutomationPeer_Interface'Class;
+   type ITimePickerFlyoutPresenterAutomationPeer is access all ITimePickerFlyoutPresenterAutomationPeer_Interface'Class;
    type ITimePickerFlyoutPresenterAutomationPeer_Ptr is access all ITimePickerFlyoutPresenterAutomationPeer;
 
    type IToggleButtonAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IToggleButtonAutomationPeer is access IToggleButtonAutomationPeer_Interface'Class;
+   type IToggleButtonAutomationPeer is access all IToggleButtonAutomationPeer_Interface'Class;
    type IToggleButtonAutomationPeer_Ptr is access all IToggleButtonAutomationPeer;
 
    type IToggleButtonAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IToggleButtonAutomationPeerFactory is access IToggleButtonAutomationPeerFactory_Interface'Class;
+   type IToggleButtonAutomationPeerFactory is access all IToggleButtonAutomationPeerFactory_Interface'Class;
 
    type IToggleMenuFlyoutItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IToggleMenuFlyoutItemAutomationPeer is access IToggleMenuFlyoutItemAutomationPeer_Interface'Class;
+   type IToggleMenuFlyoutItemAutomationPeer is access all IToggleMenuFlyoutItemAutomationPeer_Interface'Class;
    type IToggleMenuFlyoutItemAutomationPeer_Ptr is access all IToggleMenuFlyoutItemAutomationPeer;
 
    type IToggleMenuFlyoutItemAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IToggleMenuFlyoutItemAutomationPeerFactory is access IToggleMenuFlyoutItemAutomationPeerFactory_Interface'Class;
+   type IToggleMenuFlyoutItemAutomationPeerFactory is access all IToggleMenuFlyoutItemAutomationPeerFactory_Interface'Class;
 
    type IToggleSwitchAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type IToggleSwitchAutomationPeer is access IToggleSwitchAutomationPeer_Interface'Class;
+   type IToggleSwitchAutomationPeer is access all IToggleSwitchAutomationPeer_Interface'Class;
    type IToggleSwitchAutomationPeer_Ptr is access all IToggleSwitchAutomationPeer;
 
    type IToggleSwitchAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IToggleSwitchAutomationPeerFactory is access IToggleSwitchAutomationPeerFactory_Interface'Class;
+   type IToggleSwitchAutomationPeerFactory is access all IToggleSwitchAutomationPeerFactory_Interface'Class;
 
    type ITreeViewItemAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ITreeViewItemAutomationPeer is access ITreeViewItemAutomationPeer_Interface'Class;
+   type ITreeViewItemAutomationPeer is access all ITreeViewItemAutomationPeer_Interface'Class;
    type ITreeViewItemAutomationPeer_Ptr is access all ITreeViewItemAutomationPeer;
 
    type ITreeViewItemAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ITreeViewItemAutomationPeerFactory is access ITreeViewItemAutomationPeerFactory_Interface'Class;
+   type ITreeViewItemAutomationPeerFactory is access all ITreeViewItemAutomationPeerFactory_Interface'Class;
 
    type ITreeViewListAutomationPeer_Interface is interface and WinRt.IInspectable_Interface;
-   type ITreeViewListAutomationPeer is access ITreeViewListAutomationPeer_Interface'Class;
+   type ITreeViewListAutomationPeer is access all ITreeViewListAutomationPeer_Interface'Class;
    type ITreeViewListAutomationPeer_Ptr is access all ITreeViewListAutomationPeer;
 
    type ITreeViewListAutomationPeerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ITreeViewListAutomationPeerFactory is access ITreeViewListAutomationPeerFactory_Interface'Class;
+   type ITreeViewListAutomationPeerFactory is access all ITreeViewListAutomationPeerFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -1272,7 +1272,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       Control_e => 1,
       Content_e => 2
    );
-   type AccessibilityView_Ptr is access AccessibilityView;
+   type AccessibilityView_Ptr is access all AccessibilityView;
 
    type AutomationControlType is (
       Button_e,
@@ -1360,7 +1360,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       SemanticZoom_e => 39,
       AppBar_e => 40
    );
-   type AutomationControlType_Ptr is access AutomationControlType;
+   type AutomationControlType_Ptr is access all AutomationControlType;
 
    type AutomationEvents is (
       ToolTipOpened_e,
@@ -1426,7 +1426,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       TextEditTextChanged_e => 28,
       LayoutInvalidated_e => 29
    );
-   type AutomationEvents_Ptr is access AutomationEvents;
+   type AutomationEvents_Ptr is access all AutomationEvents;
 
    type AutomationHeadingLevel is (
       None_e,
@@ -1452,7 +1452,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       Level8_e => 8,
       Level9_e => 9
    );
-   type AutomationHeadingLevel_Ptr is access AutomationHeadingLevel;
+   type AutomationHeadingLevel_Ptr is access all AutomationHeadingLevel;
 
    type AutomationLandmarkType is (
       None_e,
@@ -1470,7 +1470,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       Navigation_e => 4,
       Search_e => 5
    );
-   type AutomationLandmarkType_Ptr is access AutomationLandmarkType;
+   type AutomationLandmarkType_Ptr is access all AutomationLandmarkType;
 
    type AutomationLiveSetting is (
       Off_e,
@@ -1482,7 +1482,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       Polite_e => 1,
       Assertive_e => 2
    );
-   type AutomationLiveSetting_Ptr is access AutomationLiveSetting;
+   type AutomationLiveSetting_Ptr is access all AutomationLiveSetting;
 
    type AutomationNavigationDirection is (
       Parent_e,
@@ -1498,7 +1498,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       FirstChild_e => 3,
       LastChild_e => 4
    );
-   type AutomationNavigationDirection_Ptr is access AutomationNavigationDirection;
+   type AutomationNavigationDirection_Ptr is access all AutomationNavigationDirection;
 
    type AutomationNotificationKind is (
       ItemAdded_e,
@@ -1514,7 +1514,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       ActionAborted_e => 3,
       Other_e => 4
    );
-   type AutomationNotificationKind_Ptr is access AutomationNotificationKind;
+   type AutomationNotificationKind_Ptr is access all AutomationNotificationKind;
 
    type AutomationNotificationProcessing is (
       ImportantAll_e,
@@ -1530,7 +1530,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       MostRecent_e => 3,
       CurrentThenMostRecent_e => 4
    );
-   type AutomationNotificationProcessing_Ptr is access AutomationNotificationProcessing;
+   type AutomationNotificationProcessing_Ptr is access all AutomationNotificationProcessing;
 
    type AutomationOrientation is (
       None_e,
@@ -1542,7 +1542,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       Horizontal_e => 1,
       Vertical_e => 2
    );
-   type AutomationOrientation_Ptr is access AutomationOrientation;
+   type AutomationOrientation_Ptr is access all AutomationOrientation;
 
    type AutomationStructureChangeType is (
       ChildAdded_e,
@@ -1560,7 +1560,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       ChildrenBulkRemoved_e => 4,
       ChildrenReordered_e => 5
    );
-   type AutomationStructureChangeType_Ptr is access AutomationStructureChangeType;
+   type AutomationStructureChangeType_Ptr is access all AutomationStructureChangeType;
 
    type PatternInterface is (
       Invoke_e,
@@ -1634,7 +1634,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       TextEdit_e => 32,
       CustomNavigation_e => 33
    );
-   type PatternInterface_Ptr is access PatternInterface;
+   type PatternInterface_Ptr is access all PatternInterface;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1644,7 +1644,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       Part1 : WinRt.UInt32;
       Part2 : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type RawElementProviderRuntimeId_Ptr is access RawElementProviderRuntimeId;
+   type RawElementProviderRuntimeId_Ptr is access all RawElementProviderRuntimeId;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

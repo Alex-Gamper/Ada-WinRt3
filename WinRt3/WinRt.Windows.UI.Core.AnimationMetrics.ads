@@ -40,22 +40,22 @@ package WinRt.Windows.UI.Core.AnimationMetrics is
    -----------------------------------------------------------------------------
 
    type IAnimationDescription_Interface is interface and WinRt.IInspectable_Interface;
-   type IAnimationDescription is access IAnimationDescription_Interface'Class;
+   type IAnimationDescription is access all IAnimationDescription_Interface'Class;
    type IAnimationDescription_Ptr is access all IAnimationDescription;
 
    type IAnimationDescriptionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAnimationDescriptionFactory is access IAnimationDescriptionFactory_Interface'Class;
+   type IAnimationDescriptionFactory is access all IAnimationDescriptionFactory_Interface'Class;
 
    type IOpacityAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IOpacityAnimation is access IOpacityAnimation_Interface'Class;
+   type IOpacityAnimation is access all IOpacityAnimation_Interface'Class;
    type IOpacityAnimation_Ptr is access all IOpacityAnimation;
 
    type IPropertyAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IPropertyAnimation is access IPropertyAnimation_Interface'Class;
+   type IPropertyAnimation is access all IPropertyAnimation_Interface'Class;
    type IPropertyAnimation_Ptr is access all IPropertyAnimation;
 
    type IScaleAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IScaleAnimation is access IScaleAnimation_Interface'Class;
+   type IScaleAnimation is access all IScaleAnimation_Interface'Class;
    type IScaleAnimation_Ptr is access all IScaleAnimation;
 
    -----------------------------------------------------------------------------
@@ -172,7 +172,7 @@ package WinRt.Windows.UI.Core.AnimationMetrics is
       Peek_e => 34,
       UpdateBadge_e => 35
    );
-   type AnimationEffect_Ptr is access AnimationEffect;
+   type AnimationEffect_Ptr is access all AnimationEffect;
 
    type AnimationEffectTarget is (
       Primary_e,
@@ -218,7 +218,7 @@ package WinRt.Windows.UI.Core.AnimationMetrics is
       Shown_e => 18,
       Tapped_e => 19
    );
-   type AnimationEffectTarget_Ptr is access AnimationEffectTarget;
+   type AnimationEffectTarget_Ptr is access all AnimationEffectTarget;
 
    type PropertyAnimationType is (
       Scale_e,
@@ -230,7 +230,7 @@ package WinRt.Windows.UI.Core.AnimationMetrics is
       Translation_e => 1,
       Opacity_e => 2
    );
-   type PropertyAnimationType_Ptr is access PropertyAnimationType;
+   type PropertyAnimationType_Ptr is access all PropertyAnimationType;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -239,7 +239,7 @@ package WinRt.Windows.UI.Core.AnimationMetrics is
    type AnimationMetricsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type AnimationMetricsContract_Ptr is access AnimationMetricsContract;
+   type AnimationMetricsContract_Ptr is access all AnimationMetricsContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -41,24 +41,24 @@ package WinRt.Windows.UI.Shell is
    -----------------------------------------------------------------------------
 
    type IAdaptiveCard_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdaptiveCard is access IAdaptiveCard_Interface'Class;
+   type IAdaptiveCard is access all IAdaptiveCard_Interface'Class;
 
    type IAdaptiveCardBuilderStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAdaptiveCardBuilderStatics is access IAdaptiveCardBuilderStatics_Interface'Class;
+   type IAdaptiveCardBuilderStatics is access all IAdaptiveCardBuilderStatics_Interface'Class;
 
    type ISecurityAppManager_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecurityAppManager is access ISecurityAppManager_Interface'Class;
+   type ISecurityAppManager is access all ISecurityAppManager_Interface'Class;
    type ISecurityAppManager_Ptr is access all ISecurityAppManager;
 
    type ITaskbarManager_Interface is interface and WinRt.IInspectable_Interface;
-   type ITaskbarManager is access ITaskbarManager_Interface'Class;
+   type ITaskbarManager is access all ITaskbarManager_Interface'Class;
    type ITaskbarManager_Ptr is access all ITaskbarManager;
 
    type ITaskbarManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITaskbarManager2 is access ITaskbarManager2_Interface'Class;
+   type ITaskbarManager2 is access all ITaskbarManager2_Interface'Class;
 
    type ITaskbarManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITaskbarManagerStatics is access ITaskbarManagerStatics_Interface'Class;
+   type ITaskbarManagerStatics is access all ITaskbarManagerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -86,7 +86,7 @@ package WinRt.Windows.UI.Shell is
    for SecurityAppKind use (
       WebProtection_e => 0
    );
-   type SecurityAppKind_Ptr is access SecurityAppKind;
+   type SecurityAppKind_Ptr is access all SecurityAppKind;
 
    type SecurityAppState is (
       Disabled_e,
@@ -96,7 +96,7 @@ package WinRt.Windows.UI.Shell is
       Disabled_e => 0,
       Enabled_e => 1
    );
-   type SecurityAppState_Ptr is access SecurityAppState;
+   type SecurityAppState_Ptr is access all SecurityAppState;
 
    type SecurityAppSubstatus is (
       Undetermined_e,
@@ -110,7 +110,7 @@ package WinRt.Windows.UI.Shell is
       ActionRecommended_e => 2,
       ActionNeeded_e => 3
    );
-   type SecurityAppSubstatus_Ptr is access SecurityAppSubstatus;
+   type SecurityAppSubstatus_Ptr is access all SecurityAppSubstatus;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -119,7 +119,7 @@ package WinRt.Windows.UI.Shell is
    type SecurityAppManagerContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type SecurityAppManagerContract_Ptr is access SecurityAppManagerContract;
+   type SecurityAppManagerContract_Ptr is access all SecurityAppManagerContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

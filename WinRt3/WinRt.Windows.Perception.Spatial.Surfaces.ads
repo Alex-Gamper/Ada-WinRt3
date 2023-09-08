@@ -43,33 +43,33 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
    -----------------------------------------------------------------------------
 
    type ISpatialSurfaceInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialSurfaceInfo is access ISpatialSurfaceInfo_Interface'Class;
+   type ISpatialSurfaceInfo is access all ISpatialSurfaceInfo_Interface'Class;
    type ISpatialSurfaceInfo_Ptr is access all ISpatialSurfaceInfo;
 
    type ISpatialSurfaceMesh_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialSurfaceMesh is access ISpatialSurfaceMesh_Interface'Class;
+   type ISpatialSurfaceMesh is access all ISpatialSurfaceMesh_Interface'Class;
    type ISpatialSurfaceMesh_Ptr is access all ISpatialSurfaceMesh;
 
    type ISpatialSurfaceMeshBuffer_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialSurfaceMeshBuffer is access ISpatialSurfaceMeshBuffer_Interface'Class;
+   type ISpatialSurfaceMeshBuffer is access all ISpatialSurfaceMeshBuffer_Interface'Class;
    type ISpatialSurfaceMeshBuffer_Ptr is access all ISpatialSurfaceMeshBuffer;
 
    type ISpatialSurfaceMeshOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialSurfaceMeshOptions is access ISpatialSurfaceMeshOptions_Interface'Class;
+   type ISpatialSurfaceMeshOptions is access all ISpatialSurfaceMeshOptions_Interface'Class;
    type ISpatialSurfaceMeshOptions_Ptr is access all ISpatialSurfaceMeshOptions;
 
    type ISpatialSurfaceMeshOptionsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialSurfaceMeshOptionsStatics is access ISpatialSurfaceMeshOptionsStatics_Interface'Class;
+   type ISpatialSurfaceMeshOptionsStatics is access all ISpatialSurfaceMeshOptionsStatics_Interface'Class;
 
    type ISpatialSurfaceObserver_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialSurfaceObserver is access ISpatialSurfaceObserver_Interface'Class;
+   type ISpatialSurfaceObserver is access all ISpatialSurfaceObserver_Interface'Class;
    type ISpatialSurfaceObserver_Ptr is access all ISpatialSurfaceObserver;
 
    type ISpatialSurfaceObserverStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialSurfaceObserverStatics is access ISpatialSurfaceObserverStatics_Interface'Class;
+   type ISpatialSurfaceObserverStatics is access all ISpatialSurfaceObserverStatics_Interface'Class;
 
    type ISpatialSurfaceObserverStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpatialSurfaceObserverStatics2 is access ISpatialSurfaceObserverStatics2_Interface'Class;
+   type ISpatialSurfaceObserverStatics2 is access all ISpatialSurfaceObserverStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

@@ -40,23 +40,23 @@ package WinRt.Windows.ApplicationModel.Calls.Provider is
    -----------------------------------------------------------------------------
 
    type IPhoneCallOrigin_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallOrigin is access IPhoneCallOrigin_Interface'Class;
+   type IPhoneCallOrigin is access all IPhoneCallOrigin_Interface'Class;
    type IPhoneCallOrigin_Ptr is access all IPhoneCallOrigin;
 
    type IPhoneCallOrigin2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallOrigin2 is access IPhoneCallOrigin2_Interface'Class;
+   type IPhoneCallOrigin2 is access all IPhoneCallOrigin2_Interface'Class;
 
    type IPhoneCallOrigin3_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallOrigin3 is access IPhoneCallOrigin3_Interface'Class;
+   type IPhoneCallOrigin3 is access all IPhoneCallOrigin3_Interface'Class;
 
    type IPhoneCallOriginManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallOriginManagerStatics is access IPhoneCallOriginManagerStatics_Interface'Class;
+   type IPhoneCallOriginManagerStatics is access all IPhoneCallOriginManagerStatics_Interface'Class;
 
    type IPhoneCallOriginManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallOriginManagerStatics2 is access IPhoneCallOriginManagerStatics2_Interface'Class;
+   type IPhoneCallOriginManagerStatics2 is access all IPhoneCallOriginManagerStatics2_Interface'Class;
 
    type IPhoneCallOriginManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneCallOriginManagerStatics3 is access IPhoneCallOriginManagerStatics3_Interface'Class;
+   type IPhoneCallOriginManagerStatics3 is access all IPhoneCallOriginManagerStatics3_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

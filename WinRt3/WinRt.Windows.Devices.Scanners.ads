@@ -43,29 +43,29 @@ package WinRt.Windows.Devices.Scanners is
    -----------------------------------------------------------------------------
 
    type IImageScanner_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageScanner is access IImageScanner_Interface'Class;
+   type IImageScanner is access all IImageScanner_Interface'Class;
    type IImageScanner_Ptr is access all IImageScanner;
 
    type IImageScannerFeederConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageScannerFeederConfiguration is access IImageScannerFeederConfiguration_Interface'Class;
+   type IImageScannerFeederConfiguration is access all IImageScannerFeederConfiguration_Interface'Class;
 
    type IImageScannerFormatConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageScannerFormatConfiguration is access IImageScannerFormatConfiguration_Interface'Class;
+   type IImageScannerFormatConfiguration is access all IImageScannerFormatConfiguration_Interface'Class;
    type IImageScannerFormatConfiguration_Ptr is access all IImageScannerFormatConfiguration;
 
    type IImageScannerPreviewResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageScannerPreviewResult is access IImageScannerPreviewResult_Interface'Class;
+   type IImageScannerPreviewResult is access all IImageScannerPreviewResult_Interface'Class;
    type IImageScannerPreviewResult_Ptr is access all IImageScannerPreviewResult;
 
    type IImageScannerScanResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageScannerScanResult is access IImageScannerScanResult_Interface'Class;
+   type IImageScannerScanResult is access all IImageScannerScanResult_Interface'Class;
    type IImageScannerScanResult_Ptr is access all IImageScannerScanResult;
 
    type IImageScannerSourceConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageScannerSourceConfiguration is access IImageScannerSourceConfiguration_Interface'Class;
+   type IImageScannerSourceConfiguration is access all IImageScannerSourceConfiguration_Interface'Class;
 
    type IImageScannerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageScannerStatics is access IImageScannerStatics_Interface'Class;
+   type IImageScannerStatics is access all IImageScannerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -121,7 +121,7 @@ package WinRt.Windows.Devices.Scanners is
       SingleRegion_e => 1,
       MultipleRegion_e => 2
    );
-   type ImageScannerAutoCroppingMode_Ptr is access ImageScannerAutoCroppingMode;
+   type ImageScannerAutoCroppingMode_Ptr is access all ImageScannerAutoCroppingMode;
 
    type ImageScannerColorMode is (
       Color_e,
@@ -135,7 +135,7 @@ package WinRt.Windows.Devices.Scanners is
       Monochrome_e => 2,
       AutoColor_e => 3
    );
-   type ImageScannerColorMode_Ptr is access ImageScannerColorMode;
+   type ImageScannerColorMode_Ptr is access all ImageScannerColorMode;
 
    type ImageScannerFormat is (
       Jpeg_e,
@@ -155,7 +155,7 @@ package WinRt.Windows.Devices.Scanners is
       OpenXps_e => 5,
       Pdf_e => 6
    );
-   type ImageScannerFormat_Ptr is access ImageScannerFormat;
+   type ImageScannerFormat_Ptr is access all ImageScannerFormat;
 
    type ImageScannerScanSource is (
       Default_e,
@@ -169,7 +169,7 @@ package WinRt.Windows.Devices.Scanners is
       Feeder_e => 2,
       AutoConfigured_e => 3
    );
-   type ImageScannerScanSource_Ptr is access ImageScannerScanSource;
+   type ImageScannerScanSource_Ptr is access all ImageScannerScanSource;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -179,12 +179,12 @@ package WinRt.Windows.Devices.Scanners is
       DpiX : WinRt.Single;
       DpiY : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
-   type ImageScannerResolution_Ptr is access ImageScannerResolution;
+   type ImageScannerResolution_Ptr is access all ImageScannerResolution;
 
    type ScannerDeviceContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type ScannerDeviceContract_Ptr is access ScannerDeviceContract;
+   type ScannerDeviceContract_Ptr is access all ScannerDeviceContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

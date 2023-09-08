@@ -42,84 +42,84 @@ package WinRt.Windows.Web.Syndication is
    -----------------------------------------------------------------------------
 
    type ISyndicationAttribute_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationAttribute is access ISyndicationAttribute_Interface'Class;
+   type ISyndicationAttribute is access all ISyndicationAttribute_Interface'Class;
    type ISyndicationAttribute_Ptr is access all ISyndicationAttribute;
 
    type ISyndicationAttributeFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationAttributeFactory is access ISyndicationAttributeFactory_Interface'Class;
+   type ISyndicationAttributeFactory is access all ISyndicationAttributeFactory_Interface'Class;
 
    type ISyndicationCategory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationCategory is access ISyndicationCategory_Interface'Class;
+   type ISyndicationCategory is access all ISyndicationCategory_Interface'Class;
    type ISyndicationCategory_Ptr is access all ISyndicationCategory;
 
    type ISyndicationCategoryFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationCategoryFactory is access ISyndicationCategoryFactory_Interface'Class;
+   type ISyndicationCategoryFactory is access all ISyndicationCategoryFactory_Interface'Class;
 
    type ISyndicationClient_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationClient is access ISyndicationClient_Interface'Class;
+   type ISyndicationClient is access all ISyndicationClient_Interface'Class;
    type ISyndicationClient_Ptr is access all ISyndicationClient;
 
    type ISyndicationClientFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationClientFactory is access ISyndicationClientFactory_Interface'Class;
+   type ISyndicationClientFactory is access all ISyndicationClientFactory_Interface'Class;
 
    type ISyndicationContent_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationContent is access ISyndicationContent_Interface'Class;
+   type ISyndicationContent is access all ISyndicationContent_Interface'Class;
    type ISyndicationContent_Ptr is access all ISyndicationContent;
 
    type ISyndicationContentFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationContentFactory is access ISyndicationContentFactory_Interface'Class;
+   type ISyndicationContentFactory is access all ISyndicationContentFactory_Interface'Class;
 
    type ISyndicationErrorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationErrorStatics is access ISyndicationErrorStatics_Interface'Class;
+   type ISyndicationErrorStatics is access all ISyndicationErrorStatics_Interface'Class;
 
    type ISyndicationFeed_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationFeed is access ISyndicationFeed_Interface'Class;
+   type ISyndicationFeed is access all ISyndicationFeed_Interface'Class;
    type ISyndicationFeed_Ptr is access all ISyndicationFeed;
 
    type ISyndicationFeedFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationFeedFactory is access ISyndicationFeedFactory_Interface'Class;
+   type ISyndicationFeedFactory is access all ISyndicationFeedFactory_Interface'Class;
 
    type ISyndicationGenerator_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationGenerator is access ISyndicationGenerator_Interface'Class;
+   type ISyndicationGenerator is access all ISyndicationGenerator_Interface'Class;
    type ISyndicationGenerator_Ptr is access all ISyndicationGenerator;
 
    type ISyndicationGeneratorFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationGeneratorFactory is access ISyndicationGeneratorFactory_Interface'Class;
+   type ISyndicationGeneratorFactory is access all ISyndicationGeneratorFactory_Interface'Class;
 
    type ISyndicationItem_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationItem is access ISyndicationItem_Interface'Class;
+   type ISyndicationItem is access all ISyndicationItem_Interface'Class;
    type ISyndicationItem_Ptr is access all ISyndicationItem;
 
    type ISyndicationItemFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationItemFactory is access ISyndicationItemFactory_Interface'Class;
+   type ISyndicationItemFactory is access all ISyndicationItemFactory_Interface'Class;
 
    type ISyndicationLink_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationLink is access ISyndicationLink_Interface'Class;
+   type ISyndicationLink is access all ISyndicationLink_Interface'Class;
    type ISyndicationLink_Ptr is access all ISyndicationLink;
 
    type ISyndicationLinkFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationLinkFactory is access ISyndicationLinkFactory_Interface'Class;
+   type ISyndicationLinkFactory is access all ISyndicationLinkFactory_Interface'Class;
 
    type ISyndicationNode_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationNode is access ISyndicationNode_Interface'Class;
+   type ISyndicationNode is access all ISyndicationNode_Interface'Class;
    type ISyndicationNode_Ptr is access all ISyndicationNode;
 
    type ISyndicationNodeFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationNodeFactory is access ISyndicationNodeFactory_Interface'Class;
+   type ISyndicationNodeFactory is access all ISyndicationNodeFactory_Interface'Class;
 
    type ISyndicationPerson_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationPerson is access ISyndicationPerson_Interface'Class;
+   type ISyndicationPerson is access all ISyndicationPerson_Interface'Class;
    type ISyndicationPerson_Ptr is access all ISyndicationPerson;
 
    type ISyndicationPersonFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationPersonFactory is access ISyndicationPersonFactory_Interface'Class;
+   type ISyndicationPersonFactory is access all ISyndicationPersonFactory_Interface'Class;
 
    type ISyndicationText_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationText is access ISyndicationText_Interface'Class;
+   type ISyndicationText is access all ISyndicationText_Interface'Class;
    type ISyndicationText_Ptr is access all ISyndicationText;
 
    type ISyndicationTextFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISyndicationTextFactory is access ISyndicationTextFactory_Interface'Class;
+   type ISyndicationTextFactory is access all ISyndicationTextFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -211,7 +211,7 @@ package WinRt.Windows.Web.Syndication is
       UnexpectedContent_e => 4,
       UnsupportedFormat_e => 5
    );
-   type SyndicationErrorStatus_Ptr is access SyndicationErrorStatus;
+   type SyndicationErrorStatus_Ptr is access all SyndicationErrorStatus;
 
    type SyndicationFormat is (
       Atom10_e,
@@ -229,7 +229,7 @@ package WinRt.Windows.Web.Syndication is
       Rss091_e => 4,
       Atom03_e => 5
    );
-   type SyndicationFormat_Ptr is access SyndicationFormat;
+   type SyndicationFormat_Ptr is access all SyndicationFormat;
 
    type SyndicationTextType is (
       Text_e,
@@ -241,7 +241,7 @@ package WinRt.Windows.Web.Syndication is
       Html_e => 1,
       Xhtml_e => 2
    );
-   type SyndicationTextType_Ptr is access SyndicationTextType;
+   type SyndicationTextType_Ptr is access all SyndicationTextType;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -251,7 +251,7 @@ package WinRt.Windows.Web.Syndication is
       BytesRetrieved : WinRt.UInt32;
       TotalBytesToRetrieve : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type RetrievalProgress_Ptr is access RetrievalProgress;
+   type RetrievalProgress_Ptr is access all RetrievalProgress;
 
    type TransferProgress is record
       BytesSent : WinRt.UInt32;
@@ -259,7 +259,7 @@ package WinRt.Windows.Web.Syndication is
       BytesRetrieved : WinRt.UInt32;
       TotalBytesToRetrieve : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type TransferProgress_Ptr is access TransferProgress;
+   type TransferProgress_Ptr is access all TransferProgress;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

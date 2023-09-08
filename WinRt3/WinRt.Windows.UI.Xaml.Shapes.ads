@@ -40,59 +40,59 @@ package WinRt.Windows.UI.Xaml.Shapes is
    -----------------------------------------------------------------------------
 
    type IEllipse_Interface is interface and WinRt.IInspectable_Interface;
-   type IEllipse is access IEllipse_Interface'Class;
+   type IEllipse is access all IEllipse_Interface'Class;
    type IEllipse_Ptr is access all IEllipse;
 
    type ILine_Interface is interface and WinRt.IInspectable_Interface;
-   type ILine is access ILine_Interface'Class;
+   type ILine is access all ILine_Interface'Class;
    type ILine_Ptr is access all ILine;
 
    type ILineStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILineStatics is access ILineStatics_Interface'Class;
+   type ILineStatics is access all ILineStatics_Interface'Class;
 
    type IPath_Interface is interface and WinRt.IInspectable_Interface;
-   type IPath is access IPath_Interface'Class;
+   type IPath is access all IPath_Interface'Class;
    type IPath_Ptr is access all IPath;
 
    type IPathFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPathFactory is access IPathFactory_Interface'Class;
+   type IPathFactory is access all IPathFactory_Interface'Class;
 
    type IPathStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPathStatics is access IPathStatics_Interface'Class;
+   type IPathStatics is access all IPathStatics_Interface'Class;
 
    type IPolygon_Interface is interface and WinRt.IInspectable_Interface;
-   type IPolygon is access IPolygon_Interface'Class;
+   type IPolygon is access all IPolygon_Interface'Class;
    type IPolygon_Ptr is access all IPolygon;
 
    type IPolygonStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPolygonStatics is access IPolygonStatics_Interface'Class;
+   type IPolygonStatics is access all IPolygonStatics_Interface'Class;
 
    type IPolyline_Interface is interface and WinRt.IInspectable_Interface;
-   type IPolyline is access IPolyline_Interface'Class;
+   type IPolyline is access all IPolyline_Interface'Class;
    type IPolyline_Ptr is access all IPolyline;
 
    type IPolylineStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPolylineStatics is access IPolylineStatics_Interface'Class;
+   type IPolylineStatics is access all IPolylineStatics_Interface'Class;
 
    type IRectangle_Interface is interface and WinRt.IInspectable_Interface;
-   type IRectangle is access IRectangle_Interface'Class;
+   type IRectangle is access all IRectangle_Interface'Class;
    type IRectangle_Ptr is access all IRectangle;
 
    type IRectangleStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRectangleStatics is access IRectangleStatics_Interface'Class;
+   type IRectangleStatics is access all IRectangleStatics_Interface'Class;
 
    type IShape_Interface is interface and WinRt.IInspectable_Interface;
-   type IShape is access IShape_Interface'Class;
+   type IShape is access all IShape_Interface'Class;
    type IShape_Ptr is access all IShape;
 
    type IShape2_Interface is interface and WinRt.IInspectable_Interface;
-   type IShape2 is access IShape2_Interface'Class;
+   type IShape2 is access all IShape2_Interface'Class;
 
    type IShapeFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IShapeFactory is access IShapeFactory_Interface'Class;
+   type IShapeFactory is access all IShapeFactory_Interface'Class;
 
    type IShapeStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IShapeStatics is access IShapeStatics_Interface'Class;
+   type IShapeStatics is access all IShapeStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

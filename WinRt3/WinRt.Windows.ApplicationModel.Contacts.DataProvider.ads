@@ -39,46 +39,46 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    -----------------------------------------------------------------------------
 
    type IContactDataProviderConnection_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactDataProviderConnection is access IContactDataProviderConnection_Interface'Class;
+   type IContactDataProviderConnection is access all IContactDataProviderConnection_Interface'Class;
    type IContactDataProviderConnection_Ptr is access all IContactDataProviderConnection;
 
    type IContactDataProviderConnection2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactDataProviderConnection2 is access IContactDataProviderConnection2_Interface'Class;
+   type IContactDataProviderConnection2 is access all IContactDataProviderConnection2_Interface'Class;
 
    type IContactDataProviderTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactDataProviderTriggerDetails is access IContactDataProviderTriggerDetails_Interface'Class;
+   type IContactDataProviderTriggerDetails is access all IContactDataProviderTriggerDetails_Interface'Class;
    type IContactDataProviderTriggerDetails_Ptr is access all IContactDataProviderTriggerDetails;
 
    type IContactListCreateOrUpdateContactRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactListCreateOrUpdateContactRequest is access IContactListCreateOrUpdateContactRequest_Interface'Class;
+   type IContactListCreateOrUpdateContactRequest is access all IContactListCreateOrUpdateContactRequest_Interface'Class;
    type IContactListCreateOrUpdateContactRequest_Ptr is access all IContactListCreateOrUpdateContactRequest;
 
    type IContactListCreateOrUpdateContactRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactListCreateOrUpdateContactRequestEventArgs is access IContactListCreateOrUpdateContactRequestEventArgs_Interface'Class;
+   type IContactListCreateOrUpdateContactRequestEventArgs is access all IContactListCreateOrUpdateContactRequestEventArgs_Interface'Class;
    type IContactListCreateOrUpdateContactRequestEventArgs_Ptr is access all IContactListCreateOrUpdateContactRequestEventArgs;
 
    type IContactListDeleteContactRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactListDeleteContactRequest is access IContactListDeleteContactRequest_Interface'Class;
+   type IContactListDeleteContactRequest is access all IContactListDeleteContactRequest_Interface'Class;
    type IContactListDeleteContactRequest_Ptr is access all IContactListDeleteContactRequest;
 
    type IContactListDeleteContactRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactListDeleteContactRequestEventArgs is access IContactListDeleteContactRequestEventArgs_Interface'Class;
+   type IContactListDeleteContactRequestEventArgs is access all IContactListDeleteContactRequestEventArgs_Interface'Class;
    type IContactListDeleteContactRequestEventArgs_Ptr is access all IContactListDeleteContactRequestEventArgs;
 
    type IContactListServerSearchReadBatchRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactListServerSearchReadBatchRequest is access IContactListServerSearchReadBatchRequest_Interface'Class;
+   type IContactListServerSearchReadBatchRequest is access all IContactListServerSearchReadBatchRequest_Interface'Class;
    type IContactListServerSearchReadBatchRequest_Ptr is access all IContactListServerSearchReadBatchRequest;
 
    type IContactListServerSearchReadBatchRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactListServerSearchReadBatchRequestEventArgs is access IContactListServerSearchReadBatchRequestEventArgs_Interface'Class;
+   type IContactListServerSearchReadBatchRequestEventArgs is access all IContactListServerSearchReadBatchRequestEventArgs_Interface'Class;
    type IContactListServerSearchReadBatchRequestEventArgs_Ptr is access all IContactListServerSearchReadBatchRequestEventArgs;
 
    type IContactListSyncManagerSyncRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactListSyncManagerSyncRequest is access IContactListSyncManagerSyncRequest_Interface'Class;
+   type IContactListSyncManagerSyncRequest is access all IContactListSyncManagerSyncRequest_Interface'Class;
    type IContactListSyncManagerSyncRequest_Ptr is access all IContactListSyncManagerSyncRequest;
 
    type IContactListSyncManagerSyncRequestEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactListSyncManagerSyncRequestEventArgs is access IContactListSyncManagerSyncRequestEventArgs_Interface'Class;
+   type IContactListSyncManagerSyncRequestEventArgs is access all IContactListSyncManagerSyncRequestEventArgs_Interface'Class;
    type IContactListSyncManagerSyncRequestEventArgs_Ptr is access all IContactListSyncManagerSyncRequestEventArgs;
 
    -----------------------------------------------------------------------------

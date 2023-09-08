@@ -40,14 +40,14 @@ package WinRt.Windows.Devices.Printers is
    -----------------------------------------------------------------------------
 
    type IPrint3DDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrint3DDevice is access IPrint3DDevice_Interface'Class;
+   type IPrint3DDevice is access all IPrint3DDevice_Interface'Class;
    type IPrint3DDevice_Ptr is access all IPrint3DDevice;
 
    type IPrint3DDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrint3DDeviceStatics is access IPrint3DDeviceStatics_Interface'Class;
+   type IPrint3DDeviceStatics is access all IPrint3DDeviceStatics_Interface'Class;
 
    type IPrintSchema_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintSchema is access IPrintSchema_Interface'Class;
+   type IPrintSchema is access all IPrintSchema_Interface'Class;
    type IPrintSchema_Ptr is access all IPrintSchema;
 
    -----------------------------------------------------------------------------
@@ -73,7 +73,7 @@ package WinRt.Windows.Devices.Printers is
    type PrintersContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type PrintersContract_Ptr is access PrintersContract;
+   type PrintersContract_Ptr is access all PrintersContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

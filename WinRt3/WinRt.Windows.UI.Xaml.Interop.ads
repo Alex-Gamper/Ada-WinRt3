@@ -39,39 +39,39 @@ package WinRt.Windows.UI.Xaml.Interop is
    -----------------------------------------------------------------------------
 
    type BindableVectorChangedEventHandler_Delegate;
-   type BindableVectorChangedEventHandler is access BindableVectorChangedEventHandler_Delegate;
+   type BindableVectorChangedEventHandler is access all BindableVectorChangedEventHandler_Delegate;
 
    type NotifyCollectionChangedEventHandler_Delegate;
-   type NotifyCollectionChangedEventHandler is access NotifyCollectionChangedEventHandler_Delegate;
+   type NotifyCollectionChangedEventHandler is access all NotifyCollectionChangedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IBindableIterable_Interface is interface and WinRt.IInspectable_Interface;
-   type IBindableIterable is access IBindableIterable_Interface'Class;
+   type IBindableIterable is access all IBindableIterable_Interface'Class;
 
    type IBindableIterator_Interface is interface and WinRt.IInspectable_Interface;
-   type IBindableIterator is access IBindableIterator_Interface'Class;
+   type IBindableIterator is access all IBindableIterator_Interface'Class;
 
    type IBindableObservableVector_Interface is interface and WinRt.IInspectable_Interface;
-   type IBindableObservableVector is access IBindableObservableVector_Interface'Class;
+   type IBindableObservableVector is access all IBindableObservableVector_Interface'Class;
 
    type IBindableVector_Interface is interface and WinRt.IInspectable_Interface;
-   type IBindableVector is access IBindableVector_Interface'Class;
+   type IBindableVector is access all IBindableVector_Interface'Class;
 
    type IBindableVectorView_Interface is interface and WinRt.IInspectable_Interface;
-   type IBindableVectorView is access IBindableVectorView_Interface'Class;
+   type IBindableVectorView is access all IBindableVectorView_Interface'Class;
 
    type INotifyCollectionChanged_Interface is interface and WinRt.IInspectable_Interface;
-   type INotifyCollectionChanged is access INotifyCollectionChanged_Interface'Class;
+   type INotifyCollectionChanged is access all INotifyCollectionChanged_Interface'Class;
 
    type INotifyCollectionChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type INotifyCollectionChangedEventArgs is access INotifyCollectionChangedEventArgs_Interface'Class;
+   type INotifyCollectionChangedEventArgs is access all INotifyCollectionChangedEventArgs_Interface'Class;
    type INotifyCollectionChangedEventArgs_Ptr is access all INotifyCollectionChangedEventArgs;
 
    type INotifyCollectionChangedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type INotifyCollectionChangedEventArgsFactory is access INotifyCollectionChangedEventArgsFactory_Interface'Class;
+   type INotifyCollectionChangedEventArgsFactory is access all INotifyCollectionChangedEventArgsFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -101,7 +101,7 @@ package WinRt.Windows.UI.Xaml.Interop is
       Move_e => 3,
       Reset_e => 4
    );
-   type NotifyCollectionChangedAction_Ptr is access NotifyCollectionChangedAction;
+   type NotifyCollectionChangedAction_Ptr is access all NotifyCollectionChangedAction;
 
    type TypeKind is (
       Primitive_e,
@@ -113,7 +113,7 @@ package WinRt.Windows.UI.Xaml.Interop is
       Metadata_e => 1,
       Custom_e => 2
    );
-   type TypeKind_Ptr is access TypeKind;
+   type TypeKind_Ptr is access all TypeKind;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -123,7 +123,7 @@ package WinRt.Windows.UI.Xaml.Interop is
       Name : WinRt.HString;
       Kind : Windows.UI.Xaml.Interop.TypeKind;
    end record with Convention => C_Pass_By_Copy;
-   type TypeName_Ptr is access TypeName;
+   type TypeName_Ptr is access all TypeName;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

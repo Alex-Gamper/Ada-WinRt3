@@ -41,26 +41,26 @@ package WinRt.Windows.ApplicationModel.Preview.Notes is
    -----------------------------------------------------------------------------
 
    type INotePlacementChangedPreviewEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type INotePlacementChangedPreviewEventArgs is access INotePlacementChangedPreviewEventArgs_Interface'Class;
+   type INotePlacementChangedPreviewEventArgs is access all INotePlacementChangedPreviewEventArgs_Interface'Class;
    type INotePlacementChangedPreviewEventArgs_Ptr is access all INotePlacementChangedPreviewEventArgs;
 
    type INoteVisibilityChangedPreviewEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type INoteVisibilityChangedPreviewEventArgs is access INoteVisibilityChangedPreviewEventArgs_Interface'Class;
+   type INoteVisibilityChangedPreviewEventArgs is access all INoteVisibilityChangedPreviewEventArgs_Interface'Class;
    type INoteVisibilityChangedPreviewEventArgs_Ptr is access all INoteVisibilityChangedPreviewEventArgs;
 
    type INotesWindowManagerPreview_Interface is interface and WinRt.IInspectable_Interface;
-   type INotesWindowManagerPreview is access INotesWindowManagerPreview_Interface'Class;
+   type INotesWindowManagerPreview is access all INotesWindowManagerPreview_Interface'Class;
    type INotesWindowManagerPreview_Ptr is access all INotesWindowManagerPreview;
 
    type INotesWindowManagerPreview2_Interface is interface and WinRt.IInspectable_Interface;
-   type INotesWindowManagerPreview2 is access INotesWindowManagerPreview2_Interface'Class;
+   type INotesWindowManagerPreview2 is access all INotesWindowManagerPreview2_Interface'Class;
 
    type INotesWindowManagerPreviewShowNoteOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type INotesWindowManagerPreviewShowNoteOptions is access INotesWindowManagerPreviewShowNoteOptions_Interface'Class;
+   type INotesWindowManagerPreviewShowNoteOptions is access all INotesWindowManagerPreviewShowNoteOptions_Interface'Class;
    type INotesWindowManagerPreviewShowNoteOptions_Ptr is access all INotesWindowManagerPreviewShowNoteOptions;
 
    type INotesWindowManagerPreviewStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type INotesWindowManagerPreviewStatics is access INotesWindowManagerPreviewStatics_Interface'Class;
+   type INotesWindowManagerPreviewStatics is access all INotesWindowManagerPreviewStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -97,7 +97,7 @@ package WinRt.Windows.ApplicationModel.Preview.Notes is
    type PreviewNotesContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type PreviewNotesContract_Ptr is access PreviewNotesContract;
+   type PreviewNotesContract_Ptr is access all PreviewNotesContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

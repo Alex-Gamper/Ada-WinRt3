@@ -41,29 +41,29 @@ package WinRt.Windows.Devices.Spi is
    -----------------------------------------------------------------------------
 
    type ISpiBusInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpiBusInfo is access ISpiBusInfo_Interface'Class;
+   type ISpiBusInfo is access all ISpiBusInfo_Interface'Class;
    type ISpiBusInfo_Ptr is access all ISpiBusInfo;
 
    type ISpiConnectionSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpiConnectionSettings is access ISpiConnectionSettings_Interface'Class;
+   type ISpiConnectionSettings is access all ISpiConnectionSettings_Interface'Class;
    type ISpiConnectionSettings_Ptr is access all ISpiConnectionSettings;
 
    type ISpiConnectionSettingsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpiConnectionSettingsFactory is access ISpiConnectionSettingsFactory_Interface'Class;
+   type ISpiConnectionSettingsFactory is access all ISpiConnectionSettingsFactory_Interface'Class;
 
    type ISpiController_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpiController is access ISpiController_Interface'Class;
+   type ISpiController is access all ISpiController_Interface'Class;
    type ISpiController_Ptr is access all ISpiController;
 
    type ISpiControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpiControllerStatics is access ISpiControllerStatics_Interface'Class;
+   type ISpiControllerStatics is access all ISpiControllerStatics_Interface'Class;
 
    type ISpiDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpiDevice is access ISpiDevice_Interface'Class;
+   type ISpiDevice is access all ISpiDevice_Interface'Class;
    type ISpiDevice_Ptr is access all ISpiDevice;
 
    type ISpiDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpiDeviceStatics is access ISpiDeviceStatics_Interface'Class;
+   type ISpiDeviceStatics is access all ISpiDeviceStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -109,7 +109,7 @@ package WinRt.Windows.Devices.Spi is
       Mode2_e => 2,
       Mode3_e => 3
    );
-   type SpiMode_Ptr is access SpiMode;
+   type SpiMode_Ptr is access all SpiMode;
 
    type SpiSharingMode is (
       Exclusive_e,
@@ -119,7 +119,7 @@ package WinRt.Windows.Devices.Spi is
       Exclusive_e => 0,
       Shared_e => 1
    );
-   type SpiSharingMode_Ptr is access SpiSharingMode;
+   type SpiSharingMode_Ptr is access all SpiSharingMode;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

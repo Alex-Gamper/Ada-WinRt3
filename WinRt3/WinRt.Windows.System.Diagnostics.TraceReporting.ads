@@ -39,14 +39,14 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
    -----------------------------------------------------------------------------
 
    type IPlatformDiagnosticActionsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlatformDiagnosticActionsStatics is access IPlatformDiagnosticActionsStatics_Interface'Class;
+   type IPlatformDiagnosticActionsStatics is access all IPlatformDiagnosticActionsStatics_Interface'Class;
 
    type IPlatformDiagnosticTraceInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlatformDiagnosticTraceInfo is access IPlatformDiagnosticTraceInfo_Interface'Class;
+   type IPlatformDiagnosticTraceInfo is access all IPlatformDiagnosticTraceInfo_Interface'Class;
    type IPlatformDiagnosticTraceInfo_Ptr is access all IPlatformDiagnosticTraceInfo;
 
    type IPlatformDiagnosticTraceRuntimeInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlatformDiagnosticTraceRuntimeInfo is access IPlatformDiagnosticTraceRuntimeInfo_Interface'Class;
+   type IPlatformDiagnosticTraceRuntimeInfo is access all IPlatformDiagnosticTraceRuntimeInfo_Interface'Class;
    type IPlatformDiagnosticTraceRuntimeInfo_Ptr is access all IPlatformDiagnosticTraceRuntimeInfo;
 
    -----------------------------------------------------------------------------
@@ -79,7 +79,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
       FreeNetworkNotAvailable_e => 1,
       ACPowerNotAvailable_e => 2
    );
-   type PlatformDiagnosticActionState_Ptr is access PlatformDiagnosticActionState;
+   type PlatformDiagnosticActionState_Ptr is access all PlatformDiagnosticActionState;
 
    type PlatformDiagnosticEscalationType is (
       OnCompletion_e,
@@ -89,7 +89,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
       OnCompletion_e => 0,
       OnFailure_e => 1
    );
-   type PlatformDiagnosticEscalationType_Ptr is access PlatformDiagnosticEscalationType;
+   type PlatformDiagnosticEscalationType_Ptr is access all PlatformDiagnosticEscalationType;
 
    type PlatformDiagnosticEventBufferLatencies is (
       Normal_e,
@@ -101,7 +101,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
       CostDeferred_e => 2,
       Realtime_e => 4
    );
-   type PlatformDiagnosticEventBufferLatencies_Ptr is access PlatformDiagnosticEventBufferLatencies;
+   type PlatformDiagnosticEventBufferLatencies_Ptr is access all PlatformDiagnosticEventBufferLatencies;
 
    type PlatformDiagnosticTracePriority is (
       Normal_e,
@@ -111,7 +111,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
       Normal_e => 0,
       UserElevated_e => 1
    );
-   type PlatformDiagnosticTracePriority_Ptr is access PlatformDiagnosticTracePriority;
+   type PlatformDiagnosticTracePriority_Ptr is access all PlatformDiagnosticTracePriority;
 
    type PlatformDiagnosticTraceSlotState is (
       NotRunning_e,
@@ -123,7 +123,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
       Running_e => 1,
       Throttled_e => 2
    );
-   type PlatformDiagnosticTraceSlotState_Ptr is access PlatformDiagnosticTraceSlotState;
+   type PlatformDiagnosticTraceSlotState_Ptr is access all PlatformDiagnosticTraceSlotState;
 
    type PlatformDiagnosticTraceSlotType is (
       Alternative_e,
@@ -135,7 +135,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
       AlwaysOn_e => 1,
       Mini_e => 2
    );
-   type PlatformDiagnosticTraceSlotType_Ptr is access PlatformDiagnosticTraceSlotType;
+   type PlatformDiagnosticTraceSlotType_Ptr is access all PlatformDiagnosticTraceSlotType;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

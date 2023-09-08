@@ -41,145 +41,145 @@ package WinRt.Windows.Networking.Connectivity is
    -----------------------------------------------------------------------------
 
    type NetworkStatusChangedEventHandler_Delegate;
-   type NetworkStatusChangedEventHandler is access NetworkStatusChangedEventHandler_Delegate;
+   type NetworkStatusChangedEventHandler is access all NetworkStatusChangedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IAttributedNetworkUsage_Interface is interface and WinRt.IInspectable_Interface;
-   type IAttributedNetworkUsage is access IAttributedNetworkUsage_Interface'Class;
+   type IAttributedNetworkUsage is access all IAttributedNetworkUsage_Interface'Class;
    type IAttributedNetworkUsage_Ptr is access all IAttributedNetworkUsage;
 
    type ICellularApnContext_Interface is interface and WinRt.IInspectable_Interface;
-   type ICellularApnContext is access ICellularApnContext_Interface'Class;
+   type ICellularApnContext is access all ICellularApnContext_Interface'Class;
    type ICellularApnContext_Ptr is access all ICellularApnContext;
 
    type ICellularApnContext2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICellularApnContext2 is access ICellularApnContext2_Interface'Class;
+   type ICellularApnContext2 is access all ICellularApnContext2_Interface'Class;
 
    type IConnectionCost_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectionCost is access IConnectionCost_Interface'Class;
+   type IConnectionCost is access all IConnectionCost_Interface'Class;
    type IConnectionCost_Ptr is access all IConnectionCost;
 
    type IConnectionCost2_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectionCost2 is access IConnectionCost2_Interface'Class;
+   type IConnectionCost2 is access all IConnectionCost2_Interface'Class;
 
    type IConnectionProfile_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectionProfile is access IConnectionProfile_Interface'Class;
+   type IConnectionProfile is access all IConnectionProfile_Interface'Class;
    type IConnectionProfile_Ptr is access all IConnectionProfile;
 
    type IConnectionProfile2_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectionProfile2 is access IConnectionProfile2_Interface'Class;
+   type IConnectionProfile2 is access all IConnectionProfile2_Interface'Class;
 
    type IConnectionProfile3_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectionProfile3 is access IConnectionProfile3_Interface'Class;
+   type IConnectionProfile3 is access all IConnectionProfile3_Interface'Class;
 
    type IConnectionProfile4_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectionProfile4 is access IConnectionProfile4_Interface'Class;
+   type IConnectionProfile4 is access all IConnectionProfile4_Interface'Class;
 
    type IConnectionProfile5_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectionProfile5 is access IConnectionProfile5_Interface'Class;
+   type IConnectionProfile5 is access all IConnectionProfile5_Interface'Class;
 
    type IConnectionProfileFilter_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectionProfileFilter is access IConnectionProfileFilter_Interface'Class;
+   type IConnectionProfileFilter is access all IConnectionProfileFilter_Interface'Class;
    type IConnectionProfileFilter_Ptr is access all IConnectionProfileFilter;
 
    type IConnectionProfileFilter2_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectionProfileFilter2 is access IConnectionProfileFilter2_Interface'Class;
+   type IConnectionProfileFilter2 is access all IConnectionProfileFilter2_Interface'Class;
 
    type IConnectionProfileFilter3_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectionProfileFilter3 is access IConnectionProfileFilter3_Interface'Class;
+   type IConnectionProfileFilter3 is access all IConnectionProfileFilter3_Interface'Class;
 
    type IConnectionSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectionSession is access IConnectionSession_Interface'Class;
+   type IConnectionSession is access all IConnectionSession_Interface'Class;
    type IConnectionSession_Ptr is access all IConnectionSession;
 
    type IConnectivityInterval_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectivityInterval is access IConnectivityInterval_Interface'Class;
+   type IConnectivityInterval is access all IConnectivityInterval_Interface'Class;
    type IConnectivityInterval_Ptr is access all IConnectivityInterval;
 
    type IConnectivityManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectivityManagerStatics is access IConnectivityManagerStatics_Interface'Class;
+   type IConnectivityManagerStatics is access all IConnectivityManagerStatics_Interface'Class;
 
    type IDataPlanStatus_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPlanStatus is access IDataPlanStatus_Interface'Class;
+   type IDataPlanStatus is access all IDataPlanStatus_Interface'Class;
    type IDataPlanStatus_Ptr is access all IDataPlanStatus;
 
    type IDataPlanUsage_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPlanUsage is access IDataPlanUsage_Interface'Class;
+   type IDataPlanUsage is access all IDataPlanUsage_Interface'Class;
    type IDataPlanUsage_Ptr is access all IDataPlanUsage;
 
    type IDataUsage_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataUsage is access IDataUsage_Interface'Class;
+   type IDataUsage is access all IDataUsage_Interface'Class;
    type IDataUsage_Ptr is access all IDataUsage;
 
    type IIPInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IIPInformation is access IIPInformation_Interface'Class;
+   type IIPInformation is access all IIPInformation_Interface'Class;
    type IIPInformation_Ptr is access all IIPInformation;
 
    type ILanIdentifier_Interface is interface and WinRt.IInspectable_Interface;
-   type ILanIdentifier is access ILanIdentifier_Interface'Class;
+   type ILanIdentifier is access all ILanIdentifier_Interface'Class;
    type ILanIdentifier_Ptr is access all ILanIdentifier;
 
    type ILanIdentifierData_Interface is interface and WinRt.IInspectable_Interface;
-   type ILanIdentifierData is access ILanIdentifierData_Interface'Class;
+   type ILanIdentifierData is access all ILanIdentifierData_Interface'Class;
    type ILanIdentifierData_Ptr is access all ILanIdentifierData;
 
    type INetworkAdapter_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkAdapter is access INetworkAdapter_Interface'Class;
+   type INetworkAdapter is access all INetworkAdapter_Interface'Class;
    type INetworkAdapter_Ptr is access all INetworkAdapter;
 
    type INetworkInformationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkInformationStatics is access INetworkInformationStatics_Interface'Class;
+   type INetworkInformationStatics is access all INetworkInformationStatics_Interface'Class;
 
    type INetworkInformationStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkInformationStatics2 is access INetworkInformationStatics2_Interface'Class;
+   type INetworkInformationStatics2 is access all INetworkInformationStatics2_Interface'Class;
 
    type INetworkItem_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkItem is access INetworkItem_Interface'Class;
+   type INetworkItem is access all INetworkItem_Interface'Class;
    type INetworkItem_Ptr is access all INetworkItem;
 
    type INetworkSecuritySettings_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkSecuritySettings is access INetworkSecuritySettings_Interface'Class;
+   type INetworkSecuritySettings is access all INetworkSecuritySettings_Interface'Class;
    type INetworkSecuritySettings_Ptr is access all INetworkSecuritySettings;
 
    type INetworkStateChangeEventDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkStateChangeEventDetails is access INetworkStateChangeEventDetails_Interface'Class;
+   type INetworkStateChangeEventDetails is access all INetworkStateChangeEventDetails_Interface'Class;
    type INetworkStateChangeEventDetails_Ptr is access all INetworkStateChangeEventDetails;
 
    type INetworkStateChangeEventDetails2_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkStateChangeEventDetails2 is access INetworkStateChangeEventDetails2_Interface'Class;
+   type INetworkStateChangeEventDetails2 is access all INetworkStateChangeEventDetails2_Interface'Class;
 
    type INetworkUsage_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkUsage is access INetworkUsage_Interface'Class;
+   type INetworkUsage is access all INetworkUsage_Interface'Class;
    type INetworkUsage_Ptr is access all INetworkUsage;
 
    type IProviderNetworkUsage_Interface is interface and WinRt.IInspectable_Interface;
-   type IProviderNetworkUsage is access IProviderNetworkUsage_Interface'Class;
+   type IProviderNetworkUsage is access all IProviderNetworkUsage_Interface'Class;
    type IProviderNetworkUsage_Ptr is access all IProviderNetworkUsage;
 
    type IProxyConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IProxyConfiguration is access IProxyConfiguration_Interface'Class;
+   type IProxyConfiguration is access all IProxyConfiguration_Interface'Class;
    type IProxyConfiguration_Ptr is access all IProxyConfiguration;
 
    type IRoutePolicy_Interface is interface and WinRt.IInspectable_Interface;
-   type IRoutePolicy is access IRoutePolicy_Interface'Class;
+   type IRoutePolicy is access all IRoutePolicy_Interface'Class;
    type IRoutePolicy_Ptr is access all IRoutePolicy;
 
    type IRoutePolicyFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IRoutePolicyFactory is access IRoutePolicyFactory_Interface'Class;
+   type IRoutePolicyFactory is access all IRoutePolicyFactory_Interface'Class;
 
    type IWlanConnectionProfileDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IWlanConnectionProfileDetails is access IWlanConnectionProfileDetails_Interface'Class;
+   type IWlanConnectionProfileDetails is access all IWlanConnectionProfileDetails_Interface'Class;
    type IWlanConnectionProfileDetails_Ptr is access all IWlanConnectionProfileDetails;
 
    type IWwanConnectionProfileDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IWwanConnectionProfileDetails is access IWwanConnectionProfileDetails_Interface'Class;
+   type IWwanConnectionProfileDetails is access all IWwanConnectionProfileDetails_Interface'Class;
    type IWwanConnectionProfileDetails_Ptr is access all IWwanConnectionProfileDetails;
 
    type IWwanConnectionProfileDetails2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWwanConnectionProfileDetails2 is access IWwanConnectionProfileDetails2_Interface'Class;
+   type IWwanConnectionProfileDetails2 is access all IWwanConnectionProfileDetails2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -339,7 +339,7 @@ package WinRt.Windows.Networking.Connectivity is
       Chap_e => 2,
       Mschapv2_e => 3
    );
-   type CellularApnAuthenticationType_Ptr is access CellularApnAuthenticationType;
+   type CellularApnAuthenticationType_Ptr is access all CellularApnAuthenticationType;
 
    type ConnectionProfileDeleteStatus is (
       Success_e,
@@ -353,7 +353,7 @@ package WinRt.Windows.Networking.Connectivity is
       DeniedBySystem_e => 2,
       UnknownError_e => 3
    );
-   type ConnectionProfileDeleteStatus_Ptr is access ConnectionProfileDeleteStatus;
+   type ConnectionProfileDeleteStatus_Ptr is access all ConnectionProfileDeleteStatus;
 
    type DataUsageGranularity is (
       PerMinute_e,
@@ -367,7 +367,7 @@ package WinRt.Windows.Networking.Connectivity is
       PerDay_e => 2,
       Total_e => 3
    );
-   type DataUsageGranularity_Ptr is access DataUsageGranularity;
+   type DataUsageGranularity_Ptr is access all DataUsageGranularity;
 
    type DomainConnectivityLevel is (
       None_e,
@@ -379,7 +379,7 @@ package WinRt.Windows.Networking.Connectivity is
       Unauthenticated_e => 1,
       Authenticated_e => 2
    );
-   type DomainConnectivityLevel_Ptr is access DomainConnectivityLevel;
+   type DomainConnectivityLevel_Ptr is access all DomainConnectivityLevel;
 
    type NetworkAuthenticationType is (
       None_e,
@@ -411,7 +411,7 @@ package WinRt.Windows.Networking.Connectivity is
       Wpa3Sae_e => 11,
       Owe_e => 12
    );
-   type NetworkAuthenticationType_Ptr is access NetworkAuthenticationType;
+   type NetworkAuthenticationType_Ptr is access all NetworkAuthenticationType;
 
    type NetworkConnectivityLevel is (
       None_e,
@@ -425,7 +425,7 @@ package WinRt.Windows.Networking.Connectivity is
       ConstrainedInternetAccess_e => 2,
       InternetAccess_e => 3
    );
-   type NetworkConnectivityLevel_Ptr is access NetworkConnectivityLevel;
+   type NetworkConnectivityLevel_Ptr is access all NetworkConnectivityLevel;
 
    type NetworkCostType is (
       Unknown_e,
@@ -439,7 +439,7 @@ package WinRt.Windows.Networking.Connectivity is
       Fixed_e => 2,
       Variable_e => 3
    );
-   type NetworkCostType_Ptr is access NetworkCostType;
+   type NetworkCostType_Ptr is access all NetworkCostType;
 
    type NetworkEncryptionType is (
       None_e,
@@ -465,7 +465,7 @@ package WinRt.Windows.Networking.Connectivity is
       RsnUseGroup_e => 8,
       Ihv_e => 9
    );
-   type NetworkEncryptionType_Ptr is access NetworkEncryptionType;
+   type NetworkEncryptionType_Ptr is access all NetworkEncryptionType;
 
    type NetworkTypes is (
       None_e,
@@ -477,7 +477,7 @@ package WinRt.Windows.Networking.Connectivity is
       Internet_e => 1,
       PrivateNetwork_e => 2
    );
-   type NetworkTypes_Ptr is access NetworkTypes;
+   type NetworkTypes_Ptr is access all NetworkTypes;
 
    type RoamingStates is (
       None_e,
@@ -489,7 +489,7 @@ package WinRt.Windows.Networking.Connectivity is
       NotRoaming_e => 1,
       Roaming_e => 2
    );
-   type RoamingStates_Ptr is access RoamingStates;
+   type RoamingStates_Ptr is access all RoamingStates;
 
    type TriStates is (
       DoNotCare_e,
@@ -501,7 +501,7 @@ package WinRt.Windows.Networking.Connectivity is
       No_e => 1,
       Yes_e => 2
    );
-   type TriStates_Ptr is access TriStates;
+   type TriStates_Ptr is access all TriStates;
 
    type WwanDataClass is (
       None_e,
@@ -537,7 +537,7 @@ package WinRt.Windows.Networking.Connectivity is
       CdmaUmb_e => 4194304,
       Custom_e => 2147483648
    );
-   type WwanDataClass_Ptr is access WwanDataClass;
+   type WwanDataClass_Ptr is access all WwanDataClass;
 
    type WwanNetworkIPKind is (
       None_e,
@@ -553,7 +553,7 @@ package WinRt.Windows.Networking.Connectivity is
       Ipv4v6_e => 3,
       Ipv4v6v4Xlat_e => 4
    );
-   type WwanNetworkIPKind_Ptr is access WwanNetworkIPKind;
+   type WwanNetworkIPKind_Ptr is access all WwanNetworkIPKind;
 
    type WwanNetworkRegistrationState is (
       None_e,
@@ -573,7 +573,7 @@ package WinRt.Windows.Networking.Connectivity is
       Partner_e => 5,
       Denied_e => 6
    );
-   type WwanNetworkRegistrationState_Ptr is access WwanNetworkRegistrationState;
+   type WwanNetworkRegistrationState_Ptr is access all WwanNetworkRegistrationState;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -583,12 +583,12 @@ package WinRt.Windows.Networking.Connectivity is
       Roaming : Windows.Networking.Connectivity.TriStates;
       Shared : Windows.Networking.Connectivity.TriStates;
    end record with Convention => C_Pass_By_Copy;
-   type NetworkUsageStates_Ptr is access NetworkUsageStates;
+   type NetworkUsageStates_Ptr is access all NetworkUsageStates;
 
    type WwanContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type WwanContract_Ptr is access WwanContract;
+   type WwanContract_Ptr is access all WwanContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

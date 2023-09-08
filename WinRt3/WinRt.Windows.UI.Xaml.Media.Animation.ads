@@ -43,556 +43,556 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    -----------------------------------------------------------------------------
 
    type IAddDeleteThemeTransition_Interface is interface and WinRt.IInspectable_Interface;
-   type IAddDeleteThemeTransition is access IAddDeleteThemeTransition_Interface'Class;
+   type IAddDeleteThemeTransition is access all IAddDeleteThemeTransition_Interface'Class;
    type IAddDeleteThemeTransition_Ptr is access all IAddDeleteThemeTransition;
 
    type IBackEase_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackEase is access IBackEase_Interface'Class;
+   type IBackEase is access all IBackEase_Interface'Class;
    type IBackEase_Ptr is access all IBackEase;
 
    type IBackEaseStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackEaseStatics is access IBackEaseStatics_Interface'Class;
+   type IBackEaseStatics is access all IBackEaseStatics_Interface'Class;
 
    type IBasicConnectedAnimationConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IBasicConnectedAnimationConfiguration is access IBasicConnectedAnimationConfiguration_Interface'Class;
+   type IBasicConnectedAnimationConfiguration is access all IBasicConnectedAnimationConfiguration_Interface'Class;
    type IBasicConnectedAnimationConfiguration_Ptr is access all IBasicConnectedAnimationConfiguration;
 
    type IBasicConnectedAnimationConfigurationFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IBasicConnectedAnimationConfigurationFactory is access IBasicConnectedAnimationConfigurationFactory_Interface'Class;
+   type IBasicConnectedAnimationConfigurationFactory is access all IBasicConnectedAnimationConfigurationFactory_Interface'Class;
 
    type IBeginStoryboard_Interface is interface and WinRt.IInspectable_Interface;
-   type IBeginStoryboard is access IBeginStoryboard_Interface'Class;
+   type IBeginStoryboard is access all IBeginStoryboard_Interface'Class;
    type IBeginStoryboard_Ptr is access all IBeginStoryboard;
 
    type IBeginStoryboardStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBeginStoryboardStatics is access IBeginStoryboardStatics_Interface'Class;
+   type IBeginStoryboardStatics is access all IBeginStoryboardStatics_Interface'Class;
 
    type IBounceEase_Interface is interface and WinRt.IInspectable_Interface;
-   type IBounceEase is access IBounceEase_Interface'Class;
+   type IBounceEase is access all IBounceEase_Interface'Class;
    type IBounceEase_Ptr is access all IBounceEase;
 
    type IBounceEaseStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBounceEaseStatics is access IBounceEaseStatics_Interface'Class;
+   type IBounceEaseStatics is access all IBounceEaseStatics_Interface'Class;
 
    type ICircleEase_Interface is interface and WinRt.IInspectable_Interface;
-   type ICircleEase is access ICircleEase_Interface'Class;
+   type ICircleEase is access all ICircleEase_Interface'Class;
    type ICircleEase_Ptr is access all ICircleEase;
 
    type IColorAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorAnimation is access IColorAnimation_Interface'Class;
+   type IColorAnimation is access all IColorAnimation_Interface'Class;
    type IColorAnimation_Ptr is access all IColorAnimation;
 
    type IColorAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorAnimationStatics is access IColorAnimationStatics_Interface'Class;
+   type IColorAnimationStatics is access all IColorAnimationStatics_Interface'Class;
 
    type IColorAnimationUsingKeyFrames_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorAnimationUsingKeyFrames is access IColorAnimationUsingKeyFrames_Interface'Class;
+   type IColorAnimationUsingKeyFrames is access all IColorAnimationUsingKeyFrames_Interface'Class;
    type IColorAnimationUsingKeyFrames_Ptr is access all IColorAnimationUsingKeyFrames;
 
    type IColorAnimationUsingKeyFramesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorAnimationUsingKeyFramesStatics is access IColorAnimationUsingKeyFramesStatics_Interface'Class;
+   type IColorAnimationUsingKeyFramesStatics is access all IColorAnimationUsingKeyFramesStatics_Interface'Class;
 
    type IColorKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorKeyFrame is access IColorKeyFrame_Interface'Class;
+   type IColorKeyFrame is access all IColorKeyFrame_Interface'Class;
    type IColorKeyFrame_Ptr is access all IColorKeyFrame;
    type IColorKeyFrame_Array is array (Natural range <>) of IColorKeyFrame;
 
    type IColorKeyFrameFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorKeyFrameFactory is access IColorKeyFrameFactory_Interface'Class;
+   type IColorKeyFrameFactory is access all IColorKeyFrameFactory_Interface'Class;
 
    type IColorKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IColorKeyFrameStatics is access IColorKeyFrameStatics_Interface'Class;
+   type IColorKeyFrameStatics is access all IColorKeyFrameStatics_Interface'Class;
 
    type ICommonNavigationTransitionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ICommonNavigationTransitionInfo is access ICommonNavigationTransitionInfo_Interface'Class;
+   type ICommonNavigationTransitionInfo is access all ICommonNavigationTransitionInfo_Interface'Class;
    type ICommonNavigationTransitionInfo_Ptr is access all ICommonNavigationTransitionInfo;
 
    type ICommonNavigationTransitionInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICommonNavigationTransitionInfoStatics is access ICommonNavigationTransitionInfoStatics_Interface'Class;
+   type ICommonNavigationTransitionInfoStatics is access all ICommonNavigationTransitionInfoStatics_Interface'Class;
 
    type IConnectedAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectedAnimation is access IConnectedAnimation_Interface'Class;
+   type IConnectedAnimation is access all IConnectedAnimation_Interface'Class;
    type IConnectedAnimation_Ptr is access all IConnectedAnimation;
 
    type IConnectedAnimation2_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectedAnimation2 is access IConnectedAnimation2_Interface'Class;
+   type IConnectedAnimation2 is access all IConnectedAnimation2_Interface'Class;
 
    type IConnectedAnimation3_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectedAnimation3 is access IConnectedAnimation3_Interface'Class;
+   type IConnectedAnimation3 is access all IConnectedAnimation3_Interface'Class;
 
    type IConnectedAnimationConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectedAnimationConfiguration is access IConnectedAnimationConfiguration_Interface'Class;
+   type IConnectedAnimationConfiguration is access all IConnectedAnimationConfiguration_Interface'Class;
    type IConnectedAnimationConfiguration_Ptr is access all IConnectedAnimationConfiguration;
 
    type IConnectedAnimationConfigurationFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectedAnimationConfigurationFactory is access IConnectedAnimationConfigurationFactory_Interface'Class;
+   type IConnectedAnimationConfigurationFactory is access all IConnectedAnimationConfigurationFactory_Interface'Class;
 
    type IConnectedAnimationService_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectedAnimationService is access IConnectedAnimationService_Interface'Class;
+   type IConnectedAnimationService is access all IConnectedAnimationService_Interface'Class;
    type IConnectedAnimationService_Ptr is access all IConnectedAnimationService;
 
    type IConnectedAnimationServiceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectedAnimationServiceStatics is access IConnectedAnimationServiceStatics_Interface'Class;
+   type IConnectedAnimationServiceStatics is access all IConnectedAnimationServiceStatics_Interface'Class;
 
    type IContentThemeTransition_Interface is interface and WinRt.IInspectable_Interface;
-   type IContentThemeTransition is access IContentThemeTransition_Interface'Class;
+   type IContentThemeTransition is access all IContentThemeTransition_Interface'Class;
    type IContentThemeTransition_Ptr is access all IContentThemeTransition;
 
    type IContentThemeTransitionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IContentThemeTransitionStatics is access IContentThemeTransitionStatics_Interface'Class;
+   type IContentThemeTransitionStatics is access all IContentThemeTransitionStatics_Interface'Class;
 
    type IContinuumNavigationTransitionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IContinuumNavigationTransitionInfo is access IContinuumNavigationTransitionInfo_Interface'Class;
+   type IContinuumNavigationTransitionInfo is access all IContinuumNavigationTransitionInfo_Interface'Class;
    type IContinuumNavigationTransitionInfo_Ptr is access all IContinuumNavigationTransitionInfo;
 
    type IContinuumNavigationTransitionInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IContinuumNavigationTransitionInfoStatics is access IContinuumNavigationTransitionInfoStatics_Interface'Class;
+   type IContinuumNavigationTransitionInfoStatics is access all IContinuumNavigationTransitionInfoStatics_Interface'Class;
 
    type ICubicEase_Interface is interface and WinRt.IInspectable_Interface;
-   type ICubicEase is access ICubicEase_Interface'Class;
+   type ICubicEase is access all ICubicEase_Interface'Class;
    type ICubicEase_Ptr is access all ICubicEase;
 
    type IDirectConnectedAnimationConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IDirectConnectedAnimationConfiguration is access IDirectConnectedAnimationConfiguration_Interface'Class;
+   type IDirectConnectedAnimationConfiguration is access all IDirectConnectedAnimationConfiguration_Interface'Class;
    type IDirectConnectedAnimationConfiguration_Ptr is access all IDirectConnectedAnimationConfiguration;
 
    type IDirectConnectedAnimationConfigurationFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDirectConnectedAnimationConfigurationFactory is access IDirectConnectedAnimationConfigurationFactory_Interface'Class;
+   type IDirectConnectedAnimationConfigurationFactory is access all IDirectConnectedAnimationConfigurationFactory_Interface'Class;
 
    type IDiscreteColorKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IDiscreteColorKeyFrame is access IDiscreteColorKeyFrame_Interface'Class;
+   type IDiscreteColorKeyFrame is access all IDiscreteColorKeyFrame_Interface'Class;
    type IDiscreteColorKeyFrame_Ptr is access all IDiscreteColorKeyFrame;
 
    type IDiscreteDoubleKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IDiscreteDoubleKeyFrame is access IDiscreteDoubleKeyFrame_Interface'Class;
+   type IDiscreteDoubleKeyFrame is access all IDiscreteDoubleKeyFrame_Interface'Class;
    type IDiscreteDoubleKeyFrame_Ptr is access all IDiscreteDoubleKeyFrame;
 
    type IDiscreteObjectKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IDiscreteObjectKeyFrame is access IDiscreteObjectKeyFrame_Interface'Class;
+   type IDiscreteObjectKeyFrame is access all IDiscreteObjectKeyFrame_Interface'Class;
    type IDiscreteObjectKeyFrame_Ptr is access all IDiscreteObjectKeyFrame;
 
    type IDiscretePointKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IDiscretePointKeyFrame is access IDiscretePointKeyFrame_Interface'Class;
+   type IDiscretePointKeyFrame is access all IDiscretePointKeyFrame_Interface'Class;
    type IDiscretePointKeyFrame_Ptr is access all IDiscretePointKeyFrame;
 
    type IDoubleAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IDoubleAnimation is access IDoubleAnimation_Interface'Class;
+   type IDoubleAnimation is access all IDoubleAnimation_Interface'Class;
    type IDoubleAnimation_Ptr is access all IDoubleAnimation;
 
    type IDoubleAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDoubleAnimationStatics is access IDoubleAnimationStatics_Interface'Class;
+   type IDoubleAnimationStatics is access all IDoubleAnimationStatics_Interface'Class;
 
    type IDoubleAnimationUsingKeyFrames_Interface is interface and WinRt.IInspectable_Interface;
-   type IDoubleAnimationUsingKeyFrames is access IDoubleAnimationUsingKeyFrames_Interface'Class;
+   type IDoubleAnimationUsingKeyFrames is access all IDoubleAnimationUsingKeyFrames_Interface'Class;
    type IDoubleAnimationUsingKeyFrames_Ptr is access all IDoubleAnimationUsingKeyFrames;
 
    type IDoubleAnimationUsingKeyFramesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDoubleAnimationUsingKeyFramesStatics is access IDoubleAnimationUsingKeyFramesStatics_Interface'Class;
+   type IDoubleAnimationUsingKeyFramesStatics is access all IDoubleAnimationUsingKeyFramesStatics_Interface'Class;
 
    type IDoubleKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IDoubleKeyFrame is access IDoubleKeyFrame_Interface'Class;
+   type IDoubleKeyFrame is access all IDoubleKeyFrame_Interface'Class;
    type IDoubleKeyFrame_Ptr is access all IDoubleKeyFrame;
    type IDoubleKeyFrame_Array is array (Natural range <>) of IDoubleKeyFrame;
 
    type IDoubleKeyFrameFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDoubleKeyFrameFactory is access IDoubleKeyFrameFactory_Interface'Class;
+   type IDoubleKeyFrameFactory is access all IDoubleKeyFrameFactory_Interface'Class;
 
    type IDoubleKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDoubleKeyFrameStatics is access IDoubleKeyFrameStatics_Interface'Class;
+   type IDoubleKeyFrameStatics is access all IDoubleKeyFrameStatics_Interface'Class;
 
    type IDragItemThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IDragItemThemeAnimation is access IDragItemThemeAnimation_Interface'Class;
+   type IDragItemThemeAnimation is access all IDragItemThemeAnimation_Interface'Class;
    type IDragItemThemeAnimation_Ptr is access all IDragItemThemeAnimation;
 
    type IDragItemThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDragItemThemeAnimationStatics is access IDragItemThemeAnimationStatics_Interface'Class;
+   type IDragItemThemeAnimationStatics is access all IDragItemThemeAnimationStatics_Interface'Class;
 
    type IDragOverThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IDragOverThemeAnimation is access IDragOverThemeAnimation_Interface'Class;
+   type IDragOverThemeAnimation is access all IDragOverThemeAnimation_Interface'Class;
    type IDragOverThemeAnimation_Ptr is access all IDragOverThemeAnimation;
 
    type IDragOverThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDragOverThemeAnimationStatics is access IDragOverThemeAnimationStatics_Interface'Class;
+   type IDragOverThemeAnimationStatics is access all IDragOverThemeAnimationStatics_Interface'Class;
 
    type IDrillInNavigationTransitionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IDrillInNavigationTransitionInfo is access IDrillInNavigationTransitionInfo_Interface'Class;
+   type IDrillInNavigationTransitionInfo is access all IDrillInNavigationTransitionInfo_Interface'Class;
    type IDrillInNavigationTransitionInfo_Ptr is access all IDrillInNavigationTransitionInfo;
 
    type IDrillInThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IDrillInThemeAnimation is access IDrillInThemeAnimation_Interface'Class;
+   type IDrillInThemeAnimation is access all IDrillInThemeAnimation_Interface'Class;
    type IDrillInThemeAnimation_Ptr is access all IDrillInThemeAnimation;
 
    type IDrillInThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDrillInThemeAnimationStatics is access IDrillInThemeAnimationStatics_Interface'Class;
+   type IDrillInThemeAnimationStatics is access all IDrillInThemeAnimationStatics_Interface'Class;
 
    type IDrillOutThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IDrillOutThemeAnimation is access IDrillOutThemeAnimation_Interface'Class;
+   type IDrillOutThemeAnimation is access all IDrillOutThemeAnimation_Interface'Class;
    type IDrillOutThemeAnimation_Ptr is access all IDrillOutThemeAnimation;
 
    type IDrillOutThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDrillOutThemeAnimationStatics is access IDrillOutThemeAnimationStatics_Interface'Class;
+   type IDrillOutThemeAnimationStatics is access all IDrillOutThemeAnimationStatics_Interface'Class;
 
    type IDropTargetItemThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IDropTargetItemThemeAnimation is access IDropTargetItemThemeAnimation_Interface'Class;
+   type IDropTargetItemThemeAnimation is access all IDropTargetItemThemeAnimation_Interface'Class;
    type IDropTargetItemThemeAnimation_Ptr is access all IDropTargetItemThemeAnimation;
 
    type IDropTargetItemThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDropTargetItemThemeAnimationStatics is access IDropTargetItemThemeAnimationStatics_Interface'Class;
+   type IDropTargetItemThemeAnimationStatics is access all IDropTargetItemThemeAnimationStatics_Interface'Class;
 
    type IEasingColorKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasingColorKeyFrame is access IEasingColorKeyFrame_Interface'Class;
+   type IEasingColorKeyFrame is access all IEasingColorKeyFrame_Interface'Class;
    type IEasingColorKeyFrame_Ptr is access all IEasingColorKeyFrame;
 
    type IEasingColorKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasingColorKeyFrameStatics is access IEasingColorKeyFrameStatics_Interface'Class;
+   type IEasingColorKeyFrameStatics is access all IEasingColorKeyFrameStatics_Interface'Class;
 
    type IEasingDoubleKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasingDoubleKeyFrame is access IEasingDoubleKeyFrame_Interface'Class;
+   type IEasingDoubleKeyFrame is access all IEasingDoubleKeyFrame_Interface'Class;
    type IEasingDoubleKeyFrame_Ptr is access all IEasingDoubleKeyFrame;
 
    type IEasingDoubleKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasingDoubleKeyFrameStatics is access IEasingDoubleKeyFrameStatics_Interface'Class;
+   type IEasingDoubleKeyFrameStatics is access all IEasingDoubleKeyFrameStatics_Interface'Class;
 
    type IEasingFunctionBase_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasingFunctionBase is access IEasingFunctionBase_Interface'Class;
+   type IEasingFunctionBase is access all IEasingFunctionBase_Interface'Class;
    type IEasingFunctionBase_Ptr is access all IEasingFunctionBase;
 
    type IEasingFunctionBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasingFunctionBaseFactory is access IEasingFunctionBaseFactory_Interface'Class;
+   type IEasingFunctionBaseFactory is access all IEasingFunctionBaseFactory_Interface'Class;
 
    type IEasingFunctionBaseStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasingFunctionBaseStatics is access IEasingFunctionBaseStatics_Interface'Class;
+   type IEasingFunctionBaseStatics is access all IEasingFunctionBaseStatics_Interface'Class;
 
    type IEasingPointKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasingPointKeyFrame is access IEasingPointKeyFrame_Interface'Class;
+   type IEasingPointKeyFrame is access all IEasingPointKeyFrame_Interface'Class;
    type IEasingPointKeyFrame_Ptr is access all IEasingPointKeyFrame;
 
    type IEasingPointKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IEasingPointKeyFrameStatics is access IEasingPointKeyFrameStatics_Interface'Class;
+   type IEasingPointKeyFrameStatics is access all IEasingPointKeyFrameStatics_Interface'Class;
 
    type IEdgeUIThemeTransition_Interface is interface and WinRt.IInspectable_Interface;
-   type IEdgeUIThemeTransition is access IEdgeUIThemeTransition_Interface'Class;
+   type IEdgeUIThemeTransition is access all IEdgeUIThemeTransition_Interface'Class;
    type IEdgeUIThemeTransition_Ptr is access all IEdgeUIThemeTransition;
 
    type IEdgeUIThemeTransitionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IEdgeUIThemeTransitionStatics is access IEdgeUIThemeTransitionStatics_Interface'Class;
+   type IEdgeUIThemeTransitionStatics is access all IEdgeUIThemeTransitionStatics_Interface'Class;
 
    type IElasticEase_Interface is interface and WinRt.IInspectable_Interface;
-   type IElasticEase is access IElasticEase_Interface'Class;
+   type IElasticEase is access all IElasticEase_Interface'Class;
    type IElasticEase_Ptr is access all IElasticEase;
 
    type IElasticEaseStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IElasticEaseStatics is access IElasticEaseStatics_Interface'Class;
+   type IElasticEaseStatics is access all IElasticEaseStatics_Interface'Class;
 
    type IEntranceNavigationTransitionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IEntranceNavigationTransitionInfo is access IEntranceNavigationTransitionInfo_Interface'Class;
+   type IEntranceNavigationTransitionInfo is access all IEntranceNavigationTransitionInfo_Interface'Class;
    type IEntranceNavigationTransitionInfo_Ptr is access all IEntranceNavigationTransitionInfo;
 
    type IEntranceNavigationTransitionInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IEntranceNavigationTransitionInfoStatics is access IEntranceNavigationTransitionInfoStatics_Interface'Class;
+   type IEntranceNavigationTransitionInfoStatics is access all IEntranceNavigationTransitionInfoStatics_Interface'Class;
 
    type IEntranceThemeTransition_Interface is interface and WinRt.IInspectable_Interface;
-   type IEntranceThemeTransition is access IEntranceThemeTransition_Interface'Class;
+   type IEntranceThemeTransition is access all IEntranceThemeTransition_Interface'Class;
    type IEntranceThemeTransition_Ptr is access all IEntranceThemeTransition;
 
    type IEntranceThemeTransitionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IEntranceThemeTransitionStatics is access IEntranceThemeTransitionStatics_Interface'Class;
+   type IEntranceThemeTransitionStatics is access all IEntranceThemeTransitionStatics_Interface'Class;
 
    type IExponentialEase_Interface is interface and WinRt.IInspectable_Interface;
-   type IExponentialEase is access IExponentialEase_Interface'Class;
+   type IExponentialEase is access all IExponentialEase_Interface'Class;
    type IExponentialEase_Ptr is access all IExponentialEase;
 
    type IExponentialEaseStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IExponentialEaseStatics is access IExponentialEaseStatics_Interface'Class;
+   type IExponentialEaseStatics is access all IExponentialEaseStatics_Interface'Class;
 
    type IFadeInThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IFadeInThemeAnimation is access IFadeInThemeAnimation_Interface'Class;
+   type IFadeInThemeAnimation is access all IFadeInThemeAnimation_Interface'Class;
    type IFadeInThemeAnimation_Ptr is access all IFadeInThemeAnimation;
 
    type IFadeInThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFadeInThemeAnimationStatics is access IFadeInThemeAnimationStatics_Interface'Class;
+   type IFadeInThemeAnimationStatics is access all IFadeInThemeAnimationStatics_Interface'Class;
 
    type IFadeOutThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IFadeOutThemeAnimation is access IFadeOutThemeAnimation_Interface'Class;
+   type IFadeOutThemeAnimation is access all IFadeOutThemeAnimation_Interface'Class;
    type IFadeOutThemeAnimation_Ptr is access all IFadeOutThemeAnimation;
 
    type IFadeOutThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFadeOutThemeAnimationStatics is access IFadeOutThemeAnimationStatics_Interface'Class;
+   type IFadeOutThemeAnimationStatics is access all IFadeOutThemeAnimationStatics_Interface'Class;
 
    type IGravityConnectedAnimationConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IGravityConnectedAnimationConfiguration is access IGravityConnectedAnimationConfiguration_Interface'Class;
+   type IGravityConnectedAnimationConfiguration is access all IGravityConnectedAnimationConfiguration_Interface'Class;
    type IGravityConnectedAnimationConfiguration_Ptr is access all IGravityConnectedAnimationConfiguration;
 
    type IGravityConnectedAnimationConfiguration2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGravityConnectedAnimationConfiguration2 is access IGravityConnectedAnimationConfiguration2_Interface'Class;
+   type IGravityConnectedAnimationConfiguration2 is access all IGravityConnectedAnimationConfiguration2_Interface'Class;
 
    type IGravityConnectedAnimationConfigurationFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGravityConnectedAnimationConfigurationFactory is access IGravityConnectedAnimationConfigurationFactory_Interface'Class;
+   type IGravityConnectedAnimationConfigurationFactory is access all IGravityConnectedAnimationConfigurationFactory_Interface'Class;
 
    type IKeySpline_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeySpline is access IKeySpline_Interface'Class;
+   type IKeySpline is access all IKeySpline_Interface'Class;
    type IKeySpline_Ptr is access all IKeySpline;
 
    type IKeyTimeHelper_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyTimeHelper is access IKeyTimeHelper_Interface'Class;
+   type IKeyTimeHelper is access all IKeyTimeHelper_Interface'Class;
    type IKeyTimeHelper_Ptr is access all IKeyTimeHelper;
 
    type IKeyTimeHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyTimeHelperStatics is access IKeyTimeHelperStatics_Interface'Class;
+   type IKeyTimeHelperStatics is access all IKeyTimeHelperStatics_Interface'Class;
 
    type ILinearColorKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type ILinearColorKeyFrame is access ILinearColorKeyFrame_Interface'Class;
+   type ILinearColorKeyFrame is access all ILinearColorKeyFrame_Interface'Class;
    type ILinearColorKeyFrame_Ptr is access all ILinearColorKeyFrame;
 
    type ILinearDoubleKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type ILinearDoubleKeyFrame is access ILinearDoubleKeyFrame_Interface'Class;
+   type ILinearDoubleKeyFrame is access all ILinearDoubleKeyFrame_Interface'Class;
    type ILinearDoubleKeyFrame_Ptr is access all ILinearDoubleKeyFrame;
 
    type ILinearPointKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type ILinearPointKeyFrame is access ILinearPointKeyFrame_Interface'Class;
+   type ILinearPointKeyFrame is access all ILinearPointKeyFrame_Interface'Class;
    type ILinearPointKeyFrame_Ptr is access all ILinearPointKeyFrame;
 
    type INavigationThemeTransition_Interface is interface and WinRt.IInspectable_Interface;
-   type INavigationThemeTransition is access INavigationThemeTransition_Interface'Class;
+   type INavigationThemeTransition is access all INavigationThemeTransition_Interface'Class;
    type INavigationThemeTransition_Ptr is access all INavigationThemeTransition;
 
    type INavigationThemeTransitionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type INavigationThemeTransitionStatics is access INavigationThemeTransitionStatics_Interface'Class;
+   type INavigationThemeTransitionStatics is access all INavigationThemeTransitionStatics_Interface'Class;
 
    type INavigationTransitionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type INavigationTransitionInfo is access INavigationTransitionInfo_Interface'Class;
+   type INavigationTransitionInfo is access all INavigationTransitionInfo_Interface'Class;
    type INavigationTransitionInfo_Ptr is access all INavigationTransitionInfo;
 
    type INavigationTransitionInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type INavigationTransitionInfoFactory is access INavigationTransitionInfoFactory_Interface'Class;
+   type INavigationTransitionInfoFactory is access all INavigationTransitionInfoFactory_Interface'Class;
 
    type INavigationTransitionInfoOverrides_Interface is interface and WinRt.IInspectable_Interface;
-   type INavigationTransitionInfoOverrides is access INavigationTransitionInfoOverrides_Interface'Class;
+   type INavigationTransitionInfoOverrides is access all INavigationTransitionInfoOverrides_Interface'Class;
 
    type IObjectAnimationUsingKeyFrames_Interface is interface and WinRt.IInspectable_Interface;
-   type IObjectAnimationUsingKeyFrames is access IObjectAnimationUsingKeyFrames_Interface'Class;
+   type IObjectAnimationUsingKeyFrames is access all IObjectAnimationUsingKeyFrames_Interface'Class;
    type IObjectAnimationUsingKeyFrames_Ptr is access all IObjectAnimationUsingKeyFrames;
 
    type IObjectAnimationUsingKeyFramesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IObjectAnimationUsingKeyFramesStatics is access IObjectAnimationUsingKeyFramesStatics_Interface'Class;
+   type IObjectAnimationUsingKeyFramesStatics is access all IObjectAnimationUsingKeyFramesStatics_Interface'Class;
 
    type IObjectKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IObjectKeyFrame is access IObjectKeyFrame_Interface'Class;
+   type IObjectKeyFrame is access all IObjectKeyFrame_Interface'Class;
    type IObjectKeyFrame_Ptr is access all IObjectKeyFrame;
    type IObjectKeyFrame_Array is array (Natural range <>) of IObjectKeyFrame;
 
    type IObjectKeyFrameFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IObjectKeyFrameFactory is access IObjectKeyFrameFactory_Interface'Class;
+   type IObjectKeyFrameFactory is access all IObjectKeyFrameFactory_Interface'Class;
 
    type IObjectKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IObjectKeyFrameStatics is access IObjectKeyFrameStatics_Interface'Class;
+   type IObjectKeyFrameStatics is access all IObjectKeyFrameStatics_Interface'Class;
 
    type IPaneThemeTransition_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaneThemeTransition is access IPaneThemeTransition_Interface'Class;
+   type IPaneThemeTransition is access all IPaneThemeTransition_Interface'Class;
    type IPaneThemeTransition_Ptr is access all IPaneThemeTransition;
 
    type IPaneThemeTransitionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaneThemeTransitionStatics is access IPaneThemeTransitionStatics_Interface'Class;
+   type IPaneThemeTransitionStatics is access all IPaneThemeTransitionStatics_Interface'Class;
 
    type IPointAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointAnimation is access IPointAnimation_Interface'Class;
+   type IPointAnimation is access all IPointAnimation_Interface'Class;
    type IPointAnimation_Ptr is access all IPointAnimation;
 
    type IPointAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointAnimationStatics is access IPointAnimationStatics_Interface'Class;
+   type IPointAnimationStatics is access all IPointAnimationStatics_Interface'Class;
 
    type IPointAnimationUsingKeyFrames_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointAnimationUsingKeyFrames is access IPointAnimationUsingKeyFrames_Interface'Class;
+   type IPointAnimationUsingKeyFrames is access all IPointAnimationUsingKeyFrames_Interface'Class;
    type IPointAnimationUsingKeyFrames_Ptr is access all IPointAnimationUsingKeyFrames;
 
    type IPointAnimationUsingKeyFramesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointAnimationUsingKeyFramesStatics is access IPointAnimationUsingKeyFramesStatics_Interface'Class;
+   type IPointAnimationUsingKeyFramesStatics is access all IPointAnimationUsingKeyFramesStatics_Interface'Class;
 
    type IPointKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointKeyFrame is access IPointKeyFrame_Interface'Class;
+   type IPointKeyFrame is access all IPointKeyFrame_Interface'Class;
    type IPointKeyFrame_Ptr is access all IPointKeyFrame;
    type IPointKeyFrame_Array is array (Natural range <>) of IPointKeyFrame;
 
    type IPointKeyFrameFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointKeyFrameFactory is access IPointKeyFrameFactory_Interface'Class;
+   type IPointKeyFrameFactory is access all IPointKeyFrameFactory_Interface'Class;
 
    type IPointKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointKeyFrameStatics is access IPointKeyFrameStatics_Interface'Class;
+   type IPointKeyFrameStatics is access all IPointKeyFrameStatics_Interface'Class;
 
    type IPointerDownThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointerDownThemeAnimation is access IPointerDownThemeAnimation_Interface'Class;
+   type IPointerDownThemeAnimation is access all IPointerDownThemeAnimation_Interface'Class;
    type IPointerDownThemeAnimation_Ptr is access all IPointerDownThemeAnimation;
 
    type IPointerDownThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointerDownThemeAnimationStatics is access IPointerDownThemeAnimationStatics_Interface'Class;
+   type IPointerDownThemeAnimationStatics is access all IPointerDownThemeAnimationStatics_Interface'Class;
 
    type IPointerUpThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointerUpThemeAnimation is access IPointerUpThemeAnimation_Interface'Class;
+   type IPointerUpThemeAnimation is access all IPointerUpThemeAnimation_Interface'Class;
    type IPointerUpThemeAnimation_Ptr is access all IPointerUpThemeAnimation;
 
    type IPointerUpThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointerUpThemeAnimationStatics is access IPointerUpThemeAnimationStatics_Interface'Class;
+   type IPointerUpThemeAnimationStatics is access all IPointerUpThemeAnimationStatics_Interface'Class;
 
    type IPopInThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IPopInThemeAnimation is access IPopInThemeAnimation_Interface'Class;
+   type IPopInThemeAnimation is access all IPopInThemeAnimation_Interface'Class;
    type IPopInThemeAnimation_Ptr is access all IPopInThemeAnimation;
 
    type IPopInThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPopInThemeAnimationStatics is access IPopInThemeAnimationStatics_Interface'Class;
+   type IPopInThemeAnimationStatics is access all IPopInThemeAnimationStatics_Interface'Class;
 
    type IPopOutThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IPopOutThemeAnimation is access IPopOutThemeAnimation_Interface'Class;
+   type IPopOutThemeAnimation is access all IPopOutThemeAnimation_Interface'Class;
    type IPopOutThemeAnimation_Ptr is access all IPopOutThemeAnimation;
 
    type IPopOutThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPopOutThemeAnimationStatics is access IPopOutThemeAnimationStatics_Interface'Class;
+   type IPopOutThemeAnimationStatics is access all IPopOutThemeAnimationStatics_Interface'Class;
 
    type IPopupThemeTransition_Interface is interface and WinRt.IInspectable_Interface;
-   type IPopupThemeTransition is access IPopupThemeTransition_Interface'Class;
+   type IPopupThemeTransition is access all IPopupThemeTransition_Interface'Class;
    type IPopupThemeTransition_Ptr is access all IPopupThemeTransition;
 
    type IPopupThemeTransitionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPopupThemeTransitionStatics is access IPopupThemeTransitionStatics_Interface'Class;
+   type IPopupThemeTransitionStatics is access all IPopupThemeTransitionStatics_Interface'Class;
 
    type IPowerEase_Interface is interface and WinRt.IInspectable_Interface;
-   type IPowerEase is access IPowerEase_Interface'Class;
+   type IPowerEase is access all IPowerEase_Interface'Class;
    type IPowerEase_Ptr is access all IPowerEase;
 
    type IPowerEaseStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPowerEaseStatics is access IPowerEaseStatics_Interface'Class;
+   type IPowerEaseStatics is access all IPowerEaseStatics_Interface'Class;
 
    type IQuadraticEase_Interface is interface and WinRt.IInspectable_Interface;
-   type IQuadraticEase is access IQuadraticEase_Interface'Class;
+   type IQuadraticEase is access all IQuadraticEase_Interface'Class;
    type IQuadraticEase_Ptr is access all IQuadraticEase;
 
    type IQuarticEase_Interface is interface and WinRt.IInspectable_Interface;
-   type IQuarticEase is access IQuarticEase_Interface'Class;
+   type IQuarticEase is access all IQuarticEase_Interface'Class;
    type IQuarticEase_Ptr is access all IQuarticEase;
 
    type IQuinticEase_Interface is interface and WinRt.IInspectable_Interface;
-   type IQuinticEase is access IQuinticEase_Interface'Class;
+   type IQuinticEase is access all IQuinticEase_Interface'Class;
    type IQuinticEase_Ptr is access all IQuinticEase;
 
    type IReorderThemeTransition_Interface is interface and WinRt.IInspectable_Interface;
-   type IReorderThemeTransition is access IReorderThemeTransition_Interface'Class;
+   type IReorderThemeTransition is access all IReorderThemeTransition_Interface'Class;
    type IReorderThemeTransition_Ptr is access all IReorderThemeTransition;
 
    type IRepeatBehaviorHelper_Interface is interface and WinRt.IInspectable_Interface;
-   type IRepeatBehaviorHelper is access IRepeatBehaviorHelper_Interface'Class;
+   type IRepeatBehaviorHelper is access all IRepeatBehaviorHelper_Interface'Class;
    type IRepeatBehaviorHelper_Ptr is access all IRepeatBehaviorHelper;
 
    type IRepeatBehaviorHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRepeatBehaviorHelperStatics is access IRepeatBehaviorHelperStatics_Interface'Class;
+   type IRepeatBehaviorHelperStatics is access all IRepeatBehaviorHelperStatics_Interface'Class;
 
    type IRepositionThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type IRepositionThemeAnimation is access IRepositionThemeAnimation_Interface'Class;
+   type IRepositionThemeAnimation is access all IRepositionThemeAnimation_Interface'Class;
    type IRepositionThemeAnimation_Ptr is access all IRepositionThemeAnimation;
 
    type IRepositionThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRepositionThemeAnimationStatics is access IRepositionThemeAnimationStatics_Interface'Class;
+   type IRepositionThemeAnimationStatics is access all IRepositionThemeAnimationStatics_Interface'Class;
 
    type IRepositionThemeTransition_Interface is interface and WinRt.IInspectable_Interface;
-   type IRepositionThemeTransition is access IRepositionThemeTransition_Interface'Class;
+   type IRepositionThemeTransition is access all IRepositionThemeTransition_Interface'Class;
    type IRepositionThemeTransition_Ptr is access all IRepositionThemeTransition;
 
    type IRepositionThemeTransition2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRepositionThemeTransition2 is access IRepositionThemeTransition2_Interface'Class;
+   type IRepositionThemeTransition2 is access all IRepositionThemeTransition2_Interface'Class;
 
    type IRepositionThemeTransitionStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IRepositionThemeTransitionStatics2 is access IRepositionThemeTransitionStatics2_Interface'Class;
+   type IRepositionThemeTransitionStatics2 is access all IRepositionThemeTransitionStatics2_Interface'Class;
 
    type ISineEase_Interface is interface and WinRt.IInspectable_Interface;
-   type ISineEase is access ISineEase_Interface'Class;
+   type ISineEase is access all ISineEase_Interface'Class;
    type ISineEase_Ptr is access all ISineEase;
 
    type ISlideNavigationTransitionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ISlideNavigationTransitionInfo is access ISlideNavigationTransitionInfo_Interface'Class;
+   type ISlideNavigationTransitionInfo is access all ISlideNavigationTransitionInfo_Interface'Class;
    type ISlideNavigationTransitionInfo_Ptr is access all ISlideNavigationTransitionInfo;
 
    type ISlideNavigationTransitionInfo2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISlideNavigationTransitionInfo2 is access ISlideNavigationTransitionInfo2_Interface'Class;
+   type ISlideNavigationTransitionInfo2 is access all ISlideNavigationTransitionInfo2_Interface'Class;
 
    type ISlideNavigationTransitionInfoStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISlideNavigationTransitionInfoStatics2 is access ISlideNavigationTransitionInfoStatics2_Interface'Class;
+   type ISlideNavigationTransitionInfoStatics2 is access all ISlideNavigationTransitionInfoStatics2_Interface'Class;
 
    type ISplineColorKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type ISplineColorKeyFrame is access ISplineColorKeyFrame_Interface'Class;
+   type ISplineColorKeyFrame is access all ISplineColorKeyFrame_Interface'Class;
    type ISplineColorKeyFrame_Ptr is access all ISplineColorKeyFrame;
 
    type ISplineColorKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISplineColorKeyFrameStatics is access ISplineColorKeyFrameStatics_Interface'Class;
+   type ISplineColorKeyFrameStatics is access all ISplineColorKeyFrameStatics_Interface'Class;
 
    type ISplineDoubleKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type ISplineDoubleKeyFrame is access ISplineDoubleKeyFrame_Interface'Class;
+   type ISplineDoubleKeyFrame is access all ISplineDoubleKeyFrame_Interface'Class;
    type ISplineDoubleKeyFrame_Ptr is access all ISplineDoubleKeyFrame;
 
    type ISplineDoubleKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISplineDoubleKeyFrameStatics is access ISplineDoubleKeyFrameStatics_Interface'Class;
+   type ISplineDoubleKeyFrameStatics is access all ISplineDoubleKeyFrameStatics_Interface'Class;
 
    type ISplinePointKeyFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type ISplinePointKeyFrame is access ISplinePointKeyFrame_Interface'Class;
+   type ISplinePointKeyFrame is access all ISplinePointKeyFrame_Interface'Class;
    type ISplinePointKeyFrame_Ptr is access all ISplinePointKeyFrame;
 
    type ISplinePointKeyFrameStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISplinePointKeyFrameStatics is access ISplinePointKeyFrameStatics_Interface'Class;
+   type ISplinePointKeyFrameStatics is access all ISplinePointKeyFrameStatics_Interface'Class;
 
    type ISplitCloseThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type ISplitCloseThemeAnimation is access ISplitCloseThemeAnimation_Interface'Class;
+   type ISplitCloseThemeAnimation is access all ISplitCloseThemeAnimation_Interface'Class;
    type ISplitCloseThemeAnimation_Ptr is access all ISplitCloseThemeAnimation;
 
    type ISplitCloseThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISplitCloseThemeAnimationStatics is access ISplitCloseThemeAnimationStatics_Interface'Class;
+   type ISplitCloseThemeAnimationStatics is access all ISplitCloseThemeAnimationStatics_Interface'Class;
 
    type ISplitOpenThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type ISplitOpenThemeAnimation is access ISplitOpenThemeAnimation_Interface'Class;
+   type ISplitOpenThemeAnimation is access all ISplitOpenThemeAnimation_Interface'Class;
    type ISplitOpenThemeAnimation_Ptr is access all ISplitOpenThemeAnimation;
 
    type ISplitOpenThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISplitOpenThemeAnimationStatics is access ISplitOpenThemeAnimationStatics_Interface'Class;
+   type ISplitOpenThemeAnimationStatics is access all ISplitOpenThemeAnimationStatics_Interface'Class;
 
    type IStoryboard_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoryboard is access IStoryboard_Interface'Class;
+   type IStoryboard is access all IStoryboard_Interface'Class;
    type IStoryboard_Ptr is access all IStoryboard;
 
    type IStoryboardStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoryboardStatics is access IStoryboardStatics_Interface'Class;
+   type IStoryboardStatics is access all IStoryboardStatics_Interface'Class;
 
    type ISuppressNavigationTransitionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ISuppressNavigationTransitionInfo is access ISuppressNavigationTransitionInfo_Interface'Class;
+   type ISuppressNavigationTransitionInfo is access all ISuppressNavigationTransitionInfo_Interface'Class;
    type ISuppressNavigationTransitionInfo_Ptr is access all ISuppressNavigationTransitionInfo;
 
    type ISwipeBackThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type ISwipeBackThemeAnimation is access ISwipeBackThemeAnimation_Interface'Class;
+   type ISwipeBackThemeAnimation is access all ISwipeBackThemeAnimation_Interface'Class;
    type ISwipeBackThemeAnimation_Ptr is access all ISwipeBackThemeAnimation;
 
    type ISwipeBackThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISwipeBackThemeAnimationStatics is access ISwipeBackThemeAnimationStatics_Interface'Class;
+   type ISwipeBackThemeAnimationStatics is access all ISwipeBackThemeAnimationStatics_Interface'Class;
 
    type ISwipeHintThemeAnimation_Interface is interface and WinRt.IInspectable_Interface;
-   type ISwipeHintThemeAnimation is access ISwipeHintThemeAnimation_Interface'Class;
+   type ISwipeHintThemeAnimation is access all ISwipeHintThemeAnimation_Interface'Class;
    type ISwipeHintThemeAnimation_Ptr is access all ISwipeHintThemeAnimation;
 
    type ISwipeHintThemeAnimationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISwipeHintThemeAnimationStatics is access ISwipeHintThemeAnimationStatics_Interface'Class;
+   type ISwipeHintThemeAnimationStatics is access all ISwipeHintThemeAnimationStatics_Interface'Class;
 
    type ITimeline_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimeline is access ITimeline_Interface'Class;
+   type ITimeline is access all ITimeline_Interface'Class;
    type ITimeline_Ptr is access all ITimeline;
    type ITimeline_Array is array (Natural range <>) of ITimeline;
 
    type ITimelineFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimelineFactory is access ITimelineFactory_Interface'Class;
+   type ITimelineFactory is access all ITimelineFactory_Interface'Class;
 
    type ITimelineStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimelineStatics is access ITimelineStatics_Interface'Class;
+   type ITimelineStatics is access all ITimelineStatics_Interface'Class;
 
    type ITransition_Interface is interface and WinRt.IInspectable_Interface;
-   type ITransition is access ITransition_Interface'Class;
+   type ITransition is access all ITransition_Interface'Class;
    type ITransition_Ptr is access all ITransition;
    type ITransition_Array is array (Natural range <>) of ITransition;
 
    type ITransitionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ITransitionFactory is access ITransitionFactory_Interface'Class;
+   type ITransitionFactory is access all ITransitionFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -1134,7 +1134,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       Filling_e => 1,
       Stopped_e => 2
    );
-   type ClockState_Ptr is access ClockState;
+   type ClockState_Ptr is access all ClockState;
 
    type ConnectedAnimationComponent is (
       OffsetX_e,
@@ -1148,7 +1148,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       CrossFade_e => 2,
       Scale_e => 3
    );
-   type ConnectedAnimationComponent_Ptr is access ConnectedAnimationComponent;
+   type ConnectedAnimationComponent_Ptr is access all ConnectedAnimationComponent;
 
    type EasingMode is (
       EaseOut_e,
@@ -1160,7 +1160,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       EaseIn_e => 1,
       EaseInOut_e => 2
    );
-   type EasingMode_Ptr is access EasingMode;
+   type EasingMode_Ptr is access all EasingMode;
 
    type FillBehavior is (
       HoldEnd_e,
@@ -1170,7 +1170,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       HoldEnd_e => 0,
       Stop_e => 1
    );
-   type FillBehavior_Ptr is access FillBehavior;
+   type FillBehavior_Ptr is access all FillBehavior;
 
    type RepeatBehaviorType is (
       Count_e,
@@ -1182,7 +1182,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       Duration_e => 1,
       Forever_e => 2
    );
-   type RepeatBehaviorType_Ptr is access RepeatBehaviorType;
+   type RepeatBehaviorType_Ptr is access all RepeatBehaviorType;
 
    type SlideNavigationTransitionEffect is (
       FromBottom_e,
@@ -1194,7 +1194,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       FromLeft_e => 1,
       FromRight_e => 2
    );
-   type SlideNavigationTransitionEffect_Ptr is access SlideNavigationTransitionEffect;
+   type SlideNavigationTransitionEffect_Ptr is access all SlideNavigationTransitionEffect;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1203,14 +1203,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    type KeyTime is record
       TimeSpan : WinRt.Windows.Foundation.TimeSpan;
    end record with Convention => C_Pass_By_Copy;
-   type KeyTime_Ptr is access KeyTime;
+   type KeyTime_Ptr is access all KeyTime;
 
    type RepeatBehavior is record
       Count : WinRt.Double;
       Duration : WinRt.Windows.Foundation.TimeSpan;
       Type_x : Windows.UI.Xaml.Media.Animation.RepeatBehaviorType;
    end record with Convention => C_Pass_By_Copy;
-   type RepeatBehavior_Ptr is access RepeatBehavior;
+   type RepeatBehavior_Ptr is access all RepeatBehavior;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

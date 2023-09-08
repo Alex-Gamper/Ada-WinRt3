@@ -42,66 +42,66 @@ package WinRt.Windows.UI.Xaml.Markup is
    -----------------------------------------------------------------------------
 
    type IComponentConnector_Interface is interface and WinRt.IInspectable_Interface;
-   type IComponentConnector is access IComponentConnector_Interface'Class;
+   type IComponentConnector is access all IComponentConnector_Interface'Class;
 
    type IComponentConnector2_Interface is interface and WinRt.IInspectable_Interface;
-   type IComponentConnector2 is access IComponentConnector2_Interface'Class;
+   type IComponentConnector2 is access all IComponentConnector2_Interface'Class;
 
    type IDataTemplateComponent_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataTemplateComponent is access IDataTemplateComponent_Interface'Class;
+   type IDataTemplateComponent is access all IDataTemplateComponent_Interface'Class;
 
    type IMarkupExtension_Interface is interface and WinRt.IInspectable_Interface;
-   type IMarkupExtension is access IMarkupExtension_Interface'Class;
+   type IMarkupExtension is access all IMarkupExtension_Interface'Class;
    type IMarkupExtension_Ptr is access all IMarkupExtension;
 
    type IMarkupExtensionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMarkupExtensionFactory is access IMarkupExtensionFactory_Interface'Class;
+   type IMarkupExtensionFactory is access all IMarkupExtensionFactory_Interface'Class;
 
    type IMarkupExtensionOverrides_Interface is interface and WinRt.IInspectable_Interface;
-   type IMarkupExtensionOverrides is access IMarkupExtensionOverrides_Interface'Class;
+   type IMarkupExtensionOverrides is access all IMarkupExtensionOverrides_Interface'Class;
 
    type IXamlBinaryWriter_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlBinaryWriter is access IXamlBinaryWriter_Interface'Class;
+   type IXamlBinaryWriter is access all IXamlBinaryWriter_Interface'Class;
    type IXamlBinaryWriter_Ptr is access all IXamlBinaryWriter;
 
    type IXamlBinaryWriterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlBinaryWriterStatics is access IXamlBinaryWriterStatics_Interface'Class;
+   type IXamlBinaryWriterStatics is access all IXamlBinaryWriterStatics_Interface'Class;
 
    type IXamlBindScopeDiagnostics_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlBindScopeDiagnostics is access IXamlBindScopeDiagnostics_Interface'Class;
+   type IXamlBindScopeDiagnostics is access all IXamlBindScopeDiagnostics_Interface'Class;
 
    type IXamlBindingHelper_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlBindingHelper is access IXamlBindingHelper_Interface'Class;
+   type IXamlBindingHelper is access all IXamlBindingHelper_Interface'Class;
    type IXamlBindingHelper_Ptr is access all IXamlBindingHelper;
 
    type IXamlBindingHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlBindingHelperStatics is access IXamlBindingHelperStatics_Interface'Class;
+   type IXamlBindingHelperStatics is access all IXamlBindingHelperStatics_Interface'Class;
 
    type IXamlMarkupHelper_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlMarkupHelper is access IXamlMarkupHelper_Interface'Class;
+   type IXamlMarkupHelper is access all IXamlMarkupHelper_Interface'Class;
    type IXamlMarkupHelper_Ptr is access all IXamlMarkupHelper;
 
    type IXamlMarkupHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlMarkupHelperStatics is access IXamlMarkupHelperStatics_Interface'Class;
+   type IXamlMarkupHelperStatics is access all IXamlMarkupHelperStatics_Interface'Class;
 
    type IXamlMember_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlMember is access IXamlMember_Interface'Class;
+   type IXamlMember is access all IXamlMember_Interface'Class;
 
    type IXamlMetadataProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlMetadataProvider is access IXamlMetadataProvider_Interface'Class;
+   type IXamlMetadataProvider is access all IXamlMetadataProvider_Interface'Class;
 
    type IXamlReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlReader is access IXamlReader_Interface'Class;
+   type IXamlReader is access all IXamlReader_Interface'Class;
    type IXamlReader_Ptr is access all IXamlReader;
 
    type IXamlReaderStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlReaderStatics is access IXamlReaderStatics_Interface'Class;
+   type IXamlReaderStatics is access all IXamlReaderStatics_Interface'Class;
 
    type IXamlType_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlType is access IXamlType_Interface'Class;
+   type IXamlType is access all IXamlType_Interface'Class;
 
    type IXamlType2_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlType2 is access IXamlType2_Interface'Class;
+   type IXamlType2 is access all IXamlType2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -146,13 +146,13 @@ package WinRt.Windows.UI.Xaml.Markup is
       LineNumber : WinRt.UInt32;
       LinePosition : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type XamlBinaryWriterErrorInformation_Ptr is access XamlBinaryWriterErrorInformation;
+   type XamlBinaryWriterErrorInformation_Ptr is access all XamlBinaryWriterErrorInformation;
 
    type XmlnsDefinition is record
       XmlNamespace : WinRt.HString;
       Namespace : WinRt.HString;
    end record with Convention => C_Pass_By_Copy;
-   type XmlnsDefinition_Ptr is access XmlnsDefinition;
+   type XmlnsDefinition_Ptr is access all XmlnsDefinition;
    type XmlnsDefinition_Array is array (Natural range <>) of aliased XmlnsDefinition;
 
    -----------------------------------------------------------------------------

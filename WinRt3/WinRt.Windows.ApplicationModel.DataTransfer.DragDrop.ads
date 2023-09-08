@@ -55,6 +55,6 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop is
       MiddleButton_e => 16,
       RightButton_e => 32
    );
-   type DragDropModifiers_Ptr is access DragDropModifiers;
+   type DragDropModifiers_Ptr is access all DragDropModifiers;
 
 end;

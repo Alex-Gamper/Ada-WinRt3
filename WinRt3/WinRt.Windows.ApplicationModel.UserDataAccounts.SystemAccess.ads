@@ -41,17 +41,17 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    -----------------------------------------------------------------------------
 
    type IDeviceAccountConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceAccountConfiguration is access IDeviceAccountConfiguration_Interface'Class;
+   type IDeviceAccountConfiguration is access all IDeviceAccountConfiguration_Interface'Class;
    type IDeviceAccountConfiguration_Ptr is access all IDeviceAccountConfiguration;
 
    type IDeviceAccountConfiguration2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceAccountConfiguration2 is access IDeviceAccountConfiguration2_Interface'Class;
+   type IDeviceAccountConfiguration2 is access all IDeviceAccountConfiguration2_Interface'Class;
 
    type IUserDataAccountSystemAccessManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccountSystemAccessManagerStatics is access IUserDataAccountSystemAccessManagerStatics_Interface'Class;
+   type IUserDataAccountSystemAccessManagerStatics is access all IUserDataAccountSystemAccessManagerStatics_Interface'Class;
 
    type IUserDataAccountSystemAccessManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccountSystemAccessManagerStatics2 is access IUserDataAccountSystemAccessManagerStatics2_Interface'Class;
+   type IUserDataAccountSystemAccessManagerStatics2 is access all IUserDataAccountSystemAccessManagerStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -77,7 +77,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       OAuth_e => 1,
       SingleSignOn_e => 2
    );
-   type DeviceAccountAuthenticationType_Ptr is access DeviceAccountAuthenticationType;
+   type DeviceAccountAuthenticationType_Ptr is access all DeviceAccountAuthenticationType;
 
    type DeviceAccountIconId is (
       Exchange_e,
@@ -91,7 +91,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       Outlook_e => 2,
       Generic_e => 3
    );
-   type DeviceAccountIconId_Ptr is access DeviceAccountIconId;
+   type DeviceAccountIconId_Ptr is access all DeviceAccountIconId;
 
    type DeviceAccountMailAgeFilter is (
       All_e,
@@ -111,7 +111,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       Last30Days_e => 5,
       Last90Days_e => 6
    );
-   type DeviceAccountMailAgeFilter_Ptr is access DeviceAccountMailAgeFilter;
+   type DeviceAccountMailAgeFilter_Ptr is access all DeviceAccountMailAgeFilter;
 
    type DeviceAccountServerType is (
       Exchange_e,
@@ -123,7 +123,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       Pop_e => 1,
       Imap_e => 2
    );
-   type DeviceAccountServerType_Ptr is access DeviceAccountServerType;
+   type DeviceAccountServerType_Ptr is access all DeviceAccountServerType;
 
    type DeviceAccountSyncScheduleKind is (
       Manual_e,
@@ -143,7 +143,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       Daily_e => 5,
       AsItemsArrive_e => 6
    );
-   type DeviceAccountSyncScheduleKind_Ptr is access DeviceAccountSyncScheduleKind;
+   type DeviceAccountSyncScheduleKind_Ptr is access all DeviceAccountSyncScheduleKind;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

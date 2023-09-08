@@ -41,115 +41,115 @@ package WinRt.Windows.Devices.Sms is
    -----------------------------------------------------------------------------
 
    type SmsDeviceStatusChangedEventHandler_Delegate;
-   type SmsDeviceStatusChangedEventHandler is access SmsDeviceStatusChangedEventHandler_Delegate;
+   type SmsDeviceStatusChangedEventHandler is access all SmsDeviceStatusChangedEventHandler_Delegate;
 
    type SmsMessageReceivedEventHandler_Delegate;
-   type SmsMessageReceivedEventHandler is access SmsMessageReceivedEventHandler_Delegate;
+   type SmsMessageReceivedEventHandler is access all SmsMessageReceivedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type ISmsAppMessage_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsAppMessage is access ISmsAppMessage_Interface'Class;
+   type ISmsAppMessage is access all ISmsAppMessage_Interface'Class;
    type ISmsAppMessage_Ptr is access all ISmsAppMessage;
 
    type ISmsBinaryMessage_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsBinaryMessage is access ISmsBinaryMessage_Interface'Class;
+   type ISmsBinaryMessage is access all ISmsBinaryMessage_Interface'Class;
    type ISmsBinaryMessage_Ptr is access all ISmsBinaryMessage;
 
    type ISmsBroadcastMessage_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsBroadcastMessage is access ISmsBroadcastMessage_Interface'Class;
+   type ISmsBroadcastMessage is access all ISmsBroadcastMessage_Interface'Class;
    type ISmsBroadcastMessage_Ptr is access all ISmsBroadcastMessage;
 
    type ISmsDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsDevice is access ISmsDevice_Interface'Class;
+   type ISmsDevice is access all ISmsDevice_Interface'Class;
    type ISmsDevice_Ptr is access all ISmsDevice;
 
    type ISmsDevice2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsDevice2 is access ISmsDevice2_Interface'Class;
+   type ISmsDevice2 is access all ISmsDevice2_Interface'Class;
    type ISmsDevice2_Ptr is access all ISmsDevice2;
 
    type ISmsDevice2Statics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsDevice2Statics is access ISmsDevice2Statics_Interface'Class;
+   type ISmsDevice2Statics is access all ISmsDevice2Statics_Interface'Class;
 
    type ISmsDeviceMessageStore_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsDeviceMessageStore is access ISmsDeviceMessageStore_Interface'Class;
+   type ISmsDeviceMessageStore is access all ISmsDeviceMessageStore_Interface'Class;
    type ISmsDeviceMessageStore_Ptr is access all ISmsDeviceMessageStore;
 
    type ISmsDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsDeviceStatics is access ISmsDeviceStatics_Interface'Class;
+   type ISmsDeviceStatics is access all ISmsDeviceStatics_Interface'Class;
 
    type ISmsDeviceStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsDeviceStatics2 is access ISmsDeviceStatics2_Interface'Class;
+   type ISmsDeviceStatics2 is access all ISmsDeviceStatics2_Interface'Class;
 
    type ISmsFilterRule_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsFilterRule is access ISmsFilterRule_Interface'Class;
+   type ISmsFilterRule is access all ISmsFilterRule_Interface'Class;
    type ISmsFilterRule_Ptr is access all ISmsFilterRule;
 
    type ISmsFilterRuleFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsFilterRuleFactory is access ISmsFilterRuleFactory_Interface'Class;
+   type ISmsFilterRuleFactory is access all ISmsFilterRuleFactory_Interface'Class;
 
    type ISmsFilterRules_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsFilterRules is access ISmsFilterRules_Interface'Class;
+   type ISmsFilterRules is access all ISmsFilterRules_Interface'Class;
    type ISmsFilterRules_Ptr is access all ISmsFilterRules;
 
    type ISmsFilterRulesFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsFilterRulesFactory is access ISmsFilterRulesFactory_Interface'Class;
+   type ISmsFilterRulesFactory is access all ISmsFilterRulesFactory_Interface'Class;
 
    type ISmsMessage_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsMessage is access ISmsMessage_Interface'Class;
+   type ISmsMessage is access all ISmsMessage_Interface'Class;
 
    type ISmsMessageBase_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsMessageBase is access ISmsMessageBase_Interface'Class;
+   type ISmsMessageBase is access all ISmsMessageBase_Interface'Class;
 
    type ISmsMessageReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsMessageReceivedEventArgs is access ISmsMessageReceivedEventArgs_Interface'Class;
+   type ISmsMessageReceivedEventArgs is access all ISmsMessageReceivedEventArgs_Interface'Class;
    type ISmsMessageReceivedEventArgs_Ptr is access all ISmsMessageReceivedEventArgs;
 
    type ISmsMessageReceivedTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsMessageReceivedTriggerDetails is access ISmsMessageReceivedTriggerDetails_Interface'Class;
+   type ISmsMessageReceivedTriggerDetails is access all ISmsMessageReceivedTriggerDetails_Interface'Class;
    type ISmsMessageReceivedTriggerDetails_Ptr is access all ISmsMessageReceivedTriggerDetails;
 
    type ISmsMessageRegistration_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsMessageRegistration is access ISmsMessageRegistration_Interface'Class;
+   type ISmsMessageRegistration is access all ISmsMessageRegistration_Interface'Class;
    type ISmsMessageRegistration_Ptr is access all ISmsMessageRegistration;
 
    type ISmsMessageRegistrationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsMessageRegistrationStatics is access ISmsMessageRegistrationStatics_Interface'Class;
+   type ISmsMessageRegistrationStatics is access all ISmsMessageRegistrationStatics_Interface'Class;
 
    type ISmsReceivedEventDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsReceivedEventDetails is access ISmsReceivedEventDetails_Interface'Class;
+   type ISmsReceivedEventDetails is access all ISmsReceivedEventDetails_Interface'Class;
    type ISmsReceivedEventDetails_Ptr is access all ISmsReceivedEventDetails;
 
    type ISmsReceivedEventDetails2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsReceivedEventDetails2 is access ISmsReceivedEventDetails2_Interface'Class;
+   type ISmsReceivedEventDetails2 is access all ISmsReceivedEventDetails2_Interface'Class;
 
    type ISmsSendMessageResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsSendMessageResult is access ISmsSendMessageResult_Interface'Class;
+   type ISmsSendMessageResult is access all ISmsSendMessageResult_Interface'Class;
    type ISmsSendMessageResult_Ptr is access all ISmsSendMessageResult;
 
    type ISmsStatusMessage_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsStatusMessage is access ISmsStatusMessage_Interface'Class;
+   type ISmsStatusMessage is access all ISmsStatusMessage_Interface'Class;
    type ISmsStatusMessage_Ptr is access all ISmsStatusMessage;
 
    type ISmsTextMessage_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsTextMessage is access ISmsTextMessage_Interface'Class;
+   type ISmsTextMessage is access all ISmsTextMessage_Interface'Class;
    type ISmsTextMessage_Ptr is access all ISmsTextMessage;
 
    type ISmsTextMessage2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsTextMessage2 is access ISmsTextMessage2_Interface'Class;
+   type ISmsTextMessage2 is access all ISmsTextMessage2_Interface'Class;
    type ISmsTextMessage2_Ptr is access all ISmsTextMessage2;
 
    type ISmsTextMessageStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsTextMessageStatics is access ISmsTextMessageStatics_Interface'Class;
+   type ISmsTextMessageStatics is access all ISmsTextMessageStatics_Interface'Class;
 
    type ISmsVoicemailMessage_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsVoicemailMessage is access ISmsVoicemailMessage_Interface'Class;
+   type ISmsVoicemailMessage is access all ISmsVoicemailMessage_Interface'Class;
    type ISmsVoicemailMessage_Ptr is access all ISmsVoicemailMessage;
 
    type ISmsWapMessage_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsWapMessage is access ISmsWapMessage_Interface'Class;
+   type ISmsWapMessage is access all ISmsWapMessage_Interface'Class;
    type ISmsWapMessage_Ptr is access all ISmsWapMessage;
 
    -----------------------------------------------------------------------------
@@ -314,7 +314,7 @@ package WinRt.Windows.Devices.Sms is
       Gsm_e => 1,
       Cdma_e => 2
    );
-   type CellularClass_Ptr is access CellularClass;
+   type CellularClass_Ptr is access all CellularClass;
 
    type SmsBroadcastType is (
       Other_e,
@@ -350,7 +350,7 @@ package WinRt.Windows.Devices.Sms is
       EtwsTsunamiAndEarthquake_e => 13,
       LatAlertLocal_e => 14
    );
-   type SmsBroadcastType_Ptr is access SmsBroadcastType;
+   type SmsBroadcastType_Ptr is access all SmsBroadcastType;
 
    type SmsDataFormat is (
       Unknown_e,
@@ -366,7 +366,7 @@ package WinRt.Windows.Devices.Sms is
       CdmaDeliver_e => 3,
       GsmDeliver_e => 4
    );
-   type SmsDataFormat_Ptr is access SmsDataFormat;
+   type SmsDataFormat_Ptr is access all SmsDataFormat;
 
    type SmsDeviceStatus is (
       Off_e,
@@ -388,7 +388,7 @@ package WinRt.Windows.Devices.Sms is
       DeviceLocked_e => 6,
       DeviceBlocked_e => 7
    );
-   type SmsDeviceStatus_Ptr is access SmsDeviceStatus;
+   type SmsDeviceStatus_Ptr is access all SmsDeviceStatus;
 
    type SmsEncoding is (
       Unknown_e,
@@ -416,7 +416,7 @@ package WinRt.Windows.Devices.Sms is
       ShiftJis_e => 9,
       LatinHebrew_e => 10
    );
-   type SmsEncoding_Ptr is access SmsEncoding;
+   type SmsEncoding_Ptr is access all SmsEncoding;
 
    type SmsFilterActionType is (
       AcceptImmediately_e,
@@ -430,7 +430,7 @@ package WinRt.Windows.Devices.Sms is
       Peek_e => 2,
       Accept_e => 3
    );
-   type SmsFilterActionType_Ptr is access SmsFilterActionType;
+   type SmsFilterActionType_Ptr is access all SmsFilterActionType;
 
    type SmsGeographicalScope is (
       None_e,
@@ -446,7 +446,7 @@ package WinRt.Windows.Devices.Sms is
       Plmn_e => 3,
       Cell_e => 4
    );
-   type SmsGeographicalScope_Ptr is access SmsGeographicalScope;
+   type SmsGeographicalScope_Ptr is access all SmsGeographicalScope;
 
    type SmsMessageClass is (
       None_e,
@@ -462,7 +462,7 @@ package WinRt.Windows.Devices.Sms is
       Class2_e => 3,
       Class3_e => 4
    );
-   type SmsMessageClass_Ptr is access SmsMessageClass;
+   type SmsMessageClass_Ptr is access all SmsMessageClass;
 
    type SmsMessageFilter is (
       All_e,
@@ -478,7 +478,7 @@ package WinRt.Windows.Devices.Sms is
       Sent_e => 3,
       Draft_e => 4
    );
-   type SmsMessageFilter_Ptr is access SmsMessageFilter;
+   type SmsMessageFilter_Ptr is access all SmsMessageFilter;
 
    type SmsMessageType is (
       Binary_e,
@@ -498,7 +498,7 @@ package WinRt.Windows.Devices.Sms is
       Voicemail_e => 5,
       Status_e => 6
    );
-   type SmsMessageType_Ptr is access SmsMessageType;
+   type SmsMessageType_Ptr is access all SmsMessageType;
 
    type SmsModemErrorCode is (
       Other_e,
@@ -528,7 +528,7 @@ package WinRt.Windows.Devices.Sms is
       NetworkFailure_e => 10,
       FixedDialingNumberRestricted_e => 11
    );
-   type SmsModemErrorCode_Ptr is access SmsModemErrorCode;
+   type SmsModemErrorCode_Ptr is access all SmsModemErrorCode;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -537,7 +537,7 @@ package WinRt.Windows.Devices.Sms is
    type LegacySmsApiContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type LegacySmsApiContract_Ptr is access LegacySmsApiContract;
+   type LegacySmsApiContract_Ptr is access all LegacySmsApiContract;
 
    type SmsEncodedLength is record
       SegmentCount : WinRt.UInt32;
@@ -546,7 +546,7 @@ package WinRt.Windows.Devices.Sms is
       ByteCountLastSegment : WinRt.UInt32;
       BytesPerSegment : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type SmsEncodedLength_Ptr is access SmsEncodedLength;
+   type SmsEncodedLength_Ptr is access all SmsEncodedLength;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

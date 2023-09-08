@@ -40,39 +40,39 @@ package WinRt.Windows.Storage.Pickers.Provider is
    -----------------------------------------------------------------------------
 
    type IFileOpenPickerUI_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileOpenPickerUI is access IFileOpenPickerUI_Interface'Class;
+   type IFileOpenPickerUI is access all IFileOpenPickerUI_Interface'Class;
    type IFileOpenPickerUI_Ptr is access all IFileOpenPickerUI;
 
    type IFileRemovedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileRemovedEventArgs is access IFileRemovedEventArgs_Interface'Class;
+   type IFileRemovedEventArgs is access all IFileRemovedEventArgs_Interface'Class;
    type IFileRemovedEventArgs_Ptr is access all IFileRemovedEventArgs;
 
    type IFileSavePickerUI_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileSavePickerUI is access IFileSavePickerUI_Interface'Class;
+   type IFileSavePickerUI is access all IFileSavePickerUI_Interface'Class;
    type IFileSavePickerUI_Ptr is access all IFileSavePickerUI;
 
    type IPickerClosingDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IPickerClosingDeferral is access IPickerClosingDeferral_Interface'Class;
+   type IPickerClosingDeferral is access all IPickerClosingDeferral_Interface'Class;
    type IPickerClosingDeferral_Ptr is access all IPickerClosingDeferral;
 
    type IPickerClosingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPickerClosingEventArgs is access IPickerClosingEventArgs_Interface'Class;
+   type IPickerClosingEventArgs is access all IPickerClosingEventArgs_Interface'Class;
    type IPickerClosingEventArgs_Ptr is access all IPickerClosingEventArgs;
 
    type IPickerClosingOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IPickerClosingOperation is access IPickerClosingOperation_Interface'Class;
+   type IPickerClosingOperation is access all IPickerClosingOperation_Interface'Class;
    type IPickerClosingOperation_Ptr is access all IPickerClosingOperation;
 
    type ITargetFileRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetFileRequest is access ITargetFileRequest_Interface'Class;
+   type ITargetFileRequest is access all ITargetFileRequest_Interface'Class;
    type ITargetFileRequest_Ptr is access all ITargetFileRequest;
 
    type ITargetFileRequestDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetFileRequestDeferral is access ITargetFileRequestDeferral_Interface'Class;
+   type ITargetFileRequestDeferral is access all ITargetFileRequestDeferral_Interface'Class;
    type ITargetFileRequestDeferral_Ptr is access all ITargetFileRequestDeferral;
 
    type ITargetFileRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetFileRequestedEventArgs is access ITargetFileRequestedEventArgs_Interface'Class;
+   type ITargetFileRequestedEventArgs is access all ITargetFileRequestedEventArgs_Interface'Class;
    type ITargetFileRequestedEventArgs_Ptr is access all ITargetFileRequestedEventArgs;
 
    -----------------------------------------------------------------------------
@@ -149,7 +149,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
       NotAllowed_e => 2,
       Unavailable_e => 3
    );
-   type AddFileResult_Ptr is access AddFileResult;
+   type AddFileResult_Ptr is access all AddFileResult;
 
    type FileSelectionMode is (
       Single_e,
@@ -159,7 +159,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
       Single_e => 0,
       Multiple_e => 1
    );
-   type FileSelectionMode_Ptr is access FileSelectionMode;
+   type FileSelectionMode_Ptr is access all FileSelectionMode;
 
    type SetFileNameResult is (
       Succeeded_e,
@@ -171,7 +171,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
       NotAllowed_e => 1,
       Unavailable_e => 2
    );
-   type SetFileNameResult_Ptr is access SetFileNameResult;
+   type SetFileNameResult_Ptr is access all SetFileNameResult;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -40,20 +40,20 @@ package WinRt.Windows.Devices.Pwm is
    -----------------------------------------------------------------------------
 
    type IPwmController_Interface is interface and WinRt.IInspectable_Interface;
-   type IPwmController is access IPwmController_Interface'Class;
+   type IPwmController is access all IPwmController_Interface'Class;
    type IPwmController_Ptr is access all IPwmController;
 
    type IPwmControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPwmControllerStatics is access IPwmControllerStatics_Interface'Class;
+   type IPwmControllerStatics is access all IPwmControllerStatics_Interface'Class;
 
    type IPwmControllerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPwmControllerStatics2 is access IPwmControllerStatics2_Interface'Class;
+   type IPwmControllerStatics2 is access all IPwmControllerStatics2_Interface'Class;
 
    type IPwmControllerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IPwmControllerStatics3 is access IPwmControllerStatics3_Interface'Class;
+   type IPwmControllerStatics3 is access all IPwmControllerStatics3_Interface'Class;
 
    type IPwmPin_Interface is interface and WinRt.IInspectable_Interface;
-   type IPwmPin is access IPwmPin_Interface'Class;
+   type IPwmPin is access all IPwmPin_Interface'Class;
    type IPwmPin_Ptr is access all IPwmPin;
 
    -----------------------------------------------------------------------------
@@ -84,7 +84,7 @@ package WinRt.Windows.Devices.Pwm is
       ActiveHigh_e => 0,
       ActiveLow_e => 1
    );
-   type PwmPulsePolarity_Ptr is access PwmPulsePolarity;
+   type PwmPulsePolarity_Ptr is access all PwmPulsePolarity;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

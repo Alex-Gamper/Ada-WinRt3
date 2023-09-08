@@ -42,206 +42,206 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    -----------------------------------------------------------------------------
 
    type IGattCharacteristic_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattCharacteristic is access IGattCharacteristic_Interface'Class;
+   type IGattCharacteristic is access all IGattCharacteristic_Interface'Class;
    type IGattCharacteristic_Ptr is access all IGattCharacteristic;
 
    type IGattCharacteristic2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattCharacteristic2 is access IGattCharacteristic2_Interface'Class;
+   type IGattCharacteristic2 is access all IGattCharacteristic2_Interface'Class;
 
    type IGattCharacteristic3_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattCharacteristic3 is access IGattCharacteristic3_Interface'Class;
+   type IGattCharacteristic3 is access all IGattCharacteristic3_Interface'Class;
 
    type IGattCharacteristicStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattCharacteristicStatics is access IGattCharacteristicStatics_Interface'Class;
+   type IGattCharacteristicStatics is access all IGattCharacteristicStatics_Interface'Class;
 
    type IGattCharacteristicUuidsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattCharacteristicUuidsStatics is access IGattCharacteristicUuidsStatics_Interface'Class;
+   type IGattCharacteristicUuidsStatics is access all IGattCharacteristicUuidsStatics_Interface'Class;
 
    type IGattCharacteristicUuidsStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattCharacteristicUuidsStatics2 is access IGattCharacteristicUuidsStatics2_Interface'Class;
+   type IGattCharacteristicUuidsStatics2 is access all IGattCharacteristicUuidsStatics2_Interface'Class;
 
    type IGattCharacteristicsResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattCharacteristicsResult is access IGattCharacteristicsResult_Interface'Class;
+   type IGattCharacteristicsResult is access all IGattCharacteristicsResult_Interface'Class;
    type IGattCharacteristicsResult_Ptr is access all IGattCharacteristicsResult;
 
    type IGattClientNotificationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattClientNotificationResult is access IGattClientNotificationResult_Interface'Class;
+   type IGattClientNotificationResult is access all IGattClientNotificationResult_Interface'Class;
    type IGattClientNotificationResult_Ptr is access all IGattClientNotificationResult;
 
    type IGattClientNotificationResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattClientNotificationResult2 is access IGattClientNotificationResult2_Interface'Class;
+   type IGattClientNotificationResult2 is access all IGattClientNotificationResult2_Interface'Class;
 
    type IGattDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattDescriptor is access IGattDescriptor_Interface'Class;
+   type IGattDescriptor is access all IGattDescriptor_Interface'Class;
    type IGattDescriptor_Ptr is access all IGattDescriptor;
 
    type IGattDescriptor2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattDescriptor2 is access IGattDescriptor2_Interface'Class;
+   type IGattDescriptor2 is access all IGattDescriptor2_Interface'Class;
 
    type IGattDescriptorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattDescriptorStatics is access IGattDescriptorStatics_Interface'Class;
+   type IGattDescriptorStatics is access all IGattDescriptorStatics_Interface'Class;
 
    type IGattDescriptorUuidsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattDescriptorUuidsStatics is access IGattDescriptorUuidsStatics_Interface'Class;
+   type IGattDescriptorUuidsStatics is access all IGattDescriptorUuidsStatics_Interface'Class;
 
    type IGattDescriptorsResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattDescriptorsResult is access IGattDescriptorsResult_Interface'Class;
+   type IGattDescriptorsResult is access all IGattDescriptorsResult_Interface'Class;
    type IGattDescriptorsResult_Ptr is access all IGattDescriptorsResult;
 
    type IGattDeviceService_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattDeviceService is access IGattDeviceService_Interface'Class;
+   type IGattDeviceService is access all IGattDeviceService_Interface'Class;
    type IGattDeviceService_Ptr is access all IGattDeviceService;
 
    type IGattDeviceService2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattDeviceService2 is access IGattDeviceService2_Interface'Class;
+   type IGattDeviceService2 is access all IGattDeviceService2_Interface'Class;
 
    type IGattDeviceService3_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattDeviceService3 is access IGattDeviceService3_Interface'Class;
+   type IGattDeviceService3 is access all IGattDeviceService3_Interface'Class;
 
    type IGattDeviceServiceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattDeviceServiceStatics is access IGattDeviceServiceStatics_Interface'Class;
+   type IGattDeviceServiceStatics is access all IGattDeviceServiceStatics_Interface'Class;
 
    type IGattDeviceServiceStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattDeviceServiceStatics2 is access IGattDeviceServiceStatics2_Interface'Class;
+   type IGattDeviceServiceStatics2 is access all IGattDeviceServiceStatics2_Interface'Class;
 
    type IGattDeviceServicesResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattDeviceServicesResult is access IGattDeviceServicesResult_Interface'Class;
+   type IGattDeviceServicesResult is access all IGattDeviceServicesResult_Interface'Class;
    type IGattDeviceServicesResult_Ptr is access all IGattDeviceServicesResult;
 
    type IGattLocalCharacteristic_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattLocalCharacteristic is access IGattLocalCharacteristic_Interface'Class;
+   type IGattLocalCharacteristic is access all IGattLocalCharacteristic_Interface'Class;
    type IGattLocalCharacteristic_Ptr is access all IGattLocalCharacteristic;
 
    type IGattLocalCharacteristicParameters_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattLocalCharacteristicParameters is access IGattLocalCharacteristicParameters_Interface'Class;
+   type IGattLocalCharacteristicParameters is access all IGattLocalCharacteristicParameters_Interface'Class;
    type IGattLocalCharacteristicParameters_Ptr is access all IGattLocalCharacteristicParameters;
 
    type IGattLocalCharacteristicResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattLocalCharacteristicResult is access IGattLocalCharacteristicResult_Interface'Class;
+   type IGattLocalCharacteristicResult is access all IGattLocalCharacteristicResult_Interface'Class;
    type IGattLocalCharacteristicResult_Ptr is access all IGattLocalCharacteristicResult;
 
    type IGattLocalDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattLocalDescriptor is access IGattLocalDescriptor_Interface'Class;
+   type IGattLocalDescriptor is access all IGattLocalDescriptor_Interface'Class;
    type IGattLocalDescriptor_Ptr is access all IGattLocalDescriptor;
 
    type IGattLocalDescriptorParameters_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattLocalDescriptorParameters is access IGattLocalDescriptorParameters_Interface'Class;
+   type IGattLocalDescriptorParameters is access all IGattLocalDescriptorParameters_Interface'Class;
    type IGattLocalDescriptorParameters_Ptr is access all IGattLocalDescriptorParameters;
 
    type IGattLocalDescriptorResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattLocalDescriptorResult is access IGattLocalDescriptorResult_Interface'Class;
+   type IGattLocalDescriptorResult is access all IGattLocalDescriptorResult_Interface'Class;
    type IGattLocalDescriptorResult_Ptr is access all IGattLocalDescriptorResult;
 
    type IGattLocalService_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattLocalService is access IGattLocalService_Interface'Class;
+   type IGattLocalService is access all IGattLocalService_Interface'Class;
    type IGattLocalService_Ptr is access all IGattLocalService;
 
    type IGattPresentationFormat_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattPresentationFormat is access IGattPresentationFormat_Interface'Class;
+   type IGattPresentationFormat is access all IGattPresentationFormat_Interface'Class;
    type IGattPresentationFormat_Ptr is access all IGattPresentationFormat;
 
    type IGattPresentationFormatStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattPresentationFormatStatics is access IGattPresentationFormatStatics_Interface'Class;
+   type IGattPresentationFormatStatics is access all IGattPresentationFormatStatics_Interface'Class;
 
    type IGattPresentationFormatStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattPresentationFormatStatics2 is access IGattPresentationFormatStatics2_Interface'Class;
+   type IGattPresentationFormatStatics2 is access all IGattPresentationFormatStatics2_Interface'Class;
 
    type IGattPresentationFormatTypesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattPresentationFormatTypesStatics is access IGattPresentationFormatTypesStatics_Interface'Class;
+   type IGattPresentationFormatTypesStatics is access all IGattPresentationFormatTypesStatics_Interface'Class;
 
    type IGattProtocolErrorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattProtocolErrorStatics is access IGattProtocolErrorStatics_Interface'Class;
+   type IGattProtocolErrorStatics is access all IGattProtocolErrorStatics_Interface'Class;
 
    type IGattReadClientCharacteristicConfigurationDescriptorResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattReadClientCharacteristicConfigurationDescriptorResult is access IGattReadClientCharacteristicConfigurationDescriptorResult_Interface'Class;
+   type IGattReadClientCharacteristicConfigurationDescriptorResult is access all IGattReadClientCharacteristicConfigurationDescriptorResult_Interface'Class;
    type IGattReadClientCharacteristicConfigurationDescriptorResult_Ptr is access all IGattReadClientCharacteristicConfigurationDescriptorResult;
 
    type IGattReadClientCharacteristicConfigurationDescriptorResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattReadClientCharacteristicConfigurationDescriptorResult2 is access IGattReadClientCharacteristicConfigurationDescriptorResult2_Interface'Class;
+   type IGattReadClientCharacteristicConfigurationDescriptorResult2 is access all IGattReadClientCharacteristicConfigurationDescriptorResult2_Interface'Class;
 
    type IGattReadRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattReadRequest is access IGattReadRequest_Interface'Class;
+   type IGattReadRequest is access all IGattReadRequest_Interface'Class;
    type IGattReadRequest_Ptr is access all IGattReadRequest;
 
    type IGattReadRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattReadRequestedEventArgs is access IGattReadRequestedEventArgs_Interface'Class;
+   type IGattReadRequestedEventArgs is access all IGattReadRequestedEventArgs_Interface'Class;
    type IGattReadRequestedEventArgs_Ptr is access all IGattReadRequestedEventArgs;
 
    type IGattReadResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattReadResult is access IGattReadResult_Interface'Class;
+   type IGattReadResult is access all IGattReadResult_Interface'Class;
    type IGattReadResult_Ptr is access all IGattReadResult;
 
    type IGattReadResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattReadResult2 is access IGattReadResult2_Interface'Class;
+   type IGattReadResult2 is access all IGattReadResult2_Interface'Class;
 
    type IGattReliableWriteTransaction_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattReliableWriteTransaction is access IGattReliableWriteTransaction_Interface'Class;
+   type IGattReliableWriteTransaction is access all IGattReliableWriteTransaction_Interface'Class;
    type IGattReliableWriteTransaction_Ptr is access all IGattReliableWriteTransaction;
 
    type IGattReliableWriteTransaction2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattReliableWriteTransaction2 is access IGattReliableWriteTransaction2_Interface'Class;
+   type IGattReliableWriteTransaction2 is access all IGattReliableWriteTransaction2_Interface'Class;
 
    type IGattRequestStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattRequestStateChangedEventArgs is access IGattRequestStateChangedEventArgs_Interface'Class;
+   type IGattRequestStateChangedEventArgs is access all IGattRequestStateChangedEventArgs_Interface'Class;
    type IGattRequestStateChangedEventArgs_Ptr is access all IGattRequestStateChangedEventArgs;
 
    type IGattServiceProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattServiceProvider is access IGattServiceProvider_Interface'Class;
+   type IGattServiceProvider is access all IGattServiceProvider_Interface'Class;
    type IGattServiceProvider_Ptr is access all IGattServiceProvider;
 
    type IGattServiceProviderAdvertisementStatusChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattServiceProviderAdvertisementStatusChangedEventArgs is access IGattServiceProviderAdvertisementStatusChangedEventArgs_Interface'Class;
+   type IGattServiceProviderAdvertisementStatusChangedEventArgs is access all IGattServiceProviderAdvertisementStatusChangedEventArgs_Interface'Class;
    type IGattServiceProviderAdvertisementStatusChangedEventArgs_Ptr is access all IGattServiceProviderAdvertisementStatusChangedEventArgs;
 
    type IGattServiceProviderAdvertisingParameters_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattServiceProviderAdvertisingParameters is access IGattServiceProviderAdvertisingParameters_Interface'Class;
+   type IGattServiceProviderAdvertisingParameters is access all IGattServiceProviderAdvertisingParameters_Interface'Class;
    type IGattServiceProviderAdvertisingParameters_Ptr is access all IGattServiceProviderAdvertisingParameters;
 
    type IGattServiceProviderAdvertisingParameters2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattServiceProviderAdvertisingParameters2 is access IGattServiceProviderAdvertisingParameters2_Interface'Class;
+   type IGattServiceProviderAdvertisingParameters2 is access all IGattServiceProviderAdvertisingParameters2_Interface'Class;
 
    type IGattServiceProviderResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattServiceProviderResult is access IGattServiceProviderResult_Interface'Class;
+   type IGattServiceProviderResult is access all IGattServiceProviderResult_Interface'Class;
    type IGattServiceProviderResult_Ptr is access all IGattServiceProviderResult;
 
    type IGattServiceProviderStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattServiceProviderStatics is access IGattServiceProviderStatics_Interface'Class;
+   type IGattServiceProviderStatics is access all IGattServiceProviderStatics_Interface'Class;
 
    type IGattServiceUuidsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattServiceUuidsStatics is access IGattServiceUuidsStatics_Interface'Class;
+   type IGattServiceUuidsStatics is access all IGattServiceUuidsStatics_Interface'Class;
 
    type IGattServiceUuidsStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattServiceUuidsStatics2 is access IGattServiceUuidsStatics2_Interface'Class;
+   type IGattServiceUuidsStatics2 is access all IGattServiceUuidsStatics2_Interface'Class;
 
    type IGattSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattSession is access IGattSession_Interface'Class;
+   type IGattSession is access all IGattSession_Interface'Class;
    type IGattSession_Ptr is access all IGattSession;
 
    type IGattSessionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattSessionStatics is access IGattSessionStatics_Interface'Class;
+   type IGattSessionStatics is access all IGattSessionStatics_Interface'Class;
 
    type IGattSessionStatusChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattSessionStatusChangedEventArgs is access IGattSessionStatusChangedEventArgs_Interface'Class;
+   type IGattSessionStatusChangedEventArgs is access all IGattSessionStatusChangedEventArgs_Interface'Class;
    type IGattSessionStatusChangedEventArgs_Ptr is access all IGattSessionStatusChangedEventArgs;
 
    type IGattSubscribedClient_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattSubscribedClient is access IGattSubscribedClient_Interface'Class;
+   type IGattSubscribedClient is access all IGattSubscribedClient_Interface'Class;
    type IGattSubscribedClient_Ptr is access all IGattSubscribedClient;
 
    type IGattValueChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattValueChangedEventArgs is access IGattValueChangedEventArgs_Interface'Class;
+   type IGattValueChangedEventArgs is access all IGattValueChangedEventArgs_Interface'Class;
    type IGattValueChangedEventArgs_Ptr is access all IGattValueChangedEventArgs;
 
    type IGattWriteRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattWriteRequest is access IGattWriteRequest_Interface'Class;
+   type IGattWriteRequest is access all IGattWriteRequest_Interface'Class;
    type IGattWriteRequest_Ptr is access all IGattWriteRequest;
 
    type IGattWriteRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattWriteRequestedEventArgs is access IGattWriteRequestedEventArgs_Interface'Class;
+   type IGattWriteRequestedEventArgs is access all IGattWriteRequestedEventArgs_Interface'Class;
    type IGattWriteRequestedEventArgs_Ptr is access all IGattWriteRequestedEventArgs;
 
    type IGattWriteResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattWriteResult is access IGattWriteResult_Interface'Class;
+   type IGattWriteResult is access all IGattWriteResult_Interface'Class;
    type IGattWriteResult_Ptr is access all IGattWriteResult;
 
    -----------------------------------------------------------------------------
@@ -470,7 +470,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       ReliableWrites_e => 256,
       WritableAuxiliaries_e => 512
    );
-   type GattCharacteristicProperties_Ptr is access GattCharacteristicProperties;
+   type GattCharacteristicProperties_Ptr is access all GattCharacteristicProperties;
 
    type GattClientCharacteristicConfigurationDescriptorValue is (
       None_e,
@@ -482,7 +482,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Notify_e => 1,
       Indicate_e => 2
    );
-   type GattClientCharacteristicConfigurationDescriptorValue_Ptr is access GattClientCharacteristicConfigurationDescriptorValue;
+   type GattClientCharacteristicConfigurationDescriptorValue_Ptr is access all GattClientCharacteristicConfigurationDescriptorValue;
 
    type GattCommunicationStatus is (
       Success_e,
@@ -496,7 +496,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       ProtocolError_e => 2,
       AccessDenied_e => 3
    );
-   type GattCommunicationStatus_Ptr is access GattCommunicationStatus;
+   type GattCommunicationStatus_Ptr is access all GattCommunicationStatus;
 
    type GattOpenStatus is (
       Unspecified_e,
@@ -514,7 +514,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       SharingViolation_e => 4,
       AccessDenied_e => 5
    );
-   type GattOpenStatus_Ptr is access GattOpenStatus;
+   type GattOpenStatus_Ptr is access all GattOpenStatus;
 
    type GattProtectionLevel is (
       Plain_e,
@@ -528,7 +528,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       EncryptionRequired_e => 2,
       EncryptionAndAuthenticationRequired_e => 3
    );
-   type GattProtectionLevel_Ptr is access GattProtectionLevel;
+   type GattProtectionLevel_Ptr is access all GattProtectionLevel;
 
    type GattRequestState is (
       Pending_e,
@@ -540,7 +540,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Completed_e => 1,
       Canceled_e => 2
    );
-   type GattRequestState_Ptr is access GattRequestState;
+   type GattRequestState_Ptr is access all GattRequestState;
 
    type GattServiceProviderAdvertisementStatus is (
       Created_e,
@@ -556,7 +556,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Aborted_e => 3,
       StartedWithoutAllAdvertisementData_e => 4
    );
-   type GattServiceProviderAdvertisementStatus_Ptr is access GattServiceProviderAdvertisementStatus;
+   type GattServiceProviderAdvertisementStatus_Ptr is access all GattServiceProviderAdvertisementStatus;
 
    type GattSessionStatus is (
       Closed_e,
@@ -566,7 +566,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Closed_e => 0,
       Active_e => 1
    );
-   type GattSessionStatus_Ptr is access GattSessionStatus;
+   type GattSessionStatus_Ptr is access all GattSessionStatus;
 
    type GattSharingMode is (
       Unspecified_e,
@@ -580,7 +580,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       SharedReadOnly_e => 2,
       SharedReadAndWrite_e => 3
    );
-   type GattSharingMode_Ptr is access GattSharingMode;
+   type GattSharingMode_Ptr is access all GattSharingMode;
 
    type GattWriteOption is (
       WriteWithResponse_e,
@@ -590,7 +590,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       WriteWithResponse_e => 0,
       WriteWithoutResponse_e => 1
    );
-   type GattWriteOption_Ptr is access GattWriteOption;
+   type GattWriteOption_Ptr is access all GattWriteOption;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

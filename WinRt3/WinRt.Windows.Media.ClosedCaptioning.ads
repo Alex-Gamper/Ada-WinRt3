@@ -39,7 +39,7 @@ package WinRt.Windows.Media.ClosedCaptioning is
    -----------------------------------------------------------------------------
 
    type IClosedCaptionPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IClosedCaptionPropertiesStatics is access IClosedCaptionPropertiesStatics_Interface'Class;
+   type IClosedCaptionPropertiesStatics is access all IClosedCaptionPropertiesStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -67,7 +67,7 @@ package WinRt.Windows.Media.ClosedCaptioning is
       Magenta_e => 7,
       Cyan_e => 8
    );
-   type ClosedCaptionColor_Ptr is access ClosedCaptionColor;
+   type ClosedCaptionColor_Ptr is access all ClosedCaptionColor;
 
    type ClosedCaptionEdgeEffect is (
       Default_e,
@@ -85,7 +85,7 @@ package WinRt.Windows.Media.ClosedCaptioning is
       Uniform_e => 4,
       DropShadow_e => 5
    );
-   type ClosedCaptionEdgeEffect_Ptr is access ClosedCaptionEdgeEffect;
+   type ClosedCaptionEdgeEffect_Ptr is access all ClosedCaptionEdgeEffect;
 
    type ClosedCaptionOpacity is (
       Default_e,
@@ -101,7 +101,7 @@ package WinRt.Windows.Media.ClosedCaptioning is
       TwentyFivePercent_e => 3,
       ZeroPercent_e => 4
    );
-   type ClosedCaptionOpacity_Ptr is access ClosedCaptionOpacity;
+   type ClosedCaptionOpacity_Ptr is access all ClosedCaptionOpacity;
 
    type ClosedCaptionSize is (
       Default_e,
@@ -117,7 +117,7 @@ package WinRt.Windows.Media.ClosedCaptioning is
       OneHundredFiftyPercent_e => 3,
       TwoHundredPercent_e => 4
    );
-   type ClosedCaptionSize_Ptr is access ClosedCaptionSize;
+   type ClosedCaptionSize_Ptr is access all ClosedCaptionSize;
 
    type ClosedCaptionStyle is (
       Default_e,
@@ -139,7 +139,7 @@ package WinRt.Windows.Media.ClosedCaptioning is
       Cursive_e => 6,
       SmallCapitals_e => 7
    );
-   type ClosedCaptionStyle_Ptr is access ClosedCaptionStyle;
+   type ClosedCaptionStyle_Ptr is access all ClosedCaptionStyle;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

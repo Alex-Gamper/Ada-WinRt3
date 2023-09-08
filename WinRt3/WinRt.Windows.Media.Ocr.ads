@@ -42,22 +42,22 @@ package WinRt.Windows.Media.Ocr is
    -----------------------------------------------------------------------------
 
    type IOcrEngine_Interface is interface and WinRt.IInspectable_Interface;
-   type IOcrEngine is access IOcrEngine_Interface'Class;
+   type IOcrEngine is access all IOcrEngine_Interface'Class;
    type IOcrEngine_Ptr is access all IOcrEngine;
 
    type IOcrEngineStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IOcrEngineStatics is access IOcrEngineStatics_Interface'Class;
+   type IOcrEngineStatics is access all IOcrEngineStatics_Interface'Class;
 
    type IOcrLine_Interface is interface and WinRt.IInspectable_Interface;
-   type IOcrLine is access IOcrLine_Interface'Class;
+   type IOcrLine is access all IOcrLine_Interface'Class;
    type IOcrLine_Ptr is access all IOcrLine;
 
    type IOcrResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IOcrResult is access IOcrResult_Interface'Class;
+   type IOcrResult is access all IOcrResult_Interface'Class;
    type IOcrResult_Ptr is access all IOcrResult;
 
    type IOcrWord_Interface is interface and WinRt.IInspectable_Interface;
-   type IOcrWord is access IOcrWord_Interface'Class;
+   type IOcrWord is access all IOcrWord_Interface'Class;
    type IOcrWord_Ptr is access all IOcrWord;
 
    -----------------------------------------------------------------------------

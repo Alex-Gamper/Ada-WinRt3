@@ -38,7 +38,7 @@ package WinRt.Windows.Phone.System.Profile is
    -----------------------------------------------------------------------------
 
    type IRetailModeStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRetailModeStatics is access IRetailModeStatics_Interface'Class;
+   type IRetailModeStatics is access all IRetailModeStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

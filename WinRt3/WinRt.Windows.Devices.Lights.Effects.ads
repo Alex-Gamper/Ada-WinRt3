@@ -42,57 +42,57 @@ package WinRt.Windows.Devices.Lights.Effects is
    -----------------------------------------------------------------------------
 
    type ILampArrayBitmapEffect_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampArrayBitmapEffect is access ILampArrayBitmapEffect_Interface'Class;
+   type ILampArrayBitmapEffect is access all ILampArrayBitmapEffect_Interface'Class;
    type ILampArrayBitmapEffect_Ptr is access all ILampArrayBitmapEffect;
 
    type ILampArrayBitmapEffectFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampArrayBitmapEffectFactory is access ILampArrayBitmapEffectFactory_Interface'Class;
+   type ILampArrayBitmapEffectFactory is access all ILampArrayBitmapEffectFactory_Interface'Class;
 
    type ILampArrayBitmapRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampArrayBitmapRequestedEventArgs is access ILampArrayBitmapRequestedEventArgs_Interface'Class;
+   type ILampArrayBitmapRequestedEventArgs is access all ILampArrayBitmapRequestedEventArgs_Interface'Class;
    type ILampArrayBitmapRequestedEventArgs_Ptr is access all ILampArrayBitmapRequestedEventArgs;
 
    type ILampArrayBlinkEffect_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampArrayBlinkEffect is access ILampArrayBlinkEffect_Interface'Class;
+   type ILampArrayBlinkEffect is access all ILampArrayBlinkEffect_Interface'Class;
    type ILampArrayBlinkEffect_Ptr is access all ILampArrayBlinkEffect;
 
    type ILampArrayBlinkEffectFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampArrayBlinkEffectFactory is access ILampArrayBlinkEffectFactory_Interface'Class;
+   type ILampArrayBlinkEffectFactory is access all ILampArrayBlinkEffectFactory_Interface'Class;
 
    type ILampArrayColorRampEffect_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampArrayColorRampEffect is access ILampArrayColorRampEffect_Interface'Class;
+   type ILampArrayColorRampEffect is access all ILampArrayColorRampEffect_Interface'Class;
    type ILampArrayColorRampEffect_Ptr is access all ILampArrayColorRampEffect;
 
    type ILampArrayColorRampEffectFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampArrayColorRampEffectFactory is access ILampArrayColorRampEffectFactory_Interface'Class;
+   type ILampArrayColorRampEffectFactory is access all ILampArrayColorRampEffectFactory_Interface'Class;
 
    type ILampArrayCustomEffect_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampArrayCustomEffect is access ILampArrayCustomEffect_Interface'Class;
+   type ILampArrayCustomEffect is access all ILampArrayCustomEffect_Interface'Class;
    type ILampArrayCustomEffect_Ptr is access all ILampArrayCustomEffect;
 
    type ILampArrayCustomEffectFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampArrayCustomEffectFactory is access ILampArrayCustomEffectFactory_Interface'Class;
+   type ILampArrayCustomEffectFactory is access all ILampArrayCustomEffectFactory_Interface'Class;
 
    type ILampArrayEffect_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampArrayEffect is access ILampArrayEffect_Interface'Class;
+   type ILampArrayEffect is access all ILampArrayEffect_Interface'Class;
    type ILampArrayEffect_Array is array (Natural range <>) of ILampArrayEffect;
 
    type ILampArrayEffectPlaylist_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampArrayEffectPlaylist is access ILampArrayEffectPlaylist_Interface'Class;
+   type ILampArrayEffectPlaylist is access all ILampArrayEffectPlaylist_Interface'Class;
    type ILampArrayEffectPlaylist_Ptr is access all ILampArrayEffectPlaylist;
 
    type ILampArrayEffectPlaylistStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampArrayEffectPlaylistStatics is access ILampArrayEffectPlaylistStatics_Interface'Class;
+   type ILampArrayEffectPlaylistStatics is access all ILampArrayEffectPlaylistStatics_Interface'Class;
 
    type ILampArraySolidEffect_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampArraySolidEffect is access ILampArraySolidEffect_Interface'Class;
+   type ILampArraySolidEffect is access all ILampArraySolidEffect_Interface'Class;
    type ILampArraySolidEffect_Ptr is access all ILampArraySolidEffect;
 
    type ILampArraySolidEffectFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampArraySolidEffectFactory is access ILampArraySolidEffectFactory_Interface'Class;
+   type ILampArraySolidEffectFactory is access all ILampArraySolidEffectFactory_Interface'Class;
 
    type ILampArrayUpdateRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ILampArrayUpdateRequestedEventArgs is access ILampArrayUpdateRequestedEventArgs_Interface'Class;
+   type ILampArrayUpdateRequestedEventArgs is access all ILampArrayUpdateRequestedEventArgs_Interface'Class;
    type ILampArrayUpdateRequestedEventArgs_Ptr is access all ILampArrayUpdateRequestedEventArgs;
 
    -----------------------------------------------------------------------------
@@ -159,7 +159,7 @@ package WinRt.Windows.Devices.Lights.Effects is
       ClearState_e => 0,
       KeepState_e => 1
    );
-   type LampArrayEffectCompletionBehavior_Ptr is access LampArrayEffectCompletionBehavior;
+   type LampArrayEffectCompletionBehavior_Ptr is access all LampArrayEffectCompletionBehavior;
 
    type LampArrayEffectStartMode is (
       Sequential_e,
@@ -169,7 +169,7 @@ package WinRt.Windows.Devices.Lights.Effects is
       Sequential_e => 0,
       Simultaneous_e => 1
    );
-   type LampArrayEffectStartMode_Ptr is access LampArrayEffectStartMode;
+   type LampArrayEffectStartMode_Ptr is access all LampArrayEffectStartMode;
 
    type LampArrayRepetitionMode is (
       Occurrences_e,
@@ -179,7 +179,7 @@ package WinRt.Windows.Devices.Lights.Effects is
       Occurrences_e => 0,
       Forever_e => 1
    );
-   type LampArrayRepetitionMode_Ptr is access LampArrayRepetitionMode;
+   type LampArrayRepetitionMode_Ptr is access all LampArrayRepetitionMode;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

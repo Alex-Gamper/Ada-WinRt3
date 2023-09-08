@@ -41,19 +41,19 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
    -----------------------------------------------------------------------------
 
    type IOfflineMapPackage_Interface is interface and WinRt.IInspectable_Interface;
-   type IOfflineMapPackage is access IOfflineMapPackage_Interface'Class;
+   type IOfflineMapPackage is access all IOfflineMapPackage_Interface'Class;
    type IOfflineMapPackage_Ptr is access all IOfflineMapPackage;
 
    type IOfflineMapPackageQueryResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IOfflineMapPackageQueryResult is access IOfflineMapPackageQueryResult_Interface'Class;
+   type IOfflineMapPackageQueryResult is access all IOfflineMapPackageQueryResult_Interface'Class;
    type IOfflineMapPackageQueryResult_Ptr is access all IOfflineMapPackageQueryResult;
 
    type IOfflineMapPackageStartDownloadResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IOfflineMapPackageStartDownloadResult is access IOfflineMapPackageStartDownloadResult_Interface'Class;
+   type IOfflineMapPackageStartDownloadResult is access all IOfflineMapPackageStartDownloadResult_Interface'Class;
    type IOfflineMapPackageStartDownloadResult_Ptr is access all IOfflineMapPackageStartDownloadResult;
 
    type IOfflineMapPackageStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IOfflineMapPackageStatics is access IOfflineMapPackageStatics_Interface'Class;
+   type IOfflineMapPackageStatics is access all IOfflineMapPackageStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -93,7 +93,7 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
       InvalidCredentials_e => 2,
       NetworkFailure_e => 3
    );
-   type OfflineMapPackageQueryStatus_Ptr is access OfflineMapPackageQueryStatus;
+   type OfflineMapPackageQueryStatus_Ptr is access all OfflineMapPackageQueryStatus;
 
    type OfflineMapPackageStartDownloadStatus is (
       Success_e,
@@ -107,7 +107,7 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
       InvalidCredentials_e => 2,
       DeniedWithoutCapability_e => 3
    );
-   type OfflineMapPackageStartDownloadStatus_Ptr is access OfflineMapPackageStartDownloadStatus;
+   type OfflineMapPackageStartDownloadStatus_Ptr is access all OfflineMapPackageStartDownloadStatus;
 
    type OfflineMapPackageStatus is (
       NotDownloaded_e,
@@ -121,7 +121,7 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
       Downloaded_e => 2,
       Deleting_e => 3
    );
-   type OfflineMapPackageStatus_Ptr is access OfflineMapPackageStatus;
+   type OfflineMapPackageStatus_Ptr is access all OfflineMapPackageStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

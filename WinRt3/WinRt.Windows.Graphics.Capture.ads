@@ -43,39 +43,39 @@ package WinRt.Windows.Graphics.Capture is
    -----------------------------------------------------------------------------
 
    type IDirect3D11CaptureFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IDirect3D11CaptureFrame is access IDirect3D11CaptureFrame_Interface'Class;
+   type IDirect3D11CaptureFrame is access all IDirect3D11CaptureFrame_Interface'Class;
    type IDirect3D11CaptureFrame_Ptr is access all IDirect3D11CaptureFrame;
 
    type IDirect3D11CaptureFramePool_Interface is interface and WinRt.IInspectable_Interface;
-   type IDirect3D11CaptureFramePool is access IDirect3D11CaptureFramePool_Interface'Class;
+   type IDirect3D11CaptureFramePool is access all IDirect3D11CaptureFramePool_Interface'Class;
    type IDirect3D11CaptureFramePool_Ptr is access all IDirect3D11CaptureFramePool;
 
    type IDirect3D11CaptureFramePoolStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDirect3D11CaptureFramePoolStatics is access IDirect3D11CaptureFramePoolStatics_Interface'Class;
+   type IDirect3D11CaptureFramePoolStatics is access all IDirect3D11CaptureFramePoolStatics_Interface'Class;
 
    type IDirect3D11CaptureFramePoolStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDirect3D11CaptureFramePoolStatics2 is access IDirect3D11CaptureFramePoolStatics2_Interface'Class;
+   type IDirect3D11CaptureFramePoolStatics2 is access all IDirect3D11CaptureFramePoolStatics2_Interface'Class;
 
    type IGraphicsCaptureItem_Interface is interface and WinRt.IInspectable_Interface;
-   type IGraphicsCaptureItem is access IGraphicsCaptureItem_Interface'Class;
+   type IGraphicsCaptureItem is access all IGraphicsCaptureItem_Interface'Class;
    type IGraphicsCaptureItem_Ptr is access all IGraphicsCaptureItem;
 
    type IGraphicsCaptureItemStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGraphicsCaptureItemStatics is access IGraphicsCaptureItemStatics_Interface'Class;
+   type IGraphicsCaptureItemStatics is access all IGraphicsCaptureItemStatics_Interface'Class;
 
    type IGraphicsCapturePicker_Interface is interface and WinRt.IInspectable_Interface;
-   type IGraphicsCapturePicker is access IGraphicsCapturePicker_Interface'Class;
+   type IGraphicsCapturePicker is access all IGraphicsCapturePicker_Interface'Class;
    type IGraphicsCapturePicker_Ptr is access all IGraphicsCapturePicker;
 
    type IGraphicsCaptureSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IGraphicsCaptureSession is access IGraphicsCaptureSession_Interface'Class;
+   type IGraphicsCaptureSession is access all IGraphicsCaptureSession_Interface'Class;
    type IGraphicsCaptureSession_Ptr is access all IGraphicsCaptureSession;
 
    type IGraphicsCaptureSession2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGraphicsCaptureSession2 is access IGraphicsCaptureSession2_Interface'Class;
+   type IGraphicsCaptureSession2 is access all IGraphicsCaptureSession2_Interface'Class;
 
    type IGraphicsCaptureSessionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGraphicsCaptureSessionStatics is access IGraphicsCaptureSessionStatics_Interface'Class;
+   type IGraphicsCaptureSessionStatics is access all IGraphicsCaptureSessionStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

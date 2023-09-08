@@ -46,9 +46,6 @@ procedure WinRt3Test is
         OutputDebugStringW (Interfaces.C.To_C (OutputString & CRLF));
     end;
     
-    ----------------------------------------------------------------------------
-    procedure Test1 is
-        
         procedure Callback (timer : Windows.System.Threading.IThreadPoolTimer) is
             AUD         : WString := Windows.Globalization.CurrencyIdentifiers.get_AUD;
             AUD_Salary  : Windows.Globalization.CurrencyAmount := Windows.Globalization.Constructor (+"1000000000" , +"AUD");
@@ -70,9 +67,13 @@ procedure WinRt3Test is
                 Ada.Text_IO.Put_Line(Ada.Exceptions.Exception_Information (e));
         end;
 
+    ----------------------------------------------------------------------------
+    procedure Test1 is
+        
+
         Period      : Windows.Foundation.TimeSpan := (Duration => 10_000_000);  -- 1 unit = 100 nano seconds; 1 sec == 10_000_000
         Handler     : aliased Windows.System.Threading.TimerElapsedHandler_Delegate (CallBack'access);
-        Timer       : Windows.System.Threading.ThreadPoolTimer := Windows.System.Threading.CreatePeriodicTimer (Handler'Unchecked_access, Period);
+        Timer       : Windows.System.Threading.ThreadPoolTimer := Windows.System.Threading.CreatePeriodicTimer (Handler'access, Period);
         Buffer      : String (1..1);
         AUD         : WString := Windows.Globalization.CurrencyIdentifiers.get_AUD;
         AUD_Salary  : Windows.Globalization.CurrencyAmount := Windows.Globalization.Constructor (+"1000000000" , +"AUD");

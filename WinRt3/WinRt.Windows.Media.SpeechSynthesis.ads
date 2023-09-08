@@ -42,34 +42,34 @@ package WinRt.Windows.Media.SpeechSynthesis is
    -----------------------------------------------------------------------------
 
    type IInstalledVoicesStatic_Interface is interface and WinRt.IInspectable_Interface;
-   type IInstalledVoicesStatic is access IInstalledVoicesStatic_Interface'Class;
+   type IInstalledVoicesStatic is access all IInstalledVoicesStatic_Interface'Class;
 
    type IInstalledVoicesStatic2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInstalledVoicesStatic2 is access IInstalledVoicesStatic2_Interface'Class;
+   type IInstalledVoicesStatic2 is access all IInstalledVoicesStatic2_Interface'Class;
 
    type ISpeechSynthesisStream_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechSynthesisStream is access ISpeechSynthesisStream_Interface'Class;
+   type ISpeechSynthesisStream is access all ISpeechSynthesisStream_Interface'Class;
    type ISpeechSynthesisStream_Ptr is access all ISpeechSynthesisStream;
 
    type ISpeechSynthesizer_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechSynthesizer is access ISpeechSynthesizer_Interface'Class;
+   type ISpeechSynthesizer is access all ISpeechSynthesizer_Interface'Class;
    type ISpeechSynthesizer_Ptr is access all ISpeechSynthesizer;
 
    type ISpeechSynthesizer2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechSynthesizer2 is access ISpeechSynthesizer2_Interface'Class;
+   type ISpeechSynthesizer2 is access all ISpeechSynthesizer2_Interface'Class;
 
    type ISpeechSynthesizerOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechSynthesizerOptions is access ISpeechSynthesizerOptions_Interface'Class;
+   type ISpeechSynthesizerOptions is access all ISpeechSynthesizerOptions_Interface'Class;
    type ISpeechSynthesizerOptions_Ptr is access all ISpeechSynthesizerOptions;
 
    type ISpeechSynthesizerOptions2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechSynthesizerOptions2 is access ISpeechSynthesizerOptions2_Interface'Class;
+   type ISpeechSynthesizerOptions2 is access all ISpeechSynthesizerOptions2_Interface'Class;
 
    type ISpeechSynthesizerOptions3_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechSynthesizerOptions3 is access ISpeechSynthesizerOptions3_Interface'Class;
+   type ISpeechSynthesizerOptions3 is access all ISpeechSynthesizerOptions3_Interface'Class;
 
    type IVoiceInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IVoiceInformation is access IVoiceInformation_Interface'Class;
+   type IVoiceInformation is access all IVoiceInformation_Interface'Class;
    type IVoiceInformation_Ptr is access all IVoiceInformation;
 
    -----------------------------------------------------------------------------
@@ -112,7 +112,7 @@ package WinRt.Windows.Media.SpeechSynthesis is
       Default_e => 0,
       Min_e => 1
    );
-   type SpeechAppendedSilence_Ptr is access SpeechAppendedSilence;
+   type SpeechAppendedSilence_Ptr is access all SpeechAppendedSilence;
 
    type SpeechPunctuationSilence is (
       Default_e,
@@ -122,7 +122,7 @@ package WinRt.Windows.Media.SpeechSynthesis is
       Default_e => 0,
       Min_e => 1
    );
-   type SpeechPunctuationSilence_Ptr is access SpeechPunctuationSilence;
+   type SpeechPunctuationSilence_Ptr is access all SpeechPunctuationSilence;
 
    type VoiceGender is (
       Male_e,
@@ -132,7 +132,7 @@ package WinRt.Windows.Media.SpeechSynthesis is
       Male_e => 0,
       Female_e => 1
    );
-   type VoiceGender_Ptr is access VoiceGender;
+   type VoiceGender_Ptr is access all VoiceGender;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

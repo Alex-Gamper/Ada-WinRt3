@@ -39,7 +39,7 @@ package WinRt.Windows.Gaming.Input.Preview is
    -----------------------------------------------------------------------------
 
    type IGameControllerProviderInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGameControllerProviderInfoStatics is access IGameControllerProviderInfoStatics_Interface'Class;
+   type IGameControllerProviderInfoStatics is access all IGameControllerProviderInfoStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

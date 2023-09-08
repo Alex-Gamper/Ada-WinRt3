@@ -41,15 +41,15 @@ package WinRt.Windows.Security.Authorization.AppCapabilityAccess is
    -----------------------------------------------------------------------------
 
    type IAppCapability_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCapability is access IAppCapability_Interface'Class;
+   type IAppCapability is access all IAppCapability_Interface'Class;
    type IAppCapability_Ptr is access all IAppCapability;
 
    type IAppCapabilityAccessChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCapabilityAccessChangedEventArgs is access IAppCapabilityAccessChangedEventArgs_Interface'Class;
+   type IAppCapabilityAccessChangedEventArgs is access all IAppCapabilityAccessChangedEventArgs_Interface'Class;
    type IAppCapabilityAccessChangedEventArgs_Ptr is access all IAppCapabilityAccessChangedEventArgs;
 
    type IAppCapabilityStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppCapabilityStatics is access IAppCapabilityStatics_Interface'Class;
+   type IAppCapabilityStatics is access all IAppCapabilityStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -85,7 +85,7 @@ package WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       UserPromptRequired_e => 3,
       Allowed_e => 4
    );
-   type AppCapabilityAccessStatus_Ptr is access AppCapabilityAccessStatus;
+   type AppCapabilityAccessStatus_Ptr is access all AppCapabilityAccessStatus;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

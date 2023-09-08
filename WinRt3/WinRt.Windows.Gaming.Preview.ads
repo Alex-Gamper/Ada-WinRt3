@@ -40,6 +40,6 @@ package WinRt.Windows.Gaming.Preview is
    type GamesEnumerationContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type GamesEnumerationContract_Ptr is access GamesEnumerationContract;
+   type GamesEnumerationContract_Ptr is access all GamesEnumerationContract;
 
 end;

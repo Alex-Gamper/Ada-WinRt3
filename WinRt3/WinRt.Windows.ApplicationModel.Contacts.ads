@@ -46,274 +46,274 @@ package WinRt.Windows.ApplicationModel.Contacts is
    -----------------------------------------------------------------------------
 
    type IAggregateContactManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IAggregateContactManager is access IAggregateContactManager_Interface'Class;
+   type IAggregateContactManager is access all IAggregateContactManager_Interface'Class;
    type IAggregateContactManager_Ptr is access all IAggregateContactManager;
 
    type IAggregateContactManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAggregateContactManager2 is access IAggregateContactManager2_Interface'Class;
+   type IAggregateContactManager2 is access all IAggregateContactManager2_Interface'Class;
 
    type IContact_Interface is interface and WinRt.IInspectable_Interface;
-   type IContact is access IContact_Interface'Class;
+   type IContact is access all IContact_Interface'Class;
    type IContact_Ptr is access all IContact;
 
    type IContact2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContact2 is access IContact2_Interface'Class;
+   type IContact2 is access all IContact2_Interface'Class;
 
    type IContact3_Interface is interface and WinRt.IInspectable_Interface;
-   type IContact3 is access IContact3_Interface'Class;
+   type IContact3 is access all IContact3_Interface'Class;
 
    type IContactAddress_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactAddress is access IContactAddress_Interface'Class;
+   type IContactAddress is access all IContactAddress_Interface'Class;
    type IContactAddress_Ptr is access all IContactAddress;
 
    type IContactAnnotation_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactAnnotation is access IContactAnnotation_Interface'Class;
+   type IContactAnnotation is access all IContactAnnotation_Interface'Class;
    type IContactAnnotation_Ptr is access all IContactAnnotation;
 
    type IContactAnnotation2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactAnnotation2 is access IContactAnnotation2_Interface'Class;
+   type IContactAnnotation2 is access all IContactAnnotation2_Interface'Class;
 
    type IContactAnnotationList_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactAnnotationList is access IContactAnnotationList_Interface'Class;
+   type IContactAnnotationList is access all IContactAnnotationList_Interface'Class;
    type IContactAnnotationList_Ptr is access all IContactAnnotationList;
 
    type IContactAnnotationStore_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactAnnotationStore is access IContactAnnotationStore_Interface'Class;
+   type IContactAnnotationStore is access all IContactAnnotationStore_Interface'Class;
    type IContactAnnotationStore_Ptr is access all IContactAnnotationStore;
 
    type IContactAnnotationStore2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactAnnotationStore2 is access IContactAnnotationStore2_Interface'Class;
+   type IContactAnnotationStore2 is access all IContactAnnotationStore2_Interface'Class;
 
    type IContactBatch_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactBatch is access IContactBatch_Interface'Class;
+   type IContactBatch is access all IContactBatch_Interface'Class;
    type IContactBatch_Ptr is access all IContactBatch;
 
    type IContactCardDelayedDataLoader_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactCardDelayedDataLoader is access IContactCardDelayedDataLoader_Interface'Class;
+   type IContactCardDelayedDataLoader is access all IContactCardDelayedDataLoader_Interface'Class;
    type IContactCardDelayedDataLoader_Ptr is access all IContactCardDelayedDataLoader;
 
    type IContactCardOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactCardOptions is access IContactCardOptions_Interface'Class;
+   type IContactCardOptions is access all IContactCardOptions_Interface'Class;
    type IContactCardOptions_Ptr is access all IContactCardOptions;
 
    type IContactCardOptions2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactCardOptions2 is access IContactCardOptions2_Interface'Class;
+   type IContactCardOptions2 is access all IContactCardOptions2_Interface'Class;
 
    type IContactChange_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactChange is access IContactChange_Interface'Class;
+   type IContactChange is access all IContactChange_Interface'Class;
    type IContactChange_Ptr is access all IContactChange;
 
    type IContactChangeReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactChangeReader is access IContactChangeReader_Interface'Class;
+   type IContactChangeReader is access all IContactChangeReader_Interface'Class;
    type IContactChangeReader_Ptr is access all IContactChangeReader;
 
    type IContactChangeTracker_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactChangeTracker is access IContactChangeTracker_Interface'Class;
+   type IContactChangeTracker is access all IContactChangeTracker_Interface'Class;
    type IContactChangeTracker_Ptr is access all IContactChangeTracker;
 
    type IContactChangeTracker2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactChangeTracker2 is access IContactChangeTracker2_Interface'Class;
+   type IContactChangeTracker2 is access all IContactChangeTracker2_Interface'Class;
 
    type IContactChangedDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactChangedDeferral is access IContactChangedDeferral_Interface'Class;
+   type IContactChangedDeferral is access all IContactChangedDeferral_Interface'Class;
    type IContactChangedDeferral_Ptr is access all IContactChangedDeferral;
 
    type IContactChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactChangedEventArgs is access IContactChangedEventArgs_Interface'Class;
+   type IContactChangedEventArgs is access all IContactChangedEventArgs_Interface'Class;
    type IContactChangedEventArgs_Ptr is access all IContactChangedEventArgs;
 
    type IContactConnectedServiceAccount_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactConnectedServiceAccount is access IContactConnectedServiceAccount_Interface'Class;
+   type IContactConnectedServiceAccount is access all IContactConnectedServiceAccount_Interface'Class;
    type IContactConnectedServiceAccount_Ptr is access all IContactConnectedServiceAccount;
 
    type IContactDate_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactDate is access IContactDate_Interface'Class;
+   type IContactDate is access all IContactDate_Interface'Class;
    type IContactDate_Ptr is access all IContactDate;
 
    type IContactEmail_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactEmail is access IContactEmail_Interface'Class;
+   type IContactEmail is access all IContactEmail_Interface'Class;
    type IContactEmail_Ptr is access all IContactEmail;
 
    type IContactField_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactField is access IContactField_Interface'Class;
+   type IContactField is access all IContactField_Interface'Class;
    type IContactField_Ptr is access all IContactField;
 
    type IContactFieldFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactFieldFactory is access IContactFieldFactory_Interface'Class;
+   type IContactFieldFactory is access all IContactFieldFactory_Interface'Class;
    type IContactFieldFactory_Ptr is access all IContactFieldFactory;
 
    type IContactGroup_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactGroup is access IContactGroup_Interface'Class;
+   type IContactGroup is access all IContactGroup_Interface'Class;
    type IContactGroup_Ptr is access all IContactGroup;
 
    type IContactInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactInformation is access IContactInformation_Interface'Class;
+   type IContactInformation is access all IContactInformation_Interface'Class;
    type IContactInformation_Ptr is access all IContactInformation;
 
    type IContactInstantMessageField_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactInstantMessageField is access IContactInstantMessageField_Interface'Class;
+   type IContactInstantMessageField is access all IContactInstantMessageField_Interface'Class;
    type IContactInstantMessageField_Ptr is access all IContactInstantMessageField;
 
    type IContactInstantMessageFieldFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactInstantMessageFieldFactory is access IContactInstantMessageFieldFactory_Interface'Class;
+   type IContactInstantMessageFieldFactory is access all IContactInstantMessageFieldFactory_Interface'Class;
 
    type IContactJobInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactJobInfo is access IContactJobInfo_Interface'Class;
+   type IContactJobInfo is access all IContactJobInfo_Interface'Class;
    type IContactJobInfo_Ptr is access all IContactJobInfo;
 
    type IContactLaunchActionVerbsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactLaunchActionVerbsStatics is access IContactLaunchActionVerbsStatics_Interface'Class;
+   type IContactLaunchActionVerbsStatics is access all IContactLaunchActionVerbsStatics_Interface'Class;
 
    type IContactList_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactList is access IContactList_Interface'Class;
+   type IContactList is access all IContactList_Interface'Class;
    type IContactList_Ptr is access all IContactList;
 
    type IContactList2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactList2 is access IContactList2_Interface'Class;
+   type IContactList2 is access all IContactList2_Interface'Class;
 
    type IContactList3_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactList3 is access IContactList3_Interface'Class;
+   type IContactList3 is access all IContactList3_Interface'Class;
 
    type IContactListLimitedWriteOperations_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactListLimitedWriteOperations is access IContactListLimitedWriteOperations_Interface'Class;
+   type IContactListLimitedWriteOperations is access all IContactListLimitedWriteOperations_Interface'Class;
    type IContactListLimitedWriteOperations_Ptr is access all IContactListLimitedWriteOperations;
 
    type IContactListSyncConstraints_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactListSyncConstraints is access IContactListSyncConstraints_Interface'Class;
+   type IContactListSyncConstraints is access all IContactListSyncConstraints_Interface'Class;
    type IContactListSyncConstraints_Ptr is access all IContactListSyncConstraints;
 
    type IContactListSyncManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactListSyncManager is access IContactListSyncManager_Interface'Class;
+   type IContactListSyncManager is access all IContactListSyncManager_Interface'Class;
    type IContactListSyncManager_Ptr is access all IContactListSyncManager;
 
    type IContactListSyncManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactListSyncManager2 is access IContactListSyncManager2_Interface'Class;
+   type IContactListSyncManager2 is access all IContactListSyncManager2_Interface'Class;
 
    type IContactLocationField_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactLocationField is access IContactLocationField_Interface'Class;
+   type IContactLocationField is access all IContactLocationField_Interface'Class;
    type IContactLocationField_Ptr is access all IContactLocationField;
 
    type IContactLocationFieldFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactLocationFieldFactory is access IContactLocationFieldFactory_Interface'Class;
+   type IContactLocationFieldFactory is access all IContactLocationFieldFactory_Interface'Class;
 
    type IContactManagerForUser_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactManagerForUser is access IContactManagerForUser_Interface'Class;
+   type IContactManagerForUser is access all IContactManagerForUser_Interface'Class;
    type IContactManagerForUser_Ptr is access all IContactManagerForUser;
 
    type IContactManagerForUser2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactManagerForUser2 is access IContactManagerForUser2_Interface'Class;
+   type IContactManagerForUser2 is access all IContactManagerForUser2_Interface'Class;
 
    type IContactManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactManagerStatics is access IContactManagerStatics_Interface'Class;
+   type IContactManagerStatics is access all IContactManagerStatics_Interface'Class;
 
    type IContactManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactManagerStatics2 is access IContactManagerStatics2_Interface'Class;
+   type IContactManagerStatics2 is access all IContactManagerStatics2_Interface'Class;
 
    type IContactManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactManagerStatics3 is access IContactManagerStatics3_Interface'Class;
+   type IContactManagerStatics3 is access all IContactManagerStatics3_Interface'Class;
 
    type IContactManagerStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactManagerStatics4 is access IContactManagerStatics4_Interface'Class;
+   type IContactManagerStatics4 is access all IContactManagerStatics4_Interface'Class;
 
    type IContactManagerStatics5_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactManagerStatics5 is access IContactManagerStatics5_Interface'Class;
+   type IContactManagerStatics5 is access all IContactManagerStatics5_Interface'Class;
 
    type IContactMatchReason_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactMatchReason is access IContactMatchReason_Interface'Class;
+   type IContactMatchReason is access all IContactMatchReason_Interface'Class;
    type IContactMatchReason_Ptr is access all IContactMatchReason;
 
    type IContactName_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactName is access IContactName_Interface'Class;
+   type IContactName is access all IContactName_Interface'Class;
 
    type IContactPanel_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactPanel is access IContactPanel_Interface'Class;
+   type IContactPanel is access all IContactPanel_Interface'Class;
    type IContactPanel_Ptr is access all IContactPanel;
 
    type IContactPanelClosingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactPanelClosingEventArgs is access IContactPanelClosingEventArgs_Interface'Class;
+   type IContactPanelClosingEventArgs is access all IContactPanelClosingEventArgs_Interface'Class;
    type IContactPanelClosingEventArgs_Ptr is access all IContactPanelClosingEventArgs;
 
    type IContactPanelLaunchFullAppRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactPanelLaunchFullAppRequestedEventArgs is access IContactPanelLaunchFullAppRequestedEventArgs_Interface'Class;
+   type IContactPanelLaunchFullAppRequestedEventArgs is access all IContactPanelLaunchFullAppRequestedEventArgs_Interface'Class;
    type IContactPanelLaunchFullAppRequestedEventArgs_Ptr is access all IContactPanelLaunchFullAppRequestedEventArgs;
 
    type IContactPhone_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactPhone is access IContactPhone_Interface'Class;
+   type IContactPhone is access all IContactPhone_Interface'Class;
    type IContactPhone_Ptr is access all IContactPhone;
 
    type IContactPicker_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactPicker is access IContactPicker_Interface'Class;
+   type IContactPicker is access all IContactPicker_Interface'Class;
    type IContactPicker_Ptr is access all IContactPicker;
 
    type IContactPicker2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactPicker2 is access IContactPicker2_Interface'Class;
+   type IContactPicker2 is access all IContactPicker2_Interface'Class;
 
    type IContactPicker3_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactPicker3 is access IContactPicker3_Interface'Class;
+   type IContactPicker3 is access all IContactPicker3_Interface'Class;
 
    type IContactPickerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactPickerStatics is access IContactPickerStatics_Interface'Class;
+   type IContactPickerStatics is access all IContactPickerStatics_Interface'Class;
 
    type IContactQueryOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactQueryOptions is access IContactQueryOptions_Interface'Class;
+   type IContactQueryOptions is access all IContactQueryOptions_Interface'Class;
    type IContactQueryOptions_Ptr is access all IContactQueryOptions;
 
    type IContactQueryOptionsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactQueryOptionsFactory is access IContactQueryOptionsFactory_Interface'Class;
+   type IContactQueryOptionsFactory is access all IContactQueryOptionsFactory_Interface'Class;
 
    type IContactQueryTextSearch_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactQueryTextSearch is access IContactQueryTextSearch_Interface'Class;
+   type IContactQueryTextSearch is access all IContactQueryTextSearch_Interface'Class;
    type IContactQueryTextSearch_Ptr is access all IContactQueryTextSearch;
 
    type IContactReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactReader is access IContactReader_Interface'Class;
+   type IContactReader is access all IContactReader_Interface'Class;
    type IContactReader_Ptr is access all IContactReader;
 
    type IContactSignificantOther_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactSignificantOther is access IContactSignificantOther_Interface'Class;
+   type IContactSignificantOther is access all IContactSignificantOther_Interface'Class;
    type IContactSignificantOther_Ptr is access all IContactSignificantOther;
 
    type IContactSignificantOther2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactSignificantOther2 is access IContactSignificantOther2_Interface'Class;
+   type IContactSignificantOther2 is access all IContactSignificantOther2_Interface'Class;
 
    type IContactStore_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactStore is access IContactStore_Interface'Class;
+   type IContactStore is access all IContactStore_Interface'Class;
    type IContactStore_Ptr is access all IContactStore;
 
    type IContactStore2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactStore2 is access IContactStore2_Interface'Class;
+   type IContactStore2 is access all IContactStore2_Interface'Class;
 
    type IContactStore3_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactStore3 is access IContactStore3_Interface'Class;
+   type IContactStore3 is access all IContactStore3_Interface'Class;
 
    type IContactStoreNotificationTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactStoreNotificationTriggerDetails is access IContactStoreNotificationTriggerDetails_Interface'Class;
+   type IContactStoreNotificationTriggerDetails is access all IContactStoreNotificationTriggerDetails_Interface'Class;
    type IContactStoreNotificationTriggerDetails_Ptr is access all IContactStoreNotificationTriggerDetails;
 
    type IContactWebsite_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactWebsite is access IContactWebsite_Interface'Class;
+   type IContactWebsite is access all IContactWebsite_Interface'Class;
    type IContactWebsite_Ptr is access all IContactWebsite;
 
    type IContactWebsite2_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactWebsite2 is access IContactWebsite2_Interface'Class;
+   type IContactWebsite2 is access all IContactWebsite2_Interface'Class;
 
    type IFullContactCardOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IFullContactCardOptions is access IFullContactCardOptions_Interface'Class;
+   type IFullContactCardOptions is access all IFullContactCardOptions_Interface'Class;
    type IFullContactCardOptions_Ptr is access all IFullContactCardOptions;
 
    type IKnownContactFieldStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownContactFieldStatics is access IKnownContactFieldStatics_Interface'Class;
+   type IKnownContactFieldStatics is access all IKnownContactFieldStatics_Interface'Class;
 
    type IPinnedContactIdsQueryResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IPinnedContactIdsQueryResult is access IPinnedContactIdsQueryResult_Interface'Class;
+   type IPinnedContactIdsQueryResult is access all IPinnedContactIdsQueryResult_Interface'Class;
    type IPinnedContactIdsQueryResult_Ptr is access all IPinnedContactIdsQueryResult;
 
    type IPinnedContactManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IPinnedContactManager is access IPinnedContactManager_Interface'Class;
+   type IPinnedContactManager is access all IPinnedContactManager_Interface'Class;
    type IPinnedContactManager_Ptr is access all IPinnedContactManager;
 
    type IPinnedContactManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPinnedContactManagerStatics is access IPinnedContactManagerStatics_Interface'Class;
+   type IPinnedContactManagerStatics is access all IPinnedContactManagerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -603,7 +603,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Work_e => 1,
       Other_e => 2
    );
-   type ContactAddressKind_Ptr is access ContactAddressKind;
+   type ContactAddressKind_Ptr is access all ContactAddressKind;
 
    type ContactAnnotationOperations is (
       None_e,
@@ -623,7 +623,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       SocialFeeds_e => 16,
       Share_e => 32
    );
-   type ContactAnnotationOperations_Ptr is access ContactAnnotationOperations;
+   type ContactAnnotationOperations_Ptr is access all ContactAnnotationOperations;
 
    type ContactAnnotationStoreAccessType is (
       AppAnnotationsReadWrite_e,
@@ -633,7 +633,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       AppAnnotationsReadWrite_e => 0,
       AllAnnotationsReadWrite_e => 1
    );
-   type ContactAnnotationStoreAccessType_Ptr is access ContactAnnotationStoreAccessType;
+   type ContactAnnotationStoreAccessType_Ptr is access all ContactAnnotationStoreAccessType;
 
    type ContactBatchStatus is (
       Success_e,
@@ -645,7 +645,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       ServerSearchSyncManagerError_e => 1,
       ServerSearchUnknownError_e => 2
    );
-   type ContactBatchStatus_Ptr is access ContactBatchStatus;
+   type ContactBatchStatus_Ptr is access all ContactBatchStatus;
 
    type ContactCardHeaderKind is (
       Default_e,
@@ -657,7 +657,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Basic_e => 1,
       Enterprise_e => 2
    );
-   type ContactCardHeaderKind_Ptr is access ContactCardHeaderKind;
+   type ContactCardHeaderKind_Ptr is access all ContactCardHeaderKind;
 
    type ContactCardTabKind is (
       Default_e,
@@ -675,7 +675,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Video_e => 4,
       OrganizationalHierarchy_e => 5
    );
-   type ContactCardTabKind_Ptr is access ContactCardTabKind;
+   type ContactCardTabKind_Ptr is access all ContactCardTabKind;
 
    type ContactChangeType is (
       Created_e,
@@ -689,7 +689,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Deleted_e => 2,
       ChangeTrackingLost_e => 3
    );
-   type ContactChangeType_Ptr is access ContactChangeType;
+   type ContactChangeType_Ptr is access all ContactChangeType;
 
    type ContactDateKind is (
       Birthday_e,
@@ -701,7 +701,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Anniversary_e => 1,
       Other_e => 2
    );
-   type ContactDateKind_Ptr is access ContactDateKind;
+   type ContactDateKind_Ptr is access all ContactDateKind;
 
    type ContactEmailKind is (
       Personal_e,
@@ -713,7 +713,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Work_e => 1,
       Other_e => 2
    );
-   type ContactEmailKind_Ptr is access ContactEmailKind;
+   type ContactEmailKind_Ptr is access all ContactEmailKind;
 
    type ContactFieldCategory is (
       None_e,
@@ -729,7 +729,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Mobile_e => 3,
       Other_e => 4
    );
-   type ContactFieldCategory_Ptr is access ContactFieldCategory;
+   type ContactFieldCategory_Ptr is access all ContactFieldCategory;
 
    type ContactFieldType is (
       Email_e,
@@ -759,7 +759,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Website_e => 10,
       JobInfo_e => 11
    );
-   type ContactFieldType_Ptr is access ContactFieldType;
+   type ContactFieldType_Ptr is access all ContactFieldType;
 
    type ContactListOtherAppReadAccess is (
       SystemOnly_e,
@@ -773,7 +773,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Full_e => 2,
       None_e => 3
    );
-   type ContactListOtherAppReadAccess_Ptr is access ContactListOtherAppReadAccess;
+   type ContactListOtherAppReadAccess_Ptr is access all ContactListOtherAppReadAccess;
 
    type ContactListOtherAppWriteAccess is (
       None_e,
@@ -785,7 +785,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       SystemOnly_e => 1,
       Limited_e => 2
    );
-   type ContactListOtherAppWriteAccess_Ptr is access ContactListOtherAppWriteAccess;
+   type ContactListOtherAppWriteAccess_Ptr is access all ContactListOtherAppWriteAccess;
 
    type ContactListSyncStatus is (
       Idle_e,
@@ -805,7 +805,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       UnknownError_e => 5,
       ManualAccountRemovalRequired_e => 6
    );
-   type ContactListSyncStatus_Ptr is access ContactListSyncStatus;
+   type ContactListSyncStatus_Ptr is access all ContactListSyncStatus;
 
    type ContactMatchReasonKind is (
       Name_e,
@@ -823,7 +823,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       YomiName_e => 4,
       Other_e => 5
    );
-   type ContactMatchReasonKind_Ptr is access ContactMatchReasonKind;
+   type ContactMatchReasonKind_Ptr is access all ContactMatchReasonKind;
 
    type ContactNameOrder is (
       FirstNameLastName_e,
@@ -833,7 +833,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       FirstNameLastName_e => 0,
       LastNameFirstName_e => 1
    );
-   type ContactNameOrder_Ptr is access ContactNameOrder;
+   type ContactNameOrder_Ptr is access all ContactNameOrder;
 
    type ContactPhoneKind is (
       Home_e,
@@ -859,7 +859,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Assistant_e => 8,
       Radio_e => 9
    );
-   type ContactPhoneKind_Ptr is access ContactPhoneKind;
+   type ContactPhoneKind_Ptr is access all ContactPhoneKind;
 
    type ContactQueryDesiredFields is (
       None_e,
@@ -873,7 +873,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       EmailAddress_e => 2,
       PostalAddress_e => 4
    );
-   type ContactQueryDesiredFields_Ptr is access ContactQueryDesiredFields;
+   type ContactQueryDesiredFields_Ptr is access all ContactQueryDesiredFields;
 
    type ContactQuerySearchFields is (
       None_e,
@@ -889,7 +889,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Phone_e => 4,
       All_e => 4294967295
    );
-   type ContactQuerySearchFields_Ptr is access ContactQuerySearchFields;
+   type ContactQuerySearchFields_Ptr is access all ContactQuerySearchFields;
 
    type ContactQuerySearchScope is (
       Local_e,
@@ -899,7 +899,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Local_e => 0,
       Server_e => 1
    );
-   type ContactQuerySearchScope_Ptr is access ContactQuerySearchScope;
+   type ContactQuerySearchScope_Ptr is access all ContactQuerySearchScope;
 
    type ContactRelationship is (
       Other_e,
@@ -917,7 +917,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Parent_e => 4,
       Child_e => 5
    );
-   type ContactRelationship_Ptr is access ContactRelationship;
+   type ContactRelationship_Ptr is access all ContactRelationship;
 
    type ContactSelectionMode is (
       Contacts_e,
@@ -927,7 +927,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       Contacts_e => 0,
       Fields_e => 1
    );
-   type ContactSelectionMode_Ptr is access ContactSelectionMode;
+   type ContactSelectionMode_Ptr is access all ContactSelectionMode;
 
    type ContactStoreAccessType is (
       AppContactsReadWrite_e,
@@ -939,7 +939,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       AllContactsReadOnly_e => 1,
       AllContactsReadWrite_e => 2
    );
-   type ContactStoreAccessType_Ptr is access ContactStoreAccessType;
+   type ContactStoreAccessType_Ptr is access all ContactStoreAccessType;
 
    type PinnedContactSurface is (
       StartMenu_e,
@@ -949,7 +949,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       StartMenu_e => 0,
       Taskbar_e => 1
    );
-   type PinnedContactSurface_Ptr is access PinnedContactSurface;
+   type PinnedContactSurface_Ptr is access all PinnedContactSurface;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

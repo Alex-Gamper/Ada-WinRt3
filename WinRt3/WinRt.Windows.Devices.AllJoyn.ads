@@ -45,151 +45,151 @@ package WinRt.Windows.Devices.AllJoyn is
    -----------------------------------------------------------------------------
 
    type IAllJoynAboutData_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynAboutData is access IAllJoynAboutData_Interface'Class;
+   type IAllJoynAboutData is access all IAllJoynAboutData_Interface'Class;
    type IAllJoynAboutData_Ptr is access all IAllJoynAboutData;
 
    type IAllJoynAboutDataView_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynAboutDataView is access IAllJoynAboutDataView_Interface'Class;
+   type IAllJoynAboutDataView is access all IAllJoynAboutDataView_Interface'Class;
    type IAllJoynAboutDataView_Ptr is access all IAllJoynAboutDataView;
 
    type IAllJoynAboutDataViewStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynAboutDataViewStatics is access IAllJoynAboutDataViewStatics_Interface'Class;
+   type IAllJoynAboutDataViewStatics is access all IAllJoynAboutDataViewStatics_Interface'Class;
 
    type IAllJoynAcceptSessionJoiner_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynAcceptSessionJoiner is access IAllJoynAcceptSessionJoiner_Interface'Class;
+   type IAllJoynAcceptSessionJoiner is access all IAllJoynAcceptSessionJoiner_Interface'Class;
 
    type IAllJoynAcceptSessionJoinerEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynAcceptSessionJoinerEventArgs is access IAllJoynAcceptSessionJoinerEventArgs_Interface'Class;
+   type IAllJoynAcceptSessionJoinerEventArgs is access all IAllJoynAcceptSessionJoinerEventArgs_Interface'Class;
    type IAllJoynAcceptSessionJoinerEventArgs_Ptr is access all IAllJoynAcceptSessionJoinerEventArgs;
 
    type IAllJoynAcceptSessionJoinerEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynAcceptSessionJoinerEventArgsFactory is access IAllJoynAcceptSessionJoinerEventArgsFactory_Interface'Class;
+   type IAllJoynAcceptSessionJoinerEventArgsFactory is access all IAllJoynAcceptSessionJoinerEventArgsFactory_Interface'Class;
 
    type IAllJoynAuthenticationCompleteEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynAuthenticationCompleteEventArgs is access IAllJoynAuthenticationCompleteEventArgs_Interface'Class;
+   type IAllJoynAuthenticationCompleteEventArgs is access all IAllJoynAuthenticationCompleteEventArgs_Interface'Class;
    type IAllJoynAuthenticationCompleteEventArgs_Ptr is access all IAllJoynAuthenticationCompleteEventArgs;
 
    type IAllJoynBusAttachment_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynBusAttachment is access IAllJoynBusAttachment_Interface'Class;
+   type IAllJoynBusAttachment is access all IAllJoynBusAttachment_Interface'Class;
    type IAllJoynBusAttachment_Ptr is access all IAllJoynBusAttachment;
 
    type IAllJoynBusAttachment2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynBusAttachment2 is access IAllJoynBusAttachment2_Interface'Class;
+   type IAllJoynBusAttachment2 is access all IAllJoynBusAttachment2_Interface'Class;
 
    type IAllJoynBusAttachmentFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynBusAttachmentFactory is access IAllJoynBusAttachmentFactory_Interface'Class;
+   type IAllJoynBusAttachmentFactory is access all IAllJoynBusAttachmentFactory_Interface'Class;
 
    type IAllJoynBusAttachmentStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynBusAttachmentStateChangedEventArgs is access IAllJoynBusAttachmentStateChangedEventArgs_Interface'Class;
+   type IAllJoynBusAttachmentStateChangedEventArgs is access all IAllJoynBusAttachmentStateChangedEventArgs_Interface'Class;
    type IAllJoynBusAttachmentStateChangedEventArgs_Ptr is access all IAllJoynBusAttachmentStateChangedEventArgs;
 
    type IAllJoynBusAttachmentStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynBusAttachmentStatics is access IAllJoynBusAttachmentStatics_Interface'Class;
+   type IAllJoynBusAttachmentStatics is access all IAllJoynBusAttachmentStatics_Interface'Class;
 
    type IAllJoynBusObject_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynBusObject is access IAllJoynBusObject_Interface'Class;
+   type IAllJoynBusObject is access all IAllJoynBusObject_Interface'Class;
    type IAllJoynBusObject_Ptr is access all IAllJoynBusObject;
 
    type IAllJoynBusObjectFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynBusObjectFactory is access IAllJoynBusObjectFactory_Interface'Class;
+   type IAllJoynBusObjectFactory is access all IAllJoynBusObjectFactory_Interface'Class;
 
    type IAllJoynBusObjectStoppedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynBusObjectStoppedEventArgs is access IAllJoynBusObjectStoppedEventArgs_Interface'Class;
+   type IAllJoynBusObjectStoppedEventArgs is access all IAllJoynBusObjectStoppedEventArgs_Interface'Class;
    type IAllJoynBusObjectStoppedEventArgs_Ptr is access all IAllJoynBusObjectStoppedEventArgs;
 
    type IAllJoynBusObjectStoppedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynBusObjectStoppedEventArgsFactory is access IAllJoynBusObjectStoppedEventArgsFactory_Interface'Class;
+   type IAllJoynBusObjectStoppedEventArgsFactory is access all IAllJoynBusObjectStoppedEventArgsFactory_Interface'Class;
 
    type IAllJoynCredentials_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynCredentials is access IAllJoynCredentials_Interface'Class;
+   type IAllJoynCredentials is access all IAllJoynCredentials_Interface'Class;
    type IAllJoynCredentials_Ptr is access all IAllJoynCredentials;
 
    type IAllJoynCredentialsRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynCredentialsRequestedEventArgs is access IAllJoynCredentialsRequestedEventArgs_Interface'Class;
+   type IAllJoynCredentialsRequestedEventArgs is access all IAllJoynCredentialsRequestedEventArgs_Interface'Class;
    type IAllJoynCredentialsRequestedEventArgs_Ptr is access all IAllJoynCredentialsRequestedEventArgs;
 
    type IAllJoynCredentialsVerificationRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynCredentialsVerificationRequestedEventArgs is access IAllJoynCredentialsVerificationRequestedEventArgs_Interface'Class;
+   type IAllJoynCredentialsVerificationRequestedEventArgs is access all IAllJoynCredentialsVerificationRequestedEventArgs_Interface'Class;
    type IAllJoynCredentialsVerificationRequestedEventArgs_Ptr is access all IAllJoynCredentialsVerificationRequestedEventArgs;
 
    type IAllJoynMessageInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynMessageInfo is access IAllJoynMessageInfo_Interface'Class;
+   type IAllJoynMessageInfo is access all IAllJoynMessageInfo_Interface'Class;
    type IAllJoynMessageInfo_Ptr is access all IAllJoynMessageInfo;
 
    type IAllJoynMessageInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynMessageInfoFactory is access IAllJoynMessageInfoFactory_Interface'Class;
+   type IAllJoynMessageInfoFactory is access all IAllJoynMessageInfoFactory_Interface'Class;
 
    type IAllJoynProducer_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynProducer is access IAllJoynProducer_Interface'Class;
+   type IAllJoynProducer is access all IAllJoynProducer_Interface'Class;
 
    type IAllJoynProducerStoppedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynProducerStoppedEventArgs is access IAllJoynProducerStoppedEventArgs_Interface'Class;
+   type IAllJoynProducerStoppedEventArgs is access all IAllJoynProducerStoppedEventArgs_Interface'Class;
    type IAllJoynProducerStoppedEventArgs_Ptr is access all IAllJoynProducerStoppedEventArgs;
 
    type IAllJoynProducerStoppedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynProducerStoppedEventArgsFactory is access IAllJoynProducerStoppedEventArgsFactory_Interface'Class;
+   type IAllJoynProducerStoppedEventArgsFactory is access all IAllJoynProducerStoppedEventArgsFactory_Interface'Class;
 
    type IAllJoynServiceInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynServiceInfo is access IAllJoynServiceInfo_Interface'Class;
+   type IAllJoynServiceInfo is access all IAllJoynServiceInfo_Interface'Class;
    type IAllJoynServiceInfo_Ptr is access all IAllJoynServiceInfo;
 
    type IAllJoynServiceInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynServiceInfoFactory is access IAllJoynServiceInfoFactory_Interface'Class;
+   type IAllJoynServiceInfoFactory is access all IAllJoynServiceInfoFactory_Interface'Class;
 
    type IAllJoynServiceInfoRemovedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynServiceInfoRemovedEventArgs is access IAllJoynServiceInfoRemovedEventArgs_Interface'Class;
+   type IAllJoynServiceInfoRemovedEventArgs is access all IAllJoynServiceInfoRemovedEventArgs_Interface'Class;
    type IAllJoynServiceInfoRemovedEventArgs_Ptr is access all IAllJoynServiceInfoRemovedEventArgs;
 
    type IAllJoynServiceInfoRemovedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynServiceInfoRemovedEventArgsFactory is access IAllJoynServiceInfoRemovedEventArgsFactory_Interface'Class;
+   type IAllJoynServiceInfoRemovedEventArgsFactory is access all IAllJoynServiceInfoRemovedEventArgsFactory_Interface'Class;
 
    type IAllJoynServiceInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynServiceInfoStatics is access IAllJoynServiceInfoStatics_Interface'Class;
+   type IAllJoynServiceInfoStatics is access all IAllJoynServiceInfoStatics_Interface'Class;
 
    type IAllJoynSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynSession is access IAllJoynSession_Interface'Class;
+   type IAllJoynSession is access all IAllJoynSession_Interface'Class;
    type IAllJoynSession_Ptr is access all IAllJoynSession;
 
    type IAllJoynSessionJoinedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynSessionJoinedEventArgs is access IAllJoynSessionJoinedEventArgs_Interface'Class;
+   type IAllJoynSessionJoinedEventArgs is access all IAllJoynSessionJoinedEventArgs_Interface'Class;
    type IAllJoynSessionJoinedEventArgs_Ptr is access all IAllJoynSessionJoinedEventArgs;
 
    type IAllJoynSessionJoinedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynSessionJoinedEventArgsFactory is access IAllJoynSessionJoinedEventArgsFactory_Interface'Class;
+   type IAllJoynSessionJoinedEventArgsFactory is access all IAllJoynSessionJoinedEventArgsFactory_Interface'Class;
 
    type IAllJoynSessionLostEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynSessionLostEventArgs is access IAllJoynSessionLostEventArgs_Interface'Class;
+   type IAllJoynSessionLostEventArgs is access all IAllJoynSessionLostEventArgs_Interface'Class;
    type IAllJoynSessionLostEventArgs_Ptr is access all IAllJoynSessionLostEventArgs;
 
    type IAllJoynSessionLostEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynSessionLostEventArgsFactory is access IAllJoynSessionLostEventArgsFactory_Interface'Class;
+   type IAllJoynSessionLostEventArgsFactory is access all IAllJoynSessionLostEventArgsFactory_Interface'Class;
 
    type IAllJoynSessionMemberAddedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynSessionMemberAddedEventArgs is access IAllJoynSessionMemberAddedEventArgs_Interface'Class;
+   type IAllJoynSessionMemberAddedEventArgs is access all IAllJoynSessionMemberAddedEventArgs_Interface'Class;
    type IAllJoynSessionMemberAddedEventArgs_Ptr is access all IAllJoynSessionMemberAddedEventArgs;
 
    type IAllJoynSessionMemberAddedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynSessionMemberAddedEventArgsFactory is access IAllJoynSessionMemberAddedEventArgsFactory_Interface'Class;
+   type IAllJoynSessionMemberAddedEventArgsFactory is access all IAllJoynSessionMemberAddedEventArgsFactory_Interface'Class;
 
    type IAllJoynSessionMemberRemovedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynSessionMemberRemovedEventArgs is access IAllJoynSessionMemberRemovedEventArgs_Interface'Class;
+   type IAllJoynSessionMemberRemovedEventArgs is access all IAllJoynSessionMemberRemovedEventArgs_Interface'Class;
    type IAllJoynSessionMemberRemovedEventArgs_Ptr is access all IAllJoynSessionMemberRemovedEventArgs;
 
    type IAllJoynSessionMemberRemovedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynSessionMemberRemovedEventArgsFactory is access IAllJoynSessionMemberRemovedEventArgsFactory_Interface'Class;
+   type IAllJoynSessionMemberRemovedEventArgsFactory is access all IAllJoynSessionMemberRemovedEventArgsFactory_Interface'Class;
 
    type IAllJoynSessionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynSessionStatics is access IAllJoynSessionStatics_Interface'Class;
+   type IAllJoynSessionStatics is access all IAllJoynSessionStatics_Interface'Class;
 
    type IAllJoynStatusStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynStatusStatics is access IAllJoynStatusStatics_Interface'Class;
+   type IAllJoynStatusStatics is access all IAllJoynStatusStatics_Interface'Class;
 
    type IAllJoynWatcherStoppedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynWatcherStoppedEventArgs is access IAllJoynWatcherStoppedEventArgs_Interface'Class;
+   type IAllJoynWatcherStoppedEventArgs is access all IAllJoynWatcherStoppedEventArgs_Interface'Class;
    type IAllJoynWatcherStoppedEventArgs_Ptr is access all IAllJoynWatcherStoppedEventArgs;
 
    type IAllJoynWatcherStoppedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAllJoynWatcherStoppedEventArgsFactory is access IAllJoynWatcherStoppedEventArgsFactory_Interface'Class;
+   type IAllJoynWatcherStoppedEventArgsFactory is access all IAllJoynWatcherStoppedEventArgsFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -343,7 +343,7 @@ package WinRt.Windows.Devices.AllJoyn is
       EcdheEcdsa_e => 5,
       EcdheSpeke_e => 6
    );
-   type AllJoynAuthenticationMechanism_Ptr is access AllJoynAuthenticationMechanism;
+   type AllJoynAuthenticationMechanism_Ptr is access all AllJoynAuthenticationMechanism;
 
    type AllJoynBusAttachmentState is (
       Disconnected_e,
@@ -357,7 +357,7 @@ package WinRt.Windows.Devices.AllJoyn is
       Connected_e => 2,
       Disconnecting_e => 3
    );
-   type AllJoynBusAttachmentState_Ptr is access AllJoynBusAttachmentState;
+   type AllJoynBusAttachmentState_Ptr is access all AllJoynBusAttachmentState;
 
    type AllJoynSessionLostReason is (
       None_e,
@@ -375,7 +375,7 @@ package WinRt.Windows.Devices.AllJoyn is
       LinkTimeout_e => 4,
       Other_e => 5
    );
-   type AllJoynSessionLostReason_Ptr is access AllJoynSessionLostReason;
+   type AllJoynSessionLostReason_Ptr is access all AllJoynSessionLostReason;
 
    type AllJoynTrafficType is (
       Unknown_e,
@@ -389,7 +389,7 @@ package WinRt.Windows.Devices.AllJoyn is
       RawUnreliable_e => 2,
       RawReliable_e => 4
    );
-   type AllJoynTrafficType_Ptr is access AllJoynTrafficType;
+   type AllJoynTrafficType_Ptr is access all AllJoynTrafficType;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

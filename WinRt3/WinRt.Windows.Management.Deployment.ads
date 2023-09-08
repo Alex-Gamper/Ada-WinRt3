@@ -41,65 +41,65 @@ package WinRt.Windows.Management.Deployment is
    -----------------------------------------------------------------------------
 
    type IAddPackageOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IAddPackageOptions is access IAddPackageOptions_Interface'Class;
+   type IAddPackageOptions is access all IAddPackageOptions_Interface'Class;
    type IAddPackageOptions_Ptr is access all IAddPackageOptions;
 
    type IDeploymentResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeploymentResult is access IDeploymentResult_Interface'Class;
+   type IDeploymentResult is access all IDeploymentResult_Interface'Class;
    type IDeploymentResult_Ptr is access all IDeploymentResult;
 
    type IDeploymentResult2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeploymentResult2 is access IDeploymentResult2_Interface'Class;
+   type IDeploymentResult2 is access all IDeploymentResult2_Interface'Class;
 
    type IPackageManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager is access IPackageManager_Interface'Class;
+   type IPackageManager is access all IPackageManager_Interface'Class;
    type IPackageManager_Ptr is access all IPackageManager;
 
    type IPackageManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager2 is access IPackageManager2_Interface'Class;
+   type IPackageManager2 is access all IPackageManager2_Interface'Class;
 
    type IPackageManager3_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager3 is access IPackageManager3_Interface'Class;
+   type IPackageManager3 is access all IPackageManager3_Interface'Class;
 
    type IPackageManager4_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager4 is access IPackageManager4_Interface'Class;
+   type IPackageManager4 is access all IPackageManager4_Interface'Class;
 
    type IPackageManager5_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager5 is access IPackageManager5_Interface'Class;
+   type IPackageManager5 is access all IPackageManager5_Interface'Class;
 
    type IPackageManager6_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager6 is access IPackageManager6_Interface'Class;
+   type IPackageManager6 is access all IPackageManager6_Interface'Class;
 
    type IPackageManager7_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager7 is access IPackageManager7_Interface'Class;
+   type IPackageManager7 is access all IPackageManager7_Interface'Class;
 
    type IPackageManager8_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager8 is access IPackageManager8_Interface'Class;
+   type IPackageManager8 is access all IPackageManager8_Interface'Class;
 
    type IPackageManager9_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManager9 is access IPackageManager9_Interface'Class;
+   type IPackageManager9 is access all IPackageManager9_Interface'Class;
 
    type IPackageManagerDebugSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageManagerDebugSettings is access IPackageManagerDebugSettings_Interface'Class;
+   type IPackageManagerDebugSettings is access all IPackageManagerDebugSettings_Interface'Class;
    type IPackageManagerDebugSettings_Ptr is access all IPackageManagerDebugSettings;
 
    type IPackageUserInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageUserInformation is access IPackageUserInformation_Interface'Class;
+   type IPackageUserInformation is access all IPackageUserInformation_Interface'Class;
    type IPackageUserInformation_Ptr is access all IPackageUserInformation;
 
    type IPackageVolume_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageVolume is access IPackageVolume_Interface'Class;
+   type IPackageVolume is access all IPackageVolume_Interface'Class;
    type IPackageVolume_Ptr is access all IPackageVolume;
 
    type IPackageVolume2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPackageVolume2 is access IPackageVolume2_Interface'Class;
+   type IPackageVolume2 is access all IPackageVolume2_Interface'Class;
 
    type IRegisterPackageOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IRegisterPackageOptions is access IRegisterPackageOptions_Interface'Class;
+   type IRegisterPackageOptions is access all IRegisterPackageOptions_Interface'Class;
    type IRegisterPackageOptions_Ptr is access all IRegisterPackageOptions;
 
    type IStagePackageOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IStagePackageOptions is access IStagePackageOptions_Interface'Class;
+   type IStagePackageOptions is access all IStagePackageOptions_Interface'Class;
    type IStagePackageOptions_Ptr is access all IStagePackageOptions;
 
    -----------------------------------------------------------------------------
@@ -172,7 +172,7 @@ package WinRt.Windows.Management.Deployment is
       RequiredContentGroupOnly_e => 256,
       LimitToExistingPackages_e => 512
    );
-   type AddPackageByAppInstallerOptions_Ptr is access AddPackageByAppInstallerOptions;
+   type AddPackageByAppInstallerOptions_Ptr is access all AddPackageByAppInstallerOptions;
 
    type DeploymentOptions is (
       None_e,
@@ -196,7 +196,7 @@ package WinRt.Windows.Management.Deployment is
       RetainFilesOnFailure_e => 2097152,
       StageInPlace_e => 4194304
    );
-   type DeploymentOptions_Ptr is access DeploymentOptions;
+   type DeploymentOptions_Ptr is access all DeploymentOptions;
 
    type DeploymentProgressState is (
       Queued_e,
@@ -206,7 +206,7 @@ package WinRt.Windows.Management.Deployment is
       Queued_e => 0,
       Processing_e => 1
    );
-   type DeploymentProgressState_Ptr is access DeploymentProgressState;
+   type DeploymentProgressState_Ptr is access all DeploymentProgressState;
 
    type PackageInstallState is (
       NotInstalled_e,
@@ -220,7 +220,7 @@ package WinRt.Windows.Management.Deployment is
       Installed_e => 2,
       Paused_e => 6
    );
-   type PackageInstallState_Ptr is access PackageInstallState;
+   type PackageInstallState_Ptr is access all PackageInstallState;
 
    type PackageState is (
       Normal_e,
@@ -234,7 +234,7 @@ package WinRt.Windows.Management.Deployment is
       Modified_e => 2,
       Tampered_e => 3
    );
-   type PackageState_Ptr is access PackageState;
+   type PackageState_Ptr is access all PackageState;
 
    type PackageStatus is (
       OK_e,
@@ -250,7 +250,7 @@ package WinRt.Windows.Management.Deployment is
       Tampered_e => 4,
       Disabled_e => 8
    );
-   type PackageStatus_Ptr is access PackageStatus;
+   type PackageStatus_Ptr is access all PackageStatus;
 
    type PackageStubPreference is (
       Full_e,
@@ -260,7 +260,7 @@ package WinRt.Windows.Management.Deployment is
       Full_e => 0,
       Stub_e => 1
    );
-   type PackageStubPreference_Ptr is access PackageStubPreference;
+   type PackageStubPreference_Ptr is access all PackageStubPreference;
 
    type PackageTypes is (
       None_e,
@@ -282,7 +282,7 @@ package WinRt.Windows.Management.Deployment is
       Optional_e => 32,
       All_e => 4294967295
    );
-   type PackageTypes_Ptr is access PackageTypes;
+   type PackageTypes_Ptr is access all PackageTypes;
 
    type RemovalOptions is (
       None_e,
@@ -296,7 +296,7 @@ package WinRt.Windows.Management.Deployment is
       PreserveApplicationData_e => 4096,
       RemoveForAllUsers_e => 524288
    );
-   type RemovalOptions_Ptr is access RemovalOptions;
+   type RemovalOptions_Ptr is access all RemovalOptions;
 
    type StubPackageOption is (
       Default_e,
@@ -310,7 +310,7 @@ package WinRt.Windows.Management.Deployment is
       InstallStub_e => 2,
       UsePreference_e => 3
    );
-   type StubPackageOption_Ptr is access StubPackageOption;
+   type StubPackageOption_Ptr is access all StubPackageOption;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -320,7 +320,7 @@ package WinRt.Windows.Management.Deployment is
       state : Windows.Management.Deployment.DeploymentProgressState;
       percentage : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type DeploymentProgress_Ptr is access DeploymentProgress;
+   type DeploymentProgress_Ptr is access all DeploymentProgress;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

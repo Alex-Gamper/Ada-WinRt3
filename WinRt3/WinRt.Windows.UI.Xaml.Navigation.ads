@@ -41,58 +41,58 @@ package WinRt.Windows.UI.Xaml.Navigation is
    -----------------------------------------------------------------------------
 
    type LoadCompletedEventHandler_Delegate;
-   type LoadCompletedEventHandler is access LoadCompletedEventHandler_Delegate;
+   type LoadCompletedEventHandler is access all LoadCompletedEventHandler_Delegate;
 
    type NavigatedEventHandler_Delegate;
-   type NavigatedEventHandler is access NavigatedEventHandler_Delegate;
+   type NavigatedEventHandler is access all NavigatedEventHandler_Delegate;
 
    type NavigatingCancelEventHandler_Delegate;
-   type NavigatingCancelEventHandler is access NavigatingCancelEventHandler_Delegate;
+   type NavigatingCancelEventHandler is access all NavigatingCancelEventHandler_Delegate;
 
    type NavigationFailedEventHandler_Delegate;
-   type NavigationFailedEventHandler is access NavigationFailedEventHandler_Delegate;
+   type NavigationFailedEventHandler is access all NavigationFailedEventHandler_Delegate;
 
    type NavigationStoppedEventHandler_Delegate;
-   type NavigationStoppedEventHandler is access NavigationStoppedEventHandler_Delegate;
+   type NavigationStoppedEventHandler is access all NavigationStoppedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IFrameNavigationOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameNavigationOptions is access IFrameNavigationOptions_Interface'Class;
+   type IFrameNavigationOptions is access all IFrameNavigationOptions_Interface'Class;
    type IFrameNavigationOptions_Ptr is access all IFrameNavigationOptions;
 
    type IFrameNavigationOptionsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IFrameNavigationOptionsFactory is access IFrameNavigationOptionsFactory_Interface'Class;
+   type IFrameNavigationOptionsFactory is access all IFrameNavigationOptionsFactory_Interface'Class;
 
    type INavigatingCancelEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type INavigatingCancelEventArgs is access INavigatingCancelEventArgs_Interface'Class;
+   type INavigatingCancelEventArgs is access all INavigatingCancelEventArgs_Interface'Class;
    type INavigatingCancelEventArgs_Ptr is access all INavigatingCancelEventArgs;
 
    type INavigatingCancelEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type INavigatingCancelEventArgs2 is access INavigatingCancelEventArgs2_Interface'Class;
+   type INavigatingCancelEventArgs2 is access all INavigatingCancelEventArgs2_Interface'Class;
 
    type INavigationEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type INavigationEventArgs is access INavigationEventArgs_Interface'Class;
+   type INavigationEventArgs is access all INavigationEventArgs_Interface'Class;
    type INavigationEventArgs_Ptr is access all INavigationEventArgs;
 
    type INavigationEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type INavigationEventArgs2 is access INavigationEventArgs2_Interface'Class;
+   type INavigationEventArgs2 is access all INavigationEventArgs2_Interface'Class;
 
    type INavigationFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type INavigationFailedEventArgs is access INavigationFailedEventArgs_Interface'Class;
+   type INavigationFailedEventArgs is access all INavigationFailedEventArgs_Interface'Class;
    type INavigationFailedEventArgs_Ptr is access all INavigationFailedEventArgs;
 
    type IPageStackEntry_Interface is interface and WinRt.IInspectable_Interface;
-   type IPageStackEntry is access IPageStackEntry_Interface'Class;
+   type IPageStackEntry is access all IPageStackEntry_Interface'Class;
    type IPageStackEntry_Ptr is access all IPageStackEntry;
 
    type IPageStackEntryFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPageStackEntryFactory is access IPageStackEntryFactory_Interface'Class;
+   type IPageStackEntryFactory is access all IPageStackEntryFactory_Interface'Class;
 
    type IPageStackEntryStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPageStackEntryStatics is access IPageStackEntryStatics_Interface'Class;
+   type IPageStackEntryStatics is access all IPageStackEntryStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -142,7 +142,7 @@ package WinRt.Windows.UI.Xaml.Navigation is
       Required_e => 1,
       Enabled_e => 2
    );
-   type NavigationCacheMode_Ptr is access NavigationCacheMode;
+   type NavigationCacheMode_Ptr is access all NavigationCacheMode;
 
    type NavigationMode is (
       New_e,
@@ -156,7 +156,7 @@ package WinRt.Windows.UI.Xaml.Navigation is
       Forward_e => 2,
       Refresh_e => 3
    );
-   type NavigationMode_Ptr is access NavigationMode;
+   type NavigationMode_Ptr is access all NavigationMode;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

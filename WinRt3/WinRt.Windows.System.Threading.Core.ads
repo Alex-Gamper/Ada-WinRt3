@@ -39,25 +39,25 @@ package WinRt.Windows.System.Threading.Core is
    -----------------------------------------------------------------------------
 
    type SignalHandler_Delegate;
-   type SignalHandler is access SignalHandler_Delegate;
+   type SignalHandler is access all SignalHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IPreallocatedWorkItem_Interface is interface and WinRt.IInspectable_Interface;
-   type IPreallocatedWorkItem is access IPreallocatedWorkItem_Interface'Class;
+   type IPreallocatedWorkItem is access all IPreallocatedWorkItem_Interface'Class;
    type IPreallocatedWorkItem_Ptr is access all IPreallocatedWorkItem;
 
    type IPreallocatedWorkItemFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPreallocatedWorkItemFactory is access IPreallocatedWorkItemFactory_Interface'Class;
+   type IPreallocatedWorkItemFactory is access all IPreallocatedWorkItemFactory_Interface'Class;
 
    type ISignalNotifier_Interface is interface and WinRt.IInspectable_Interface;
-   type ISignalNotifier is access ISignalNotifier_Interface'Class;
+   type ISignalNotifier is access all ISignalNotifier_Interface'Class;
    type ISignalNotifier_Ptr is access all ISignalNotifier;
 
    type ISignalNotifierStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISignalNotifierStatics is access ISignalNotifierStatics_Interface'Class;
+   type ISignalNotifierStatics is access all ISignalNotifierStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

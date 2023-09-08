@@ -42,14 +42,14 @@ package WinRt.Windows.Storage.BulkAccess is
    -----------------------------------------------------------------------------
 
    type IFileInformationFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileInformationFactory is access IFileInformationFactory_Interface'Class;
+   type IFileInformationFactory is access all IFileInformationFactory_Interface'Class;
    type IFileInformationFactory_Ptr is access all IFileInformationFactory;
 
    type IFileInformationFactoryFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileInformationFactoryFactory is access IFileInformationFactoryFactory_Interface'Class;
+   type IFileInformationFactoryFactory is access all IFileInformationFactoryFactory_Interface'Class;
 
    type IStorageItemInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageItemInformation is access IStorageItemInformation_Interface'Class;
+   type IStorageItemInformation is access all IStorageItemInformation_Interface'Class;
    type IStorageItemInformation_Ptr is access all IStorageItemInformation;
 
    -----------------------------------------------------------------------------

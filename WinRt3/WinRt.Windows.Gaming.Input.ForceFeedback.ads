@@ -40,30 +40,30 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
    -----------------------------------------------------------------------------
 
    type IConditionForceEffect_Interface is interface and WinRt.IInspectable_Interface;
-   type IConditionForceEffect is access IConditionForceEffect_Interface'Class;
+   type IConditionForceEffect is access all IConditionForceEffect_Interface'Class;
 
    type IConditionForceEffectFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IConditionForceEffectFactory is access IConditionForceEffectFactory_Interface'Class;
+   type IConditionForceEffectFactory is access all IConditionForceEffectFactory_Interface'Class;
 
    type IConstantForceEffect_Interface is interface and WinRt.IInspectable_Interface;
-   type IConstantForceEffect is access IConstantForceEffect_Interface'Class;
+   type IConstantForceEffect is access all IConstantForceEffect_Interface'Class;
 
    type IForceFeedbackEffect_Interface is interface and WinRt.IInspectable_Interface;
-   type IForceFeedbackEffect is access IForceFeedbackEffect_Interface'Class;
+   type IForceFeedbackEffect is access all IForceFeedbackEffect_Interface'Class;
    type IForceFeedbackEffect_Ptr is access all IForceFeedbackEffect;
 
    type IForceFeedbackMotor_Interface is interface and WinRt.IInspectable_Interface;
-   type IForceFeedbackMotor is access IForceFeedbackMotor_Interface'Class;
+   type IForceFeedbackMotor is access all IForceFeedbackMotor_Interface'Class;
    type IForceFeedbackMotor_Ptr is access all IForceFeedbackMotor;
 
    type IPeriodicForceEffect_Interface is interface and WinRt.IInspectable_Interface;
-   type IPeriodicForceEffect is access IPeriodicForceEffect_Interface'Class;
+   type IPeriodicForceEffect is access all IPeriodicForceEffect_Interface'Class;
 
    type IPeriodicForceEffectFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPeriodicForceEffectFactory is access IPeriodicForceEffectFactory_Interface'Class;
+   type IPeriodicForceEffectFactory is access all IPeriodicForceEffectFactory_Interface'Class;
 
    type IRampForceEffect_Interface is interface and WinRt.IInspectable_Interface;
-   type IRampForceEffect is access IRampForceEffect_Interface'Class;
+   type IRampForceEffect is access all IRampForceEffect_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -115,7 +115,7 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       Inertia_e => 2,
       Friction_e => 3
    );
-   type ConditionForceEffectKind_Ptr is access ConditionForceEffectKind;
+   type ConditionForceEffectKind_Ptr is access all ConditionForceEffectKind;
 
    type ForceFeedbackEffectAxes is (
       None_e,
@@ -129,7 +129,7 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       Y_e => 2,
       Z_e => 4
    );
-   type ForceFeedbackEffectAxes_Ptr is access ForceFeedbackEffectAxes;
+   type ForceFeedbackEffectAxes_Ptr is access all ForceFeedbackEffectAxes;
 
    type ForceFeedbackEffectState is (
       Stopped_e,
@@ -143,7 +143,7 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       Paused_e => 2,
       Faulted_e => 3
    );
-   type ForceFeedbackEffectState_Ptr is access ForceFeedbackEffectState;
+   type ForceFeedbackEffectState_Ptr is access all ForceFeedbackEffectState;
 
    type ForceFeedbackLoadEffectResult is (
       Succeeded_e,
@@ -155,7 +155,7 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       EffectStorageFull_e => 1,
       EffectNotSupported_e => 2
    );
-   type ForceFeedbackLoadEffectResult_Ptr is access ForceFeedbackLoadEffectResult;
+   type ForceFeedbackLoadEffectResult_Ptr is access all ForceFeedbackLoadEffectResult;
 
    type PeriodicForceEffectKind is (
       SquareWave_e,
@@ -171,7 +171,7 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       SawtoothWaveUp_e => 3,
       SawtoothWaveDown_e => 4
    );
-   type PeriodicForceEffectKind_Ptr is access PeriodicForceEffectKind;
+   type PeriodicForceEffectKind_Ptr is access all PeriodicForceEffectKind;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

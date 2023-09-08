@@ -42,22 +42,22 @@ package WinRt.Windows.Data.Pdf is
    -----------------------------------------------------------------------------
 
    type IPdfDocument_Interface is interface and WinRt.IInspectable_Interface;
-   type IPdfDocument is access IPdfDocument_Interface'Class;
+   type IPdfDocument is access all IPdfDocument_Interface'Class;
    type IPdfDocument_Ptr is access all IPdfDocument;
 
    type IPdfDocumentStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPdfDocumentStatics is access IPdfDocumentStatics_Interface'Class;
+   type IPdfDocumentStatics is access all IPdfDocumentStatics_Interface'Class;
 
    type IPdfPage_Interface is interface and WinRt.IInspectable_Interface;
-   type IPdfPage is access IPdfPage_Interface'Class;
+   type IPdfPage is access all IPdfPage_Interface'Class;
    type IPdfPage_Ptr is access all IPdfPage;
 
    type IPdfPageDimensions_Interface is interface and WinRt.IInspectable_Interface;
-   type IPdfPageDimensions is access IPdfPageDimensions_Interface'Class;
+   type IPdfPageDimensions is access all IPdfPageDimensions_Interface'Class;
    type IPdfPageDimensions_Ptr is access all IPdfPageDimensions;
 
    type IPdfPageRenderOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IPdfPageRenderOptions is access IPdfPageRenderOptions_Interface'Class;
+   type IPdfPageRenderOptions is access all IPdfPageRenderOptions_Interface'Class;
    type IPdfPageRenderOptions_Ptr is access all IPdfPageRenderOptions;
 
    -----------------------------------------------------------------------------
@@ -104,7 +104,7 @@ package WinRt.Windows.Data.Pdf is
       Rotate180_e => 2,
       Rotate270_e => 3
    );
-   type PdfPageRotation_Ptr is access PdfPageRotation;
+   type PdfPageRotation_Ptr is access all PdfPageRotation;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

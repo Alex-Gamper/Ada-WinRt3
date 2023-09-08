@@ -46,29 +46,29 @@ package WinRt.Windows.Web.UI.Interop is
    -----------------------------------------------------------------------------
 
    type IWebViewControlAcceleratorKeyPressedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlAcceleratorKeyPressedEventArgs is access IWebViewControlAcceleratorKeyPressedEventArgs_Interface'Class;
+   type IWebViewControlAcceleratorKeyPressedEventArgs is access all IWebViewControlAcceleratorKeyPressedEventArgs_Interface'Class;
    type IWebViewControlAcceleratorKeyPressedEventArgs_Ptr is access all IWebViewControlAcceleratorKeyPressedEventArgs;
 
    type IWebViewControlMoveFocusRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlMoveFocusRequestedEventArgs is access IWebViewControlMoveFocusRequestedEventArgs_Interface'Class;
+   type IWebViewControlMoveFocusRequestedEventArgs is access all IWebViewControlMoveFocusRequestedEventArgs_Interface'Class;
    type IWebViewControlMoveFocusRequestedEventArgs_Ptr is access all IWebViewControlMoveFocusRequestedEventArgs;
 
    type IWebViewControlProcess_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlProcess is access IWebViewControlProcess_Interface'Class;
+   type IWebViewControlProcess is access all IWebViewControlProcess_Interface'Class;
    type IWebViewControlProcess_Ptr is access all IWebViewControlProcess;
 
    type IWebViewControlProcessFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlProcessFactory is access IWebViewControlProcessFactory_Interface'Class;
+   type IWebViewControlProcessFactory is access all IWebViewControlProcessFactory_Interface'Class;
 
    type IWebViewControlProcessOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlProcessOptions is access IWebViewControlProcessOptions_Interface'Class;
+   type IWebViewControlProcessOptions is access all IWebViewControlProcessOptions_Interface'Class;
    type IWebViewControlProcessOptions_Ptr is access all IWebViewControlProcessOptions;
 
    type IWebViewControlSite_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlSite is access IWebViewControlSite_Interface'Class;
+   type IWebViewControlSite is access all IWebViewControlSite_Interface'Class;
 
    type IWebViewControlSite2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebViewControlSite2 is access IWebViewControlSite2_Interface'Class;
+   type IWebViewControlSite2 is access all IWebViewControlSite2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -116,7 +116,7 @@ package WinRt.Windows.Web.UI.Interop is
       Tunneling_e => 0,
       Bubbling_e => 1
    );
-   type WebViewControlAcceleratorKeyRoutingStage_Ptr is access WebViewControlAcceleratorKeyRoutingStage;
+   type WebViewControlAcceleratorKeyRoutingStage_Ptr is access all WebViewControlAcceleratorKeyRoutingStage;
 
    type WebViewControlMoveFocusReason is (
       Programmatic_e,
@@ -128,7 +128,7 @@ package WinRt.Windows.Web.UI.Interop is
       Next_e => 1,
       Previous_e => 2
    );
-   type WebViewControlMoveFocusReason_Ptr is access WebViewControlMoveFocusReason;
+   type WebViewControlMoveFocusReason_Ptr is access all WebViewControlMoveFocusReason;
 
    type WebViewControlProcessCapabilityState is (
       Default_e,
@@ -140,7 +140,7 @@ package WinRt.Windows.Web.UI.Interop is
       Disabled_e => 1,
       Enabled_e => 2
    );
-   type WebViewControlProcessCapabilityState_Ptr is access WebViewControlProcessCapabilityState;
+   type WebViewControlProcessCapabilityState_Ptr is access all WebViewControlProcessCapabilityState;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

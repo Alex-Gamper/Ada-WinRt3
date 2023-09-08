@@ -39,27 +39,27 @@ package WinRt.Windows.System.Threading is
    -----------------------------------------------------------------------------
 
    type TimerDestroyedHandler_Delegate;
-   type TimerDestroyedHandler is access TimerDestroyedHandler_Delegate;
+   type TimerDestroyedHandler is access all TimerDestroyedHandler_Delegate;
 
    type TimerElapsedHandler_Delegate;
-   type TimerElapsedHandler is access TimerElapsedHandler_Delegate;
+   type TimerElapsedHandler is access all TimerElapsedHandler_Delegate;
 
    type WorkItemHandler_Delegate;
-   type WorkItemHandler is access WorkItemHandler_Delegate;
+   type WorkItemHandler is access all WorkItemHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IThreadPoolStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IThreadPoolStatics is access IThreadPoolStatics_Interface'Class;
+   type IThreadPoolStatics is access all IThreadPoolStatics_Interface'Class;
 
    type IThreadPoolTimer_Interface is interface and WinRt.IInspectable_Interface;
-   type IThreadPoolTimer is access IThreadPoolTimer_Interface'Class;
+   type IThreadPoolTimer is access all IThreadPoolTimer_Interface'Class;
    type IThreadPoolTimer_Ptr is access all IThreadPoolTimer;
 
    type IThreadPoolTimerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IThreadPoolTimerStatics is access IThreadPoolTimerStatics_Interface'Class;
+   type IThreadPoolTimerStatics is access all IThreadPoolTimerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -83,7 +83,7 @@ package WinRt.Windows.System.Threading is
       None_e => 0,
       TimeSliced_e => 1
    );
-   type WorkItemOptions_Ptr is access WorkItemOptions;
+   type WorkItemOptions_Ptr is access all WorkItemOptions;
 
    type WorkItemPriority is (
       Low_e,
@@ -95,7 +95,7 @@ package WinRt.Windows.System.Threading is
       Normal_e => 0,
       High_e => 1
    );
-   type WorkItemPriority_Ptr is access WorkItemPriority;
+   type WorkItemPriority_Ptr is access all WorkItemPriority;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

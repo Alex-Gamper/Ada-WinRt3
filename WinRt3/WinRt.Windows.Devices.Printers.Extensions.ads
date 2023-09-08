@@ -39,41 +39,41 @@ package WinRt.Windows.Devices.Printers.Extensions is
    -----------------------------------------------------------------------------
 
    type IPrint3DWorkflow_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrint3DWorkflow is access IPrint3DWorkflow_Interface'Class;
+   type IPrint3DWorkflow is access all IPrint3DWorkflow_Interface'Class;
    type IPrint3DWorkflow_Ptr is access all IPrint3DWorkflow;
 
    type IPrint3DWorkflow2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrint3DWorkflow2 is access IPrint3DWorkflow2_Interface'Class;
+   type IPrint3DWorkflow2 is access all IPrint3DWorkflow2_Interface'Class;
 
    type IPrint3DWorkflowPrintRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrint3DWorkflowPrintRequestedEventArgs is access IPrint3DWorkflowPrintRequestedEventArgs_Interface'Class;
+   type IPrint3DWorkflowPrintRequestedEventArgs is access all IPrint3DWorkflowPrintRequestedEventArgs_Interface'Class;
    type IPrint3DWorkflowPrintRequestedEventArgs_Ptr is access all IPrint3DWorkflowPrintRequestedEventArgs;
 
    type IPrint3DWorkflowPrinterChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrint3DWorkflowPrinterChangedEventArgs is access IPrint3DWorkflowPrinterChangedEventArgs_Interface'Class;
+   type IPrint3DWorkflowPrinterChangedEventArgs is access all IPrint3DWorkflowPrinterChangedEventArgs_Interface'Class;
    type IPrint3DWorkflowPrinterChangedEventArgs_Ptr is access all IPrint3DWorkflowPrinterChangedEventArgs;
 
    type IPrintExtensionContextStatic_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintExtensionContextStatic is access IPrintExtensionContextStatic_Interface'Class;
+   type IPrintExtensionContextStatic is access all IPrintExtensionContextStatic_Interface'Class;
 
    type IPrintNotificationEventDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintNotificationEventDetails is access IPrintNotificationEventDetails_Interface'Class;
+   type IPrintNotificationEventDetails is access all IPrintNotificationEventDetails_Interface'Class;
    type IPrintNotificationEventDetails_Ptr is access all IPrintNotificationEventDetails;
 
    type IPrintTaskConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskConfiguration is access IPrintTaskConfiguration_Interface'Class;
+   type IPrintTaskConfiguration is access all IPrintTaskConfiguration_Interface'Class;
    type IPrintTaskConfiguration_Ptr is access all IPrintTaskConfiguration;
 
    type IPrintTaskConfigurationSaveRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskConfigurationSaveRequest is access IPrintTaskConfigurationSaveRequest_Interface'Class;
+   type IPrintTaskConfigurationSaveRequest is access all IPrintTaskConfigurationSaveRequest_Interface'Class;
    type IPrintTaskConfigurationSaveRequest_Ptr is access all IPrintTaskConfigurationSaveRequest;
 
    type IPrintTaskConfigurationSaveRequestedDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskConfigurationSaveRequestedDeferral is access IPrintTaskConfigurationSaveRequestedDeferral_Interface'Class;
+   type IPrintTaskConfigurationSaveRequestedDeferral is access all IPrintTaskConfigurationSaveRequestedDeferral_Interface'Class;
    type IPrintTaskConfigurationSaveRequestedDeferral_Ptr is access all IPrintTaskConfigurationSaveRequestedDeferral;
 
    type IPrintTaskConfigurationSaveRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskConfigurationSaveRequestedEventArgs is access IPrintTaskConfigurationSaveRequestedEventArgs_Interface'Class;
+   type IPrintTaskConfigurationSaveRequestedEventArgs is access all IPrintTaskConfigurationSaveRequestedEventArgs_Interface'Class;
    type IPrintTaskConfigurationSaveRequestedEventArgs_Ptr is access all IPrintTaskConfigurationSaveRequestedEventArgs;
 
    -----------------------------------------------------------------------------
@@ -150,7 +150,7 @@ package WinRt.Windows.Devices.Printers.Extensions is
       ModelNotManifold_e => 5,
       InvalidPrintTicket_e => 6
    );
-   type Print3DWorkflowDetail_Ptr is access Print3DWorkflowDetail;
+   type Print3DWorkflowDetail_Ptr is access all Print3DWorkflowDetail;
 
    type Print3DWorkflowStatus is (
       Abandoned_e,
@@ -166,7 +166,7 @@ package WinRt.Windows.Devices.Printers.Extensions is
       Slicing_e => 3,
       Submitted_e => 4
    );
-   type Print3DWorkflowStatus_Ptr is access Print3DWorkflowStatus;
+   type Print3DWorkflowStatus_Ptr is access all Print3DWorkflowStatus;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -175,7 +175,7 @@ package WinRt.Windows.Devices.Printers.Extensions is
    type ExtensionsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type ExtensionsContract_Ptr is access ExtensionsContract;
+   type ExtensionsContract_Ptr is access all ExtensionsContract;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

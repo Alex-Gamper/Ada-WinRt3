@@ -39,16 +39,16 @@ package WinRt.Windows.Devices.I2c.Provider is
    -----------------------------------------------------------------------------
 
    type II2cControllerProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type II2cControllerProvider is access II2cControllerProvider_Interface'Class;
+   type II2cControllerProvider is access all II2cControllerProvider_Interface'Class;
 
    type II2cDeviceProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type II2cDeviceProvider is access II2cDeviceProvider_Interface'Class;
+   type II2cDeviceProvider is access all II2cDeviceProvider_Interface'Class;
 
    type II2cProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type II2cProvider is access II2cProvider_Interface'Class;
+   type II2cProvider is access all II2cProvider_Interface'Class;
 
    type IProviderI2cConnectionSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IProviderI2cConnectionSettings is access IProviderI2cConnectionSettings_Interface'Class;
+   type IProviderI2cConnectionSettings is access all IProviderI2cConnectionSettings_Interface'Class;
    type IProviderI2cConnectionSettings_Ptr is access all IProviderI2cConnectionSettings;
 
    -----------------------------------------------------------------------------
@@ -73,7 +73,7 @@ package WinRt.Windows.Devices.I2c.Provider is
       StandardMode_e => 0,
       FastMode_e => 1
    );
-   type ProviderI2cBusSpeed_Ptr is access ProviderI2cBusSpeed;
+   type ProviderI2cBusSpeed_Ptr is access all ProviderI2cBusSpeed;
 
    type ProviderI2cSharingMode is (
       Exclusive_e,
@@ -83,7 +83,7 @@ package WinRt.Windows.Devices.I2c.Provider is
       Exclusive_e => 0,
       Shared_e => 1
    );
-   type ProviderI2cSharingMode_Ptr is access ProviderI2cSharingMode;
+   type ProviderI2cSharingMode_Ptr is access all ProviderI2cSharingMode;
 
    type ProviderI2cTransferStatus is (
       FullTransfer_e,
@@ -95,7 +95,7 @@ package WinRt.Windows.Devices.I2c.Provider is
       PartialTransfer_e => 1,
       SlaveAddressNotAcknowledged_e => 2
    );
-   type ProviderI2cTransferStatus_Ptr is access ProviderI2cTransferStatus;
+   type ProviderI2cTransferStatus_Ptr is access all ProviderI2cTransferStatus;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -105,7 +105,7 @@ package WinRt.Windows.Devices.I2c.Provider is
       Status : Windows.Devices.I2c.Provider.ProviderI2cTransferStatus;
       BytesTransferred : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type ProviderI2cTransferResult_Ptr is access ProviderI2cTransferResult;
+   type ProviderI2cTransferResult_Ptr is access all ProviderI2cTransferResult;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

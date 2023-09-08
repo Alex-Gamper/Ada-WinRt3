@@ -44,179 +44,179 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    -----------------------------------------------------------------------------
 
    type DataProviderHandler_Delegate;
-   type DataProviderHandler is access DataProviderHandler_Delegate;
+   type DataProviderHandler is access all DataProviderHandler_Delegate;
 
    type ShareProviderHandler_Delegate;
-   type ShareProviderHandler is access ShareProviderHandler_Delegate;
+   type ShareProviderHandler is access all ShareProviderHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IClipboardContentOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IClipboardContentOptions is access IClipboardContentOptions_Interface'Class;
+   type IClipboardContentOptions is access all IClipboardContentOptions_Interface'Class;
    type IClipboardContentOptions_Ptr is access all IClipboardContentOptions;
 
    type IClipboardHistoryChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IClipboardHistoryChangedEventArgs is access IClipboardHistoryChangedEventArgs_Interface'Class;
+   type IClipboardHistoryChangedEventArgs is access all IClipboardHistoryChangedEventArgs_Interface'Class;
    type IClipboardHistoryChangedEventArgs_Ptr is access all IClipboardHistoryChangedEventArgs;
 
    type IClipboardHistoryItem_Interface is interface and WinRt.IInspectable_Interface;
-   type IClipboardHistoryItem is access IClipboardHistoryItem_Interface'Class;
+   type IClipboardHistoryItem is access all IClipboardHistoryItem_Interface'Class;
    type IClipboardHistoryItem_Ptr is access all IClipboardHistoryItem;
 
    type IClipboardHistoryItemsResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IClipboardHistoryItemsResult is access IClipboardHistoryItemsResult_Interface'Class;
+   type IClipboardHistoryItemsResult is access all IClipboardHistoryItemsResult_Interface'Class;
    type IClipboardHistoryItemsResult_Ptr is access all IClipboardHistoryItemsResult;
 
    type IClipboardStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IClipboardStatics is access IClipboardStatics_Interface'Class;
+   type IClipboardStatics is access all IClipboardStatics_Interface'Class;
 
    type IClipboardStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IClipboardStatics2 is access IClipboardStatics2_Interface'Class;
+   type IClipboardStatics2 is access all IClipboardStatics2_Interface'Class;
 
    type IDataPackage_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPackage is access IDataPackage_Interface'Class;
+   type IDataPackage is access all IDataPackage_Interface'Class;
    type IDataPackage_Ptr is access all IDataPackage;
 
    type IDataPackage2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPackage2 is access IDataPackage2_Interface'Class;
+   type IDataPackage2 is access all IDataPackage2_Interface'Class;
 
    type IDataPackage3_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPackage3 is access IDataPackage3_Interface'Class;
+   type IDataPackage3 is access all IDataPackage3_Interface'Class;
 
    type IDataPackage4_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPackage4 is access IDataPackage4_Interface'Class;
+   type IDataPackage4 is access all IDataPackage4_Interface'Class;
 
    type IDataPackagePropertySet_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPackagePropertySet is access IDataPackagePropertySet_Interface'Class;
+   type IDataPackagePropertySet is access all IDataPackagePropertySet_Interface'Class;
    type IDataPackagePropertySet_Ptr is access all IDataPackagePropertySet;
 
    type IDataPackagePropertySet2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPackagePropertySet2 is access IDataPackagePropertySet2_Interface'Class;
+   type IDataPackagePropertySet2 is access all IDataPackagePropertySet2_Interface'Class;
 
    type IDataPackagePropertySet3_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPackagePropertySet3 is access IDataPackagePropertySet3_Interface'Class;
+   type IDataPackagePropertySet3 is access all IDataPackagePropertySet3_Interface'Class;
 
    type IDataPackagePropertySet4_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPackagePropertySet4 is access IDataPackagePropertySet4_Interface'Class;
+   type IDataPackagePropertySet4 is access all IDataPackagePropertySet4_Interface'Class;
 
    type IDataPackagePropertySetView_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPackagePropertySetView is access IDataPackagePropertySetView_Interface'Class;
+   type IDataPackagePropertySetView is access all IDataPackagePropertySetView_Interface'Class;
    type IDataPackagePropertySetView_Ptr is access all IDataPackagePropertySetView;
 
    type IDataPackagePropertySetView2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPackagePropertySetView2 is access IDataPackagePropertySetView2_Interface'Class;
+   type IDataPackagePropertySetView2 is access all IDataPackagePropertySetView2_Interface'Class;
 
    type IDataPackagePropertySetView3_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPackagePropertySetView3 is access IDataPackagePropertySetView3_Interface'Class;
+   type IDataPackagePropertySetView3 is access all IDataPackagePropertySetView3_Interface'Class;
 
    type IDataPackagePropertySetView4_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPackagePropertySetView4 is access IDataPackagePropertySetView4_Interface'Class;
+   type IDataPackagePropertySetView4 is access all IDataPackagePropertySetView4_Interface'Class;
 
    type IDataPackagePropertySetView5_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPackagePropertySetView5 is access IDataPackagePropertySetView5_Interface'Class;
+   type IDataPackagePropertySetView5 is access all IDataPackagePropertySetView5_Interface'Class;
 
    type IDataPackageView_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPackageView is access IDataPackageView_Interface'Class;
+   type IDataPackageView is access all IDataPackageView_Interface'Class;
    type IDataPackageView_Ptr is access all IDataPackageView;
 
    type IDataPackageView2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPackageView2 is access IDataPackageView2_Interface'Class;
+   type IDataPackageView2 is access all IDataPackageView2_Interface'Class;
 
    type IDataPackageView3_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPackageView3 is access IDataPackageView3_Interface'Class;
+   type IDataPackageView3 is access all IDataPackageView3_Interface'Class;
 
    type IDataPackageView4_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataPackageView4 is access IDataPackageView4_Interface'Class;
+   type IDataPackageView4 is access all IDataPackageView4_Interface'Class;
 
    type IDataProviderDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataProviderDeferral is access IDataProviderDeferral_Interface'Class;
+   type IDataProviderDeferral is access all IDataProviderDeferral_Interface'Class;
    type IDataProviderDeferral_Ptr is access all IDataProviderDeferral;
 
    type IDataProviderRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataProviderRequest is access IDataProviderRequest_Interface'Class;
+   type IDataProviderRequest is access all IDataProviderRequest_Interface'Class;
    type IDataProviderRequest_Ptr is access all IDataProviderRequest;
 
    type IDataRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataRequest is access IDataRequest_Interface'Class;
+   type IDataRequest is access all IDataRequest_Interface'Class;
    type IDataRequest_Ptr is access all IDataRequest;
 
    type IDataRequestDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataRequestDeferral is access IDataRequestDeferral_Interface'Class;
+   type IDataRequestDeferral is access all IDataRequestDeferral_Interface'Class;
    type IDataRequestDeferral_Ptr is access all IDataRequestDeferral;
 
    type IDataRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataRequestedEventArgs is access IDataRequestedEventArgs_Interface'Class;
+   type IDataRequestedEventArgs is access all IDataRequestedEventArgs_Interface'Class;
    type IDataRequestedEventArgs_Ptr is access all IDataRequestedEventArgs;
 
    type IDataTransferManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataTransferManager is access IDataTransferManager_Interface'Class;
+   type IDataTransferManager is access all IDataTransferManager_Interface'Class;
    type IDataTransferManager_Ptr is access all IDataTransferManager;
 
    type IDataTransferManager2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataTransferManager2 is access IDataTransferManager2_Interface'Class;
+   type IDataTransferManager2 is access all IDataTransferManager2_Interface'Class;
 
    type IDataTransferManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataTransferManagerStatics is access IDataTransferManagerStatics_Interface'Class;
+   type IDataTransferManagerStatics is access all IDataTransferManagerStatics_Interface'Class;
 
    type IDataTransferManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataTransferManagerStatics2 is access IDataTransferManagerStatics2_Interface'Class;
+   type IDataTransferManagerStatics2 is access all IDataTransferManagerStatics2_Interface'Class;
 
    type IDataTransferManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataTransferManagerStatics3 is access IDataTransferManagerStatics3_Interface'Class;
+   type IDataTransferManagerStatics3 is access all IDataTransferManagerStatics3_Interface'Class;
 
    type IHtmlFormatHelperStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHtmlFormatHelperStatics is access IHtmlFormatHelperStatics_Interface'Class;
+   type IHtmlFormatHelperStatics is access all IHtmlFormatHelperStatics_Interface'Class;
 
    type IOperationCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IOperationCompletedEventArgs is access IOperationCompletedEventArgs_Interface'Class;
+   type IOperationCompletedEventArgs is access all IOperationCompletedEventArgs_Interface'Class;
    type IOperationCompletedEventArgs_Ptr is access all IOperationCompletedEventArgs;
 
    type IOperationCompletedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IOperationCompletedEventArgs2 is access IOperationCompletedEventArgs2_Interface'Class;
+   type IOperationCompletedEventArgs2 is access all IOperationCompletedEventArgs2_Interface'Class;
 
    type IShareCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IShareCompletedEventArgs is access IShareCompletedEventArgs_Interface'Class;
+   type IShareCompletedEventArgs is access all IShareCompletedEventArgs_Interface'Class;
    type IShareCompletedEventArgs_Ptr is access all IShareCompletedEventArgs;
 
    type IShareProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IShareProvider is access IShareProvider_Interface'Class;
+   type IShareProvider is access all IShareProvider_Interface'Class;
    type IShareProvider_Ptr is access all IShareProvider;
 
    type IShareProviderFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IShareProviderFactory is access IShareProviderFactory_Interface'Class;
+   type IShareProviderFactory is access all IShareProviderFactory_Interface'Class;
 
    type IShareProviderOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IShareProviderOperation is access IShareProviderOperation_Interface'Class;
+   type IShareProviderOperation is access all IShareProviderOperation_Interface'Class;
    type IShareProviderOperation_Ptr is access all IShareProviderOperation;
 
    type IShareProvidersRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IShareProvidersRequestedEventArgs is access IShareProvidersRequestedEventArgs_Interface'Class;
+   type IShareProvidersRequestedEventArgs is access all IShareProvidersRequestedEventArgs_Interface'Class;
    type IShareProvidersRequestedEventArgs_Ptr is access all IShareProvidersRequestedEventArgs;
 
    type IShareTargetInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IShareTargetInfo is access IShareTargetInfo_Interface'Class;
+   type IShareTargetInfo is access all IShareTargetInfo_Interface'Class;
    type IShareTargetInfo_Ptr is access all IShareTargetInfo;
 
    type IShareUIOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IShareUIOptions is access IShareUIOptions_Interface'Class;
+   type IShareUIOptions is access all IShareUIOptions_Interface'Class;
    type IShareUIOptions_Ptr is access all IShareUIOptions;
 
    type ISharedStorageAccessManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISharedStorageAccessManagerStatics is access ISharedStorageAccessManagerStatics_Interface'Class;
+   type ISharedStorageAccessManagerStatics is access all ISharedStorageAccessManagerStatics_Interface'Class;
 
    type IStandardDataFormatsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStandardDataFormatsStatics is access IStandardDataFormatsStatics_Interface'Class;
+   type IStandardDataFormatsStatics is access all IStandardDataFormatsStatics_Interface'Class;
 
    type IStandardDataFormatsStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStandardDataFormatsStatics2 is access IStandardDataFormatsStatics2_Interface'Class;
+   type IStandardDataFormatsStatics2 is access all IStandardDataFormatsStatics2_Interface'Class;
 
    type IStandardDataFormatsStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IStandardDataFormatsStatics3 is access IStandardDataFormatsStatics3_Interface'Class;
+   type IStandardDataFormatsStatics3 is access all IStandardDataFormatsStatics3_Interface'Class;
 
    type ITargetApplicationChosenEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ITargetApplicationChosenEventArgs is access ITargetApplicationChosenEventArgs_Interface'Class;
+   type ITargetApplicationChosenEventArgs is access all ITargetApplicationChosenEventArgs_Interface'Class;
    type ITargetApplicationChosenEventArgs_Ptr is access all ITargetApplicationChosenEventArgs;
 
    -----------------------------------------------------------------------------
@@ -369,7 +369,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       AccessDenied_e => 1,
       ClipboardHistoryDisabled_e => 2
    );
-   type ClipboardHistoryItemsResultStatus_Ptr is access ClipboardHistoryItemsResultStatus;
+   type ClipboardHistoryItemsResultStatus_Ptr is access all ClipboardHistoryItemsResultStatus;
 
    type DataPackageOperation is (
       None_e,
@@ -383,7 +383,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       Move_e => 2,
       Link_e => 4
    );
-   type DataPackageOperation_Ptr is access DataPackageOperation;
+   type DataPackageOperation_Ptr is access all DataPackageOperation;
 
    type SetHistoryItemAsContentStatus is (
       Success_e,
@@ -395,7 +395,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       AccessDenied_e => 1,
       ItemDeleted_e => 2
    );
-   type SetHistoryItemAsContentStatus_Ptr is access SetHistoryItemAsContentStatus;
+   type SetHistoryItemAsContentStatus_Ptr is access all SetHistoryItemAsContentStatus;
 
    type ShareUITheme is (
       Default_e,
@@ -407,7 +407,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       Light_e => 1,
       Dark_e => 2
    );
-   type ShareUITheme_Ptr is access ShareUITheme;
+   type ShareUITheme_Ptr is access all ShareUITheme;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

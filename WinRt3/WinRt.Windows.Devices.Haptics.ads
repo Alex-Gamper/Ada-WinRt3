@@ -40,22 +40,22 @@ package WinRt.Windows.Devices.Haptics is
    -----------------------------------------------------------------------------
 
    type IKnownSimpleHapticsControllerWaveformsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownSimpleHapticsControllerWaveformsStatics is access IKnownSimpleHapticsControllerWaveformsStatics_Interface'Class;
+   type IKnownSimpleHapticsControllerWaveformsStatics is access all IKnownSimpleHapticsControllerWaveformsStatics_Interface'Class;
 
    type ISimpleHapticsController_Interface is interface and WinRt.IInspectable_Interface;
-   type ISimpleHapticsController is access ISimpleHapticsController_Interface'Class;
+   type ISimpleHapticsController is access all ISimpleHapticsController_Interface'Class;
    type ISimpleHapticsController_Ptr is access all ISimpleHapticsController;
 
    type ISimpleHapticsControllerFeedback_Interface is interface and WinRt.IInspectable_Interface;
-   type ISimpleHapticsControllerFeedback is access ISimpleHapticsControllerFeedback_Interface'Class;
+   type ISimpleHapticsControllerFeedback is access all ISimpleHapticsControllerFeedback_Interface'Class;
    type ISimpleHapticsControllerFeedback_Ptr is access all ISimpleHapticsControllerFeedback;
 
    type IVibrationDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IVibrationDevice is access IVibrationDevice_Interface'Class;
+   type IVibrationDevice is access all IVibrationDevice_Interface'Class;
    type IVibrationDevice_Ptr is access all IVibrationDevice;
 
    type IVibrationDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IVibrationDeviceStatics is access IVibrationDeviceStatics_Interface'Class;
+   type IVibrationDeviceStatics is access all IVibrationDeviceStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -95,7 +95,7 @@ package WinRt.Windows.Devices.Haptics is
       DeniedBySystem_e => 2,
       DeniedByEnergySaver_e => 3
    );
-   type VibrationAccessStatus_Ptr is access VibrationAccessStatus;
+   type VibrationAccessStatus_Ptr is access all VibrationAccessStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -58,382 +58,382 @@ package WinRt.Windows.Media.Core is
    -----------------------------------------------------------------------------
 
    type IAudioStreamDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioStreamDescriptor is access IAudioStreamDescriptor_Interface'Class;
+   type IAudioStreamDescriptor is access all IAudioStreamDescriptor_Interface'Class;
    type IAudioStreamDescriptor_Ptr is access all IAudioStreamDescriptor;
 
    type IAudioStreamDescriptor2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioStreamDescriptor2 is access IAudioStreamDescriptor2_Interface'Class;
+   type IAudioStreamDescriptor2 is access all IAudioStreamDescriptor2_Interface'Class;
 
    type IAudioStreamDescriptor3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioStreamDescriptor3 is access IAudioStreamDescriptor3_Interface'Class;
+   type IAudioStreamDescriptor3 is access all IAudioStreamDescriptor3_Interface'Class;
 
    type IAudioStreamDescriptorFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioStreamDescriptorFactory is access IAudioStreamDescriptorFactory_Interface'Class;
+   type IAudioStreamDescriptorFactory is access all IAudioStreamDescriptorFactory_Interface'Class;
 
    type IAudioTrack_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioTrack is access IAudioTrack_Interface'Class;
+   type IAudioTrack is access all IAudioTrack_Interface'Class;
 
    type IAudioTrackOpenFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioTrackOpenFailedEventArgs is access IAudioTrackOpenFailedEventArgs_Interface'Class;
+   type IAudioTrackOpenFailedEventArgs is access all IAudioTrackOpenFailedEventArgs_Interface'Class;
    type IAudioTrackOpenFailedEventArgs_Ptr is access all IAudioTrackOpenFailedEventArgs;
 
    type IAudioTrackSupportInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAudioTrackSupportInfo is access IAudioTrackSupportInfo_Interface'Class;
+   type IAudioTrackSupportInfo is access all IAudioTrackSupportInfo_Interface'Class;
    type IAudioTrackSupportInfo_Ptr is access all IAudioTrackSupportInfo;
 
    type IChapterCue_Interface is interface and WinRt.IInspectable_Interface;
-   type IChapterCue is access IChapterCue_Interface'Class;
+   type IChapterCue is access all IChapterCue_Interface'Class;
    type IChapterCue_Ptr is access all IChapterCue;
 
    type ICodecInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ICodecInfo is access ICodecInfo_Interface'Class;
+   type ICodecInfo is access all ICodecInfo_Interface'Class;
    type ICodecInfo_Ptr is access all ICodecInfo;
 
    type ICodecQuery_Interface is interface and WinRt.IInspectable_Interface;
-   type ICodecQuery is access ICodecQuery_Interface'Class;
+   type ICodecQuery is access all ICodecQuery_Interface'Class;
    type ICodecQuery_Ptr is access all ICodecQuery;
 
    type ICodecSubtypesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICodecSubtypesStatics is access ICodecSubtypesStatics_Interface'Class;
+   type ICodecSubtypesStatics is access all ICodecSubtypesStatics_Interface'Class;
 
    type IDataCue_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataCue is access IDataCue_Interface'Class;
+   type IDataCue is access all IDataCue_Interface'Class;
    type IDataCue_Ptr is access all IDataCue;
 
    type IDataCue2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataCue2 is access IDataCue2_Interface'Class;
+   type IDataCue2 is access all IDataCue2_Interface'Class;
 
    type IFaceDetectedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IFaceDetectedEventArgs is access IFaceDetectedEventArgs_Interface'Class;
+   type IFaceDetectedEventArgs is access all IFaceDetectedEventArgs_Interface'Class;
    type IFaceDetectedEventArgs_Ptr is access all IFaceDetectedEventArgs;
 
    type IFaceDetectionEffect_Interface is interface and WinRt.IInspectable_Interface;
-   type IFaceDetectionEffect is access IFaceDetectionEffect_Interface'Class;
+   type IFaceDetectionEffect is access all IFaceDetectionEffect_Interface'Class;
    type IFaceDetectionEffect_Ptr is access all IFaceDetectionEffect;
 
    type IFaceDetectionEffectDefinition_Interface is interface and WinRt.IInspectable_Interface;
-   type IFaceDetectionEffectDefinition is access IFaceDetectionEffectDefinition_Interface'Class;
+   type IFaceDetectionEffectDefinition is access all IFaceDetectionEffectDefinition_Interface'Class;
 
    type IFaceDetectionEffectFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IFaceDetectionEffectFrame is access IFaceDetectionEffectFrame_Interface'Class;
+   type IFaceDetectionEffectFrame is access all IFaceDetectionEffectFrame_Interface'Class;
    type IFaceDetectionEffectFrame_Ptr is access all IFaceDetectionEffectFrame;
 
    type IHighDynamicRangeControl_Interface is interface and WinRt.IInspectable_Interface;
-   type IHighDynamicRangeControl is access IHighDynamicRangeControl_Interface'Class;
+   type IHighDynamicRangeControl is access all IHighDynamicRangeControl_Interface'Class;
    type IHighDynamicRangeControl_Ptr is access all IHighDynamicRangeControl;
 
    type IHighDynamicRangeOutput_Interface is interface and WinRt.IInspectable_Interface;
-   type IHighDynamicRangeOutput is access IHighDynamicRangeOutput_Interface'Class;
+   type IHighDynamicRangeOutput is access all IHighDynamicRangeOutput_Interface'Class;
    type IHighDynamicRangeOutput_Ptr is access all IHighDynamicRangeOutput;
 
    type IImageCue_Interface is interface and WinRt.IInspectable_Interface;
-   type IImageCue is access IImageCue_Interface'Class;
+   type IImageCue is access all IImageCue_Interface'Class;
    type IImageCue_Ptr is access all IImageCue;
 
    type IInitializeMediaStreamSourceRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IInitializeMediaStreamSourceRequestedEventArgs is access IInitializeMediaStreamSourceRequestedEventArgs_Interface'Class;
+   type IInitializeMediaStreamSourceRequestedEventArgs is access all IInitializeMediaStreamSourceRequestedEventArgs_Interface'Class;
    type IInitializeMediaStreamSourceRequestedEventArgs_Ptr is access all IInitializeMediaStreamSourceRequestedEventArgs;
 
    type ILowLightFusionResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ILowLightFusionResult is access ILowLightFusionResult_Interface'Class;
+   type ILowLightFusionResult is access all ILowLightFusionResult_Interface'Class;
    type ILowLightFusionResult_Ptr is access all ILowLightFusionResult;
 
    type ILowLightFusionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILowLightFusionStatics is access ILowLightFusionStatics_Interface'Class;
+   type ILowLightFusionStatics is access all ILowLightFusionStatics_Interface'Class;
 
    type IMediaBinder_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaBinder is access IMediaBinder_Interface'Class;
+   type IMediaBinder is access all IMediaBinder_Interface'Class;
    type IMediaBinder_Ptr is access all IMediaBinder;
 
    type IMediaBindingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaBindingEventArgs is access IMediaBindingEventArgs_Interface'Class;
+   type IMediaBindingEventArgs is access all IMediaBindingEventArgs_Interface'Class;
    type IMediaBindingEventArgs_Ptr is access all IMediaBindingEventArgs;
 
    type IMediaBindingEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaBindingEventArgs2 is access IMediaBindingEventArgs2_Interface'Class;
+   type IMediaBindingEventArgs2 is access all IMediaBindingEventArgs2_Interface'Class;
 
    type IMediaBindingEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaBindingEventArgs3 is access IMediaBindingEventArgs3_Interface'Class;
+   type IMediaBindingEventArgs3 is access all IMediaBindingEventArgs3_Interface'Class;
 
    type IMediaCue_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCue is access IMediaCue_Interface'Class;
+   type IMediaCue is access all IMediaCue_Interface'Class;
 
    type IMediaCueEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaCueEventArgs is access IMediaCueEventArgs_Interface'Class;
+   type IMediaCueEventArgs is access all IMediaCueEventArgs_Interface'Class;
    type IMediaCueEventArgs_Ptr is access all IMediaCueEventArgs;
 
    type IMediaSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaSource is access IMediaSource_Interface'Class;
+   type IMediaSource is access all IMediaSource_Interface'Class;
 
    type IMediaSource2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaSource2 is access IMediaSource2_Interface'Class;
+   type IMediaSource2 is access all IMediaSource2_Interface'Class;
    type IMediaSource2_Ptr is access all IMediaSource2;
 
    type IMediaSource3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaSource3 is access IMediaSource3_Interface'Class;
+   type IMediaSource3 is access all IMediaSource3_Interface'Class;
 
    type IMediaSource4_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaSource4 is access IMediaSource4_Interface'Class;
+   type IMediaSource4 is access all IMediaSource4_Interface'Class;
 
    type IMediaSource5_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaSource5 is access IMediaSource5_Interface'Class;
+   type IMediaSource5 is access all IMediaSource5_Interface'Class;
 
    type IMediaSourceAppServiceConnection_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaSourceAppServiceConnection is access IMediaSourceAppServiceConnection_Interface'Class;
+   type IMediaSourceAppServiceConnection is access all IMediaSourceAppServiceConnection_Interface'Class;
    type IMediaSourceAppServiceConnection_Ptr is access all IMediaSourceAppServiceConnection;
 
    type IMediaSourceAppServiceConnectionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaSourceAppServiceConnectionFactory is access IMediaSourceAppServiceConnectionFactory_Interface'Class;
+   type IMediaSourceAppServiceConnectionFactory is access all IMediaSourceAppServiceConnectionFactory_Interface'Class;
 
    type IMediaSourceError_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaSourceError is access IMediaSourceError_Interface'Class;
+   type IMediaSourceError is access all IMediaSourceError_Interface'Class;
    type IMediaSourceError_Ptr is access all IMediaSourceError;
 
    type IMediaSourceOpenOperationCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaSourceOpenOperationCompletedEventArgs is access IMediaSourceOpenOperationCompletedEventArgs_Interface'Class;
+   type IMediaSourceOpenOperationCompletedEventArgs is access all IMediaSourceOpenOperationCompletedEventArgs_Interface'Class;
    type IMediaSourceOpenOperationCompletedEventArgs_Ptr is access all IMediaSourceOpenOperationCompletedEventArgs;
 
    type IMediaSourceStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaSourceStateChangedEventArgs is access IMediaSourceStateChangedEventArgs_Interface'Class;
+   type IMediaSourceStateChangedEventArgs is access all IMediaSourceStateChangedEventArgs_Interface'Class;
    type IMediaSourceStateChangedEventArgs_Ptr is access all IMediaSourceStateChangedEventArgs;
 
    type IMediaSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaSourceStatics is access IMediaSourceStatics_Interface'Class;
+   type IMediaSourceStatics is access all IMediaSourceStatics_Interface'Class;
 
    type IMediaSourceStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaSourceStatics2 is access IMediaSourceStatics2_Interface'Class;
+   type IMediaSourceStatics2 is access all IMediaSourceStatics2_Interface'Class;
 
    type IMediaSourceStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaSourceStatics3 is access IMediaSourceStatics3_Interface'Class;
+   type IMediaSourceStatics3 is access all IMediaSourceStatics3_Interface'Class;
 
    type IMediaSourceStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaSourceStatics4 is access IMediaSourceStatics4_Interface'Class;
+   type IMediaSourceStatics4 is access all IMediaSourceStatics4_Interface'Class;
 
    type IMediaStreamDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamDescriptor is access IMediaStreamDescriptor_Interface'Class;
+   type IMediaStreamDescriptor is access all IMediaStreamDescriptor_Interface'Class;
    type IMediaStreamDescriptor_Ptr is access all IMediaStreamDescriptor;
 
    type IMediaStreamDescriptor2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamDescriptor2 is access IMediaStreamDescriptor2_Interface'Class;
+   type IMediaStreamDescriptor2 is access all IMediaStreamDescriptor2_Interface'Class;
 
    type IMediaStreamSample_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSample is access IMediaStreamSample_Interface'Class;
+   type IMediaStreamSample is access all IMediaStreamSample_Interface'Class;
    type IMediaStreamSample_Ptr is access all IMediaStreamSample;
 
    type IMediaStreamSample2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSample2 is access IMediaStreamSample2_Interface'Class;
+   type IMediaStreamSample2 is access all IMediaStreamSample2_Interface'Class;
 
    type IMediaStreamSampleProtectionProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSampleProtectionProperties is access IMediaStreamSampleProtectionProperties_Interface'Class;
+   type IMediaStreamSampleProtectionProperties is access all IMediaStreamSampleProtectionProperties_Interface'Class;
    type IMediaStreamSampleProtectionProperties_Ptr is access all IMediaStreamSampleProtectionProperties;
 
    type IMediaStreamSampleStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSampleStatics is access IMediaStreamSampleStatics_Interface'Class;
+   type IMediaStreamSampleStatics is access all IMediaStreamSampleStatics_Interface'Class;
 
    type IMediaStreamSampleStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSampleStatics2 is access IMediaStreamSampleStatics2_Interface'Class;
+   type IMediaStreamSampleStatics2 is access all IMediaStreamSampleStatics2_Interface'Class;
 
    type IMediaStreamSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSource is access IMediaStreamSource_Interface'Class;
+   type IMediaStreamSource is access all IMediaStreamSource_Interface'Class;
    type IMediaStreamSource_Ptr is access all IMediaStreamSource;
 
    type IMediaStreamSource2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSource2 is access IMediaStreamSource2_Interface'Class;
+   type IMediaStreamSource2 is access all IMediaStreamSource2_Interface'Class;
 
    type IMediaStreamSource3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSource3 is access IMediaStreamSource3_Interface'Class;
+   type IMediaStreamSource3 is access all IMediaStreamSource3_Interface'Class;
 
    type IMediaStreamSource4_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSource4 is access IMediaStreamSource4_Interface'Class;
+   type IMediaStreamSource4 is access all IMediaStreamSource4_Interface'Class;
 
    type IMediaStreamSourceClosedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSourceClosedEventArgs is access IMediaStreamSourceClosedEventArgs_Interface'Class;
+   type IMediaStreamSourceClosedEventArgs is access all IMediaStreamSourceClosedEventArgs_Interface'Class;
    type IMediaStreamSourceClosedEventArgs_Ptr is access all IMediaStreamSourceClosedEventArgs;
 
    type IMediaStreamSourceClosedRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSourceClosedRequest is access IMediaStreamSourceClosedRequest_Interface'Class;
+   type IMediaStreamSourceClosedRequest is access all IMediaStreamSourceClosedRequest_Interface'Class;
    type IMediaStreamSourceClosedRequest_Ptr is access all IMediaStreamSourceClosedRequest;
 
    type IMediaStreamSourceFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSourceFactory is access IMediaStreamSourceFactory_Interface'Class;
+   type IMediaStreamSourceFactory is access all IMediaStreamSourceFactory_Interface'Class;
 
    type IMediaStreamSourceSampleRenderedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSourceSampleRenderedEventArgs is access IMediaStreamSourceSampleRenderedEventArgs_Interface'Class;
+   type IMediaStreamSourceSampleRenderedEventArgs is access all IMediaStreamSourceSampleRenderedEventArgs_Interface'Class;
    type IMediaStreamSourceSampleRenderedEventArgs_Ptr is access all IMediaStreamSourceSampleRenderedEventArgs;
 
    type IMediaStreamSourceSampleRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSourceSampleRequest is access IMediaStreamSourceSampleRequest_Interface'Class;
+   type IMediaStreamSourceSampleRequest is access all IMediaStreamSourceSampleRequest_Interface'Class;
    type IMediaStreamSourceSampleRequest_Ptr is access all IMediaStreamSourceSampleRequest;
 
    type IMediaStreamSourceSampleRequestDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSourceSampleRequestDeferral is access IMediaStreamSourceSampleRequestDeferral_Interface'Class;
+   type IMediaStreamSourceSampleRequestDeferral is access all IMediaStreamSourceSampleRequestDeferral_Interface'Class;
    type IMediaStreamSourceSampleRequestDeferral_Ptr is access all IMediaStreamSourceSampleRequestDeferral;
 
    type IMediaStreamSourceSampleRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSourceSampleRequestedEventArgs is access IMediaStreamSourceSampleRequestedEventArgs_Interface'Class;
+   type IMediaStreamSourceSampleRequestedEventArgs is access all IMediaStreamSourceSampleRequestedEventArgs_Interface'Class;
    type IMediaStreamSourceSampleRequestedEventArgs_Ptr is access all IMediaStreamSourceSampleRequestedEventArgs;
 
    type IMediaStreamSourceStartingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSourceStartingEventArgs is access IMediaStreamSourceStartingEventArgs_Interface'Class;
+   type IMediaStreamSourceStartingEventArgs is access all IMediaStreamSourceStartingEventArgs_Interface'Class;
    type IMediaStreamSourceStartingEventArgs_Ptr is access all IMediaStreamSourceStartingEventArgs;
 
    type IMediaStreamSourceStartingRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSourceStartingRequest is access IMediaStreamSourceStartingRequest_Interface'Class;
+   type IMediaStreamSourceStartingRequest is access all IMediaStreamSourceStartingRequest_Interface'Class;
    type IMediaStreamSourceStartingRequest_Ptr is access all IMediaStreamSourceStartingRequest;
 
    type IMediaStreamSourceStartingRequestDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSourceStartingRequestDeferral is access IMediaStreamSourceStartingRequestDeferral_Interface'Class;
+   type IMediaStreamSourceStartingRequestDeferral is access all IMediaStreamSourceStartingRequestDeferral_Interface'Class;
    type IMediaStreamSourceStartingRequestDeferral_Ptr is access all IMediaStreamSourceStartingRequestDeferral;
 
    type IMediaStreamSourceSwitchStreamsRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSourceSwitchStreamsRequest is access IMediaStreamSourceSwitchStreamsRequest_Interface'Class;
+   type IMediaStreamSourceSwitchStreamsRequest is access all IMediaStreamSourceSwitchStreamsRequest_Interface'Class;
    type IMediaStreamSourceSwitchStreamsRequest_Ptr is access all IMediaStreamSourceSwitchStreamsRequest;
 
    type IMediaStreamSourceSwitchStreamsRequestDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSourceSwitchStreamsRequestDeferral is access IMediaStreamSourceSwitchStreamsRequestDeferral_Interface'Class;
+   type IMediaStreamSourceSwitchStreamsRequestDeferral is access all IMediaStreamSourceSwitchStreamsRequestDeferral_Interface'Class;
    type IMediaStreamSourceSwitchStreamsRequestDeferral_Ptr is access all IMediaStreamSourceSwitchStreamsRequestDeferral;
 
    type IMediaStreamSourceSwitchStreamsRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaStreamSourceSwitchStreamsRequestedEventArgs is access IMediaStreamSourceSwitchStreamsRequestedEventArgs_Interface'Class;
+   type IMediaStreamSourceSwitchStreamsRequestedEventArgs is access all IMediaStreamSourceSwitchStreamsRequestedEventArgs_Interface'Class;
    type IMediaStreamSourceSwitchStreamsRequestedEventArgs_Ptr is access all IMediaStreamSourceSwitchStreamsRequestedEventArgs;
 
    type IMediaTrack_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaTrack is access IMediaTrack_Interface'Class;
+   type IMediaTrack is access all IMediaTrack_Interface'Class;
    type IMediaTrack_Ptr is access all IMediaTrack;
    type IMediaTrack_Array is array (Natural range <>) of IMediaTrack;
 
    type IMseSourceBuffer_Interface is interface and WinRt.IInspectable_Interface;
-   type IMseSourceBuffer is access IMseSourceBuffer_Interface'Class;
+   type IMseSourceBuffer is access all IMseSourceBuffer_Interface'Class;
    type IMseSourceBuffer_Ptr is access all IMseSourceBuffer;
 
    type IMseSourceBufferList_Interface is interface and WinRt.IInspectable_Interface;
-   type IMseSourceBufferList is access IMseSourceBufferList_Interface'Class;
+   type IMseSourceBufferList is access all IMseSourceBufferList_Interface'Class;
    type IMseSourceBufferList_Ptr is access all IMseSourceBufferList;
 
    type IMseStreamSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IMseStreamSource is access IMseStreamSource_Interface'Class;
+   type IMseStreamSource is access all IMseStreamSource_Interface'Class;
    type IMseStreamSource_Ptr is access all IMseStreamSource;
 
    type IMseStreamSource2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMseStreamSource2 is access IMseStreamSource2_Interface'Class;
+   type IMseStreamSource2 is access all IMseStreamSource2_Interface'Class;
 
    type IMseStreamSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMseStreamSourceStatics is access IMseStreamSourceStatics_Interface'Class;
+   type IMseStreamSourceStatics is access all IMseStreamSourceStatics_Interface'Class;
 
    type ISceneAnalysisEffect_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneAnalysisEffect is access ISceneAnalysisEffect_Interface'Class;
+   type ISceneAnalysisEffect is access all ISceneAnalysisEffect_Interface'Class;
    type ISceneAnalysisEffect_Ptr is access all ISceneAnalysisEffect;
 
    type ISceneAnalysisEffectFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneAnalysisEffectFrame is access ISceneAnalysisEffectFrame_Interface'Class;
+   type ISceneAnalysisEffectFrame is access all ISceneAnalysisEffectFrame_Interface'Class;
    type ISceneAnalysisEffectFrame_Ptr is access all ISceneAnalysisEffectFrame;
 
    type ISceneAnalysisEffectFrame2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneAnalysisEffectFrame2 is access ISceneAnalysisEffectFrame2_Interface'Class;
+   type ISceneAnalysisEffectFrame2 is access all ISceneAnalysisEffectFrame2_Interface'Class;
 
    type ISceneAnalyzedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISceneAnalyzedEventArgs is access ISceneAnalyzedEventArgs_Interface'Class;
+   type ISceneAnalyzedEventArgs is access all ISceneAnalyzedEventArgs_Interface'Class;
    type ISceneAnalyzedEventArgs_Ptr is access all ISceneAnalyzedEventArgs;
 
    type ISingleSelectMediaTrackList_Interface is interface and WinRt.IInspectable_Interface;
-   type ISingleSelectMediaTrackList is access ISingleSelectMediaTrackList_Interface'Class;
+   type ISingleSelectMediaTrackList is access all ISingleSelectMediaTrackList_Interface'Class;
 
    type ISpeechCue_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpeechCue is access ISpeechCue_Interface'Class;
+   type ISpeechCue is access all ISpeechCue_Interface'Class;
    type ISpeechCue_Ptr is access all ISpeechCue;
 
    type ITimedMetadataStreamDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedMetadataStreamDescriptor is access ITimedMetadataStreamDescriptor_Interface'Class;
+   type ITimedMetadataStreamDescriptor is access all ITimedMetadataStreamDescriptor_Interface'Class;
 
    type ITimedMetadataStreamDescriptorFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedMetadataStreamDescriptorFactory is access ITimedMetadataStreamDescriptorFactory_Interface'Class;
+   type ITimedMetadataStreamDescriptorFactory is access all ITimedMetadataStreamDescriptorFactory_Interface'Class;
 
    type ITimedMetadataTrack_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedMetadataTrack is access ITimedMetadataTrack_Interface'Class;
+   type ITimedMetadataTrack is access all ITimedMetadataTrack_Interface'Class;
    type ITimedMetadataTrack_Ptr is access all ITimedMetadataTrack;
    type ITimedMetadataTrack_Array is array (Natural range <>) of ITimedMetadataTrack;
 
    type ITimedMetadataTrack2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedMetadataTrack2 is access ITimedMetadataTrack2_Interface'Class;
+   type ITimedMetadataTrack2 is access all ITimedMetadataTrack2_Interface'Class;
 
    type ITimedMetadataTrackError_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedMetadataTrackError is access ITimedMetadataTrackError_Interface'Class;
+   type ITimedMetadataTrackError is access all ITimedMetadataTrackError_Interface'Class;
    type ITimedMetadataTrackError_Ptr is access all ITimedMetadataTrackError;
 
    type ITimedMetadataTrackFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedMetadataTrackFactory is access ITimedMetadataTrackFactory_Interface'Class;
+   type ITimedMetadataTrackFactory is access all ITimedMetadataTrackFactory_Interface'Class;
 
    type ITimedMetadataTrackFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedMetadataTrackFailedEventArgs is access ITimedMetadataTrackFailedEventArgs_Interface'Class;
+   type ITimedMetadataTrackFailedEventArgs is access all ITimedMetadataTrackFailedEventArgs_Interface'Class;
    type ITimedMetadataTrackFailedEventArgs_Ptr is access all ITimedMetadataTrackFailedEventArgs;
 
    type ITimedMetadataTrackProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedMetadataTrackProvider is access ITimedMetadataTrackProvider_Interface'Class;
+   type ITimedMetadataTrackProvider is access all ITimedMetadataTrackProvider_Interface'Class;
 
    type ITimedTextCue_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedTextCue is access ITimedTextCue_Interface'Class;
+   type ITimedTextCue is access all ITimedTextCue_Interface'Class;
    type ITimedTextCue_Ptr is access all ITimedTextCue;
 
    type ITimedTextLine_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedTextLine is access ITimedTextLine_Interface'Class;
+   type ITimedTextLine is access all ITimedTextLine_Interface'Class;
    type ITimedTextLine_Ptr is access all ITimedTextLine;
 
    type ITimedTextRegion_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedTextRegion is access ITimedTextRegion_Interface'Class;
+   type ITimedTextRegion is access all ITimedTextRegion_Interface'Class;
    type ITimedTextRegion_Ptr is access all ITimedTextRegion;
 
    type ITimedTextSource_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedTextSource is access ITimedTextSource_Interface'Class;
+   type ITimedTextSource is access all ITimedTextSource_Interface'Class;
    type ITimedTextSource_Ptr is access all ITimedTextSource;
 
    type ITimedTextSourceResolveResultEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedTextSourceResolveResultEventArgs is access ITimedTextSourceResolveResultEventArgs_Interface'Class;
+   type ITimedTextSourceResolveResultEventArgs is access all ITimedTextSourceResolveResultEventArgs_Interface'Class;
    type ITimedTextSourceResolveResultEventArgs_Ptr is access all ITimedTextSourceResolveResultEventArgs;
 
    type ITimedTextSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedTextSourceStatics is access ITimedTextSourceStatics_Interface'Class;
+   type ITimedTextSourceStatics is access all ITimedTextSourceStatics_Interface'Class;
 
    type ITimedTextSourceStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedTextSourceStatics2 is access ITimedTextSourceStatics2_Interface'Class;
+   type ITimedTextSourceStatics2 is access all ITimedTextSourceStatics2_Interface'Class;
 
    type ITimedTextStyle_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedTextStyle is access ITimedTextStyle_Interface'Class;
+   type ITimedTextStyle is access all ITimedTextStyle_Interface'Class;
    type ITimedTextStyle_Ptr is access all ITimedTextStyle;
 
    type ITimedTextStyle2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedTextStyle2 is access ITimedTextStyle2_Interface'Class;
+   type ITimedTextStyle2 is access all ITimedTextStyle2_Interface'Class;
 
    type ITimedTextSubformat_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedTextSubformat is access ITimedTextSubformat_Interface'Class;
+   type ITimedTextSubformat is access all ITimedTextSubformat_Interface'Class;
    type ITimedTextSubformat_Ptr is access all ITimedTextSubformat;
 
    type IVideoStabilizationEffect_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoStabilizationEffect is access IVideoStabilizationEffect_Interface'Class;
+   type IVideoStabilizationEffect is access all IVideoStabilizationEffect_Interface'Class;
    type IVideoStabilizationEffect_Ptr is access all IVideoStabilizationEffect;
 
    type IVideoStabilizationEffectEnabledChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoStabilizationEffectEnabledChangedEventArgs is access IVideoStabilizationEffectEnabledChangedEventArgs_Interface'Class;
+   type IVideoStabilizationEffectEnabledChangedEventArgs is access all IVideoStabilizationEffectEnabledChangedEventArgs_Interface'Class;
    type IVideoStabilizationEffectEnabledChangedEventArgs_Ptr is access all IVideoStabilizationEffectEnabledChangedEventArgs;
 
    type IVideoStreamDescriptor_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoStreamDescriptor is access IVideoStreamDescriptor_Interface'Class;
+   type IVideoStreamDescriptor is access all IVideoStreamDescriptor_Interface'Class;
    type IVideoStreamDescriptor_Ptr is access all IVideoStreamDescriptor;
 
    type IVideoStreamDescriptor2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoStreamDescriptor2 is access IVideoStreamDescriptor2_Interface'Class;
+   type IVideoStreamDescriptor2 is access all IVideoStreamDescriptor2_Interface'Class;
 
    type IVideoStreamDescriptorFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoStreamDescriptorFactory is access IVideoStreamDescriptorFactory_Interface'Class;
+   type IVideoStreamDescriptorFactory is access all IVideoStreamDescriptorFactory_Interface'Class;
 
    type IVideoTrack_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoTrack is access IVideoTrack_Interface'Class;
+   type IVideoTrack is access all IVideoTrack_Interface'Class;
 
    type IVideoTrackOpenFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoTrackOpenFailedEventArgs is access IVideoTrackOpenFailedEventArgs_Interface'Class;
+   type IVideoTrackOpenFailedEventArgs is access all IVideoTrackOpenFailedEventArgs_Interface'Class;
    type IVideoTrackOpenFailedEventArgs_Ptr is access all IVideoTrackOpenFailedEventArgs;
 
    type IVideoTrackSupportInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IVideoTrackSupportInfo is access IVideoTrackSupportInfo_Interface'Class;
+   type IVideoTrackSupportInfo is access all IVideoTrackSupportInfo_Interface'Class;
    type IVideoTrackSupportInfo_Ptr is access all IVideoTrackSupportInfo;
 
    -----------------------------------------------------------------------------
@@ -858,7 +858,7 @@ package WinRt.Windows.Media.Core is
       DownmixTo6Channels_e => 2,
       DownmixTo8Channels_e => 3
    );
-   type AudioDecoderDegradation_Ptr is access AudioDecoderDegradation;
+   type AudioDecoderDegradation_Ptr is access all AudioDecoderDegradation;
 
    type AudioDecoderDegradationReason is (
       None_e,
@@ -870,7 +870,7 @@ package WinRt.Windows.Media.Core is
       LicensingRequirement_e => 1,
       SpatialAudioNotSupported_e => 2
    );
-   type AudioDecoderDegradationReason_Ptr is access AudioDecoderDegradationReason;
+   type AudioDecoderDegradationReason_Ptr is access all AudioDecoderDegradationReason;
 
    type CodecCategory is (
       Encoder_e,
@@ -880,7 +880,7 @@ package WinRt.Windows.Media.Core is
       Encoder_e => 0,
       Decoder_e => 1
    );
-   type CodecCategory_Ptr is access CodecCategory;
+   type CodecCategory_Ptr is access all CodecCategory;
 
    type CodecKind is (
       Audio_e,
@@ -890,7 +890,7 @@ package WinRt.Windows.Media.Core is
       Audio_e => 0,
       Video_e => 1
    );
-   type CodecKind_Ptr is access CodecKind;
+   type CodecKind_Ptr is access all CodecKind;
 
    type FaceDetectionMode is (
       HighPerformance_e,
@@ -902,7 +902,7 @@ package WinRt.Windows.Media.Core is
       Balanced_e => 1,
       HighQuality_e => 2
    );
-   type FaceDetectionMode_Ptr is access FaceDetectionMode;
+   type FaceDetectionMode_Ptr is access all FaceDetectionMode;
 
    type MediaDecoderStatus is (
       FullySupported_e,
@@ -916,7 +916,7 @@ package WinRt.Windows.Media.Core is
       UnsupportedEncoderProperties_e => 2,
       Degraded_e => 3
    );
-   type MediaDecoderStatus_Ptr is access MediaDecoderStatus;
+   type MediaDecoderStatus_Ptr is access all MediaDecoderStatus;
 
    type MediaSourceState is (
       Initial_e,
@@ -932,7 +932,7 @@ package WinRt.Windows.Media.Core is
       Failed_e => 3,
       Closed_e => 4
    );
-   type MediaSourceState_Ptr is access MediaSourceState;
+   type MediaSourceState_Ptr is access all MediaSourceState;
 
    type MediaSourceStatus is (
       FullySupported_e,
@@ -942,7 +942,7 @@ package WinRt.Windows.Media.Core is
       FullySupported_e => 0,
       Unknown_e => 1
    );
-   type MediaSourceStatus_Ptr is access MediaSourceStatus;
+   type MediaSourceStatus_Ptr is access all MediaSourceStatus;
 
    type MediaStreamSourceClosedReason is (
       Done_e,
@@ -962,7 +962,7 @@ package WinRt.Windows.Media.Core is
       UnsupportedEncodingFormat_e => 5,
       MissingSampleRequestedEventHandler_e => 6
    );
-   type MediaStreamSourceClosedReason_Ptr is access MediaStreamSourceClosedReason;
+   type MediaStreamSourceClosedReason_Ptr is access all MediaStreamSourceClosedReason;
 
    type MediaStreamSourceErrorStatus is (
       Other_e,
@@ -984,7 +984,7 @@ package WinRt.Windows.Media.Core is
       DecodeError_e => 6,
       UnsupportedMediaFormat_e => 7
    );
-   type MediaStreamSourceErrorStatus_Ptr is access MediaStreamSourceErrorStatus;
+   type MediaStreamSourceErrorStatus_Ptr is access all MediaStreamSourceErrorStatus;
 
    type MediaTrackKind is (
       Audio_e,
@@ -996,7 +996,7 @@ package WinRt.Windows.Media.Core is
       Video_e => 1,
       TimedMetadata_e => 2
    );
-   type MediaTrackKind_Ptr is access MediaTrackKind;
+   type MediaTrackKind_Ptr is access all MediaTrackKind;
 
    type MseAppendMode is (
       Segments_e,
@@ -1006,7 +1006,7 @@ package WinRt.Windows.Media.Core is
       Segments_e => 0,
       Sequence_e => 1
    );
-   type MseAppendMode_Ptr is access MseAppendMode;
+   type MseAppendMode_Ptr is access all MseAppendMode;
 
    type MseEndOfStreamStatus is (
       Success_e,
@@ -1020,7 +1020,7 @@ package WinRt.Windows.Media.Core is
       DecodeError_e => 2,
       UnknownError_e => 3
    );
-   type MseEndOfStreamStatus_Ptr is access MseEndOfStreamStatus;
+   type MseEndOfStreamStatus_Ptr is access all MseEndOfStreamStatus;
 
    type MseReadyState is (
       Closed_e,
@@ -1032,7 +1032,7 @@ package WinRt.Windows.Media.Core is
       Open_e => 1,
       Ended_e => 2
    );
-   type MseReadyState_Ptr is access MseReadyState;
+   type MseReadyState_Ptr is access all MseReadyState;
 
    type SceneAnalysisRecommendation is (
       Standard_e,
@@ -1044,7 +1044,7 @@ package WinRt.Windows.Media.Core is
       Hdr_e => 1,
       LowLight_e => 2
    );
-   type SceneAnalysisRecommendation_Ptr is access SceneAnalysisRecommendation;
+   type SceneAnalysisRecommendation_Ptr is access all SceneAnalysisRecommendation;
 
    type TimedMetadataKind is (
       Caption_e,
@@ -1066,7 +1066,7 @@ package WinRt.Windows.Media.Core is
       ImageSubtitle_e => 6,
       Speech_e => 7
    );
-   type TimedMetadataKind_Ptr is access TimedMetadataKind;
+   type TimedMetadataKind_Ptr is access all TimedMetadataKind;
 
    type TimedMetadataTrackErrorCode is (
       None_e,
@@ -1080,7 +1080,7 @@ package WinRt.Windows.Media.Core is
       NetworkError_e => 2,
       InternalError_e => 3
    );
-   type TimedMetadataTrackErrorCode_Ptr is access TimedMetadataTrackErrorCode;
+   type TimedMetadataTrackErrorCode_Ptr is access all TimedMetadataTrackErrorCode;
 
    type TimedTextDisplayAlignment is (
       Before_e,
@@ -1092,7 +1092,7 @@ package WinRt.Windows.Media.Core is
       After_e => 1,
       Center_e => 2
    );
-   type TimedTextDisplayAlignment_Ptr is access TimedTextDisplayAlignment;
+   type TimedTextDisplayAlignment_Ptr is access all TimedTextDisplayAlignment;
 
    type TimedTextFlowDirection is (
       LeftToRight_e,
@@ -1102,7 +1102,7 @@ package WinRt.Windows.Media.Core is
       LeftToRight_e => 0,
       RightToLeft_e => 1
    );
-   type TimedTextFlowDirection_Ptr is access TimedTextFlowDirection;
+   type TimedTextFlowDirection_Ptr is access all TimedTextFlowDirection;
 
    type TimedTextFontStyle is (
       Normal_e,
@@ -1114,7 +1114,7 @@ package WinRt.Windows.Media.Core is
       Oblique_e => 1,
       Italic_e => 2
    );
-   type TimedTextFontStyle_Ptr is access TimedTextFontStyle;
+   type TimedTextFontStyle_Ptr is access all TimedTextFontStyle;
 
    type TimedTextLineAlignment is (
       Start_e,
@@ -1126,7 +1126,7 @@ package WinRt.Windows.Media.Core is
       End_e => 1,
       Center_e => 2
    );
-   type TimedTextLineAlignment_Ptr is access TimedTextLineAlignment;
+   type TimedTextLineAlignment_Ptr is access all TimedTextLineAlignment;
 
    type TimedTextScrollMode is (
       Popon_e,
@@ -1136,7 +1136,7 @@ package WinRt.Windows.Media.Core is
       Popon_e => 0,
       Rollup_e => 1
    );
-   type TimedTextScrollMode_Ptr is access TimedTextScrollMode;
+   type TimedTextScrollMode_Ptr is access all TimedTextScrollMode;
 
    type TimedTextUnit is (
       Pixels_e,
@@ -1146,7 +1146,7 @@ package WinRt.Windows.Media.Core is
       Pixels_e => 0,
       Percentage_e => 1
    );
-   type TimedTextUnit_Ptr is access TimedTextUnit;
+   type TimedTextUnit_Ptr is access all TimedTextUnit;
 
    type TimedTextWeight is (
       Normal_e,
@@ -1156,7 +1156,7 @@ package WinRt.Windows.Media.Core is
       Normal_e => 400,
       Bold_e => 700
    );
-   type TimedTextWeight_Ptr is access TimedTextWeight;
+   type TimedTextWeight_Ptr is access all TimedTextWeight;
 
    type TimedTextWrapping is (
       NoWrap_e,
@@ -1166,7 +1166,7 @@ package WinRt.Windows.Media.Core is
       NoWrap_e => 0,
       Wrap_e => 1
    );
-   type TimedTextWrapping_Ptr is access TimedTextWrapping;
+   type TimedTextWrapping_Ptr is access all TimedTextWrapping;
 
    type TimedTextWritingMode is (
       LeftRightTopBottom_e,
@@ -1186,7 +1186,7 @@ package WinRt.Windows.Media.Core is
       RightLeft_e => 5,
       TopBottom_e => 6
    );
-   type TimedTextWritingMode_Ptr is access TimedTextWritingMode;
+   type TimedTextWritingMode_Ptr is access all TimedTextWritingMode;
 
    type VideoStabilizationEffectEnabledChangedReason is (
       Programmatic_e,
@@ -1198,7 +1198,7 @@ package WinRt.Windows.Media.Core is
       PixelRateTooHigh_e => 1,
       RunningSlowly_e => 2
    );
-   type VideoStabilizationEffectEnabledChangedReason_Ptr is access VideoStabilizationEffectEnabledChangedReason;
+   type VideoStabilizationEffectEnabledChangedReason_Ptr is access all VideoStabilizationEffectEnabledChangedReason;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1208,13 +1208,13 @@ package WinRt.Windows.Media.Core is
       Start : WinRt.Windows.Foundation.TimeSpan;
       End_x : WinRt.Windows.Foundation.TimeSpan;
    end record with Convention => C_Pass_By_Copy;
-   type MseTimeRange_Ptr is access MseTimeRange;
+   type MseTimeRange_Ptr is access all MseTimeRange;
 
    type TimedTextDouble is record
       Value : WinRt.Double;
       Unit : Windows.Media.Core.TimedTextUnit;
    end record with Convention => C_Pass_By_Copy;
-   type TimedTextDouble_Ptr is access TimedTextDouble;
+   type TimedTextDouble_Ptr is access all TimedTextDouble;
 
    type TimedTextPadding is record
       Before : WinRt.Double;
@@ -1223,21 +1223,21 @@ package WinRt.Windows.Media.Core is
       End_x : WinRt.Double;
       Unit : Windows.Media.Core.TimedTextUnit;
    end record with Convention => C_Pass_By_Copy;
-   type TimedTextPadding_Ptr is access TimedTextPadding;
+   type TimedTextPadding_Ptr is access all TimedTextPadding;
 
    type TimedTextPoint is record
       X : WinRt.Double;
       Y : WinRt.Double;
       Unit : Windows.Media.Core.TimedTextUnit;
    end record with Convention => C_Pass_By_Copy;
-   type TimedTextPoint_Ptr is access TimedTextPoint;
+   type TimedTextPoint_Ptr is access all TimedTextPoint;
 
    type TimedTextSize is record
       Height : WinRt.Double;
       Width : WinRt.Double;
       Unit : Windows.Media.Core.TimedTextUnit;
    end record with Convention => C_Pass_By_Copy;
-   type TimedTextSize_Ptr is access TimedTextSize;
+   type TimedTextSize_Ptr is access all TimedTextSize;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

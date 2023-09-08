@@ -40,13 +40,13 @@ package WinRt.Windows.Security.Authentication.Web is
    -----------------------------------------------------------------------------
 
    type IWebAuthenticationBrokerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAuthenticationBrokerStatics is access IWebAuthenticationBrokerStatics_Interface'Class;
+   type IWebAuthenticationBrokerStatics is access all IWebAuthenticationBrokerStatics_Interface'Class;
 
    type IWebAuthenticationBrokerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAuthenticationBrokerStatics2 is access IWebAuthenticationBrokerStatics2_Interface'Class;
+   type IWebAuthenticationBrokerStatics2 is access all IWebAuthenticationBrokerStatics2_Interface'Class;
 
    type IWebAuthenticationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAuthenticationResult is access IWebAuthenticationResult_Interface'Class;
+   type IWebAuthenticationResult is access all IWebAuthenticationResult_Interface'Class;
    type IWebAuthenticationResult_Ptr is access all IWebAuthenticationResult;
 
    -----------------------------------------------------------------------------
@@ -73,7 +73,7 @@ package WinRt.Windows.Security.Authentication.Web is
       EcdsaP256_e => 1,
       AnyExisting_e => 2
    );
-   type TokenBindingKeyType_Ptr is access TokenBindingKeyType;
+   type TokenBindingKeyType_Ptr is access all TokenBindingKeyType;
 
    type WebAuthenticationOptions is (
       None_e,
@@ -89,7 +89,7 @@ package WinRt.Windows.Security.Authentication.Web is
       UseHttpPost_e => 4,
       UseCorporateNetwork_e => 8
    );
-   type WebAuthenticationOptions_Ptr is access WebAuthenticationOptions;
+   type WebAuthenticationOptions_Ptr is access all WebAuthenticationOptions;
 
    type WebAuthenticationStatus is (
       Success_e,
@@ -101,7 +101,7 @@ package WinRt.Windows.Security.Authentication.Web is
       UserCancel_e => 1,
       ErrorHttp_e => 2
    );
-   type WebAuthenticationStatus_Ptr is access WebAuthenticationStatus;
+   type WebAuthenticationStatus_Ptr is access all WebAuthenticationStatus;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

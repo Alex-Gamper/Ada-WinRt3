@@ -38,10 +38,10 @@ package WinRt.Windows.Phone.System is
    -----------------------------------------------------------------------------
 
    type ISystemProtectionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemProtectionStatics is access ISystemProtectionStatics_Interface'Class;
+   type ISystemProtectionStatics is access all ISystemProtectionStatics_Interface'Class;
 
    type ISystemProtectionUnlockStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemProtectionUnlockStatics is access ISystemProtectionUnlockStatics_Interface'Class;
+   type ISystemProtectionUnlockStatics is access all ISystemProtectionUnlockStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

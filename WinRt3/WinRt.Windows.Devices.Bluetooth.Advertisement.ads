@@ -41,74 +41,74 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    -----------------------------------------------------------------------------
 
    type IBluetoothLEAdvertisement_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisement is access IBluetoothLEAdvertisement_Interface'Class;
+   type IBluetoothLEAdvertisement is access all IBluetoothLEAdvertisement_Interface'Class;
    type IBluetoothLEAdvertisement_Ptr is access all IBluetoothLEAdvertisement;
 
    type IBluetoothLEAdvertisementBytePattern_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementBytePattern is access IBluetoothLEAdvertisementBytePattern_Interface'Class;
+   type IBluetoothLEAdvertisementBytePattern is access all IBluetoothLEAdvertisementBytePattern_Interface'Class;
    type IBluetoothLEAdvertisementBytePattern_Ptr is access all IBluetoothLEAdvertisementBytePattern;
 
    type IBluetoothLEAdvertisementBytePatternFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementBytePatternFactory is access IBluetoothLEAdvertisementBytePatternFactory_Interface'Class;
+   type IBluetoothLEAdvertisementBytePatternFactory is access all IBluetoothLEAdvertisementBytePatternFactory_Interface'Class;
 
    type IBluetoothLEAdvertisementDataSection_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementDataSection is access IBluetoothLEAdvertisementDataSection_Interface'Class;
+   type IBluetoothLEAdvertisementDataSection is access all IBluetoothLEAdvertisementDataSection_Interface'Class;
    type IBluetoothLEAdvertisementDataSection_Ptr is access all IBluetoothLEAdvertisementDataSection;
 
    type IBluetoothLEAdvertisementDataSectionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementDataSectionFactory is access IBluetoothLEAdvertisementDataSectionFactory_Interface'Class;
+   type IBluetoothLEAdvertisementDataSectionFactory is access all IBluetoothLEAdvertisementDataSectionFactory_Interface'Class;
 
    type IBluetoothLEAdvertisementDataTypesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementDataTypesStatics is access IBluetoothLEAdvertisementDataTypesStatics_Interface'Class;
+   type IBluetoothLEAdvertisementDataTypesStatics is access all IBluetoothLEAdvertisementDataTypesStatics_Interface'Class;
 
    type IBluetoothLEAdvertisementFilter_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementFilter is access IBluetoothLEAdvertisementFilter_Interface'Class;
+   type IBluetoothLEAdvertisementFilter is access all IBluetoothLEAdvertisementFilter_Interface'Class;
    type IBluetoothLEAdvertisementFilter_Ptr is access all IBluetoothLEAdvertisementFilter;
 
    type IBluetoothLEAdvertisementPublisher_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementPublisher is access IBluetoothLEAdvertisementPublisher_Interface'Class;
+   type IBluetoothLEAdvertisementPublisher is access all IBluetoothLEAdvertisementPublisher_Interface'Class;
    type IBluetoothLEAdvertisementPublisher_Ptr is access all IBluetoothLEAdvertisementPublisher;
 
    type IBluetoothLEAdvertisementPublisher2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementPublisher2 is access IBluetoothLEAdvertisementPublisher2_Interface'Class;
+   type IBluetoothLEAdvertisementPublisher2 is access all IBluetoothLEAdvertisementPublisher2_Interface'Class;
 
    type IBluetoothLEAdvertisementPublisherFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementPublisherFactory is access IBluetoothLEAdvertisementPublisherFactory_Interface'Class;
+   type IBluetoothLEAdvertisementPublisherFactory is access all IBluetoothLEAdvertisementPublisherFactory_Interface'Class;
 
    type IBluetoothLEAdvertisementPublisherStatusChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementPublisherStatusChangedEventArgs is access IBluetoothLEAdvertisementPublisherStatusChangedEventArgs_Interface'Class;
+   type IBluetoothLEAdvertisementPublisherStatusChangedEventArgs is access all IBluetoothLEAdvertisementPublisherStatusChangedEventArgs_Interface'Class;
    type IBluetoothLEAdvertisementPublisherStatusChangedEventArgs_Ptr is access all IBluetoothLEAdvertisementPublisherStatusChangedEventArgs;
 
    type IBluetoothLEAdvertisementPublisherStatusChangedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementPublisherStatusChangedEventArgs2 is access IBluetoothLEAdvertisementPublisherStatusChangedEventArgs2_Interface'Class;
+   type IBluetoothLEAdvertisementPublisherStatusChangedEventArgs2 is access all IBluetoothLEAdvertisementPublisherStatusChangedEventArgs2_Interface'Class;
 
    type IBluetoothLEAdvertisementReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementReceivedEventArgs is access IBluetoothLEAdvertisementReceivedEventArgs_Interface'Class;
+   type IBluetoothLEAdvertisementReceivedEventArgs is access all IBluetoothLEAdvertisementReceivedEventArgs_Interface'Class;
    type IBluetoothLEAdvertisementReceivedEventArgs_Ptr is access all IBluetoothLEAdvertisementReceivedEventArgs;
 
    type IBluetoothLEAdvertisementReceivedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementReceivedEventArgs2 is access IBluetoothLEAdvertisementReceivedEventArgs2_Interface'Class;
+   type IBluetoothLEAdvertisementReceivedEventArgs2 is access all IBluetoothLEAdvertisementReceivedEventArgs2_Interface'Class;
 
    type IBluetoothLEAdvertisementWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementWatcher is access IBluetoothLEAdvertisementWatcher_Interface'Class;
+   type IBluetoothLEAdvertisementWatcher is access all IBluetoothLEAdvertisementWatcher_Interface'Class;
    type IBluetoothLEAdvertisementWatcher_Ptr is access all IBluetoothLEAdvertisementWatcher;
 
    type IBluetoothLEAdvertisementWatcher2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementWatcher2 is access IBluetoothLEAdvertisementWatcher2_Interface'Class;
+   type IBluetoothLEAdvertisementWatcher2 is access all IBluetoothLEAdvertisementWatcher2_Interface'Class;
 
    type IBluetoothLEAdvertisementWatcherFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementWatcherFactory is access IBluetoothLEAdvertisementWatcherFactory_Interface'Class;
+   type IBluetoothLEAdvertisementWatcherFactory is access all IBluetoothLEAdvertisementWatcherFactory_Interface'Class;
 
    type IBluetoothLEAdvertisementWatcherStoppedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementWatcherStoppedEventArgs is access IBluetoothLEAdvertisementWatcherStoppedEventArgs_Interface'Class;
+   type IBluetoothLEAdvertisementWatcherStoppedEventArgs is access all IBluetoothLEAdvertisementWatcherStoppedEventArgs_Interface'Class;
    type IBluetoothLEAdvertisementWatcherStoppedEventArgs_Ptr is access all IBluetoothLEAdvertisementWatcherStoppedEventArgs;
 
    type IBluetoothLEManufacturerData_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEManufacturerData is access IBluetoothLEManufacturerData_Interface'Class;
+   type IBluetoothLEManufacturerData is access all IBluetoothLEManufacturerData_Interface'Class;
    type IBluetoothLEManufacturerData_Ptr is access all IBluetoothLEManufacturerData;
 
    type IBluetoothLEManufacturerDataFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEManufacturerDataFactory is access IBluetoothLEManufacturerDataFactory_Interface'Class;
+   type IBluetoothLEManufacturerDataFactory is access all IBluetoothLEManufacturerDataFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -194,7 +194,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       DualModeControllerCapable_e => 8,
       DualModeHostCapable_e => 16
    );
-   type BluetoothLEAdvertisementFlags_Ptr is access BluetoothLEAdvertisementFlags;
+   type BluetoothLEAdvertisementFlags_Ptr is access all BluetoothLEAdvertisementFlags;
 
    type BluetoothLEAdvertisementPublisherStatus is (
       Created_e,
@@ -212,7 +212,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       Stopped_e => 4,
       Aborted_e => 5
    );
-   type BluetoothLEAdvertisementPublisherStatus_Ptr is access BluetoothLEAdvertisementPublisherStatus;
+   type BluetoothLEAdvertisementPublisherStatus_Ptr is access all BluetoothLEAdvertisementPublisherStatus;
 
    type BluetoothLEAdvertisementType is (
       ConnectableUndirected_e,
@@ -230,7 +230,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       ScanResponse_e => 4,
       Extended_e => 5
    );
-   type BluetoothLEAdvertisementType_Ptr is access BluetoothLEAdvertisementType;
+   type BluetoothLEAdvertisementType_Ptr is access all BluetoothLEAdvertisementType;
 
    type BluetoothLEAdvertisementWatcherStatus is (
       Created_e,
@@ -246,7 +246,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       Stopped_e => 3,
       Aborted_e => 4
    );
-   type BluetoothLEAdvertisementWatcherStatus_Ptr is access BluetoothLEAdvertisementWatcherStatus;
+   type BluetoothLEAdvertisementWatcherStatus_Ptr is access all BluetoothLEAdvertisementWatcherStatus;
 
    type BluetoothLEScanningMode is (
       Passive_e,
@@ -258,7 +258,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       Active_e => 1,
       None_e => 2
    );
-   type BluetoothLEScanningMode_Ptr is access BluetoothLEScanningMode;
+   type BluetoothLEScanningMode_Ptr is access all BluetoothLEScanningMode;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

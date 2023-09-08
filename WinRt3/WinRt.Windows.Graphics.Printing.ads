@@ -42,102 +42,102 @@ package WinRt.Windows.Graphics.Printing is
    -----------------------------------------------------------------------------
 
    type PrintTaskSourceRequestedHandler_Delegate;
-   type PrintTaskSourceRequestedHandler is access PrintTaskSourceRequestedHandler_Delegate;
+   type PrintTaskSourceRequestedHandler is access all PrintTaskSourceRequestedHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IPrintDocumentSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintDocumentSource is access IPrintDocumentSource_Interface'Class;
+   type IPrintDocumentSource is access all IPrintDocumentSource_Interface'Class;
 
    type IPrintManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintManager is access IPrintManager_Interface'Class;
+   type IPrintManager is access all IPrintManager_Interface'Class;
    type IPrintManager_Ptr is access all IPrintManager;
 
    type IPrintManagerStatic_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintManagerStatic is access IPrintManagerStatic_Interface'Class;
+   type IPrintManagerStatic is access all IPrintManagerStatic_Interface'Class;
 
    type IPrintManagerStatic2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintManagerStatic2 is access IPrintManagerStatic2_Interface'Class;
+   type IPrintManagerStatic2 is access all IPrintManagerStatic2_Interface'Class;
 
    type IPrintPageInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintPageInfo is access IPrintPageInfo_Interface'Class;
+   type IPrintPageInfo is access all IPrintPageInfo_Interface'Class;
    type IPrintPageInfo_Ptr is access all IPrintPageInfo;
 
    type IPrintPageRange_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintPageRange is access IPrintPageRange_Interface'Class;
+   type IPrintPageRange is access all IPrintPageRange_Interface'Class;
    type IPrintPageRange_Ptr is access all IPrintPageRange;
 
    type IPrintPageRangeFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintPageRangeFactory is access IPrintPageRangeFactory_Interface'Class;
+   type IPrintPageRangeFactory is access all IPrintPageRangeFactory_Interface'Class;
 
    type IPrintPageRangeOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintPageRangeOptions is access IPrintPageRangeOptions_Interface'Class;
+   type IPrintPageRangeOptions is access all IPrintPageRangeOptions_Interface'Class;
    type IPrintPageRangeOptions_Ptr is access all IPrintPageRangeOptions;
 
    type IPrintTask_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTask is access IPrintTask_Interface'Class;
+   type IPrintTask is access all IPrintTask_Interface'Class;
    type IPrintTask_Ptr is access all IPrintTask;
 
    type IPrintTask2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTask2 is access IPrintTask2_Interface'Class;
+   type IPrintTask2 is access all IPrintTask2_Interface'Class;
 
    type IPrintTaskCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskCompletedEventArgs is access IPrintTaskCompletedEventArgs_Interface'Class;
+   type IPrintTaskCompletedEventArgs is access all IPrintTaskCompletedEventArgs_Interface'Class;
    type IPrintTaskCompletedEventArgs_Ptr is access all IPrintTaskCompletedEventArgs;
 
    type IPrintTaskOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskOptions is access IPrintTaskOptions_Interface'Class;
+   type IPrintTaskOptions is access all IPrintTaskOptions_Interface'Class;
 
    type IPrintTaskOptions2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskOptions2 is access IPrintTaskOptions2_Interface'Class;
+   type IPrintTaskOptions2 is access all IPrintTaskOptions2_Interface'Class;
 
    type IPrintTaskOptionsCore_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskOptionsCore is access IPrintTaskOptionsCore_Interface'Class;
+   type IPrintTaskOptionsCore is access all IPrintTaskOptionsCore_Interface'Class;
    type IPrintTaskOptionsCore_Ptr is access all IPrintTaskOptionsCore;
 
    type IPrintTaskOptionsCoreProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskOptionsCoreProperties is access IPrintTaskOptionsCoreProperties_Interface'Class;
+   type IPrintTaskOptionsCoreProperties is access all IPrintTaskOptionsCoreProperties_Interface'Class;
 
    type IPrintTaskOptionsCoreUIConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskOptionsCoreUIConfiguration is access IPrintTaskOptionsCoreUIConfiguration_Interface'Class;
+   type IPrintTaskOptionsCoreUIConfiguration is access all IPrintTaskOptionsCoreUIConfiguration_Interface'Class;
 
    type IPrintTaskProgressingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskProgressingEventArgs is access IPrintTaskProgressingEventArgs_Interface'Class;
+   type IPrintTaskProgressingEventArgs is access all IPrintTaskProgressingEventArgs_Interface'Class;
    type IPrintTaskProgressingEventArgs_Ptr is access all IPrintTaskProgressingEventArgs;
 
    type IPrintTaskRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskRequest is access IPrintTaskRequest_Interface'Class;
+   type IPrintTaskRequest is access all IPrintTaskRequest_Interface'Class;
    type IPrintTaskRequest_Ptr is access all IPrintTaskRequest;
 
    type IPrintTaskRequestedDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskRequestedDeferral is access IPrintTaskRequestedDeferral_Interface'Class;
+   type IPrintTaskRequestedDeferral is access all IPrintTaskRequestedDeferral_Interface'Class;
    type IPrintTaskRequestedDeferral_Ptr is access all IPrintTaskRequestedDeferral;
 
    type IPrintTaskRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskRequestedEventArgs is access IPrintTaskRequestedEventArgs_Interface'Class;
+   type IPrintTaskRequestedEventArgs is access all IPrintTaskRequestedEventArgs_Interface'Class;
    type IPrintTaskRequestedEventArgs_Ptr is access all IPrintTaskRequestedEventArgs;
 
    type IPrintTaskSourceRequestedArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskSourceRequestedArgs is access IPrintTaskSourceRequestedArgs_Interface'Class;
+   type IPrintTaskSourceRequestedArgs is access all IPrintTaskSourceRequestedArgs_Interface'Class;
    type IPrintTaskSourceRequestedArgs_Ptr is access all IPrintTaskSourceRequestedArgs;
 
    type IPrintTaskSourceRequestedDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskSourceRequestedDeferral is access IPrintTaskSourceRequestedDeferral_Interface'Class;
+   type IPrintTaskSourceRequestedDeferral is access all IPrintTaskSourceRequestedDeferral_Interface'Class;
    type IPrintTaskSourceRequestedDeferral_Ptr is access all IPrintTaskSourceRequestedDeferral;
 
    type IPrintTaskTargetDeviceSupport_Interface is interface and WinRt.IInspectable_Interface;
-   type IPrintTaskTargetDeviceSupport is access IPrintTaskTargetDeviceSupport_Interface'Class;
+   type IPrintTaskTargetDeviceSupport is access all IPrintTaskTargetDeviceSupport_Interface'Class;
 
    type IStandardPrintTaskOptionsStatic_Interface is interface and WinRt.IInspectable_Interface;
-   type IStandardPrintTaskOptionsStatic is access IStandardPrintTaskOptionsStatic_Interface'Class;
+   type IStandardPrintTaskOptionsStatic is access all IStandardPrintTaskOptionsStatic_Interface'Class;
 
    type IStandardPrintTaskOptionsStatic2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStandardPrintTaskOptionsStatic2 is access IStandardPrintTaskOptionsStatic2_Interface'Class;
+   type IStandardPrintTaskOptionsStatic2 is access all IStandardPrintTaskOptionsStatic2_Interface'Class;
 
    type IStandardPrintTaskOptionsStatic3_Interface is interface and WinRt.IInspectable_Interface;
-   type IStandardPrintTaskOptionsStatic3 is access IStandardPrintTaskOptionsStatic3_Interface'Class;
+   type IStandardPrintTaskOptionsStatic3 is access all IStandardPrintTaskOptionsStatic3_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -263,7 +263,7 @@ package WinRt.Windows.Graphics.Printing is
       JogOffset_e => 15,
       Trim_e => 16
    );
-   type PrintBinding_Ptr is access PrintBinding;
+   type PrintBinding_Ptr is access all PrintBinding;
 
    type PrintBordering is (
       Default_e,
@@ -279,7 +279,7 @@ package WinRt.Windows.Graphics.Printing is
       Bordered_e => 3,
       Borderless_e => 4
    );
-   type PrintBordering_Ptr is access PrintBordering;
+   type PrintBordering_Ptr is access all PrintBordering;
 
    type PrintCollation is (
       Default_e,
@@ -295,7 +295,7 @@ package WinRt.Windows.Graphics.Printing is
       Collated_e => 3,
       Uncollated_e => 4
    );
-   type PrintCollation_Ptr is access PrintCollation;
+   type PrintCollation_Ptr is access all PrintCollation;
 
    type PrintColorMode is (
       Default_e,
@@ -313,7 +313,7 @@ package WinRt.Windows.Graphics.Printing is
       Grayscale_e => 4,
       Monochrome_e => 5
    );
-   type PrintColorMode_Ptr is access PrintColorMode;
+   type PrintColorMode_Ptr is access all PrintColorMode;
 
    type PrintDuplex is (
       Default_e,
@@ -331,7 +331,7 @@ package WinRt.Windows.Graphics.Printing is
       TwoSidedShortEdge_e => 4,
       TwoSidedLongEdge_e => 5
    );
-   type PrintDuplex_Ptr is access PrintDuplex;
+   type PrintDuplex_Ptr is access all PrintDuplex;
 
    type PrintHolePunch is (
       Default_e,
@@ -353,7 +353,7 @@ package WinRt.Windows.Graphics.Printing is
       TopEdge_e => 6,
       BottomEdge_e => 7
    );
-   type PrintHolePunch_Ptr is access PrintHolePunch;
+   type PrintHolePunch_Ptr is access all PrintHolePunch;
 
    type PrintMediaSize is (
       Default_e,
@@ -705,7 +705,7 @@ package WinRt.Windows.Graphics.Printing is
       Roll36Inch_e => 171,
       Roll54Inch_e => 172
    );
-   type PrintMediaSize_Ptr is access PrintMediaSize;
+   type PrintMediaSize_Ptr is access all PrintMediaSize;
 
    type PrintMediaType is (
       Default_e,
@@ -775,7 +775,7 @@ package WinRt.Windows.Graphics.Printing is
       TShirtTransfer_e => 30,
       None_e => 31
    );
-   type PrintMediaType_Ptr is access PrintMediaType;
+   type PrintMediaType_Ptr is access all PrintMediaType;
 
    type PrintOrientation is (
       Default_e,
@@ -795,7 +795,7 @@ package WinRt.Windows.Graphics.Printing is
       Landscape_e => 5,
       LandscapeFlipped_e => 6
    );
-   type PrintOrientation_Ptr is access PrintOrientation;
+   type PrintOrientation_Ptr is access all PrintOrientation;
 
    type PrintQuality is (
       Default_e,
@@ -821,7 +821,7 @@ package WinRt.Windows.Graphics.Printing is
       Photographic_e => 8,
       Text_e => 9
    );
-   type PrintQuality_Ptr is access PrintQuality;
+   type PrintQuality_Ptr is access all PrintQuality;
 
    type PrintStaple is (
       Default_e,
@@ -853,7 +853,7 @@ package WinRt.Windows.Graphics.Printing is
       StapleDualBottom_e => 11,
       SaddleStitch_e => 12
    );
-   type PrintStaple_Ptr is access PrintStaple;
+   type PrintStaple_Ptr is access all PrintStaple;
 
    type PrintTaskCompletion is (
       Abandoned_e,
@@ -867,7 +867,7 @@ package WinRt.Windows.Graphics.Printing is
       Failed_e => 2,
       Submitted_e => 3
    );
-   type PrintTaskCompletion_Ptr is access PrintTaskCompletion;
+   type PrintTaskCompletion_Ptr is access all PrintTaskCompletion;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -879,7 +879,7 @@ package WinRt.Windows.Graphics.Printing is
       DpiX : WinRt.UInt32;
       DpiY : WinRt.UInt32;
    end record with Convention => C_Pass_By_Copy;
-   type PrintPageDescription_Ptr is access PrintPageDescription;
+   type PrintPageDescription_Ptr is access all PrintPageDescription;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

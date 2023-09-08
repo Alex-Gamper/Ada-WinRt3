@@ -45,153 +45,153 @@ package WinRt.Windows.Devices.Perception is
    -----------------------------------------------------------------------------
 
    type IKnownCameraIntrinsicsPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownCameraIntrinsicsPropertiesStatics is access IKnownCameraIntrinsicsPropertiesStatics_Interface'Class;
+   type IKnownCameraIntrinsicsPropertiesStatics is access all IKnownCameraIntrinsicsPropertiesStatics_Interface'Class;
 
    type IKnownPerceptionColorFrameSourcePropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownPerceptionColorFrameSourcePropertiesStatics is access IKnownPerceptionColorFrameSourcePropertiesStatics_Interface'Class;
+   type IKnownPerceptionColorFrameSourcePropertiesStatics is access all IKnownPerceptionColorFrameSourcePropertiesStatics_Interface'Class;
 
    type IKnownPerceptionDepthFrameSourcePropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownPerceptionDepthFrameSourcePropertiesStatics is access IKnownPerceptionDepthFrameSourcePropertiesStatics_Interface'Class;
+   type IKnownPerceptionDepthFrameSourcePropertiesStatics is access all IKnownPerceptionDepthFrameSourcePropertiesStatics_Interface'Class;
 
    type IKnownPerceptionFrameSourcePropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownPerceptionFrameSourcePropertiesStatics is access IKnownPerceptionFrameSourcePropertiesStatics_Interface'Class;
+   type IKnownPerceptionFrameSourcePropertiesStatics is access all IKnownPerceptionFrameSourcePropertiesStatics_Interface'Class;
 
    type IKnownPerceptionFrameSourcePropertiesStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownPerceptionFrameSourcePropertiesStatics2 is access IKnownPerceptionFrameSourcePropertiesStatics2_Interface'Class;
+   type IKnownPerceptionFrameSourcePropertiesStatics2 is access all IKnownPerceptionFrameSourcePropertiesStatics2_Interface'Class;
 
    type IKnownPerceptionInfraredFrameSourcePropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownPerceptionInfraredFrameSourcePropertiesStatics is access IKnownPerceptionInfraredFrameSourcePropertiesStatics_Interface'Class;
+   type IKnownPerceptionInfraredFrameSourcePropertiesStatics is access all IKnownPerceptionInfraredFrameSourcePropertiesStatics_Interface'Class;
 
    type IKnownPerceptionVideoFrameSourcePropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownPerceptionVideoFrameSourcePropertiesStatics is access IKnownPerceptionVideoFrameSourcePropertiesStatics_Interface'Class;
+   type IKnownPerceptionVideoFrameSourcePropertiesStatics is access all IKnownPerceptionVideoFrameSourcePropertiesStatics_Interface'Class;
 
    type IKnownPerceptionVideoProfilePropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownPerceptionVideoProfilePropertiesStatics is access IKnownPerceptionVideoProfilePropertiesStatics_Interface'Class;
+   type IKnownPerceptionVideoProfilePropertiesStatics is access all IKnownPerceptionVideoProfilePropertiesStatics_Interface'Class;
 
    type IPerceptionColorFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionColorFrame is access IPerceptionColorFrame_Interface'Class;
+   type IPerceptionColorFrame is access all IPerceptionColorFrame_Interface'Class;
    type IPerceptionColorFrame_Ptr is access all IPerceptionColorFrame;
 
    type IPerceptionColorFrameArrivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionColorFrameArrivedEventArgs is access IPerceptionColorFrameArrivedEventArgs_Interface'Class;
+   type IPerceptionColorFrameArrivedEventArgs is access all IPerceptionColorFrameArrivedEventArgs_Interface'Class;
    type IPerceptionColorFrameArrivedEventArgs_Ptr is access all IPerceptionColorFrameArrivedEventArgs;
 
    type IPerceptionColorFrameReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionColorFrameReader is access IPerceptionColorFrameReader_Interface'Class;
+   type IPerceptionColorFrameReader is access all IPerceptionColorFrameReader_Interface'Class;
    type IPerceptionColorFrameReader_Ptr is access all IPerceptionColorFrameReader;
 
    type IPerceptionColorFrameSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionColorFrameSource is access IPerceptionColorFrameSource_Interface'Class;
+   type IPerceptionColorFrameSource is access all IPerceptionColorFrameSource_Interface'Class;
    type IPerceptionColorFrameSource_Ptr is access all IPerceptionColorFrameSource;
 
    type IPerceptionColorFrameSource2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionColorFrameSource2 is access IPerceptionColorFrameSource2_Interface'Class;
+   type IPerceptionColorFrameSource2 is access all IPerceptionColorFrameSource2_Interface'Class;
 
    type IPerceptionColorFrameSourceAddedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionColorFrameSourceAddedEventArgs is access IPerceptionColorFrameSourceAddedEventArgs_Interface'Class;
+   type IPerceptionColorFrameSourceAddedEventArgs is access all IPerceptionColorFrameSourceAddedEventArgs_Interface'Class;
    type IPerceptionColorFrameSourceAddedEventArgs_Ptr is access all IPerceptionColorFrameSourceAddedEventArgs;
 
    type IPerceptionColorFrameSourceRemovedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionColorFrameSourceRemovedEventArgs is access IPerceptionColorFrameSourceRemovedEventArgs_Interface'Class;
+   type IPerceptionColorFrameSourceRemovedEventArgs is access all IPerceptionColorFrameSourceRemovedEventArgs_Interface'Class;
    type IPerceptionColorFrameSourceRemovedEventArgs_Ptr is access all IPerceptionColorFrameSourceRemovedEventArgs;
 
    type IPerceptionColorFrameSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionColorFrameSourceStatics is access IPerceptionColorFrameSourceStatics_Interface'Class;
+   type IPerceptionColorFrameSourceStatics is access all IPerceptionColorFrameSourceStatics_Interface'Class;
 
    type IPerceptionColorFrameSourceWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionColorFrameSourceWatcher is access IPerceptionColorFrameSourceWatcher_Interface'Class;
+   type IPerceptionColorFrameSourceWatcher is access all IPerceptionColorFrameSourceWatcher_Interface'Class;
    type IPerceptionColorFrameSourceWatcher_Ptr is access all IPerceptionColorFrameSourceWatcher;
 
    type IPerceptionControlSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionControlSession is access IPerceptionControlSession_Interface'Class;
+   type IPerceptionControlSession is access all IPerceptionControlSession_Interface'Class;
    type IPerceptionControlSession_Ptr is access all IPerceptionControlSession;
 
    type IPerceptionDepthCorrelatedCameraIntrinsics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionDepthCorrelatedCameraIntrinsics is access IPerceptionDepthCorrelatedCameraIntrinsics_Interface'Class;
+   type IPerceptionDepthCorrelatedCameraIntrinsics is access all IPerceptionDepthCorrelatedCameraIntrinsics_Interface'Class;
    type IPerceptionDepthCorrelatedCameraIntrinsics_Ptr is access all IPerceptionDepthCorrelatedCameraIntrinsics;
 
    type IPerceptionDepthCorrelatedCoordinateMapper_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionDepthCorrelatedCoordinateMapper is access IPerceptionDepthCorrelatedCoordinateMapper_Interface'Class;
+   type IPerceptionDepthCorrelatedCoordinateMapper is access all IPerceptionDepthCorrelatedCoordinateMapper_Interface'Class;
    type IPerceptionDepthCorrelatedCoordinateMapper_Ptr is access all IPerceptionDepthCorrelatedCoordinateMapper;
 
    type IPerceptionDepthFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionDepthFrame is access IPerceptionDepthFrame_Interface'Class;
+   type IPerceptionDepthFrame is access all IPerceptionDepthFrame_Interface'Class;
    type IPerceptionDepthFrame_Ptr is access all IPerceptionDepthFrame;
 
    type IPerceptionDepthFrameArrivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionDepthFrameArrivedEventArgs is access IPerceptionDepthFrameArrivedEventArgs_Interface'Class;
+   type IPerceptionDepthFrameArrivedEventArgs is access all IPerceptionDepthFrameArrivedEventArgs_Interface'Class;
    type IPerceptionDepthFrameArrivedEventArgs_Ptr is access all IPerceptionDepthFrameArrivedEventArgs;
 
    type IPerceptionDepthFrameReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionDepthFrameReader is access IPerceptionDepthFrameReader_Interface'Class;
+   type IPerceptionDepthFrameReader is access all IPerceptionDepthFrameReader_Interface'Class;
    type IPerceptionDepthFrameReader_Ptr is access all IPerceptionDepthFrameReader;
 
    type IPerceptionDepthFrameSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionDepthFrameSource is access IPerceptionDepthFrameSource_Interface'Class;
+   type IPerceptionDepthFrameSource is access all IPerceptionDepthFrameSource_Interface'Class;
    type IPerceptionDepthFrameSource_Ptr is access all IPerceptionDepthFrameSource;
 
    type IPerceptionDepthFrameSource2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionDepthFrameSource2 is access IPerceptionDepthFrameSource2_Interface'Class;
+   type IPerceptionDepthFrameSource2 is access all IPerceptionDepthFrameSource2_Interface'Class;
 
    type IPerceptionDepthFrameSourceAddedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionDepthFrameSourceAddedEventArgs is access IPerceptionDepthFrameSourceAddedEventArgs_Interface'Class;
+   type IPerceptionDepthFrameSourceAddedEventArgs is access all IPerceptionDepthFrameSourceAddedEventArgs_Interface'Class;
    type IPerceptionDepthFrameSourceAddedEventArgs_Ptr is access all IPerceptionDepthFrameSourceAddedEventArgs;
 
    type IPerceptionDepthFrameSourceRemovedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionDepthFrameSourceRemovedEventArgs is access IPerceptionDepthFrameSourceRemovedEventArgs_Interface'Class;
+   type IPerceptionDepthFrameSourceRemovedEventArgs is access all IPerceptionDepthFrameSourceRemovedEventArgs_Interface'Class;
    type IPerceptionDepthFrameSourceRemovedEventArgs_Ptr is access all IPerceptionDepthFrameSourceRemovedEventArgs;
 
    type IPerceptionDepthFrameSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionDepthFrameSourceStatics is access IPerceptionDepthFrameSourceStatics_Interface'Class;
+   type IPerceptionDepthFrameSourceStatics is access all IPerceptionDepthFrameSourceStatics_Interface'Class;
 
    type IPerceptionDepthFrameSourceWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionDepthFrameSourceWatcher is access IPerceptionDepthFrameSourceWatcher_Interface'Class;
+   type IPerceptionDepthFrameSourceWatcher is access all IPerceptionDepthFrameSourceWatcher_Interface'Class;
    type IPerceptionDepthFrameSourceWatcher_Ptr is access all IPerceptionDepthFrameSourceWatcher;
 
    type IPerceptionFrameSourcePropertiesChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionFrameSourcePropertiesChangedEventArgs is access IPerceptionFrameSourcePropertiesChangedEventArgs_Interface'Class;
+   type IPerceptionFrameSourcePropertiesChangedEventArgs is access all IPerceptionFrameSourcePropertiesChangedEventArgs_Interface'Class;
    type IPerceptionFrameSourcePropertiesChangedEventArgs_Ptr is access all IPerceptionFrameSourcePropertiesChangedEventArgs;
 
    type IPerceptionFrameSourcePropertyChangeResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionFrameSourcePropertyChangeResult is access IPerceptionFrameSourcePropertyChangeResult_Interface'Class;
+   type IPerceptionFrameSourcePropertyChangeResult is access all IPerceptionFrameSourcePropertyChangeResult_Interface'Class;
    type IPerceptionFrameSourcePropertyChangeResult_Ptr is access all IPerceptionFrameSourcePropertyChangeResult;
 
    type IPerceptionInfraredFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionInfraredFrame is access IPerceptionInfraredFrame_Interface'Class;
+   type IPerceptionInfraredFrame is access all IPerceptionInfraredFrame_Interface'Class;
    type IPerceptionInfraredFrame_Ptr is access all IPerceptionInfraredFrame;
 
    type IPerceptionInfraredFrameArrivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionInfraredFrameArrivedEventArgs is access IPerceptionInfraredFrameArrivedEventArgs_Interface'Class;
+   type IPerceptionInfraredFrameArrivedEventArgs is access all IPerceptionInfraredFrameArrivedEventArgs_Interface'Class;
    type IPerceptionInfraredFrameArrivedEventArgs_Ptr is access all IPerceptionInfraredFrameArrivedEventArgs;
 
    type IPerceptionInfraredFrameReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionInfraredFrameReader is access IPerceptionInfraredFrameReader_Interface'Class;
+   type IPerceptionInfraredFrameReader is access all IPerceptionInfraredFrameReader_Interface'Class;
    type IPerceptionInfraredFrameReader_Ptr is access all IPerceptionInfraredFrameReader;
 
    type IPerceptionInfraredFrameSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionInfraredFrameSource is access IPerceptionInfraredFrameSource_Interface'Class;
+   type IPerceptionInfraredFrameSource is access all IPerceptionInfraredFrameSource_Interface'Class;
    type IPerceptionInfraredFrameSource_Ptr is access all IPerceptionInfraredFrameSource;
 
    type IPerceptionInfraredFrameSource2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionInfraredFrameSource2 is access IPerceptionInfraredFrameSource2_Interface'Class;
+   type IPerceptionInfraredFrameSource2 is access all IPerceptionInfraredFrameSource2_Interface'Class;
 
    type IPerceptionInfraredFrameSourceAddedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionInfraredFrameSourceAddedEventArgs is access IPerceptionInfraredFrameSourceAddedEventArgs_Interface'Class;
+   type IPerceptionInfraredFrameSourceAddedEventArgs is access all IPerceptionInfraredFrameSourceAddedEventArgs_Interface'Class;
    type IPerceptionInfraredFrameSourceAddedEventArgs_Ptr is access all IPerceptionInfraredFrameSourceAddedEventArgs;
 
    type IPerceptionInfraredFrameSourceRemovedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionInfraredFrameSourceRemovedEventArgs is access IPerceptionInfraredFrameSourceRemovedEventArgs_Interface'Class;
+   type IPerceptionInfraredFrameSourceRemovedEventArgs is access all IPerceptionInfraredFrameSourceRemovedEventArgs_Interface'Class;
    type IPerceptionInfraredFrameSourceRemovedEventArgs_Ptr is access all IPerceptionInfraredFrameSourceRemovedEventArgs;
 
    type IPerceptionInfraredFrameSourceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionInfraredFrameSourceStatics is access IPerceptionInfraredFrameSourceStatics_Interface'Class;
+   type IPerceptionInfraredFrameSourceStatics is access all IPerceptionInfraredFrameSourceStatics_Interface'Class;
 
    type IPerceptionInfraredFrameSourceWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionInfraredFrameSourceWatcher is access IPerceptionInfraredFrameSourceWatcher_Interface'Class;
+   type IPerceptionInfraredFrameSourceWatcher is access all IPerceptionInfraredFrameSourceWatcher_Interface'Class;
    type IPerceptionInfraredFrameSourceWatcher_Ptr is access all IPerceptionInfraredFrameSourceWatcher;
 
    type IPerceptionVideoProfile_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionVideoProfile is access IPerceptionVideoProfile_Interface'Class;
+   type IPerceptionVideoProfile is access all IPerceptionVideoProfile_Interface'Class;
    type IPerceptionVideoProfile_Ptr is access all IPerceptionVideoProfile;
 
    -----------------------------------------------------------------------------
@@ -376,7 +376,7 @@ package WinRt.Windows.Devices.Perception is
       DeniedByUser_e => 2,
       DeniedBySystem_e => 3
    );
-   type PerceptionFrameSourceAccessStatus_Ptr is access PerceptionFrameSourceAccessStatus;
+   type PerceptionFrameSourceAccessStatus_Ptr is access all PerceptionFrameSourceAccessStatus;
 
    type PerceptionFrameSourcePropertyChangeStatus is (
       Unknown_e,
@@ -394,7 +394,7 @@ package WinRt.Windows.Devices.Perception is
       PropertyReadOnly_e => 4,
       ValueOutOfRange_e => 5
    );
-   type PerceptionFrameSourcePropertyChangeStatus_Ptr is access PerceptionFrameSourcePropertyChangeStatus;
+   type PerceptionFrameSourcePropertyChangeStatus_Ptr is access all PerceptionFrameSourcePropertyChangeStatus;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

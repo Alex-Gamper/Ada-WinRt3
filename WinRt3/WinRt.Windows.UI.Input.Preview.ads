@@ -39,7 +39,7 @@ package WinRt.Windows.UI.Input.Preview is
    -----------------------------------------------------------------------------
 
    type IInputActivationListenerPreviewStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputActivationListenerPreviewStatics is access IInputActivationListenerPreviewStatics_Interface'Class;
+   type IInputActivationListenerPreviewStatics is access all IInputActivationListenerPreviewStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

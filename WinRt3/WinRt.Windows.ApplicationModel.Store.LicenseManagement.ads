@@ -41,17 +41,17 @@ package WinRt.Windows.ApplicationModel.Store.LicenseManagement is
    -----------------------------------------------------------------------------
 
    type ILicenseManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILicenseManagerStatics is access ILicenseManagerStatics_Interface'Class;
+   type ILicenseManagerStatics is access all ILicenseManagerStatics_Interface'Class;
 
    type ILicenseManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ILicenseManagerStatics2 is access ILicenseManagerStatics2_Interface'Class;
+   type ILicenseManagerStatics2 is access all ILicenseManagerStatics2_Interface'Class;
 
    type ILicenseSatisfactionInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ILicenseSatisfactionInfo is access ILicenseSatisfactionInfo_Interface'Class;
+   type ILicenseSatisfactionInfo is access all ILicenseSatisfactionInfo_Interface'Class;
    type ILicenseSatisfactionInfo_Ptr is access all ILicenseSatisfactionInfo;
 
    type ILicenseSatisfactionResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ILicenseSatisfactionResult is access ILicenseSatisfactionResult_Interface'Class;
+   type ILicenseSatisfactionResult is access all ILicenseSatisfactionResult_Interface'Class;
    type ILicenseSatisfactionResult_Ptr is access all ILicenseSatisfactionResult;
 
    -----------------------------------------------------------------------------
@@ -82,7 +82,7 @@ package WinRt.Windows.ApplicationModel.Store.LicenseManagement is
       RunningLicenses_e => 0,
       AllLicenses_e => 1
    );
-   type LicenseRefreshOption_Ptr is access LicenseRefreshOption;
+   type LicenseRefreshOption_Ptr is access all LicenseRefreshOption;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

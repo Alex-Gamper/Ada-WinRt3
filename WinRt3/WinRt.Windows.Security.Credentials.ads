@@ -43,60 +43,60 @@ package WinRt.Windows.Security.Credentials is
    -----------------------------------------------------------------------------
 
    type ICredentialFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICredentialFactory is access ICredentialFactory_Interface'Class;
+   type ICredentialFactory is access all ICredentialFactory_Interface'Class;
 
    type IKeyCredential_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyCredential is access IKeyCredential_Interface'Class;
+   type IKeyCredential is access all IKeyCredential_Interface'Class;
    type IKeyCredential_Ptr is access all IKeyCredential;
 
    type IKeyCredentialAttestationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyCredentialAttestationResult is access IKeyCredentialAttestationResult_Interface'Class;
+   type IKeyCredentialAttestationResult is access all IKeyCredentialAttestationResult_Interface'Class;
    type IKeyCredentialAttestationResult_Ptr is access all IKeyCredentialAttestationResult;
 
    type IKeyCredentialManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyCredentialManagerStatics is access IKeyCredentialManagerStatics_Interface'Class;
+   type IKeyCredentialManagerStatics is access all IKeyCredentialManagerStatics_Interface'Class;
 
    type IKeyCredentialOperationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyCredentialOperationResult is access IKeyCredentialOperationResult_Interface'Class;
+   type IKeyCredentialOperationResult is access all IKeyCredentialOperationResult_Interface'Class;
    type IKeyCredentialOperationResult_Ptr is access all IKeyCredentialOperationResult;
 
    type IKeyCredentialRetrievalResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyCredentialRetrievalResult is access IKeyCredentialRetrievalResult_Interface'Class;
+   type IKeyCredentialRetrievalResult is access all IKeyCredentialRetrievalResult_Interface'Class;
    type IKeyCredentialRetrievalResult_Ptr is access all IKeyCredentialRetrievalResult;
 
    type IPasswordCredential_Interface is interface and WinRt.IInspectable_Interface;
-   type IPasswordCredential is access IPasswordCredential_Interface'Class;
+   type IPasswordCredential is access all IPasswordCredential_Interface'Class;
    type IPasswordCredential_Ptr is access all IPasswordCredential;
 
    type IPasswordVault_Interface is interface and WinRt.IInspectable_Interface;
-   type IPasswordVault is access IPasswordVault_Interface'Class;
+   type IPasswordVault is access all IPasswordVault_Interface'Class;
    type IPasswordVault_Ptr is access all IPasswordVault;
 
    type IWebAccount_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccount is access IWebAccount_Interface'Class;
+   type IWebAccount is access all IWebAccount_Interface'Class;
    type IWebAccount_Ptr is access all IWebAccount;
 
    type IWebAccount2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccount2 is access IWebAccount2_Interface'Class;
+   type IWebAccount2 is access all IWebAccount2_Interface'Class;
 
    type IWebAccountFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountFactory is access IWebAccountFactory_Interface'Class;
+   type IWebAccountFactory is access all IWebAccountFactory_Interface'Class;
 
    type IWebAccountProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProvider is access IWebAccountProvider_Interface'Class;
+   type IWebAccountProvider is access all IWebAccountProvider_Interface'Class;
    type IWebAccountProvider_Ptr is access all IWebAccountProvider;
 
    type IWebAccountProvider2_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProvider2 is access IWebAccountProvider2_Interface'Class;
+   type IWebAccountProvider2 is access all IWebAccountProvider2_Interface'Class;
 
    type IWebAccountProvider3_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProvider3 is access IWebAccountProvider3_Interface'Class;
+   type IWebAccountProvider3 is access all IWebAccountProvider3_Interface'Class;
 
    type IWebAccountProvider4_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProvider4 is access IWebAccountProvider4_Interface'Class;
+   type IWebAccountProvider4 is access all IWebAccountProvider4_Interface'Class;
 
    type IWebAccountProviderFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAccountProviderFactory is access IWebAccountProviderFactory_Interface'Class;
+   type IWebAccountProviderFactory is access all IWebAccountProviderFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -172,7 +172,7 @@ package WinRt.Windows.Security.Credentials is
       NotSupported_e => 2,
       TemporaryFailure_e => 3
    );
-   type KeyCredentialAttestationStatus_Ptr is access KeyCredentialAttestationStatus;
+   type KeyCredentialAttestationStatus_Ptr is access all KeyCredentialAttestationStatus;
 
    type KeyCredentialCreationOption is (
       ReplaceExisting_e,
@@ -182,7 +182,7 @@ package WinRt.Windows.Security.Credentials is
       ReplaceExisting_e => 0,
       FailIfExists_e => 1
    );
-   type KeyCredentialCreationOption_Ptr is access KeyCredentialCreationOption;
+   type KeyCredentialCreationOption_Ptr is access all KeyCredentialCreationOption;
 
    type KeyCredentialStatus is (
       Success_e,
@@ -202,7 +202,7 @@ package WinRt.Windows.Security.Credentials is
       CredentialAlreadyExists_e => 5,
       SecurityDeviceLocked_e => 6
    );
-   type KeyCredentialStatus_Ptr is access KeyCredentialStatus;
+   type KeyCredentialStatus_Ptr is access all KeyCredentialStatus;
 
    type WebAccountPictureSize is (
       Size64x64_e,
@@ -216,7 +216,7 @@ package WinRt.Windows.Security.Credentials is
       Size424x424_e => 424,
       Size1080x1080_e => 1080
    );
-   type WebAccountPictureSize_Ptr is access WebAccountPictureSize;
+   type WebAccountPictureSize_Ptr is access all WebAccountPictureSize;
 
    type WebAccountState is (
       None_e,
@@ -228,7 +228,7 @@ package WinRt.Windows.Security.Credentials is
       Connected_e => 1,
       Error_e => 2
    );
-   type WebAccountState_Ptr is access WebAccountState;
+   type WebAccountState_Ptr is access all WebAccountState;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

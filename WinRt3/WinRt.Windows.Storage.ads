@@ -45,220 +45,220 @@ package WinRt.Windows.Storage is
    -----------------------------------------------------------------------------
 
    type ApplicationDataSetVersionHandler_Delegate;
-   type ApplicationDataSetVersionHandler is access ApplicationDataSetVersionHandler_Delegate;
+   type ApplicationDataSetVersionHandler is access all ApplicationDataSetVersionHandler_Delegate;
 
    type StreamedFileDataRequestedHandler_Delegate;
-   type StreamedFileDataRequestedHandler is access StreamedFileDataRequestedHandler_Delegate;
+   type StreamedFileDataRequestedHandler is access all StreamedFileDataRequestedHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IAppDataPaths_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppDataPaths is access IAppDataPaths_Interface'Class;
+   type IAppDataPaths is access all IAppDataPaths_Interface'Class;
    type IAppDataPaths_Ptr is access all IAppDataPaths;
 
    type IAppDataPathsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppDataPathsStatics is access IAppDataPathsStatics_Interface'Class;
+   type IAppDataPathsStatics is access all IAppDataPathsStatics_Interface'Class;
 
    type IApplicationData_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationData is access IApplicationData_Interface'Class;
+   type IApplicationData is access all IApplicationData_Interface'Class;
    type IApplicationData_Ptr is access all IApplicationData;
 
    type IApplicationData2_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationData2 is access IApplicationData2_Interface'Class;
+   type IApplicationData2 is access all IApplicationData2_Interface'Class;
 
    type IApplicationData3_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationData3 is access IApplicationData3_Interface'Class;
+   type IApplicationData3 is access all IApplicationData3_Interface'Class;
 
    type IApplicationDataContainer_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationDataContainer is access IApplicationDataContainer_Interface'Class;
+   type IApplicationDataContainer is access all IApplicationDataContainer_Interface'Class;
    type IApplicationDataContainer_Ptr is access all IApplicationDataContainer;
 
    type IApplicationDataStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationDataStatics is access IApplicationDataStatics_Interface'Class;
+   type IApplicationDataStatics is access all IApplicationDataStatics_Interface'Class;
 
    type IApplicationDataStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationDataStatics2 is access IApplicationDataStatics2_Interface'Class;
+   type IApplicationDataStatics2 is access all IApplicationDataStatics2_Interface'Class;
 
    type ICachedFileManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICachedFileManagerStatics is access ICachedFileManagerStatics_Interface'Class;
+   type ICachedFileManagerStatics is access all ICachedFileManagerStatics_Interface'Class;
 
    type IDownloadsFolderStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDownloadsFolderStatics is access IDownloadsFolderStatics_Interface'Class;
+   type IDownloadsFolderStatics is access all IDownloadsFolderStatics_Interface'Class;
 
    type IDownloadsFolderStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDownloadsFolderStatics2 is access IDownloadsFolderStatics2_Interface'Class;
+   type IDownloadsFolderStatics2 is access all IDownloadsFolderStatics2_Interface'Class;
 
    type IFileIOStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFileIOStatics is access IFileIOStatics_Interface'Class;
+   type IFileIOStatics is access all IFileIOStatics_Interface'Class;
 
    type IKnownFoldersCameraRollStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownFoldersCameraRollStatics is access IKnownFoldersCameraRollStatics_Interface'Class;
+   type IKnownFoldersCameraRollStatics is access all IKnownFoldersCameraRollStatics_Interface'Class;
 
    type IKnownFoldersPlaylistsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownFoldersPlaylistsStatics is access IKnownFoldersPlaylistsStatics_Interface'Class;
+   type IKnownFoldersPlaylistsStatics is access all IKnownFoldersPlaylistsStatics_Interface'Class;
 
    type IKnownFoldersSavedPicturesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownFoldersSavedPicturesStatics is access IKnownFoldersSavedPicturesStatics_Interface'Class;
+   type IKnownFoldersSavedPicturesStatics is access all IKnownFoldersSavedPicturesStatics_Interface'Class;
 
    type IKnownFoldersStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownFoldersStatics is access IKnownFoldersStatics_Interface'Class;
+   type IKnownFoldersStatics is access all IKnownFoldersStatics_Interface'Class;
 
    type IKnownFoldersStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownFoldersStatics2 is access IKnownFoldersStatics2_Interface'Class;
+   type IKnownFoldersStatics2 is access all IKnownFoldersStatics2_Interface'Class;
 
    type IKnownFoldersStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownFoldersStatics3 is access IKnownFoldersStatics3_Interface'Class;
+   type IKnownFoldersStatics3 is access all IKnownFoldersStatics3_Interface'Class;
 
    type IKnownFoldersStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownFoldersStatics4 is access IKnownFoldersStatics4_Interface'Class;
+   type IKnownFoldersStatics4 is access all IKnownFoldersStatics4_Interface'Class;
 
    type IPathIOStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPathIOStatics is access IPathIOStatics_Interface'Class;
+   type IPathIOStatics is access all IPathIOStatics_Interface'Class;
 
    type ISetVersionDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type ISetVersionDeferral is access ISetVersionDeferral_Interface'Class;
+   type ISetVersionDeferral is access all ISetVersionDeferral_Interface'Class;
    type ISetVersionDeferral_Ptr is access all ISetVersionDeferral;
 
    type ISetVersionRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type ISetVersionRequest is access ISetVersionRequest_Interface'Class;
+   type ISetVersionRequest is access all ISetVersionRequest_Interface'Class;
    type ISetVersionRequest_Ptr is access all ISetVersionRequest;
 
    type IStorageFile_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageFile is access IStorageFile_Interface'Class;
+   type IStorageFile is access all IStorageFile_Interface'Class;
    type IStorageFile_Ptr is access all IStorageFile;
    type IStorageFile_Array is array (Natural range <>) of IStorageFile;
 
    type IStorageFile2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageFile2 is access IStorageFile2_Interface'Class;
+   type IStorageFile2 is access all IStorageFile2_Interface'Class;
 
    type IStorageFilePropertiesWithAvailability_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageFilePropertiesWithAvailability is access IStorageFilePropertiesWithAvailability_Interface'Class;
+   type IStorageFilePropertiesWithAvailability is access all IStorageFilePropertiesWithAvailability_Interface'Class;
 
    type IStorageFileStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageFileStatics is access IStorageFileStatics_Interface'Class;
+   type IStorageFileStatics is access all IStorageFileStatics_Interface'Class;
 
    type IStorageFileStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageFileStatics2 is access IStorageFileStatics2_Interface'Class;
+   type IStorageFileStatics2 is access all IStorageFileStatics2_Interface'Class;
 
    type IStorageFolder_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageFolder is access IStorageFolder_Interface'Class;
+   type IStorageFolder is access all IStorageFolder_Interface'Class;
    type IStorageFolder_Ptr is access all IStorageFolder;
 
    type IStorageFolder2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageFolder2 is access IStorageFolder2_Interface'Class;
+   type IStorageFolder2 is access all IStorageFolder2_Interface'Class;
 
    type IStorageFolder3_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageFolder3 is access IStorageFolder3_Interface'Class;
+   type IStorageFolder3 is access all IStorageFolder3_Interface'Class;
 
    type IStorageFolderStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageFolderStatics is access IStorageFolderStatics_Interface'Class;
+   type IStorageFolderStatics is access all IStorageFolderStatics_Interface'Class;
 
    type IStorageFolderStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageFolderStatics2 is access IStorageFolderStatics2_Interface'Class;
+   type IStorageFolderStatics2 is access all IStorageFolderStatics2_Interface'Class;
 
    type IStorageItem_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageItem is access IStorageItem_Interface'Class;
+   type IStorageItem is access all IStorageItem_Interface'Class;
 
    type IStorageItem2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageItem2 is access IStorageItem2_Interface'Class;
+   type IStorageItem2 is access all IStorageItem2_Interface'Class;
 
    type IStorageItemProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageItemProperties is access IStorageItemProperties_Interface'Class;
+   type IStorageItemProperties is access all IStorageItemProperties_Interface'Class;
 
    type IStorageItemProperties2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageItemProperties2 is access IStorageItemProperties2_Interface'Class;
+   type IStorageItemProperties2 is access all IStorageItemProperties2_Interface'Class;
 
    type IStorageItemPropertiesWithProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageItemPropertiesWithProvider is access IStorageItemPropertiesWithProvider_Interface'Class;
+   type IStorageItemPropertiesWithProvider is access all IStorageItemPropertiesWithProvider_Interface'Class;
 
    type IStorageLibrary_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageLibrary is access IStorageLibrary_Interface'Class;
+   type IStorageLibrary is access all IStorageLibrary_Interface'Class;
    type IStorageLibrary_Ptr is access all IStorageLibrary;
 
    type IStorageLibrary2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageLibrary2 is access IStorageLibrary2_Interface'Class;
+   type IStorageLibrary2 is access all IStorageLibrary2_Interface'Class;
 
    type IStorageLibrary3_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageLibrary3 is access IStorageLibrary3_Interface'Class;
+   type IStorageLibrary3 is access all IStorageLibrary3_Interface'Class;
 
    type IStorageLibraryChange_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageLibraryChange is access IStorageLibraryChange_Interface'Class;
+   type IStorageLibraryChange is access all IStorageLibraryChange_Interface'Class;
    type IStorageLibraryChange_Ptr is access all IStorageLibraryChange;
 
    type IStorageLibraryChangeReader_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageLibraryChangeReader is access IStorageLibraryChangeReader_Interface'Class;
+   type IStorageLibraryChangeReader is access all IStorageLibraryChangeReader_Interface'Class;
    type IStorageLibraryChangeReader_Ptr is access all IStorageLibraryChangeReader;
 
    type IStorageLibraryChangeTracker_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageLibraryChangeTracker is access IStorageLibraryChangeTracker_Interface'Class;
+   type IStorageLibraryChangeTracker is access all IStorageLibraryChangeTracker_Interface'Class;
    type IStorageLibraryChangeTracker_Ptr is access all IStorageLibraryChangeTracker;
 
    type IStorageLibraryStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageLibraryStatics is access IStorageLibraryStatics_Interface'Class;
+   type IStorageLibraryStatics is access all IStorageLibraryStatics_Interface'Class;
 
    type IStorageLibraryStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageLibraryStatics2 is access IStorageLibraryStatics2_Interface'Class;
+   type IStorageLibraryStatics2 is access all IStorageLibraryStatics2_Interface'Class;
 
    type IStorageProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProvider is access IStorageProvider_Interface'Class;
+   type IStorageProvider is access all IStorageProvider_Interface'Class;
    type IStorageProvider_Ptr is access all IStorageProvider;
 
    type IStorageProvider2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageProvider2 is access IStorageProvider2_Interface'Class;
+   type IStorageProvider2 is access all IStorageProvider2_Interface'Class;
 
    type IStorageStreamTransaction_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageStreamTransaction is access IStorageStreamTransaction_Interface'Class;
+   type IStorageStreamTransaction is access all IStorageStreamTransaction_Interface'Class;
    type IStorageStreamTransaction_Ptr is access all IStorageStreamTransaction;
 
    type IStreamedFileDataRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IStreamedFileDataRequest is access IStreamedFileDataRequest_Interface'Class;
+   type IStreamedFileDataRequest is access all IStreamedFileDataRequest_Interface'Class;
 
    type ISystemAudioProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemAudioProperties is access ISystemAudioProperties_Interface'Class;
+   type ISystemAudioProperties is access all ISystemAudioProperties_Interface'Class;
    type ISystemAudioProperties_Ptr is access all ISystemAudioProperties;
 
    type ISystemDataPaths_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemDataPaths is access ISystemDataPaths_Interface'Class;
+   type ISystemDataPaths is access all ISystemDataPaths_Interface'Class;
    type ISystemDataPaths_Ptr is access all ISystemDataPaths;
 
    type ISystemDataPathsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemDataPathsStatics is access ISystemDataPathsStatics_Interface'Class;
+   type ISystemDataPathsStatics is access all ISystemDataPathsStatics_Interface'Class;
 
    type ISystemGPSProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemGPSProperties is access ISystemGPSProperties_Interface'Class;
+   type ISystemGPSProperties is access all ISystemGPSProperties_Interface'Class;
    type ISystemGPSProperties_Ptr is access all ISystemGPSProperties;
 
    type ISystemImageProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemImageProperties is access ISystemImageProperties_Interface'Class;
+   type ISystemImageProperties is access all ISystemImageProperties_Interface'Class;
    type ISystemImageProperties_Ptr is access all ISystemImageProperties;
 
    type ISystemMediaProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemMediaProperties is access ISystemMediaProperties_Interface'Class;
+   type ISystemMediaProperties is access all ISystemMediaProperties_Interface'Class;
    type ISystemMediaProperties_Ptr is access all ISystemMediaProperties;
 
    type ISystemMusicProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemMusicProperties is access ISystemMusicProperties_Interface'Class;
+   type ISystemMusicProperties is access all ISystemMusicProperties_Interface'Class;
    type ISystemMusicProperties_Ptr is access all ISystemMusicProperties;
 
    type ISystemPhotoProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemPhotoProperties is access ISystemPhotoProperties_Interface'Class;
+   type ISystemPhotoProperties is access all ISystemPhotoProperties_Interface'Class;
    type ISystemPhotoProperties_Ptr is access all ISystemPhotoProperties;
 
    type ISystemProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemProperties is access ISystemProperties_Interface'Class;
+   type ISystemProperties is access all ISystemProperties_Interface'Class;
 
    type ISystemVideoProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemVideoProperties is access ISystemVideoProperties_Interface'Class;
+   type ISystemVideoProperties is access all ISystemVideoProperties_Interface'Class;
    type ISystemVideoProperties_Ptr is access all ISystemVideoProperties;
 
    type IUserDataPaths_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataPaths is access IUserDataPaths_Interface'Class;
+   type IUserDataPaths is access all IUserDataPaths_Interface'Class;
    type IUserDataPaths_Ptr is access all IUserDataPaths;
 
    type IUserDataPathsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataPathsStatics is access IUserDataPathsStatics_Interface'Class;
+   type IUserDataPathsStatics is access all IUserDataPathsStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -426,7 +426,7 @@ package WinRt.Windows.Storage is
       Always_e => 0,
       Existing_e => 1
    );
-   type ApplicationDataCreateDisposition_Ptr is access ApplicationDataCreateDisposition;
+   type ApplicationDataCreateDisposition_Ptr is access all ApplicationDataCreateDisposition;
 
    type ApplicationDataLocality is (
       Local_e,
@@ -440,7 +440,7 @@ package WinRt.Windows.Storage is
       Temporary_e => 2,
       LocalCache_e => 3
    );
-   type ApplicationDataLocality_Ptr is access ApplicationDataLocality;
+   type ApplicationDataLocality_Ptr is access all ApplicationDataLocality;
 
    type CreationCollisionOption is (
       GenerateUniqueName_e,
@@ -454,7 +454,7 @@ package WinRt.Windows.Storage is
       FailIfExists_e => 2,
       OpenIfExists_e => 3
    );
-   type CreationCollisionOption_Ptr is access CreationCollisionOption;
+   type CreationCollisionOption_Ptr is access all CreationCollisionOption;
 
    type FileAccessMode is (
       Read_e,
@@ -464,7 +464,7 @@ package WinRt.Windows.Storage is
       Read_e => 0,
       ReadWrite_e => 1
    );
-   type FileAccessMode_Ptr is access FileAccessMode;
+   type FileAccessMode_Ptr is access all FileAccessMode;
 
    type FileAttributes is (
       Normal_e,
@@ -482,7 +482,7 @@ package WinRt.Windows.Storage is
       Temporary_e => 256,
       LocallyIncomplete_e => 512
    );
-   type FileAttributes_Ptr is access FileAttributes;
+   type FileAttributes_Ptr is access all FileAttributes;
 
    type KnownFolderId is (
       AppCaptures_e,
@@ -520,7 +520,7 @@ package WinRt.Windows.Storage is
       AllAppMods_e => 14,
       CurrentAppMods_e => 15
    );
-   type KnownFolderId_Ptr is access KnownFolderId;
+   type KnownFolderId_Ptr is access all KnownFolderId;
 
    type KnownFoldersAccessStatus is (
       DeniedBySystem_e,
@@ -536,7 +536,7 @@ package WinRt.Windows.Storage is
       UserPromptRequired_e => 3,
       Allowed_e => 4
    );
-   type KnownFoldersAccessStatus_Ptr is access KnownFoldersAccessStatus;
+   type KnownFoldersAccessStatus_Ptr is access all KnownFoldersAccessStatus;
 
    type KnownLibraryId is (
       Music_e,
@@ -550,7 +550,7 @@ package WinRt.Windows.Storage is
       Videos_e => 2,
       Documents_e => 3
    );
-   type KnownLibraryId_Ptr is access KnownLibraryId;
+   type KnownLibraryId_Ptr is access all KnownLibraryId;
 
    type NameCollisionOption is (
       GenerateUniqueName_e,
@@ -562,7 +562,7 @@ package WinRt.Windows.Storage is
       ReplaceExisting_e => 1,
       FailIfExists_e => 2
    );
-   type NameCollisionOption_Ptr is access NameCollisionOption;
+   type NameCollisionOption_Ptr is access all NameCollisionOption;
 
    type StorageDeleteOption is (
       Default_e,
@@ -572,7 +572,7 @@ package WinRt.Windows.Storage is
       Default_e => 0,
       PermanentDelete_e => 1
    );
-   type StorageDeleteOption_Ptr is access StorageDeleteOption;
+   type StorageDeleteOption_Ptr is access all StorageDeleteOption;
 
    type StorageItemTypes is (
       None_e,
@@ -584,7 +584,7 @@ package WinRt.Windows.Storage is
       File_e => 1,
       Folder_e => 2
    );
-   type StorageItemTypes_Ptr is access StorageItemTypes;
+   type StorageItemTypes_Ptr is access all StorageItemTypes;
 
    type StorageLibraryChangeType is (
       Created_e,
@@ -610,7 +610,7 @@ package WinRt.Windows.Storage is
       EncryptionChanged_e => 8,
       ChangeTrackingLost_e => 9
    );
-   type StorageLibraryChangeType_Ptr is access StorageLibraryChangeType;
+   type StorageLibraryChangeType_Ptr is access all StorageLibraryChangeType;
 
    type StorageOpenOptions is (
       None_e,
@@ -622,7 +622,7 @@ package WinRt.Windows.Storage is
       AllowOnlyReaders_e => 1,
       AllowReadersAndWriters_e => 2
    );
-   type StorageOpenOptions_Ptr is access StorageOpenOptions;
+   type StorageOpenOptions_Ptr is access all StorageOpenOptions;
 
    type StreamedFileFailureMode is (
       Failed_e,
@@ -634,7 +634,7 @@ package WinRt.Windows.Storage is
       CurrentlyUnavailable_e => 1,
       Incomplete_e => 2
    );
-   type StreamedFileFailureMode_Ptr is access StreamedFileFailureMode;
+   type StreamedFileFailureMode_Ptr is access all StreamedFileFailureMode;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

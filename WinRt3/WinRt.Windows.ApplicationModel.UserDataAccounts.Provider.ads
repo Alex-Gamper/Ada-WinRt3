@@ -39,22 +39,22 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    -----------------------------------------------------------------------------
 
    type IUserDataAccountPartnerAccountInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccountPartnerAccountInfo is access IUserDataAccountPartnerAccountInfo_Interface'Class;
+   type IUserDataAccountPartnerAccountInfo is access all IUserDataAccountPartnerAccountInfo_Interface'Class;
    type IUserDataAccountPartnerAccountInfo_Ptr is access all IUserDataAccountPartnerAccountInfo;
 
    type IUserDataAccountProviderAddAccountOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccountProviderAddAccountOperation is access IUserDataAccountProviderAddAccountOperation_Interface'Class;
+   type IUserDataAccountProviderAddAccountOperation is access all IUserDataAccountProviderAddAccountOperation_Interface'Class;
    type IUserDataAccountProviderAddAccountOperation_Ptr is access all IUserDataAccountProviderAddAccountOperation;
 
    type IUserDataAccountProviderOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccountProviderOperation is access IUserDataAccountProviderOperation_Interface'Class;
+   type IUserDataAccountProviderOperation is access all IUserDataAccountProviderOperation_Interface'Class;
 
    type IUserDataAccountProviderResolveErrorsOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccountProviderResolveErrorsOperation is access IUserDataAccountProviderResolveErrorsOperation_Interface'Class;
+   type IUserDataAccountProviderResolveErrorsOperation is access all IUserDataAccountProviderResolveErrorsOperation_Interface'Class;
    type IUserDataAccountProviderResolveErrorsOperation_Ptr is access all IUserDataAccountProviderResolveErrorsOperation;
 
    type IUserDataAccountProviderSettingsOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDataAccountProviderSettingsOperation is access IUserDataAccountProviderSettingsOperation_Interface'Class;
+   type IUserDataAccountProviderSettingsOperation is access all IUserDataAccountProviderSettingsOperation_Interface'Class;
    type IUserDataAccountProviderSettingsOperation_Ptr is access all IUserDataAccountProviderSettingsOperation;
 
    -----------------------------------------------------------------------------
@@ -99,7 +99,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       Settings_e => 1,
       ResolveErrors_e => 2
    );
-   type UserDataAccountProviderOperationKind_Ptr is access UserDataAccountProviderOperationKind;
+   type UserDataAccountProviderOperationKind_Ptr is access all UserDataAccountProviderOperationKind;
 
    type UserDataAccountProviderPartnerAccountKind is (
       Exchange_e,
@@ -109,7 +109,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       Exchange_e => 0,
       PopOrImap_e => 1
    );
-   type UserDataAccountProviderPartnerAccountKind_Ptr is access UserDataAccountProviderPartnerAccountKind;
+   type UserDataAccountProviderPartnerAccountKind_Ptr is access all UserDataAccountProviderPartnerAccountKind;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

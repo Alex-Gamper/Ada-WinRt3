@@ -41,30 +41,30 @@ package WinRt.Windows.Web.Http.Diagnostics is
    -----------------------------------------------------------------------------
 
    type IHttpDiagnosticProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpDiagnosticProvider is access IHttpDiagnosticProvider_Interface'Class;
+   type IHttpDiagnosticProvider is access all IHttpDiagnosticProvider_Interface'Class;
    type IHttpDiagnosticProvider_Ptr is access all IHttpDiagnosticProvider;
 
    type IHttpDiagnosticProviderRequestResponseCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpDiagnosticProviderRequestResponseCompletedEventArgs is access IHttpDiagnosticProviderRequestResponseCompletedEventArgs_Interface'Class;
+   type IHttpDiagnosticProviderRequestResponseCompletedEventArgs is access all IHttpDiagnosticProviderRequestResponseCompletedEventArgs_Interface'Class;
    type IHttpDiagnosticProviderRequestResponseCompletedEventArgs_Ptr is access all IHttpDiagnosticProviderRequestResponseCompletedEventArgs;
 
    type IHttpDiagnosticProviderRequestResponseTimestamps_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpDiagnosticProviderRequestResponseTimestamps is access IHttpDiagnosticProviderRequestResponseTimestamps_Interface'Class;
+   type IHttpDiagnosticProviderRequestResponseTimestamps is access all IHttpDiagnosticProviderRequestResponseTimestamps_Interface'Class;
    type IHttpDiagnosticProviderRequestResponseTimestamps_Ptr is access all IHttpDiagnosticProviderRequestResponseTimestamps;
 
    type IHttpDiagnosticProviderRequestSentEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpDiagnosticProviderRequestSentEventArgs is access IHttpDiagnosticProviderRequestSentEventArgs_Interface'Class;
+   type IHttpDiagnosticProviderRequestSentEventArgs is access all IHttpDiagnosticProviderRequestSentEventArgs_Interface'Class;
    type IHttpDiagnosticProviderRequestSentEventArgs_Ptr is access all IHttpDiagnosticProviderRequestSentEventArgs;
 
    type IHttpDiagnosticProviderResponseReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpDiagnosticProviderResponseReceivedEventArgs is access IHttpDiagnosticProviderResponseReceivedEventArgs_Interface'Class;
+   type IHttpDiagnosticProviderResponseReceivedEventArgs is access all IHttpDiagnosticProviderResponseReceivedEventArgs_Interface'Class;
    type IHttpDiagnosticProviderResponseReceivedEventArgs_Ptr is access all IHttpDiagnosticProviderResponseReceivedEventArgs;
 
    type IHttpDiagnosticProviderStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpDiagnosticProviderStatics is access IHttpDiagnosticProviderStatics_Interface'Class;
+   type IHttpDiagnosticProviderStatics is access all IHttpDiagnosticProviderStatics_Interface'Class;
 
    type IHttpDiagnosticSourceLocation_Interface is interface and WinRt.IInspectable_Interface;
-   type IHttpDiagnosticSourceLocation is access IHttpDiagnosticSourceLocation_Interface'Class;
+   type IHttpDiagnosticSourceLocation is access all IHttpDiagnosticSourceLocation_Interface'Class;
    type IHttpDiagnosticSourceLocation_Ptr is access all IHttpDiagnosticSourceLocation;
 
    -----------------------------------------------------------------------------
@@ -141,7 +141,7 @@ package WinRt.Windows.Web.Http.Diagnostics is
       Fetch_e => 11,
       Beacon_e => 12
    );
-   type HttpDiagnosticRequestInitiator_Ptr is access HttpDiagnosticRequestInitiator;
+   type HttpDiagnosticRequestInitiator_Ptr is access all HttpDiagnosticRequestInitiator;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -150,7 +150,7 @@ package WinRt.Windows.Web.Http.Diagnostics is
    type HttpDiagnosticsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type HttpDiagnosticsContract_Ptr is access HttpDiagnosticsContract;
+   type HttpDiagnosticsContract_Ptr is access all HttpDiagnosticsContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

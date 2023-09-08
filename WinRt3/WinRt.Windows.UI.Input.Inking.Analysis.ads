@@ -40,51 +40,51 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
    -----------------------------------------------------------------------------
 
    type IInkAnalysisInkBullet_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkAnalysisInkBullet is access IInkAnalysisInkBullet_Interface'Class;
+   type IInkAnalysisInkBullet is access all IInkAnalysisInkBullet_Interface'Class;
    type IInkAnalysisInkBullet_Ptr is access all IInkAnalysisInkBullet;
 
    type IInkAnalysisInkDrawing_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkAnalysisInkDrawing is access IInkAnalysisInkDrawing_Interface'Class;
+   type IInkAnalysisInkDrawing is access all IInkAnalysisInkDrawing_Interface'Class;
    type IInkAnalysisInkDrawing_Ptr is access all IInkAnalysisInkDrawing;
 
    type IInkAnalysisInkWord_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkAnalysisInkWord is access IInkAnalysisInkWord_Interface'Class;
+   type IInkAnalysisInkWord is access all IInkAnalysisInkWord_Interface'Class;
    type IInkAnalysisInkWord_Ptr is access all IInkAnalysisInkWord;
 
    type IInkAnalysisLine_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkAnalysisLine is access IInkAnalysisLine_Interface'Class;
+   type IInkAnalysisLine is access all IInkAnalysisLine_Interface'Class;
    type IInkAnalysisLine_Ptr is access all IInkAnalysisLine;
 
    type IInkAnalysisListItem_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkAnalysisListItem is access IInkAnalysisListItem_Interface'Class;
+   type IInkAnalysisListItem is access all IInkAnalysisListItem_Interface'Class;
    type IInkAnalysisListItem_Ptr is access all IInkAnalysisListItem;
 
    type IInkAnalysisNode_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkAnalysisNode is access IInkAnalysisNode_Interface'Class;
+   type IInkAnalysisNode is access all IInkAnalysisNode_Interface'Class;
    type IInkAnalysisNode_Ptr is access all IInkAnalysisNode;
 
    type IInkAnalysisParagraph_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkAnalysisParagraph is access IInkAnalysisParagraph_Interface'Class;
+   type IInkAnalysisParagraph is access all IInkAnalysisParagraph_Interface'Class;
    type IInkAnalysisParagraph_Ptr is access all IInkAnalysisParagraph;
 
    type IInkAnalysisResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkAnalysisResult is access IInkAnalysisResult_Interface'Class;
+   type IInkAnalysisResult is access all IInkAnalysisResult_Interface'Class;
    type IInkAnalysisResult_Ptr is access all IInkAnalysisResult;
 
    type IInkAnalysisRoot_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkAnalysisRoot is access IInkAnalysisRoot_Interface'Class;
+   type IInkAnalysisRoot is access all IInkAnalysisRoot_Interface'Class;
    type IInkAnalysisRoot_Ptr is access all IInkAnalysisRoot;
 
    type IInkAnalysisWritingRegion_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkAnalysisWritingRegion is access IInkAnalysisWritingRegion_Interface'Class;
+   type IInkAnalysisWritingRegion is access all IInkAnalysisWritingRegion_Interface'Class;
    type IInkAnalysisWritingRegion_Ptr is access all IInkAnalysisWritingRegion;
 
    type IInkAnalyzer_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkAnalyzer is access IInkAnalyzer_Interface'Class;
+   type IInkAnalyzer is access all IInkAnalyzer_Interface'Class;
    type IInkAnalyzer_Ptr is access all IInkAnalyzer;
 
    type IInkAnalyzerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IInkAnalyzerFactory is access IInkAnalyzerFactory_Interface'Class;
+   type IInkAnalyzerFactory is access all IInkAnalyzerFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -194,7 +194,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       Pentagon_e => 13,
       Hexagon_e => 14
    );
-   type InkAnalysisDrawingKind_Ptr is access InkAnalysisDrawingKind;
+   type InkAnalysisDrawingKind_Ptr is access all InkAnalysisDrawingKind;
 
    type InkAnalysisNodeKind is (
       UnclassifiedInk_e,
@@ -218,7 +218,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       InkDrawing_e => 7,
       ListItem_e => 8
    );
-   type InkAnalysisNodeKind_Ptr is access InkAnalysisNodeKind;
+   type InkAnalysisNodeKind_Ptr is access all InkAnalysisNodeKind;
 
    type InkAnalysisStatus is (
       Updated_e,
@@ -228,7 +228,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       Updated_e => 0,
       Unchanged_e => 1
    );
-   type InkAnalysisStatus_Ptr is access InkAnalysisStatus;
+   type InkAnalysisStatus_Ptr is access all InkAnalysisStatus;
 
    type InkAnalysisStrokeKind is (
       Auto_e,
@@ -240,7 +240,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       Writing_e => 1,
       Drawing_e => 2
    );
-   type InkAnalysisStrokeKind_Ptr is access InkAnalysisStrokeKind;
+   type InkAnalysisStrokeKind_Ptr is access all InkAnalysisStrokeKind;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

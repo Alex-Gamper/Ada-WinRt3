@@ -48,266 +48,266 @@ package WinRt.Windows.System is
    -----------------------------------------------------------------------------
 
    type DispatcherQueueHandler_Delegate;
-   type DispatcherQueueHandler is access DispatcherQueueHandler_Delegate;
+   type DispatcherQueueHandler is access all DispatcherQueueHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IAppActivationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppActivationResult is access IAppActivationResult_Interface'Class;
+   type IAppActivationResult is access all IAppActivationResult_Interface'Class;
    type IAppActivationResult_Ptr is access all IAppActivationResult;
 
    type IAppDiagnosticInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppDiagnosticInfo is access IAppDiagnosticInfo_Interface'Class;
+   type IAppDiagnosticInfo is access all IAppDiagnosticInfo_Interface'Class;
    type IAppDiagnosticInfo_Ptr is access all IAppDiagnosticInfo;
 
    type IAppDiagnosticInfo2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppDiagnosticInfo2 is access IAppDiagnosticInfo2_Interface'Class;
+   type IAppDiagnosticInfo2 is access all IAppDiagnosticInfo2_Interface'Class;
 
    type IAppDiagnosticInfo3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppDiagnosticInfo3 is access IAppDiagnosticInfo3_Interface'Class;
+   type IAppDiagnosticInfo3 is access all IAppDiagnosticInfo3_Interface'Class;
 
    type IAppDiagnosticInfoStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppDiagnosticInfoStatics is access IAppDiagnosticInfoStatics_Interface'Class;
+   type IAppDiagnosticInfoStatics is access all IAppDiagnosticInfoStatics_Interface'Class;
 
    type IAppDiagnosticInfoStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppDiagnosticInfoStatics2 is access IAppDiagnosticInfoStatics2_Interface'Class;
+   type IAppDiagnosticInfoStatics2 is access all IAppDiagnosticInfoStatics2_Interface'Class;
 
    type IAppDiagnosticInfoWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppDiagnosticInfoWatcher is access IAppDiagnosticInfoWatcher_Interface'Class;
+   type IAppDiagnosticInfoWatcher is access all IAppDiagnosticInfoWatcher_Interface'Class;
    type IAppDiagnosticInfoWatcher_Ptr is access all IAppDiagnosticInfoWatcher;
 
    type IAppDiagnosticInfoWatcherEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppDiagnosticInfoWatcherEventArgs is access IAppDiagnosticInfoWatcherEventArgs_Interface'Class;
+   type IAppDiagnosticInfoWatcherEventArgs is access all IAppDiagnosticInfoWatcherEventArgs_Interface'Class;
    type IAppDiagnosticInfoWatcherEventArgs_Ptr is access all IAppDiagnosticInfoWatcherEventArgs;
 
    type IAppExecutionStateChangeResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppExecutionStateChangeResult is access IAppExecutionStateChangeResult_Interface'Class;
+   type IAppExecutionStateChangeResult is access all IAppExecutionStateChangeResult_Interface'Class;
    type IAppExecutionStateChangeResult_Ptr is access all IAppExecutionStateChangeResult;
 
    type IAppMemoryReport_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppMemoryReport is access IAppMemoryReport_Interface'Class;
+   type IAppMemoryReport is access all IAppMemoryReport_Interface'Class;
    type IAppMemoryReport_Ptr is access all IAppMemoryReport;
 
    type IAppMemoryReport2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppMemoryReport2 is access IAppMemoryReport2_Interface'Class;
+   type IAppMemoryReport2 is access all IAppMemoryReport2_Interface'Class;
 
    type IAppMemoryUsageLimitChangingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppMemoryUsageLimitChangingEventArgs is access IAppMemoryUsageLimitChangingEventArgs_Interface'Class;
+   type IAppMemoryUsageLimitChangingEventArgs is access all IAppMemoryUsageLimitChangingEventArgs_Interface'Class;
    type IAppMemoryUsageLimitChangingEventArgs_Ptr is access all IAppMemoryUsageLimitChangingEventArgs;
 
    type IAppResourceGroupBackgroundTaskReport_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppResourceGroupBackgroundTaskReport is access IAppResourceGroupBackgroundTaskReport_Interface'Class;
+   type IAppResourceGroupBackgroundTaskReport is access all IAppResourceGroupBackgroundTaskReport_Interface'Class;
    type IAppResourceGroupBackgroundTaskReport_Ptr is access all IAppResourceGroupBackgroundTaskReport;
 
    type IAppResourceGroupInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppResourceGroupInfo is access IAppResourceGroupInfo_Interface'Class;
+   type IAppResourceGroupInfo is access all IAppResourceGroupInfo_Interface'Class;
    type IAppResourceGroupInfo_Ptr is access all IAppResourceGroupInfo;
 
    type IAppResourceGroupInfo2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppResourceGroupInfo2 is access IAppResourceGroupInfo2_Interface'Class;
+   type IAppResourceGroupInfo2 is access all IAppResourceGroupInfo2_Interface'Class;
 
    type IAppResourceGroupInfoWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppResourceGroupInfoWatcher is access IAppResourceGroupInfoWatcher_Interface'Class;
+   type IAppResourceGroupInfoWatcher is access all IAppResourceGroupInfoWatcher_Interface'Class;
    type IAppResourceGroupInfoWatcher_Ptr is access all IAppResourceGroupInfoWatcher;
 
    type IAppResourceGroupInfoWatcherEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppResourceGroupInfoWatcherEventArgs is access IAppResourceGroupInfoWatcherEventArgs_Interface'Class;
+   type IAppResourceGroupInfoWatcherEventArgs is access all IAppResourceGroupInfoWatcherEventArgs_Interface'Class;
    type IAppResourceGroupInfoWatcherEventArgs_Ptr is access all IAppResourceGroupInfoWatcherEventArgs;
 
    type IAppResourceGroupInfoWatcherExecutionStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppResourceGroupInfoWatcherExecutionStateChangedEventArgs is access IAppResourceGroupInfoWatcherExecutionStateChangedEventArgs_Interface'Class;
+   type IAppResourceGroupInfoWatcherExecutionStateChangedEventArgs is access all IAppResourceGroupInfoWatcherExecutionStateChangedEventArgs_Interface'Class;
    type IAppResourceGroupInfoWatcherExecutionStateChangedEventArgs_Ptr is access all IAppResourceGroupInfoWatcherExecutionStateChangedEventArgs;
 
    type IAppResourceGroupMemoryReport_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppResourceGroupMemoryReport is access IAppResourceGroupMemoryReport_Interface'Class;
+   type IAppResourceGroupMemoryReport is access all IAppResourceGroupMemoryReport_Interface'Class;
    type IAppResourceGroupMemoryReport_Ptr is access all IAppResourceGroupMemoryReport;
 
    type IAppResourceGroupStateReport_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppResourceGroupStateReport is access IAppResourceGroupStateReport_Interface'Class;
+   type IAppResourceGroupStateReport is access all IAppResourceGroupStateReport_Interface'Class;
    type IAppResourceGroupStateReport_Ptr is access all IAppResourceGroupStateReport;
 
    type IAppUriHandlerHost_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppUriHandlerHost is access IAppUriHandlerHost_Interface'Class;
+   type IAppUriHandlerHost is access all IAppUriHandlerHost_Interface'Class;
    type IAppUriHandlerHost_Ptr is access all IAppUriHandlerHost;
 
    type IAppUriHandlerHostFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppUriHandlerHostFactory is access IAppUriHandlerHostFactory_Interface'Class;
+   type IAppUriHandlerHostFactory is access all IAppUriHandlerHostFactory_Interface'Class;
 
    type IAppUriHandlerRegistration_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppUriHandlerRegistration is access IAppUriHandlerRegistration_Interface'Class;
+   type IAppUriHandlerRegistration is access all IAppUriHandlerRegistration_Interface'Class;
    type IAppUriHandlerRegistration_Ptr is access all IAppUriHandlerRegistration;
 
    type IAppUriHandlerRegistrationManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppUriHandlerRegistrationManager is access IAppUriHandlerRegistrationManager_Interface'Class;
+   type IAppUriHandlerRegistrationManager is access all IAppUriHandlerRegistrationManager_Interface'Class;
    type IAppUriHandlerRegistrationManager_Ptr is access all IAppUriHandlerRegistrationManager;
 
    type IAppUriHandlerRegistrationManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppUriHandlerRegistrationManagerStatics is access IAppUriHandlerRegistrationManagerStatics_Interface'Class;
+   type IAppUriHandlerRegistrationManagerStatics is access all IAppUriHandlerRegistrationManagerStatics_Interface'Class;
 
    type IDateTimeSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDateTimeSettingsStatics is access IDateTimeSettingsStatics_Interface'Class;
+   type IDateTimeSettingsStatics is access all IDateTimeSettingsStatics_Interface'Class;
 
    type IDispatcherQueue_Interface is interface and WinRt.IInspectable_Interface;
-   type IDispatcherQueue is access IDispatcherQueue_Interface'Class;
+   type IDispatcherQueue is access all IDispatcherQueue_Interface'Class;
    type IDispatcherQueue_Ptr is access all IDispatcherQueue;
 
    type IDispatcherQueue2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDispatcherQueue2 is access IDispatcherQueue2_Interface'Class;
+   type IDispatcherQueue2 is access all IDispatcherQueue2_Interface'Class;
 
    type IDispatcherQueueController_Interface is interface and WinRt.IInspectable_Interface;
-   type IDispatcherQueueController is access IDispatcherQueueController_Interface'Class;
+   type IDispatcherQueueController is access all IDispatcherQueueController_Interface'Class;
    type IDispatcherQueueController_Ptr is access all IDispatcherQueueController;
 
    type IDispatcherQueueControllerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDispatcherQueueControllerStatics is access IDispatcherQueueControllerStatics_Interface'Class;
+   type IDispatcherQueueControllerStatics is access all IDispatcherQueueControllerStatics_Interface'Class;
 
    type IDispatcherQueueShutdownStartingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDispatcherQueueShutdownStartingEventArgs is access IDispatcherQueueShutdownStartingEventArgs_Interface'Class;
+   type IDispatcherQueueShutdownStartingEventArgs is access all IDispatcherQueueShutdownStartingEventArgs_Interface'Class;
    type IDispatcherQueueShutdownStartingEventArgs_Ptr is access all IDispatcherQueueShutdownStartingEventArgs;
 
    type IDispatcherQueueStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDispatcherQueueStatics is access IDispatcherQueueStatics_Interface'Class;
+   type IDispatcherQueueStatics is access all IDispatcherQueueStatics_Interface'Class;
 
    type IDispatcherQueueTimer_Interface is interface and WinRt.IInspectable_Interface;
-   type IDispatcherQueueTimer is access IDispatcherQueueTimer_Interface'Class;
+   type IDispatcherQueueTimer is access all IDispatcherQueueTimer_Interface'Class;
    type IDispatcherQueueTimer_Ptr is access all IDispatcherQueueTimer;
 
    type IFolderLauncherOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IFolderLauncherOptions is access IFolderLauncherOptions_Interface'Class;
+   type IFolderLauncherOptions is access all IFolderLauncherOptions_Interface'Class;
    type IFolderLauncherOptions_Ptr is access all IFolderLauncherOptions;
 
    type IKnownUserPropertiesStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownUserPropertiesStatics is access IKnownUserPropertiesStatics_Interface'Class;
+   type IKnownUserPropertiesStatics is access all IKnownUserPropertiesStatics_Interface'Class;
 
    type ILaunchUriResult_Interface is interface and WinRt.IInspectable_Interface;
-   type ILaunchUriResult is access ILaunchUriResult_Interface'Class;
+   type ILaunchUriResult is access all ILaunchUriResult_Interface'Class;
    type ILaunchUriResult_Ptr is access all ILaunchUriResult;
 
    type ILauncherOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type ILauncherOptions is access ILauncherOptions_Interface'Class;
+   type ILauncherOptions is access all ILauncherOptions_Interface'Class;
    type ILauncherOptions_Ptr is access all ILauncherOptions;
 
    type ILauncherOptions2_Interface is interface and WinRt.IInspectable_Interface;
-   type ILauncherOptions2 is access ILauncherOptions2_Interface'Class;
+   type ILauncherOptions2 is access all ILauncherOptions2_Interface'Class;
 
    type ILauncherOptions3_Interface is interface and WinRt.IInspectable_Interface;
-   type ILauncherOptions3 is access ILauncherOptions3_Interface'Class;
+   type ILauncherOptions3 is access all ILauncherOptions3_Interface'Class;
 
    type ILauncherOptions4_Interface is interface and WinRt.IInspectable_Interface;
-   type ILauncherOptions4 is access ILauncherOptions4_Interface'Class;
+   type ILauncherOptions4 is access all ILauncherOptions4_Interface'Class;
 
    type ILauncherStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILauncherStatics is access ILauncherStatics_Interface'Class;
+   type ILauncherStatics is access all ILauncherStatics_Interface'Class;
 
    type ILauncherStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ILauncherStatics2 is access ILauncherStatics2_Interface'Class;
+   type ILauncherStatics2 is access all ILauncherStatics2_Interface'Class;
 
    type ILauncherStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type ILauncherStatics3 is access ILauncherStatics3_Interface'Class;
+   type ILauncherStatics3 is access all ILauncherStatics3_Interface'Class;
 
    type ILauncherStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type ILauncherStatics4 is access ILauncherStatics4_Interface'Class;
+   type ILauncherStatics4 is access all ILauncherStatics4_Interface'Class;
 
    type ILauncherStatics5_Interface is interface and WinRt.IInspectable_Interface;
-   type ILauncherStatics5 is access ILauncherStatics5_Interface'Class;
+   type ILauncherStatics5 is access all ILauncherStatics5_Interface'Class;
 
    type ILauncherUIOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type ILauncherUIOptions is access ILauncherUIOptions_Interface'Class;
+   type ILauncherUIOptions is access all ILauncherUIOptions_Interface'Class;
    type ILauncherUIOptions_Ptr is access all ILauncherUIOptions;
 
    type ILauncherViewOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type ILauncherViewOptions is access ILauncherViewOptions_Interface'Class;
+   type ILauncherViewOptions is access all ILauncherViewOptions_Interface'Class;
 
    type IMemoryManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMemoryManagerStatics is access IMemoryManagerStatics_Interface'Class;
+   type IMemoryManagerStatics is access all IMemoryManagerStatics_Interface'Class;
 
    type IMemoryManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMemoryManagerStatics2 is access IMemoryManagerStatics2_Interface'Class;
+   type IMemoryManagerStatics2 is access all IMemoryManagerStatics2_Interface'Class;
 
    type IMemoryManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMemoryManagerStatics3 is access IMemoryManagerStatics3_Interface'Class;
+   type IMemoryManagerStatics3 is access all IMemoryManagerStatics3_Interface'Class;
 
    type IMemoryManagerStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IMemoryManagerStatics4 is access IMemoryManagerStatics4_Interface'Class;
+   type IMemoryManagerStatics4 is access all IMemoryManagerStatics4_Interface'Class;
 
    type IProcessLauncherOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IProcessLauncherOptions is access IProcessLauncherOptions_Interface'Class;
+   type IProcessLauncherOptions is access all IProcessLauncherOptions_Interface'Class;
    type IProcessLauncherOptions_Ptr is access all IProcessLauncherOptions;
 
    type IProcessLauncherResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IProcessLauncherResult is access IProcessLauncherResult_Interface'Class;
+   type IProcessLauncherResult is access all IProcessLauncherResult_Interface'Class;
    type IProcessLauncherResult_Ptr is access all IProcessLauncherResult;
 
    type IProcessLauncherStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IProcessLauncherStatics is access IProcessLauncherStatics_Interface'Class;
+   type IProcessLauncherStatics is access all IProcessLauncherStatics_Interface'Class;
 
    type IProcessMemoryReport_Interface is interface and WinRt.IInspectable_Interface;
-   type IProcessMemoryReport is access IProcessMemoryReport_Interface'Class;
+   type IProcessMemoryReport is access all IProcessMemoryReport_Interface'Class;
    type IProcessMemoryReport_Ptr is access all IProcessMemoryReport;
 
    type IProtocolForResultsOperation_Interface is interface and WinRt.IInspectable_Interface;
-   type IProtocolForResultsOperation is access IProtocolForResultsOperation_Interface'Class;
+   type IProtocolForResultsOperation is access all IProtocolForResultsOperation_Interface'Class;
    type IProtocolForResultsOperation_Ptr is access all IProtocolForResultsOperation;
 
    type IRemoteLauncherOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteLauncherOptions is access IRemoteLauncherOptions_Interface'Class;
+   type IRemoteLauncherOptions is access all IRemoteLauncherOptions_Interface'Class;
    type IRemoteLauncherOptions_Ptr is access all IRemoteLauncherOptions;
 
    type IRemoteLauncherStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRemoteLauncherStatics is access IRemoteLauncherStatics_Interface'Class;
+   type IRemoteLauncherStatics is access all IRemoteLauncherStatics_Interface'Class;
 
    type IShutdownManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IShutdownManagerStatics is access IShutdownManagerStatics_Interface'Class;
+   type IShutdownManagerStatics is access all IShutdownManagerStatics_Interface'Class;
 
    type IShutdownManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IShutdownManagerStatics2 is access IShutdownManagerStatics2_Interface'Class;
+   type IShutdownManagerStatics2 is access all IShutdownManagerStatics2_Interface'Class;
 
    type ITimeZoneSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimeZoneSettingsStatics is access ITimeZoneSettingsStatics_Interface'Class;
+   type ITimeZoneSettingsStatics is access all ITimeZoneSettingsStatics_Interface'Class;
 
    type ITimeZoneSettingsStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimeZoneSettingsStatics2 is access ITimeZoneSettingsStatics2_Interface'Class;
+   type ITimeZoneSettingsStatics2 is access all ITimeZoneSettingsStatics2_Interface'Class;
 
    type IUser_Interface is interface and WinRt.IInspectable_Interface;
-   type IUser is access IUser_Interface'Class;
+   type IUser is access all IUser_Interface'Class;
    type IUser_Ptr is access all IUser;
 
    type IUserAuthenticationStatusChangeDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserAuthenticationStatusChangeDeferral is access IUserAuthenticationStatusChangeDeferral_Interface'Class;
+   type IUserAuthenticationStatusChangeDeferral is access all IUserAuthenticationStatusChangeDeferral_Interface'Class;
    type IUserAuthenticationStatusChangeDeferral_Ptr is access all IUserAuthenticationStatusChangeDeferral;
 
    type IUserAuthenticationStatusChangingEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserAuthenticationStatusChangingEventArgs is access IUserAuthenticationStatusChangingEventArgs_Interface'Class;
+   type IUserAuthenticationStatusChangingEventArgs is access all IUserAuthenticationStatusChangingEventArgs_Interface'Class;
    type IUserAuthenticationStatusChangingEventArgs_Ptr is access all IUserAuthenticationStatusChangingEventArgs;
 
    type IUserChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserChangedEventArgs is access IUserChangedEventArgs_Interface'Class;
+   type IUserChangedEventArgs is access all IUserChangedEventArgs_Interface'Class;
    type IUserChangedEventArgs_Ptr is access all IUserChangedEventArgs;
 
    type IUserChangedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserChangedEventArgs2 is access IUserChangedEventArgs2_Interface'Class;
+   type IUserChangedEventArgs2 is access all IUserChangedEventArgs2_Interface'Class;
 
    type IUserDeviceAssociationChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDeviceAssociationChangedEventArgs is access IUserDeviceAssociationChangedEventArgs_Interface'Class;
+   type IUserDeviceAssociationChangedEventArgs is access all IUserDeviceAssociationChangedEventArgs_Interface'Class;
    type IUserDeviceAssociationChangedEventArgs_Ptr is access all IUserDeviceAssociationChangedEventArgs;
 
    type IUserDeviceAssociationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserDeviceAssociationStatics is access IUserDeviceAssociationStatics_Interface'Class;
+   type IUserDeviceAssociationStatics is access all IUserDeviceAssociationStatics_Interface'Class;
 
    type IUserPicker_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserPicker is access IUserPicker_Interface'Class;
+   type IUserPicker is access all IUserPicker_Interface'Class;
    type IUserPicker_Ptr is access all IUserPicker;
 
    type IUserPickerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserPickerStatics is access IUserPickerStatics_Interface'Class;
+   type IUserPickerStatics is access all IUserPickerStatics_Interface'Class;
 
    type IUserStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserStatics is access IUserStatics_Interface'Class;
+   type IUserStatics is access all IUserStatics_Interface'Class;
 
    type IUserWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserWatcher is access IUserWatcher_Interface'Class;
+   type IUserWatcher is access all IUserWatcher_Interface'Class;
    type IUserWatcher_Ptr is access all IUserWatcher;
 
    -----------------------------------------------------------------------------
@@ -556,7 +556,7 @@ package WinRt.Windows.System is
       Stopped_e => 4,
       Aborted_e => 5
    );
-   type AppDiagnosticInfoWatcherStatus_Ptr is access AppDiagnosticInfoWatcherStatus;
+   type AppDiagnosticInfoWatcherStatus_Ptr is access all AppDiagnosticInfoWatcherStatus;
 
    type AppMemoryUsageLevel is (
       Low_e,
@@ -570,7 +570,7 @@ package WinRt.Windows.System is
       High_e => 2,
       OverLimit_e => 3
    );
-   type AppMemoryUsageLevel_Ptr is access AppMemoryUsageLevel;
+   type AppMemoryUsageLevel_Ptr is access all AppMemoryUsageLevel;
 
    type AppResourceGroupEnergyQuotaState is (
       Unknown_e,
@@ -582,7 +582,7 @@ package WinRt.Windows.System is
       Over_e => 1,
       Under_e => 2
    );
-   type AppResourceGroupEnergyQuotaState_Ptr is access AppResourceGroupEnergyQuotaState;
+   type AppResourceGroupEnergyQuotaState_Ptr is access all AppResourceGroupEnergyQuotaState;
 
    type AppResourceGroupExecutionState is (
       Unknown_e,
@@ -598,7 +598,7 @@ package WinRt.Windows.System is
       Suspended_e => 3,
       NotRunning_e => 4
    );
-   type AppResourceGroupExecutionState_Ptr is access AppResourceGroupExecutionState;
+   type AppResourceGroupExecutionState_Ptr is access all AppResourceGroupExecutionState;
 
    type AppResourceGroupInfoWatcherStatus is (
       Created_e,
@@ -616,7 +616,7 @@ package WinRt.Windows.System is
       Stopped_e => 4,
       Aborted_e => 5
    );
-   type AppResourceGroupInfoWatcherStatus_Ptr is access AppResourceGroupInfoWatcherStatus;
+   type AppResourceGroupInfoWatcherStatus_Ptr is access all AppResourceGroupInfoWatcherStatus;
 
    type AutoUpdateTimeZoneStatus is (
       Attempted_e,
@@ -628,7 +628,7 @@ package WinRt.Windows.System is
       TimedOut_e => 1,
       Failed_e => 2
    );
-   type AutoUpdateTimeZoneStatus_Ptr is access AutoUpdateTimeZoneStatus;
+   type AutoUpdateTimeZoneStatus_Ptr is access all AutoUpdateTimeZoneStatus;
 
    type DiagnosticAccessStatus is (
       Unspecified_e,
@@ -642,7 +642,7 @@ package WinRt.Windows.System is
       Limited_e => 2,
       Allowed_e => 3
    );
-   type DiagnosticAccessStatus_Ptr is access DiagnosticAccessStatus;
+   type DiagnosticAccessStatus_Ptr is access all DiagnosticAccessStatus;
 
    type DispatcherQueuePriority is (
       Low_e,
@@ -654,7 +654,7 @@ package WinRt.Windows.System is
       Normal_e => 0,
       High_e => 10
    );
-   type DispatcherQueuePriority_Ptr is access DispatcherQueuePriority;
+   type DispatcherQueuePriority_Ptr is access all DispatcherQueuePriority;
 
    type LaunchFileStatus is (
       Success_e,
@@ -670,7 +670,7 @@ package WinRt.Windows.System is
       FileTypeNotSupported_e => 3,
       Unknown_e => 4
    );
-   type LaunchFileStatus_Ptr is access LaunchFileStatus;
+   type LaunchFileStatus_Ptr is access all LaunchFileStatus;
 
    type LaunchQuerySupportStatus is (
       Available_e,
@@ -686,7 +686,7 @@ package WinRt.Windows.System is
       NotSupported_e => 3,
       Unknown_e => 4
    );
-   type LaunchQuerySupportStatus_Ptr is access LaunchQuerySupportStatus;
+   type LaunchQuerySupportStatus_Ptr is access all LaunchQuerySupportStatus;
 
    type LaunchQuerySupportType is (
       Uri_e,
@@ -696,7 +696,7 @@ package WinRt.Windows.System is
       Uri_e => 0,
       UriForResults_e => 1
    );
-   type LaunchQuerySupportType_Ptr is access LaunchQuerySupportType;
+   type LaunchQuerySupportType_Ptr is access all LaunchQuerySupportType;
 
    type LaunchUriStatus is (
       Success_e,
@@ -710,7 +710,7 @@ package WinRt.Windows.System is
       ProtocolUnavailable_e => 2,
       Unknown_e => 3
    );
-   type LaunchUriStatus_Ptr is access LaunchUriStatus;
+   type LaunchUriStatus_Ptr is access all LaunchUriStatus;
 
    type PowerState is (
       ConnectedStandby_e,
@@ -720,7 +720,7 @@ package WinRt.Windows.System is
       ConnectedStandby_e => 0,
       SleepS3_e => 1
    );
-   type PowerState_Ptr is access PowerState;
+   type PowerState_Ptr is access all PowerState;
 
    type ProcessorArchitecture is (
       X86_e,
@@ -740,7 +740,7 @@ package WinRt.Windows.System is
       X86OnArm64_e => 14,
       Unknown_e => 65535
    );
-   type ProcessorArchitecture_Ptr is access ProcessorArchitecture;
+   type ProcessorArchitecture_Ptr is access all ProcessorArchitecture;
 
    type RemoteLaunchUriStatus is (
       Unknown_e,
@@ -762,7 +762,7 @@ package WinRt.Windows.System is
       DeniedByLocalSystem_e => 6,
       DeniedByRemoteSystem_e => 7
    );
-   type RemoteLaunchUriStatus_Ptr is access RemoteLaunchUriStatus;
+   type RemoteLaunchUriStatus_Ptr is access all RemoteLaunchUriStatus;
 
    type ShutdownKind is (
       Shutdown_e,
@@ -772,7 +772,7 @@ package WinRt.Windows.System is
       Shutdown_e => 0,
       Restart_e => 1
    );
-   type ShutdownKind_Ptr is access ShutdownKind;
+   type ShutdownKind_Ptr is access all ShutdownKind;
 
    type UserAuthenticationStatus is (
       Unauthenticated_e,
@@ -784,7 +784,7 @@ package WinRt.Windows.System is
       LocallyAuthenticated_e => 1,
       RemotelyAuthenticated_e => 2
    );
-   type UserAuthenticationStatus_Ptr is access UserAuthenticationStatus;
+   type UserAuthenticationStatus_Ptr is access all UserAuthenticationStatus;
 
    type UserPictureSize is (
       Size64x64_e,
@@ -798,7 +798,7 @@ package WinRt.Windows.System is
       Size424x424_e => 2,
       Size1080x1080_e => 3
    );
-   type UserPictureSize_Ptr is access UserPictureSize;
+   type UserPictureSize_Ptr is access all UserPictureSize;
 
    type UserType is (
       LocalUser_e,
@@ -812,7 +812,7 @@ package WinRt.Windows.System is
       LocalGuest_e => 2,
       RemoteGuest_e => 3
    );
-   type UserType_Ptr is access UserType;
+   type UserType_Ptr is access all UserType;
 
    type UserWatcherStatus is (
       Created_e,
@@ -830,7 +830,7 @@ package WinRt.Windows.System is
       Stopped_e => 4,
       Aborted_e => 5
    );
-   type UserWatcherStatus_Ptr is access UserWatcherStatus;
+   type UserWatcherStatus_Ptr is access all UserWatcherStatus;
 
    type UserWatcherUpdateKind is (
       Properties_e,
@@ -840,7 +840,7 @@ package WinRt.Windows.System is
       Properties_e => 0,
       Picture_e => 1
    );
-   type UserWatcherUpdateKind_Ptr is access UserWatcherUpdateKind;
+   type UserWatcherUpdateKind_Ptr is access all UserWatcherUpdateKind;
 
    type VirtualKey is (
       None_e,
@@ -1186,7 +1186,7 @@ package WinRt.Windows.System is
       GamepadRightThumbstickRight_e => 217,
       GamepadRightThumbstickLeft_e => 218
    );
-   type VirtualKey_Ptr is access VirtualKey;
+   type VirtualKey_Ptr is access all VirtualKey;
    type VirtualKey_Array is array (Natural range <>) of aliased VirtualKey;
 
    type VirtualKeyModifiers is (
@@ -1203,7 +1203,7 @@ package WinRt.Windows.System is
       Shift_e => 4,
       Windows_e => 8
    );
-   type VirtualKeyModifiers_Ptr is access VirtualKeyModifiers;
+   type VirtualKeyModifiers_Ptr is access all VirtualKeyModifiers;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1212,7 +1212,7 @@ package WinRt.Windows.System is
    type SystemManagementContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type SystemManagementContract_Ptr is access SystemManagementContract;
+   type SystemManagementContract_Ptr is access all SystemManagementContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

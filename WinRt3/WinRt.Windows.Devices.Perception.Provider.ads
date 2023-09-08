@@ -43,73 +43,73 @@ package WinRt.Windows.Devices.Perception.Provider is
    -----------------------------------------------------------------------------
 
    type PerceptionStartFaceAuthenticationHandler_Delegate;
-   type PerceptionStartFaceAuthenticationHandler is access PerceptionStartFaceAuthenticationHandler_Delegate;
+   type PerceptionStartFaceAuthenticationHandler is access all PerceptionStartFaceAuthenticationHandler_Delegate;
 
    type PerceptionStopFaceAuthenticationHandler_Delegate;
-   type PerceptionStopFaceAuthenticationHandler is access PerceptionStopFaceAuthenticationHandler_Delegate;
+   type PerceptionStopFaceAuthenticationHandler is access all PerceptionStopFaceAuthenticationHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IKnownPerceptionFrameKindStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKnownPerceptionFrameKindStatics is access IKnownPerceptionFrameKindStatics_Interface'Class;
+   type IKnownPerceptionFrameKindStatics is access all IKnownPerceptionFrameKindStatics_Interface'Class;
 
    type IPerceptionControlGroup_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionControlGroup is access IPerceptionControlGroup_Interface'Class;
+   type IPerceptionControlGroup is access all IPerceptionControlGroup_Interface'Class;
    type IPerceptionControlGroup_Ptr is access all IPerceptionControlGroup;
 
    type IPerceptionControlGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionControlGroupFactory is access IPerceptionControlGroupFactory_Interface'Class;
+   type IPerceptionControlGroupFactory is access all IPerceptionControlGroupFactory_Interface'Class;
 
    type IPerceptionCorrelation_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionCorrelation is access IPerceptionCorrelation_Interface'Class;
+   type IPerceptionCorrelation is access all IPerceptionCorrelation_Interface'Class;
    type IPerceptionCorrelation_Ptr is access all IPerceptionCorrelation;
 
    type IPerceptionCorrelationFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionCorrelationFactory is access IPerceptionCorrelationFactory_Interface'Class;
+   type IPerceptionCorrelationFactory is access all IPerceptionCorrelationFactory_Interface'Class;
 
    type IPerceptionCorrelationGroup_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionCorrelationGroup is access IPerceptionCorrelationGroup_Interface'Class;
+   type IPerceptionCorrelationGroup is access all IPerceptionCorrelationGroup_Interface'Class;
    type IPerceptionCorrelationGroup_Ptr is access all IPerceptionCorrelationGroup;
 
    type IPerceptionCorrelationGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionCorrelationGroupFactory is access IPerceptionCorrelationGroupFactory_Interface'Class;
+   type IPerceptionCorrelationGroupFactory is access all IPerceptionCorrelationGroupFactory_Interface'Class;
 
    type IPerceptionFaceAuthenticationGroup_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionFaceAuthenticationGroup is access IPerceptionFaceAuthenticationGroup_Interface'Class;
+   type IPerceptionFaceAuthenticationGroup is access all IPerceptionFaceAuthenticationGroup_Interface'Class;
    type IPerceptionFaceAuthenticationGroup_Ptr is access all IPerceptionFaceAuthenticationGroup;
 
    type IPerceptionFaceAuthenticationGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionFaceAuthenticationGroupFactory is access IPerceptionFaceAuthenticationGroupFactory_Interface'Class;
+   type IPerceptionFaceAuthenticationGroupFactory is access all IPerceptionFaceAuthenticationGroupFactory_Interface'Class;
 
    type IPerceptionFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionFrame is access IPerceptionFrame_Interface'Class;
+   type IPerceptionFrame is access all IPerceptionFrame_Interface'Class;
    type IPerceptionFrame_Ptr is access all IPerceptionFrame;
 
    type IPerceptionFrameProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionFrameProvider is access IPerceptionFrameProvider_Interface'Class;
+   type IPerceptionFrameProvider is access all IPerceptionFrameProvider_Interface'Class;
 
    type IPerceptionFrameProviderInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionFrameProviderInfo is access IPerceptionFrameProviderInfo_Interface'Class;
+   type IPerceptionFrameProviderInfo is access all IPerceptionFrameProviderInfo_Interface'Class;
    type IPerceptionFrameProviderInfo_Ptr is access all IPerceptionFrameProviderInfo;
 
    type IPerceptionFrameProviderManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionFrameProviderManager is access IPerceptionFrameProviderManager_Interface'Class;
+   type IPerceptionFrameProviderManager is access all IPerceptionFrameProviderManager_Interface'Class;
 
    type IPerceptionFrameProviderManagerServiceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionFrameProviderManagerServiceStatics is access IPerceptionFrameProviderManagerServiceStatics_Interface'Class;
+   type IPerceptionFrameProviderManagerServiceStatics is access all IPerceptionFrameProviderManagerServiceStatics_Interface'Class;
 
    type IPerceptionPropertyChangeRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionPropertyChangeRequest is access IPerceptionPropertyChangeRequest_Interface'Class;
+   type IPerceptionPropertyChangeRequest is access all IPerceptionPropertyChangeRequest_Interface'Class;
    type IPerceptionPropertyChangeRequest_Ptr is access all IPerceptionPropertyChangeRequest;
 
    type IPerceptionVideoFrameAllocator_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionVideoFrameAllocator is access IPerceptionVideoFrameAllocator_Interface'Class;
+   type IPerceptionVideoFrameAllocator is access all IPerceptionVideoFrameAllocator_Interface'Class;
    type IPerceptionVideoFrameAllocator_Ptr is access all IPerceptionVideoFrameAllocator;
 
    type IPerceptionVideoFrameAllocatorFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPerceptionVideoFrameAllocatorFactory is access IPerceptionVideoFrameAllocatorFactory_Interface'Class;
+   type IPerceptionVideoFrameAllocatorFactory is access all IPerceptionVideoFrameAllocatorFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

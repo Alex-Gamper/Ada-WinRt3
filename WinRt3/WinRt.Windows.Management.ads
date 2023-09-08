@@ -40,15 +40,15 @@ package WinRt.Windows.Management is
    -----------------------------------------------------------------------------
 
    type IMdmAlert_Interface is interface and WinRt.IInspectable_Interface;
-   type IMdmAlert is access IMdmAlert_Interface'Class;
+   type IMdmAlert is access all IMdmAlert_Interface'Class;
    type IMdmAlert_Ptr is access all IMdmAlert;
 
    type IMdmSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IMdmSession is access IMdmSession_Interface'Class;
+   type IMdmSession is access all IMdmSession_Interface'Class;
    type IMdmSession_Ptr is access all IMdmSession;
 
    type IMdmSessionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMdmSessionManagerStatics is access IMdmSessionManagerStatics_Interface'Class;
+   type IMdmSessionManagerStatics is access all IMdmSessionManagerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -82,7 +82,7 @@ package WinRt.Windows.Management is
       Boolean_e => 2,
       Integer_e => 3
    );
-   type MdmAlertDataType_Ptr is access MdmAlertDataType;
+   type MdmAlertDataType_Ptr is access all MdmAlertDataType;
 
    type MdmAlertMark is (
       None_e,
@@ -98,7 +98,7 @@ package WinRt.Windows.Management is
       Warning_e => 3,
       Informational_e => 4
    );
-   type MdmAlertMark_Ptr is access MdmAlertMark;
+   type MdmAlertMark_Ptr is access all MdmAlertMark;
 
    type MdmSessionState is (
       NotStarted_e,
@@ -118,7 +118,7 @@ package WinRt.Windows.Management is
       Retrying_e => 5,
       Completed_e => 6
    );
-   type MdmSessionState_Ptr is access MdmSessionState;
+   type MdmSessionState_Ptr is access all MdmSessionState;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

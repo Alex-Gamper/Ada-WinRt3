@@ -39,13 +39,13 @@ package WinRt.Windows.System.Power is
    -----------------------------------------------------------------------------
 
    type IBackgroundEnergyManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundEnergyManagerStatics is access IBackgroundEnergyManagerStatics_Interface'Class;
+   type IBackgroundEnergyManagerStatics is access all IBackgroundEnergyManagerStatics_Interface'Class;
 
    type IForegroundEnergyManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IForegroundEnergyManagerStatics is access IForegroundEnergyManagerStatics_Interface'Class;
+   type IForegroundEnergyManagerStatics is access all IForegroundEnergyManagerStatics_Interface'Class;
 
    type IPowerManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPowerManagerStatics is access IPowerManagerStatics_Interface'Class;
+   type IPowerManagerStatics is access all IPowerManagerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -63,7 +63,7 @@ package WinRt.Windows.System.Power is
       Idle_e => 2,
       Charging_e => 3
    );
-   type BatteryStatus_Ptr is access BatteryStatus;
+   type BatteryStatus_Ptr is access all BatteryStatus;
 
    type EnergySaverStatus is (
       Disabled_e,
@@ -75,7 +75,7 @@ package WinRt.Windows.System.Power is
       Off_e => 1,
       On_e => 2
    );
-   type EnergySaverStatus_Ptr is access EnergySaverStatus;
+   type EnergySaverStatus_Ptr is access all EnergySaverStatus;
 
    type PowerSupplyStatus is (
       NotPresent_e,
@@ -87,7 +87,7 @@ package WinRt.Windows.System.Power is
       Inadequate_e => 1,
       Adequate_e => 2
    );
-   type PowerSupplyStatus_Ptr is access PowerSupplyStatus;
+   type PowerSupplyStatus_Ptr is access all PowerSupplyStatus;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

@@ -42,71 +42,71 @@ package WinRt.Windows.ApplicationModel.Search is
    -----------------------------------------------------------------------------
 
    type ILocalContentSuggestionSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type ILocalContentSuggestionSettings is access ILocalContentSuggestionSettings_Interface'Class;
+   type ILocalContentSuggestionSettings is access all ILocalContentSuggestionSettings_Interface'Class;
    type ILocalContentSuggestionSettings_Ptr is access all ILocalContentSuggestionSettings;
 
    type ISearchPane_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchPane is access ISearchPane_Interface'Class;
+   type ISearchPane is access all ISearchPane_Interface'Class;
    type ISearchPane_Ptr is access all ISearchPane;
 
    type ISearchPaneQueryChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchPaneQueryChangedEventArgs is access ISearchPaneQueryChangedEventArgs_Interface'Class;
+   type ISearchPaneQueryChangedEventArgs is access all ISearchPaneQueryChangedEventArgs_Interface'Class;
    type ISearchPaneQueryChangedEventArgs_Ptr is access all ISearchPaneQueryChangedEventArgs;
 
    type ISearchPaneQueryLinguisticDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchPaneQueryLinguisticDetails is access ISearchPaneQueryLinguisticDetails_Interface'Class;
+   type ISearchPaneQueryLinguisticDetails is access all ISearchPaneQueryLinguisticDetails_Interface'Class;
    type ISearchPaneQueryLinguisticDetails_Ptr is access all ISearchPaneQueryLinguisticDetails;
 
    type ISearchPaneQuerySubmittedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchPaneQuerySubmittedEventArgs is access ISearchPaneQuerySubmittedEventArgs_Interface'Class;
+   type ISearchPaneQuerySubmittedEventArgs is access all ISearchPaneQuerySubmittedEventArgs_Interface'Class;
    type ISearchPaneQuerySubmittedEventArgs_Ptr is access all ISearchPaneQuerySubmittedEventArgs;
 
    type ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails is access ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails_Interface'Class;
+   type ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails is access all ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails_Interface'Class;
 
    type ISearchPaneResultSuggestionChosenEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchPaneResultSuggestionChosenEventArgs is access ISearchPaneResultSuggestionChosenEventArgs_Interface'Class;
+   type ISearchPaneResultSuggestionChosenEventArgs is access all ISearchPaneResultSuggestionChosenEventArgs_Interface'Class;
    type ISearchPaneResultSuggestionChosenEventArgs_Ptr is access all ISearchPaneResultSuggestionChosenEventArgs;
 
    type ISearchPaneStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchPaneStatics is access ISearchPaneStatics_Interface'Class;
+   type ISearchPaneStatics is access all ISearchPaneStatics_Interface'Class;
 
    type ISearchPaneStaticsWithHideThisApplication_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchPaneStaticsWithHideThisApplication is access ISearchPaneStaticsWithHideThisApplication_Interface'Class;
+   type ISearchPaneStaticsWithHideThisApplication is access all ISearchPaneStaticsWithHideThisApplication_Interface'Class;
 
    type ISearchPaneSuggestionsRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchPaneSuggestionsRequest is access ISearchPaneSuggestionsRequest_Interface'Class;
+   type ISearchPaneSuggestionsRequest is access all ISearchPaneSuggestionsRequest_Interface'Class;
    type ISearchPaneSuggestionsRequest_Ptr is access all ISearchPaneSuggestionsRequest;
 
    type ISearchPaneSuggestionsRequestDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchPaneSuggestionsRequestDeferral is access ISearchPaneSuggestionsRequestDeferral_Interface'Class;
+   type ISearchPaneSuggestionsRequestDeferral is access all ISearchPaneSuggestionsRequestDeferral_Interface'Class;
    type ISearchPaneSuggestionsRequestDeferral_Ptr is access all ISearchPaneSuggestionsRequestDeferral;
 
    type ISearchPaneSuggestionsRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchPaneSuggestionsRequestedEventArgs is access ISearchPaneSuggestionsRequestedEventArgs_Interface'Class;
+   type ISearchPaneSuggestionsRequestedEventArgs is access all ISearchPaneSuggestionsRequestedEventArgs_Interface'Class;
    type ISearchPaneSuggestionsRequestedEventArgs_Ptr is access all ISearchPaneSuggestionsRequestedEventArgs;
 
    type ISearchPaneVisibilityChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchPaneVisibilityChangedEventArgs is access ISearchPaneVisibilityChangedEventArgs_Interface'Class;
+   type ISearchPaneVisibilityChangedEventArgs is access all ISearchPaneVisibilityChangedEventArgs_Interface'Class;
    type ISearchPaneVisibilityChangedEventArgs_Ptr is access all ISearchPaneVisibilityChangedEventArgs;
 
    type ISearchQueryLinguisticDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchQueryLinguisticDetails is access ISearchQueryLinguisticDetails_Interface'Class;
+   type ISearchQueryLinguisticDetails is access all ISearchQueryLinguisticDetails_Interface'Class;
    type ISearchQueryLinguisticDetails_Ptr is access all ISearchQueryLinguisticDetails;
 
    type ISearchQueryLinguisticDetailsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchQueryLinguisticDetailsFactory is access ISearchQueryLinguisticDetailsFactory_Interface'Class;
+   type ISearchQueryLinguisticDetailsFactory is access all ISearchQueryLinguisticDetailsFactory_Interface'Class;
 
    type ISearchSuggestionCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchSuggestionCollection is access ISearchSuggestionCollection_Interface'Class;
+   type ISearchSuggestionCollection is access all ISearchSuggestionCollection_Interface'Class;
    type ISearchSuggestionCollection_Ptr is access all ISearchSuggestionCollection;
 
    type ISearchSuggestionsRequest_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchSuggestionsRequest is access ISearchSuggestionsRequest_Interface'Class;
+   type ISearchSuggestionsRequest is access all ISearchSuggestionsRequest_Interface'Class;
    type ISearchSuggestionsRequest_Ptr is access all ISearchSuggestionsRequest;
 
    type ISearchSuggestionsRequestDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type ISearchSuggestionsRequestDeferral is access ISearchSuggestionsRequestDeferral_Interface'Class;
+   type ISearchSuggestionsRequestDeferral is access all ISearchSuggestionsRequestDeferral_Interface'Class;
    type ISearchSuggestionsRequestDeferral_Ptr is access all ISearchSuggestionsRequestDeferral;
 
    -----------------------------------------------------------------------------
@@ -204,7 +204,7 @@ package WinRt.Windows.ApplicationModel.Search is
    type SearchContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type SearchContract_Ptr is access SearchContract;
+   type SearchContract_Ptr is access all SearchContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

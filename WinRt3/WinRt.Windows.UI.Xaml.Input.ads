@@ -45,281 +45,281 @@ package WinRt.Windows.UI.Xaml.Input is
    -----------------------------------------------------------------------------
 
    type DoubleTappedEventHandler_Delegate;
-   type DoubleTappedEventHandler is access DoubleTappedEventHandler_Delegate;
+   type DoubleTappedEventHandler is access all DoubleTappedEventHandler_Delegate;
 
    type HoldingEventHandler_Delegate;
-   type HoldingEventHandler is access HoldingEventHandler_Delegate;
+   type HoldingEventHandler is access all HoldingEventHandler_Delegate;
 
    type KeyEventHandler_Delegate;
-   type KeyEventHandler is access KeyEventHandler_Delegate;
+   type KeyEventHandler is access all KeyEventHandler_Delegate;
 
    type ManipulationCompletedEventHandler_Delegate;
-   type ManipulationCompletedEventHandler is access ManipulationCompletedEventHandler_Delegate;
+   type ManipulationCompletedEventHandler is access all ManipulationCompletedEventHandler_Delegate;
 
    type ManipulationDeltaEventHandler_Delegate;
-   type ManipulationDeltaEventHandler is access ManipulationDeltaEventHandler_Delegate;
+   type ManipulationDeltaEventHandler is access all ManipulationDeltaEventHandler_Delegate;
 
    type ManipulationInertiaStartingEventHandler_Delegate;
-   type ManipulationInertiaStartingEventHandler is access ManipulationInertiaStartingEventHandler_Delegate;
+   type ManipulationInertiaStartingEventHandler is access all ManipulationInertiaStartingEventHandler_Delegate;
 
    type ManipulationStartedEventHandler_Delegate;
-   type ManipulationStartedEventHandler is access ManipulationStartedEventHandler_Delegate;
+   type ManipulationStartedEventHandler is access all ManipulationStartedEventHandler_Delegate;
 
    type ManipulationStartingEventHandler_Delegate;
-   type ManipulationStartingEventHandler is access ManipulationStartingEventHandler_Delegate;
+   type ManipulationStartingEventHandler is access all ManipulationStartingEventHandler_Delegate;
 
    type PointerEventHandler_Delegate;
-   type PointerEventHandler is access PointerEventHandler_Delegate;
+   type PointerEventHandler is access all PointerEventHandler_Delegate;
 
    type RightTappedEventHandler_Delegate;
-   type RightTappedEventHandler is access RightTappedEventHandler_Delegate;
+   type RightTappedEventHandler is access all RightTappedEventHandler_Delegate;
 
    type TappedEventHandler_Delegate;
-   type TappedEventHandler is access TappedEventHandler_Delegate;
+   type TappedEventHandler is access all TappedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IAccessKeyDisplayDismissedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccessKeyDisplayDismissedEventArgs is access IAccessKeyDisplayDismissedEventArgs_Interface'Class;
+   type IAccessKeyDisplayDismissedEventArgs is access all IAccessKeyDisplayDismissedEventArgs_Interface'Class;
    type IAccessKeyDisplayDismissedEventArgs_Ptr is access all IAccessKeyDisplayDismissedEventArgs;
 
    type IAccessKeyDisplayRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccessKeyDisplayRequestedEventArgs is access IAccessKeyDisplayRequestedEventArgs_Interface'Class;
+   type IAccessKeyDisplayRequestedEventArgs is access all IAccessKeyDisplayRequestedEventArgs_Interface'Class;
    type IAccessKeyDisplayRequestedEventArgs_Ptr is access all IAccessKeyDisplayRequestedEventArgs;
 
    type IAccessKeyInvokedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccessKeyInvokedEventArgs is access IAccessKeyInvokedEventArgs_Interface'Class;
+   type IAccessKeyInvokedEventArgs is access all IAccessKeyInvokedEventArgs_Interface'Class;
    type IAccessKeyInvokedEventArgs_Ptr is access all IAccessKeyInvokedEventArgs;
 
    type IAccessKeyManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccessKeyManager is access IAccessKeyManager_Interface'Class;
+   type IAccessKeyManager is access all IAccessKeyManager_Interface'Class;
    type IAccessKeyManager_Ptr is access all IAccessKeyManager;
 
    type IAccessKeyManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccessKeyManagerStatics is access IAccessKeyManagerStatics_Interface'Class;
+   type IAccessKeyManagerStatics is access all IAccessKeyManagerStatics_Interface'Class;
 
    type IAccessKeyManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccessKeyManagerStatics2 is access IAccessKeyManagerStatics2_Interface'Class;
+   type IAccessKeyManagerStatics2 is access all IAccessKeyManagerStatics2_Interface'Class;
 
    type ICanExecuteRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICanExecuteRequestedEventArgs is access ICanExecuteRequestedEventArgs_Interface'Class;
+   type ICanExecuteRequestedEventArgs is access all ICanExecuteRequestedEventArgs_Interface'Class;
    type ICanExecuteRequestedEventArgs_Ptr is access all ICanExecuteRequestedEventArgs;
 
    type ICharacterReceivedRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICharacterReceivedRoutedEventArgs is access ICharacterReceivedRoutedEventArgs_Interface'Class;
+   type ICharacterReceivedRoutedEventArgs is access all ICharacterReceivedRoutedEventArgs_Interface'Class;
    type ICharacterReceivedRoutedEventArgs_Ptr is access all ICharacterReceivedRoutedEventArgs;
 
    type ICommand_Interface is interface and WinRt.IInspectable_Interface;
-   type ICommand is access ICommand_Interface'Class;
+   type ICommand is access all ICommand_Interface'Class;
 
    type IContextRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContextRequestedEventArgs is access IContextRequestedEventArgs_Interface'Class;
+   type IContextRequestedEventArgs is access all IContextRequestedEventArgs_Interface'Class;
    type IContextRequestedEventArgs_Ptr is access all IContextRequestedEventArgs;
 
    type IDoubleTappedRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IDoubleTappedRoutedEventArgs is access IDoubleTappedRoutedEventArgs_Interface'Class;
+   type IDoubleTappedRoutedEventArgs is access all IDoubleTappedRoutedEventArgs_Interface'Class;
    type IDoubleTappedRoutedEventArgs_Ptr is access all IDoubleTappedRoutedEventArgs;
 
    type IExecuteRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IExecuteRequestedEventArgs is access IExecuteRequestedEventArgs_Interface'Class;
+   type IExecuteRequestedEventArgs is access all IExecuteRequestedEventArgs_Interface'Class;
    type IExecuteRequestedEventArgs_Ptr is access all IExecuteRequestedEventArgs;
 
    type IFindNextElementOptions_Interface is interface and WinRt.IInspectable_Interface;
-   type IFindNextElementOptions is access IFindNextElementOptions_Interface'Class;
+   type IFindNextElementOptions is access all IFindNextElementOptions_Interface'Class;
    type IFindNextElementOptions_Ptr is access all IFindNextElementOptions;
 
    type IFocusManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IFocusManager is access IFocusManager_Interface'Class;
+   type IFocusManager is access all IFocusManager_Interface'Class;
    type IFocusManager_Ptr is access all IFocusManager;
 
    type IFocusManagerGotFocusEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IFocusManagerGotFocusEventArgs is access IFocusManagerGotFocusEventArgs_Interface'Class;
+   type IFocusManagerGotFocusEventArgs is access all IFocusManagerGotFocusEventArgs_Interface'Class;
    type IFocusManagerGotFocusEventArgs_Ptr is access all IFocusManagerGotFocusEventArgs;
 
    type IFocusManagerLostFocusEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IFocusManagerLostFocusEventArgs is access IFocusManagerLostFocusEventArgs_Interface'Class;
+   type IFocusManagerLostFocusEventArgs is access all IFocusManagerLostFocusEventArgs_Interface'Class;
    type IFocusManagerLostFocusEventArgs_Ptr is access all IFocusManagerLostFocusEventArgs;
 
    type IFocusManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IFocusManagerStatics is access IFocusManagerStatics_Interface'Class;
+   type IFocusManagerStatics is access all IFocusManagerStatics_Interface'Class;
 
    type IFocusManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IFocusManagerStatics2 is access IFocusManagerStatics2_Interface'Class;
+   type IFocusManagerStatics2 is access all IFocusManagerStatics2_Interface'Class;
 
    type IFocusManagerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IFocusManagerStatics3 is access IFocusManagerStatics3_Interface'Class;
+   type IFocusManagerStatics3 is access all IFocusManagerStatics3_Interface'Class;
 
    type IFocusManagerStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IFocusManagerStatics4 is access IFocusManagerStatics4_Interface'Class;
+   type IFocusManagerStatics4 is access all IFocusManagerStatics4_Interface'Class;
 
    type IFocusManagerStatics5_Interface is interface and WinRt.IInspectable_Interface;
-   type IFocusManagerStatics5 is access IFocusManagerStatics5_Interface'Class;
+   type IFocusManagerStatics5 is access all IFocusManagerStatics5_Interface'Class;
 
    type IFocusManagerStatics6_Interface is interface and WinRt.IInspectable_Interface;
-   type IFocusManagerStatics6 is access IFocusManagerStatics6_Interface'Class;
+   type IFocusManagerStatics6 is access all IFocusManagerStatics6_Interface'Class;
 
    type IFocusManagerStatics7_Interface is interface and WinRt.IInspectable_Interface;
-   type IFocusManagerStatics7 is access IFocusManagerStatics7_Interface'Class;
+   type IFocusManagerStatics7 is access all IFocusManagerStatics7_Interface'Class;
 
    type IFocusMovementResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IFocusMovementResult is access IFocusMovementResult_Interface'Class;
+   type IFocusMovementResult is access all IFocusMovementResult_Interface'Class;
    type IFocusMovementResult_Ptr is access all IFocusMovementResult;
 
    type IGettingFocusEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGettingFocusEventArgs is access IGettingFocusEventArgs_Interface'Class;
+   type IGettingFocusEventArgs is access all IGettingFocusEventArgs_Interface'Class;
    type IGettingFocusEventArgs_Ptr is access all IGettingFocusEventArgs;
 
    type IGettingFocusEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGettingFocusEventArgs2 is access IGettingFocusEventArgs2_Interface'Class;
+   type IGettingFocusEventArgs2 is access all IGettingFocusEventArgs2_Interface'Class;
 
    type IGettingFocusEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
-   type IGettingFocusEventArgs3 is access IGettingFocusEventArgs3_Interface'Class;
+   type IGettingFocusEventArgs3 is access all IGettingFocusEventArgs3_Interface'Class;
 
    type IHoldingRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IHoldingRoutedEventArgs is access IHoldingRoutedEventArgs_Interface'Class;
+   type IHoldingRoutedEventArgs is access all IHoldingRoutedEventArgs_Interface'Class;
    type IHoldingRoutedEventArgs_Ptr is access all IHoldingRoutedEventArgs;
 
    type IInertiaExpansionBehavior_Interface is interface and WinRt.IInspectable_Interface;
-   type IInertiaExpansionBehavior is access IInertiaExpansionBehavior_Interface'Class;
+   type IInertiaExpansionBehavior is access all IInertiaExpansionBehavior_Interface'Class;
    type IInertiaExpansionBehavior_Ptr is access all IInertiaExpansionBehavior;
 
    type IInertiaRotationBehavior_Interface is interface and WinRt.IInspectable_Interface;
-   type IInertiaRotationBehavior is access IInertiaRotationBehavior_Interface'Class;
+   type IInertiaRotationBehavior is access all IInertiaRotationBehavior_Interface'Class;
    type IInertiaRotationBehavior_Ptr is access all IInertiaRotationBehavior;
 
    type IInertiaTranslationBehavior_Interface is interface and WinRt.IInspectable_Interface;
-   type IInertiaTranslationBehavior is access IInertiaTranslationBehavior_Interface'Class;
+   type IInertiaTranslationBehavior is access all IInertiaTranslationBehavior_Interface'Class;
    type IInertiaTranslationBehavior_Ptr is access all IInertiaTranslationBehavior;
 
    type IInputScope_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputScope is access IInputScope_Interface'Class;
+   type IInputScope is access all IInputScope_Interface'Class;
    type IInputScope_Ptr is access all IInputScope;
 
    type IInputScopeName_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputScopeName is access IInputScopeName_Interface'Class;
+   type IInputScopeName is access all IInputScopeName_Interface'Class;
    type IInputScopeName_Ptr is access all IInputScopeName;
 
    type IInputScopeNameFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputScopeNameFactory is access IInputScopeNameFactory_Interface'Class;
+   type IInputScopeNameFactory is access all IInputScopeNameFactory_Interface'Class;
 
    type IKeyRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyRoutedEventArgs is access IKeyRoutedEventArgs_Interface'Class;
+   type IKeyRoutedEventArgs is access all IKeyRoutedEventArgs_Interface'Class;
    type IKeyRoutedEventArgs_Ptr is access all IKeyRoutedEventArgs;
 
    type IKeyRoutedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyRoutedEventArgs2 is access IKeyRoutedEventArgs2_Interface'Class;
+   type IKeyRoutedEventArgs2 is access all IKeyRoutedEventArgs2_Interface'Class;
 
    type IKeyRoutedEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyRoutedEventArgs3 is access IKeyRoutedEventArgs3_Interface'Class;
+   type IKeyRoutedEventArgs3 is access all IKeyRoutedEventArgs3_Interface'Class;
 
    type IKeyboardAccelerator_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyboardAccelerator is access IKeyboardAccelerator_Interface'Class;
+   type IKeyboardAccelerator is access all IKeyboardAccelerator_Interface'Class;
    type IKeyboardAccelerator_Ptr is access all IKeyboardAccelerator;
 
    type IKeyboardAcceleratorFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyboardAcceleratorFactory is access IKeyboardAcceleratorFactory_Interface'Class;
+   type IKeyboardAcceleratorFactory is access all IKeyboardAcceleratorFactory_Interface'Class;
 
    type IKeyboardAcceleratorInvokedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyboardAcceleratorInvokedEventArgs is access IKeyboardAcceleratorInvokedEventArgs_Interface'Class;
+   type IKeyboardAcceleratorInvokedEventArgs is access all IKeyboardAcceleratorInvokedEventArgs_Interface'Class;
    type IKeyboardAcceleratorInvokedEventArgs_Ptr is access all IKeyboardAcceleratorInvokedEventArgs;
 
    type IKeyboardAcceleratorInvokedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyboardAcceleratorInvokedEventArgs2 is access IKeyboardAcceleratorInvokedEventArgs2_Interface'Class;
+   type IKeyboardAcceleratorInvokedEventArgs2 is access all IKeyboardAcceleratorInvokedEventArgs2_Interface'Class;
 
    type IKeyboardAcceleratorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IKeyboardAcceleratorStatics is access IKeyboardAcceleratorStatics_Interface'Class;
+   type IKeyboardAcceleratorStatics is access all IKeyboardAcceleratorStatics_Interface'Class;
 
    type ILosingFocusEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ILosingFocusEventArgs is access ILosingFocusEventArgs_Interface'Class;
+   type ILosingFocusEventArgs is access all ILosingFocusEventArgs_Interface'Class;
    type ILosingFocusEventArgs_Ptr is access all ILosingFocusEventArgs;
 
    type ILosingFocusEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type ILosingFocusEventArgs2 is access ILosingFocusEventArgs2_Interface'Class;
+   type ILosingFocusEventArgs2 is access all ILosingFocusEventArgs2_Interface'Class;
 
    type ILosingFocusEventArgs3_Interface is interface and WinRt.IInspectable_Interface;
-   type ILosingFocusEventArgs3 is access ILosingFocusEventArgs3_Interface'Class;
+   type ILosingFocusEventArgs3 is access all ILosingFocusEventArgs3_Interface'Class;
 
    type IManipulationCompletedRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IManipulationCompletedRoutedEventArgs is access IManipulationCompletedRoutedEventArgs_Interface'Class;
+   type IManipulationCompletedRoutedEventArgs is access all IManipulationCompletedRoutedEventArgs_Interface'Class;
    type IManipulationCompletedRoutedEventArgs_Ptr is access all IManipulationCompletedRoutedEventArgs;
 
    type IManipulationDeltaRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IManipulationDeltaRoutedEventArgs is access IManipulationDeltaRoutedEventArgs_Interface'Class;
+   type IManipulationDeltaRoutedEventArgs is access all IManipulationDeltaRoutedEventArgs_Interface'Class;
    type IManipulationDeltaRoutedEventArgs_Ptr is access all IManipulationDeltaRoutedEventArgs;
 
    type IManipulationInertiaStartingRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IManipulationInertiaStartingRoutedEventArgs is access IManipulationInertiaStartingRoutedEventArgs_Interface'Class;
+   type IManipulationInertiaStartingRoutedEventArgs is access all IManipulationInertiaStartingRoutedEventArgs_Interface'Class;
    type IManipulationInertiaStartingRoutedEventArgs_Ptr is access all IManipulationInertiaStartingRoutedEventArgs;
 
    type IManipulationPivot_Interface is interface and WinRt.IInspectable_Interface;
-   type IManipulationPivot is access IManipulationPivot_Interface'Class;
+   type IManipulationPivot is access all IManipulationPivot_Interface'Class;
    type IManipulationPivot_Ptr is access all IManipulationPivot;
 
    type IManipulationPivotFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IManipulationPivotFactory is access IManipulationPivotFactory_Interface'Class;
+   type IManipulationPivotFactory is access all IManipulationPivotFactory_Interface'Class;
 
    type IManipulationStartedRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IManipulationStartedRoutedEventArgs is access IManipulationStartedRoutedEventArgs_Interface'Class;
+   type IManipulationStartedRoutedEventArgs is access all IManipulationStartedRoutedEventArgs_Interface'Class;
    type IManipulationStartedRoutedEventArgs_Ptr is access all IManipulationStartedRoutedEventArgs;
 
    type IManipulationStartedRoutedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IManipulationStartedRoutedEventArgsFactory is access IManipulationStartedRoutedEventArgsFactory_Interface'Class;
+   type IManipulationStartedRoutedEventArgsFactory is access all IManipulationStartedRoutedEventArgsFactory_Interface'Class;
 
    type IManipulationStartingRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IManipulationStartingRoutedEventArgs is access IManipulationStartingRoutedEventArgs_Interface'Class;
+   type IManipulationStartingRoutedEventArgs is access all IManipulationStartingRoutedEventArgs_Interface'Class;
    type IManipulationStartingRoutedEventArgs_Ptr is access all IManipulationStartingRoutedEventArgs;
 
    type INoFocusCandidateFoundEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type INoFocusCandidateFoundEventArgs is access INoFocusCandidateFoundEventArgs_Interface'Class;
+   type INoFocusCandidateFoundEventArgs is access all INoFocusCandidateFoundEventArgs_Interface'Class;
    type INoFocusCandidateFoundEventArgs_Ptr is access all INoFocusCandidateFoundEventArgs;
 
    type IPointer_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointer is access IPointer_Interface'Class;
+   type IPointer is access all IPointer_Interface'Class;
    type IPointer_Ptr is access all IPointer;
 
    type IPointerRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointerRoutedEventArgs is access IPointerRoutedEventArgs_Interface'Class;
+   type IPointerRoutedEventArgs is access all IPointerRoutedEventArgs_Interface'Class;
    type IPointerRoutedEventArgs_Ptr is access all IPointerRoutedEventArgs;
 
    type IPointerRoutedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPointerRoutedEventArgs2 is access IPointerRoutedEventArgs2_Interface'Class;
+   type IPointerRoutedEventArgs2 is access all IPointerRoutedEventArgs2_Interface'Class;
 
    type IProcessKeyboardAcceleratorEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IProcessKeyboardAcceleratorEventArgs is access IProcessKeyboardAcceleratorEventArgs_Interface'Class;
+   type IProcessKeyboardAcceleratorEventArgs is access all IProcessKeyboardAcceleratorEventArgs_Interface'Class;
    type IProcessKeyboardAcceleratorEventArgs_Ptr is access all IProcessKeyboardAcceleratorEventArgs;
 
    type IRightTappedRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IRightTappedRoutedEventArgs is access IRightTappedRoutedEventArgs_Interface'Class;
+   type IRightTappedRoutedEventArgs is access all IRightTappedRoutedEventArgs_Interface'Class;
    type IRightTappedRoutedEventArgs_Ptr is access all IRightTappedRoutedEventArgs;
 
    type IStandardUICommand_Interface is interface and WinRt.IInspectable_Interface;
-   type IStandardUICommand is access IStandardUICommand_Interface'Class;
+   type IStandardUICommand is access all IStandardUICommand_Interface'Class;
    type IStandardUICommand_Ptr is access all IStandardUICommand;
 
    type IStandardUICommand2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStandardUICommand2 is access IStandardUICommand2_Interface'Class;
+   type IStandardUICommand2 is access all IStandardUICommand2_Interface'Class;
 
    type IStandardUICommandFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IStandardUICommandFactory is access IStandardUICommandFactory_Interface'Class;
+   type IStandardUICommandFactory is access all IStandardUICommandFactory_Interface'Class;
 
    type IStandardUICommandStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStandardUICommandStatics is access IStandardUICommandStatics_Interface'Class;
+   type IStandardUICommandStatics is access all IStandardUICommandStatics_Interface'Class;
 
    type ITappedRoutedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ITappedRoutedEventArgs is access ITappedRoutedEventArgs_Interface'Class;
+   type ITappedRoutedEventArgs is access all ITappedRoutedEventArgs_Interface'Class;
    type ITappedRoutedEventArgs_Ptr is access all ITappedRoutedEventArgs;
 
    type IXamlUICommand_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlUICommand is access IXamlUICommand_Interface'Class;
+   type IXamlUICommand is access all IXamlUICommand_Interface'Class;
    type IXamlUICommand_Ptr is access all IXamlUICommand;
 
    type IXamlUICommandFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlUICommandFactory is access IXamlUICommandFactory_Interface'Class;
+   type IXamlUICommandFactory is access all IXamlUICommandFactory_Interface'Class;
 
    type IXamlUICommandStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IXamlUICommandStatics is access IXamlUICommandStatics_Interface'Class;
+   type IXamlUICommandStatics is access all IXamlUICommandStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -579,7 +579,7 @@ package WinRt.Windows.UI.Xaml.Input is
       Keyboard_e => 4,
       GameController_e => 5
    );
-   type FocusInputDeviceKind_Ptr is access FocusInputDeviceKind;
+   type FocusInputDeviceKind_Ptr is access all FocusInputDeviceKind;
 
    type FocusNavigationDirection is (
       Next_e,
@@ -599,7 +599,7 @@ package WinRt.Windows.UI.Xaml.Input is
       Right_e => 5,
       None_e => 6
    );
-   type FocusNavigationDirection_Ptr is access FocusNavigationDirection;
+   type FocusNavigationDirection_Ptr is access all FocusNavigationDirection;
 
    type InputScopeNameValue is (
       Default_e,
@@ -691,7 +691,7 @@ package WinRt.Windows.UI.Xaml.Input is
       FormulaNumber_e => 67,
       ChatWithoutEmoji_e => 68
    );
-   type InputScopeNameValue_Ptr is access InputScopeNameValue;
+   type InputScopeNameValue_Ptr is access all InputScopeNameValue;
 
    type KeyTipPlacementMode is (
       Auto_e,
@@ -711,7 +711,7 @@ package WinRt.Windows.UI.Xaml.Input is
       Center_e => 5,
       Hidden_e => 6
    );
-   type KeyTipPlacementMode_Ptr is access KeyTipPlacementMode;
+   type KeyTipPlacementMode_Ptr is access all KeyTipPlacementMode;
 
    type KeyboardAcceleratorPlacementMode is (
       Auto_e,
@@ -721,7 +721,7 @@ package WinRt.Windows.UI.Xaml.Input is
       Auto_e => 0,
       Hidden_e => 1
    );
-   type KeyboardAcceleratorPlacementMode_Ptr is access KeyboardAcceleratorPlacementMode;
+   type KeyboardAcceleratorPlacementMode_Ptr is access all KeyboardAcceleratorPlacementMode;
 
    type KeyboardNavigationMode is (
       Local_e,
@@ -733,7 +733,7 @@ package WinRt.Windows.UI.Xaml.Input is
       Cycle_e => 1,
       Once_e => 2
    );
-   type KeyboardNavigationMode_Ptr is access KeyboardNavigationMode;
+   type KeyboardNavigationMode_Ptr is access all KeyboardNavigationMode;
 
    type ManipulationModes is (
       None_e,
@@ -763,7 +763,7 @@ package WinRt.Windows.UI.Xaml.Input is
       All_e => 65535,
       System_e => 65536
    );
-   type ManipulationModes_Ptr is access ManipulationModes;
+   type ManipulationModes_Ptr is access all ManipulationModes;
 
    type StandardUICommandKind is (
       None_e,
@@ -803,7 +803,7 @@ package WinRt.Windows.UI.Xaml.Input is
       Undo_e => 15,
       Redo_e => 16
    );
-   type StandardUICommandKind_Ptr is access StandardUICommandKind;
+   type StandardUICommandKind_Ptr is access all StandardUICommandKind;
 
    type XYFocusKeyboardNavigationMode is (
       Auto_e,
@@ -815,7 +815,7 @@ package WinRt.Windows.UI.Xaml.Input is
       Enabled_e => 1,
       Disabled_e => 2
    );
-   type XYFocusKeyboardNavigationMode_Ptr is access XYFocusKeyboardNavigationMode;
+   type XYFocusKeyboardNavigationMode_Ptr is access all XYFocusKeyboardNavigationMode;
 
    type XYFocusNavigationStrategy is (
       Auto_e,
@@ -829,7 +829,7 @@ package WinRt.Windows.UI.Xaml.Input is
       NavigationDirectionDistance_e => 2,
       RectilinearDistance_e => 3
    );
-   type XYFocusNavigationStrategy_Ptr is access XYFocusNavigationStrategy;
+   type XYFocusNavigationStrategy_Ptr is access all XYFocusNavigationStrategy;
 
    type XYFocusNavigationStrategyOverride is (
       None_e,
@@ -845,7 +845,7 @@ package WinRt.Windows.UI.Xaml.Input is
       NavigationDirectionDistance_e => 3,
       RectilinearDistance_e => 4
    );
-   type XYFocusNavigationStrategyOverride_Ptr is access XYFocusNavigationStrategyOverride;
+   type XYFocusNavigationStrategyOverride_Ptr is access all XYFocusNavigationStrategyOverride;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

@@ -41,51 +41,51 @@ package WinRt.Windows.Networking.XboxLive is
    -----------------------------------------------------------------------------
 
    type IXboxLiveDeviceAddress_Interface is interface and WinRt.IInspectable_Interface;
-   type IXboxLiveDeviceAddress is access IXboxLiveDeviceAddress_Interface'Class;
+   type IXboxLiveDeviceAddress is access all IXboxLiveDeviceAddress_Interface'Class;
    type IXboxLiveDeviceAddress_Ptr is access all IXboxLiveDeviceAddress;
 
    type IXboxLiveDeviceAddressStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IXboxLiveDeviceAddressStatics is access IXboxLiveDeviceAddressStatics_Interface'Class;
+   type IXboxLiveDeviceAddressStatics is access all IXboxLiveDeviceAddressStatics_Interface'Class;
 
    type IXboxLiveEndpointPair_Interface is interface and WinRt.IInspectable_Interface;
-   type IXboxLiveEndpointPair is access IXboxLiveEndpointPair_Interface'Class;
+   type IXboxLiveEndpointPair is access all IXboxLiveEndpointPair_Interface'Class;
    type IXboxLiveEndpointPair_Ptr is access all IXboxLiveEndpointPair;
 
    type IXboxLiveEndpointPairCreationResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IXboxLiveEndpointPairCreationResult is access IXboxLiveEndpointPairCreationResult_Interface'Class;
+   type IXboxLiveEndpointPairCreationResult is access all IXboxLiveEndpointPairCreationResult_Interface'Class;
    type IXboxLiveEndpointPairCreationResult_Ptr is access all IXboxLiveEndpointPairCreationResult;
 
    type IXboxLiveEndpointPairStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IXboxLiveEndpointPairStateChangedEventArgs is access IXboxLiveEndpointPairStateChangedEventArgs_Interface'Class;
+   type IXboxLiveEndpointPairStateChangedEventArgs is access all IXboxLiveEndpointPairStateChangedEventArgs_Interface'Class;
    type IXboxLiveEndpointPairStateChangedEventArgs_Ptr is access all IXboxLiveEndpointPairStateChangedEventArgs;
 
    type IXboxLiveEndpointPairStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IXboxLiveEndpointPairStatics is access IXboxLiveEndpointPairStatics_Interface'Class;
+   type IXboxLiveEndpointPairStatics is access all IXboxLiveEndpointPairStatics_Interface'Class;
 
    type IXboxLiveEndpointPairTemplate_Interface is interface and WinRt.IInspectable_Interface;
-   type IXboxLiveEndpointPairTemplate is access IXboxLiveEndpointPairTemplate_Interface'Class;
+   type IXboxLiveEndpointPairTemplate is access all IXboxLiveEndpointPairTemplate_Interface'Class;
    type IXboxLiveEndpointPairTemplate_Ptr is access all IXboxLiveEndpointPairTemplate;
 
    type IXboxLiveEndpointPairTemplateStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IXboxLiveEndpointPairTemplateStatics is access IXboxLiveEndpointPairTemplateStatics_Interface'Class;
+   type IXboxLiveEndpointPairTemplateStatics is access all IXboxLiveEndpointPairTemplateStatics_Interface'Class;
 
    type IXboxLiveInboundEndpointPairCreatedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IXboxLiveInboundEndpointPairCreatedEventArgs is access IXboxLiveInboundEndpointPairCreatedEventArgs_Interface'Class;
+   type IXboxLiveInboundEndpointPairCreatedEventArgs is access all IXboxLiveInboundEndpointPairCreatedEventArgs_Interface'Class;
    type IXboxLiveInboundEndpointPairCreatedEventArgs_Ptr is access all IXboxLiveInboundEndpointPairCreatedEventArgs;
 
    type IXboxLiveQualityOfServiceMeasurement_Interface is interface and WinRt.IInspectable_Interface;
-   type IXboxLiveQualityOfServiceMeasurement is access IXboxLiveQualityOfServiceMeasurement_Interface'Class;
+   type IXboxLiveQualityOfServiceMeasurement is access all IXboxLiveQualityOfServiceMeasurement_Interface'Class;
    type IXboxLiveQualityOfServiceMeasurement_Ptr is access all IXboxLiveQualityOfServiceMeasurement;
 
    type IXboxLiveQualityOfServiceMeasurementStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IXboxLiveQualityOfServiceMeasurementStatics is access IXboxLiveQualityOfServiceMeasurementStatics_Interface'Class;
+   type IXboxLiveQualityOfServiceMeasurementStatics is access all IXboxLiveQualityOfServiceMeasurementStatics_Interface'Class;
 
    type IXboxLiveQualityOfServiceMetricResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IXboxLiveQualityOfServiceMetricResult is access IXboxLiveQualityOfServiceMetricResult_Interface'Class;
+   type IXboxLiveQualityOfServiceMetricResult is access all IXboxLiveQualityOfServiceMetricResult_Interface'Class;
    type IXboxLiveQualityOfServiceMetricResult_Ptr is access all IXboxLiveQualityOfServiceMetricResult;
 
    type IXboxLiveQualityOfServicePrivatePayloadResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IXboxLiveQualityOfServicePrivatePayloadResult is access IXboxLiveQualityOfServicePrivatePayloadResult_Interface'Class;
+   type IXboxLiveQualityOfServicePrivatePayloadResult is access all IXboxLiveQualityOfServicePrivatePayloadResult_Interface'Class;
    type IXboxLiveQualityOfServicePrivatePayloadResult_Ptr is access all IXboxLiveQualityOfServicePrivatePayloadResult;
 
    -----------------------------------------------------------------------------
@@ -158,7 +158,7 @@ package WinRt.Windows.Networking.XboxLive is
       None_e => 0,
       ReevaluatePath_e => 1
    );
-   type XboxLiveEndpointPairCreationBehaviors_Ptr is access XboxLiveEndpointPairCreationBehaviors;
+   type XboxLiveEndpointPairCreationBehaviors_Ptr is access all XboxLiveEndpointPairCreationBehaviors;
 
    type XboxLiveEndpointPairCreationStatus is (
       Succeeded_e,
@@ -182,7 +182,7 @@ package WinRt.Windows.Networking.XboxLive is
       RefusedDueToConfiguration_e => 7,
       UnexpectedInternalError_e => 8
    );
-   type XboxLiveEndpointPairCreationStatus_Ptr is access XboxLiveEndpointPairCreationStatus;
+   type XboxLiveEndpointPairCreationStatus_Ptr is access all XboxLiveEndpointPairCreationStatus;
 
    type XboxLiveEndpointPairState is (
       Invalid_e,
@@ -202,7 +202,7 @@ package WinRt.Windows.Networking.XboxLive is
       RemoteEndpointTerminating_e => 5,
       Deleted_e => 6
    );
-   type XboxLiveEndpointPairState_Ptr is access XboxLiveEndpointPairState;
+   type XboxLiveEndpointPairState_Ptr is access all XboxLiveEndpointPairState;
 
    type XboxLiveNetworkAccessKind is (
       Open_e,
@@ -214,7 +214,7 @@ package WinRt.Windows.Networking.XboxLive is
       Moderate_e => 1,
       Strict_e => 2
    );
-   type XboxLiveNetworkAccessKind_Ptr is access XboxLiveNetworkAccessKind;
+   type XboxLiveNetworkAccessKind_Ptr is access all XboxLiveNetworkAccessKind;
 
    type XboxLiveQualityOfServiceMeasurementStatus is (
       NotStarted_e,
@@ -244,7 +244,7 @@ package WinRt.Windows.Networking.XboxLive is
       RefusedDueToConfiguration_e => 10,
       UnexpectedInternalError_e => 11
    );
-   type XboxLiveQualityOfServiceMeasurementStatus_Ptr is access XboxLiveQualityOfServiceMeasurementStatus;
+   type XboxLiveQualityOfServiceMeasurementStatus_Ptr is access all XboxLiveQualityOfServiceMeasurementStatus;
 
    type XboxLiveQualityOfServiceMetric is (
       AverageLatencyInMilliseconds_e,
@@ -268,7 +268,7 @@ package WinRt.Windows.Networking.XboxLive is
       MinInboundBitsPerSecond_e => 7,
       MaxInboundBitsPerSecond_e => 8
    );
-   type XboxLiveQualityOfServiceMetric_Ptr is access XboxLiveQualityOfServiceMetric;
+   type XboxLiveQualityOfServiceMetric_Ptr is access all XboxLiveQualityOfServiceMetric;
 
    type XboxLiveSocketKind is (
       None_e,
@@ -280,7 +280,7 @@ package WinRt.Windows.Networking.XboxLive is
       Datagram_e => 1,
       Stream_e => 2
    );
-   type XboxLiveSocketKind_Ptr is access XboxLiveSocketKind;
+   type XboxLiveSocketKind_Ptr is access all XboxLiveSocketKind;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -289,7 +289,7 @@ package WinRt.Windows.Networking.XboxLive is
    type XboxLiveSecureSocketsContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type XboxLiveSecureSocketsContract_Ptr is access XboxLiveSecureSocketsContract;
+   type XboxLiveSecureSocketsContract_Ptr is access all XboxLiveSecureSocketsContract;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

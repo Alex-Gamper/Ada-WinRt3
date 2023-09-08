@@ -41,25 +41,25 @@ package WinRt.Windows.Storage.AccessCache is
    -----------------------------------------------------------------------------
 
    type IItemRemovedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IItemRemovedEventArgs is access IItemRemovedEventArgs_Interface'Class;
+   type IItemRemovedEventArgs is access all IItemRemovedEventArgs_Interface'Class;
    type IItemRemovedEventArgs_Ptr is access all IItemRemovedEventArgs;
 
    type IStorageApplicationPermissionsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageApplicationPermissionsStatics is access IStorageApplicationPermissionsStatics_Interface'Class;
+   type IStorageApplicationPermissionsStatics is access all IStorageApplicationPermissionsStatics_Interface'Class;
 
    type IStorageApplicationPermissionsStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageApplicationPermissionsStatics2 is access IStorageApplicationPermissionsStatics2_Interface'Class;
+   type IStorageApplicationPermissionsStatics2 is access all IStorageApplicationPermissionsStatics2_Interface'Class;
 
    type IStorageItemAccessList_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageItemAccessList is access IStorageItemAccessList_Interface'Class;
+   type IStorageItemAccessList is access all IStorageItemAccessList_Interface'Class;
    type IStorageItemAccessList_Ptr is access all IStorageItemAccessList;
 
    type IStorageItemMostRecentlyUsedList_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageItemMostRecentlyUsedList is access IStorageItemMostRecentlyUsedList_Interface'Class;
+   type IStorageItemMostRecentlyUsedList is access all IStorageItemMostRecentlyUsedList_Interface'Class;
    type IStorageItemMostRecentlyUsedList_Ptr is access all IStorageItemMostRecentlyUsedList;
 
    type IStorageItemMostRecentlyUsedList2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageItemMostRecentlyUsedList2 is access IStorageItemMostRecentlyUsedList2_Interface'Class;
+   type IStorageItemMostRecentlyUsedList2 is access all IStorageItemMostRecentlyUsedList2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -107,7 +107,7 @@ package WinRt.Windows.Storage.AccessCache is
       UseReadOnlyCachedCopy_e => 4,
       SuppressAccessTimeUpdate_e => 8
    );
-   type AccessCacheOptions_Ptr is access AccessCacheOptions;
+   type AccessCacheOptions_Ptr is access all AccessCacheOptions;
 
    type RecentStorageItemVisibility is (
       AppOnly_e,
@@ -117,7 +117,7 @@ package WinRt.Windows.Storage.AccessCache is
       AppOnly_e => 0,
       AppAndSystem_e => 1
    );
-   type RecentStorageItemVisibility_Ptr is access RecentStorageItemVisibility;
+   type RecentStorageItemVisibility_Ptr is access all RecentStorageItemVisibility;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -127,7 +127,7 @@ package WinRt.Windows.Storage.AccessCache is
       Token : WinRt.HString;
       Metadata : WinRt.HString;
    end record with Convention => C_Pass_By_Copy;
-   type AccessListEntry_Ptr is access AccessListEntry;
+   type AccessListEntry_Ptr is access all AccessListEntry;
    type AccessListEntry_Array is array (Natural range <>) of aliased AccessListEntry;
 
    -----------------------------------------------------------------------------

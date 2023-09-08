@@ -40,11 +40,11 @@ package WinRt.Windows.UI.Input.Inking.Preview is
    -----------------------------------------------------------------------------
 
    type IPalmRejectionDelayZonePreview_Interface is interface and WinRt.IInspectable_Interface;
-   type IPalmRejectionDelayZonePreview is access IPalmRejectionDelayZonePreview_Interface'Class;
+   type IPalmRejectionDelayZonePreview is access all IPalmRejectionDelayZonePreview_Interface'Class;
    type IPalmRejectionDelayZonePreview_Ptr is access all IPalmRejectionDelayZonePreview;
 
    type IPalmRejectionDelayZonePreviewStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPalmRejectionDelayZonePreviewStatics is access IPalmRejectionDelayZonePreviewStatics_Interface'Class;
+   type IPalmRejectionDelayZonePreviewStatics is access all IPalmRejectionDelayZonePreviewStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

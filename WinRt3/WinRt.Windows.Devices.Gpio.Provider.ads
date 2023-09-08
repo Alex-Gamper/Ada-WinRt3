@@ -40,20 +40,20 @@ package WinRt.Windows.Devices.Gpio.Provider is
    -----------------------------------------------------------------------------
 
    type IGpioControllerProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioControllerProvider is access IGpioControllerProvider_Interface'Class;
+   type IGpioControllerProvider is access all IGpioControllerProvider_Interface'Class;
 
    type IGpioPinProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioPinProvider is access IGpioPinProvider_Interface'Class;
+   type IGpioPinProvider is access all IGpioPinProvider_Interface'Class;
 
    type IGpioPinProviderValueChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioPinProviderValueChangedEventArgs is access IGpioPinProviderValueChangedEventArgs_Interface'Class;
+   type IGpioPinProviderValueChangedEventArgs is access all IGpioPinProviderValueChangedEventArgs_Interface'Class;
    type IGpioPinProviderValueChangedEventArgs_Ptr is access all IGpioPinProviderValueChangedEventArgs;
 
    type IGpioPinProviderValueChangedEventArgsFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioPinProviderValueChangedEventArgsFactory is access IGpioPinProviderValueChangedEventArgsFactory_Interface'Class;
+   type IGpioPinProviderValueChangedEventArgsFactory is access all IGpioPinProviderValueChangedEventArgsFactory_Interface'Class;
 
    type IGpioProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IGpioProvider is access IGpioProvider_Interface'Class;
+   type IGpioProvider is access all IGpioProvider_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -89,7 +89,7 @@ package WinRt.Windows.Devices.Gpio.Provider is
       OutputOpenSource_e => 6,
       OutputOpenSourcePullDown_e => 7
    );
-   type ProviderGpioPinDriveMode_Ptr is access ProviderGpioPinDriveMode;
+   type ProviderGpioPinDriveMode_Ptr is access all ProviderGpioPinDriveMode;
 
    type ProviderGpioPinEdge is (
       FallingEdge_e,
@@ -99,7 +99,7 @@ package WinRt.Windows.Devices.Gpio.Provider is
       FallingEdge_e => 0,
       RisingEdge_e => 1
    );
-   type ProviderGpioPinEdge_Ptr is access ProviderGpioPinEdge;
+   type ProviderGpioPinEdge_Ptr is access all ProviderGpioPinEdge;
 
    type ProviderGpioPinValue is (
       Low_e,
@@ -109,7 +109,7 @@ package WinRt.Windows.Devices.Gpio.Provider is
       Low_e => 0,
       High_e => 1
    );
-   type ProviderGpioPinValue_Ptr is access ProviderGpioPinValue;
+   type ProviderGpioPinValue_Ptr is access all ProviderGpioPinValue;
 
    type ProviderGpioSharingMode is (
       Exclusive_e,
@@ -119,7 +119,7 @@ package WinRt.Windows.Devices.Gpio.Provider is
       Exclusive_e => 0,
       SharedReadOnly_e => 1
    );
-   type ProviderGpioSharingMode_Ptr is access ProviderGpioSharingMode;
+   type ProviderGpioSharingMode_Ptr is access all ProviderGpioSharingMode;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

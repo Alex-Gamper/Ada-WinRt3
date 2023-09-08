@@ -46,135 +46,135 @@ package WinRt.Windows.Graphics.Holographic is
    -----------------------------------------------------------------------------
 
    type IHolographicCamera_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicCamera is access IHolographicCamera_Interface'Class;
+   type IHolographicCamera is access all IHolographicCamera_Interface'Class;
    type IHolographicCamera_Ptr is access all IHolographicCamera;
 
    type IHolographicCamera2_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicCamera2 is access IHolographicCamera2_Interface'Class;
+   type IHolographicCamera2 is access all IHolographicCamera2_Interface'Class;
 
    type IHolographicCamera3_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicCamera3 is access IHolographicCamera3_Interface'Class;
+   type IHolographicCamera3 is access all IHolographicCamera3_Interface'Class;
 
    type IHolographicCamera4_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicCamera4 is access IHolographicCamera4_Interface'Class;
+   type IHolographicCamera4 is access all IHolographicCamera4_Interface'Class;
 
    type IHolographicCamera5_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicCamera5 is access IHolographicCamera5_Interface'Class;
+   type IHolographicCamera5 is access all IHolographicCamera5_Interface'Class;
 
    type IHolographicCamera6_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicCamera6 is access IHolographicCamera6_Interface'Class;
+   type IHolographicCamera6 is access all IHolographicCamera6_Interface'Class;
 
    type IHolographicCameraPose_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicCameraPose is access IHolographicCameraPose_Interface'Class;
+   type IHolographicCameraPose is access all IHolographicCameraPose_Interface'Class;
    type IHolographicCameraPose_Ptr is access all IHolographicCameraPose;
 
    type IHolographicCameraPose2_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicCameraPose2 is access IHolographicCameraPose2_Interface'Class;
+   type IHolographicCameraPose2 is access all IHolographicCameraPose2_Interface'Class;
 
    type IHolographicCameraRenderingParameters_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicCameraRenderingParameters is access IHolographicCameraRenderingParameters_Interface'Class;
+   type IHolographicCameraRenderingParameters is access all IHolographicCameraRenderingParameters_Interface'Class;
    type IHolographicCameraRenderingParameters_Ptr is access all IHolographicCameraRenderingParameters;
 
    type IHolographicCameraRenderingParameters2_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicCameraRenderingParameters2 is access IHolographicCameraRenderingParameters2_Interface'Class;
+   type IHolographicCameraRenderingParameters2 is access all IHolographicCameraRenderingParameters2_Interface'Class;
 
    type IHolographicCameraRenderingParameters3_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicCameraRenderingParameters3 is access IHolographicCameraRenderingParameters3_Interface'Class;
+   type IHolographicCameraRenderingParameters3 is access all IHolographicCameraRenderingParameters3_Interface'Class;
 
    type IHolographicCameraViewportParameters_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicCameraViewportParameters is access IHolographicCameraViewportParameters_Interface'Class;
+   type IHolographicCameraViewportParameters is access all IHolographicCameraViewportParameters_Interface'Class;
    type IHolographicCameraViewportParameters_Ptr is access all IHolographicCameraViewportParameters;
 
    type IHolographicDisplay_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicDisplay is access IHolographicDisplay_Interface'Class;
+   type IHolographicDisplay is access all IHolographicDisplay_Interface'Class;
    type IHolographicDisplay_Ptr is access all IHolographicDisplay;
 
    type IHolographicDisplay2_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicDisplay2 is access IHolographicDisplay2_Interface'Class;
+   type IHolographicDisplay2 is access all IHolographicDisplay2_Interface'Class;
 
    type IHolographicDisplay3_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicDisplay3 is access IHolographicDisplay3_Interface'Class;
+   type IHolographicDisplay3 is access all IHolographicDisplay3_Interface'Class;
 
    type IHolographicDisplayStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicDisplayStatics is access IHolographicDisplayStatics_Interface'Class;
+   type IHolographicDisplayStatics is access all IHolographicDisplayStatics_Interface'Class;
 
    type IHolographicFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicFrame is access IHolographicFrame_Interface'Class;
+   type IHolographicFrame is access all IHolographicFrame_Interface'Class;
    type IHolographicFrame_Ptr is access all IHolographicFrame;
 
    type IHolographicFrame2_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicFrame2 is access IHolographicFrame2_Interface'Class;
+   type IHolographicFrame2 is access all IHolographicFrame2_Interface'Class;
 
    type IHolographicFrame3_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicFrame3 is access IHolographicFrame3_Interface'Class;
+   type IHolographicFrame3 is access all IHolographicFrame3_Interface'Class;
 
    type IHolographicFramePrediction_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicFramePrediction is access IHolographicFramePrediction_Interface'Class;
+   type IHolographicFramePrediction is access all IHolographicFramePrediction_Interface'Class;
    type IHolographicFramePrediction_Ptr is access all IHolographicFramePrediction;
 
    type IHolographicFramePresentationMonitor_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicFramePresentationMonitor is access IHolographicFramePresentationMonitor_Interface'Class;
+   type IHolographicFramePresentationMonitor is access all IHolographicFramePresentationMonitor_Interface'Class;
    type IHolographicFramePresentationMonitor_Ptr is access all IHolographicFramePresentationMonitor;
 
    type IHolographicFramePresentationReport_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicFramePresentationReport is access IHolographicFramePresentationReport_Interface'Class;
+   type IHolographicFramePresentationReport is access all IHolographicFramePresentationReport_Interface'Class;
    type IHolographicFramePresentationReport_Ptr is access all IHolographicFramePresentationReport;
 
    type IHolographicFrameRenderingReport_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicFrameRenderingReport is access IHolographicFrameRenderingReport_Interface'Class;
+   type IHolographicFrameRenderingReport is access all IHolographicFrameRenderingReport_Interface'Class;
    type IHolographicFrameRenderingReport_Ptr is access all IHolographicFrameRenderingReport;
 
    type IHolographicFrameScanoutMonitor_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicFrameScanoutMonitor is access IHolographicFrameScanoutMonitor_Interface'Class;
+   type IHolographicFrameScanoutMonitor is access all IHolographicFrameScanoutMonitor_Interface'Class;
    type IHolographicFrameScanoutMonitor_Ptr is access all IHolographicFrameScanoutMonitor;
 
    type IHolographicFrameScanoutReport_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicFrameScanoutReport is access IHolographicFrameScanoutReport_Interface'Class;
+   type IHolographicFrameScanoutReport is access all IHolographicFrameScanoutReport_Interface'Class;
    type IHolographicFrameScanoutReport_Ptr is access all IHolographicFrameScanoutReport;
 
    type IHolographicQuadLayer_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicQuadLayer is access IHolographicQuadLayer_Interface'Class;
+   type IHolographicQuadLayer is access all IHolographicQuadLayer_Interface'Class;
    type IHolographicQuadLayer_Ptr is access all IHolographicQuadLayer;
 
    type IHolographicQuadLayerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicQuadLayerFactory is access IHolographicQuadLayerFactory_Interface'Class;
+   type IHolographicQuadLayerFactory is access all IHolographicQuadLayerFactory_Interface'Class;
 
    type IHolographicQuadLayerUpdateParameters_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicQuadLayerUpdateParameters is access IHolographicQuadLayerUpdateParameters_Interface'Class;
+   type IHolographicQuadLayerUpdateParameters is access all IHolographicQuadLayerUpdateParameters_Interface'Class;
    type IHolographicQuadLayerUpdateParameters_Ptr is access all IHolographicQuadLayerUpdateParameters;
 
    type IHolographicQuadLayerUpdateParameters2_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicQuadLayerUpdateParameters2 is access IHolographicQuadLayerUpdateParameters2_Interface'Class;
+   type IHolographicQuadLayerUpdateParameters2 is access all IHolographicQuadLayerUpdateParameters2_Interface'Class;
 
    type IHolographicSpace_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicSpace is access IHolographicSpace_Interface'Class;
+   type IHolographicSpace is access all IHolographicSpace_Interface'Class;
    type IHolographicSpace_Ptr is access all IHolographicSpace;
 
    type IHolographicSpace2_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicSpace2 is access IHolographicSpace2_Interface'Class;
+   type IHolographicSpace2 is access all IHolographicSpace2_Interface'Class;
 
    type IHolographicSpace3_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicSpace3 is access IHolographicSpace3_Interface'Class;
+   type IHolographicSpace3 is access all IHolographicSpace3_Interface'Class;
 
    type IHolographicSpaceCameraAddedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicSpaceCameraAddedEventArgs is access IHolographicSpaceCameraAddedEventArgs_Interface'Class;
+   type IHolographicSpaceCameraAddedEventArgs is access all IHolographicSpaceCameraAddedEventArgs_Interface'Class;
    type IHolographicSpaceCameraAddedEventArgs_Ptr is access all IHolographicSpaceCameraAddedEventArgs;
 
    type IHolographicSpaceCameraRemovedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicSpaceCameraRemovedEventArgs is access IHolographicSpaceCameraRemovedEventArgs_Interface'Class;
+   type IHolographicSpaceCameraRemovedEventArgs is access all IHolographicSpaceCameraRemovedEventArgs_Interface'Class;
    type IHolographicSpaceCameraRemovedEventArgs_Ptr is access all IHolographicSpaceCameraRemovedEventArgs;
 
    type IHolographicSpaceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicSpaceStatics is access IHolographicSpaceStatics_Interface'Class;
+   type IHolographicSpaceStatics is access all IHolographicSpaceStatics_Interface'Class;
 
    type IHolographicSpaceStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicSpaceStatics2 is access IHolographicSpaceStatics2_Interface'Class;
+   type IHolographicSpaceStatics2 is access all IHolographicSpaceStatics2_Interface'Class;
 
    type IHolographicSpaceStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicSpaceStatics3 is access IHolographicSpaceStatics3_Interface'Class;
+   type IHolographicSpaceStatics3 is access all IHolographicSpaceStatics3_Interface'Class;
 
    type IHolographicViewConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IHolographicViewConfiguration is access IHolographicViewConfiguration_Interface'Class;
+   type IHolographicViewConfiguration is access all IHolographicViewConfiguration_Interface'Class;
    type IHolographicViewConfiguration_Ptr is access all IHolographicViewConfiguration;
 
    -----------------------------------------------------------------------------
@@ -301,7 +301,7 @@ package WinRt.Windows.Graphics.Holographic is
       Success_e => 0,
       DeviceRemoved_e => 1
    );
-   type HolographicFramePresentResult_Ptr is access HolographicFramePresentResult;
+   type HolographicFramePresentResult_Ptr is access all HolographicFramePresentResult;
 
    type HolographicFramePresentWaitBehavior is (
       WaitForFrameToFinish_e,
@@ -311,7 +311,7 @@ package WinRt.Windows.Graphics.Holographic is
       WaitForFrameToFinish_e => 0,
       DoNotWaitForFrameToFinish_e => 1
    );
-   type HolographicFramePresentWaitBehavior_Ptr is access HolographicFramePresentWaitBehavior;
+   type HolographicFramePresentWaitBehavior_Ptr is access all HolographicFramePresentWaitBehavior;
 
    type HolographicReprojectionMode is (
       PositionAndOrientation_e,
@@ -323,7 +323,7 @@ package WinRt.Windows.Graphics.Holographic is
       OrientationOnly_e => 1,
       Disabled_e => 2
    );
-   type HolographicReprojectionMode_Ptr is access HolographicReprojectionMode;
+   type HolographicReprojectionMode_Ptr is access all HolographicReprojectionMode;
 
    type HolographicSpaceUserPresence is (
       Absent_e,
@@ -335,7 +335,7 @@ package WinRt.Windows.Graphics.Holographic is
       PresentPassive_e => 1,
       PresentActive_e => 2
    );
-   type HolographicSpaceUserPresence_Ptr is access HolographicSpaceUserPresence;
+   type HolographicSpaceUserPresence_Ptr is access all HolographicSpaceUserPresence;
 
    type HolographicViewConfigurationKind is (
       Display_e,
@@ -345,7 +345,7 @@ package WinRt.Windows.Graphics.Holographic is
       Display_e => 0,
       PhotoVideoCamera_e => 1
    );
-   type HolographicViewConfigurationKind_Ptr is access HolographicViewConfigurationKind;
+   type HolographicViewConfigurationKind_Ptr is access all HolographicViewConfigurationKind;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -355,18 +355,18 @@ package WinRt.Windows.Graphics.Holographic is
       LowPart : WinRt.UInt32;
       HighPart : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type HolographicAdapterId_Ptr is access HolographicAdapterId;
+   type HolographicAdapterId_Ptr is access all HolographicAdapterId;
 
    type HolographicFrameId is record
       Value : WinRt.UInt64;
    end record with Convention => C_Pass_By_Copy;
-   type HolographicFrameId_Ptr is access HolographicFrameId;
+   type HolographicFrameId_Ptr is access all HolographicFrameId;
 
    type HolographicStereoTransform is record
       Left : WinRt.Windows.Foundation.Numerics.Matrix4x4;
       Right : WinRt.Windows.Foundation.Numerics.Matrix4x4;
    end record with Convention => C_Pass_By_Copy;
-   type HolographicStereoTransform_Ptr is access HolographicStereoTransform;
+   type HolographicStereoTransform_Ptr is access all HolographicStereoTransform;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

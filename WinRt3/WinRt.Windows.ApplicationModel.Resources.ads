@@ -40,23 +40,23 @@ package WinRt.Windows.ApplicationModel.Resources is
    -----------------------------------------------------------------------------
 
    type IResourceLoader_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceLoader is access IResourceLoader_Interface'Class;
+   type IResourceLoader is access all IResourceLoader_Interface'Class;
    type IResourceLoader_Ptr is access all IResourceLoader;
 
    type IResourceLoader2_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceLoader2 is access IResourceLoader2_Interface'Class;
+   type IResourceLoader2 is access all IResourceLoader2_Interface'Class;
 
    type IResourceLoaderFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceLoaderFactory is access IResourceLoaderFactory_Interface'Class;
+   type IResourceLoaderFactory is access all IResourceLoaderFactory_Interface'Class;
 
    type IResourceLoaderStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceLoaderStatics is access IResourceLoaderStatics_Interface'Class;
+   type IResourceLoaderStatics is access all IResourceLoaderStatics_Interface'Class;
 
    type IResourceLoaderStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceLoaderStatics2 is access IResourceLoaderStatics2_Interface'Class;
+   type IResourceLoaderStatics2 is access all IResourceLoaderStatics2_Interface'Class;
 
    type IResourceLoaderStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IResourceLoaderStatics3 is access IResourceLoaderStatics3_Interface'Class;
+   type IResourceLoaderStatics3 is access all IResourceLoaderStatics3_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

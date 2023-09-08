@@ -56,351 +56,351 @@ package WinRt.Windows.ApplicationModel.Background is
    -----------------------------------------------------------------------------
 
    type BackgroundTaskCanceledEventHandler_Delegate;
-   type BackgroundTaskCanceledEventHandler is access BackgroundTaskCanceledEventHandler_Delegate;
+   type BackgroundTaskCanceledEventHandler is access all BackgroundTaskCanceledEventHandler_Delegate;
 
    type BackgroundTaskCompletedEventHandler_Delegate;
-   type BackgroundTaskCompletedEventHandler is access BackgroundTaskCompletedEventHandler_Delegate;
+   type BackgroundTaskCompletedEventHandler is access all BackgroundTaskCompletedEventHandler_Delegate;
 
    type BackgroundTaskProgressEventHandler_Delegate;
-   type BackgroundTaskProgressEventHandler is access BackgroundTaskProgressEventHandler_Delegate;
+   type BackgroundTaskProgressEventHandler is access all BackgroundTaskProgressEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IActivitySensorTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IActivitySensorTrigger is access IActivitySensorTrigger_Interface'Class;
+   type IActivitySensorTrigger is access all IActivitySensorTrigger_Interface'Class;
    type IActivitySensorTrigger_Ptr is access all IActivitySensorTrigger;
 
    type IActivitySensorTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IActivitySensorTriggerFactory is access IActivitySensorTriggerFactory_Interface'Class;
+   type IActivitySensorTriggerFactory is access all IActivitySensorTriggerFactory_Interface'Class;
 
    type IAlarmApplicationManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAlarmApplicationManagerStatics is access IAlarmApplicationManagerStatics_Interface'Class;
+   type IAlarmApplicationManagerStatics is access all IAlarmApplicationManagerStatics_Interface'Class;
 
    type IAppBroadcastTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastTrigger is access IAppBroadcastTrigger_Interface'Class;
+   type IAppBroadcastTrigger is access all IAppBroadcastTrigger_Interface'Class;
    type IAppBroadcastTrigger_Ptr is access all IAppBroadcastTrigger;
 
    type IAppBroadcastTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastTriggerFactory is access IAppBroadcastTriggerFactory_Interface'Class;
+   type IAppBroadcastTriggerFactory is access all IAppBroadcastTriggerFactory_Interface'Class;
 
    type IAppBroadcastTriggerProviderInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppBroadcastTriggerProviderInfo is access IAppBroadcastTriggerProviderInfo_Interface'Class;
+   type IAppBroadcastTriggerProviderInfo is access all IAppBroadcastTriggerProviderInfo_Interface'Class;
    type IAppBroadcastTriggerProviderInfo_Ptr is access all IAppBroadcastTriggerProviderInfo;
 
    type IApplicationTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationTrigger is access IApplicationTrigger_Interface'Class;
+   type IApplicationTrigger is access all IApplicationTrigger_Interface'Class;
    type IApplicationTrigger_Ptr is access all IApplicationTrigger;
 
    type IApplicationTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IApplicationTriggerDetails is access IApplicationTriggerDetails_Interface'Class;
+   type IApplicationTriggerDetails is access all IApplicationTriggerDetails_Interface'Class;
    type IApplicationTriggerDetails_Ptr is access all IApplicationTriggerDetails;
 
    type IAppointmentStoreNotificationTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppointmentStoreNotificationTrigger is access IAppointmentStoreNotificationTrigger_Interface'Class;
+   type IAppointmentStoreNotificationTrigger is access all IAppointmentStoreNotificationTrigger_Interface'Class;
    type IAppointmentStoreNotificationTrigger_Ptr is access all IAppointmentStoreNotificationTrigger;
 
    type IBackgroundCondition_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundCondition is access IBackgroundCondition_Interface'Class;
+   type IBackgroundCondition is access all IBackgroundCondition_Interface'Class;
 
    type IBackgroundExecutionManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundExecutionManagerStatics is access IBackgroundExecutionManagerStatics_Interface'Class;
+   type IBackgroundExecutionManagerStatics is access all IBackgroundExecutionManagerStatics_Interface'Class;
 
    type IBackgroundExecutionManagerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundExecutionManagerStatics2 is access IBackgroundExecutionManagerStatics2_Interface'Class;
+   type IBackgroundExecutionManagerStatics2 is access all IBackgroundExecutionManagerStatics2_Interface'Class;
 
    type IBackgroundTask_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTask is access IBackgroundTask_Interface'Class;
+   type IBackgroundTask is access all IBackgroundTask_Interface'Class;
    type IBackgroundTask_Ptr is access all IBackgroundTask;
 
    type IBackgroundTaskBuilder_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskBuilder is access IBackgroundTaskBuilder_Interface'Class;
+   type IBackgroundTaskBuilder is access all IBackgroundTaskBuilder_Interface'Class;
    type IBackgroundTaskBuilder_Ptr is access all IBackgroundTaskBuilder;
 
    type IBackgroundTaskBuilder2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskBuilder2 is access IBackgroundTaskBuilder2_Interface'Class;
+   type IBackgroundTaskBuilder2 is access all IBackgroundTaskBuilder2_Interface'Class;
 
    type IBackgroundTaskBuilder3_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskBuilder3 is access IBackgroundTaskBuilder3_Interface'Class;
+   type IBackgroundTaskBuilder3 is access all IBackgroundTaskBuilder3_Interface'Class;
 
    type IBackgroundTaskBuilder4_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskBuilder4 is access IBackgroundTaskBuilder4_Interface'Class;
+   type IBackgroundTaskBuilder4 is access all IBackgroundTaskBuilder4_Interface'Class;
 
    type IBackgroundTaskBuilder5_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskBuilder5 is access IBackgroundTaskBuilder5_Interface'Class;
+   type IBackgroundTaskBuilder5 is access all IBackgroundTaskBuilder5_Interface'Class;
 
    type IBackgroundTaskCompletedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskCompletedEventArgs is access IBackgroundTaskCompletedEventArgs_Interface'Class;
+   type IBackgroundTaskCompletedEventArgs is access all IBackgroundTaskCompletedEventArgs_Interface'Class;
    type IBackgroundTaskCompletedEventArgs_Ptr is access all IBackgroundTaskCompletedEventArgs;
 
    type IBackgroundTaskDeferral_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskDeferral is access IBackgroundTaskDeferral_Interface'Class;
+   type IBackgroundTaskDeferral is access all IBackgroundTaskDeferral_Interface'Class;
    type IBackgroundTaskDeferral_Ptr is access all IBackgroundTaskDeferral;
 
    type IBackgroundTaskInstance_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskInstance is access IBackgroundTaskInstance_Interface'Class;
+   type IBackgroundTaskInstance is access all IBackgroundTaskInstance_Interface'Class;
 
    type IBackgroundTaskInstance2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskInstance2 is access IBackgroundTaskInstance2_Interface'Class;
+   type IBackgroundTaskInstance2 is access all IBackgroundTaskInstance2_Interface'Class;
 
    type IBackgroundTaskInstance4_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskInstance4 is access IBackgroundTaskInstance4_Interface'Class;
+   type IBackgroundTaskInstance4 is access all IBackgroundTaskInstance4_Interface'Class;
 
    type IBackgroundTaskProgressEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskProgressEventArgs is access IBackgroundTaskProgressEventArgs_Interface'Class;
+   type IBackgroundTaskProgressEventArgs is access all IBackgroundTaskProgressEventArgs_Interface'Class;
    type IBackgroundTaskProgressEventArgs_Ptr is access all IBackgroundTaskProgressEventArgs;
 
    type IBackgroundTaskRegistration_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskRegistration is access IBackgroundTaskRegistration_Interface'Class;
+   type IBackgroundTaskRegistration is access all IBackgroundTaskRegistration_Interface'Class;
    type IBackgroundTaskRegistration_Ptr is access all IBackgroundTaskRegistration;
 
    type IBackgroundTaskRegistration2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskRegistration2 is access IBackgroundTaskRegistration2_Interface'Class;
+   type IBackgroundTaskRegistration2 is access all IBackgroundTaskRegistration2_Interface'Class;
 
    type IBackgroundTaskRegistration3_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskRegistration3 is access IBackgroundTaskRegistration3_Interface'Class;
+   type IBackgroundTaskRegistration3 is access all IBackgroundTaskRegistration3_Interface'Class;
 
    type IBackgroundTaskRegistrationGroup_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskRegistrationGroup is access IBackgroundTaskRegistrationGroup_Interface'Class;
+   type IBackgroundTaskRegistrationGroup is access all IBackgroundTaskRegistrationGroup_Interface'Class;
    type IBackgroundTaskRegistrationGroup_Ptr is access all IBackgroundTaskRegistrationGroup;
 
    type IBackgroundTaskRegistrationGroupFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskRegistrationGroupFactory is access IBackgroundTaskRegistrationGroupFactory_Interface'Class;
+   type IBackgroundTaskRegistrationGroupFactory is access all IBackgroundTaskRegistrationGroupFactory_Interface'Class;
 
    type IBackgroundTaskRegistrationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskRegistrationStatics is access IBackgroundTaskRegistrationStatics_Interface'Class;
+   type IBackgroundTaskRegistrationStatics is access all IBackgroundTaskRegistrationStatics_Interface'Class;
 
    type IBackgroundTaskRegistrationStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTaskRegistrationStatics2 is access IBackgroundTaskRegistrationStatics2_Interface'Class;
+   type IBackgroundTaskRegistrationStatics2 is access all IBackgroundTaskRegistrationStatics2_Interface'Class;
 
    type IBackgroundTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundTrigger is access IBackgroundTrigger_Interface'Class;
+   type IBackgroundTrigger is access all IBackgroundTrigger_Interface'Class;
    type IBackgroundTrigger_Ptr is access all IBackgroundTrigger;
 
    type IBackgroundWorkCostStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundWorkCostStatics is access IBackgroundWorkCostStatics_Interface'Class;
+   type IBackgroundWorkCostStatics is access all IBackgroundWorkCostStatics_Interface'Class;
 
    type IBluetoothLEAdvertisementPublisherTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementPublisherTrigger is access IBluetoothLEAdvertisementPublisherTrigger_Interface'Class;
+   type IBluetoothLEAdvertisementPublisherTrigger is access all IBluetoothLEAdvertisementPublisherTrigger_Interface'Class;
    type IBluetoothLEAdvertisementPublisherTrigger_Ptr is access all IBluetoothLEAdvertisementPublisherTrigger;
 
    type IBluetoothLEAdvertisementPublisherTrigger2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementPublisherTrigger2 is access IBluetoothLEAdvertisementPublisherTrigger2_Interface'Class;
+   type IBluetoothLEAdvertisementPublisherTrigger2 is access all IBluetoothLEAdvertisementPublisherTrigger2_Interface'Class;
 
    type IBluetoothLEAdvertisementWatcherTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementWatcherTrigger is access IBluetoothLEAdvertisementWatcherTrigger_Interface'Class;
+   type IBluetoothLEAdvertisementWatcherTrigger is access all IBluetoothLEAdvertisementWatcherTrigger_Interface'Class;
    type IBluetoothLEAdvertisementWatcherTrigger_Ptr is access all IBluetoothLEAdvertisementWatcherTrigger;
 
    type IBluetoothLEAdvertisementWatcherTrigger2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBluetoothLEAdvertisementWatcherTrigger2 is access IBluetoothLEAdvertisementWatcherTrigger2_Interface'Class;
+   type IBluetoothLEAdvertisementWatcherTrigger2 is access all IBluetoothLEAdvertisementWatcherTrigger2_Interface'Class;
 
    type ICachedFileUpdaterTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type ICachedFileUpdaterTrigger is access ICachedFileUpdaterTrigger_Interface'Class;
+   type ICachedFileUpdaterTrigger is access all ICachedFileUpdaterTrigger_Interface'Class;
    type ICachedFileUpdaterTrigger_Ptr is access all ICachedFileUpdaterTrigger;
 
    type ICachedFileUpdaterTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type ICachedFileUpdaterTriggerDetails is access ICachedFileUpdaterTriggerDetails_Interface'Class;
+   type ICachedFileUpdaterTriggerDetails is access all ICachedFileUpdaterTriggerDetails_Interface'Class;
    type ICachedFileUpdaterTriggerDetails_Ptr is access all ICachedFileUpdaterTriggerDetails;
 
    type IChatMessageNotificationTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageNotificationTrigger is access IChatMessageNotificationTrigger_Interface'Class;
+   type IChatMessageNotificationTrigger is access all IChatMessageNotificationTrigger_Interface'Class;
    type IChatMessageNotificationTrigger_Ptr is access all IChatMessageNotificationTrigger;
 
    type IChatMessageReceivedNotificationTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IChatMessageReceivedNotificationTrigger is access IChatMessageReceivedNotificationTrigger_Interface'Class;
+   type IChatMessageReceivedNotificationTrigger is access all IChatMessageReceivedNotificationTrigger_Interface'Class;
    type IChatMessageReceivedNotificationTrigger_Ptr is access all IChatMessageReceivedNotificationTrigger;
 
    type ICommunicationBlockingAppSetAsActiveTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type ICommunicationBlockingAppSetAsActiveTrigger is access ICommunicationBlockingAppSetAsActiveTrigger_Interface'Class;
+   type ICommunicationBlockingAppSetAsActiveTrigger is access all ICommunicationBlockingAppSetAsActiveTrigger_Interface'Class;
    type ICommunicationBlockingAppSetAsActiveTrigger_Ptr is access all ICommunicationBlockingAppSetAsActiveTrigger;
 
    type IContactStoreNotificationTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactStoreNotificationTrigger is access IContactStoreNotificationTrigger_Interface'Class;
+   type IContactStoreNotificationTrigger is access all IContactStoreNotificationTrigger_Interface'Class;
    type IContactStoreNotificationTrigger_Ptr is access all IContactStoreNotificationTrigger;
 
    type IContentPrefetchTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IContentPrefetchTrigger is access IContentPrefetchTrigger_Interface'Class;
+   type IContentPrefetchTrigger is access all IContentPrefetchTrigger_Interface'Class;
    type IContentPrefetchTrigger_Ptr is access all IContentPrefetchTrigger;
 
    type IContentPrefetchTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IContentPrefetchTriggerFactory is access IContentPrefetchTriggerFactory_Interface'Class;
+   type IContentPrefetchTriggerFactory is access all IContentPrefetchTriggerFactory_Interface'Class;
 
    type ICustomSystemEventTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type ICustomSystemEventTrigger is access ICustomSystemEventTrigger_Interface'Class;
+   type ICustomSystemEventTrigger is access all ICustomSystemEventTrigger_Interface'Class;
    type ICustomSystemEventTrigger_Ptr is access all ICustomSystemEventTrigger;
 
    type ICustomSystemEventTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ICustomSystemEventTriggerFactory is access ICustomSystemEventTriggerFactory_Interface'Class;
+   type ICustomSystemEventTriggerFactory is access all ICustomSystemEventTriggerFactory_Interface'Class;
 
    type IDeviceConnectionChangeTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceConnectionChangeTrigger is access IDeviceConnectionChangeTrigger_Interface'Class;
+   type IDeviceConnectionChangeTrigger is access all IDeviceConnectionChangeTrigger_Interface'Class;
    type IDeviceConnectionChangeTrigger_Ptr is access all IDeviceConnectionChangeTrigger;
 
    type IDeviceConnectionChangeTriggerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceConnectionChangeTriggerStatics is access IDeviceConnectionChangeTriggerStatics_Interface'Class;
+   type IDeviceConnectionChangeTriggerStatics is access all IDeviceConnectionChangeTriggerStatics_Interface'Class;
 
    type IDeviceManufacturerNotificationTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceManufacturerNotificationTrigger is access IDeviceManufacturerNotificationTrigger_Interface'Class;
+   type IDeviceManufacturerNotificationTrigger is access all IDeviceManufacturerNotificationTrigger_Interface'Class;
    type IDeviceManufacturerNotificationTrigger_Ptr is access all IDeviceManufacturerNotificationTrigger;
 
    type IDeviceManufacturerNotificationTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceManufacturerNotificationTriggerFactory is access IDeviceManufacturerNotificationTriggerFactory_Interface'Class;
+   type IDeviceManufacturerNotificationTriggerFactory is access all IDeviceManufacturerNotificationTriggerFactory_Interface'Class;
 
    type IDeviceServicingTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceServicingTrigger is access IDeviceServicingTrigger_Interface'Class;
+   type IDeviceServicingTrigger is access all IDeviceServicingTrigger_Interface'Class;
    type IDeviceServicingTrigger_Ptr is access all IDeviceServicingTrigger;
 
    type IDeviceUseTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceUseTrigger is access IDeviceUseTrigger_Interface'Class;
+   type IDeviceUseTrigger is access all IDeviceUseTrigger_Interface'Class;
    type IDeviceUseTrigger_Ptr is access all IDeviceUseTrigger;
 
    type IDeviceWatcherTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeviceWatcherTrigger is access IDeviceWatcherTrigger_Interface'Class;
+   type IDeviceWatcherTrigger is access all IDeviceWatcherTrigger_Interface'Class;
    type IDeviceWatcherTrigger_Ptr is access all IDeviceWatcherTrigger;
 
    type IEmailStoreNotificationTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IEmailStoreNotificationTrigger is access IEmailStoreNotificationTrigger_Interface'Class;
+   type IEmailStoreNotificationTrigger is access all IEmailStoreNotificationTrigger_Interface'Class;
    type IEmailStoreNotificationTrigger_Ptr is access all IEmailStoreNotificationTrigger;
 
    type IGattCharacteristicNotificationTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattCharacteristicNotificationTrigger is access IGattCharacteristicNotificationTrigger_Interface'Class;
+   type IGattCharacteristicNotificationTrigger is access all IGattCharacteristicNotificationTrigger_Interface'Class;
    type IGattCharacteristicNotificationTrigger_Ptr is access all IGattCharacteristicNotificationTrigger;
 
    type IGattCharacteristicNotificationTrigger2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattCharacteristicNotificationTrigger2 is access IGattCharacteristicNotificationTrigger2_Interface'Class;
+   type IGattCharacteristicNotificationTrigger2 is access all IGattCharacteristicNotificationTrigger2_Interface'Class;
 
    type IGattCharacteristicNotificationTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattCharacteristicNotificationTriggerFactory is access IGattCharacteristicNotificationTriggerFactory_Interface'Class;
+   type IGattCharacteristicNotificationTriggerFactory is access all IGattCharacteristicNotificationTriggerFactory_Interface'Class;
 
    type IGattCharacteristicNotificationTriggerFactory2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattCharacteristicNotificationTriggerFactory2 is access IGattCharacteristicNotificationTriggerFactory2_Interface'Class;
+   type IGattCharacteristicNotificationTriggerFactory2 is access all IGattCharacteristicNotificationTriggerFactory2_Interface'Class;
 
    type IGattServiceProviderTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattServiceProviderTrigger is access IGattServiceProviderTrigger_Interface'Class;
+   type IGattServiceProviderTrigger is access all IGattServiceProviderTrigger_Interface'Class;
    type IGattServiceProviderTrigger_Ptr is access all IGattServiceProviderTrigger;
 
    type IGattServiceProviderTriggerResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattServiceProviderTriggerResult is access IGattServiceProviderTriggerResult_Interface'Class;
+   type IGattServiceProviderTriggerResult is access all IGattServiceProviderTriggerResult_Interface'Class;
    type IGattServiceProviderTriggerResult_Ptr is access all IGattServiceProviderTriggerResult;
 
    type IGattServiceProviderTriggerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGattServiceProviderTriggerStatics is access IGattServiceProviderTriggerStatics_Interface'Class;
+   type IGattServiceProviderTriggerStatics is access all IGattServiceProviderTriggerStatics_Interface'Class;
 
    type IGeovisitTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IGeovisitTrigger is access IGeovisitTrigger_Interface'Class;
+   type IGeovisitTrigger is access all IGeovisitTrigger_Interface'Class;
    type IGeovisitTrigger_Ptr is access all IGeovisitTrigger;
 
    type ILocationTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type ILocationTrigger is access ILocationTrigger_Interface'Class;
+   type ILocationTrigger is access all ILocationTrigger_Interface'Class;
    type ILocationTrigger_Ptr is access all ILocationTrigger;
 
    type ILocationTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ILocationTriggerFactory is access ILocationTriggerFactory_Interface'Class;
+   type ILocationTriggerFactory is access all ILocationTriggerFactory_Interface'Class;
 
    type IMaintenanceTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IMaintenanceTrigger is access IMaintenanceTrigger_Interface'Class;
+   type IMaintenanceTrigger is access all IMaintenanceTrigger_Interface'Class;
    type IMaintenanceTrigger_Ptr is access all IMaintenanceTrigger;
 
    type IMaintenanceTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMaintenanceTriggerFactory is access IMaintenanceTriggerFactory_Interface'Class;
+   type IMaintenanceTriggerFactory is access all IMaintenanceTriggerFactory_Interface'Class;
 
    type IMediaProcessingTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaProcessingTrigger is access IMediaProcessingTrigger_Interface'Class;
+   type IMediaProcessingTrigger is access all IMediaProcessingTrigger_Interface'Class;
    type IMediaProcessingTrigger_Ptr is access all IMediaProcessingTrigger;
 
    type INetworkOperatorHotspotAuthenticationTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkOperatorHotspotAuthenticationTrigger is access INetworkOperatorHotspotAuthenticationTrigger_Interface'Class;
+   type INetworkOperatorHotspotAuthenticationTrigger is access all INetworkOperatorHotspotAuthenticationTrigger_Interface'Class;
    type INetworkOperatorHotspotAuthenticationTrigger_Ptr is access all INetworkOperatorHotspotAuthenticationTrigger;
 
    type INetworkOperatorNotificationTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkOperatorNotificationTrigger is access INetworkOperatorNotificationTrigger_Interface'Class;
+   type INetworkOperatorNotificationTrigger is access all INetworkOperatorNotificationTrigger_Interface'Class;
    type INetworkOperatorNotificationTrigger_Ptr is access all INetworkOperatorNotificationTrigger;
 
    type INetworkOperatorNotificationTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type INetworkOperatorNotificationTriggerFactory is access INetworkOperatorNotificationTriggerFactory_Interface'Class;
+   type INetworkOperatorNotificationTriggerFactory is access all INetworkOperatorNotificationTriggerFactory_Interface'Class;
 
    type IPhoneTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneTrigger is access IPhoneTrigger_Interface'Class;
+   type IPhoneTrigger is access all IPhoneTrigger_Interface'Class;
    type IPhoneTrigger_Ptr is access all IPhoneTrigger;
 
    type IPhoneTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPhoneTriggerFactory is access IPhoneTriggerFactory_Interface'Class;
+   type IPhoneTriggerFactory is access all IPhoneTriggerFactory_Interface'Class;
 
    type IPushNotificationTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPushNotificationTriggerFactory is access IPushNotificationTriggerFactory_Interface'Class;
+   type IPushNotificationTriggerFactory is access all IPushNotificationTriggerFactory_Interface'Class;
 
    type IRcsEndUserMessageAvailableTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IRcsEndUserMessageAvailableTrigger is access IRcsEndUserMessageAvailableTrigger_Interface'Class;
+   type IRcsEndUserMessageAvailableTrigger is access all IRcsEndUserMessageAvailableTrigger_Interface'Class;
    type IRcsEndUserMessageAvailableTrigger_Ptr is access all IRcsEndUserMessageAvailableTrigger;
 
    type IRfcommConnectionTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IRfcommConnectionTrigger is access IRfcommConnectionTrigger_Interface'Class;
+   type IRfcommConnectionTrigger is access all IRfcommConnectionTrigger_Interface'Class;
    type IRfcommConnectionTrigger_Ptr is access all IRfcommConnectionTrigger;
 
    type ISecondaryAuthenticationFactorAuthenticationTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type ISecondaryAuthenticationFactorAuthenticationTrigger is access ISecondaryAuthenticationFactorAuthenticationTrigger_Interface'Class;
+   type ISecondaryAuthenticationFactorAuthenticationTrigger is access all ISecondaryAuthenticationFactorAuthenticationTrigger_Interface'Class;
    type ISecondaryAuthenticationFactorAuthenticationTrigger_Ptr is access all ISecondaryAuthenticationFactorAuthenticationTrigger;
 
    type ISensorDataThresholdTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type ISensorDataThresholdTrigger is access ISensorDataThresholdTrigger_Interface'Class;
+   type ISensorDataThresholdTrigger is access all ISensorDataThresholdTrigger_Interface'Class;
    type ISensorDataThresholdTrigger_Ptr is access all ISensorDataThresholdTrigger;
 
    type ISensorDataThresholdTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISensorDataThresholdTriggerFactory is access ISensorDataThresholdTriggerFactory_Interface'Class;
+   type ISensorDataThresholdTriggerFactory is access all ISensorDataThresholdTriggerFactory_Interface'Class;
 
    type ISmartCardTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardTrigger is access ISmartCardTrigger_Interface'Class;
+   type ISmartCardTrigger is access all ISmartCardTrigger_Interface'Class;
    type ISmartCardTrigger_Ptr is access all ISmartCardTrigger;
 
    type ISmartCardTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmartCardTriggerFactory is access ISmartCardTriggerFactory_Interface'Class;
+   type ISmartCardTriggerFactory is access all ISmartCardTriggerFactory_Interface'Class;
 
    type ISmsMessageReceivedTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISmsMessageReceivedTriggerFactory is access ISmsMessageReceivedTriggerFactory_Interface'Class;
+   type ISmsMessageReceivedTriggerFactory is access all ISmsMessageReceivedTriggerFactory_Interface'Class;
 
    type ISocketActivityTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type ISocketActivityTrigger is access ISocketActivityTrigger_Interface'Class;
+   type ISocketActivityTrigger is access all ISocketActivityTrigger_Interface'Class;
 
    type IStorageLibraryChangeTrackerTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageLibraryChangeTrackerTriggerFactory is access IStorageLibraryChangeTrackerTriggerFactory_Interface'Class;
+   type IStorageLibraryChangeTrackerTriggerFactory is access all IStorageLibraryChangeTrackerTriggerFactory_Interface'Class;
 
    type IStorageLibraryContentChangedTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageLibraryContentChangedTrigger is access IStorageLibraryContentChangedTrigger_Interface'Class;
+   type IStorageLibraryContentChangedTrigger is access all IStorageLibraryContentChangedTrigger_Interface'Class;
    type IStorageLibraryContentChangedTrigger_Ptr is access all IStorageLibraryContentChangedTrigger;
 
    type IStorageLibraryContentChangedTriggerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorageLibraryContentChangedTriggerStatics is access IStorageLibraryContentChangedTriggerStatics_Interface'Class;
+   type IStorageLibraryContentChangedTriggerStatics is access all IStorageLibraryContentChangedTriggerStatics_Interface'Class;
 
    type ISystemCondition_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemCondition is access ISystemCondition_Interface'Class;
+   type ISystemCondition is access all ISystemCondition_Interface'Class;
    type ISystemCondition_Ptr is access all ISystemCondition;
 
    type ISystemConditionFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemConditionFactory is access ISystemConditionFactory_Interface'Class;
+   type ISystemConditionFactory is access all ISystemConditionFactory_Interface'Class;
 
    type ISystemTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemTrigger is access ISystemTrigger_Interface'Class;
+   type ISystemTrigger is access all ISystemTrigger_Interface'Class;
    type ISystemTrigger_Ptr is access all ISystemTrigger;
 
    type ISystemTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemTriggerFactory is access ISystemTriggerFactory_Interface'Class;
+   type ISystemTriggerFactory is access all ISystemTriggerFactory_Interface'Class;
 
    type ITimeTrigger_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimeTrigger is access ITimeTrigger_Interface'Class;
+   type ITimeTrigger is access all ITimeTrigger_Interface'Class;
    type ITimeTrigger_Ptr is access all ITimeTrigger;
 
    type ITimeTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimeTriggerFactory is access ITimeTriggerFactory_Interface'Class;
+   type ITimeTriggerFactory is access all ITimeTriggerFactory_Interface'Class;
 
    type IToastNotificationActionTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IToastNotificationActionTriggerFactory is access IToastNotificationActionTriggerFactory_Interface'Class;
+   type IToastNotificationActionTriggerFactory is access all IToastNotificationActionTriggerFactory_Interface'Class;
 
    type IToastNotificationHistoryChangedTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IToastNotificationHistoryChangedTriggerFactory is access IToastNotificationHistoryChangedTriggerFactory_Interface'Class;
+   type IToastNotificationHistoryChangedTriggerFactory is access all IToastNotificationHistoryChangedTriggerFactory_Interface'Class;
 
    type IUserNotificationChangedTriggerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IUserNotificationChangedTriggerFactory is access IUserNotificationChangedTriggerFactory_Interface'Class;
+   type IUserNotificationChangedTriggerFactory is access all IUserNotificationChangedTriggerFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -800,7 +800,7 @@ package WinRt.Windows.ApplicationModel.Background is
       AllowedWithoutWakeupCapability_e => 2,
       Denied_e => 3
    );
-   type AlarmAccessStatus_Ptr is access AlarmAccessStatus;
+   type AlarmAccessStatus_Ptr is access all AlarmAccessStatus;
 
    type ApplicationTriggerResult is (
       Allowed_e,
@@ -814,7 +814,7 @@ package WinRt.Windows.ApplicationModel.Background is
       DisabledByPolicy_e => 2,
       UnknownError_e => 3
    );
-   type ApplicationTriggerResult_Ptr is access ApplicationTriggerResult;
+   type ApplicationTriggerResult_Ptr is access all ApplicationTriggerResult;
 
    type BackgroundAccessRequestKind is (
       AlwaysAllowed_e,
@@ -824,7 +824,7 @@ package WinRt.Windows.ApplicationModel.Background is
       AlwaysAllowed_e => 0,
       AllowedSubjectToSystemPolicy_e => 1
    );
-   type BackgroundAccessRequestKind_Ptr is access BackgroundAccessRequestKind;
+   type BackgroundAccessRequestKind_Ptr is access all BackgroundAccessRequestKind;
 
    type BackgroundAccessStatus is (
       Unspecified_e,
@@ -846,7 +846,7 @@ package WinRt.Windows.ApplicationModel.Background is
       DeniedBySystemPolicy_e => 6,
       DeniedByUser_e => 7
    );
-   type BackgroundAccessStatus_Ptr is access BackgroundAccessStatus;
+   type BackgroundAccessStatus_Ptr is access all BackgroundAccessStatus;
 
    type BackgroundTaskCancellationReason is (
       Abort_e,
@@ -876,7 +876,7 @@ package WinRt.Windows.ApplicationModel.Background is
       ResourceRevocation_e => 10,
       EnergySaver_e => 11
    );
-   type BackgroundTaskCancellationReason_Ptr is access BackgroundTaskCancellationReason;
+   type BackgroundTaskCancellationReason_Ptr is access all BackgroundTaskCancellationReason;
 
    type BackgroundTaskThrottleCounter is (
       All_e,
@@ -888,7 +888,7 @@ package WinRt.Windows.ApplicationModel.Background is
       Cpu_e => 1,
       Network_e => 2
    );
-   type BackgroundTaskThrottleCounter_Ptr is access BackgroundTaskThrottleCounter;
+   type BackgroundTaskThrottleCounter_Ptr is access all BackgroundTaskThrottleCounter;
 
    type BackgroundWorkCostValue is (
       Low_e,
@@ -900,7 +900,7 @@ package WinRt.Windows.ApplicationModel.Background is
       Medium_e => 1,
       High_e => 2
    );
-   type BackgroundWorkCostValue_Ptr is access BackgroundWorkCostValue;
+   type BackgroundWorkCostValue_Ptr is access all BackgroundWorkCostValue;
 
    type CustomSystemEventTriggerRecurrence is (
       Once_e,
@@ -910,7 +910,7 @@ package WinRt.Windows.ApplicationModel.Background is
       Once_e => 0,
       Always_e => 1
    );
-   type CustomSystemEventTriggerRecurrence_Ptr is access CustomSystemEventTriggerRecurrence;
+   type CustomSystemEventTriggerRecurrence_Ptr is access all CustomSystemEventTriggerRecurrence;
 
    type DeviceTriggerResult is (
       Allowed_e,
@@ -924,7 +924,7 @@ package WinRt.Windows.ApplicationModel.Background is
       DeniedBySystem_e => 2,
       LowBattery_e => 3
    );
-   type DeviceTriggerResult_Ptr is access DeviceTriggerResult;
+   type DeviceTriggerResult_Ptr is access all DeviceTriggerResult;
 
    type LocationTriggerType is (
       Geofence_e
@@ -932,7 +932,7 @@ package WinRt.Windows.ApplicationModel.Background is
    for LocationTriggerType use (
       Geofence_e => 0
    );
-   type LocationTriggerType_Ptr is access LocationTriggerType;
+   type LocationTriggerType_Ptr is access all LocationTriggerType;
 
    type MediaProcessingTriggerResult is (
       Allowed_e,
@@ -946,7 +946,7 @@ package WinRt.Windows.ApplicationModel.Background is
       DisabledByPolicy_e => 2,
       UnknownError_e => 3
    );
-   type MediaProcessingTriggerResult_Ptr is access MediaProcessingTriggerResult;
+   type MediaProcessingTriggerResult_Ptr is access all MediaProcessingTriggerResult;
 
    type SystemConditionType is (
       Invalid_e,
@@ -970,7 +970,7 @@ package WinRt.Windows.ApplicationModel.Background is
       FreeNetworkAvailable_e => 7,
       BackgroundWorkCostNotHigh_e => 8
    );
-   type SystemConditionType_Ptr is access SystemConditionType;
+   type SystemConditionType_Ptr is access all SystemConditionType;
 
    type SystemTriggerType is (
       Invalid_e,
@@ -1008,7 +1008,7 @@ package WinRt.Windows.ApplicationModel.Background is
       PowerStateChange_e => 14,
       DefaultSignInAccountChange_e => 15
    );
-   type SystemTriggerType_Ptr is access SystemTriggerType;
+   type SystemTriggerType_Ptr is access all SystemTriggerType;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -1017,7 +1017,7 @@ package WinRt.Windows.ApplicationModel.Background is
    type BackgroundAlarmApplicationContract is record
       null;
    end record with Convention => C_Pass_By_Copy;
-   type BackgroundAlarmApplicationContract_Ptr is access BackgroundAlarmApplicationContract;
+   type BackgroundAlarmApplicationContract_Ptr is access all BackgroundAlarmApplicationContract;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

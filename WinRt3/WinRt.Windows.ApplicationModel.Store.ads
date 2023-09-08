@@ -41,83 +41,83 @@ package WinRt.Windows.ApplicationModel.Store is
    -----------------------------------------------------------------------------
 
    type LicenseChangedEventHandler_Delegate;
-   type LicenseChangedEventHandler is access LicenseChangedEventHandler_Delegate;
+   type LicenseChangedEventHandler is access all LicenseChangedEventHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type ICurrentApp_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrentApp is access ICurrentApp_Interface'Class;
+   type ICurrentApp is access all ICurrentApp_Interface'Class;
 
    type ICurrentApp2Statics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrentApp2Statics is access ICurrentApp2Statics_Interface'Class;
+   type ICurrentApp2Statics is access all ICurrentApp2Statics_Interface'Class;
 
    type ICurrentAppSimulator_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrentAppSimulator is access ICurrentAppSimulator_Interface'Class;
+   type ICurrentAppSimulator is access all ICurrentAppSimulator_Interface'Class;
 
    type ICurrentAppSimulatorStaticsWithFiltering_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrentAppSimulatorStaticsWithFiltering is access ICurrentAppSimulatorStaticsWithFiltering_Interface'Class;
+   type ICurrentAppSimulatorStaticsWithFiltering is access all ICurrentAppSimulatorStaticsWithFiltering_Interface'Class;
 
    type ICurrentAppSimulatorWithCampaignId_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrentAppSimulatorWithCampaignId is access ICurrentAppSimulatorWithCampaignId_Interface'Class;
+   type ICurrentAppSimulatorWithCampaignId is access all ICurrentAppSimulatorWithCampaignId_Interface'Class;
 
    type ICurrentAppSimulatorWithConsumables_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrentAppSimulatorWithConsumables is access ICurrentAppSimulatorWithConsumables_Interface'Class;
+   type ICurrentAppSimulatorWithConsumables is access all ICurrentAppSimulatorWithConsumables_Interface'Class;
 
    type ICurrentAppStaticsWithFiltering_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrentAppStaticsWithFiltering is access ICurrentAppStaticsWithFiltering_Interface'Class;
+   type ICurrentAppStaticsWithFiltering is access all ICurrentAppStaticsWithFiltering_Interface'Class;
 
    type ICurrentAppWithCampaignId_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrentAppWithCampaignId is access ICurrentAppWithCampaignId_Interface'Class;
+   type ICurrentAppWithCampaignId is access all ICurrentAppWithCampaignId_Interface'Class;
 
    type ICurrentAppWithConsumables_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrentAppWithConsumables is access ICurrentAppWithConsumables_Interface'Class;
+   type ICurrentAppWithConsumables is access all ICurrentAppWithConsumables_Interface'Class;
 
    type ILicenseInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type ILicenseInformation is access ILicenseInformation_Interface'Class;
+   type ILicenseInformation is access all ILicenseInformation_Interface'Class;
    type ILicenseInformation_Ptr is access all ILicenseInformation;
 
    type IListingInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IListingInformation is access IListingInformation_Interface'Class;
+   type IListingInformation is access all IListingInformation_Interface'Class;
    type IListingInformation_Ptr is access all IListingInformation;
 
    type IListingInformation2_Interface is interface and WinRt.IInspectable_Interface;
-   type IListingInformation2 is access IListingInformation2_Interface'Class;
+   type IListingInformation2 is access all IListingInformation2_Interface'Class;
 
    type IProductLicense_Interface is interface and WinRt.IInspectable_Interface;
-   type IProductLicense is access IProductLicense_Interface'Class;
+   type IProductLicense is access all IProductLicense_Interface'Class;
    type IProductLicense_Ptr is access all IProductLicense;
 
    type IProductLicenseWithFulfillment_Interface is interface and WinRt.IInspectable_Interface;
-   type IProductLicenseWithFulfillment is access IProductLicenseWithFulfillment_Interface'Class;
+   type IProductLicenseWithFulfillment is access all IProductLicenseWithFulfillment_Interface'Class;
 
    type IProductListing_Interface is interface and WinRt.IInspectable_Interface;
-   type IProductListing is access IProductListing_Interface'Class;
+   type IProductListing is access all IProductListing_Interface'Class;
    type IProductListing_Ptr is access all IProductListing;
 
    type IProductListing2_Interface is interface and WinRt.IInspectable_Interface;
-   type IProductListing2 is access IProductListing2_Interface'Class;
+   type IProductListing2 is access all IProductListing2_Interface'Class;
 
    type IProductListingWithConsumables_Interface is interface and WinRt.IInspectable_Interface;
-   type IProductListingWithConsumables is access IProductListingWithConsumables_Interface'Class;
+   type IProductListingWithConsumables is access all IProductListingWithConsumables_Interface'Class;
 
    type IProductListingWithMetadata_Interface is interface and WinRt.IInspectable_Interface;
-   type IProductListingWithMetadata is access IProductListingWithMetadata_Interface'Class;
+   type IProductListingWithMetadata is access all IProductListingWithMetadata_Interface'Class;
 
    type IProductPurchaseDisplayProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IProductPurchaseDisplayProperties is access IProductPurchaseDisplayProperties_Interface'Class;
+   type IProductPurchaseDisplayProperties is access all IProductPurchaseDisplayProperties_Interface'Class;
    type IProductPurchaseDisplayProperties_Ptr is access all IProductPurchaseDisplayProperties;
 
    type IProductPurchaseDisplayPropertiesFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IProductPurchaseDisplayPropertiesFactory is access IProductPurchaseDisplayPropertiesFactory_Interface'Class;
+   type IProductPurchaseDisplayPropertiesFactory is access all IProductPurchaseDisplayPropertiesFactory_Interface'Class;
 
    type IPurchaseResults_Interface is interface and WinRt.IInspectable_Interface;
-   type IPurchaseResults is access IPurchaseResults_Interface'Class;
+   type IPurchaseResults is access all IPurchaseResults_Interface'Class;
    type IPurchaseResults_Ptr is access all IPurchaseResults;
 
    type IUnfulfilledConsumable_Interface is interface and WinRt.IInspectable_Interface;
-   type IUnfulfilledConsumable is access IUnfulfilledConsumable_Interface'Class;
+   type IUnfulfilledConsumable is access all IUnfulfilledConsumable_Interface'Class;
    type IUnfulfilledConsumable_Ptr is access all IUnfulfilledConsumable;
 
    -----------------------------------------------------------------------------
@@ -184,7 +184,7 @@ package WinRt.Windows.ApplicationModel.Store is
       PurchaseReverted_e => 3,
       ServerError_e => 4
    );
-   type FulfillmentResult_Ptr is access FulfillmentResult;
+   type FulfillmentResult_Ptr is access all FulfillmentResult;
 
    type ProductPurchaseStatus is (
       Succeeded_e,
@@ -198,7 +198,7 @@ package WinRt.Windows.ApplicationModel.Store is
       NotFulfilled_e => 2,
       NotPurchased_e => 3
    );
-   type ProductPurchaseStatus_Ptr is access ProductPurchaseStatus;
+   type ProductPurchaseStatus_Ptr is access all ProductPurchaseStatus;
 
    type ProductType is (
       Unknown_e,
@@ -210,7 +210,7 @@ package WinRt.Windows.ApplicationModel.Store is
       Durable_e => 1,
       Consumable_e => 2
    );
-   type ProductType_Ptr is access ProductType;
+   type ProductType_Ptr is access all ProductType;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

@@ -39,11 +39,11 @@ package WinRt.Windows.Devices.Radios is
    -----------------------------------------------------------------------------
 
    type IRadio_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadio is access IRadio_Interface'Class;
+   type IRadio is access all IRadio_Interface'Class;
    type IRadio_Ptr is access all IRadio;
 
    type IRadioStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRadioStatics is access IRadioStatics_Interface'Class;
+   type IRadioStatics is access all IRadioStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -71,7 +71,7 @@ package WinRt.Windows.Devices.Radios is
       DeniedByUser_e => 2,
       DeniedBySystem_e => 3
    );
-   type RadioAccessStatus_Ptr is access RadioAccessStatus;
+   type RadioAccessStatus_Ptr is access all RadioAccessStatus;
 
    type RadioKind is (
       Other_e,
@@ -87,7 +87,7 @@ package WinRt.Windows.Devices.Radios is
       Bluetooth_e => 3,
       FM_e => 4
    );
-   type RadioKind_Ptr is access RadioKind;
+   type RadioKind_Ptr is access all RadioKind;
 
    type RadioState is (
       Unknown_e,
@@ -101,7 +101,7 @@ package WinRt.Windows.Devices.Radios is
       Off_e => 2,
       Disabled_e => 3
    );
-   type RadioState_Ptr is access RadioState;
+   type RadioState_Ptr is access all RadioState;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

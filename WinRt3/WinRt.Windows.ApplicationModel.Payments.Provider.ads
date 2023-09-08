@@ -40,26 +40,26 @@ package WinRt.Windows.ApplicationModel.Payments.Provider is
    -----------------------------------------------------------------------------
 
    type IPaymentAppCanMakePaymentTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentAppCanMakePaymentTriggerDetails is access IPaymentAppCanMakePaymentTriggerDetails_Interface'Class;
+   type IPaymentAppCanMakePaymentTriggerDetails is access all IPaymentAppCanMakePaymentTriggerDetails_Interface'Class;
    type IPaymentAppCanMakePaymentTriggerDetails_Ptr is access all IPaymentAppCanMakePaymentTriggerDetails;
 
    type IPaymentAppManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentAppManager is access IPaymentAppManager_Interface'Class;
+   type IPaymentAppManager is access all IPaymentAppManager_Interface'Class;
    type IPaymentAppManager_Ptr is access all IPaymentAppManager;
 
    type IPaymentAppManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentAppManagerStatics is access IPaymentAppManagerStatics_Interface'Class;
+   type IPaymentAppManagerStatics is access all IPaymentAppManagerStatics_Interface'Class;
 
    type IPaymentTransaction_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentTransaction is access IPaymentTransaction_Interface'Class;
+   type IPaymentTransaction is access all IPaymentTransaction_Interface'Class;
    type IPaymentTransaction_Ptr is access all IPaymentTransaction;
 
    type IPaymentTransactionAcceptResult_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentTransactionAcceptResult is access IPaymentTransactionAcceptResult_Interface'Class;
+   type IPaymentTransactionAcceptResult is access all IPaymentTransactionAcceptResult_Interface'Class;
    type IPaymentTransactionAcceptResult_Ptr is access all IPaymentTransactionAcceptResult;
 
    type IPaymentTransactionStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPaymentTransactionStatics is access IPaymentTransactionStatics_Interface'Class;
+   type IPaymentTransactionStatics is access all IPaymentTransactionStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

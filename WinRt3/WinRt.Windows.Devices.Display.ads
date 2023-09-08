@@ -40,14 +40,14 @@ package WinRt.Windows.Devices.Display is
    -----------------------------------------------------------------------------
 
    type IDisplayMonitor_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayMonitor is access IDisplayMonitor_Interface'Class;
+   type IDisplayMonitor is access all IDisplayMonitor_Interface'Class;
    type IDisplayMonitor_Ptr is access all IDisplayMonitor;
 
    type IDisplayMonitor2_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayMonitor2 is access IDisplayMonitor2_Interface'Class;
+   type IDisplayMonitor2 is access all IDisplayMonitor2_Interface'Class;
 
    type IDisplayMonitorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayMonitorStatics is access IDisplayMonitorStatics_Interface'Class;
+   type IDisplayMonitorStatics is access all IDisplayMonitorStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -75,7 +75,7 @@ package WinRt.Windows.Devices.Display is
       Wireless_e => 2,
       Virtual_e => 3
    );
-   type DisplayMonitorConnectionKind_Ptr is access DisplayMonitorConnectionKind;
+   type DisplayMonitorConnectionKind_Ptr is access all DisplayMonitorConnectionKind;
 
    type DisplayMonitorDescriptorKind is (
       Edid_e,
@@ -85,7 +85,7 @@ package WinRt.Windows.Devices.Display is
       Edid_e => 0,
       DisplayId_e => 1
    );
-   type DisplayMonitorDescriptorKind_Ptr is access DisplayMonitorDescriptorKind;
+   type DisplayMonitorDescriptorKind_Ptr is access all DisplayMonitorDescriptorKind;
 
    type DisplayMonitorPhysicalConnectorKind is (
       Unknown_e,
@@ -107,7 +107,7 @@ package WinRt.Windows.Devices.Display is
       Sdi_e => 6,
       DisplayPort_e => 7
    );
-   type DisplayMonitorPhysicalConnectorKind_Ptr is access DisplayMonitorPhysicalConnectorKind;
+   type DisplayMonitorPhysicalConnectorKind_Ptr is access all DisplayMonitorPhysicalConnectorKind;
 
    type DisplayMonitorUsageKind is (
       Standard_e,
@@ -119,7 +119,7 @@ package WinRt.Windows.Devices.Display is
       HeadMounted_e => 1,
       SpecialPurpose_e => 2
    );
-   type DisplayMonitorUsageKind_Ptr is access DisplayMonitorUsageKind;
+   type DisplayMonitorUsageKind_Ptr is access all DisplayMonitorUsageKind;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

@@ -41,455 +41,455 @@ package WinRt.Windows.Devices.Sensors is
    -----------------------------------------------------------------------------
 
    type IAccelerometer_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccelerometer is access IAccelerometer_Interface'Class;
+   type IAccelerometer is access all IAccelerometer_Interface'Class;
    type IAccelerometer_Ptr is access all IAccelerometer;
 
    type IAccelerometer2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccelerometer2 is access IAccelerometer2_Interface'Class;
+   type IAccelerometer2 is access all IAccelerometer2_Interface'Class;
 
    type IAccelerometer3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccelerometer3 is access IAccelerometer3_Interface'Class;
+   type IAccelerometer3 is access all IAccelerometer3_Interface'Class;
 
    type IAccelerometer4_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccelerometer4 is access IAccelerometer4_Interface'Class;
+   type IAccelerometer4 is access all IAccelerometer4_Interface'Class;
 
    type IAccelerometer5_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccelerometer5 is access IAccelerometer5_Interface'Class;
+   type IAccelerometer5 is access all IAccelerometer5_Interface'Class;
 
    type IAccelerometerDataThreshold_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccelerometerDataThreshold is access IAccelerometerDataThreshold_Interface'Class;
+   type IAccelerometerDataThreshold is access all IAccelerometerDataThreshold_Interface'Class;
    type IAccelerometerDataThreshold_Ptr is access all IAccelerometerDataThreshold;
 
    type IAccelerometerDeviceId_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccelerometerDeviceId is access IAccelerometerDeviceId_Interface'Class;
+   type IAccelerometerDeviceId is access all IAccelerometerDeviceId_Interface'Class;
 
    type IAccelerometerReading_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccelerometerReading is access IAccelerometerReading_Interface'Class;
+   type IAccelerometerReading is access all IAccelerometerReading_Interface'Class;
    type IAccelerometerReading_Ptr is access all IAccelerometerReading;
 
    type IAccelerometerReading2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccelerometerReading2 is access IAccelerometerReading2_Interface'Class;
+   type IAccelerometerReading2 is access all IAccelerometerReading2_Interface'Class;
 
    type IAccelerometerReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccelerometerReadingChangedEventArgs is access IAccelerometerReadingChangedEventArgs_Interface'Class;
+   type IAccelerometerReadingChangedEventArgs is access all IAccelerometerReadingChangedEventArgs_Interface'Class;
    type IAccelerometerReadingChangedEventArgs_Ptr is access all IAccelerometerReadingChangedEventArgs;
 
    type IAccelerometerShakenEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccelerometerShakenEventArgs is access IAccelerometerShakenEventArgs_Interface'Class;
+   type IAccelerometerShakenEventArgs is access all IAccelerometerShakenEventArgs_Interface'Class;
    type IAccelerometerShakenEventArgs_Ptr is access all IAccelerometerShakenEventArgs;
 
    type IAccelerometerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccelerometerStatics is access IAccelerometerStatics_Interface'Class;
+   type IAccelerometerStatics is access all IAccelerometerStatics_Interface'Class;
 
    type IAccelerometerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccelerometerStatics2 is access IAccelerometerStatics2_Interface'Class;
+   type IAccelerometerStatics2 is access all IAccelerometerStatics2_Interface'Class;
 
    type IAccelerometerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IAccelerometerStatics3 is access IAccelerometerStatics3_Interface'Class;
+   type IAccelerometerStatics3 is access all IAccelerometerStatics3_Interface'Class;
 
    type IActivitySensor_Interface is interface and WinRt.IInspectable_Interface;
-   type IActivitySensor is access IActivitySensor_Interface'Class;
+   type IActivitySensor is access all IActivitySensor_Interface'Class;
    type IActivitySensor_Ptr is access all IActivitySensor;
 
    type IActivitySensorReading_Interface is interface and WinRt.IInspectable_Interface;
-   type IActivitySensorReading is access IActivitySensorReading_Interface'Class;
+   type IActivitySensorReading is access all IActivitySensorReading_Interface'Class;
    type IActivitySensorReading_Ptr is access all IActivitySensorReading;
 
    type IActivitySensorReadingChangeReport_Interface is interface and WinRt.IInspectable_Interface;
-   type IActivitySensorReadingChangeReport is access IActivitySensorReadingChangeReport_Interface'Class;
+   type IActivitySensorReadingChangeReport is access all IActivitySensorReadingChangeReport_Interface'Class;
    type IActivitySensorReadingChangeReport_Ptr is access all IActivitySensorReadingChangeReport;
 
    type IActivitySensorReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IActivitySensorReadingChangedEventArgs is access IActivitySensorReadingChangedEventArgs_Interface'Class;
+   type IActivitySensorReadingChangedEventArgs is access all IActivitySensorReadingChangedEventArgs_Interface'Class;
    type IActivitySensorReadingChangedEventArgs_Ptr is access all IActivitySensorReadingChangedEventArgs;
 
    type IActivitySensorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IActivitySensorStatics is access IActivitySensorStatics_Interface'Class;
+   type IActivitySensorStatics is access all IActivitySensorStatics_Interface'Class;
 
    type IActivitySensorTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type IActivitySensorTriggerDetails is access IActivitySensorTriggerDetails_Interface'Class;
+   type IActivitySensorTriggerDetails is access all IActivitySensorTriggerDetails_Interface'Class;
    type IActivitySensorTriggerDetails_Ptr is access all IActivitySensorTriggerDetails;
 
    type IAltimeter_Interface is interface and WinRt.IInspectable_Interface;
-   type IAltimeter is access IAltimeter_Interface'Class;
+   type IAltimeter is access all IAltimeter_Interface'Class;
    type IAltimeter_Ptr is access all IAltimeter;
 
    type IAltimeter2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAltimeter2 is access IAltimeter2_Interface'Class;
+   type IAltimeter2 is access all IAltimeter2_Interface'Class;
 
    type IAltimeterReading_Interface is interface and WinRt.IInspectable_Interface;
-   type IAltimeterReading is access IAltimeterReading_Interface'Class;
+   type IAltimeterReading is access all IAltimeterReading_Interface'Class;
    type IAltimeterReading_Ptr is access all IAltimeterReading;
 
    type IAltimeterReading2_Interface is interface and WinRt.IInspectable_Interface;
-   type IAltimeterReading2 is access IAltimeterReading2_Interface'Class;
+   type IAltimeterReading2 is access all IAltimeterReading2_Interface'Class;
 
    type IAltimeterReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAltimeterReadingChangedEventArgs is access IAltimeterReadingChangedEventArgs_Interface'Class;
+   type IAltimeterReadingChangedEventArgs is access all IAltimeterReadingChangedEventArgs_Interface'Class;
    type IAltimeterReadingChangedEventArgs_Ptr is access all IAltimeterReadingChangedEventArgs;
 
    type IAltimeterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAltimeterStatics is access IAltimeterStatics_Interface'Class;
+   type IAltimeterStatics is access all IAltimeterStatics_Interface'Class;
 
    type IBarometer_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarometer is access IBarometer_Interface'Class;
+   type IBarometer is access all IBarometer_Interface'Class;
    type IBarometer_Ptr is access all IBarometer;
 
    type IBarometer2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarometer2 is access IBarometer2_Interface'Class;
+   type IBarometer2 is access all IBarometer2_Interface'Class;
 
    type IBarometer3_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarometer3 is access IBarometer3_Interface'Class;
+   type IBarometer3 is access all IBarometer3_Interface'Class;
 
    type IBarometerDataThreshold_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarometerDataThreshold is access IBarometerDataThreshold_Interface'Class;
+   type IBarometerDataThreshold is access all IBarometerDataThreshold_Interface'Class;
    type IBarometerDataThreshold_Ptr is access all IBarometerDataThreshold;
 
    type IBarometerReading_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarometerReading is access IBarometerReading_Interface'Class;
+   type IBarometerReading is access all IBarometerReading_Interface'Class;
    type IBarometerReading_Ptr is access all IBarometerReading;
 
    type IBarometerReading2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarometerReading2 is access IBarometerReading2_Interface'Class;
+   type IBarometerReading2 is access all IBarometerReading2_Interface'Class;
 
    type IBarometerReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarometerReadingChangedEventArgs is access IBarometerReadingChangedEventArgs_Interface'Class;
+   type IBarometerReadingChangedEventArgs is access all IBarometerReadingChangedEventArgs_Interface'Class;
    type IBarometerReadingChangedEventArgs_Ptr is access all IBarometerReadingChangedEventArgs;
 
    type IBarometerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarometerStatics is access IBarometerStatics_Interface'Class;
+   type IBarometerStatics is access all IBarometerStatics_Interface'Class;
 
    type IBarometerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBarometerStatics2 is access IBarometerStatics2_Interface'Class;
+   type IBarometerStatics2 is access all IBarometerStatics2_Interface'Class;
 
    type ICompass_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompass is access ICompass_Interface'Class;
+   type ICompass is access all ICompass_Interface'Class;
    type ICompass_Ptr is access all ICompass;
 
    type ICompass2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompass2 is access ICompass2_Interface'Class;
+   type ICompass2 is access all ICompass2_Interface'Class;
 
    type ICompass3_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompass3 is access ICompass3_Interface'Class;
+   type ICompass3 is access all ICompass3_Interface'Class;
 
    type ICompass4_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompass4 is access ICompass4_Interface'Class;
+   type ICompass4 is access all ICompass4_Interface'Class;
 
    type ICompassDataThreshold_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompassDataThreshold is access ICompassDataThreshold_Interface'Class;
+   type ICompassDataThreshold is access all ICompassDataThreshold_Interface'Class;
    type ICompassDataThreshold_Ptr is access all ICompassDataThreshold;
 
    type ICompassDeviceId_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompassDeviceId is access ICompassDeviceId_Interface'Class;
+   type ICompassDeviceId is access all ICompassDeviceId_Interface'Class;
 
    type ICompassReading_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompassReading is access ICompassReading_Interface'Class;
+   type ICompassReading is access all ICompassReading_Interface'Class;
    type ICompassReading_Ptr is access all ICompassReading;
 
    type ICompassReading2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompassReading2 is access ICompassReading2_Interface'Class;
+   type ICompassReading2 is access all ICompassReading2_Interface'Class;
 
    type ICompassReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompassReadingChangedEventArgs is access ICompassReadingChangedEventArgs_Interface'Class;
+   type ICompassReadingChangedEventArgs is access all ICompassReadingChangedEventArgs_Interface'Class;
    type ICompassReadingChangedEventArgs_Ptr is access all ICompassReadingChangedEventArgs;
 
    type ICompassReadingHeadingAccuracy_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompassReadingHeadingAccuracy is access ICompassReadingHeadingAccuracy_Interface'Class;
+   type ICompassReadingHeadingAccuracy is access all ICompassReadingHeadingAccuracy_Interface'Class;
 
    type ICompassStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompassStatics is access ICompassStatics_Interface'Class;
+   type ICompassStatics is access all ICompassStatics_Interface'Class;
 
    type ICompassStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompassStatics2 is access ICompassStatics2_Interface'Class;
+   type ICompassStatics2 is access all ICompassStatics2_Interface'Class;
 
    type IGyrometer_Interface is interface and WinRt.IInspectable_Interface;
-   type IGyrometer is access IGyrometer_Interface'Class;
+   type IGyrometer is access all IGyrometer_Interface'Class;
    type IGyrometer_Ptr is access all IGyrometer;
 
    type IGyrometer2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGyrometer2 is access IGyrometer2_Interface'Class;
+   type IGyrometer2 is access all IGyrometer2_Interface'Class;
 
    type IGyrometer3_Interface is interface and WinRt.IInspectable_Interface;
-   type IGyrometer3 is access IGyrometer3_Interface'Class;
+   type IGyrometer3 is access all IGyrometer3_Interface'Class;
 
    type IGyrometer4_Interface is interface and WinRt.IInspectable_Interface;
-   type IGyrometer4 is access IGyrometer4_Interface'Class;
+   type IGyrometer4 is access all IGyrometer4_Interface'Class;
 
    type IGyrometerDataThreshold_Interface is interface and WinRt.IInspectable_Interface;
-   type IGyrometerDataThreshold is access IGyrometerDataThreshold_Interface'Class;
+   type IGyrometerDataThreshold is access all IGyrometerDataThreshold_Interface'Class;
    type IGyrometerDataThreshold_Ptr is access all IGyrometerDataThreshold;
 
    type IGyrometerDeviceId_Interface is interface and WinRt.IInspectable_Interface;
-   type IGyrometerDeviceId is access IGyrometerDeviceId_Interface'Class;
+   type IGyrometerDeviceId is access all IGyrometerDeviceId_Interface'Class;
 
    type IGyrometerReading_Interface is interface and WinRt.IInspectable_Interface;
-   type IGyrometerReading is access IGyrometerReading_Interface'Class;
+   type IGyrometerReading is access all IGyrometerReading_Interface'Class;
    type IGyrometerReading_Ptr is access all IGyrometerReading;
 
    type IGyrometerReading2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGyrometerReading2 is access IGyrometerReading2_Interface'Class;
+   type IGyrometerReading2 is access all IGyrometerReading2_Interface'Class;
 
    type IGyrometerReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGyrometerReadingChangedEventArgs is access IGyrometerReadingChangedEventArgs_Interface'Class;
+   type IGyrometerReadingChangedEventArgs is access all IGyrometerReadingChangedEventArgs_Interface'Class;
    type IGyrometerReadingChangedEventArgs_Ptr is access all IGyrometerReadingChangedEventArgs;
 
    type IGyrometerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGyrometerStatics is access IGyrometerStatics_Interface'Class;
+   type IGyrometerStatics is access all IGyrometerStatics_Interface'Class;
 
    type IGyrometerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGyrometerStatics2 is access IGyrometerStatics2_Interface'Class;
+   type IGyrometerStatics2 is access all IGyrometerStatics2_Interface'Class;
 
    type IHingeAngleReading_Interface is interface and WinRt.IInspectable_Interface;
-   type IHingeAngleReading is access IHingeAngleReading_Interface'Class;
+   type IHingeAngleReading is access all IHingeAngleReading_Interface'Class;
    type IHingeAngleReading_Ptr is access all IHingeAngleReading;
 
    type IHingeAngleSensor_Interface is interface and WinRt.IInspectable_Interface;
-   type IHingeAngleSensor is access IHingeAngleSensor_Interface'Class;
+   type IHingeAngleSensor is access all IHingeAngleSensor_Interface'Class;
    type IHingeAngleSensor_Ptr is access all IHingeAngleSensor;
 
    type IHingeAngleSensorReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IHingeAngleSensorReadingChangedEventArgs is access IHingeAngleSensorReadingChangedEventArgs_Interface'Class;
+   type IHingeAngleSensorReadingChangedEventArgs is access all IHingeAngleSensorReadingChangedEventArgs_Interface'Class;
    type IHingeAngleSensorReadingChangedEventArgs_Ptr is access all IHingeAngleSensorReadingChangedEventArgs;
 
    type IHingeAngleSensorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHingeAngleSensorStatics is access IHingeAngleSensorStatics_Interface'Class;
+   type IHingeAngleSensorStatics is access all IHingeAngleSensorStatics_Interface'Class;
 
    type IInclinometer_Interface is interface and WinRt.IInspectable_Interface;
-   type IInclinometer is access IInclinometer_Interface'Class;
+   type IInclinometer is access all IInclinometer_Interface'Class;
    type IInclinometer_Ptr is access all IInclinometer;
 
    type IInclinometer2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInclinometer2 is access IInclinometer2_Interface'Class;
+   type IInclinometer2 is access all IInclinometer2_Interface'Class;
 
    type IInclinometer3_Interface is interface and WinRt.IInspectable_Interface;
-   type IInclinometer3 is access IInclinometer3_Interface'Class;
+   type IInclinometer3 is access all IInclinometer3_Interface'Class;
 
    type IInclinometer4_Interface is interface and WinRt.IInspectable_Interface;
-   type IInclinometer4 is access IInclinometer4_Interface'Class;
+   type IInclinometer4 is access all IInclinometer4_Interface'Class;
 
    type IInclinometerDataThreshold_Interface is interface and WinRt.IInspectable_Interface;
-   type IInclinometerDataThreshold is access IInclinometerDataThreshold_Interface'Class;
+   type IInclinometerDataThreshold is access all IInclinometerDataThreshold_Interface'Class;
    type IInclinometerDataThreshold_Ptr is access all IInclinometerDataThreshold;
 
    type IInclinometerDeviceId_Interface is interface and WinRt.IInspectable_Interface;
-   type IInclinometerDeviceId is access IInclinometerDeviceId_Interface'Class;
+   type IInclinometerDeviceId is access all IInclinometerDeviceId_Interface'Class;
 
    type IInclinometerReading_Interface is interface and WinRt.IInspectable_Interface;
-   type IInclinometerReading is access IInclinometerReading_Interface'Class;
+   type IInclinometerReading is access all IInclinometerReading_Interface'Class;
    type IInclinometerReading_Ptr is access all IInclinometerReading;
 
    type IInclinometerReading2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInclinometerReading2 is access IInclinometerReading2_Interface'Class;
+   type IInclinometerReading2 is access all IInclinometerReading2_Interface'Class;
 
    type IInclinometerReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IInclinometerReadingChangedEventArgs is access IInclinometerReadingChangedEventArgs_Interface'Class;
+   type IInclinometerReadingChangedEventArgs is access all IInclinometerReadingChangedEventArgs_Interface'Class;
    type IInclinometerReadingChangedEventArgs_Ptr is access all IInclinometerReadingChangedEventArgs;
 
    type IInclinometerReadingYawAccuracy_Interface is interface and WinRt.IInspectable_Interface;
-   type IInclinometerReadingYawAccuracy is access IInclinometerReadingYawAccuracy_Interface'Class;
+   type IInclinometerReadingYawAccuracy is access all IInclinometerReadingYawAccuracy_Interface'Class;
 
    type IInclinometerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IInclinometerStatics is access IInclinometerStatics_Interface'Class;
+   type IInclinometerStatics is access all IInclinometerStatics_Interface'Class;
 
    type IInclinometerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInclinometerStatics2 is access IInclinometerStatics2_Interface'Class;
+   type IInclinometerStatics2 is access all IInclinometerStatics2_Interface'Class;
 
    type IInclinometerStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IInclinometerStatics3 is access IInclinometerStatics3_Interface'Class;
+   type IInclinometerStatics3 is access all IInclinometerStatics3_Interface'Class;
 
    type IInclinometerStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IInclinometerStatics4 is access IInclinometerStatics4_Interface'Class;
+   type IInclinometerStatics4 is access all IInclinometerStatics4_Interface'Class;
 
    type ILightSensor_Interface is interface and WinRt.IInspectable_Interface;
-   type ILightSensor is access ILightSensor_Interface'Class;
+   type ILightSensor is access all ILightSensor_Interface'Class;
    type ILightSensor_Ptr is access all ILightSensor;
 
    type ILightSensor2_Interface is interface and WinRt.IInspectable_Interface;
-   type ILightSensor2 is access ILightSensor2_Interface'Class;
+   type ILightSensor2 is access all ILightSensor2_Interface'Class;
 
    type ILightSensor3_Interface is interface and WinRt.IInspectable_Interface;
-   type ILightSensor3 is access ILightSensor3_Interface'Class;
+   type ILightSensor3 is access all ILightSensor3_Interface'Class;
 
    type ILightSensorDataThreshold_Interface is interface and WinRt.IInspectable_Interface;
-   type ILightSensorDataThreshold is access ILightSensorDataThreshold_Interface'Class;
+   type ILightSensorDataThreshold is access all ILightSensorDataThreshold_Interface'Class;
    type ILightSensorDataThreshold_Ptr is access all ILightSensorDataThreshold;
 
    type ILightSensorDeviceId_Interface is interface and WinRt.IInspectable_Interface;
-   type ILightSensorDeviceId is access ILightSensorDeviceId_Interface'Class;
+   type ILightSensorDeviceId is access all ILightSensorDeviceId_Interface'Class;
 
    type ILightSensorReading_Interface is interface and WinRt.IInspectable_Interface;
-   type ILightSensorReading is access ILightSensorReading_Interface'Class;
+   type ILightSensorReading is access all ILightSensorReading_Interface'Class;
    type ILightSensorReading_Ptr is access all ILightSensorReading;
 
    type ILightSensorReading2_Interface is interface and WinRt.IInspectable_Interface;
-   type ILightSensorReading2 is access ILightSensorReading2_Interface'Class;
+   type ILightSensorReading2 is access all ILightSensorReading2_Interface'Class;
 
    type ILightSensorReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ILightSensorReadingChangedEventArgs is access ILightSensorReadingChangedEventArgs_Interface'Class;
+   type ILightSensorReadingChangedEventArgs is access all ILightSensorReadingChangedEventArgs_Interface'Class;
    type ILightSensorReadingChangedEventArgs_Ptr is access all ILightSensorReadingChangedEventArgs;
 
    type ILightSensorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ILightSensorStatics is access ILightSensorStatics_Interface'Class;
+   type ILightSensorStatics is access all ILightSensorStatics_Interface'Class;
 
    type ILightSensorStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ILightSensorStatics2 is access ILightSensorStatics2_Interface'Class;
+   type ILightSensorStatics2 is access all ILightSensorStatics2_Interface'Class;
 
    type IMagnetometer_Interface is interface and WinRt.IInspectable_Interface;
-   type IMagnetometer is access IMagnetometer_Interface'Class;
+   type IMagnetometer is access all IMagnetometer_Interface'Class;
    type IMagnetometer_Ptr is access all IMagnetometer;
 
    type IMagnetometer2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMagnetometer2 is access IMagnetometer2_Interface'Class;
+   type IMagnetometer2 is access all IMagnetometer2_Interface'Class;
 
    type IMagnetometer3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMagnetometer3 is access IMagnetometer3_Interface'Class;
+   type IMagnetometer3 is access all IMagnetometer3_Interface'Class;
 
    type IMagnetometer4_Interface is interface and WinRt.IInspectable_Interface;
-   type IMagnetometer4 is access IMagnetometer4_Interface'Class;
+   type IMagnetometer4 is access all IMagnetometer4_Interface'Class;
 
    type IMagnetometerDataThreshold_Interface is interface and WinRt.IInspectable_Interface;
-   type IMagnetometerDataThreshold is access IMagnetometerDataThreshold_Interface'Class;
+   type IMagnetometerDataThreshold is access all IMagnetometerDataThreshold_Interface'Class;
    type IMagnetometerDataThreshold_Ptr is access all IMagnetometerDataThreshold;
 
    type IMagnetometerDeviceId_Interface is interface and WinRt.IInspectable_Interface;
-   type IMagnetometerDeviceId is access IMagnetometerDeviceId_Interface'Class;
+   type IMagnetometerDeviceId is access all IMagnetometerDeviceId_Interface'Class;
 
    type IMagnetometerReading_Interface is interface and WinRt.IInspectable_Interface;
-   type IMagnetometerReading is access IMagnetometerReading_Interface'Class;
+   type IMagnetometerReading is access all IMagnetometerReading_Interface'Class;
    type IMagnetometerReading_Ptr is access all IMagnetometerReading;
 
    type IMagnetometerReading2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMagnetometerReading2 is access IMagnetometerReading2_Interface'Class;
+   type IMagnetometerReading2 is access all IMagnetometerReading2_Interface'Class;
 
    type IMagnetometerReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMagnetometerReadingChangedEventArgs is access IMagnetometerReadingChangedEventArgs_Interface'Class;
+   type IMagnetometerReadingChangedEventArgs is access all IMagnetometerReadingChangedEventArgs_Interface'Class;
    type IMagnetometerReadingChangedEventArgs_Ptr is access all IMagnetometerReadingChangedEventArgs;
 
    type IMagnetometerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMagnetometerStatics is access IMagnetometerStatics_Interface'Class;
+   type IMagnetometerStatics is access all IMagnetometerStatics_Interface'Class;
 
    type IMagnetometerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMagnetometerStatics2 is access IMagnetometerStatics2_Interface'Class;
+   type IMagnetometerStatics2 is access all IMagnetometerStatics2_Interface'Class;
 
    type IOrientationSensor_Interface is interface and WinRt.IInspectable_Interface;
-   type IOrientationSensor is access IOrientationSensor_Interface'Class;
+   type IOrientationSensor is access all IOrientationSensor_Interface'Class;
    type IOrientationSensor_Ptr is access all IOrientationSensor;
 
    type IOrientationSensor2_Interface is interface and WinRt.IInspectable_Interface;
-   type IOrientationSensor2 is access IOrientationSensor2_Interface'Class;
+   type IOrientationSensor2 is access all IOrientationSensor2_Interface'Class;
 
    type IOrientationSensor3_Interface is interface and WinRt.IInspectable_Interface;
-   type IOrientationSensor3 is access IOrientationSensor3_Interface'Class;
+   type IOrientationSensor3 is access all IOrientationSensor3_Interface'Class;
 
    type IOrientationSensorDeviceId_Interface is interface and WinRt.IInspectable_Interface;
-   type IOrientationSensorDeviceId is access IOrientationSensorDeviceId_Interface'Class;
+   type IOrientationSensorDeviceId is access all IOrientationSensorDeviceId_Interface'Class;
 
    type IOrientationSensorReading_Interface is interface and WinRt.IInspectable_Interface;
-   type IOrientationSensorReading is access IOrientationSensorReading_Interface'Class;
+   type IOrientationSensorReading is access all IOrientationSensorReading_Interface'Class;
    type IOrientationSensorReading_Ptr is access all IOrientationSensorReading;
 
    type IOrientationSensorReading2_Interface is interface and WinRt.IInspectable_Interface;
-   type IOrientationSensorReading2 is access IOrientationSensorReading2_Interface'Class;
+   type IOrientationSensorReading2 is access all IOrientationSensorReading2_Interface'Class;
 
    type IOrientationSensorReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IOrientationSensorReadingChangedEventArgs is access IOrientationSensorReadingChangedEventArgs_Interface'Class;
+   type IOrientationSensorReadingChangedEventArgs is access all IOrientationSensorReadingChangedEventArgs_Interface'Class;
    type IOrientationSensorReadingChangedEventArgs_Ptr is access all IOrientationSensorReadingChangedEventArgs;
 
    type IOrientationSensorReadingYawAccuracy_Interface is interface and WinRt.IInspectable_Interface;
-   type IOrientationSensorReadingYawAccuracy is access IOrientationSensorReadingYawAccuracy_Interface'Class;
+   type IOrientationSensorReadingYawAccuracy is access all IOrientationSensorReadingYawAccuracy_Interface'Class;
 
    type IOrientationSensorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IOrientationSensorStatics is access IOrientationSensorStatics_Interface'Class;
+   type IOrientationSensorStatics is access all IOrientationSensorStatics_Interface'Class;
 
    type IOrientationSensorStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IOrientationSensorStatics2 is access IOrientationSensorStatics2_Interface'Class;
+   type IOrientationSensorStatics2 is access all IOrientationSensorStatics2_Interface'Class;
 
    type IOrientationSensorStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IOrientationSensorStatics3 is access IOrientationSensorStatics3_Interface'Class;
+   type IOrientationSensorStatics3 is access all IOrientationSensorStatics3_Interface'Class;
 
    type IOrientationSensorStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IOrientationSensorStatics4 is access IOrientationSensorStatics4_Interface'Class;
+   type IOrientationSensorStatics4 is access all IOrientationSensorStatics4_Interface'Class;
 
    type IPedometer_Interface is interface and WinRt.IInspectable_Interface;
-   type IPedometer is access IPedometer_Interface'Class;
+   type IPedometer is access all IPedometer_Interface'Class;
    type IPedometer_Ptr is access all IPedometer;
 
    type IPedometer2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPedometer2 is access IPedometer2_Interface'Class;
+   type IPedometer2 is access all IPedometer2_Interface'Class;
 
    type IPedometerDataThresholdFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPedometerDataThresholdFactory is access IPedometerDataThresholdFactory_Interface'Class;
+   type IPedometerDataThresholdFactory is access all IPedometerDataThresholdFactory_Interface'Class;
 
    type IPedometerReading_Interface is interface and WinRt.IInspectable_Interface;
-   type IPedometerReading is access IPedometerReading_Interface'Class;
+   type IPedometerReading is access all IPedometerReading_Interface'Class;
    type IPedometerReading_Ptr is access all IPedometerReading;
 
    type IPedometerReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPedometerReadingChangedEventArgs is access IPedometerReadingChangedEventArgs_Interface'Class;
+   type IPedometerReadingChangedEventArgs is access all IPedometerReadingChangedEventArgs_Interface'Class;
    type IPedometerReadingChangedEventArgs_Ptr is access all IPedometerReadingChangedEventArgs;
 
    type IPedometerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPedometerStatics is access IPedometerStatics_Interface'Class;
+   type IPedometerStatics is access all IPedometerStatics_Interface'Class;
 
    type IPedometerStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPedometerStatics2 is access IPedometerStatics2_Interface'Class;
+   type IPedometerStatics2 is access all IPedometerStatics2_Interface'Class;
 
    type IProximitySensor_Interface is interface and WinRt.IInspectable_Interface;
-   type IProximitySensor is access IProximitySensor_Interface'Class;
+   type IProximitySensor is access all IProximitySensor_Interface'Class;
    type IProximitySensor_Ptr is access all IProximitySensor;
 
    type IProximitySensorDataThresholdFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IProximitySensorDataThresholdFactory is access IProximitySensorDataThresholdFactory_Interface'Class;
+   type IProximitySensorDataThresholdFactory is access all IProximitySensorDataThresholdFactory_Interface'Class;
 
    type IProximitySensorReading_Interface is interface and WinRt.IInspectable_Interface;
-   type IProximitySensorReading is access IProximitySensorReading_Interface'Class;
+   type IProximitySensorReading is access all IProximitySensorReading_Interface'Class;
    type IProximitySensorReading_Ptr is access all IProximitySensorReading;
 
    type IProximitySensorReadingChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IProximitySensorReadingChangedEventArgs is access IProximitySensorReadingChangedEventArgs_Interface'Class;
+   type IProximitySensorReadingChangedEventArgs is access all IProximitySensorReadingChangedEventArgs_Interface'Class;
    type IProximitySensorReadingChangedEventArgs_Ptr is access all IProximitySensorReadingChangedEventArgs;
 
    type IProximitySensorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IProximitySensorStatics is access IProximitySensorStatics_Interface'Class;
+   type IProximitySensorStatics is access all IProximitySensorStatics_Interface'Class;
 
    type IProximitySensorStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IProximitySensorStatics2 is access IProximitySensorStatics2_Interface'Class;
+   type IProximitySensorStatics2 is access all IProximitySensorStatics2_Interface'Class;
 
    type ISensorDataThreshold_Interface is interface and WinRt.IInspectable_Interface;
-   type ISensorDataThreshold is access ISensorDataThreshold_Interface'Class;
+   type ISensorDataThreshold is access all ISensorDataThreshold_Interface'Class;
    type ISensorDataThreshold_Ptr is access all ISensorDataThreshold;
 
    type ISensorDataThresholdTriggerDetails_Interface is interface and WinRt.IInspectable_Interface;
-   type ISensorDataThresholdTriggerDetails is access ISensorDataThresholdTriggerDetails_Interface'Class;
+   type ISensorDataThresholdTriggerDetails is access all ISensorDataThresholdTriggerDetails_Interface'Class;
    type ISensorDataThresholdTriggerDetails_Ptr is access all ISensorDataThresholdTriggerDetails;
 
    type ISensorQuaternion_Interface is interface and WinRt.IInspectable_Interface;
-   type ISensorQuaternion is access ISensorQuaternion_Interface'Class;
+   type ISensorQuaternion is access all ISensorQuaternion_Interface'Class;
    type ISensorQuaternion_Ptr is access all ISensorQuaternion;
 
    type ISensorRotationMatrix_Interface is interface and WinRt.IInspectable_Interface;
-   type ISensorRotationMatrix is access ISensorRotationMatrix_Interface'Class;
+   type ISensorRotationMatrix is access all ISensorRotationMatrix_Interface'Class;
    type ISensorRotationMatrix_Ptr is access all ISensorRotationMatrix;
 
    type ISimpleOrientationSensor_Interface is interface and WinRt.IInspectable_Interface;
-   type ISimpleOrientationSensor is access ISimpleOrientationSensor_Interface'Class;
+   type ISimpleOrientationSensor is access all ISimpleOrientationSensor_Interface'Class;
    type ISimpleOrientationSensor_Ptr is access all ISimpleOrientationSensor;
 
    type ISimpleOrientationSensor2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISimpleOrientationSensor2 is access ISimpleOrientationSensor2_Interface'Class;
+   type ISimpleOrientationSensor2 is access all ISimpleOrientationSensor2_Interface'Class;
 
    type ISimpleOrientationSensorDeviceId_Interface is interface and WinRt.IInspectable_Interface;
-   type ISimpleOrientationSensorDeviceId is access ISimpleOrientationSensorDeviceId_Interface'Class;
+   type ISimpleOrientationSensorDeviceId is access all ISimpleOrientationSensorDeviceId_Interface'Class;
 
    type ISimpleOrientationSensorOrientationChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ISimpleOrientationSensorOrientationChangedEventArgs is access ISimpleOrientationSensorOrientationChangedEventArgs_Interface'Class;
+   type ISimpleOrientationSensorOrientationChangedEventArgs is access all ISimpleOrientationSensorOrientationChangedEventArgs_Interface'Class;
    type ISimpleOrientationSensorOrientationChangedEventArgs_Ptr is access all ISimpleOrientationSensorOrientationChangedEventArgs;
 
    type ISimpleOrientationSensorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISimpleOrientationSensorStatics is access ISimpleOrientationSensorStatics_Interface'Class;
+   type ISimpleOrientationSensorStatics is access all ISimpleOrientationSensorStatics_Interface'Class;
 
    type ISimpleOrientationSensorStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ISimpleOrientationSensorStatics2 is access ISimpleOrientationSensorStatics2_Interface'Class;
+   type ISimpleOrientationSensorStatics2 is access all ISimpleOrientationSensorStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -851,7 +851,7 @@ package WinRt.Windows.Devices.Sensors is
       Linear_e => 1,
       Gravity_e => 2
    );
-   type AccelerometerReadingType_Ptr is access AccelerometerReadingType;
+   type AccelerometerReadingType_Ptr is access all AccelerometerReadingType;
 
    type ActivitySensorReadingConfidence is (
       High_e,
@@ -861,7 +861,7 @@ package WinRt.Windows.Devices.Sensors is
       High_e => 0,
       Low_e => 1
    );
-   type ActivitySensorReadingConfidence_Ptr is access ActivitySensorReadingConfidence;
+   type ActivitySensorReadingConfidence_Ptr is access all ActivitySensorReadingConfidence;
 
    type ActivityType is (
       Unknown_e,
@@ -883,7 +883,7 @@ package WinRt.Windows.Devices.Sensors is
       InVehicle_e => 6,
       Biking_e => 7
    );
-   type ActivityType_Ptr is access ActivityType;
+   type ActivityType_Ptr is access all ActivityType;
 
    type MagnetometerAccuracy is (
       Unknown_e,
@@ -897,7 +897,7 @@ package WinRt.Windows.Devices.Sensors is
       Approximate_e => 2,
       High_e => 3
    );
-   type MagnetometerAccuracy_Ptr is access MagnetometerAccuracy;
+   type MagnetometerAccuracy_Ptr is access all MagnetometerAccuracy;
 
    type PedometerStepKind is (
       Unknown_e,
@@ -909,7 +909,7 @@ package WinRt.Windows.Devices.Sensors is
       Walking_e => 1,
       Running_e => 2
    );
-   type PedometerStepKind_Ptr is access PedometerStepKind;
+   type PedometerStepKind_Ptr is access all PedometerStepKind;
 
    type SensorOptimizationGoal is (
       Precision_e,
@@ -919,7 +919,7 @@ package WinRt.Windows.Devices.Sensors is
       Precision_e => 0,
       PowerEfficiency_e => 1
    );
-   type SensorOptimizationGoal_Ptr is access SensorOptimizationGoal;
+   type SensorOptimizationGoal_Ptr is access all SensorOptimizationGoal;
 
    type SensorReadingType is (
       Absolute_e,
@@ -929,7 +929,7 @@ package WinRt.Windows.Devices.Sensors is
       Absolute_e => 0,
       Relative_e => 1
    );
-   type SensorReadingType_Ptr is access SensorReadingType;
+   type SensorReadingType_Ptr is access all SensorReadingType;
 
    type SensorType is (
       Accelerometer_e,
@@ -963,7 +963,7 @@ package WinRt.Windows.Devices.Sensors is
       RelativeOrientationSensor_e => 12,
       SimpleOrientationSensor_e => 13
    );
-   type SensorType_Ptr is access SensorType;
+   type SensorType_Ptr is access all SensorType;
 
    type SimpleOrientation is (
       NotRotated_e,
@@ -981,7 +981,7 @@ package WinRt.Windows.Devices.Sensors is
       Faceup_e => 4,
       Facedown_e => 5
    );
-   type SimpleOrientation_Ptr is access SimpleOrientation;
+   type SimpleOrientation_Ptr is access all SimpleOrientation;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

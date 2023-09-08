@@ -40,19 +40,19 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
    -----------------------------------------------------------------------------
 
    type IPnpObject_Interface is interface and WinRt.IInspectable_Interface;
-   type IPnpObject is access IPnpObject_Interface'Class;
+   type IPnpObject is access all IPnpObject_Interface'Class;
    type IPnpObject_Ptr is access all IPnpObject;
    type IPnpObject_Array is array (Natural range <>) of IPnpObject;
 
    type IPnpObjectStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPnpObjectStatics is access IPnpObjectStatics_Interface'Class;
+   type IPnpObjectStatics is access all IPnpObjectStatics_Interface'Class;
 
    type IPnpObjectUpdate_Interface is interface and WinRt.IInspectable_Interface;
-   type IPnpObjectUpdate is access IPnpObjectUpdate_Interface'Class;
+   type IPnpObjectUpdate is access all IPnpObjectUpdate_Interface'Class;
    type IPnpObjectUpdate_Ptr is access all IPnpObjectUpdate;
 
    type IPnpObjectWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IPnpObjectWatcher is access IPnpObjectWatcher_Interface'Class;
+   type IPnpObjectWatcher is access all IPnpObjectWatcher_Interface'Class;
    type IPnpObjectWatcher_Ptr is access all IPnpObjectWatcher;
 
    -----------------------------------------------------------------------------
@@ -109,7 +109,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
       AssociationEndpointService_e => 7,
       DevicePanel_e => 8
    );
-   type PnpObjectType_Ptr is access PnpObjectType;
+   type PnpObjectType_Ptr is access all PnpObjectType;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

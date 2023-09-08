@@ -44,210 +44,210 @@ package WinRt.Windows.UI.Xaml.Documents is
    -----------------------------------------------------------------------------
 
    type IBlock_Interface is interface and WinRt.IInspectable_Interface;
-   type IBlock is access IBlock_Interface'Class;
+   type IBlock is access all IBlock_Interface'Class;
    type IBlock_Ptr is access all IBlock;
    type IBlock_Array is array (Natural range <>) of IBlock;
 
    type IBlock2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBlock2 is access IBlock2_Interface'Class;
+   type IBlock2 is access all IBlock2_Interface'Class;
 
    type IBlockFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IBlockFactory is access IBlockFactory_Interface'Class;
+   type IBlockFactory is access all IBlockFactory_Interface'Class;
 
    type IBlockStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBlockStatics is access IBlockStatics_Interface'Class;
+   type IBlockStatics is access all IBlockStatics_Interface'Class;
 
    type IBlockStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IBlockStatics2 is access IBlockStatics2_Interface'Class;
+   type IBlockStatics2 is access all IBlockStatics2_Interface'Class;
 
    type IBold_Interface is interface and WinRt.IInspectable_Interface;
-   type IBold is access IBold_Interface'Class;
+   type IBold is access all IBold_Interface'Class;
    type IBold_Ptr is access all IBold;
 
    type IContactContentLinkProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IContactContentLinkProvider is access IContactContentLinkProvider_Interface'Class;
+   type IContactContentLinkProvider is access all IContactContentLinkProvider_Interface'Class;
    type IContactContentLinkProvider_Ptr is access all IContactContentLinkProvider;
 
    type IContentLink_Interface is interface and WinRt.IInspectable_Interface;
-   type IContentLink is access IContentLink_Interface'Class;
+   type IContentLink is access all IContentLink_Interface'Class;
    type IContentLink_Ptr is access all IContentLink;
 
    type IContentLinkInvokedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IContentLinkInvokedEventArgs is access IContentLinkInvokedEventArgs_Interface'Class;
+   type IContentLinkInvokedEventArgs is access all IContentLinkInvokedEventArgs_Interface'Class;
    type IContentLinkInvokedEventArgs_Ptr is access all IContentLinkInvokedEventArgs;
 
    type IContentLinkProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IContentLinkProvider is access IContentLinkProvider_Interface'Class;
+   type IContentLinkProvider is access all IContentLinkProvider_Interface'Class;
    type IContentLinkProvider_Ptr is access all IContentLinkProvider;
    type IContentLinkProvider_Array is array (Natural range <>) of IContentLinkProvider;
 
    type IContentLinkProviderCollection_Interface is interface and WinRt.IInspectable_Interface;
-   type IContentLinkProviderCollection is access IContentLinkProviderCollection_Interface'Class;
+   type IContentLinkProviderCollection is access all IContentLinkProviderCollection_Interface'Class;
    type IContentLinkProviderCollection_Ptr is access all IContentLinkProviderCollection;
 
    type IContentLinkProviderFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IContentLinkProviderFactory is access IContentLinkProviderFactory_Interface'Class;
+   type IContentLinkProviderFactory is access all IContentLinkProviderFactory_Interface'Class;
 
    type IContentLinkStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IContentLinkStatics is access IContentLinkStatics_Interface'Class;
+   type IContentLinkStatics is access all IContentLinkStatics_Interface'Class;
 
    type IGlyphs_Interface is interface and WinRt.IInspectable_Interface;
-   type IGlyphs is access IGlyphs_Interface'Class;
+   type IGlyphs is access all IGlyphs_Interface'Class;
    type IGlyphs_Ptr is access all IGlyphs;
 
    type IGlyphs2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGlyphs2 is access IGlyphs2_Interface'Class;
+   type IGlyphs2 is access all IGlyphs2_Interface'Class;
 
    type IGlyphsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IGlyphsStatics is access IGlyphsStatics_Interface'Class;
+   type IGlyphsStatics is access all IGlyphsStatics_Interface'Class;
 
    type IGlyphsStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IGlyphsStatics2 is access IGlyphsStatics2_Interface'Class;
+   type IGlyphsStatics2 is access all IGlyphsStatics2_Interface'Class;
 
    type IHyperlink_Interface is interface and WinRt.IInspectable_Interface;
-   type IHyperlink is access IHyperlink_Interface'Class;
+   type IHyperlink is access all IHyperlink_Interface'Class;
    type IHyperlink_Ptr is access all IHyperlink;
 
    type IHyperlink2_Interface is interface and WinRt.IInspectable_Interface;
-   type IHyperlink2 is access IHyperlink2_Interface'Class;
+   type IHyperlink2 is access all IHyperlink2_Interface'Class;
 
    type IHyperlink3_Interface is interface and WinRt.IInspectable_Interface;
-   type IHyperlink3 is access IHyperlink3_Interface'Class;
+   type IHyperlink3 is access all IHyperlink3_Interface'Class;
 
    type IHyperlink4_Interface is interface and WinRt.IInspectable_Interface;
-   type IHyperlink4 is access IHyperlink4_Interface'Class;
+   type IHyperlink4 is access all IHyperlink4_Interface'Class;
 
    type IHyperlink5_Interface is interface and WinRt.IInspectable_Interface;
-   type IHyperlink5 is access IHyperlink5_Interface'Class;
+   type IHyperlink5 is access all IHyperlink5_Interface'Class;
 
    type IHyperlinkClickEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IHyperlinkClickEventArgs is access IHyperlinkClickEventArgs_Interface'Class;
+   type IHyperlinkClickEventArgs is access all IHyperlinkClickEventArgs_Interface'Class;
    type IHyperlinkClickEventArgs_Ptr is access all IHyperlinkClickEventArgs;
 
    type IHyperlinkStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IHyperlinkStatics is access IHyperlinkStatics_Interface'Class;
+   type IHyperlinkStatics is access all IHyperlinkStatics_Interface'Class;
 
    type IHyperlinkStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IHyperlinkStatics2 is access IHyperlinkStatics2_Interface'Class;
+   type IHyperlinkStatics2 is access all IHyperlinkStatics2_Interface'Class;
 
    type IHyperlinkStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IHyperlinkStatics3 is access IHyperlinkStatics3_Interface'Class;
+   type IHyperlinkStatics3 is access all IHyperlinkStatics3_Interface'Class;
 
    type IHyperlinkStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IHyperlinkStatics4 is access IHyperlinkStatics4_Interface'Class;
+   type IHyperlinkStatics4 is access all IHyperlinkStatics4_Interface'Class;
 
    type IHyperlinkStatics5_Interface is interface and WinRt.IInspectable_Interface;
-   type IHyperlinkStatics5 is access IHyperlinkStatics5_Interface'Class;
+   type IHyperlinkStatics5 is access all IHyperlinkStatics5_Interface'Class;
 
    type IInline_Interface is interface and WinRt.IInspectable_Interface;
-   type IInline is access IInline_Interface'Class;
+   type IInline is access all IInline_Interface'Class;
    type IInline_Ptr is access all IInline;
    type IInline_Array is array (Natural range <>) of IInline;
 
    type IInlineFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IInlineFactory is access IInlineFactory_Interface'Class;
+   type IInlineFactory is access all IInlineFactory_Interface'Class;
 
    type IInlineUIContainer_Interface is interface and WinRt.IInspectable_Interface;
-   type IInlineUIContainer is access IInlineUIContainer_Interface'Class;
+   type IInlineUIContainer is access all IInlineUIContainer_Interface'Class;
    type IInlineUIContainer_Ptr is access all IInlineUIContainer;
 
    type IItalic_Interface is interface and WinRt.IInspectable_Interface;
-   type IItalic is access IItalic_Interface'Class;
+   type IItalic is access all IItalic_Interface'Class;
    type IItalic_Ptr is access all IItalic;
 
    type ILineBreak_Interface is interface and WinRt.IInspectable_Interface;
-   type ILineBreak is access ILineBreak_Interface'Class;
+   type ILineBreak is access all ILineBreak_Interface'Class;
    type ILineBreak_Ptr is access all ILineBreak;
 
    type IParagraph_Interface is interface and WinRt.IInspectable_Interface;
-   type IParagraph is access IParagraph_Interface'Class;
+   type IParagraph is access all IParagraph_Interface'Class;
    type IParagraph_Ptr is access all IParagraph;
 
    type IParagraphStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IParagraphStatics is access IParagraphStatics_Interface'Class;
+   type IParagraphStatics is access all IParagraphStatics_Interface'Class;
 
    type IPlaceContentLinkProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlaceContentLinkProvider is access IPlaceContentLinkProvider_Interface'Class;
+   type IPlaceContentLinkProvider is access all IPlaceContentLinkProvider_Interface'Class;
    type IPlaceContentLinkProvider_Ptr is access all IPlaceContentLinkProvider;
 
    type IRun_Interface is interface and WinRt.IInspectable_Interface;
-   type IRun is access IRun_Interface'Class;
+   type IRun is access all IRun_Interface'Class;
    type IRun_Ptr is access all IRun;
 
    type IRunStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IRunStatics is access IRunStatics_Interface'Class;
+   type IRunStatics is access all IRunStatics_Interface'Class;
 
    type ISpan_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpan is access ISpan_Interface'Class;
+   type ISpan is access all ISpan_Interface'Class;
    type ISpan_Ptr is access all ISpan;
 
    type ISpanFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ISpanFactory is access ISpanFactory_Interface'Class;
+   type ISpanFactory is access all ISpanFactory_Interface'Class;
 
    type ITextElement_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextElement is access ITextElement_Interface'Class;
+   type ITextElement is access all ITextElement_Interface'Class;
    type ITextElement_Ptr is access all ITextElement;
 
    type ITextElement2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextElement2 is access ITextElement2_Interface'Class;
+   type ITextElement2 is access all ITextElement2_Interface'Class;
 
    type ITextElement3_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextElement3 is access ITextElement3_Interface'Class;
+   type ITextElement3 is access all ITextElement3_Interface'Class;
 
    type ITextElement4_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextElement4 is access ITextElement4_Interface'Class;
+   type ITextElement4 is access all ITextElement4_Interface'Class;
 
    type ITextElement5_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextElement5 is access ITextElement5_Interface'Class;
+   type ITextElement5 is access all ITextElement5_Interface'Class;
 
    type ITextElementFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextElementFactory is access ITextElementFactory_Interface'Class;
+   type ITextElementFactory is access all ITextElementFactory_Interface'Class;
 
    type ITextElementOverrides_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextElementOverrides is access ITextElementOverrides_Interface'Class;
+   type ITextElementOverrides is access all ITextElementOverrides_Interface'Class;
 
    type ITextElementStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextElementStatics is access ITextElementStatics_Interface'Class;
+   type ITextElementStatics is access all ITextElementStatics_Interface'Class;
 
    type ITextElementStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextElementStatics2 is access ITextElementStatics2_Interface'Class;
+   type ITextElementStatics2 is access all ITextElementStatics2_Interface'Class;
 
    type ITextElementStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextElementStatics3 is access ITextElementStatics3_Interface'Class;
+   type ITextElementStatics3 is access all ITextElementStatics3_Interface'Class;
 
    type ITextElementStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextElementStatics4 is access ITextElementStatics4_Interface'Class;
+   type ITextElementStatics4 is access all ITextElementStatics4_Interface'Class;
 
    type ITextHighlighter_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextHighlighter is access ITextHighlighter_Interface'Class;
+   type ITextHighlighter is access all ITextHighlighter_Interface'Class;
    type ITextHighlighter_Ptr is access all ITextHighlighter;
 
    type ITextHighlighterBase_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextHighlighterBase is access ITextHighlighterBase_Interface'Class;
+   type ITextHighlighterBase is access all ITextHighlighterBase_Interface'Class;
    type ITextHighlighterBase_Ptr is access all ITextHighlighterBase;
 
    type ITextHighlighterBaseFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextHighlighterBaseFactory is access ITextHighlighterBaseFactory_Interface'Class;
+   type ITextHighlighterBaseFactory is access all ITextHighlighterBaseFactory_Interface'Class;
 
    type ITextHighlighterFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextHighlighterFactory is access ITextHighlighterFactory_Interface'Class;
+   type ITextHighlighterFactory is access all ITextHighlighterFactory_Interface'Class;
 
    type ITextHighlighterStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextHighlighterStatics is access ITextHighlighterStatics_Interface'Class;
+   type ITextHighlighterStatics is access all ITextHighlighterStatics_Interface'Class;
 
    type ITextPointer_Interface is interface and WinRt.IInspectable_Interface;
-   type ITextPointer is access ITextPointer_Interface'Class;
+   type ITextPointer is access all ITextPointer_Interface'Class;
    type ITextPointer_Ptr is access all ITextPointer;
 
    type ITypography_Interface is interface and WinRt.IInspectable_Interface;
-   type ITypography is access ITypography_Interface'Class;
+   type ITypography is access all ITypography_Interface'Class;
    type ITypography_Ptr is access all ITypography;
 
    type ITypographyStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ITypographyStatics is access ITypographyStatics_Interface'Class;
+   type ITypographyStatics is access all ITypographyStatics_Interface'Class;
 
    type IUnderline_Interface is interface and WinRt.IInspectable_Interface;
-   type IUnderline is access IUnderline_Interface'Class;
+   type IUnderline is access all IUnderline_Interface'Class;
    type IUnderline_Ptr is access all IUnderline;
 
    -----------------------------------------------------------------------------
@@ -422,7 +422,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       Backward_e => 0,
       Forward_e => 1
    );
-   type LogicalDirection_Ptr is access LogicalDirection;
+   type LogicalDirection_Ptr is access all LogicalDirection;
 
    type UnderlineStyle is (
       None_e,
@@ -432,7 +432,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       None_e => 0,
       Single_e => 1
    );
-   type UnderlineStyle_Ptr is access UnderlineStyle;
+   type UnderlineStyle_Ptr is access all UnderlineStyle;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -442,7 +442,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       StartIndex : WinRt.Int32;
       Length : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type TextRange_Ptr is access TextRange;
+   type TextRange_Ptr is access all TextRange;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

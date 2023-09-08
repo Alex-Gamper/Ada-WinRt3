@@ -39,15 +39,15 @@ package WinRt.Windows.Media.Capture.Core is
    -----------------------------------------------------------------------------
 
    type IVariablePhotoCapturedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IVariablePhotoCapturedEventArgs is access IVariablePhotoCapturedEventArgs_Interface'Class;
+   type IVariablePhotoCapturedEventArgs is access all IVariablePhotoCapturedEventArgs_Interface'Class;
    type IVariablePhotoCapturedEventArgs_Ptr is access all IVariablePhotoCapturedEventArgs;
 
    type IVariablePhotoSequenceCapture_Interface is interface and WinRt.IInspectable_Interface;
-   type IVariablePhotoSequenceCapture is access IVariablePhotoSequenceCapture_Interface'Class;
+   type IVariablePhotoSequenceCapture is access all IVariablePhotoSequenceCapture_Interface'Class;
    type IVariablePhotoSequenceCapture_Ptr is access all IVariablePhotoSequenceCapture;
 
    type IVariablePhotoSequenceCapture2_Interface is interface and WinRt.IInspectable_Interface;
-   type IVariablePhotoSequenceCapture2 is access IVariablePhotoSequenceCapture2_Interface'Class;
+   type IVariablePhotoSequenceCapture2 is access all IVariablePhotoSequenceCapture2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

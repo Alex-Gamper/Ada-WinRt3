@@ -42,58 +42,58 @@ package WinRt.Windows.Networking.Proximity is
    -----------------------------------------------------------------------------
 
    type DeviceArrivedEventHandler_Delegate;
-   type DeviceArrivedEventHandler is access DeviceArrivedEventHandler_Delegate;
+   type DeviceArrivedEventHandler is access all DeviceArrivedEventHandler_Delegate;
 
    type DeviceDepartedEventHandler_Delegate;
-   type DeviceDepartedEventHandler is access DeviceDepartedEventHandler_Delegate;
+   type DeviceDepartedEventHandler is access all DeviceDepartedEventHandler_Delegate;
 
    type MessageReceivedHandler_Delegate;
-   type MessageReceivedHandler is access MessageReceivedHandler_Delegate;
+   type MessageReceivedHandler is access all MessageReceivedHandler_Delegate;
 
    type MessageTransmittedHandler_Delegate;
-   type MessageTransmittedHandler is access MessageTransmittedHandler_Delegate;
+   type MessageTransmittedHandler is access all MessageTransmittedHandler_Delegate;
 
    -----------------------------------------------------------------------------
    -- Forward Interface declarations
    -----------------------------------------------------------------------------
 
    type IConnectionRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IConnectionRequestedEventArgs is access IConnectionRequestedEventArgs_Interface'Class;
+   type IConnectionRequestedEventArgs is access all IConnectionRequestedEventArgs_Interface'Class;
    type IConnectionRequestedEventArgs_Ptr is access all IConnectionRequestedEventArgs;
 
    type IPeerFinderStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IPeerFinderStatics is access IPeerFinderStatics_Interface'Class;
+   type IPeerFinderStatics is access all IPeerFinderStatics_Interface'Class;
 
    type IPeerFinderStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IPeerFinderStatics2 is access IPeerFinderStatics2_Interface'Class;
+   type IPeerFinderStatics2 is access all IPeerFinderStatics2_Interface'Class;
 
    type IPeerInformation_Interface is interface and WinRt.IInspectable_Interface;
-   type IPeerInformation is access IPeerInformation_Interface'Class;
+   type IPeerInformation is access all IPeerInformation_Interface'Class;
    type IPeerInformation_Ptr is access all IPeerInformation;
 
    type IPeerInformation3_Interface is interface and WinRt.IInspectable_Interface;
-   type IPeerInformation3 is access IPeerInformation3_Interface'Class;
+   type IPeerInformation3 is access all IPeerInformation3_Interface'Class;
 
    type IPeerInformationWithHostAndService_Interface is interface and WinRt.IInspectable_Interface;
-   type IPeerInformationWithHostAndService is access IPeerInformationWithHostAndService_Interface'Class;
+   type IPeerInformationWithHostAndService is access all IPeerInformationWithHostAndService_Interface'Class;
 
    type IPeerWatcher_Interface is interface and WinRt.IInspectable_Interface;
-   type IPeerWatcher is access IPeerWatcher_Interface'Class;
+   type IPeerWatcher is access all IPeerWatcher_Interface'Class;
    type IPeerWatcher_Ptr is access all IPeerWatcher;
 
    type IProximityDevice_Interface is interface and WinRt.IInspectable_Interface;
-   type IProximityDevice is access IProximityDevice_Interface'Class;
+   type IProximityDevice is access all IProximityDevice_Interface'Class;
    type IProximityDevice_Ptr is access all IProximityDevice;
 
    type IProximityDeviceStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IProximityDeviceStatics is access IProximityDeviceStatics_Interface'Class;
+   type IProximityDeviceStatics is access all IProximityDeviceStatics_Interface'Class;
 
    type IProximityMessage_Interface is interface and WinRt.IInspectable_Interface;
-   type IProximityMessage is access IProximityMessage_Interface'Class;
+   type IProximityMessage is access all IProximityMessage_Interface'Class;
    type IProximityMessage_Ptr is access all IProximityMessage;
 
    type ITriggeredConnectionStateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ITriggeredConnectionStateChangedEventArgs is access ITriggeredConnectionStateChangedEventArgs_Interface'Class;
+   type ITriggeredConnectionStateChangedEventArgs is access all ITriggeredConnectionStateChangedEventArgs_Interface'Class;
    type ITriggeredConnectionStateChangedEventArgs_Ptr is access all ITriggeredConnectionStateChangedEventArgs;
 
    -----------------------------------------------------------------------------
@@ -150,7 +150,7 @@ package WinRt.Windows.Networking.Proximity is
       Browse_e => 1,
       Triggered_e => 2
    );
-   type PeerDiscoveryTypes_Ptr is access PeerDiscoveryTypes;
+   type PeerDiscoveryTypes_Ptr is access all PeerDiscoveryTypes;
 
    type PeerRole is (
       Peer_e,
@@ -162,7 +162,7 @@ package WinRt.Windows.Networking.Proximity is
       Host_e => 1,
       Client_e => 2
    );
-   type PeerRole_Ptr is access PeerRole;
+   type PeerRole_Ptr is access all PeerRole;
 
    type PeerWatcherStatus is (
       Created_e,
@@ -180,7 +180,7 @@ package WinRt.Windows.Networking.Proximity is
       Stopped_e => 4,
       Aborted_e => 5
    );
-   type PeerWatcherStatus_Ptr is access PeerWatcherStatus;
+   type PeerWatcherStatus_Ptr is access all PeerWatcherStatus;
 
    type TriggeredConnectState is (
       PeerFound_e,
@@ -198,7 +198,7 @@ package WinRt.Windows.Networking.Proximity is
       Canceled_e => 4,
       Failed_e => 5
    );
-   type TriggeredConnectState_Ptr is access TriggeredConnectState;
+   type TriggeredConnectState_Ptr is access all TriggeredConnectState;
 
    -----------------------------------------------------------------------------
    -- Delegate declarations

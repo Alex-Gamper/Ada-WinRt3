@@ -51,237 +51,237 @@ package WinRt.Windows.Media.Playback is
    -----------------------------------------------------------------------------
 
    type IBackgroundMediaPlayerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IBackgroundMediaPlayerStatics is access IBackgroundMediaPlayerStatics_Interface'Class;
+   type IBackgroundMediaPlayerStatics is access all IBackgroundMediaPlayerStatics_Interface'Class;
 
    type ICurrentMediaPlaybackItemChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrentMediaPlaybackItemChangedEventArgs is access ICurrentMediaPlaybackItemChangedEventArgs_Interface'Class;
+   type ICurrentMediaPlaybackItemChangedEventArgs is access all ICurrentMediaPlaybackItemChangedEventArgs_Interface'Class;
    type ICurrentMediaPlaybackItemChangedEventArgs_Ptr is access all ICurrentMediaPlaybackItemChangedEventArgs;
 
    type ICurrentMediaPlaybackItemChangedEventArgs2_Interface is interface and WinRt.IInspectable_Interface;
-   type ICurrentMediaPlaybackItemChangedEventArgs2 is access ICurrentMediaPlaybackItemChangedEventArgs2_Interface'Class;
+   type ICurrentMediaPlaybackItemChangedEventArgs2 is access all ICurrentMediaPlaybackItemChangedEventArgs2_Interface'Class;
 
    type IMediaBreak_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaBreak is access IMediaBreak_Interface'Class;
+   type IMediaBreak is access all IMediaBreak_Interface'Class;
    type IMediaBreak_Ptr is access all IMediaBreak;
 
    type IMediaBreakEndedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaBreakEndedEventArgs is access IMediaBreakEndedEventArgs_Interface'Class;
+   type IMediaBreakEndedEventArgs is access all IMediaBreakEndedEventArgs_Interface'Class;
    type IMediaBreakEndedEventArgs_Ptr is access all IMediaBreakEndedEventArgs;
 
    type IMediaBreakFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaBreakFactory is access IMediaBreakFactory_Interface'Class;
+   type IMediaBreakFactory is access all IMediaBreakFactory_Interface'Class;
 
    type IMediaBreakManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaBreakManager is access IMediaBreakManager_Interface'Class;
+   type IMediaBreakManager is access all IMediaBreakManager_Interface'Class;
    type IMediaBreakManager_Ptr is access all IMediaBreakManager;
 
    type IMediaBreakSchedule_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaBreakSchedule is access IMediaBreakSchedule_Interface'Class;
+   type IMediaBreakSchedule is access all IMediaBreakSchedule_Interface'Class;
    type IMediaBreakSchedule_Ptr is access all IMediaBreakSchedule;
 
    type IMediaBreakSeekedOverEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaBreakSeekedOverEventArgs is access IMediaBreakSeekedOverEventArgs_Interface'Class;
+   type IMediaBreakSeekedOverEventArgs is access all IMediaBreakSeekedOverEventArgs_Interface'Class;
    type IMediaBreakSeekedOverEventArgs_Ptr is access all IMediaBreakSeekedOverEventArgs;
 
    type IMediaBreakSkippedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaBreakSkippedEventArgs is access IMediaBreakSkippedEventArgs_Interface'Class;
+   type IMediaBreakSkippedEventArgs is access all IMediaBreakSkippedEventArgs_Interface'Class;
    type IMediaBreakSkippedEventArgs_Ptr is access all IMediaBreakSkippedEventArgs;
 
    type IMediaBreakStartedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaBreakStartedEventArgs is access IMediaBreakStartedEventArgs_Interface'Class;
+   type IMediaBreakStartedEventArgs is access all IMediaBreakStartedEventArgs_Interface'Class;
    type IMediaBreakStartedEventArgs_Ptr is access all IMediaBreakStartedEventArgs;
 
    type IMediaEnginePlaybackSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaEnginePlaybackSource is access IMediaEnginePlaybackSource_Interface'Class;
+   type IMediaEnginePlaybackSource is access all IMediaEnginePlaybackSource_Interface'Class;
 
    type IMediaItemDisplayProperties_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaItemDisplayProperties is access IMediaItemDisplayProperties_Interface'Class;
+   type IMediaItemDisplayProperties is access all IMediaItemDisplayProperties_Interface'Class;
    type IMediaItemDisplayProperties_Ptr is access all IMediaItemDisplayProperties;
 
    type IMediaPlaybackCommandManager_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackCommandManager is access IMediaPlaybackCommandManager_Interface'Class;
+   type IMediaPlaybackCommandManager is access all IMediaPlaybackCommandManager_Interface'Class;
    type IMediaPlaybackCommandManager_Ptr is access all IMediaPlaybackCommandManager;
 
    type IMediaPlaybackCommandManagerAutoRepeatModeReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackCommandManagerAutoRepeatModeReceivedEventArgs is access IMediaPlaybackCommandManagerAutoRepeatModeReceivedEventArgs_Interface'Class;
+   type IMediaPlaybackCommandManagerAutoRepeatModeReceivedEventArgs is access all IMediaPlaybackCommandManagerAutoRepeatModeReceivedEventArgs_Interface'Class;
    type IMediaPlaybackCommandManagerAutoRepeatModeReceivedEventArgs_Ptr is access all IMediaPlaybackCommandManagerAutoRepeatModeReceivedEventArgs;
 
    type IMediaPlaybackCommandManagerCommandBehavior_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackCommandManagerCommandBehavior is access IMediaPlaybackCommandManagerCommandBehavior_Interface'Class;
+   type IMediaPlaybackCommandManagerCommandBehavior is access all IMediaPlaybackCommandManagerCommandBehavior_Interface'Class;
    type IMediaPlaybackCommandManagerCommandBehavior_Ptr is access all IMediaPlaybackCommandManagerCommandBehavior;
 
    type IMediaPlaybackCommandManagerFastForwardReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackCommandManagerFastForwardReceivedEventArgs is access IMediaPlaybackCommandManagerFastForwardReceivedEventArgs_Interface'Class;
+   type IMediaPlaybackCommandManagerFastForwardReceivedEventArgs is access all IMediaPlaybackCommandManagerFastForwardReceivedEventArgs_Interface'Class;
    type IMediaPlaybackCommandManagerFastForwardReceivedEventArgs_Ptr is access all IMediaPlaybackCommandManagerFastForwardReceivedEventArgs;
 
    type IMediaPlaybackCommandManagerNextReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackCommandManagerNextReceivedEventArgs is access IMediaPlaybackCommandManagerNextReceivedEventArgs_Interface'Class;
+   type IMediaPlaybackCommandManagerNextReceivedEventArgs is access all IMediaPlaybackCommandManagerNextReceivedEventArgs_Interface'Class;
    type IMediaPlaybackCommandManagerNextReceivedEventArgs_Ptr is access all IMediaPlaybackCommandManagerNextReceivedEventArgs;
 
    type IMediaPlaybackCommandManagerPauseReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackCommandManagerPauseReceivedEventArgs is access IMediaPlaybackCommandManagerPauseReceivedEventArgs_Interface'Class;
+   type IMediaPlaybackCommandManagerPauseReceivedEventArgs is access all IMediaPlaybackCommandManagerPauseReceivedEventArgs_Interface'Class;
    type IMediaPlaybackCommandManagerPauseReceivedEventArgs_Ptr is access all IMediaPlaybackCommandManagerPauseReceivedEventArgs;
 
    type IMediaPlaybackCommandManagerPlayReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackCommandManagerPlayReceivedEventArgs is access IMediaPlaybackCommandManagerPlayReceivedEventArgs_Interface'Class;
+   type IMediaPlaybackCommandManagerPlayReceivedEventArgs is access all IMediaPlaybackCommandManagerPlayReceivedEventArgs_Interface'Class;
    type IMediaPlaybackCommandManagerPlayReceivedEventArgs_Ptr is access all IMediaPlaybackCommandManagerPlayReceivedEventArgs;
 
    type IMediaPlaybackCommandManagerPositionReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackCommandManagerPositionReceivedEventArgs is access IMediaPlaybackCommandManagerPositionReceivedEventArgs_Interface'Class;
+   type IMediaPlaybackCommandManagerPositionReceivedEventArgs is access all IMediaPlaybackCommandManagerPositionReceivedEventArgs_Interface'Class;
    type IMediaPlaybackCommandManagerPositionReceivedEventArgs_Ptr is access all IMediaPlaybackCommandManagerPositionReceivedEventArgs;
 
    type IMediaPlaybackCommandManagerPreviousReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackCommandManagerPreviousReceivedEventArgs is access IMediaPlaybackCommandManagerPreviousReceivedEventArgs_Interface'Class;
+   type IMediaPlaybackCommandManagerPreviousReceivedEventArgs is access all IMediaPlaybackCommandManagerPreviousReceivedEventArgs_Interface'Class;
    type IMediaPlaybackCommandManagerPreviousReceivedEventArgs_Ptr is access all IMediaPlaybackCommandManagerPreviousReceivedEventArgs;
 
    type IMediaPlaybackCommandManagerRateReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackCommandManagerRateReceivedEventArgs is access IMediaPlaybackCommandManagerRateReceivedEventArgs_Interface'Class;
+   type IMediaPlaybackCommandManagerRateReceivedEventArgs is access all IMediaPlaybackCommandManagerRateReceivedEventArgs_Interface'Class;
    type IMediaPlaybackCommandManagerRateReceivedEventArgs_Ptr is access all IMediaPlaybackCommandManagerRateReceivedEventArgs;
 
    type IMediaPlaybackCommandManagerRewindReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackCommandManagerRewindReceivedEventArgs is access IMediaPlaybackCommandManagerRewindReceivedEventArgs_Interface'Class;
+   type IMediaPlaybackCommandManagerRewindReceivedEventArgs is access all IMediaPlaybackCommandManagerRewindReceivedEventArgs_Interface'Class;
    type IMediaPlaybackCommandManagerRewindReceivedEventArgs_Ptr is access all IMediaPlaybackCommandManagerRewindReceivedEventArgs;
 
    type IMediaPlaybackCommandManagerShuffleReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackCommandManagerShuffleReceivedEventArgs is access IMediaPlaybackCommandManagerShuffleReceivedEventArgs_Interface'Class;
+   type IMediaPlaybackCommandManagerShuffleReceivedEventArgs is access all IMediaPlaybackCommandManagerShuffleReceivedEventArgs_Interface'Class;
    type IMediaPlaybackCommandManagerShuffleReceivedEventArgs_Ptr is access all IMediaPlaybackCommandManagerShuffleReceivedEventArgs;
 
    type IMediaPlaybackItem_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackItem is access IMediaPlaybackItem_Interface'Class;
+   type IMediaPlaybackItem is access all IMediaPlaybackItem_Interface'Class;
    type IMediaPlaybackItem_Ptr is access all IMediaPlaybackItem;
 
    type IMediaPlaybackItem2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackItem2 is access IMediaPlaybackItem2_Interface'Class;
+   type IMediaPlaybackItem2 is access all IMediaPlaybackItem2_Interface'Class;
 
    type IMediaPlaybackItem3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackItem3 is access IMediaPlaybackItem3_Interface'Class;
+   type IMediaPlaybackItem3 is access all IMediaPlaybackItem3_Interface'Class;
 
    type IMediaPlaybackItemError_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackItemError is access IMediaPlaybackItemError_Interface'Class;
+   type IMediaPlaybackItemError is access all IMediaPlaybackItemError_Interface'Class;
    type IMediaPlaybackItemError_Ptr is access all IMediaPlaybackItemError;
 
    type IMediaPlaybackItemFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackItemFactory is access IMediaPlaybackItemFactory_Interface'Class;
+   type IMediaPlaybackItemFactory is access all IMediaPlaybackItemFactory_Interface'Class;
 
    type IMediaPlaybackItemFactory2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackItemFactory2 is access IMediaPlaybackItemFactory2_Interface'Class;
+   type IMediaPlaybackItemFactory2 is access all IMediaPlaybackItemFactory2_Interface'Class;
 
    type IMediaPlaybackItemFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackItemFailedEventArgs is access IMediaPlaybackItemFailedEventArgs_Interface'Class;
+   type IMediaPlaybackItemFailedEventArgs is access all IMediaPlaybackItemFailedEventArgs_Interface'Class;
    type IMediaPlaybackItemFailedEventArgs_Ptr is access all IMediaPlaybackItemFailedEventArgs;
 
    type IMediaPlaybackItemOpenedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackItemOpenedEventArgs is access IMediaPlaybackItemOpenedEventArgs_Interface'Class;
+   type IMediaPlaybackItemOpenedEventArgs is access all IMediaPlaybackItemOpenedEventArgs_Interface'Class;
    type IMediaPlaybackItemOpenedEventArgs_Ptr is access all IMediaPlaybackItemOpenedEventArgs;
 
    type IMediaPlaybackItemStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackItemStatics is access IMediaPlaybackItemStatics_Interface'Class;
+   type IMediaPlaybackItemStatics is access all IMediaPlaybackItemStatics_Interface'Class;
 
    type IMediaPlaybackList_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackList is access IMediaPlaybackList_Interface'Class;
+   type IMediaPlaybackList is access all IMediaPlaybackList_Interface'Class;
    type IMediaPlaybackList_Ptr is access all IMediaPlaybackList;
 
    type IMediaPlaybackList2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackList2 is access IMediaPlaybackList2_Interface'Class;
+   type IMediaPlaybackList2 is access all IMediaPlaybackList2_Interface'Class;
 
    type IMediaPlaybackList3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackList3 is access IMediaPlaybackList3_Interface'Class;
+   type IMediaPlaybackList3 is access all IMediaPlaybackList3_Interface'Class;
 
    type IMediaPlaybackSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackSession is access IMediaPlaybackSession_Interface'Class;
+   type IMediaPlaybackSession is access all IMediaPlaybackSession_Interface'Class;
    type IMediaPlaybackSession_Ptr is access all IMediaPlaybackSession;
 
    type IMediaPlaybackSession2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackSession2 is access IMediaPlaybackSession2_Interface'Class;
+   type IMediaPlaybackSession2 is access all IMediaPlaybackSession2_Interface'Class;
 
    type IMediaPlaybackSession3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackSession3 is access IMediaPlaybackSession3_Interface'Class;
+   type IMediaPlaybackSession3 is access all IMediaPlaybackSession3_Interface'Class;
 
    type IMediaPlaybackSessionBufferingStartedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackSessionBufferingStartedEventArgs is access IMediaPlaybackSessionBufferingStartedEventArgs_Interface'Class;
+   type IMediaPlaybackSessionBufferingStartedEventArgs is access all IMediaPlaybackSessionBufferingStartedEventArgs_Interface'Class;
    type IMediaPlaybackSessionBufferingStartedEventArgs_Ptr is access all IMediaPlaybackSessionBufferingStartedEventArgs;
 
    type IMediaPlaybackSessionOutputDegradationPolicyState_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackSessionOutputDegradationPolicyState is access IMediaPlaybackSessionOutputDegradationPolicyState_Interface'Class;
+   type IMediaPlaybackSessionOutputDegradationPolicyState is access all IMediaPlaybackSessionOutputDegradationPolicyState_Interface'Class;
    type IMediaPlaybackSessionOutputDegradationPolicyState_Ptr is access all IMediaPlaybackSessionOutputDegradationPolicyState;
 
    type IMediaPlaybackSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackSource is access IMediaPlaybackSource_Interface'Class;
+   type IMediaPlaybackSource is access all IMediaPlaybackSource_Interface'Class;
 
    type IMediaPlaybackSphericalVideoProjection_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackSphericalVideoProjection is access IMediaPlaybackSphericalVideoProjection_Interface'Class;
+   type IMediaPlaybackSphericalVideoProjection is access all IMediaPlaybackSphericalVideoProjection_Interface'Class;
    type IMediaPlaybackSphericalVideoProjection_Ptr is access all IMediaPlaybackSphericalVideoProjection;
 
    type IMediaPlaybackTimedMetadataTrackList_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlaybackTimedMetadataTrackList is access IMediaPlaybackTimedMetadataTrackList_Interface'Class;
+   type IMediaPlaybackTimedMetadataTrackList is access all IMediaPlaybackTimedMetadataTrackList_Interface'Class;
 
    type IMediaPlayer_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlayer is access IMediaPlayer_Interface'Class;
+   type IMediaPlayer is access all IMediaPlayer_Interface'Class;
    type IMediaPlayer_Ptr is access all IMediaPlayer;
 
    type IMediaPlayer2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlayer2 is access IMediaPlayer2_Interface'Class;
+   type IMediaPlayer2 is access all IMediaPlayer2_Interface'Class;
 
    type IMediaPlayer3_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlayer3 is access IMediaPlayer3_Interface'Class;
+   type IMediaPlayer3 is access all IMediaPlayer3_Interface'Class;
 
    type IMediaPlayer4_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlayer4 is access IMediaPlayer4_Interface'Class;
+   type IMediaPlayer4 is access all IMediaPlayer4_Interface'Class;
 
    type IMediaPlayer5_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlayer5 is access IMediaPlayer5_Interface'Class;
+   type IMediaPlayer5 is access all IMediaPlayer5_Interface'Class;
 
    type IMediaPlayer6_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlayer6 is access IMediaPlayer6_Interface'Class;
+   type IMediaPlayer6 is access all IMediaPlayer6_Interface'Class;
 
    type IMediaPlayer7_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlayer7 is access IMediaPlayer7_Interface'Class;
+   type IMediaPlayer7 is access all IMediaPlayer7_Interface'Class;
 
    type IMediaPlayerDataReceivedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlayerDataReceivedEventArgs is access IMediaPlayerDataReceivedEventArgs_Interface'Class;
+   type IMediaPlayerDataReceivedEventArgs is access all IMediaPlayerDataReceivedEventArgs_Interface'Class;
    type IMediaPlayerDataReceivedEventArgs_Ptr is access all IMediaPlayerDataReceivedEventArgs;
 
    type IMediaPlayerEffects_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlayerEffects is access IMediaPlayerEffects_Interface'Class;
+   type IMediaPlayerEffects is access all IMediaPlayerEffects_Interface'Class;
 
    type IMediaPlayerEffects2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlayerEffects2 is access IMediaPlayerEffects2_Interface'Class;
+   type IMediaPlayerEffects2 is access all IMediaPlayerEffects2_Interface'Class;
 
    type IMediaPlayerFailedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlayerFailedEventArgs is access IMediaPlayerFailedEventArgs_Interface'Class;
+   type IMediaPlayerFailedEventArgs is access all IMediaPlayerFailedEventArgs_Interface'Class;
    type IMediaPlayerFailedEventArgs_Ptr is access all IMediaPlayerFailedEventArgs;
 
    type IMediaPlayerRateChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlayerRateChangedEventArgs is access IMediaPlayerRateChangedEventArgs_Interface'Class;
+   type IMediaPlayerRateChangedEventArgs is access all IMediaPlayerRateChangedEventArgs_Interface'Class;
    type IMediaPlayerRateChangedEventArgs_Ptr is access all IMediaPlayerRateChangedEventArgs;
 
    type IMediaPlayerSource_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlayerSource is access IMediaPlayerSource_Interface'Class;
+   type IMediaPlayerSource is access all IMediaPlayerSource_Interface'Class;
 
    type IMediaPlayerSource2_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlayerSource2 is access IMediaPlayerSource2_Interface'Class;
+   type IMediaPlayerSource2 is access all IMediaPlayerSource2_Interface'Class;
 
    type IMediaPlayerSurface_Interface is interface and WinRt.IInspectable_Interface;
-   type IMediaPlayerSurface is access IMediaPlayerSurface_Interface'Class;
+   type IMediaPlayerSurface is access all IMediaPlayerSurface_Interface'Class;
    type IMediaPlayerSurface_Ptr is access all IMediaPlayerSurface;
 
    type IPlaybackMediaMarker_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlaybackMediaMarker is access IPlaybackMediaMarker_Interface'Class;
+   type IPlaybackMediaMarker is access all IPlaybackMediaMarker_Interface'Class;
    type IPlaybackMediaMarker_Ptr is access all IPlaybackMediaMarker;
 
    type IPlaybackMediaMarkerFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlaybackMediaMarkerFactory is access IPlaybackMediaMarkerFactory_Interface'Class;
+   type IPlaybackMediaMarkerFactory is access all IPlaybackMediaMarkerFactory_Interface'Class;
 
    type IPlaybackMediaMarkerReachedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlaybackMediaMarkerReachedEventArgs is access IPlaybackMediaMarkerReachedEventArgs_Interface'Class;
+   type IPlaybackMediaMarkerReachedEventArgs is access all IPlaybackMediaMarkerReachedEventArgs_Interface'Class;
    type IPlaybackMediaMarkerReachedEventArgs_Ptr is access all IPlaybackMediaMarkerReachedEventArgs;
 
    type IPlaybackMediaMarkerSequence_Interface is interface and WinRt.IInspectable_Interface;
-   type IPlaybackMediaMarkerSequence is access IPlaybackMediaMarkerSequence_Interface'Class;
+   type IPlaybackMediaMarkerSequence is access all IPlaybackMediaMarkerSequence_Interface'Class;
    type IPlaybackMediaMarkerSequence_Ptr is access all IPlaybackMediaMarkerSequence;
 
    type ITimedMetadataPresentationModeChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type ITimedMetadataPresentationModeChangedEventArgs is access ITimedMetadataPresentationModeChangedEventArgs_Interface'Class;
+   type ITimedMetadataPresentationModeChangedEventArgs is access all ITimedMetadataPresentationModeChangedEventArgs_Interface'Class;
    type ITimedMetadataPresentationModeChangedEventArgs_Ptr is access all ITimedMetadataPresentationModeChangedEventArgs;
 
    -----------------------------------------------------------------------------
@@ -556,7 +556,7 @@ package WinRt.Windows.Media.Playback is
       Music_e => 2,
       Video_e => 3
    );
-   type AutoLoadedDisplayPropertyKind_Ptr is access AutoLoadedDisplayPropertyKind;
+   type AutoLoadedDisplayPropertyKind_Ptr is access all AutoLoadedDisplayPropertyKind;
 
    type FailedMediaStreamKind is (
       Unknown_e,
@@ -568,7 +568,7 @@ package WinRt.Windows.Media.Playback is
       Audio_e => 1,
       Video_e => 2
    );
-   type FailedMediaStreamKind_Ptr is access FailedMediaStreamKind;
+   type FailedMediaStreamKind_Ptr is access all FailedMediaStreamKind;
 
    type MediaBreakInsertionMethod is (
       Interrupt_e,
@@ -578,7 +578,7 @@ package WinRt.Windows.Media.Playback is
       Interrupt_e => 0,
       Replace_e => 1
    );
-   type MediaBreakInsertionMethod_Ptr is access MediaBreakInsertionMethod;
+   type MediaBreakInsertionMethod_Ptr is access all MediaBreakInsertionMethod;
 
    type MediaCommandEnablingRule is (
       Auto_e,
@@ -590,7 +590,7 @@ package WinRt.Windows.Media.Playback is
       Always_e => 1,
       Never_e => 2
    );
-   type MediaCommandEnablingRule_Ptr is access MediaCommandEnablingRule;
+   type MediaCommandEnablingRule_Ptr is access all MediaCommandEnablingRule;
 
    type MediaPlaybackItemChangedReason is (
       InitialItem_e,
@@ -604,7 +604,7 @@ package WinRt.Windows.Media.Playback is
       Error_e => 2,
       AppRequested_e => 3
    );
-   type MediaPlaybackItemChangedReason_Ptr is access MediaPlaybackItemChangedReason;
+   type MediaPlaybackItemChangedReason_Ptr is access all MediaPlaybackItemChangedReason;
 
    type MediaPlaybackItemErrorCode is (
       None_e,
@@ -622,7 +622,7 @@ package WinRt.Windows.Media.Playback is
       SourceNotSupportedError_e => 4,
       EncryptionError_e => 5
    );
-   type MediaPlaybackItemErrorCode_Ptr is access MediaPlaybackItemErrorCode;
+   type MediaPlaybackItemErrorCode_Ptr is access all MediaPlaybackItemErrorCode;
 
    type MediaPlaybackSessionVideoConstrictionReason is (
       None_e,
@@ -642,7 +642,7 @@ package WinRt.Windows.Media.Playback is
       OutputProtectionFailed_e => 5,
       Unknown_e => 6
    );
-   type MediaPlaybackSessionVideoConstrictionReason_Ptr is access MediaPlaybackSessionVideoConstrictionReason;
+   type MediaPlaybackSessionVideoConstrictionReason_Ptr is access all MediaPlaybackSessionVideoConstrictionReason;
 
    type MediaPlaybackState is (
       None_e,
@@ -658,7 +658,7 @@ package WinRt.Windows.Media.Playback is
       Playing_e => 3,
       Paused_e => 4
    );
-   type MediaPlaybackState_Ptr is access MediaPlaybackState;
+   type MediaPlaybackState_Ptr is access all MediaPlaybackState;
 
    type MediaPlayerAudioCategory is (
       Other_e,
@@ -684,7 +684,7 @@ package WinRt.Windows.Media.Playback is
       Movie_e => 10,
       Media_e => 11
    );
-   type MediaPlayerAudioCategory_Ptr is access MediaPlayerAudioCategory;
+   type MediaPlayerAudioCategory_Ptr is access all MediaPlayerAudioCategory;
 
    type MediaPlayerAudioDeviceType is (
       Console_e,
@@ -696,7 +696,7 @@ package WinRt.Windows.Media.Playback is
       Multimedia_e => 1,
       Communications_e => 2
    );
-   type MediaPlayerAudioDeviceType_Ptr is access MediaPlayerAudioDeviceType;
+   type MediaPlayerAudioDeviceType_Ptr is access all MediaPlayerAudioDeviceType;
 
    type MediaPlayerError is (
       Unknown_e,
@@ -712,7 +712,7 @@ package WinRt.Windows.Media.Playback is
       DecodingError_e => 3,
       SourceNotSupported_e => 4
    );
-   type MediaPlayerError_Ptr is access MediaPlayerError;
+   type MediaPlayerError_Ptr is access all MediaPlayerError;
 
    type MediaPlayerState is (
       Closed_e,
@@ -730,7 +730,7 @@ package WinRt.Windows.Media.Playback is
       Paused_e => 4,
       Stopped_e => 5
    );
-   type MediaPlayerState_Ptr is access MediaPlayerState;
+   type MediaPlayerState_Ptr is access all MediaPlayerState;
 
    type SphericalVideoProjectionMode is (
       Spherical_e,
@@ -740,7 +740,7 @@ package WinRt.Windows.Media.Playback is
       Spherical_e => 0,
       Flat_e => 1
    );
-   type SphericalVideoProjectionMode_Ptr is access SphericalVideoProjectionMode;
+   type SphericalVideoProjectionMode_Ptr is access all SphericalVideoProjectionMode;
 
    type StereoscopicVideoRenderMode is (
       Mono_e,
@@ -750,7 +750,7 @@ package WinRt.Windows.Media.Playback is
       Mono_e => 0,
       Stereo_e => 1
    );
-   type StereoscopicVideoRenderMode_Ptr is access StereoscopicVideoRenderMode;
+   type StereoscopicVideoRenderMode_Ptr is access all StereoscopicVideoRenderMode;
 
    type TimedMetadataTrackPresentationMode is (
       Disabled_e,
@@ -764,7 +764,7 @@ package WinRt.Windows.Media.Playback is
       ApplicationPresented_e => 2,
       PlatformPresented_e => 3
    );
-   type TimedMetadataTrackPresentationMode_Ptr is access TimedMetadataTrackPresentationMode;
+   type TimedMetadataTrackPresentationMode_Ptr is access all TimedMetadataTrackPresentationMode;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

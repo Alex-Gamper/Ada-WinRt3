@@ -42,91 +42,91 @@ package WinRt.Windows.UI.WindowManagement is
    -----------------------------------------------------------------------------
 
    type IAppWindow_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppWindow is access IAppWindow_Interface'Class;
+   type IAppWindow is access all IAppWindow_Interface'Class;
    type IAppWindow_Ptr is access all IAppWindow;
 
    type IAppWindowChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppWindowChangedEventArgs is access IAppWindowChangedEventArgs_Interface'Class;
+   type IAppWindowChangedEventArgs is access all IAppWindowChangedEventArgs_Interface'Class;
    type IAppWindowChangedEventArgs_Ptr is access all IAppWindowChangedEventArgs;
 
    type IAppWindowCloseRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppWindowCloseRequestedEventArgs is access IAppWindowCloseRequestedEventArgs_Interface'Class;
+   type IAppWindowCloseRequestedEventArgs is access all IAppWindowCloseRequestedEventArgs_Interface'Class;
    type IAppWindowCloseRequestedEventArgs_Ptr is access all IAppWindowCloseRequestedEventArgs;
 
    type IAppWindowClosedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppWindowClosedEventArgs is access IAppWindowClosedEventArgs_Interface'Class;
+   type IAppWindowClosedEventArgs is access all IAppWindowClosedEventArgs_Interface'Class;
    type IAppWindowClosedEventArgs_Ptr is access all IAppWindowClosedEventArgs;
 
    type IAppWindowFrame_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppWindowFrame is access IAppWindowFrame_Interface'Class;
+   type IAppWindowFrame is access all IAppWindowFrame_Interface'Class;
    type IAppWindowFrame_Ptr is access all IAppWindowFrame;
 
    type IAppWindowFrameStyle_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppWindowFrameStyle is access IAppWindowFrameStyle_Interface'Class;
+   type IAppWindowFrameStyle is access all IAppWindowFrameStyle_Interface'Class;
 
    type IAppWindowPlacement_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppWindowPlacement is access IAppWindowPlacement_Interface'Class;
+   type IAppWindowPlacement is access all IAppWindowPlacement_Interface'Class;
    type IAppWindowPlacement_Ptr is access all IAppWindowPlacement;
 
    type IAppWindowPresentationConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppWindowPresentationConfiguration is access IAppWindowPresentationConfiguration_Interface'Class;
+   type IAppWindowPresentationConfiguration is access all IAppWindowPresentationConfiguration_Interface'Class;
    type IAppWindowPresentationConfiguration_Ptr is access all IAppWindowPresentationConfiguration;
 
    type IAppWindowPresentationConfigurationFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppWindowPresentationConfigurationFactory is access IAppWindowPresentationConfigurationFactory_Interface'Class;
+   type IAppWindowPresentationConfigurationFactory is access all IAppWindowPresentationConfigurationFactory_Interface'Class;
 
    type IAppWindowPresenter_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppWindowPresenter is access IAppWindowPresenter_Interface'Class;
+   type IAppWindowPresenter is access all IAppWindowPresenter_Interface'Class;
    type IAppWindowPresenter_Ptr is access all IAppWindowPresenter;
 
    type IAppWindowStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppWindowStatics is access IAppWindowStatics_Interface'Class;
+   type IAppWindowStatics is access all IAppWindowStatics_Interface'Class;
 
    type IAppWindowTitleBar_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppWindowTitleBar is access IAppWindowTitleBar_Interface'Class;
+   type IAppWindowTitleBar is access all IAppWindowTitleBar_Interface'Class;
    type IAppWindowTitleBar_Ptr is access all IAppWindowTitleBar;
 
    type IAppWindowTitleBarOcclusion_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppWindowTitleBarOcclusion is access IAppWindowTitleBarOcclusion_Interface'Class;
+   type IAppWindowTitleBarOcclusion is access all IAppWindowTitleBarOcclusion_Interface'Class;
    type IAppWindowTitleBarOcclusion_Ptr is access all IAppWindowTitleBarOcclusion;
 
    type IAppWindowTitleBarVisibility_Interface is interface and WinRt.IInspectable_Interface;
-   type IAppWindowTitleBarVisibility is access IAppWindowTitleBarVisibility_Interface'Class;
+   type IAppWindowTitleBarVisibility is access all IAppWindowTitleBarVisibility_Interface'Class;
 
    type ICompactOverlayPresentationConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type ICompactOverlayPresentationConfiguration is access ICompactOverlayPresentationConfiguration_Interface'Class;
+   type ICompactOverlayPresentationConfiguration is access all ICompactOverlayPresentationConfiguration_Interface'Class;
    type ICompactOverlayPresentationConfiguration_Ptr is access all ICompactOverlayPresentationConfiguration;
 
    type IDefaultPresentationConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IDefaultPresentationConfiguration is access IDefaultPresentationConfiguration_Interface'Class;
+   type IDefaultPresentationConfiguration is access all IDefaultPresentationConfiguration_Interface'Class;
    type IDefaultPresentationConfiguration_Ptr is access all IDefaultPresentationConfiguration;
 
    type IDisplayRegion_Interface is interface and WinRt.IInspectable_Interface;
-   type IDisplayRegion is access IDisplayRegion_Interface'Class;
+   type IDisplayRegion is access all IDisplayRegion_Interface'Class;
    type IDisplayRegion_Ptr is access all IDisplayRegion;
 
    type IFullScreenPresentationConfiguration_Interface is interface and WinRt.IInspectable_Interface;
-   type IFullScreenPresentationConfiguration is access IFullScreenPresentationConfiguration_Interface'Class;
+   type IFullScreenPresentationConfiguration is access all IFullScreenPresentationConfiguration_Interface'Class;
    type IFullScreenPresentationConfiguration_Ptr is access all IFullScreenPresentationConfiguration;
 
    type IWindowingEnvironment_Interface is interface and WinRt.IInspectable_Interface;
-   type IWindowingEnvironment is access IWindowingEnvironment_Interface'Class;
+   type IWindowingEnvironment is access all IWindowingEnvironment_Interface'Class;
    type IWindowingEnvironment_Ptr is access all IWindowingEnvironment;
 
    type IWindowingEnvironmentAddedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWindowingEnvironmentAddedEventArgs is access IWindowingEnvironmentAddedEventArgs_Interface'Class;
+   type IWindowingEnvironmentAddedEventArgs is access all IWindowingEnvironmentAddedEventArgs_Interface'Class;
    type IWindowingEnvironmentAddedEventArgs_Ptr is access all IWindowingEnvironmentAddedEventArgs;
 
    type IWindowingEnvironmentChangedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWindowingEnvironmentChangedEventArgs is access IWindowingEnvironmentChangedEventArgs_Interface'Class;
+   type IWindowingEnvironmentChangedEventArgs is access all IWindowingEnvironmentChangedEventArgs_Interface'Class;
    type IWindowingEnvironmentChangedEventArgs_Ptr is access all IWindowingEnvironmentChangedEventArgs;
 
    type IWindowingEnvironmentRemovedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IWindowingEnvironmentRemovedEventArgs is access IWindowingEnvironmentRemovedEventArgs_Interface'Class;
+   type IWindowingEnvironmentRemovedEventArgs is access all IWindowingEnvironmentRemovedEventArgs_Interface'Class;
    type IWindowingEnvironmentRemovedEventArgs_Ptr is access all IWindowingEnvironmentRemovedEventArgs;
 
    type IWindowingEnvironmentStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IWindowingEnvironmentStatics is access IWindowingEnvironmentStatics_Interface'Class;
+   type IWindowingEnvironmentStatics is access all IWindowingEnvironmentStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -254,7 +254,7 @@ package WinRt.Windows.UI.WindowManagement is
       AppInitiated_e => 1,
       UserInitiated_e => 2
    );
-   type AppWindowClosedReason_Ptr is access AppWindowClosedReason;
+   type AppWindowClosedReason_Ptr is access all AppWindowClosedReason;
 
    type AppWindowFrameStyle is (
       Default_e,
@@ -264,7 +264,7 @@ package WinRt.Windows.UI.WindowManagement is
       Default_e => 0,
       NoFrame_e => 1
    );
-   type AppWindowFrameStyle_Ptr is access AppWindowFrameStyle;
+   type AppWindowFrameStyle_Ptr is access all AppWindowFrameStyle;
 
    type AppWindowPresentationKind is (
       Default_e,
@@ -276,7 +276,7 @@ package WinRt.Windows.UI.WindowManagement is
       CompactOverlay_e => 1,
       FullScreen_e => 2
    );
-   type AppWindowPresentationKind_Ptr is access AppWindowPresentationKind;
+   type AppWindowPresentationKind_Ptr is access all AppWindowPresentationKind;
 
    type AppWindowTitleBarVisibility is (
       Default_e,
@@ -286,7 +286,7 @@ package WinRt.Windows.UI.WindowManagement is
       Default_e => 0,
       AlwaysHidden_e => 1
    );
-   type AppWindowTitleBarVisibility_Ptr is access AppWindowTitleBarVisibility;
+   type AppWindowTitleBarVisibility_Ptr is access all AppWindowTitleBarVisibility;
 
    type WindowingEnvironmentKind is (
       Unknown_e,
@@ -298,7 +298,7 @@ package WinRt.Windows.UI.WindowManagement is
       Overlapped_e => 1,
       Tiled_e => 2
    );
-   type WindowingEnvironmentKind_Ptr is access WindowingEnvironmentKind;
+   type WindowingEnvironmentKind_Ptr is access all WindowingEnvironmentKind;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

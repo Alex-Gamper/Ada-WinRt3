@@ -43,26 +43,26 @@ package WinRt.Windows.Perception.People is
    -----------------------------------------------------------------------------
 
    type IEyesPose_Interface is interface and WinRt.IInspectable_Interface;
-   type IEyesPose is access IEyesPose_Interface'Class;
+   type IEyesPose is access all IEyesPose_Interface'Class;
    type IEyesPose_Ptr is access all IEyesPose;
 
    type IEyesPoseStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IEyesPoseStatics is access IEyesPoseStatics_Interface'Class;
+   type IEyesPoseStatics is access all IEyesPoseStatics_Interface'Class;
 
    type IHandMeshObserver_Interface is interface and WinRt.IInspectable_Interface;
-   type IHandMeshObserver is access IHandMeshObserver_Interface'Class;
+   type IHandMeshObserver is access all IHandMeshObserver_Interface'Class;
    type IHandMeshObserver_Ptr is access all IHandMeshObserver;
 
    type IHandMeshVertexState_Interface is interface and WinRt.IInspectable_Interface;
-   type IHandMeshVertexState is access IHandMeshVertexState_Interface'Class;
+   type IHandMeshVertexState is access all IHandMeshVertexState_Interface'Class;
    type IHandMeshVertexState_Ptr is access all IHandMeshVertexState;
 
    type IHandPose_Interface is interface and WinRt.IInspectable_Interface;
-   type IHandPose is access IHandPose_Interface'Class;
+   type IHandPose is access all IHandPose_Interface'Class;
    type IHandPose_Ptr is access all IHandPose;
 
    type IHeadPose_Interface is interface and WinRt.IInspectable_Interface;
-   type IHeadPose is access IHeadPose_Interface'Class;
+   type IHeadPose is access all IHeadPose_Interface'Class;
    type IHeadPose_Ptr is access all IHeadPose;
 
    -----------------------------------------------------------------------------
@@ -159,7 +159,7 @@ package WinRt.Windows.Perception.People is
       LittleDistal_e => 24,
       LittleTip_e => 25
    );
-   type HandJointKind_Ptr is access HandJointKind;
+   type HandJointKind_Ptr is access all HandJointKind;
    type HandJointKind_Array is array (Natural range <>) of aliased HandJointKind;
 
    type JointPoseAccuracy is (
@@ -170,7 +170,7 @@ package WinRt.Windows.Perception.People is
       High_e => 0,
       Approximate_e => 1
    );
-   type JointPoseAccuracy_Ptr is access JointPoseAccuracy;
+   type JointPoseAccuracy_Ptr is access all JointPoseAccuracy;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -180,7 +180,7 @@ package WinRt.Windows.Perception.People is
       Position : WinRt.Windows.Foundation.Numerics.Vector3;
       Normal : WinRt.Windows.Foundation.Numerics.Vector3;
    end record with Convention => C_Pass_By_Copy;
-   type HandMeshVertex_Ptr is access HandMeshVertex;
+   type HandMeshVertex_Ptr is access all HandMeshVertex;
    type HandMeshVertex_Array is array (Natural range <>) of aliased HandMeshVertex;
 
    type JointPose is record
@@ -189,7 +189,7 @@ package WinRt.Windows.Perception.People is
       Radius : WinRt.Single;
       Accuracy : Windows.Perception.People.JointPoseAccuracy;
    end record with Convention => C_Pass_By_Copy;
-   type JointPose_Ptr is access JointPose;
+   type JointPose_Ptr is access all JointPose;
    type JointPose_Array is array (Natural range <>) of aliased JointPose;
 
    -----------------------------------------------------------------------------

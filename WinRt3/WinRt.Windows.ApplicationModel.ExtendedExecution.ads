@@ -39,11 +39,11 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution is
    -----------------------------------------------------------------------------
 
    type IExtendedExecutionRevokedEventArgs_Interface is interface and WinRt.IInspectable_Interface;
-   type IExtendedExecutionRevokedEventArgs is access IExtendedExecutionRevokedEventArgs_Interface'Class;
+   type IExtendedExecutionRevokedEventArgs is access all IExtendedExecutionRevokedEventArgs_Interface'Class;
    type IExtendedExecutionRevokedEventArgs_Ptr is access all IExtendedExecutionRevokedEventArgs;
 
    type IExtendedExecutionSession_Interface is interface and WinRt.IInspectable_Interface;
-   type IExtendedExecutionSession is access IExtendedExecutionSession_Interface'Class;
+   type IExtendedExecutionSession is access all IExtendedExecutionSession_Interface'Class;
    type IExtendedExecutionSession_Ptr is access all IExtendedExecutionSession;
 
    -----------------------------------------------------------------------------
@@ -76,7 +76,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution is
       LocationTracking_e => 1,
       SavingData_e => 2
    );
-   type ExtendedExecutionReason_Ptr is access ExtendedExecutionReason;
+   type ExtendedExecutionReason_Ptr is access all ExtendedExecutionReason;
 
    type ExtendedExecutionResult is (
       Allowed_e,
@@ -86,7 +86,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution is
       Allowed_e => 0,
       Denied_e => 1
    );
-   type ExtendedExecutionResult_Ptr is access ExtendedExecutionResult;
+   type ExtendedExecutionResult_Ptr is access all ExtendedExecutionResult;
 
    type ExtendedExecutionRevokedReason is (
       Resumed_e,
@@ -96,7 +96,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution is
       Resumed_e => 0,
       SystemPolicy_e => 1
    );
-   type ExtendedExecutionRevokedReason_Ptr is access ExtendedExecutionRevokedReason;
+   type ExtendedExecutionRevokedReason_Ptr is access all ExtendedExecutionRevokedReason;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

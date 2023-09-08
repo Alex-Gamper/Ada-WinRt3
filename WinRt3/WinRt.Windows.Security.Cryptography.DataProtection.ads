@@ -40,11 +40,11 @@ package WinRt.Windows.Security.Cryptography.DataProtection is
    -----------------------------------------------------------------------------
 
    type IDataProtectionProvider_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataProtectionProvider is access IDataProtectionProvider_Interface'Class;
+   type IDataProtectionProvider is access all IDataProtectionProvider_Interface'Class;
    type IDataProtectionProvider_Ptr is access all IDataProtectionProvider;
 
    type IDataProtectionProviderFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IDataProtectionProviderFactory is access IDataProtectionProviderFactory_Interface'Class;
+   type IDataProtectionProviderFactory is access all IDataProtectionProviderFactory_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations

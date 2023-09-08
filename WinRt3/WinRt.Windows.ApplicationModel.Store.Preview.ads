@@ -45,48 +45,48 @@ package WinRt.Windows.ApplicationModel.Store.Preview is
    -----------------------------------------------------------------------------
 
    type IDeliveryOptimizationSettings_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeliveryOptimizationSettings is access IDeliveryOptimizationSettings_Interface'Class;
+   type IDeliveryOptimizationSettings is access all IDeliveryOptimizationSettings_Interface'Class;
    type IDeliveryOptimizationSettings_Ptr is access all IDeliveryOptimizationSettings;
 
    type IDeliveryOptimizationSettingsStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IDeliveryOptimizationSettingsStatics is access IDeliveryOptimizationSettingsStatics_Interface'Class;
+   type IDeliveryOptimizationSettingsStatics is access all IDeliveryOptimizationSettingsStatics_Interface'Class;
 
    type IStoreConfigurationStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreConfigurationStatics is access IStoreConfigurationStatics_Interface'Class;
+   type IStoreConfigurationStatics is access all IStoreConfigurationStatics_Interface'Class;
 
    type IStoreConfigurationStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreConfigurationStatics2 is access IStoreConfigurationStatics2_Interface'Class;
+   type IStoreConfigurationStatics2 is access all IStoreConfigurationStatics2_Interface'Class;
 
    type IStoreConfigurationStatics3_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreConfigurationStatics3 is access IStoreConfigurationStatics3_Interface'Class;
+   type IStoreConfigurationStatics3 is access all IStoreConfigurationStatics3_Interface'Class;
 
    type IStoreConfigurationStatics4_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreConfigurationStatics4 is access IStoreConfigurationStatics4_Interface'Class;
+   type IStoreConfigurationStatics4 is access all IStoreConfigurationStatics4_Interface'Class;
 
    type IStoreConfigurationStatics5_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreConfigurationStatics5 is access IStoreConfigurationStatics5_Interface'Class;
+   type IStoreConfigurationStatics5 is access all IStoreConfigurationStatics5_Interface'Class;
 
    type IStoreHardwareManufacturerInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IStoreHardwareManufacturerInfo is access IStoreHardwareManufacturerInfo_Interface'Class;
+   type IStoreHardwareManufacturerInfo is access all IStoreHardwareManufacturerInfo_Interface'Class;
    type IStoreHardwareManufacturerInfo_Ptr is access all IStoreHardwareManufacturerInfo;
 
    type IStorePreview_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorePreview is access IStorePreview_Interface'Class;
+   type IStorePreview is access all IStorePreview_Interface'Class;
 
    type IStorePreviewProductInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorePreviewProductInfo is access IStorePreviewProductInfo_Interface'Class;
+   type IStorePreviewProductInfo is access all IStorePreviewProductInfo_Interface'Class;
    type IStorePreviewProductInfo_Ptr is access all IStorePreviewProductInfo;
 
    type IStorePreviewPurchaseResults_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorePreviewPurchaseResults is access IStorePreviewPurchaseResults_Interface'Class;
+   type IStorePreviewPurchaseResults is access all IStorePreviewPurchaseResults_Interface'Class;
    type IStorePreviewPurchaseResults_Ptr is access all IStorePreviewPurchaseResults;
 
    type IStorePreviewSkuInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IStorePreviewSkuInfo is access IStorePreviewSkuInfo_Interface'Class;
+   type IStorePreviewSkuInfo is access all IStorePreviewSkuInfo_Interface'Class;
    type IStorePreviewSkuInfo_Ptr is access all IStorePreviewSkuInfo;
 
    type IWebAuthenticationCoreManagerHelper_Interface is interface and WinRt.IInspectable_Interface;
-   type IWebAuthenticationCoreManagerHelper is access IWebAuthenticationCoreManagerHelper_Interface'Class;
+   type IWebAuthenticationCoreManagerHelper is access all IWebAuthenticationCoreManagerHelper_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -142,7 +142,7 @@ package WinRt.Windows.ApplicationModel.Store.Preview is
       Internet_e => 4,
       Bypass_e => 5
    );
-   type DeliveryOptimizationDownloadMode_Ptr is access DeliveryOptimizationDownloadMode;
+   type DeliveryOptimizationDownloadMode_Ptr is access all DeliveryOptimizationDownloadMode;
 
    type DeliveryOptimizationDownloadModeSource is (
       Default_e,
@@ -152,7 +152,7 @@ package WinRt.Windows.ApplicationModel.Store.Preview is
       Default_e => 0,
       Policy_e => 1
    );
-   type DeliveryOptimizationDownloadModeSource_Ptr is access DeliveryOptimizationDownloadModeSource;
+   type DeliveryOptimizationDownloadModeSource_Ptr is access all DeliveryOptimizationDownloadModeSource;
 
    type StoreLogOptions is (
       None_e,
@@ -162,7 +162,7 @@ package WinRt.Windows.ApplicationModel.Store.Preview is
       None_e => 0,
       TryElevate_e => 1
    );
-   type StoreLogOptions_Ptr is access StoreLogOptions;
+   type StoreLogOptions_Ptr is access all StoreLogOptions;
 
    type StorePreviewProductPurchaseStatus is (
       Succeeded_e,
@@ -176,7 +176,7 @@ package WinRt.Windows.ApplicationModel.Store.Preview is
       NotFulfilled_e => 2,
       NotPurchased_e => 3
    );
-   type StorePreviewProductPurchaseStatus_Ptr is access StorePreviewProductPurchaseStatus;
+   type StorePreviewProductPurchaseStatus_Ptr is access all StorePreviewProductPurchaseStatus;
 
    type StoreSystemFeature is (
       ArchitectureX86_e,
@@ -252,7 +252,7 @@ package WinRt.Windows.ApplicationModel.Store.Preview is
       VideoMemory1GB_e => 33,
       ArchitectureArm64_e => 34
    );
-   type StoreSystemFeature_Ptr is access StoreSystemFeature;
+   type StoreSystemFeature_Ptr is access all StoreSystemFeature;
 
    -----------------------------------------------------------------------------
    -- Generic package declarations

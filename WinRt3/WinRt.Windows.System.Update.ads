@@ -40,15 +40,15 @@ package WinRt.Windows.System.Update is
    -----------------------------------------------------------------------------
 
    type ISystemUpdateItem_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemUpdateItem is access ISystemUpdateItem_Interface'Class;
+   type ISystemUpdateItem is access all ISystemUpdateItem_Interface'Class;
    type ISystemUpdateItem_Ptr is access all ISystemUpdateItem;
 
    type ISystemUpdateLastErrorInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemUpdateLastErrorInfo is access ISystemUpdateLastErrorInfo_Interface'Class;
+   type ISystemUpdateLastErrorInfo is access all ISystemUpdateLastErrorInfo_Interface'Class;
    type ISystemUpdateLastErrorInfo_Ptr is access all ISystemUpdateLastErrorInfo;
 
    type ISystemUpdateManagerStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type ISystemUpdateManagerStatics is access ISystemUpdateManagerStatics_Interface'Class;
+   type ISystemUpdateManagerStatics is access all ISystemUpdateManagerStatics_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -84,7 +84,7 @@ package WinRt.Windows.System.Update is
       InsufficientBattery_e => 3,
       UpdateBlocked_e => 4
    );
-   type SystemUpdateAttentionRequiredReason_Ptr is access SystemUpdateAttentionRequiredReason;
+   type SystemUpdateAttentionRequiredReason_Ptr is access all SystemUpdateAttentionRequiredReason;
 
    type SystemUpdateItemState is (
       NotStarted_e,
@@ -108,7 +108,7 @@ package WinRt.Windows.System.Update is
       RebootRequired_e => 7,
       Error_e => 8
    );
-   type SystemUpdateItemState_Ptr is access SystemUpdateItemState;
+   type SystemUpdateItemState_Ptr is access all SystemUpdateItemState;
 
    type SystemUpdateManagerState is (
       Idle_e,
@@ -138,7 +138,7 @@ package WinRt.Windows.System.Update is
       AttentionRequired_e => 10,
       Error_e => 11
    );
-   type SystemUpdateManagerState_Ptr is access SystemUpdateManagerState;
+   type SystemUpdateManagerState_Ptr is access all SystemUpdateManagerState;
 
    type SystemUpdateStartInstallAction is (
       UpToReboot_e,
@@ -148,7 +148,7 @@ package WinRt.Windows.System.Update is
       UpToReboot_e => 0,
       AllowReboot_e => 1
    );
-   type SystemUpdateStartInstallAction_Ptr is access SystemUpdateStartInstallAction;
+   type SystemUpdateStartInstallAction_Ptr is access all SystemUpdateStartInstallAction;
 
    -----------------------------------------------------------------------------
    -- Interface declarations

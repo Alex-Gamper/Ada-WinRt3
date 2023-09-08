@@ -40,40 +40,40 @@ package WinRt.Windows.UI.Input.Preview.Injection is
    -----------------------------------------------------------------------------
 
    type IInjectedInputGamepadInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IInjectedInputGamepadInfo is access IInjectedInputGamepadInfo_Interface'Class;
+   type IInjectedInputGamepadInfo is access all IInjectedInputGamepadInfo_Interface'Class;
    type IInjectedInputGamepadInfo_Ptr is access all IInjectedInputGamepadInfo;
 
    type IInjectedInputGamepadInfoFactory_Interface is interface and WinRt.IInspectable_Interface;
-   type IInjectedInputGamepadInfoFactory is access IInjectedInputGamepadInfoFactory_Interface'Class;
+   type IInjectedInputGamepadInfoFactory is access all IInjectedInputGamepadInfoFactory_Interface'Class;
 
    type IInjectedInputKeyboardInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IInjectedInputKeyboardInfo is access IInjectedInputKeyboardInfo_Interface'Class;
+   type IInjectedInputKeyboardInfo is access all IInjectedInputKeyboardInfo_Interface'Class;
    type IInjectedInputKeyboardInfo_Ptr is access all IInjectedInputKeyboardInfo;
 
    type IInjectedInputMouseInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IInjectedInputMouseInfo is access IInjectedInputMouseInfo_Interface'Class;
+   type IInjectedInputMouseInfo is access all IInjectedInputMouseInfo_Interface'Class;
    type IInjectedInputMouseInfo_Ptr is access all IInjectedInputMouseInfo;
 
    type IInjectedInputPenInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IInjectedInputPenInfo is access IInjectedInputPenInfo_Interface'Class;
+   type IInjectedInputPenInfo is access all IInjectedInputPenInfo_Interface'Class;
    type IInjectedInputPenInfo_Ptr is access all IInjectedInputPenInfo;
 
    type IInjectedInputTouchInfo_Interface is interface and WinRt.IInspectable_Interface;
-   type IInjectedInputTouchInfo is access IInjectedInputTouchInfo_Interface'Class;
+   type IInjectedInputTouchInfo is access all IInjectedInputTouchInfo_Interface'Class;
    type IInjectedInputTouchInfo_Ptr is access all IInjectedInputTouchInfo;
 
    type IInputInjector_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputInjector is access IInputInjector_Interface'Class;
+   type IInputInjector is access all IInputInjector_Interface'Class;
    type IInputInjector_Ptr is access all IInputInjector;
 
    type IInputInjector2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputInjector2 is access IInputInjector2_Interface'Class;
+   type IInputInjector2 is access all IInputInjector2_Interface'Class;
 
    type IInputInjectorStatics_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputInjectorStatics is access IInputInjectorStatics_Interface'Class;
+   type IInputInjectorStatics is access all IInputInjectorStatics_Interface'Class;
 
    type IInputInjectorStatics2_Interface is interface and WinRt.IInspectable_Interface;
-   type IInputInjectorStatics2 is access IInputInjectorStatics2_Interface'Class;
+   type IInputInjectorStatics2 is access all IInputInjectorStatics2_Interface'Class;
 
    -----------------------------------------------------------------------------
    -- Class declarations
@@ -145,7 +145,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       FifthButtonDown_e => 9,
       FifthButtonUp_e => 10
    );
-   type InjectedInputButtonChangeKind_Ptr is access InjectedInputButtonChangeKind;
+   type InjectedInputButtonChangeKind_Ptr is access all InjectedInputButtonChangeKind;
 
    type InjectedInputKeyOptions is (
       None_e,
@@ -161,7 +161,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       Unicode_e => 4,
       ScanCode_e => 8
    );
-   type InjectedInputKeyOptions_Ptr is access InjectedInputKeyOptions;
+   type InjectedInputKeyOptions_Ptr is access all InjectedInputKeyOptions;
 
    type InjectedInputMouseOptions is (
       None_e,
@@ -197,7 +197,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       VirtualDesk_e => 16384,
       Absolute_e => 32768
    );
-   type InjectedInputMouseOptions_Ptr is access InjectedInputMouseOptions;
+   type InjectedInputMouseOptions_Ptr is access all InjectedInputMouseOptions;
 
    type InjectedInputPenButtons is (
       None_e,
@@ -211,7 +211,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       Inverted_e => 2,
       Eraser_e => 4
    );
-   type InjectedInputPenButtons_Ptr is access InjectedInputPenButtons;
+   type InjectedInputPenButtons_Ptr is access all InjectedInputPenButtons;
 
    type InjectedInputPenParameters is (
       None_e,
@@ -227,7 +227,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       TiltX_e => 4,
       TiltY_e => 8
    );
-   type InjectedInputPenParameters_Ptr is access InjectedInputPenParameters;
+   type InjectedInputPenParameters_Ptr is access all InjectedInputPenParameters;
 
    type InjectedInputPointerOptions is (
       None_e,
@@ -259,7 +259,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       PointerUp_e => 262144,
       CaptureChanged_e => 2097152
    );
-   type InjectedInputPointerOptions_Ptr is access InjectedInputPointerOptions;
+   type InjectedInputPointerOptions_Ptr is access all InjectedInputPointerOptions;
 
    type InjectedInputShortcut is (
       Back_e,
@@ -271,7 +271,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       Start_e => 1,
       Search_e => 2
    );
-   type InjectedInputShortcut_Ptr is access InjectedInputShortcut;
+   type InjectedInputShortcut_Ptr is access all InjectedInputShortcut;
 
    type InjectedInputTouchParameters is (
       None_e,
@@ -285,7 +285,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       Orientation_e => 2,
       Pressure_e => 4
    );
-   type InjectedInputTouchParameters_Ptr is access InjectedInputTouchParameters;
+   type InjectedInputTouchParameters_Ptr is access all InjectedInputTouchParameters;
 
    type InjectedInputVisualizationMode is (
       None_e,
@@ -297,7 +297,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       Default_e => 1,
       Indirect_e => 2
    );
-   type InjectedInputVisualizationMode_Ptr is access InjectedInputVisualizationMode;
+   type InjectedInputVisualizationMode_Ptr is access all InjectedInputVisualizationMode;
 
    -----------------------------------------------------------------------------
    -- Record declarations
@@ -307,7 +307,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       PositionX : WinRt.Int32;
       PositionY : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type InjectedInputPoint_Ptr is access InjectedInputPoint;
+   type InjectedInputPoint_Ptr is access all InjectedInputPoint;
 
    type InjectedInputPointerInfo is record
       PointerId : WinRt.UInt32;
@@ -316,7 +316,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       TimeOffsetInMilliseconds : WinRt.UInt32;
       PerformanceCount : WinRt.UInt64;
    end record with Convention => C_Pass_By_Copy;
-   type InjectedInputPointerInfo_Ptr is access InjectedInputPointerInfo;
+   type InjectedInputPointerInfo_Ptr is access all InjectedInputPointerInfo;
 
    type InjectedInputRectangle is record
       Left : WinRt.Int32;
@@ -324,7 +324,7 @@ package WinRt.Windows.UI.Input.Preview.Injection is
       Bottom : WinRt.Int32;
       Right : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
-   type InjectedInputRectangle_Ptr is access InjectedInputRectangle;
+   type InjectedInputRectangle_Ptr is access all InjectedInputRectangle;
 
    -----------------------------------------------------------------------------
    -- Interface declarations
