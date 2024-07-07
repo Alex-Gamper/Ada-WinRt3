@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.UI.WindowManagement;
-with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.UI.Input.Preview is
 

@@ -29,7 +29,6 @@
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
 limited with WinRt.Windows.Storage.Streams;
-with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Web is
 

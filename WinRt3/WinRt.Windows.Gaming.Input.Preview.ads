@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.Gaming.Input.Custom;
-with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Gaming.Input.Preview is
 

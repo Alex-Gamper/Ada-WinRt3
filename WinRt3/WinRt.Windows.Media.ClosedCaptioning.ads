@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.UI;
-with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Media.ClosedCaptioning is
 

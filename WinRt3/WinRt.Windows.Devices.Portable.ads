@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.Storage;
-with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Devices.Portable is
 

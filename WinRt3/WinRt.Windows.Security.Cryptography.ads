@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.Storage.Streams;
-with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Security.Cryptography is
 

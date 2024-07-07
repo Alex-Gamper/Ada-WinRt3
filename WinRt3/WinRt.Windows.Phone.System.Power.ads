@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
-with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Phone.System.Power is
 

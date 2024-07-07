@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation.Collections;
-with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Devices.Pwm.Provider is
 

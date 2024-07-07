@@ -27,7 +27,6 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Graphics.DirectX.Direct3D11 is
 
